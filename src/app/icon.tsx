@@ -17,15 +17,16 @@ export default function Icon() {
           justifyContent: "center",
         }}
       >
-        <svg width="20" height="20" viewBox="0 0 32 32">
+        <svg width="28" height="28" viewBox="0 0 32 32">
           <path
-            d="M11 21.5h2.3l0.9-2.6C12.6 17.7 11.6 16 11.6 13.7c0-3.1 2-5.2 4.4-5.2s4.4 2.1 4.4 5.2c0 2.3-1 4-2.6 5.2l0.9 2.6H21"
+            d="M5 17h4l2.2-7 3.4 14 3-11.5 2 4.5h4.6"
             fill="none"
             stroke="#FFFFFF"
-            strokeWidth="2.6"
+            strokeWidth="2.4"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+          <circle cx="24.8" cy="17" r="2" fill="#FFFFFF" />
         </svg>
       </div>
     ),

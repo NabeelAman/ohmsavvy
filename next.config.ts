@@ -5,7 +5,11 @@ const csp = [
   "script-src 'self'",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: https://m.media-amazon.com https://images-na.ssl-images-amazon.com",
+  // Product photos come from many manufacturer CDNs (Fluke, Rigol,
+  // Siglent, etc.) rather than one host, so this allows any HTTPS image
+  // source rather than an ever-growing per-domain allowlist. Images can't
+  // execute script, so this doesn't weaken the policy's real protections.
+  "img-src 'self' data: https:",
   "connect-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",

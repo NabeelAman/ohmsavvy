@@ -12,6 +12,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Fluke 117",
+    image: "https://media.fluke.com/e55511c8-92e6-46b2-b9ae-b108002dd7fa_product_slideshow_main.jpg",
     rating: 4.8,
     bottomLine: "The meter working electricians actually buy with their own money, not just the one brands push.",
     verdict:

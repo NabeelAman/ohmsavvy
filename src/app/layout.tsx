@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,11 +26,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <header className="border-b border-border sticky top-0 z-40 bg-background/90 backdrop-blur">
           <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-            <Link href="/" className="font-display text-lg font-semibold tracking-tight flex items-center gap-2">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded bg-accent text-accent-foreground text-sm">
-                Ω
-              </span>
-              OhmSavvy
+            <Link href="/">
+              <Logo />
             </Link>
             <nav className="hidden sm:flex items-center gap-7 text-sm">
               {navLinks.map((l) => (

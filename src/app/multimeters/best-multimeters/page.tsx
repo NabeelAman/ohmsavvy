@@ -12,7 +12,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Fluke 117",
-    image: "https://media.fluke.com/e55511c8-92e6-46b2-b9ae-b108002dd7fa_product_slideshow_main.jpg",
+    image: "https://media.fluke.com/e55511c8-92e6-46b2-b9ae-b108002dd7fa_original__size.jpg",
     rating: 4.8,
     bottomLine: "The meter working electricians actually buy with their own money, not just the one brands push.",
     verdict:
@@ -30,6 +30,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Budget",
     name: "KAIWEETS KM200s",
+    image: "https://kaiweets.com/cdn/shop/files/KAIWEETS-KM200s-True-RMS-Smart-Digital-Multimeter.jpg?width=1000",
     rating: 4.5,
     bottomLine: "Covers the fundamentals of the Fluke at under half the price — the sensible first meter.",
     verdict:
@@ -47,6 +48,7 @@ export const picks: Pick[] = [
   {
     badge: "Best for Electronics Hobbyists",
     name: "AstroAI DM6000AR",
+    image: "https://cdn.astroai.com/cdn-cgi/image/format=webp,width=1200,quality=,dpr=/astroai-banner/product/02eac7f4-b680-4f9a-e240-b28f21b3eb2b_20250120.webp",
     rating: 4.3,
     bottomLine: "The go-to recommendation for Arduino and Raspberry Pi tinkering — cheap enough not to worry about.",
     verdict:
@@ -64,6 +66,7 @@ export const picks: Pick[] = [
   {
     badge: "Best for Electrical Panels",
     name: "Klein Tools MM400",
+    image: "https://data.kleintools.com/sites/all/product_assets/hires/klein/mm400_photo.jpg",
     rating: 4.6,
     bottomLine: "Splits the difference between the Fluke and budget picks, backed by Klein's reputation with tradespeople.",
     verdict:

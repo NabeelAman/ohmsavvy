@@ -12,6 +12,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Hakko FX888D",
+    image: "https://www.hakko.com/english/products/hakko_fx888d/imgs/fx888d_3.jpg",
     rating: 4.8,
     bottomLine: "The bench station hobbyist and pro communities keep recommending independently of each other.",
     verdict:
@@ -29,6 +30,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Portable",
     name: "Pinecil V2",
+    image: "https://pine64.org/documentation/images/Pinecilv2-1.jpg",
     rating: 4.7,
     bottomLine: "USB-C powered and pocket-sized — the rare budget tool that doesn't feel like a compromise.",
     verdict:
@@ -63,6 +65,7 @@ export const picks: Pick[] = [
   {
     badge: "Best for Professional Benches",
     name: "Weller WE1010NA",
+    image: "https://www.weller-tools.com/sites/default/files/products/images/2026-08/WE_1010.jpg",
     rating: 4.6,
     bottomLine: "ESD-safe construction and tight temperature stability for a dedicated electronics bench.",
     verdict:

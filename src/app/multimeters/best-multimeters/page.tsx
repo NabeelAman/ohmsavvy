@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 
 export const metadata: Metadata = {
@@ -93,12 +94,22 @@ const faqs = [
 
 export default function BestMultimetersPage() {
   return (
-    <ReviewArticle
-      category="Multimeters"
-      title="Best Multimeters in 2026"
-      intro="We compared accuracy specifications, CAT safety ratings, and feature sets across the multimeters most recommended by electricians, hobbyists, and verified buyer feedback — not which ones pay the highest commission."
-      picks={picks}
-      faqs={faqs}
-    />
+    <>
+      <CategoryHero
+        category="multimeters"
+        label="Multimeters"
+        heading="Find the Multimeter That Actually Fits Your Work"
+        tagline="Compared honestly — no pay-for-placement."
+        description="We compared accuracy specifications, CAT safety ratings, and feature sets across the multimeters most recommended by electricians, hobbyists, and verified buyer feedback."
+        primaryCta={{ label: "Browse All Multimeters", href: "#fluke-117" }}
+        secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
+        stats={[
+          { value: `${picks.length}`, label: "Compared" },
+          { value: "100%", label: "Spec-Verified" },
+          { value: "$0", label: "Sponsored" },
+        ]}
+      />
+      <ReviewArticle picks={picks} faqs={faqs} />
+    </>
   );
 }

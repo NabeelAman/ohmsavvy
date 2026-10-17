@@ -57,9 +57,6 @@ const faqs: Faq[] = [
 
 export const Multimeters: Story = {
   args: {
-    category: "Multimeters",
-    title: "Best Multimeters in 2026",
-    intro: "We compared accuracy specifications, CAT safety ratings, and feature sets across the multimeters most recommended by electricians and hobbyists.",
     picks,
     faqs,
   },

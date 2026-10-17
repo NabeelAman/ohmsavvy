@@ -1,0 +1,64 @@
+import type { Metadata } from "next";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "What data OhmSavvy collects (and doesn't), and how Amazon affiliate links work.",
+};
+
+export default function PrivacyPolicyPage() {
+  return (
+    <article className="mx-auto max-w-3xl px-6 py-16">
+      <Eyebrow>LEGAL</Eyebrow>
+      <h1 className="text-3xl sm:text-4xl leading-tight">Privacy Policy</h1>
+      <p className="mt-5 text-muted leading-7">Last updated: 2026.</p>
+
+      <div className="mt-10 space-y-8">
+        <section>
+          <h2 className="text-xl font-semibold mb-3">What we collect directly</h2>
+          <p className="text-muted leading-7">
+            OhmSavvy does not run analytics, advertising trackers, or cookies of its own. We don&apos;t
+            have user accounts, comments, or forms that collect personal information. Standard
+            hosting-provider server logs (IP address, request timestamp, user agent) are generated
+            by our hosting platform (Vercel) for security and performance purposes, as is normal for
+            any website — we don&apos;t access or use these beyond that.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-3">Amazon affiliate links</h2>
+          <p className="text-muted leading-7">
+            Product links on this site go to Amazon and include an affiliate tracking tag. When you
+            click through and make a qualifying purchase, OhmSavvy may earn a commission at no extra
+            cost to you. Amazon may set its own cookies and collect data once you&apos;re on their
+            site — that is governed by{" "}
+            <a
+              href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496"
+              className="text-accent hover:underline"
+            >
+              Amazon&apos;s own Privacy Policy
+            </a>
+            , not this one.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-3">Children&apos;s privacy</h2>
+          <p className="text-muted leading-7">
+            OhmSavvy is not directed at children under 13 and we do not knowingly collect
+            information from children.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-3">Changes to this policy</h2>
+          <p className="text-muted leading-7">
+            If what this site collects or how it operates changes, this page will be updated to
+            reflect that accurately.
+          </p>
+        </section>
+
+      </div>
+    </article>
+  );
+}

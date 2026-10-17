@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 
 export const metadata: Metadata = {
@@ -93,12 +94,22 @@ const faqs = [
 
 export default function BestSolderingIronsPage() {
   return (
-    <ReviewArticle
-      category="Soldering Irons"
-      title="Best Soldering Irons for Electronics in 2026"
-      intro="From the pocket-sized Pinecil to full bench stations like the Hakko FX888D, we compared heat-up time, temperature stability, and real owner feedback to find the right iron for your workbench."
-      picks={picks}
-      faqs={faqs}
-    />
+    <>
+      <CategoryHero
+        category="soldering"
+        label="Soldering Irons"
+        heading="Find the Right Iron for Your Workbench"
+        tagline="Compared honestly — no pay-for-placement."
+        description="From the pocket-sized Pinecil to full bench stations like the Hakko FX888D, we compared heat-up time, temperature stability, and real owner feedback."
+        primaryCta={{ label: "Browse All Soldering Irons", href: "#hakko-fx888d" }}
+        secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
+        stats={[
+          { value: `${picks.length}`, label: "Compared" },
+          { value: "100%", label: "Spec-Verified" },
+          { value: "$0", label: "Sponsored" },
+        ]}
+      />
+      <ReviewArticle picks={picks} faqs={faqs} />
+    </>
   );
 }

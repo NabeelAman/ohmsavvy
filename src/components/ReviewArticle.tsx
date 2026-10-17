@@ -1,7 +1,6 @@
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
 import { Card } from "./ui/Card";
-import { Eyebrow } from "./ui/Eyebrow";
 import { ProsCons } from "./ui/ProsCons";
 import { RankBadge } from "./ui/RankBadge";
 import { SpecList, type Spec } from "./ui/SpecList";
@@ -25,34 +24,16 @@ export type Pick = {
 
 export type Faq = { question: string; answer: string };
 
-const categoryColors: Record<string, string> = {
-  Multimeters: "text-cat-multimeters",
-  "Soldering Irons": "text-cat-soldering",
-  Oscilloscopes: "text-cat-oscilloscopes",
-};
-
 export function ReviewArticle({
-  category,
-  title,
-  intro,
   picks,
   faqs,
 }: {
-  category: string;
-  title: string;
-  intro: string;
   picks: Pick[];
   faqs: Faq[];
 }) {
   return (
     <article className="mx-auto max-w-4xl px-6 py-16">
-      <Eyebrow className={categoryColors[category] ?? "text-accent"}>{category.toUpperCase()}</Eyebrow>
-      <h1 className="text-3xl sm:text-4xl leading-tight">
-        {title}
-      </h1>
-      <p className="mt-5 text-lg text-muted leading-7 max-w-2xl">{intro}</p>
-
-      <Card className="mt-10" padding="p-5">
+      <Card padding="p-5">
         <p className="font-display text-xs text-muted uppercase tracking-wide mb-3">Jump to a pick</p>
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {picks.map((p, i) => (
@@ -106,7 +87,7 @@ export function ReviewArticle({
         ))}
       </div>
 
-      <section className="mt-16 rounded-lg border border-border bg-surface-raised p-6">
+      <section id="full-comparison" className="mt-16 rounded-lg border border-border bg-surface-raised p-6 scroll-mt-24">
         <h2 className="text-xl font-semibold mb-4">Full comparison</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">

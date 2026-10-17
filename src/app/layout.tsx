@@ -49,6 +49,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <ul className="space-y-2.5 text-sm">
                 <li><Link href="/about" className="text-muted hover:text-foreground transition-colors">About</Link></li>
                 <li><Link href="/about#how-were-funded" className="text-muted hover:text-foreground transition-colors">Affiliate Disclosure</Link></li>
+                <li><Link href="/privacy-policy" className="text-muted hover:text-foreground transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms-of-service" className="text-muted hover:text-foreground transition-colors">Terms of Service</Link></li>
               </ul>
             </div>
           </div>

@@ -41,7 +41,7 @@
   }
 }
 
-:root[data-theme="dark"] {
+[data-theme="dark"] {
   --background: #14171C;
   --surface: #1B1F26;
   --surface-raised: #222630;

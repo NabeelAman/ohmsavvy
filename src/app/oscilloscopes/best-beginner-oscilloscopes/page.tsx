@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 
 export const metadata: Metadata = {
@@ -93,12 +94,22 @@ const faqs = [
 
 export default function BestOscilloscopesPage() {
   return (
-    <ReviewArticle
-      category="Oscilloscopes"
-      title="Best Oscilloscopes for Beginners in 2026"
-      intro="Bandwidth, sample rate, and channel count explained simply, with picks that won't overwhelm a first-time buyer — or leave you needing to upgrade in six months."
-      picks={picks}
-      faqs={faqs}
-    />
+    <>
+      <CategoryHero
+        category="oscilloscopes"
+        label="Oscilloscopes"
+        heading="Which Oscilloscope Should You Actually Buy?"
+        tagline="Compared honestly — no pay-for-placement."
+        description="Bandwidth, sample rate, and channel count explained simply, with picks that won't overwhelm a first-time buyer — or leave you needing to upgrade in six months."
+        primaryCta={{ label: "Browse All Oscilloscopes", href: "#rigol-ds1054z" }}
+        secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
+        stats={[
+          { value: `${picks.length}`, label: "Compared" },
+          { value: "100%", label: "Spec-Verified" },
+          { value: "$0", label: "Sponsored" },
+        ]}
+      />
+      <ReviewArticle picks={picks} faqs={faqs} />
+    </>
   );
 }

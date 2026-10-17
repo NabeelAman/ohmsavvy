@@ -11,6 +11,8 @@ import { Stars } from "./ui/Stars";
 export type Pick = {
   badge: string;
   name: string;
+  /** Amazon SiteStripe product image URL. Optional until sourced. */
+  image?: string;
   rating: number;
   /** One punchy sentence — the verdict in a single line, shown before the full prose. */
   bottomLine: string;
@@ -22,6 +24,12 @@ export type Pick = {
 };
 
 export type Faq = { question: string; answer: string };
+
+const categoryColors: Record<string, string> = {
+  Multimeters: "text-cat-multimeters",
+  "Soldering Irons": "text-cat-soldering",
+  Oscilloscopes: "text-cat-oscilloscopes",
+};
 
 export function ReviewArticle({
   category,
@@ -38,8 +46,8 @@ export function ReviewArticle({
 }) {
   return (
     <article className="mx-auto max-w-4xl px-6 py-16">
-      <Eyebrow>{category.toUpperCase()}</Eyebrow>
-      <h1 className="font-display text-3xl sm:text-4xl font-semibold leading-tight text-balance">
+      <Eyebrow className={categoryColors[category] ?? "text-accent"}>{category.toUpperCase()}</Eyebrow>
+      <h1 className="text-3xl sm:text-4xl leading-tight">
         {title}
       </h1>
       <p className="mt-5 text-lg text-muted leading-7 max-w-2xl">{intro}</p>
@@ -63,17 +71,27 @@ export function ReviewArticle({
       <div className="mt-14 space-y-14">
         {picks.map((p, i) => (
           <section key={p.name} id={p.name.toLowerCase().replace(/\s+/g, "-")} className="scroll-mt-24">
-            <div className="flex flex-wrap items-center gap-3">
-              <RankBadge rank={i + 1} />
-              <Badge variant="signal">{p.badge}</Badge>
-              <Stars rating={p.rating} />
+            <div className="flex flex-col sm:flex-row gap-6">
+              {p.image && (
+                <div className="shrink-0 w-full sm:w-48 h-48 rounded-lg border border-border bg-surface flex items-center justify-center overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.image} alt={p.name} className="w-full h-full object-contain p-3" loading="lazy" />
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-3">
+                  <RankBadge rank={i + 1} />
+                  <Badge variant="signal">{p.badge}</Badge>
+                  <Stars rating={p.rating} />
+                </div>
+                <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
+                  <h2 className="text-2xl font-semibold">{p.name}</h2>
+                  <Button href={p.ctaHref}>Check price on Amazon →</Button>
+                </div>
+                <p className="mt-3 font-medium leading-6 max-w-2xl">{p.bottomLine}</p>
+                <p className="mt-2 text-muted leading-7 max-w-2xl">{p.verdict}</p>
+              </div>
             </div>
-            <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
-              <h2 className="font-display text-2xl font-semibold">{p.name}</h2>
-              <Button href={p.ctaHref}>Check price on Amazon →</Button>
-            </div>
-            <p className="mt-3 font-medium leading-6 max-w-2xl">{p.bottomLine}</p>
-            <p className="mt-2 text-muted leading-7 max-w-2xl">{p.verdict}</p>
 
             <div className="mt-6 grid sm:grid-cols-2 gap-6">
               <SpecList specs={p.specs} />
@@ -89,12 +107,13 @@ export function ReviewArticle({
       </div>
 
       <section className="mt-16 rounded-lg border border-border bg-surface-raised p-6">
-        <h2 className="font-display text-xl font-semibold mb-4">Full comparison</h2>
+        <h2 className="text-xl font-semibold mb-4">Full comparison</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border text-left">
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">#</th>
+                <th className="py-2 pr-4"></th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Model</th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Award</th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Rating</th>
@@ -108,6 +127,14 @@ export function ReviewArticle({
               {picks.map((p, i) => (
                 <tr key={p.name} className="border-b border-border last:border-0">
                   <td className="py-3 pr-4 text-muted font-display">{i + 1}</td>
+                  <td className="py-3 pr-4">
+                    {p.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.image} alt="" className="w-10 h-10 object-contain rounded border border-border bg-surface" />
+                    ) : (
+                      <div className="w-10 h-10 rounded border border-border bg-surface" />
+                    )}
+                  </td>
                   <td className="py-3 pr-4 font-medium">
                     <a href={`#${p.name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-accent">
                       {p.name}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Bandwidth, sample rate, and channel count explained simply — an honest comparison of the best beginner-friendly oscilloscopes.",
 };
 
-const picks: Pick[] = [
+export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Rigol DS1054Z",

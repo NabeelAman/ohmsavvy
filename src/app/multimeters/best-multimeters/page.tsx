@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "An honest, specification-based comparison of the best digital multimeters in 2026 — covering accuracy, CAT safety ratings, and value across every budget.",
 };
 
-const picks: Pick[] = [
+export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Fluke 117",

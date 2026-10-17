@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "From pocket-sized portables to full bench stations — an honest comparison of the best soldering irons by heat-up time, temperature stability, and price.",
 };
 
-const picks: Pick[] = [
+export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Hakko FX888D",

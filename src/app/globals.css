@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -13,6 +13,11 @@
   --signal: #2F9E6E;
   --signal-bg: #E6F4ED;
   --warn-bg: #FBF0E3;
+  --cat-multimeters: #C77D1E;
+  --cat-soldering: #C14E2E;
+  --cat-soldering-bg: #FBEAE4;
+  --cat-oscilloscopes: #1E7FB8;
+  --cat-oscilloscopes-bg: #E4F1F8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,6 +33,11 @@
     --signal: #4ADE80;
     --signal-bg: #1C2E24;
     --warn-bg: #2E2619;
+    --cat-multimeters: #E8A33D;
+    --cat-soldering: #E8775A;
+    --cat-soldering-bg: #332019;
+    --cat-oscilloscopes: #5BB3E8;
+    --cat-oscilloscopes-bg: #16262E;
   }
 }
 
@@ -43,6 +53,11 @@
   --signal: #4ADE80;
   --signal-bg: #1C2E24;
   --warn-bg: #2E2619;
+  --cat-multimeters: #E8A33D;
+  --cat-soldering: #E8775A;
+  --cat-soldering-bg: #332019;
+  --cat-oscilloscopes: #5BB3E8;
+  --cat-oscilloscopes-bg: #16262E;
 }
 
 @theme inline {
@@ -57,7 +72,13 @@
   --color-signal: var(--signal);
   --color-signal-bg: var(--signal-bg);
   --color-warn-bg: var(--warn-bg);
+  --color-cat-multimeters: var(--cat-multimeters);
+  --color-cat-soldering: var(--cat-soldering);
+  --color-cat-soldering-bg: var(--cat-soldering-bg);
+  --color-cat-oscilloscopes: var(--cat-oscilloscopes);
+  --color-cat-oscilloscopes-bg: var(--cat-oscilloscopes-bg);
   --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-heading: "Big Shoulders Display", system-ui, sans-serif;
   --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -67,7 +88,14 @@ body {
   font-family: var(--font-sans);
 }
 
-h1, h2, h3, .font-display {
+.font-display {
   font-family: var(--font-display);
   letter-spacing: -0.01em;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }

@@ -1,3 +1,9 @@
-export function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="font-display text-sm text-accent mb-3 tracking-wide">{children}</p>;
+export function Eyebrow({
+  children,
+  className = "text-accent",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <p className={`font-display text-sm mb-3 tracking-wide ${className}`}>{children}</p>;
 }

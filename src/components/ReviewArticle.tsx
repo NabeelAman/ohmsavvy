@@ -54,14 +54,17 @@ export function ReviewArticle({
           <section key={p.name} id={p.name.toLowerCase().replace(/\s+/g, "-")} className="scroll-mt-24">
             <div className="flex flex-col sm:flex-row gap-6">
               {p.image && (
-                <div className="shrink-0 w-full sm:w-64 h-64 rounded-lg border border-border bg-surface flex items-center justify-center overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    className="w-full h-full object-contain scale-125"
-                    loading="lazy"
-                  />
+                <div className="shrink-0 w-full sm:w-64 rounded-lg border border-border bg-surface shadow-sm overflow-hidden">
+                  <div className="h-1.5 bg-accent" />
+                  <div className="h-64 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-full h-full object-contain scale-125"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
               )}
               <div className="flex-1 min-w-0">

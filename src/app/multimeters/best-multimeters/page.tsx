@@ -48,7 +48,7 @@ export const picks: Pick[] = [
   {
     badge: "Best for Electronics Hobbyists",
     name: "AstroAI DM6000AR",
-    image: "https://cdn.astroai.com/cdn-cgi/image/format=webp,width=1200,quality=,dpr=/astroai-banner/product/02eac7f4-b680-4f9a-e240-b28f21b3eb2b_20250120.webp",
+    image: "https://cdn.astroai.com/astroai-banner/product/02eac7f4-b680-4f9a-e240-b28f21b3eb2b_20250120.webp",
     rating: 4.3,
     bottomLine: "The go-to recommendation for Arduino and Raspberry Pi tinkering — cheap enough not to worry about.",
     verdict:

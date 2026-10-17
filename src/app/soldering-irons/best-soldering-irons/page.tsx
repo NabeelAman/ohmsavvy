@@ -12,7 +12,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Hakko FX888D",
-    image: "https://www.hakko.com/english/products/hakko_fx888d/imgs/fx888d_3.jpg",
+    image: "https://hakkousa.com/media/catalog/product/f/x/fx888d_handpiece.jpg",
     rating: 4.8,
     bottomLine: "The bench station hobbyist and pro communities keep recommending independently of each other.",
     verdict:

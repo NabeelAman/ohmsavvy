@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
   description:
     "In-depth, specification-based reviews of multimeters, soldering irons, oscilloscopes, and bench test equipment — honest comparisons to help you pick the right tool.",
+  verification: {
+    google: "hiHeIkdBWXcmzt70-nXfNhotNZvCYz_tgUDvPrOecBI",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

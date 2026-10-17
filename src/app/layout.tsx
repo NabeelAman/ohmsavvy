@@ -1,8 +1,31 @@
 import type { Metadata } from "next";
+import { Big_Shoulders, IBM_Plex_Mono, Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { Nav } from "@/components/Nav";
 import "./globals.css";
+
+// Self-hosted via next/font instead of a CSS @import — avoids the extra
+// render-blocking round trip (fetch font CSS, then fetch the font files)
+// that was adding ~1-2s to LCP on every page.
+const bigShouldersDisplay = Big_Shoulders({
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
+  variable: "--next-font-heading",
+  display: "swap",
+});
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--next-font-mono",
+  display: "swap",
+});
+const sourceSans3 = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--next-font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ohmsavvy.com"),
@@ -19,7 +42,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`h-full antialiased ${bigShouldersDisplay.variable} ${ibmPlexMono.variable} ${sourceSans3.variable}`}
+      suppressHydrationWarning
+    >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <header className="border-b border-border sticky top-0 z-40 bg-background/80 backdrop-blur-md">
           <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">

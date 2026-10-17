@@ -3,8 +3,10 @@ import type { NextConfig } from "next";
 const csp = [
   "default-src 'self'",
   "script-src 'self'",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com",
+  // Fonts are now self-hosted via next/font (served from our own origin
+  // at build time), so no external font-related CSP allowances are needed.
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self'",
   // Product photos come from many manufacturer CDNs (Fluke, Rigol,
   // Siglent, etc.) rather than one host, so this allows any HTTPS image
   // source rather than an ever-growing per-domain allowlist. Images can't

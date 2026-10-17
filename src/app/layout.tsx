@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, IBM_Plex_Mono, Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
+import GoogleAnalyticsLoader from "@/components/GoogleAnalyticsLoader";
 import { Logo } from "@/components/Logo";
 import { Nav } from "@/components/Nav";
 import "./globals.css";
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </div>
           </div>
         </footer>
+        <GoogleAnalyticsLoader />
       </body>
     </html>
   );

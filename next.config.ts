@@ -2,7 +2,15 @@ import type { NextConfig } from "next";
 
 const csp = [
   "default-src 'self'",
-  "script-src 'self'",
+  // 'unsafe-inline' is required here — not optional. Without it, Next.js's
+  // own inline hydration payload scripts (`self.__next_f.push(...)`) get
+  // blocked by this exact policy, silently breaking client-side hydration
+  // on every static page (confirmed via testing: React event handlers
+  // never fired, window.gtag/dataLayer never initialized). A nonce-based
+  // CSP avoids this but requires forcing every page to dynamic rendering
+  // (losing static generation), which isn't worth it for a static content
+  // site. This is Next.js's own documented "without nonces" baseline.
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   // Fonts are now self-hosted via next/font (served from our own origin
   // at build time), so no external font-related CSP allowances are needed.
   "style-src 'self' 'unsafe-inline'",
@@ -12,7 +20,7 @@ const csp = [
   // source rather than an ever-growing per-domain allowlist. Images can't
   // execute script, so this doesn't weaken the policy's real protections.
   "img-src 'self' data: https:",
-  "connect-src 'self'",
+  "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
   "object-src 'none'",
   "base-uri 'self'",
   "frame-ancestors 'none'",

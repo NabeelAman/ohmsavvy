@@ -50,6 +50,12 @@ const nextConfig: NextConfig = {
         destination: "https://ohmsavvy.com/:path*",
         permanent: true,
       },
+      // Temporary stopgaps until real category hub pages exist — not
+      // permanent, since these will be replaced by actual pages, not
+      // redirects, once the Reviews/Comparisons/Guides structure ships.
+      { source: "/multimeters", destination: "/multimeters/best-multimeters", permanent: false },
+      { source: "/soldering-irons", destination: "/soldering-irons/best-soldering-irons", permanent: false },
+      { source: "/oscilloscopes", destination: "/oscilloscopes/best-beginner-oscilloscopes", permanent: false },
     ];
   },
 };

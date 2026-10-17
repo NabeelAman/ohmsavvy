@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "ohmsavvy.vercel.app" }],
+        has: [{ type: "host", value: "(?<vercelHost>.*\\.vercel\\.app)" }],
         destination: "https://ohmsavvy.com/:path*",
         permanent: true,
       },

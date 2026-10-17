@@ -12,6 +12,7 @@ const picks: Pick[] = [
     badge: "Best Overall",
     name: "Rigol DS1054Z",
     rating: 4.8,
+    bottomLine: "The default beginner oscilloscope recommendation for years, and still worth it.",
     verdict:
       "The DS1054Z has been the default recommendation for beginner oscilloscopes for years, and for good reason — 4 channels and 50MHz of bandwidth (unlockable higher via firmware) at a genuinely approachable price.",
     specs: [
@@ -28,6 +29,7 @@ const picks: Pick[] = [
     badge: "Best Budget",
     name: "FNIRSI DSO152",
     rating: 4.1,
+    bottomLine: "A genuinely pocket-sized scope for quick diagnostics — not a bench replacement.",
     verdict:
       "A genuinely pocket-sized oscilloscope for basic signal checking — not a replacement for a bench scope, but a surprisingly capable tool for quick diagnostics on the go.",
     specs: [
@@ -44,6 +46,7 @@ const picks: Pick[] = [
     badge: "Best for Growing Into",
     name: "Siglent SDS1104X-E",
     rating: 4.7,
+    bottomLine: "More bandwidth and a better UI than the Rigol, for projects that will get more demanding.",
     verdict:
       "A step up in bandwidth and sample rate from the Rigol, with a well-regarded user interface. A strong pick for anyone who expects their projects to get more demanding over time.",
     specs: [
@@ -60,6 +63,7 @@ const picks: Pick[] = [
     badge: "Best Compact Bench Option",
     name: "Hantek DSO2D10",
     rating: 4.3,
+    bottomLine: "An oscilloscope and waveform generator in one unit — practical for space-limited benches.",
     verdict:
       "Combines an oscilloscope and waveform generator in one compact unit — a practical two-in-one for hobbyists who don't have bench space for separate instruments.",
     specs: [

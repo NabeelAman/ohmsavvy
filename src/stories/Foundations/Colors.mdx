@@ -1,0 +1,52 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+OhmSavvy's palette is built around a "precision electronics workbench" idea rather than any
+single product category — it needs to feel equally at home on a multimeter review, a soldering
+iron comparison, or an oscilloscope guide. Copper/amber reads as stripped wire and solder; green
+reads as an oscilloscope trace or a continuity-test LED; the neutral base is a warm off-white /
+charcoal rather than pure white or black, like an enclosure or bench material.
+
+Toggle the **Theme** control in the toolbar above to compare light and dark.
+
+<div className="not-prose" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "1rem", margin: "2rem 0" }}>
+  {[
+    { name: "background", label: "Background" },
+    { name: "surface", label: "Surface" },
+    { name: "surface-raised", label: "Surface Raised" },
+    { name: "foreground", label: "Foreground" },
+    { name: "muted", label: "Muted" },
+    { name: "border", label: "Border" },
+    { name: "accent", label: "Accent" },
+    { name: "accent-foreground", label: "Accent Foreground" },
+    { name: "signal", label: "Signal" },
+    { name: "signal-bg", label: "Signal BG" },
+    { name: "warn-bg", label: "Warn BG" },
+  ].map((token) => (
+    <div key={token.name} style={{ border: "1px solid var(--border)", borderRadius: "8px", overflow: "hidden" }}>
+      <div style={{ height: "64px", background: `var(--${token.name})` }} />
+      <div style={{ padding: "0.5rem 0.75rem", fontFamily: "var(--font-display)", fontSize: "0.75rem" }}>
+        <div>{token.label}</div>
+        <div style={{ color: "var(--muted)" }}>--{token.name}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
+## Usage
+
+| Token | Role |
+| --- | --- |
+| `--background` / `--surface` / `--surface-raised` | Page ground and card grounds, in ascending elevation |
+| `--foreground` / `--muted` | Primary text, secondary/caption text |
+| `--border` | Hairlines, card borders, table rules |
+| `--accent` / `--accent-foreground` | Primary CTA, category labels, "reasons to avoid" markers |
+| `--signal` / `--signal-bg` | "Top pick" / "best overall" callouts, "reasons to buy" markers |
+| `--warn-bg` | Reserved for caution/warning callouts (not yet used in a component) |
+
+**Rule of thumb:** accent = brand/action, signal = "this is the verified good outcome." Don't use
+signal for anything that isn't an endorsement — it's the one color on the page that means
+"we checked this and it's the one to buy."

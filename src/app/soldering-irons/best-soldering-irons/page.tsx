@@ -12,6 +12,7 @@ const picks: Pick[] = [
     badge: "Best Overall",
     name: "Hakko FX888D",
     rating: 4.8,
+    bottomLine: "The bench station hobbyist and pro communities keep recommending independently of each other.",
     verdict:
       "The FX888D is the bench station most consistently recommended by hobbyist communities and professionals alike. Fast thermal recovery and genuinely stable temperature control make it a reliable long-term tool.",
     specs: [
@@ -28,6 +29,7 @@ const picks: Pick[] = [
     badge: "Best Portable",
     name: "Pinecil V2",
     rating: 4.7,
+    bottomLine: "USB-C powered and pocket-sized — the rare budget tool that doesn't feel like a compromise.",
     verdict:
       "USB-C powered, pocket-sized, and genuinely fast to heat up — the Pinecil V2 is the rare budget tool that doesn't feel like a compromise, making it a favorite for on-the-go repairs.",
     specs: [
@@ -44,6 +46,7 @@ const picks: Pick[] = [
     badge: "Best Budget",
     name: "Q-MING 60W Kit",
     rating: 4.3,
+    bottomLine: "A genuinely complete starter kit — easy first purchase for anyone new to soldering.",
     verdict:
       "A genuinely complete starter kit — ceramic heating element, multiple tips, and a stand included, at a price that makes it an easy first purchase for anyone new to soldering.",
     specs: [
@@ -60,6 +63,7 @@ const picks: Pick[] = [
     badge: "Best for Professional Benches",
     name: "Weller WE1010NA",
     rating: 4.6,
+    bottomLine: "ESD-safe construction and tight temperature stability for a dedicated electronics bench.",
     verdict:
       "Weller's WE1010NA brings ESD-safe construction and tight temperature stability to a 70W digital station, making it a strong choice for anyone running a dedicated electronics bench.",
     specs: [

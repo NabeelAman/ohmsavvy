@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { Card } from "@/components/ui/Card";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Stars } from "@/components/ui/Stars";
 
 const featured = [
   {
@@ -51,23 +54,12 @@ const methodology = [
   },
 ];
 
-function Stars({ rating }: { rating: number }) {
-  return (
-    <span className="inline-flex items-center gap-1">
-      <span className="font-display text-sm text-accent">{rating.toFixed(1)}</span>
-      <span className="text-accent text-xs">{"★".repeat(Math.round(rating))}{"☆".repeat(5 - Math.round(rating))}</span>
-    </span>
-  );
-}
-
 export default function Home() {
   return (
     <div>
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="font-display text-sm text-accent mb-4 tracking-wide">
-            ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY
-          </p>
+          <Eyebrow>ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</Eyebrow>
           <h1 className="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl text-balance">
             Find the right tool for your workbench, not the one with the biggest ad budget.
           </h1>
@@ -86,29 +78,27 @@ export default function Home() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="group rounded-lg border border-border bg-surface p-6 flex flex-col transition-colors hover:border-accent"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-display text-xs text-accent uppercase tracking-wide">
-                  {item.category}
-                </span>
-                <Stars rating={item.rating} />
-              </div>
-              <h3 className="mt-3 text-lg font-semibold leading-snug">{item.title}</h3>
-              <p className="mt-2 text-sm text-muted leading-6 flex-1">{item.excerpt}</p>
-              <div className="mt-4 rounded-md bg-signal-bg px-3 py-2 text-xs">
-                <span className="text-signal font-medium">Top pick: </span>
-                <span className="text-foreground">{item.topPick}</span>
-              </div>
-              <div className="mt-4 flex items-center justify-between text-sm">
-                <span className="text-muted">{item.picks} models compared</span>
-                <span className="text-accent group-hover:translate-x-0.5 transition-transform">
-                  Read review →
-                </span>
-              </div>
+            <Link key={item.href} href={item.href} className="group">
+              <Card className="h-full flex flex-col transition-colors group-hover:border-accent">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-xs text-accent uppercase tracking-wide">
+                    {item.category}
+                  </span>
+                  <Stars rating={item.rating} />
+                </div>
+                <h3 className="mt-3 text-lg font-semibold leading-snug">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted leading-6 flex-1">{item.excerpt}</p>
+                <div className="mt-4 rounded-md bg-signal-bg px-3 py-2 text-xs">
+                  <span className="text-signal font-medium">Top pick: </span>
+                  <span className="text-foreground">{item.topPick}</span>
+                </div>
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <span className="text-muted">{item.picks} models compared</span>
+                  <span className="text-accent group-hover:translate-x-0.5 transition-transform">
+                    Read review →
+                  </span>
+                </div>
+              </Card>
             </Link>
           ))}
         </div>
@@ -116,7 +106,7 @@ export default function Home() {
 
       <section className="border-t border-border bg-surface-raised">
         <div className="mx-auto max-w-6xl px-6 py-16">
-          <p className="font-display text-sm text-accent mb-3">HOW WE REVIEW</p>
+          <Eyebrow>HOW WE REVIEW</Eyebrow>
           <h2 className="font-display text-2xl font-semibold max-w-xl text-balance">
             A simple process, applied consistently to every product.
           </h2>

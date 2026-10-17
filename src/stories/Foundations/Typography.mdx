@@ -1,0 +1,49 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+Two typefaces, each with one job.
+
+- **IBM Plex Mono** (`--font-display`) — headings, labels, badges, prices, anything that should
+  read like it came off a multimeter's digital display. Used with slightly tightened tracking
+  (`-0.01em`).
+- **Source Sans 3** (`--font-sans`) — body copy, verdicts, FAQ answers. Chosen for long-form
+  legibility; this is what a reader spends the most time in.
+
+<div className="not-prose" style={{ display: "flex", flexDirection: "column", gap: "1.5rem", margin: "2rem 0" }}>
+  <div>
+    <p style={{ fontFamily: "var(--font-display)", fontSize: "2.25rem", fontWeight: 600, letterSpacing: "-0.01em" }}>
+      Best Multimeters in 2026
+    </p>
+    <p style={{ color: "var(--muted)", fontSize: "0.8rem" }}>IBM Plex Mono · 600 · 2.25rem (h1)</p>
+  </div>
+  <div>
+    <p style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 600, letterSpacing: "-0.01em" }}>
+      Fluke 117
+    </p>
+    <p style={{ color: "var(--muted)", fontSize: "0.8rem" }}>IBM Plex Mono · 600 · 1.5rem (h2 / pick name)</p>
+  </div>
+  <div>
+    <p style={{ fontFamily: "var(--font-display)", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--accent)" }}>
+      Best Overall
+    </p>
+    <p style={{ color: "var(--muted)", fontSize: "0.8rem" }}>IBM Plex Mono · uppercase · 0.75rem (eyebrow / badge)</p>
+  </div>
+  <div>
+    <p style={{ fontFamily: "var(--font-sans)", fontSize: "1.125rem", lineHeight: 1.7, color: "var(--foreground)", maxWidth: "42rem" }}>
+      The Fluke 117 has been the default recommendation for field electricians for over a decade —
+      non-contact voltage detection and true-RMS readings that hold up in real panel work, not just
+      on a bench.
+    </p>
+    <p style={{ color: "var(--muted)", fontSize: "0.8rem" }}>Source Sans 3 · 400 · 1.125rem, 1.7 line-height (intro / verdict)</p>
+  </div>
+</div>
+
+## Rules
+
+- Running text stays near 65 characters wide (`max-w-2xl` on prose blocks).
+- Headings get `text-wrap: balance` so they don't orphan a single word on the last line.
+- Never mix the two faces inside one sentence — a label can sit next to body copy, but a single
+  string is always one face or the other.

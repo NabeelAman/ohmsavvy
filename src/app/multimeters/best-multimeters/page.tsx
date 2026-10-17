@@ -12,6 +12,7 @@ const picks: Pick[] = [
     badge: "Best Overall",
     name: "Fluke 117",
     rating: 4.8,
+    bottomLine: "The meter working electricians actually buy with their own money, not just the one brands push.",
     verdict:
       "The Fluke 117 is the meter most working electricians reach for. True RMS readings, non-contact voltage detection, and a CAT III 600V rating make it reliable in real electrical panels, not just hobby projects.",
     specs: [
@@ -28,6 +29,7 @@ const picks: Pick[] = [
     badge: "Best Budget",
     name: "KAIWEETS KM200s",
     rating: 4.5,
+    bottomLine: "Covers the fundamentals of the Fluke at under half the price — the sensible first meter.",
     verdict:
       "For under half the price of the Fluke, the KM200s covers the fundamentals well: auto-ranging, True RMS, and a non-contact voltage detector. A sensible first meter for home and hobby use.",
     specs: [
@@ -44,6 +46,7 @@ const picks: Pick[] = [
     badge: "Best for Electronics Hobbyists",
     name: "AstroAI DM6000AR",
     rating: 4.3,
+    bottomLine: "The go-to recommendation for Arduino and Raspberry Pi tinkering — cheap enough not to worry about.",
     verdict:
       "This is the meter you'll see recommended most often for Arduino, Raspberry Pi, and general electronics tinkering — accurate enough for low-voltage work, and inexpensive enough not to worry about.",
     specs: [
@@ -60,6 +63,7 @@ const picks: Pick[] = [
     badge: "Best for Electrical Panels",
     name: "Klein Tools MM400",
     rating: 4.6,
+    bottomLine: "Splits the difference between the Fluke and budget picks, backed by Klein's reputation with tradespeople.",
     verdict:
       "Klein's MM400 splits the difference between the Fluke and budget options — auto-ranging, True RMS, and a CAT III rating, backed by Klein's reputation among tradespeople.",
     specs: [

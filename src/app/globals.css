@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #F5F3EF;
+  --surface: #FFFFFF;
+  --surface-raised: #FBFAF8;
+  --foreground: #1A1D21;
+  --muted: #6B6F76;
+  --border: #E3E0DA;
+  --accent: #C77D1E;
+  --accent-foreground: #FFFFFF;
+  --signal: #2F9E6E;
+  --signal-bg: #E6F4ED;
+  --warn-bg: #FBF0E3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #14171C;
+    --surface: #1B1F26;
+    --surface-raised: #222630;
+    --foreground: #EDEBE6;
+    --muted: #9BA0A8;
+    --border: #2E333C;
+    --accent: #E8A33D;
+    --accent-foreground: #14171C;
+    --signal: #4ADE80;
+    --signal-bg: #1C2E24;
+    --warn-bg: #2E2619;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #14171C;
+  --surface: #1B1F26;
+  --surface-raised: #222630;
+  --foreground: #EDEBE6;
+  --muted: #9BA0A8;
+  --border: #2E333C;
+  --accent: #E8A33D;
+  --accent-foreground: #14171C;
+  --signal: #4ADE80;
+  --signal-bg: #1C2E24;
+  --warn-bg: #2E2619;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-signal: var(--signal);
+  --color-signal-bg: var(--signal-bg);
+  --color-warn-bg: var(--warn-bg);
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}

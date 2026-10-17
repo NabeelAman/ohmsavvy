@@ -23,7 +23,7 @@ const picks: Pick[] = [
     ],
     pros: ["Excellent thermal recovery under load", "Widely available genuine replacement tips", "Trusted reputation across electronics communities"],
     cons: ["Counterfeit units exist — buy from authorized sellers", "Bulkier than portable options"],
-    ctaHref: "/go/hakko-fx888d",
+    ctaHref: "https://www.amazon.com/dp/B00ANZRT4M?tag=ohmsavvy-20",
   },
   {
     badge: "Best Portable",
@@ -40,7 +40,7 @@ const picks: Pick[] = [
     ],
     pros: ["Extremely compact and travel-friendly", "Fast heat-up for its size", "Powered by any USB-C PD source, even a power bank"],
     cons: ["No stand included by default", "Smaller tip selection than Hakko"],
-    ctaHref: "/go/pinecil-v2",
+    ctaHref: "https://www.amazon.com/dp/B096X6SG13?tag=ohmsavvy-20",
   },
   {
     badge: "Best Budget",
@@ -57,7 +57,7 @@ const picks: Pick[] = [
     ],
     pros: ["Comes with 5 tips and a stand in one box", "Very low price for a complete kit", "Simple dial control, no learning curve"],
     cons: ["Analog dial is less precise than digital stations", "Build quality suited for light, occasional use"],
-    ctaHref: "/go/qming-60w-kit",
+    ctaHref: "https://www.amazon.com/dp/B098JD8HD3?tag=ohmsavvy-20",
   },
   {
     badge: "Best for Professional Benches",
@@ -74,7 +74,7 @@ const picks: Pick[] = [
     ],
     pros: ["ESD-safe design protects sensitive components", "Strong temperature stability under sustained use", "Backed by Weller's long-standing reputation"],
     cons: ["Higher price point than hobbyist kits", "Not portable — bench-only design"],
-    ctaHref: "/go/weller-we1010na",
+    ctaHref: "https://www.amazon.com/dp/B077JDGY1J?tag=ohmsavvy-20",
   },
 ];
 

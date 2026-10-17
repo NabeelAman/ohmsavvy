@@ -23,7 +23,7 @@ const picks: Pick[] = [
     ],
     pros: ["Trusted, well-documented reliability", "Non-contact voltage (NCV) detection built in", "Durable enough for daily field use"],
     cons: ["Premium price for casual hobbyists", "No Bluetooth/app connectivity"],
-    ctaHref: "/go/fluke-117",
+    ctaHref: "https://www.amazon.com/dp/B000O3LUEI?tag=ohmsavvy-20",
   },
   {
     badge: "Best Budget",
@@ -34,13 +34,13 @@ const picks: Pick[] = [
       "For under half the price of the Fluke, the KM200s covers the fundamentals well: auto-ranging, True RMS, and a non-contact voltage detector. A sensible first meter for home and hobby use.",
     specs: [
       { label: "Accuracy", value: "True RMS" },
-      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Safety rating", value: "CAT II 600V" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Home use, beginners" },
     ],
     pros: ["Excellent value for the feature set", "Backlit display for low-light use", "Smart auto-ranging simplifies readings"],
-    cons: ["Build quality isn't field-tool grade", "Included leads are basic"],
-    ctaHref: "/go/kaiweets-km200s",
+    cons: ["Build quality isn't field-tool grade", "CAT II rating means it's not meant for service-panel work"],
+    ctaHref: "https://www.amazon.com/dp/B0FCMBZ5TW?tag=ohmsavvy-20",
   },
   {
     badge: "Best for Electronics Hobbyists",
@@ -48,16 +48,16 @@ const picks: Pick[] = [
     rating: 4.3,
     bottomLine: "The go-to recommendation for Arduino and Raspberry Pi tinkering — cheap enough not to worry about.",
     verdict:
-      "This is the meter you'll see recommended most often for Arduino, Raspberry Pi, and general electronics tinkering — accurate enough for low-voltage work, and inexpensive enough not to worry about.",
+      "This is the meter you'll see recommended most often for Arduino, Raspberry Pi, and general electronics tinkering — True RMS and 6,000-count resolution give it more precision than its price suggests, with both auto and manual ranging on tap.",
     specs: [
-      { label: "Accuracy", value: "2000-count resolution" },
-      { label: "Safety rating", value: "CAT II 600V" },
-      { label: "Auto-ranging", value: "Manual ranging" },
+      { label: "Accuracy", value: "True RMS, 6,000-count" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Microcontroller & electronics projects" },
     ],
-    pros: ["Very affordable entry point", "Compact and lightweight", "Continuity buzzer is fast and reliable"],
-    cons: ["Manual ranging has a learning curve", "Not rated for higher-voltage panel work"],
-    ctaHref: "/go/astroai-dm6000ar",
+    pros: ["Very affordable for True RMS + 6,000-count resolution", "Compact and lightweight", "Both auto and manual ranging available"],
+    cons: ["Build and included leads reflect the budget price point", "Fewer accessories/calibration options than pro-tier brands"],
+    ctaHref: "https://www.amazon.com/dp/B071JL6LLL?tag=ohmsavvy-20",
   },
   {
     badge: "Best for Electrical Panels",
@@ -74,7 +74,7 @@ const picks: Pick[] = [
     ],
     pros: ["Strong reputation for field durability", "Low-impedance mode avoids false readings", "Mid-range price for pro-level features"],
     cons: ["Bulkier than pocket-sized meters", "No app connectivity"],
-    ctaHref: "/go/klein-mm400",
+    ctaHref: "https://www.amazon.com/dp/B018EXZO8M?tag=ohmsavvy-20",
   },
 ];
 

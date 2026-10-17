@@ -100,7 +100,8 @@ export function ReviewArticle({
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Rating</th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[0]?.label}</th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[1]?.label}</th>
-                <th className="py-2 font-display text-xs text-muted uppercase">Best For</th>
+                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Best For</th>
+                <th className="py-2 font-display text-xs text-muted uppercase"></th>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +125,15 @@ export function ReviewArticle({
                   <td className="py-3 pr-4 text-muted">
                     <SpecValue value={p.specs[1]?.value ?? ""} />
                   </td>
-                  <td className="py-3 text-muted">{p.specs[p.specs.length - 1]?.value}</td>
+                  <td className="py-3 pr-4 text-muted">{p.specs[p.specs.length - 1]?.value}</td>
+                  <td className="py-3">
+                    <a
+                      href={p.ctaHref}
+                      className="inline-block rounded-md bg-accent text-accent-foreground px-3 py-1.5 text-xs font-medium whitespace-nowrap hover:opacity-90 transition-opacity"
+                    >
+                      Check price
+                    </a>
+                  </td>
                 </tr>
               ))}
             </tbody>

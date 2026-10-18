@@ -33,7 +33,7 @@ export function ImageLightbox({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="block w-full h-full cursor-zoom-in"
+        className="relative block w-full h-full cursor-zoom-in"
         aria-label={`Enlarge photo of ${alt}`}
       >
         {children}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { picksForEntry } from "@/lib/catalog";
 import type { Category, ContentEntry } from "@/lib/content";
@@ -52,8 +53,7 @@ export function GuideCard({ entry }: { entry: ContentEntry }) {
                 }`}
               >
                 {p.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.image} alt={p.name} className="h-full w-full object-contain p-2" loading="lazy" />
+                  <Image src={p.image} alt={p.name} fill sizes="96px" loading="lazy" className="object-contain p-2" />
                 ) : (
                   <span className="flex h-full items-center justify-center px-2 text-center text-[10px] text-muted">
                     Photo pending

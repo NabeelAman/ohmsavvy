@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Category } from "@/lib/content";
 import type { ReviewLink } from "./ProductReview";
@@ -41,10 +42,18 @@ function ProductCard({ side }: { side: ComparisonSide }) {
   return (
     <div className="rounded-lg border border-border bg-surface shadow-sm overflow-hidden flex flex-col">
       <div className="h-1.5 bg-accent" />
-      <div className="h-52 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface">
+      <div className="relative h-52 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface">
         {pick.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={pick.image} alt={side.imageAlt} className="w-full h-full object-contain p-6" />
+          // These 2 cards are the comparison page's hero content, near the top —
+          // same LCP treatment as ReviewArticle's top-3 picks.
+          <Image
+            src={pick.image}
+            alt={side.imageAlt}
+            fill
+            sizes="(min-width: 640px) 350px, 100vw"
+            priority
+            className="object-contain p-6"
+          />
         ) : (
           <span className="px-6 text-center text-xs text-muted">Photo pending manufacturer confirmation</span>
         )}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Category } from "@/lib/content";
 import type { Faq, Pick } from "./ReviewArticle";
@@ -80,8 +81,20 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
         <div className="grid md:grid-cols-[240px_1fr_250px]">
           <div className="h-56 md:h-auto min-h-56 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface border-b md:border-b-0 md:border-r border-border">
             {pick.image ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={pick.image} alt={review.imageAlt} className="w-full h-full max-h-64 object-contain p-3" />
+              // Fixed-height grid cell varies with its sibling columns (md:h-auto
+              // matches whatever height the spec table ends up), so `fill` mode
+              // (which needs a definitely-sized parent) doesn't fit here — intrinsic
+              // width/height plus CSS sizing is next/image's documented approach for
+              // exactly this case. This is the ProductReview hero — the LCP element
+              // on individual review pages — hence `priority`, not lazy.
+              <Image
+                src={pick.image}
+                alt={review.imageAlt}
+                width={480}
+                height={480}
+                priority
+                className="w-full h-full max-h-64 object-contain p-3"
+              />
             ) : (
               <span className="px-6 text-center text-xs text-muted">Photo pending manufacturer confirmation</span>
             )}

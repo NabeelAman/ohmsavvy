@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -76,13 +77,14 @@ function FeaturedCard({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
       className="group/feat flex flex-col rounded-xl border border-border bg-surface-raised p-3 hover:border-accent hover:shadow-md transition-all duration-200"
     >
       <span className={`font-display text-[10px] uppercase tracking-[0.15em] ${tone.text}`}>Our top pick</span>
-      <span className="mt-2 h-32 flex items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden">
+      <span className="relative mt-2 h-32 flex items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden">
         {f.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={f.image}
             alt={f.name}
-            className="h-full w-full object-contain p-2 transition-transform duration-300 ease-out group-hover/feat:scale-105 motion-reduce:transition-none"
+            fill
+            sizes="200px"
+            className="object-contain p-2 transition-transform duration-300 ease-out group-hover/feat:scale-105 motion-reduce:transition-none"
           />
         ) : (
           <span className="text-[11px] text-muted">Photo pending</span>
@@ -368,10 +370,9 @@ export function Nav({ menus }: { menus: NavMenu[] }) {
                           onClick={closeAll}
                           className="flex items-center gap-3 rounded-lg border border-border bg-surface p-2.5"
                         >
-                          <span className="h-14 w-14 shrink-0 flex items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
+                          <span className="relative h-14 w-14 shrink-0 flex items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
                             {m.featured.image ? (
-                              // eslint-disable-next-line @next/next/no-img-element
-                              <img src={m.featured.image} alt={m.featured.name} className="h-full w-full object-contain p-1" />
+                              <Image src={m.featured.image} alt={m.featured.name} fill sizes="56px" className="object-contain p-1" />
                             ) : (
                               <span className="text-[9px] text-muted text-center">Photo pending</span>
                             )}

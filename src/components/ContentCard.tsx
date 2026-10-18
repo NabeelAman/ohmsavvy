@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { picksForEntry } from "@/lib/catalog";
 import type { ContentEntry } from "@/lib/content";
@@ -8,11 +9,10 @@ import { Stars } from "./ui/Stars";
 function Thumb({ pick, tall }: { pick: Pick; tall: boolean }) {
   return (
     <div
-      className={`${tall ? "h-40" : "h-28"} flex-1 min-w-0 flex items-center justify-center rounded-md bg-white border border-border/60`}
+      className={`relative ${tall ? "h-40" : "h-28"} flex-1 min-w-0 flex items-center justify-center rounded-md bg-white border border-border/60`}
     >
       {pick.image ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={pick.image} alt={pick.name} className="w-full h-full object-contain p-3" loading="lazy" />
+        <Image src={pick.image} alt={pick.name} fill sizes="200px" loading="lazy" className="object-contain p-3" />
       ) : (
         <span className="px-3 text-center text-[11px] text-muted">Photo pending</span>
       )}

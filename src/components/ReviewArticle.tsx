@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { content } from "@/lib/content";
 import { ArticleTocBar, ArticleTocSidebar, type TocItem } from "./ArticleToc";
@@ -64,10 +65,33 @@ const METHOD = [
   },
 ];
 
-function ProductImage({ pick, className, eager }: { pick: Pick; className: string; eager?: boolean }) {
+// fill + sizes: every call site is a fixed-aspect box (CSS-driven height,
+// overflow-hidden), not an intrinsic image size, so `fill` is the right next/image
+// mode — the parent just needs `position: relative`, already true at every call
+// site below. `eager` sets priority (the top-3 "Our top picks" row and the
+// ProductReview hero are this site's actual LCP candidates now); priority and
+// loading="lazy" are mutually exclusive on next/image, so only one is ever set.
+function ProductImage({
+  pick,
+  className,
+  eager,
+  sizes = "200px",
+}: {
+  pick: Pick;
+  className: string;
+  eager?: boolean;
+  sizes?: string;
+}) {
   return pick.image ? (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={pick.image} alt={pick.name} className={className} loading={eager ? "eager" : "lazy"} />
+    <Image
+      src={pick.image}
+      alt={pick.name}
+      fill
+      sizes={sizes}
+      className={className}
+      priority={eager}
+      loading={eager ? undefined : "lazy"}
+    />
   ) : (
     <span className="px-3 text-center text-[11px] text-muted">Photo pending</span>
   );
@@ -168,7 +192,8 @@ export function ReviewArticle({
                       <ProductImage
                         pick={p}
                         eager
-                        className="h-full w-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110 motion-reduce:transition-none"
+                        sizes="(min-width: 640px) 350px, 100vw"
+                        className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110 motion-reduce:transition-none"
                       />
                     </div>
                     <div className="flex flex-1 flex-col gap-2 p-4">
@@ -201,9 +226,9 @@ export function ReviewArticle({
                         <span className="w-6 shrink-0 text-center font-display text-sm text-muted">{rank}</span>
                         <a
                           href={`#${slug(p.name)}`}
-                          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden"
+                          className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden"
                         >
-                          <ProductImage pick={p} className="h-full w-full object-contain p-1 transition-transform duration-300 group-hover:scale-110" />
+                          <ProductImage pick={p} sizes="56px" className="object-contain p-1 transition-transform duration-300 group-hover:scale-110" />
                         </a>
                         <div className="min-w-0 flex-1">
                           <a href={`#${slug(p.name)}`} className="block font-semibold leading-snug hover:text-accent">
@@ -261,8 +286,8 @@ export function ReviewArticle({
                       >
                         <td className={`sticky left-0 z-10 py-3 pl-4 pr-4 ${i === 0 ? "bg-[color-mix(in_srgb,var(--accent)_5%,var(--surface))]" : "bg-surface"}`}>
                           <a href={`#${slug(p.name)}`} className="flex items-center gap-3 font-medium hover:text-accent">
-                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
-                              <ProductImage pick={p} className="h-full w-full object-contain p-0.5" />
+                            <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
+                              <ProductImage pick={p} sizes="40px" className="object-contain p-0.5" />
                             </span>
                             <span className="leading-snug">
                               <span className="block text-[11px] font-display text-muted">#{i + 1}</span>
@@ -313,13 +338,14 @@ export function ReviewArticle({
                       <div className="flex flex-col sm:flex-row gap-6">
                         {p.image && (
                           <div className="group shrink-0 w-full sm:w-60 rounded-xl border border-border bg-white overflow-hidden">
-                            <div className="h-60 flex items-center justify-center overflow-hidden">
+                            <div className="relative h-60 flex items-center justify-center overflow-hidden">
                               <ImageLightbox src={p.image} alt={p.name}>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <Image
                                   src={p.image}
                                   alt={p.name}
-                                  className="w-full h-full object-contain p-3 transition-transform duration-300 group-hover:scale-110"
+                                  fill
+                                  sizes="(min-width: 640px) 240px, 100vw"
+                                  className="object-contain p-3 transition-transform duration-300 group-hover:scale-110"
                                   loading="lazy"
                                 />
                               </ImageLightbox>
@@ -429,8 +455,8 @@ export function ReviewArticle({
             {picks[0] && (
               <div className="rounded-2xl border border-border bg-surface p-4 shadow-sm">
                 <p className="font-display text-[11px] text-accent uppercase tracking-[0.15em]">Our top pick</p>
-                <div className="mt-3 flex h-28 items-center justify-center rounded-xl bg-white border border-border/60 overflow-hidden">
-                  <ProductImage pick={picks[0]} className="h-full w-full object-contain p-2" />
+                <div className="relative mt-3 flex h-28 items-center justify-center rounded-xl bg-white border border-border/60 overflow-hidden">
+                  <ProductImage pick={picks[0]} sizes="200px" className="object-contain p-2" />
                 </div>
                 <p className="mt-3 font-semibold leading-snug">{picks[0].name}</p>
                 <Stars rating={picks[0].rating} />

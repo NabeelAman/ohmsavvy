@@ -97,7 +97,10 @@ function findTsxFiles(dir, out = []) {
 }
 
 const tsxFiles = allTsxDirs.flatMap((d) => findTsxFiles(d));
-const imgPattern = /<img\s+[^>]*?\/>/g;
+// Matches both the raw <img> element and next/image's <Image> component —
+// most product photos now go through <Image>, and this check would have
+// silently stopped covering them if left matching only <img>.
+const imgPattern = /<(?:img|Image)\s+[^>]*?\/>/g;
 
 for (const file of tsxFiles) {
   const content = readFileSync(file, "utf8");
@@ -105,7 +108,7 @@ for (const file of tsxFiles) {
     const tag = match[0];
     const altMatch = tag.match(/alt=(\{[^}]*\}|"[^"]*")/);
     if (!altMatch) {
-      problems.push(`${file}: <img> with no alt attribute at all`);
+      problems.push(`${file}: <img>/<Image> with no alt attribute at all`);
     } else if (altMatch[1] === '""') {
       // Explicit empty alt is valid for purely decorative images (e.g. the small
       // comparison-table thumbnail) — not flagged, but noted for visibility.

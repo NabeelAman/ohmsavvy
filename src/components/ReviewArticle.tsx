@@ -1,3 +1,4 @@
+import { ImageLightbox } from "./ImageLightbox";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
 import { Card } from "./ui/Card";
@@ -103,16 +104,18 @@ export function ReviewArticle({
           <section key={p.name} id={p.name.toLowerCase().replace(/\s+/g, "-")} className="scroll-mt-24">
             <div className="flex flex-col sm:flex-row gap-6">
               {p.image && (
-                <div className="shrink-0 w-full sm:w-64 rounded-lg border border-border bg-surface shadow-sm overflow-hidden">
+                <div className="group shrink-0 w-full sm:w-64 rounded-lg border border-border bg-surface shadow-sm overflow-hidden">
                   <div className="h-1.5 bg-accent" />
-                  <div className="h-64 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="w-full h-full object-contain scale-125"
-                      loading="lazy"
-                    />
+                  <div className="h-64 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface overflow-hidden">
+                    <ImageLightbox src={p.image} alt={p.name}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        className="w-full h-full object-contain scale-125 transition-transform duration-300 group-hover:scale-[1.35]"
+                        loading="lazy"
+                      />
+                    </ImageLightbox>
                   </div>
                 </div>
               )}

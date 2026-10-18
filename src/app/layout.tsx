@@ -100,8 +100,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="border-t border-border">
             <div className="mx-auto max-w-6xl px-6 py-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-muted">
               <p className="max-w-xl leading-5">
-                OhmSavvy is reader-supported. When you buy through links on our site, we may earn
-                an affiliate commission at no extra cost to you.
+                As an Amazon Associate I earn from qualifying purchases. OhmSavvy is reader-supported:
+                when you buy through links on our site, we may earn an affiliate commission at no extra
+                cost to you.
               </p>
               <p>© 2026 OhmSavvy. All rights reserved.</p>
             </div>

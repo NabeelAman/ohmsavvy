@@ -273,8 +273,8 @@ export default function AboutPage() {
             <section id="how-were-funded" className="h-full scroll-mt-28 rounded-2xl border border-border bg-surface p-6">
               <h2 className="text-lg font-semibold">How we&apos;re funded</h2>
               <p className="mt-2 text-sm text-muted leading-6">
-                OhmSavvy is reader-supported. When you buy through a link on this site, we may earn a commission from
-                Amazon at no extra cost to you. That&apos;s our only income: no advertising, no sponsored placements, no
+                As an Amazon Associate I earn from qualifying purchases. OhmSavvy is reader-supported: when you buy
+                through a link on this site, we may earn a commission from Amazon at no extra cost to you. That&apos;s our only income: no advertising, no sponsored placements, no
                 paid reviews.
               </p>
             </section>

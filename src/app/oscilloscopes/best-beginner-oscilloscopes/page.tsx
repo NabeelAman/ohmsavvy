@@ -30,6 +30,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Budget",
     name: "FNIRSI DSO152",
+    image: "https://e42.psgsm.net/tb.com/p/916295/480/digital-oscilloscope-fnirsi-dso152-2.jpg",
     rating: 4.1,
     bottomLine: "A genuinely pocket-sized scope for quick diagnostics — not a bench replacement.",
     verdict:
@@ -47,6 +48,7 @@ export const picks: Pick[] = [
   {
     badge: "Best for Growing Into",
     name: "Siglent SDS1104X-E",
+    image: "https://valuetronics.com/cdn/shop/files/siglent_sds1104x-e.jpg",
     rating: 4.7,
     bottomLine: "More bandwidth and a better UI than the Rigol, for projects that will get more demanding.",
     verdict:

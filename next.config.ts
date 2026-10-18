@@ -48,6 +48,7 @@ const PRODUCT_IMAGE_HOSTS = [
   "e42.psgsm.net",
   "hakkousa.com",
   "kaiweets.com",
+  "m.media-amazon.com",
   "media.fluke.com",
   "meters.uni-trend.com",
   "pine64.org",

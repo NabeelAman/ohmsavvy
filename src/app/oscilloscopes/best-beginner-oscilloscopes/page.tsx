@@ -114,6 +114,18 @@ export default function BestOscilloscopesPage() {
         ]}
       />
       <ReviewArticle picks={picks} faqs={faqs} />
+      <section className="border-t border-border bg-surface-raised">
+        <div className="mx-auto max-w-4xl px-6 py-12">
+          <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Learn more</p>
+          <a
+            href="/oscilloscopes/oscilloscope-buying-guide"
+            className="block rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors sm:max-w-sm"
+          >
+            <p className="font-medium">Oscilloscope Buying Guide</p>
+            <p className="mt-1 text-sm text-muted">Bandwidth, sample rate, and channels explained</p>
+          </a>
+        </div>
+      </section>
     </>
   );
 }

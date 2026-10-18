@@ -114,6 +114,18 @@ export default function BestSolderingIronsPage() {
         ]}
       />
       <ReviewArticle picks={picks} faqs={faqs} />
+      <section className="border-t border-border bg-surface-raised">
+        <div className="mx-auto max-w-4xl px-6 py-12">
+          <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Learn more</p>
+          <a
+            href="/soldering-irons/soldering-iron-buying-guide"
+            className="block rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors sm:max-w-sm"
+          >
+            <p className="font-medium">Soldering Iron Buying Guide</p>
+            <p className="mt-1 text-sm text-muted">Wattage, temperature control, and tip selection explained</p>
+          </a>
+        </div>
+      </section>
     </>
   );
 }

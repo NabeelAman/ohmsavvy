@@ -9,8 +9,11 @@ const staticRoutes = [
   "/multimeters/best-multimeter-for-electricians",
   "/multimeters/best-multimeter-for-automotive",
   "/multimeters/best-multimeter-for-home-use",
+  "/multimeters/multimeter-buying-guide",
   "/soldering-irons/best-soldering-irons",
+  "/soldering-irons/soldering-iron-buying-guide",
   "/oscilloscopes/best-beginner-oscilloscopes",
+  "/oscilloscopes/oscilloscope-buying-guide",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

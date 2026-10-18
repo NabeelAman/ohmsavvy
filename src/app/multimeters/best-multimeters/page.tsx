@@ -231,7 +231,7 @@ export default function BestMultimetersPage() {
       <section className="border-t border-border bg-surface-raised">
         <div className="mx-auto max-w-4xl px-6 py-12">
           <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Shop by use case</p>
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <a
               href="/multimeters/best-multimeter-for-electricians"
               className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
@@ -252,6 +252,13 @@ export default function BestMultimetersPage() {
             >
               <p className="font-medium">For Home & DIY</p>
               <p className="mt-1 text-sm text-muted">Easy, affordable, no overkill</p>
+            </a>
+            <a
+              href="/multimeters/multimeter-buying-guide"
+              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">Buying Guide</p>
+              <p className="mt-1 text-sm text-muted">CAT ratings, True RMS, and more explained</p>
             </a>
           </div>
         </div>

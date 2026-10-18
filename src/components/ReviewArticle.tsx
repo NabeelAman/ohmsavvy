@@ -31,9 +31,51 @@ export function ReviewArticle({
   picks: Pick[];
   faqs: Faq[];
 }) {
+  // A Review per pick, not an AggregateRating — this is a single editorial rating,
+  // not an aggregate of multiple independent reviews, and claiming otherwise would
+  // misrepresent the data to search engines (and readers).
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: picks.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: p.name,
+        ...(p.image ? { image: p.image } : {}),
+        description: p.bottomLine,
+        review: {
+          "@type": "Review",
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: p.rating,
+            bestRating: "5",
+          },
+          author: {
+            "@type": "Organization",
+            name: "OhmSavvy",
+          },
+        },
+      },
+    })),
+  };
+
   return (
     <article className="mx-auto max-w-4xl px-6 py-16">
-      <Card padding="p-5">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+      <p className="text-xs text-muted leading-5">
+        Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through the links
+        below, at no extra cost to you.{" "}
+        <a href="/about#how-were-funded" className="text-accent hover:underline">
+          How we&apos;re funded
+        </a>
+        .
+      </p>
+      <Card padding="p-5" className="mt-4">
         <p className="font-display text-xs text-muted uppercase tracking-wide mb-3">Jump to a pick</p>
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {picks.map((p, i) => (

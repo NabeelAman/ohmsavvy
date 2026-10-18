@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "About OhmSavvy",
+  title: "About",
   description:
     "Why OhmSavvy exists, how we verify specs and pick products, and how we're funded through Amazon affiliate commissions.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

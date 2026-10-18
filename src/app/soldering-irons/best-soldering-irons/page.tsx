@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Best Soldering Irons for Electronics in 2026",
   description:
     "From pocket-sized portables to full bench stations — an honest comparison of the best soldering irons by heat-up time, temperature stability, and price.",
+  alternates: { canonical: "/soldering-irons/best-soldering-irons" },
 };
 
 export const picks: Pick[] = [

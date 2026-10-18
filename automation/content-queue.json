@@ -1,211 +1,1650 @@
 {
   "_readme": "Keyword queue for the n8n daily content pipeline. `type` controls what the automation is allowed to do: 'remix' = curate/filter products already verified in the site's picks arrays (safe to fully automate — no new specs/images/ASINs introduced). 'educational' = general electronics concepts/how-to/troubleshooting, not tied to an unverified product claim (safe to automate, still passes plagiarism + line-by-line QA). 'new-product' = requires a product NOT currently in any picks array — automation must NOT draft these; it should flag them to the research queue for a human (or a separate, slower, human-supervised research pass) to verify specs/ASIN/image before any page is written, per the site's no-fabrication standard. status starts 'pending' for all; the n8n workflow updates it to 'queued' when picked for a run, and 'published' once the PR merges.",
   "verifiedRoster": {
-    "multimeters": ["Fluke 117", "KAIWEETS KM200s", "AstroAI DM6000AR", "Klein Tools MM400", "Fluke 87V", "Milwaukee 2235-20", "Southwire 14070T", "Craftsman CMMT14171", "Extech EX330", "UNI-T UT139C"],
-    "soldering-irons": ["Hakko FX888D", "Pinecil V2", "Q-MING 60W Kit", "Weller WE1010NA"],
-    "oscilloscopes": ["Rigol DS1054Z", "FNIRSI DSO152", "Siglent SDS1104X-E", "Hantek DSO2D10"]
+    "multimeters": [
+      "Fluke 117",
+      "KAIWEETS KM200s",
+      "AstroAI DM6000AR",
+      "Klein Tools MM400",
+      "Fluke 87V",
+      "Milwaukee 2235-20",
+      "Southwire 14070T",
+      "Craftsman CMMT14171",
+      "Extech EX330",
+      "UNI-T UT139C"
+    ],
+    "soldering-irons": [
+      "Hakko FX888D",
+      "Pinecil V2",
+      "Q-MING 60W Kit",
+      "Weller WE1010NA"
+    ],
+    "oscilloscopes": [
+      "Rigol DS1054Z",
+      "FNIRSI DSO152",
+      "Siglent SDS1104X-E",
+      "Hantek DSO2D10"
+    ]
   },
   "keywords": [
-    { "keyword": "best multimeter for home use", "category": "multimeters", "type": "remix", "status": "published", "notes": "already live at /multimeters/best-multimeter-for-home-use" },
-    { "keyword": "best multimeter for automotive", "category": "multimeters", "type": "remix", "status": "published", "notes": "already live at /multimeters/best-multimeter-for-automotive" },
-    { "keyword": "best multimeter for electricians", "category": "multimeters", "type": "remix", "status": "published", "notes": "already live at /multimeters/best-multimeter-for-electricians" },
-    { "keyword": "best multimeter for diy", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["KAIWEETS KM200s", "UNI-T UT139C", "Extech EX330"] },
-    { "keyword": "best multimeter for hobbyists", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["KAIWEETS KM200s", "AstroAI DM6000AR", "UNI-T UT139C"] },
-    { "keyword": "best multimeter for beginners", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["KAIWEETS KM200s", "UNI-T UT139C", "AstroAI DM6000AR"] },
-    { "keyword": "best multimeter for solar panels", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 117", "KAIWEETS KM200s", "AstroAI DM6000AR"] },
-    { "keyword": "best multimeter for car battery", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Craftsman CMMT14171", "AstroAI DM6000AR", "KAIWEETS KM200s"] },
-    { "keyword": "best multimeter for HVAC technicians", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 117", "Milwaukee 2235-20", "Klein Tools MM400"] },
-    { "keyword": "best multimeter for motorcycle", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Craftsman CMMT14171", "AstroAI DM6000AR"] },
-    { "keyword": "best multimeter for RV", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["AstroAI DM6000AR", "KAIWEETS KM200s"] },
-    { "keyword": "best multimeter for industrial use", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 117", "Fluke 87V", "Milwaukee 2235-20"] },
-    { "keyword": "best multimeter for ham radio", "category": "multimeters", "type": "new-product", "status": "pending", "notes": "needs RF-capable meter not yet in roster" },
-    { "keyword": "best multimeter for arduino projects", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["UNI-T UT139C", "Extech EX330"] },
-    { "keyword": "best multimeter for 3d printer troubleshooting", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["UNI-T UT139C", "Extech EX330"] },
-    { "keyword": "best multimeter for appliance repair", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Klein Tools MM400", "Fluke 117"] },
-    { "keyword": "best multimeter for electrical panel work", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 87V", "Southwire 14070T", "Klein Tools MM400"] },
-    { "keyword": "best multimeter under $50", "category": "multimeters", "type": "remix", "status": "pending", "notes": "price-tier — do not hardcode a $ figure in prose, prices fluctuate; frame as 'budget tier'" },
-    { "keyword": "best multimeter under $100", "category": "multimeters", "type": "remix", "status": "pending", "notes": "same price-fluctuation caveat" },
-    { "keyword": "best auto ranging multimeter", "category": "multimeters", "type": "remix", "status": "pending", "notes": "all 10 current picks are auto-ranging" },
-    { "keyword": "best true rms multimeter", "category": "multimeters", "type": "remix", "status": "pending", "notes": "exclude Extech EX330 — confirmed NOT true RMS on-device" },
-    { "keyword": "best digital multimeter 2026", "category": "multimeters", "type": "remix", "status": "pending" },
-    { "keyword": "best analog multimeter", "category": "multimeters", "type": "new-product", "status": "pending", "notes": "no analog meter in roster — all picks are digital" },
-    { "keyword": "best multimeter with bluetooth", "category": "multimeters", "type": "new-product", "status": "pending", "notes": "no bluetooth meter in roster, verify before claiming" },
-    { "keyword": "best multimeter with temperature probe", "category": "multimeters", "type": "new-product", "status": "pending", "notes": "verify which current picks actually include a temp probe before using" },
-    { "keyword": "best multimeter with non-contact voltage detector", "category": "multimeters", "type": "new-product", "status": "pending", "notes": "verify NCV feature per-model before claiming" },
-    { "keyword": "best waterproof multimeter", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Southwire 14070T"] },
-    { "keyword": "best pocket multimeter", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Extech EX330"] },
-    { "keyword": "best multimeter brand 2026", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "best clamp meter for electricians", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Milwaukee 2235-20"] },
-    { "keyword": "clamp meter vs multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "best clamp meter under $100", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Milwaukee 2235-20"] },
-    { "keyword": "best multimeter with clamp attachment", "category": "multimeters", "type": "new-product", "status": "pending" },
-    { "keyword": "milliamp clamp meter for hvac", "category": "multimeters", "type": "new-product", "status": "pending" },
-    { "keyword": "fluke vs klein multimeter", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 117", "Klein Tools MM400"] },
-    { "keyword": "fluke 117 vs fluke 87v", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 117", "Fluke 87V"] },
-    { "keyword": "kaiweets vs klein multimeter", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["KAIWEETS KM200s", "Klein Tools MM400"] },
-    { "keyword": "uni-t vs fluke multimeter", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["UNI-T UT139C", "Fluke 117"] },
-    { "keyword": "is a cheap multimeter accurate", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "is fluke multimeter worth the price", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 117", "Fluke 87V"] },
-    { "keyword": "do I need true rms multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "CAT III vs CAT IV multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to use a multimeter for beginners", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to test a car battery with a multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to test continuity with a multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to measure resistance with a multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to test a capacitor with a multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to test an outlet with a multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to test a fuse with a multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "how to test amperage with a multimeter", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter for testing led", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter for testing thermostat", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter for testing alternator", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter for testing solenoid", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter for testing ground wire", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter for checking wall outlets", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "why is my multimeter reading wrong", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter not reading voltage", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter fuse keeps blowing", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "what cat rating do I need for home wiring", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "what multimeter do electricians use", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 87V", "Fluke 117"] },
-    { "keyword": "multimeter accuracy explained", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter resolution vs accuracy", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "multimeter input impedance explained", "category": "multimeters", "type": "educational", "status": "pending" },
-    { "keyword": "best multimeter for AC voltage", "category": "multimeters", "type": "remix", "status": "pending" },
-    { "keyword": "best multimeter for DC voltage", "category": "multimeters", "type": "remix", "status": "pending" },
-    { "keyword": "best multimeter for low voltage", "category": "multimeters", "type": "remix", "status": "pending" },
-    { "keyword": "best multimeter for high voltage", "category": "multimeters", "type": "remix", "status": "pending", "targetPicks": ["Fluke 87V", "Fluke 117"] },
-
-    { "keyword": "best soldering iron for beginners", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2", "Q-MING 60W Kit"] },
-    { "keyword": "best soldering iron for electronics", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Pinecil V2"] },
-    { "keyword": "best soldering iron for SMD", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Pinecil V2"] },
-    { "keyword": "best soldering iron for jewelry", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "likely needs a butane/torch-style iron not in roster" },
-    { "keyword": "best soldering iron for stained glass", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "typically needs higher-wattage irons (80W+), verify against roster" },
-    { "keyword": "best soldering iron for wire harness", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Weller WE1010NA", "Q-MING 60W Kit"] },
-    { "keyword": "best soldering iron for car audio", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Q-MING 60W Kit", "Weller WE1010NA"] },
-    { "keyword": "best soldering iron for automotive wiring", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Q-MING 60W Kit", "Weller WE1010NA"] },
-    { "keyword": "best soldering iron for guitar wiring", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Pinecil V2"] },
-    { "keyword": "best soldering iron for model trains", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2", "Hakko FX888D"] },
-    { "keyword": "best soldering iron for repairing headphones", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2", "Hakko FX888D"] },
-    { "keyword": "best soldering iron for small projects", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2"] },
-    { "keyword": "best soldering iron for travel", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2"] },
-    { "keyword": "best soldering iron for stained glass panels", "category": "soldering-irons", "type": "new-product", "status": "pending" },
-    { "keyword": "best soldering iron for miniature painting", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "different use case (not really soldering) — verify relevance before writing" },
-    { "keyword": "best soldering iron for electrical repairs", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Weller WE1010NA", "Q-MING 60W Kit"] },
-    { "keyword": "best soldering iron for ham radio kits", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Weller WE1010NA"] },
-    { "keyword": "best soldering iron for rework", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D"] },
-    { "keyword": "best soldering iron under $50", "category": "soldering-irons", "type": "remix", "status": "pending", "notes": "price-tier caveat applies" },
-    { "keyword": "best soldering iron under $100", "category": "soldering-irons", "type": "remix", "status": "pending", "notes": "price-tier caveat applies" },
-    { "keyword": "best cordless soldering iron", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2"] },
-    { "keyword": "best butane soldering iron", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "no butane iron in roster" },
-    { "keyword": "best soldering iron kit", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Q-MING 60W Kit"] },
-    { "keyword": "best temperature controlled soldering iron", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Pinecil V2", "Weller WE1010NA"] },
-    { "keyword": "best soldering iron station", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Weller WE1010NA"] },
-    { "keyword": "best digital soldering station", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Weller WE1010NA"] },
-    { "keyword": "best mini soldering iron", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2"] },
-    { "keyword": "best usb-c soldering iron", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2"] },
-    { "keyword": "best soldering iron with adjustable temperature", "category": "soldering-irons", "type": "remix", "status": "pending" },
-    { "keyword": "best budget soldering station", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Q-MING 60W Kit"] },
-    { "keyword": "best soldering iron for beginners electronics kit", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Q-MING 60W Kit", "Pinecil V2"] },
-    { "keyword": "best smart soldering iron", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Pinecil V2"] },
-    { "keyword": "best soldering iron for rework stations", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "hot-air rework not in roster" },
-    { "keyword": "hakko vs weller soldering iron", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Weller WE1010NA"] },
-    { "keyword": "hakko fx888d vs fx888", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "FX888 (non-D) not in roster" },
-    { "keyword": "weller wlc100 vs wlc200", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "neither model in roster" },
-    { "keyword": "pinecil vs ts101 soldering iron", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "TS101 not in roster" },
-    { "keyword": "best soldering gun vs soldering iron", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "hot air station vs soldering iron", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "how to use a soldering iron for beginners", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "how to tin a soldering iron tip", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "how to clean a soldering iron tip", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "how to solder wires together", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "how to solder a pcb", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "soldering iron not heating up", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "soldering iron tip turning black", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "soldering iron tip not tinning", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "why does my solder not stick", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "cold solder joint causes", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "best solder for electronics", "category": "soldering-irons", "type": "new-product", "status": "pending", "notes": "no solder wire/consumables in roster yet" },
-    { "keyword": "leaded vs lead free solder", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "best flux for electronics soldering", "category": "soldering-irons", "type": "new-product", "status": "pending" },
-    { "keyword": "best desoldering tool", "category": "soldering-irons", "type": "new-product", "status": "pending" },
-    { "keyword": "best desoldering pump", "category": "soldering-irons", "type": "new-product", "status": "pending" },
-    { "keyword": "best solder wick", "category": "soldering-irons", "type": "new-product", "status": "pending" },
-    { "keyword": "best soldering iron tips", "category": "soldering-irons", "type": "new-product", "status": "pending" },
-    { "keyword": "soldering iron temperature for electronics", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "soldering iron temperature for lead free solder", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "soldering iron wattage explained", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "what wattage soldering iron do I need", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "soldering iron temperature range explained", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "best soldering iron brand 2026", "category": "soldering-irons", "type": "educational", "status": "pending" },
-    { "keyword": "best soldering station for beginners", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Q-MING 60W Kit"] },
-    { "keyword": "best hot air rework station", "category": "soldering-irons", "type": "new-product", "status": "pending" },
-    { "keyword": "best soldering iron for pcb repair", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Hakko FX888D", "Pinecil V2"] },
-    { "keyword": "best soldering iron kit for beginners electronics", "category": "soldering-irons", "type": "remix", "status": "pending", "targetPicks": ["Q-MING 60W Kit"] },
-
-    { "keyword": "best oscilloscope for beginners", "category": "oscilloscopes", "type": "remix", "status": "published", "notes": "covered by main article" },
-    { "keyword": "best oscilloscope for hobbyists", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "FNIRSI DSO152"] },
-    { "keyword": "best oscilloscope for arduino", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "FNIRSI DSO152"] },
-    { "keyword": "best oscilloscope for audio", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for automotive diagnostics", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for car electronics", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for repair technicians", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for students", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "FNIRSI DSO152"] },
-    { "keyword": "best oscilloscope for electronics engineering", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for RF work", "category": "oscilloscopes", "type": "new-product", "status": "pending", "notes": "all 4 current picks are too low-bandwidth for real RF work, verify before writing" },
-    { "keyword": "best oscilloscope for power electronics", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for microcontroller debugging", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "FNIRSI DSO152"] },
-    { "keyword": "best oscilloscope for guitar pedal design", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "Siglent SDS1104X-E"] },
-    { "keyword": "best oscilloscope for ham radio", "category": "oscilloscopes", "type": "new-product", "status": "pending", "notes": "verify bandwidth suitability before claiming" },
-    { "keyword": "best oscilloscope for diagnosing car sensors", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for can bus", "category": "oscilloscopes", "type": "new-product", "status": "pending", "notes": "verify protocol decoding support per-model before claiming" },
-    { "keyword": "best oscilloscope for injector testing", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10"] },
-    { "keyword": "oscilloscope for alternator testing", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10"] },
-    { "keyword": "oscilloscope for spark plug testing", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10"] },
-    { "keyword": "best oscilloscope for repairing tvs", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for repairing power supplies", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for switching power supply debugging", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E"] },
-    { "keyword": "best oscilloscope kit for students", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["FNIRSI DSO152", "Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for teaching electronics", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z"] },
-    { "keyword": "best oscilloscope for digital signals", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "Siglent SDS1104X-E"] },
-    { "keyword": "best oscilloscope for analog signals", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "Siglent SDS1104X-E"] },
-    { "keyword": "best budget oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["FNIRSI DSO152"] },
-    { "keyword": "best oscilloscope under $300", "category": "oscilloscopes", "type": "remix", "status": "pending", "notes": "price-tier caveat applies" },
-    { "keyword": "best oscilloscope under $500", "category": "oscilloscopes", "type": "remix", "status": "pending", "notes": "price-tier caveat applies" },
-    { "keyword": "best portable oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["FNIRSI DSO152", "Hantek DSO2D10"] },
-    { "keyword": "best handheld oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["FNIRSI DSO152"] },
-    { "keyword": "best pocket oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["FNIRSI DSO152"] },
-    { "keyword": "best 4 channel oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "Siglent SDS1104X-E"] },
-    { "keyword": "best 2 channel oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10"] },
-    { "keyword": "best oscilloscope with function generator", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10"] },
-    { "keyword": "best oscilloscope with waveform generator built in", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10"] },
-    { "keyword": "best entry level oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "FNIRSI DSO152"] },
-    { "keyword": "best mid range oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E"] },
-    { "keyword": "best oscilloscope under 100mhz", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "Hantek DSO2D10"] },
-    { "keyword": "best oscilloscope over 200mhz", "category": "oscilloscopes", "type": "new-product", "status": "pending", "notes": "no pick in roster exceeds 100MHz" },
-    { "keyword": "best oscilloscope accessories", "category": "oscilloscopes", "type": "new-product", "status": "pending" },
-    { "keyword": "touchscreen oscilloscope vs button oscilloscope", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "rigol ds1054z vs ds1104z", "category": "oscilloscopes", "type": "new-product", "status": "pending", "notes": "DS1104Z not in roster" },
-    { "keyword": "rigol vs siglent oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Rigol DS1054Z", "Siglent SDS1104X-E"] },
-    { "keyword": "siglent sds1104x-e review", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Siglent SDS1104X-E"] },
-    { "keyword": "hantek vs rigol oscilloscope", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["Hantek DSO2D10", "Rigol DS1054Z"] },
-    { "keyword": "fnirsi dso152 review", "category": "oscilloscopes", "type": "remix", "status": "pending", "targetPicks": ["FNIRSI DSO152"] },
-    { "keyword": "oscilloscope vs multimeter", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "oscilloscope vs logic analyzer", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "50mhz vs 100mhz oscilloscope", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "how to use an oscilloscope for beginners", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "how to read an oscilloscope screen", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "how to measure frequency with an oscilloscope", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "how to measure voltage with an oscilloscope", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "how to trigger an oscilloscope", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "oscilloscope bandwidth explained", "category": "oscilloscopes", "type": "educational", "status": "pending", "notes": "already covered as FAQ in main article — write as deeper standalone page" },
-    { "keyword": "oscilloscope sample rate explained", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "oscilloscope probe compensation", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "how many channels do I need on an oscilloscope", "category": "oscilloscopes", "type": "educational", "status": "pending", "notes": "already covered as FAQ in main article — write as deeper standalone page" },
-    { "keyword": "oscilloscope memory depth explained", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "what does GSa/s mean oscilloscope", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "oscilloscope rise time explained", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "best oscilloscope probe", "category": "oscilloscopes", "type": "new-product", "status": "pending" },
-    { "keyword": "best oscilloscope display size", "category": "oscilloscopes", "type": "educational", "status": "pending" },
-    { "keyword": "best oscilloscope brand 2026", "category": "oscilloscopes", "type": "educational", "status": "pending" }
+    {
+      "keyword": "best multimeter for home use",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "published",
+      "notes": "already live at /multimeters/best-multimeter-for-home-use"
+    },
+    {
+      "keyword": "best multimeter for automotive",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "published",
+      "notes": "already live at /multimeters/best-multimeter-for-automotive"
+    },
+    {
+      "keyword": "best multimeter for electricians",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "published",
+      "notes": "already live at /multimeters/best-multimeter-for-electricians"
+    },
+    {
+      "keyword": "best multimeter for diy",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "KAIWEETS KM200s",
+        "UNI-T UT139C",
+        "Extech EX330"
+      ]
+    },
+    {
+      "keyword": "best multimeter for hobbyists",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "KAIWEETS KM200s",
+        "AstroAI DM6000AR",
+        "UNI-T UT139C"
+      ]
+    },
+    {
+      "keyword": "best multimeter for beginners",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "KAIWEETS KM200s",
+        "UNI-T UT139C",
+        "AstroAI DM6000AR"
+      ],
+      "notes": "Exact targetPicks match with \"best multimeter for hobbyists\" — merged, not published separately."
+    },
+    {
+      "keyword": "best multimeter for solar panels",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "KAIWEETS KM200s",
+        "AstroAI DM6000AR"
+      ]
+    },
+    {
+      "keyword": "best multimeter for car battery",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Craftsman CMMT14171",
+        "AstroAI DM6000AR",
+        "KAIWEETS KM200s"
+      ]
+    },
+    {
+      "keyword": "best multimeter for HVAC technicians",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Milwaukee 2235-20",
+        "Klein Tools MM400"
+      ]
+    },
+    {
+      "keyword": "best multimeter for motorcycle",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Craftsman CMMT14171",
+        "AstroAI DM6000AR"
+      ]
+    },
+    {
+      "keyword": "best multimeter for RV",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "AstroAI DM6000AR",
+        "KAIWEETS KM200s"
+      ]
+    },
+    {
+      "keyword": "best multimeter for industrial use",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 87V",
+        "Milwaukee 2235-20"
+      ]
+    },
+    {
+      "keyword": "best multimeter for ham radio",
+      "category": "multimeters",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "needs RF-capable meter not yet in roster"
+    },
+    {
+      "keyword": "best multimeter for arduino projects",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "UNI-T UT139C",
+        "Extech EX330"
+      ]
+    },
+    {
+      "keyword": "best multimeter for 3d printer troubleshooting",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "UNI-T UT139C",
+        "Extech EX330"
+      ],
+      "notes": "Exact targetPicks match with \"best multimeter for arduino projects\" — merged, not published separately."
+    },
+    {
+      "keyword": "best multimeter for appliance repair",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Klein Tools MM400",
+        "Fluke 117"
+      ],
+      "notes": "Exact targetPicks match with \"fluke vs klein multimeter\" — merged, not published separately."
+    },
+    {
+      "keyword": "best multimeter for electrical panel work",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 87V",
+        "Southwire 14070T",
+        "Klein Tools MM400"
+      ]
+    },
+    {
+      "keyword": "best multimeter under $50",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "notes": "price-tier — do not hardcode a $ figure in prose, prices fluctuate; frame as 'budget tier'"
+    },
+    {
+      "keyword": "best multimeter under $100",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "notes": "same price-fluctuation caveat"
+    },
+    {
+      "keyword": "best auto ranging multimeter",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "notes": "all 10 current picks are auto-ranging"
+    },
+    {
+      "keyword": "best true rms multimeter",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "notes": "exclude Extech EX330 — confirmed NOT true RMS on-device"
+    },
+    {
+      "keyword": "best digital multimeter 2026",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending"
+    },
+    {
+      "keyword": "best analog multimeter",
+      "category": "multimeters",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "no analog meter in roster — all picks are digital"
+    },
+    {
+      "keyword": "best multimeter with bluetooth",
+      "category": "multimeters",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "no bluetooth meter in roster, verify before claiming"
+    },
+    {
+      "keyword": "best multimeter with temperature probe",
+      "category": "multimeters",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "verify which current picks actually include a temp probe before using"
+    },
+    {
+      "keyword": "best multimeter with non-contact voltage detector",
+      "category": "multimeters",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "verify NCV feature per-model before claiming"
+    },
+    {
+      "keyword": "best waterproof multimeter",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Southwire 14070T"
+      ]
+    },
+    {
+      "keyword": "best pocket multimeter",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Extech EX330"
+      ]
+    },
+    {
+      "keyword": "best multimeter brand 2026",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best clamp meter for electricians",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Milwaukee 2235-20"
+      ],
+      "notes": "Exact targetPicks match with \"best clamp meter under $100\" — merged, not published separately."
+    },
+    {
+      "keyword": "clamp meter vs multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best clamp meter under $100",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Milwaukee 2235-20"
+      ]
+    },
+    {
+      "keyword": "best multimeter with clamp attachment",
+      "category": "multimeters",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "milliamp clamp meter for hvac",
+      "category": "multimeters",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "fluke vs klein multimeter",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Klein Tools MM400"
+      ]
+    },
+    {
+      "keyword": "fluke 117 vs fluke 87v",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 87V"
+      ]
+    },
+    {
+      "keyword": "kaiweets vs klein multimeter",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "KAIWEETS KM200s",
+        "Klein Tools MM400"
+      ]
+    },
+    {
+      "keyword": "uni-t vs fluke multimeter",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "UNI-T UT139C",
+        "Fluke 117"
+      ]
+    },
+    {
+      "keyword": "is a cheap multimeter accurate",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "is fluke multimeter worth the price",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 87V"
+      ],
+      "notes": "Exact targetPicks match with \"fluke 117 vs fluke 87v\" — merged, not published separately."
+    },
+    {
+      "keyword": "do I need true rms multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "CAT III vs CAT IV multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to use a multimeter for beginners",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to test a car battery with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to test continuity with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to measure resistance with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to test a capacitor with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to test an outlet with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to test a fuse with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to test amperage with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter for testing led",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter for testing thermostat",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter for testing alternator",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter for testing solenoid",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter for testing ground wire",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter for checking wall outlets",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "why is my multimeter reading wrong",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter not reading voltage",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter fuse keeps blowing",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "what cat rating do I need for home wiring",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "what multimeter do electricians use",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Fluke 87V",
+        "Fluke 117"
+      ],
+      "notes": "Exact targetPicks match with \"fluke 117 vs fluke 87v\" — merged, not published separately."
+    },
+    {
+      "keyword": "multimeter accuracy explained",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter resolution vs accuracy",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "multimeter input impedance explained",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best multimeter for AC voltage",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending"
+    },
+    {
+      "keyword": "best multimeter for DC voltage",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending"
+    },
+    {
+      "keyword": "best multimeter for low voltage",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending"
+    },
+    {
+      "keyword": "best multimeter for high voltage",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Fluke 87V",
+        "Fluke 117"
+      ],
+      "notes": "Exact targetPicks match with \"fluke 117 vs fluke 87v\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for beginners",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Pinecil V2",
+        "Q-MING 60W Kit"
+      ]
+    },
+    {
+      "keyword": "best soldering iron for electronics",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for SMD\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for SMD",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Pinecil V2"
+      ]
+    },
+    {
+      "keyword": "best soldering iron for jewelry",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "likely needs a butane/torch-style iron not in roster"
+    },
+    {
+      "keyword": "best soldering iron for stained glass",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "typically needs higher-wattage irons (80W+), verify against roster"
+    },
+    {
+      "keyword": "best soldering iron for wire harness",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Weller WE1010NA",
+        "Q-MING 60W Kit"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for car audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for car audio",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Q-MING 60W Kit",
+        "Weller WE1010NA"
+      ]
+    },
+    {
+      "keyword": "best soldering iron for automotive wiring",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Q-MING 60W Kit",
+        "Weller WE1010NA"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for car audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for guitar wiring",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for SMD\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for model trains",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Pinecil V2",
+        "Hakko FX888D"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for SMD\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for repairing headphones",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Pinecil V2",
+        "Hakko FX888D"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for SMD\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for small projects",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best mini soldering iron\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for travel",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best mini soldering iron\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for stained glass panels",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "best soldering iron for miniature painting",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "different use case (not really soldering) — verify relevance before writing"
+    },
+    {
+      "keyword": "best soldering iron for electrical repairs",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Weller WE1010NA",
+        "Q-MING 60W Kit"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for car audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for ham radio kits",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Weller WE1010NA"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron station\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for rework",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX888D"
+      ]
+    },
+    {
+      "keyword": "best soldering iron under $50",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "notes": "price-tier caveat applies"
+    },
+    {
+      "keyword": "best soldering iron under $100",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "notes": "price-tier caveat applies"
+    },
+    {
+      "keyword": "best cordless soldering iron",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best mini soldering iron\" — merged, not published separately."
+    },
+    {
+      "keyword": "best butane soldering iron",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "no butane iron in roster"
+    },
+    {
+      "keyword": "best soldering iron kit",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Q-MING 60W Kit"
+      ]
+    },
+    {
+      "keyword": "best temperature controlled soldering iron",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Pinecil V2",
+        "Weller WE1010NA"
+      ]
+    },
+    {
+      "keyword": "best soldering iron station",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Weller WE1010NA"
+      ]
+    },
+    {
+      "keyword": "best digital soldering station",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Weller WE1010NA"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron station\" — merged, not published separately."
+    },
+    {
+      "keyword": "best mini soldering iron",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Pinecil V2"
+      ]
+    },
+    {
+      "keyword": "best usb-c soldering iron",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best mini soldering iron\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron with adjustable temperature",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending"
+    },
+    {
+      "keyword": "best budget soldering station",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Q-MING 60W Kit"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron kit\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for beginners electronics kit",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Q-MING 60W Kit",
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for beginners\" — merged, not published separately."
+    },
+    {
+      "keyword": "best smart soldering iron",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best mini soldering iron\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron for rework stations",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "hot-air rework not in roster"
+    },
+    {
+      "keyword": "hakko vs weller soldering iron",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Weller WE1010NA"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron station\" — merged, not published separately."
+    },
+    {
+      "keyword": "hakko fx888d vs fx888",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "FX888 (non-D) not in roster"
+    },
+    {
+      "keyword": "weller wlc100 vs wlc200",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "neither model in roster"
+    },
+    {
+      "keyword": "pinecil vs ts101 soldering iron",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "TS101 not in roster"
+    },
+    {
+      "keyword": "best soldering gun vs soldering iron",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "hot air station vs soldering iron",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to use a soldering iron for beginners",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to tin a soldering iron tip",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to clean a soldering iron tip",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to solder wires together",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to solder a pcb",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "soldering iron not heating up",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "soldering iron tip turning black",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "soldering iron tip not tinning",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "why does my solder not stick",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "cold solder joint causes",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best solder for electronics",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "no solder wire/consumables in roster yet"
+    },
+    {
+      "keyword": "leaded vs lead free solder",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best flux for electronics soldering",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "best desoldering tool",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "best desoldering pump",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "best solder wick",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "best soldering iron tips",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "soldering iron temperature for electronics",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "soldering iron temperature for lead free solder",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "soldering iron wattage explained",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "what wattage soldering iron do I need",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "soldering iron temperature range explained",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best soldering iron brand 2026",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best soldering station for beginners",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Q-MING 60W Kit"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron kit\" — merged, not published separately."
+    },
+    {
+      "keyword": "best hot air rework station",
+      "category": "soldering-irons",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "best soldering iron for pcb repair",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hakko FX888D",
+        "Pinecil V2"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron for SMD\" — merged, not published separately."
+    },
+    {
+      "keyword": "best soldering iron kit for beginners electronics",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Q-MING 60W Kit"
+      ],
+      "notes": "Exact targetPicks match with \"best soldering iron kit\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for beginners",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "published",
+      "notes": "covered by main article"
+    },
+    {
+      "keyword": "best oscilloscope for hobbyists",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "FNIRSI DSO152"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for arduino\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for arduino",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "FNIRSI DSO152"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope for audio",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Siglent SDS1104X-E",
+        "Rigol DS1054Z"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope for automotive diagnostics",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"hantek vs rigol oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for car electronics",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"hantek vs rigol oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for repair technicians",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Siglent SDS1104X-E",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for students",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "FNIRSI DSO152"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for arduino\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for electronics engineering",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Siglent SDS1104X-E",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for RF work",
+      "category": "oscilloscopes",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "all 4 current picks are too low-bandwidth for real RF work, verify before writing"
+    },
+    {
+      "keyword": "best oscilloscope for power electronics",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Siglent SDS1104X-E",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for microcontroller debugging",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "FNIRSI DSO152"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for arduino\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for guitar pedal design",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "Siglent SDS1104X-E"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for ham radio",
+      "category": "oscilloscopes",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "verify bandwidth suitability before claiming"
+    },
+    {
+      "keyword": "best oscilloscope for diagnosing car sensors",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"hantek vs rigol oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for can bus",
+      "category": "oscilloscopes",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "verify protocol decoding support per-model before claiming"
+    },
+    {
+      "keyword": "best oscilloscope for injector testing",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10"
+      ],
+      "notes": "Exact targetPicks match with \"best 2 channel oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "oscilloscope for alternator testing",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10"
+      ],
+      "notes": "Exact targetPicks match with \"best 2 channel oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "oscilloscope for spark plug testing",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10"
+      ],
+      "notes": "Exact targetPicks match with \"best 2 channel oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for repairing tvs",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Siglent SDS1104X-E",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for repairing power supplies",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Siglent SDS1104X-E",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for switching power supply debugging",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Siglent SDS1104X-E"
+      ],
+      "notes": "Exact targetPicks match with \"siglent sds1104x-e review\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope kit for students",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "FNIRSI DSO152",
+        "Rigol DS1054Z"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for arduino\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for teaching electronics",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Rigol DS1054Z"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope for digital signals",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "Siglent SDS1104X-E"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope for analog signals",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "Siglent SDS1104X-E"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best budget oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "FNIRSI DSO152"
+      ],
+      "notes": "Exact targetPicks match with \"fnirsi dso152 review\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope under $300",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "notes": "price-tier caveat applies"
+    },
+    {
+      "keyword": "best oscilloscope under $500",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "notes": "price-tier caveat applies"
+    },
+    {
+      "keyword": "best portable oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "FNIRSI DSO152",
+        "Hantek DSO2D10"
+      ]
+    },
+    {
+      "keyword": "best handheld oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "FNIRSI DSO152"
+      ],
+      "notes": "Exact targetPicks match with \"fnirsi dso152 review\" — merged, not published separately."
+    },
+    {
+      "keyword": "best pocket oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "FNIRSI DSO152"
+      ],
+      "notes": "Exact targetPicks match with \"fnirsi dso152 review\" — merged, not published separately."
+    },
+    {
+      "keyword": "best 4 channel oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "Siglent SDS1104X-E"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "best 2 channel oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hantek DSO2D10"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope with function generator",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10"
+      ],
+      "notes": "Exact targetPicks match with \"best 2 channel oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope with waveform generator built in",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Hantek DSO2D10"
+      ],
+      "notes": "Exact targetPicks match with \"best 2 channel oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "best entry level oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "FNIRSI DSO152"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for arduino\" — merged, not published separately."
+    },
+    {
+      "keyword": "best mid range oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Siglent SDS1104X-E"
+      ],
+      "notes": "Exact targetPicks match with \"siglent sds1104x-e review\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope under 100mhz",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "Hantek DSO2D10"
+      ],
+      "notes": "Exact targetPicks match with \"hantek vs rigol oscilloscope\" — merged, not published separately."
+    },
+    {
+      "keyword": "best oscilloscope over 200mhz",
+      "category": "oscilloscopes",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "no pick in roster exceeds 100MHz"
+    },
+    {
+      "keyword": "best oscilloscope accessories",
+      "category": "oscilloscopes",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "touchscreen oscilloscope vs button oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "rigol ds1054z vs ds1104z",
+      "category": "oscilloscopes",
+      "type": "new-product",
+      "status": "pending",
+      "notes": "DS1104Z not in roster"
+    },
+    {
+      "keyword": "rigol vs siglent oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "skip-duplicate",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "Siglent SDS1104X-E"
+      ],
+      "notes": "Exact targetPicks match with \"best oscilloscope for audio\" — merged, not published separately."
+    },
+    {
+      "keyword": "siglent sds1104x-e review",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Siglent SDS1104X-E"
+      ]
+    },
+    {
+      "keyword": "hantek vs rigol oscilloscope",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hantek DSO2D10",
+        "Rigol DS1054Z"
+      ]
+    },
+    {
+      "keyword": "fnirsi dso152 review",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "FNIRSI DSO152"
+      ]
+    },
+    {
+      "keyword": "oscilloscope vs multimeter",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "oscilloscope vs logic analyzer",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "50mhz vs 100mhz oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to use an oscilloscope for beginners",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to read an oscilloscope screen",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to measure frequency with an oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to measure voltage with an oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to trigger an oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "oscilloscope bandwidth explained",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending",
+      "notes": "already covered as FAQ in main article — write as deeper standalone page"
+    },
+    {
+      "keyword": "oscilloscope sample rate explained",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "oscilloscope probe compensation",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how many channels do I need on an oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending",
+      "notes": "already covered as FAQ in main article — write as deeper standalone page"
+    },
+    {
+      "keyword": "oscilloscope memory depth explained",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "what does GSa/s mean oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "oscilloscope rise time explained",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best oscilloscope probe",
+      "category": "oscilloscopes",
+      "type": "new-product",
+      "status": "pending"
+    },
+    {
+      "keyword": "best oscilloscope display size",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "best oscilloscope brand 2026",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    }
   ]
 }

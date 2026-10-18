@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Best Multimeter for Electricians in 2026",
   description:
     "The multimeters with the safety ratings and features electricians actually need — CAT III/IV protection, True RMS, and field durability compared.",
+  alternates: { canonical: "/multimeters/best-multimeter-for-electricians" },
 };
 
 const names = ["Fluke 117", "Fluke 87V", "Southwire 14070T", "Klein Tools MM400", "Milwaukee 2235-20"];

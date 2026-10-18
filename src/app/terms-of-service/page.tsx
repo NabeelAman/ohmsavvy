@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms for using OhmSavvy's content and affiliate links.",
+  alternates: { canonical: "/terms-of-service" },
 };
 
 export default function TermsOfServicePage() {

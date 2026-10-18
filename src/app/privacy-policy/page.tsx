@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "What data OhmSavvy collects (and doesn't), and how Amazon affiliate links work.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicyPage() {

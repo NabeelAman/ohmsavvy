@@ -3,9 +3,10 @@ import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 
 export const metadata: Metadata = {
-  title: "Top 10 Best Multimeters in 2026: Compared by Accuracy, Safety Rating, and Price",
+  title: "Top 10 Best Multimeters in 2026",
   description:
     "An honest, specification-based comparison of the top 10 best digital multimeters in 2026 — covering accuracy, CAT safety ratings, and value across every budget.",
+  alternates: { canonical: "/multimeters/best-multimeters" },
 };
 
 export const picks: Pick[] = [

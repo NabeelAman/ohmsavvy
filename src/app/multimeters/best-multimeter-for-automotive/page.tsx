@@ -4,9 +4,10 @@ import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-multimeters/page";
 
 export const metadata: Metadata = {
-  title: "Best Multimeter for Automotive Diagnostics in 2026",
+  title: "Best Multimeter for Automotive Diagnostics",
   description:
     "Multimeters with the RPM, dwell, and duty-cycle functions automotive diagnostics actually needs — compared on accuracy and real-world usability.",
+  alternates: { canonical: "/multimeters/best-multimeter-for-automotive" },
 };
 
 const names = ["Craftsman CMMT14171", "AstroAI DM6000AR", "Klein Tools MM400", "KAIWEETS KM200s"];

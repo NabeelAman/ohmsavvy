@@ -36,6 +36,23 @@ export const metadata: Metadata = {
   },
   description:
     "In-depth, specification-based reviews of multimeters, soldering irons, oscilloscopes, and bench test equipment — honest comparisons to help you pick the right tool.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "OhmSavvy",
+    title: "OhmSavvy | Electronics Test Equipment Reviews",
+    description:
+      "In-depth, specification-based reviews of multimeters, soldering irons, oscilloscopes, and bench test equipment — honest comparisons to help you pick the right tool.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OhmSavvy | Electronics Test Equipment Reviews",
+    description:
+      "In-depth, specification-based reviews of multimeters, soldering irons, oscilloscopes, and bench test equipment — honest comparisons to help you pick the right tool.",
+  },
   verification: {
     google: "hiHeIkdBWXcmzt70-nXfNhotNZvCYz_tgUDvPrOecBI",
   },

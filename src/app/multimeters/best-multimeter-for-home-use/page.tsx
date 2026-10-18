@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Best Multimeter for Home Use & DIY in 2026",
   description:
     "The multimeters that make the most sense for home electrical checks and DIY projects — easy to use, accurate, and not overpriced for occasional work.",
+  alternates: { canonical: "/multimeters/best-multimeter-for-home-use" },
 };
 
 const names = ["KAIWEETS KM200s", "UNI-T UT139C", "Extech EX330", "AstroAI DM6000AR"];

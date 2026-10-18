@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Best Oscilloscopes for Beginners in 2026",
   description:
     "Bandwidth, sample rate, and channel count explained simply — an honest comparison of the best beginner-friendly oscilloscopes.",
+  alternates: { canonical: "/oscilloscopes/best-beginner-oscilloscopes" },
 };
 
 export const picks: Pick[] = [

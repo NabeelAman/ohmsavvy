@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Q-MING 60W Soldering Iron Kit Review",
   description: "Q-MING 60W soldering iron kit review: a ceramic heater, 5 tips and a stand in one low-cost box. A sensible first kit, with an analog dial that limits precision.",
   path: "/soldering-irons/q-ming-60w-soldering-iron-kit-review",
+  image: picks.find((p) => p.name === "Q-MING 60W Kit")?.image,
 });
 
 const review: ProductReviewContent = {

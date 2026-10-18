@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Craftsman CMMT14171 Review",
   description: "Craftsman CMMT14171 review: an automotive multimeter with RPM, dwell and duty-cycle modes, True RMS and CAT III 600V. Who it suits and who should skip it.",
   path: "/multimeters/craftsman-cmmt14171-review",
+  image: picks.find((p) => p.name === "Craftsman CMMT14171")?.image,
 });
 
 const review: ProductReviewContent = {

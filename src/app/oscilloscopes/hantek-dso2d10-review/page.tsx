@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Hantek DSO2D10 Review",
   description: "Hantek DSO2D10 review: a 100MHz, 2-channel oscilloscope with a built-in waveform generator. Who the two-in-one design suits, and the trade-offs to know.",
   path: "/oscilloscopes/hantek-dso2d10-review",
+  image: picks.find((p) => p.name === "Hantek DSO2D10")?.image,
 });
 
 const review: ProductReviewContent = {

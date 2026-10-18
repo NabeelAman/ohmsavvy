@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "FNIRSI DSO152 Review",
   description: "FNIRSI DSO152 review: a pocket oscilloscope with 200kHz bandwidth and 2.5 MSa/s. What it can show you, where it runs out, and when to buy a bench scope.",
   path: "/oscilloscopes/fnirsi-dso152-review",
+  image: picks.find((p) => p.name === "FNIRSI DSO152")?.image,
 });
 
 const review: ProductReviewContent = {

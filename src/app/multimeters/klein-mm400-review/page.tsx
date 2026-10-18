@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Klein Tools MM400 Review",
   description: "Klein Tools MM400 review: CAT III 600V, True RMS and a low-impedance mode at a mid-range price. Who it suits, and when the Fluke 117 is still worth it.",
   path: "/multimeters/klein-mm400-review",
+  image: picks.find((p) => p.name === "Klein Tools MM400")?.image,
 });
 
 const review: ProductReviewContent = {

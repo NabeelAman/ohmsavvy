@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Southwire 14070T Review",
   description: "Southwire 14070T TechnicianPRO review: IP67 waterproofing, CAT IV 600V / CAT III 1000V, True RMS and a built-in work light for outdoor and job-site use.",
   path: "/multimeters/southwire-14070t-review",
+  image: picks.find((p) => p.name === "Southwire 14070T")?.image,
 });
 
 const review: ProductReviewContent = {

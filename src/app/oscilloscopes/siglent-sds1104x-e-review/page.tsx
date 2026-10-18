@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Siglent SDS1104X-E Review",
   description: "Siglent SDS1104X-E review: 100MHz, 4 channels and 1 GSa/s with a well-regarded interface. Who should pay more for it over the Rigol DS1054Z, and who shouldn't.",
   path: "/oscilloscopes/siglent-sds1104x-e-review",
+  image: picks.find((p) => p.name === "Siglent SDS1104X-E")?.image,
 });
 
 const review: ProductReviewContent = {

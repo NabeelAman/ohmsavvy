@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "AstroAI DM6000AR Review",
   description: "AstroAI DM6000AR review: True RMS, 6,000-count resolution and CAT III 600V for Arduino, Raspberry Pi and hobby electronics, and where the budget build shows.",
   path: "/multimeters/astroai-dm6000ar-review",
+  image: picks.find((p) => p.name === "AstroAI DM6000AR")?.image,
 });
 
 const review: ProductReviewContent = {

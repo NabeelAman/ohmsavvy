@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Milwaukee 2235-20 Clamp Meter Review",
   description: "Milwaukee 2235-20 clamp meter review: 400A AC, a 1-inch jaw, True RMS and CAT III 600V. When a clamp meter beats a standard multimeter, and when it doesn't.",
   path: "/multimeters/milwaukee-2235-20-review",
+  image: picks.find((p) => p.name === "Milwaukee 2235-20")?.image,
 });
 
 const review: ProductReviewContent = {

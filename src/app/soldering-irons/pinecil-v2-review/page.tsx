@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Pinecil V2 Review",
   description: "Pinecil V2 review: a 65W USB-C PD soldering iron that heats in ~12 seconds. Who it suits, what's missing from the box, and how it compares with a bench station.",
   path: "/soldering-irons/pinecil-v2-review",
+  image: picks.find((p) => p.name === "Pinecil V2")?.image,
 });
 
 const review: ProductReviewContent = {

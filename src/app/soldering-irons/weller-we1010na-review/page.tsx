@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Weller WE1010NA Review",
   description: "Weller WE1010NA review: a 70W ESD-safe digital soldering station with tight temperature stability. Who it suits, and how it compares with the Hakko FX888D.",
   path: "/soldering-irons/weller-we1010na-review",
+  image: picks.find((p) => p.name === "Weller WE1010NA")?.image,
 });
 
 const review: ProductReviewContent = {

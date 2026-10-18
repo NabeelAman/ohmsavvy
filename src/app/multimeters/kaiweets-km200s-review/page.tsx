@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "KAIWEETS KM200s Review",
   description: "KAIWEETS KM200s review: True RMS, auto-ranging and NCV at under half the Fluke 117's price, and why its CAT II rating keeps it out of service panels.",
   path: "/multimeters/kaiweets-km200s-review",
+  image: picks.find((p) => p.name === "KAIWEETS KM200s")?.image,
 });
 
 const review: ProductReviewContent = {

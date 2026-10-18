@@ -7,6 +7,7 @@ export const metadata = buildMetadata({
   title: "Extech EX330 Review",
   description: "Extech EX330 review: a pocket-sized auto-ranging meter with built-in NCV and CAT III 600V. Why it isn't True RMS, and when that actually matters.",
   path: "/multimeters/extech-ex330-review",
+  image: picks.find((p) => p.name === "Extech EX330")?.image,
 });
 
 const review: ProductReviewContent = {

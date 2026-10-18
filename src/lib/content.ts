@@ -146,6 +146,20 @@ export const content: ContentEntry[] = [
   },
   {
     category: "soldering-irons",
+    type: "use-case-guide",
+    title: "For Circuit Board Repair",
+    description: "Precise temperature control, fast thermal recovery",
+    href: "/soldering-irons/best-soldering-iron-for-circuit-board-repair",
+  },
+  {
+    category: "soldering-irons",
+    type: "use-case-guide",
+    title: "For Beginners",
+    description: "Simple controls, forgiving, low cost of entry",
+    href: "/soldering-irons/best-soldering-iron-for-beginners",
+  },
+  {
+    category: "soldering-irons",
     type: "review",
     title: "Hakko FX888D Review",
     description: "A closer look at our Best Overall pick",
@@ -187,6 +201,20 @@ export const content: ContentEntry[] = [
     title: "Oscilloscope Buying Guide",
     description: "Bandwidth, sample rate, and channels explained",
     href: "/oscilloscopes/oscilloscope-buying-guide",
+  },
+  {
+    category: "oscilloscopes",
+    type: "use-case-guide",
+    title: "For a Home Electronics Lab",
+    description: "General-purpose 4-channel picks for varied projects",
+    href: "/oscilloscopes/best-oscilloscope-for-home-electronics-lab",
+  },
+  {
+    category: "oscilloscopes",
+    type: "use-case-guide",
+    title: "For Arduino Projects",
+    description: "Microcontroller-speed debugging, no overpaying for headroom",
+    href: "/oscilloscopes/best-oscilloscope-for-arduino-projects",
   },
   {
     category: "oscilloscopes",

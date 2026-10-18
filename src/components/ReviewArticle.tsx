@@ -131,6 +131,7 @@ export function ReviewArticle({
   };
 
   const featured = picks.slice(0, Math.min(3, picks.length));
+  const testedCount = picks.filter((p) => p.handsOnTested).length;
   const alsoGreat = picks.slice(featured.length);
 
   const toc: TocItem[] = [
@@ -162,7 +163,10 @@ export function ReviewArticle({
                 By <span className="font-medium">OhmSavvy Research Team</span>
               </span>
             </span>
-            <span className="text-muted">Desk research · specs verified against manufacturer data</span>
+            <span className="text-muted">
+              Specs verified against manufacturer data
+              {testedCount > 0 ? ` · ${testedCount} of ${picks.length} hands-on tested` : " · desk research"}
+            </span>
           </div>
           <p className="mt-3 text-xs text-muted leading-5">
             Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through the links below, at no
@@ -201,6 +205,11 @@ export function ReviewArticle({
                         <Badge variant="signal">{p.badge}</Badge>
                         <Stars rating={p.rating} />
                       </div>
+                      {p.handsOnTested && (
+                        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent">
+                          <span aria-hidden>✓</span> Hands-on Tested
+                        </span>
+                      )}
                       <h3 className="text-lg font-semibold leading-snug">{p.name}</h3>
                       <p className="flex-1 text-sm text-muted leading-6">{p.bottomLine}</p>
                       <Button href={p.ctaHref} className="mt-2 w-full whitespace-nowrap">
@@ -292,6 +301,9 @@ export function ReviewArticle({
                             <span className="leading-snug">
                               <span className="block text-[11px] font-display text-muted">#{i + 1}</span>
                               {p.name}
+                              {p.handsOnTested && (
+                                <span className="mt-0.5 block text-[10px] font-display uppercase tracking-wide text-accent">✓ Tested</span>
+                              )}
                             </span>
                           </a>
                         </td>
@@ -414,8 +426,8 @@ export function ReviewArticle({
                 ))}
               </div>
               <p className="mt-4 text-sm text-muted leading-6">
-                This is desk research, not bench testing. A pick only carries a &quot;Hands-on Tested&quot; badge once we
-                have actually bought and tested that unit.{" "}
+                Picks marked &quot;Hands-on Tested&quot; have been bought and tested by us; the rest are desk research. A
+                pick only carries that badge once we have actually bought and tested that unit.{" "}
                 <a href="/about" className="text-accent hover:underline">
                   More on how we research
                 </a>

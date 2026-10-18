@@ -48,6 +48,7 @@ export function ContentCard({ entry }: { entry: ContentEntry }) {
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="signal">{shown[0].badge}</Badge>
             <Stars rating={shown[0].rating} />
+            {shown[0].handsOnTested && <Badge variant="accent">Hands-on Tested</Badge>}
           </div>
         )}
         <p className="font-semibold leading-snug group-hover:text-accent transition-colors">{entry.title}</p>

@@ -27,6 +27,7 @@ export const picks: Pick[] = [
     pros: ["Trusted, well-documented reliability", "Non-contact voltage (NCV) detection built in", "Durable enough for daily field use"],
     cons: ["Premium price for casual hobbyists", "No Bluetooth/app connectivity"],
     ctaHref: "https://www.amazon.com/dp/B000O3LUEI?tag=ohmsavvy-20",
+    handsOnTested: true,
   },
   {
     badge: "Best Budget",
@@ -99,6 +100,7 @@ export const picks: Pick[] = [
     pros: ["Highest CAT rating in this list", "19,999-count high-resolution mode", "Analog bar graph tracks fast-changing signals"],
     cons: ["Among the most expensive picks here", "Overkill for casual home use"],
     ctaHref: "https://www.amazon.com/dp/B0002YFD1K?tag=ohmsavvy-20",
+    handsOnTested: true,
   },
   {
     badge: "Best Clamp Meter",

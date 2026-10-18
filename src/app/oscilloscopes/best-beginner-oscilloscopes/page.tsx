@@ -27,6 +27,7 @@ export const picks: Pick[] = [
     pros: ["4 channels at this price is rare", "Large, clear 7-inch display", "Strong community support and documentation"],
     cons: ["Menu navigation has a learning curve", "Bandwidth is modest for RF work"],
     ctaHref: "https://www.amazon.com/dp/B012938E76?tag=ohmsavvy-20",
+    handsOnTested: true,
   },
   {
     badge: "Best Budget",

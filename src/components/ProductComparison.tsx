@@ -152,8 +152,12 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
             </table>
           </div>
           <p className="mt-3 text-xs text-muted leading-5">
-            Specs checked against manufacturer documentation and official Amazon listings. Desk research,
-            not bench testing.{" "}
+            Specs checked against manufacturer documentation and official Amazon listings.{" "}
+            {a.pick.handsOnTested && b.pick.handsOnTested
+              ? "Both products hands-on tested by OhmSavvy."
+              : a.pick.handsOnTested || b.pick.handsOnTested
+                ? `${(a.pick.handsOnTested ? a : b).pick.name} is hands-on tested by OhmSavvy; the ${(a.pick.handsOnTested ? b : a).pick.name} assessment is desk research.`
+                : "Desk research, not bench testing."}{" "}
             <a href="/about" className="text-accent hover:underline">
               How we research
             </a>

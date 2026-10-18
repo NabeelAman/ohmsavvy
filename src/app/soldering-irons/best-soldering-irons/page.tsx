@@ -27,6 +27,7 @@ export const picks: Pick[] = [
     pros: ["Excellent thermal recovery under load", "Widely available genuine replacement tips", "Trusted reputation across electronics communities"],
     cons: ["Counterfeit units exist — buy from authorized sellers", "Bulkier than portable options"],
     ctaHref: "https://www.amazon.com/dp/B00ANZRT4M?tag=ohmsavvy-20",
+    handsOnTested: true,
   },
   {
     badge: "Best Portable",

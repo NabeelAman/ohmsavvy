@@ -12,12 +12,20 @@ by hand) must follow. It exists because this site's only real differentiator is
   is desk-based research — cross-checked specs + patterns in verified-purchase
   reviews, not physical testing. Content must stay consistent with that disclosure.
 - Every sentence that states a product-specific fact (a spec, a feature, a
-  compatibility claim) must be traceable to one of:
-  1. An existing verified `Pick` object already in the codebase (reuse, don't
-     re-derive), or
-  2. For a genuinely new product: the manufacturer's own datasheet/official site,
-     or the product's official Amazon listing — never a competitor article, a
-     reseller's marketing blurb, or an AI model's unverified prior knowledge.
+  compatibility claim) must be traceable to one of exactly two sources, with no
+  exceptions:
+  1. **The brand's own official website** (e.g. fluke.com, kleintools.com,
+     rigolna.com — the manufacturer's own datasheet or official product page), or
+  2. **The product's official Amazon listing** (the manufacturer-owned or
+     manufacturer-authorized listing itself, not a third-party seller's
+     description layered on top of it).
+  Never a reseller/retailer's own marketing copy, a competitor review site, a
+  forum post, a YouTube review, or an AI model's unverified prior knowledge —
+  even when those sources happen to state the same fact correctly, they aren't
+  the source of record and can silently carry someone else's error.
+  An existing verified `Pick` object already in the codebase counts as already
+  satisfying this rule (it was sourced this way when first researched) — reuse
+  it rather than re-deriving the same fact from scratch.
 - If a spec is ambiguous or conflicts across sources, say so in the text rather
   than silently picking one (established pattern — see the Extech EX330 "Auto-
   ranging (not True RMS)" framing and the Hantek DSO2000 memory-depth discrepancy
@@ -124,33 +132,38 @@ branch should have required status checks turned on for `main` once the
 
 ## 7. On-page SEO checklist
 
-Enforced by `automation/check-seo.mjs` where mechanically checkable, otherwise
-a manual item for the human review step:
+Every factor below, what the actual rule is, and exactly what enforces it —
+a mechanical script (runs in CI, fails the build), the Gemini QA pass (runs
+per-draft before a PR opens), or human review (not yet automatable).
 
-- [x] Unique `<title>`, ideally 40-60 characters, primary keyword near the front.
-- [x] Unique meta description, 120-160 characters, includes the primary keyword.
-- [x] Exactly one H1 per page, matching the page's search intent.
-- [x] Primary keyword appears in: title, first ~100 words of body copy, and at
-      least one H2/H3.
-- [x] URL slug is lowercase, hyphenated, matches the keyword pattern already in
-      use (`/category/best-x-for-y`).
-- [x] Every `<img>` has descriptive, non-empty `alt` text (not just the bare
-      product name where more context helps — e.g. "Fluke 117 digital
-      multimeter" reads better than just "Fluke 117").
-- [ ] Explicit canonical tag per page (`alternates.canonical` in the metadata
-      export) — **currently missing site-wide**, should be added as part of
-      this automation work rather than left as a gap.
-- [ ] JSON-LD `Product`/`Review`/`AggregateRating` structured data on every
-      review page — **currently missing site-wide**. This is the single
-      highest-value addition available: it's what enables star ratings to show
-      directly in Google search results for an affiliate review site, and none
-      of the existing pages have it yet.
-- [x] Page included in `sitemap.ts`.
-- [x] `robots.txt` allows crawling (already in place).
-- [x] No duplicate title/description across pages — real risk once many similar
-      "best X for Y" pages exist; checked mechanically.
-- [ ] No broken internal or outbound links — not yet automated, recommend adding
-      once the page count grows past what's manually checkable.
+| # | Factor | Rule | Enforced by |
+|---|--------|------|-------------|
+| 1 | Title tag length | The rendered `<title>` is the page's `title` field **plus 11 characters** (" \| OhmSavvy", from the root layout's template) — the field itself must be ≤49 chars so the rendered total stays ≤60. | `check-seo.mjs` (mechanical) + Gemini QA |
+| 2 | Title redundancy | Title field must never contain the word "OhmSavvy" — the template already appends it; including it renders as "X OhmSavvy \| OhmSavvy". | `check-seo.mjs` (mechanical) |
+| 3 | Title uniqueness | No two pages share an identical title. | `check-seo.mjs` (mechanical) |
+| 4 | Title keyword placement | The primary keyword (or an exact-meaning variant) appears in the title, ideally near the front. | Gemini QA |
+| 5 | Meta description length | 120-160 characters. | `check-seo.mjs` (mechanical: flags >165 or <50) + Gemini QA (flags the 120-160 sweet spot) |
+| 6 | Meta description uniqueness | No two pages share an identical description. | `check-seo.mjs` (mechanical) |
+| 7 | Meta description keyword | Primary keyword appears naturally in the description. | Gemini QA |
+| 8 | Exactly one H1 | One `CategoryHero`/article heading per page, matching the page's actual search intent — never zero, never stacked H1s. | Human review (not yet mechanically checked — every current page uses the shared `CategoryHero` component which only ever renders one heading, so this holds structurally today, but a future template change should re-verify it) |
+| 9 | Keyword in first ~100 words | Primary keyword or natural variant appears early in visible body copy (checked via the `CategoryHero` description prop). | Gemini QA |
+| 10 | Content length / depth | Avoid thin pages — a `remix` guide page should carry genuine distinguishing content (the per-pick verdicts inherited from `ReviewArticle` already provide this; a near-empty custom page with just a product list and no framing is too thin). | Gemini QA (flags if the custom copy — `CategoryHero` description + FAQs — reads as a bare stub with no real framing) |
+| 11 | Keyword stuffing | Keyword phrase must not be repeated unnaturally — flagged as actively harmful to rankings, not just wasteful. | Gemini QA |
+| 12 | URL slug | Lowercase, hyphenated, matches the established pattern (`/category/best-x-for-y`). | Drafting prompt generates it this way; Gemini QA spot-checks |
+| 13 | Image alt text | Every `<img>` has non-empty, descriptive `alt` text. | `check-seo.mjs` (mechanical) |
+| 14 | Canonical tag | `alternates.canonical` present on every page, matching its real path. | `check-seo.mjs` (mechanical) — **fixed site-wide**, was previously missing on all 9 pages |
+| 15 | Structured data | JSON-LD `Product` + `Review` per pick, on every review page — enables star ratings in search results. Uses a single editorial `Review`, never a fabricated `AggregateRating` (that would misrepresent one rating as an aggregate of many). | Built into `ReviewArticle.tsx` — **fixed site-wide**, was previously missing |
+| 16 | Sitemap inclusion | Every page is listed in `sitemap.ts`. | `check-internal-links.mjs` (mechanical — also catches a page existing but never added to the sitemap at all) |
+| 17 | Internal linking (no orphans) | Every page gets at least one inbound link from somewhere already crawled. | `check-internal-links.mjs` (mechanical) |
+| 18 | `robots.txt` crawlability | Crawlers allowed, sitemap referenced. | Already in place, static |
+| 19 | Keyword cannibalization | Two pages shouldn't target near-identical intent with near-identical product sets. | `check-cannibalization.mjs` (advisory, non-blocking — flags for human merge decision) |
+| 20 | FAQ relevance | Exactly 2 FAQs per `remix` page, genuinely specific to that page's keyword/framing — not generic copy-paste FAQs that could sit on any page in the category. | Gemini QA |
+| 21 | Affiliate disclosure | Present near the top of the article, next to where affiliate links start, not just in the site-wide footer. | Built into `ReviewArticle.tsx` — **fixed site-wide** |
+| 22 | Broken links | No internal or outbound link returns an error. | Not yet automated — recommend adding once page count grows past what's manually spot-checkable |
+
+Items 14, 15, and 21 were real, pre-existing gaps found and fixed during this
+automation build (not something newly introduced) — see the git history for
+the commit that added canonical tags, JSON-LD, and the disclosure line.
 
 The two unchecked items (canonical tags, Review schema) are real, pre-existing
 gaps on the live site, not something introduced by this automation — worth

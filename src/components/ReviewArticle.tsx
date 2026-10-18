@@ -144,7 +144,6 @@ export function ReviewArticle({
             <thead>
               <tr className="border-b border-border text-left">
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">#</th>
-                <th className="py-2 pr-4"></th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Model</th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Award</th>
                 <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Rating</th>
@@ -158,14 +157,6 @@ export function ReviewArticle({
               {picks.map((p, i) => (
                 <tr key={p.name} className="border-b border-border last:border-0">
                   <td className="py-3 pr-4 text-muted font-display">{i + 1}</td>
-                  <td className="py-3 pr-4">
-                    {p.image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={p.image} alt="" className="w-10 h-10 object-contain rounded border border-border bg-surface" />
-                    ) : (
-                      <div className="w-10 h-10 rounded border border-border bg-surface" />
-                    )}
-                  </td>
                   <td className="py-3 pr-4 font-medium">
                     <a href={`#${p.name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-accent">
                       {p.name}

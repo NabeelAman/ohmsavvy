@@ -8,9 +8,18 @@ by hand) must follow. It exists because this site's only real differentiator is
 
 - Voice: direct, specific, no filler ("game-changer," "must-have," "revolutionary").
   Match the existing `bottomLine`/`verdict` copy style already in the picks arrays.
-- Never imply hands-on bench testing. The site is explicit (see `/about`) that this
-  is desk-based research — cross-checked specs + patterns in verified-purchase
-  reviews, not physical testing. Content must stay consistent with that disclosure.
+- Never imply hands-on bench testing for a product that hasn't been tested. Most
+  picks are desk-based research (cross-checked specs + patterns in verified-purchase
+  reviews); only picks with `handsOnTested: true` were bought and tested by the
+  site owner, and only those may be described as tested.
+- **4.8-rated picks are hands-on tested (owner's standing rule, 2026-10-19).** The
+  owner buys and tests every product rated 4.8. Currently tested: Fluke 117,
+  Fluke 87V, Hakko FX888D, Rigol DS1054Z. When a new 4.8-rated pick is added,
+  confirm with the owner that its testing is complete, then set
+  `handsOnTested: true` on its Pick (the badge, review status and research notes
+  update automatically). Don't set it before testing is done. Even for tested
+  picks, never invent test results or measurements; only the owner's actual
+  findings may be published.
 - Every sentence that states a product-specific fact (a spec, a feature, a
   compatibility claim) must be traceable to one of exactly two sources, with no
   exceptions:

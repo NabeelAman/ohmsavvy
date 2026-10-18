@@ -84,6 +84,65 @@ const trustPillars = [
 // affiliate clicks, rather than just linking out to articles.
 const topPicks = featured.map((f) => ({ ...f.picks[0], category: f.category, text: f.text, articleHref: f.href }));
 
+const buyingBasics = [
+  {
+    term: "CAT Rating",
+    desc: "Set by IEC 61010 — CAT II covers outlets and appliances, CAT III covers panels and fixed building wiring, CAT IV covers the service entrance. Higher ratings mean the meter can safely handle larger transient spikes.",
+    href: "/multimeters/best-multimeters#faq",
+  },
+  {
+    term: "True RMS",
+    desc: "A True RMS meter calculates the actual root-mean-square value of a signal, so it reads correctly on the non-sinusoidal waveforms common with dimmers, VFDs, and most modern electronics. A non-True-RMS meter is only accurate on clean sine waves.",
+    href: "/multimeters/best-multimeters#faq",
+  },
+  {
+    term: "Oscilloscope Bandwidth",
+    desc: "As a rule of thumb, your scope's bandwidth should be 3-5x the highest frequency you're measuring — below that, the scope starts attenuating and distorting the signal you're trying to see.",
+    href: "/oscilloscopes/best-beginner-oscilloscopes#faq",
+  },
+];
+
+const moreGuides = [
+  {
+    href: "/multimeters/best-multimeter-for-electricians",
+    title: "Best Multimeter for Electricians",
+    desc: "CAT III/IV picks built for panel work",
+  },
+  {
+    href: "/multimeters/best-multimeter-for-automotive",
+    title: "Best Multimeter for Automotive",
+    desc: "RPM, dwell, and duty-cycle diagnostics",
+  },
+  {
+    href: "/multimeters/best-multimeter-for-home-use",
+    title: "Best Multimeter for Home & DIY",
+    desc: "Easy, affordable, no overkill",
+  },
+];
+
+const homeFaqs = [
+  {
+    question: "How does OhmSavvy make money?",
+    answer:
+      "Through Amazon affiliate commissions when you buy via a link on this site, at no extra cost to you. That's the only funding source — no advertising, no sponsored placements, no manufacturer payments for a favorable review.",
+  },
+  {
+    question: "Do you physically test every product?",
+    answer:
+      "No, and we'd rather say that plainly than imply otherwise. This is desk-based research — every spec is cross-checked against manufacturer datasheets and official listings, and we look for patterns across real verified-purchase reviews, but we don't buy and bench-test each unit ourselves.",
+  },
+  {
+    question: "Why don't some products have photos?",
+    answer:
+      "We'd rather show no photo than a wrong one. If we can't find an image we can visually confirm matches the exact model — not a shared sibling-product photo — we leave the slot showing \"Photo pending manufacturer confirmation\" instead of guessing.",
+  },
+  {
+    question: "How often are picks updated?",
+    answer:
+      "We revisit pricing, availability, and rankings periodically rather than on a fixed schedule. If a spec turns out to be wrong or a product is discontinued, we correct it as soon as we catch it.",
+  },
+];
+
 export default function Home() {
   return (
     <div>
@@ -224,6 +283,56 @@ export default function Home() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface-raised">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <Eyebrow>BUYING BASICS</Eyebrow>
+          <h2 className="text-2xl font-semibold max-w-xl">A few terms worth knowing before you buy</h2>
+          <div className="mt-10 grid sm:grid-cols-3 gap-8">
+            {buyingBasics.map((b) => (
+              <div key={b.term}>
+                <h3 className="font-medium mb-2">{b.term}</h3>
+                <p className="text-sm text-muted leading-6">{b.desc}</p>
+                <Link href={b.href} className="mt-2 inline-block text-sm font-medium text-accent hover:underline">
+                  Read more →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <Eyebrow>MORE GUIDES</Eyebrow>
+        <h2 className="text-2xl font-semibold">Shop by use case</h2>
+        <div className="mt-8 grid sm:grid-cols-3 gap-6">
+          {moreGuides.map((g) => (
+            <Link
+              key={g.href}
+              href={g.href}
+              className="rounded-lg border border-border bg-surface-raised p-5 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">{g.title}</p>
+              <p className="mt-1.5 text-sm text-muted leading-6">{g.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface-raised">
+        <div className="mx-auto max-w-4xl px-6 py-16">
+          <Eyebrow>FAQ</Eyebrow>
+          <h2 className="text-2xl font-semibold mb-8">Common questions about this site</h2>
+          <div className="space-y-6">
+            {homeFaqs.map((f) => (
+              <div key={f.question}>
+                <h3 className="font-medium">{f.question}</h3>
+                <p className="mt-1.5 text-sm text-muted leading-6">{f.answer}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

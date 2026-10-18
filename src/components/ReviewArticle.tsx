@@ -157,7 +157,7 @@ export function ReviewArticle({
         </div>
       </section>
 
-      <section className="mt-16">
+      <section id="faq" className="mt-16 scroll-mt-24">
         <h2 className="font-display text-xl font-semibold mb-5">Frequently asked questions</h2>
         <div className="space-y-5">
           {faqs.map((f) => (

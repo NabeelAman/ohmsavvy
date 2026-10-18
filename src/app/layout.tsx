@@ -28,35 +28,55 @@ const sourceSans3 = Source_Sans_3({
   display: "swap",
 });
 
+const SITE_TITLE = "OhmSavvy | Multimeter, Oscilloscope & Soldering Iron Reviews";
+const SITE_DESCRIPTION =
+  "In-depth, specification-based reviews of multimeters, soldering irons, and oscilloscopes — honest comparisons to help you pick the right tool.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://ohmsavvy.com"),
   title: {
-    default: "OhmSavvy | Electronics Test Equipment Reviews",
+    default: SITE_TITLE,
     template: "%s | OhmSavvy",
   },
-  description:
-    "In-depth, specification-based reviews of multimeters, soldering irons, oscilloscopes, and bench test equipment — honest comparisons to help you pick the right tool.",
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     siteName: "OhmSavvy",
-    title: "OhmSavvy | Electronics Test Equipment Reviews",
-    description:
-      "In-depth, specification-based reviews of multimeters, soldering irons, oscilloscopes, and bench test equipment — honest comparisons to help you pick the right tool.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OhmSavvy | Electronics Test Equipment Reviews",
-    description:
-      "In-depth, specification-based reviews of multimeters, soldering irons, oscilloscopes, and bench test equipment — honest comparisons to help you pick the right tool.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   verification: {
     google: "hiHeIkdBWXcmzt70-nXfNhotNZvCYz_tgUDvPrOecBI",
   },
 };
+
+// Sitewide WebSite + Organization schema — every page previously shipped with
+// zero Schema.org markup unless it was a review/comparison/about page with its
+// own JSON-LD. This covers the gap on category pages, guides, and the homepage.
+const siteJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "OhmSavvy",
+    url: "https://ohmsavvy.com",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "OhmSavvy",
+    url: "https://ohmsavvy.com",
+    description: SITE_DESCRIPTION,
+  },
+];
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -66,6 +86,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd).replace(/</g, "\\u003c") }}
+        />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-border bg-surface-raised">

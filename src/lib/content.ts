@@ -135,6 +135,27 @@ export const content: ContentEntry[] = [
     description: "Our pick for electronics hobbyists",
     href: "/multimeters/astroai-dm6000ar-review",
   },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 117 vs Klein Tools MM400",
+    description: "Same CAT III rating, different extras and price",
+    href: "/multimeters/fluke-117-vs-klein-mm400",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "KAIWEETS KM200s vs UNI-T UT139C",
+    description: "Budget True RMS head-to-head",
+    href: "/multimeters/kaiweets-km200s-vs-uni-t-ut139c",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 117 vs Milwaukee 2235-20",
+    description: "Do you need a clamp meter too?",
+    href: "/multimeters/fluke-117-vs-milwaukee-2235-20",
+  },
 
   // Soldering irons
   {
@@ -193,6 +214,13 @@ export const content: ContentEntry[] = [
     description: "Our pick for professional benches",
     href: "/soldering-irons/weller-we1010na-review",
   },
+  {
+    category: "soldering-irons",
+    type: "comparison",
+    title: "Pinecil V2 vs Q-MING 60W Kit",
+    description: "Portable iron vs. budget starter kit",
+    href: "/soldering-irons/pinecil-v2-vs-q-ming-60w-kit",
+  },
 
   // Oscilloscopes
   {
@@ -250,6 +278,13 @@ export const content: ContentEntry[] = [
     title: "Hantek DSO2D10 Review",
     description: "Our compact bench oscilloscope pick",
     href: "/oscilloscopes/hantek-dso2d10-review",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DS1054Z vs Hantek DSO2D10",
+    description: "4 channels vs. a scope + generator combo",
+    href: "/oscilloscopes/rigol-ds1054z-vs-hantek-dso2d10",
   },
 ];
 

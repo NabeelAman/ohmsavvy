@@ -72,6 +72,69 @@ export const content: ContentEntry[] = [
     description: "Which Fluke tier actually fits your work",
     href: "/multimeters/fluke-117-vs-fluke-87v",
   },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 87V Review",
+    description: "Fluke's industrial-grade CAT IV pick",
+    href: "/multimeters/fluke-87v-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "KAIWEETS KM200s Review",
+    description: "Our Best Budget multimeter pick",
+    href: "/multimeters/kaiweets-km200s-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Klein Tools MM400 Review",
+    description: "Our pick for electrical panels",
+    href: "/multimeters/klein-mm400-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Milwaukee 2235-20 Review",
+    description: "Our Best Clamp Meter pick",
+    href: "/multimeters/milwaukee-2235-20-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Southwire 14070T Review",
+    description: "Our Best Waterproof multimeter pick",
+    href: "/multimeters/southwire-14070t-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Craftsman CMMT14171 Review",
+    description: "Our Best for Automotive pick",
+    href: "/multimeters/craftsman-cmmt14171-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Extech EX330 Review",
+    description: "Our Best Compact multimeter pick",
+    href: "/multimeters/extech-ex330-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "UNI-T UT139C Review",
+    description: "Our Best Value Auto-Ranging pick",
+    href: "/multimeters/uni-t-ut139c-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "AstroAI DM6000AR Review",
+    description: "Our pick for electronics hobbyists",
+    href: "/multimeters/astroai-dm6000ar-review",
+  },
 
   // Soldering irons
   {
@@ -95,6 +158,27 @@ export const content: ContentEntry[] = [
     description: "Fast heat-up vs. ESD-safe construction",
     href: "/soldering-irons/hakko-fx888d-vs-weller-we1010na",
   },
+  {
+    category: "soldering-irons",
+    type: "review",
+    title: "Pinecil V2 Review",
+    description: "Our Best Portable soldering iron pick",
+    href: "/soldering-irons/pinecil-v2-review",
+  },
+  {
+    category: "soldering-irons",
+    type: "review",
+    title: "Q-MING 60W Kit Review",
+    description: "Our Best Budget soldering pick",
+    href: "/soldering-irons/q-ming-60w-soldering-iron-kit-review",
+  },
+  {
+    category: "soldering-irons",
+    type: "review",
+    title: "Weller WE1010NA Review",
+    description: "Our pick for professional benches",
+    href: "/soldering-irons/weller-we1010na-review",
+  },
 
   // Oscilloscopes
   {
@@ -117,6 +201,27 @@ export const content: ContentEntry[] = [
     title: "Rigol vs Siglent",
     description: "50MHz value vs. 100MHz headroom",
     href: "/oscilloscopes/rigol-ds1054z-vs-siglent-sds1104x-e",
+  },
+  {
+    category: "oscilloscopes",
+    type: "review",
+    title: "FNIRSI DSO152 Review",
+    description: "Our Best Budget oscilloscope pick",
+    href: "/oscilloscopes/fnirsi-dso152-review",
+  },
+  {
+    category: "oscilloscopes",
+    type: "review",
+    title: "Siglent SDS1104X-E Review",
+    description: "Our pick for growing into",
+    href: "/oscilloscopes/siglent-sds1104x-e-review",
+  },
+  {
+    category: "oscilloscopes",
+    type: "review",
+    title: "Hantek DSO2D10 Review",
+    description: "Our compact bench oscilloscope pick",
+    href: "/oscilloscopes/hantek-dso2d10-review",
   },
 ];
 

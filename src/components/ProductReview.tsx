@@ -245,7 +245,6 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <Button href={pick.ctaHref}>Check price on Amazon →</Button>
-            <span className="text-xs text-muted">Affiliate link: we may earn a commission.</span>
           </div>
         </Card>
 

@@ -46,6 +46,20 @@ export const content: ContentEntry[] = [
   },
   {
     category: "multimeters",
+    type: "use-case-guide",
+    title: "For Beginners",
+    description: "Auto-ranging, forgiving, easy to learn on",
+    href: "/multimeters/best-multimeter-for-beginners",
+  },
+  {
+    category: "multimeters",
+    type: "use-case-guide",
+    title: "Under $100",
+    description: "Budget tier without cutting corners on safety",
+    href: "/multimeters/best-multimeter-under-100",
+  },
+  {
+    category: "multimeters",
     type: "buying-guide",
     title: "Multimeter Buying Guide",
     description: "CAT ratings, True RMS, and more explained",

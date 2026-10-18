@@ -23,10 +23,15 @@ const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 /**
  * The verified Pick(s) a registry entry is about — matched by name in the title,
  * or by the name's slug in the href (some registry titles are shortened, e.g.
- * "Hakko vs Weller"). Only already-verified images are reused, never sourced.
+ * "Hakko vs Weller"). Use-case guides list their picks explicitly. Only
+ * already-verified images are reused, never sourced.
  */
 export function picksForEntry(entry: ContentEntry): Pick[] {
-  return getPicks(entry.category)
+  const all = getPicks(entry.category);
+  if (entry.picks) {
+    return entry.picks.map((n) => all.find((p) => p.name === n)).filter((p): p is Pick => Boolean(p));
+  }
+  return all
     .map((p) => {
       const titleAt = entry.title.indexOf(p.name);
       const hrefAt = entry.href.indexOf(slugify(p.name));

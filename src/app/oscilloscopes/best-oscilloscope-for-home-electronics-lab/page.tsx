@@ -2,6 +2,7 @@ import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-beginner-oscilloscopes/page";
 import { buildMetadata } from "@/lib/metadata";
+import { guidePicks } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: "Best Oscilloscope for a Home Electronics Lab",
@@ -9,7 +10,7 @@ export const metadata = buildMetadata({
   path: "/oscilloscopes/best-oscilloscope-for-home-electronics-lab",
 });
 
-const names = ["Rigol DS1054Z", "Siglent SDS1104X-E"];
+const names = guidePicks("/oscilloscopes/best-oscilloscope-for-home-electronics-lab");
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);
 
 const faqs = [

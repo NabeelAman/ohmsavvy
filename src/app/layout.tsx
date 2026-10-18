@@ -3,7 +3,7 @@ import { Big_Shoulders, IBM_Plex_Mono, Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
 import GoogleAnalyticsLoader from "@/components/GoogleAnalyticsLoader";
 import { Logo } from "@/components/Logo";
-import { Nav } from "@/components/Nav";
+import { SiteNav } from "@/components/SiteNav";
 import "./globals.css";
 
 // Self-hosted via next/font instead of a CSS @import — avoids the extra
@@ -71,7 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Link href="/">
               <Logo />
             </Link>
-            <Nav />
+            <SiteNav />
           </div>
         </header>
         <main className="flex-1">{children}</main>

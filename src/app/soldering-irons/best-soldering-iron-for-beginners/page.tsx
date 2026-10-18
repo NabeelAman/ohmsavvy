@@ -2,6 +2,7 @@ import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-soldering-irons/page";
 import { buildMetadata } from "@/lib/metadata";
+import { guidePicks } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: "Best Soldering Iron for Beginners",
@@ -9,7 +10,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/best-soldering-iron-for-beginners",
 });
 
-const names = ["Q-MING 60W Kit", "Pinecil V2"];
+const names = guidePicks("/soldering-irons/best-soldering-iron-for-beginners");
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);
 
 const faqs = [

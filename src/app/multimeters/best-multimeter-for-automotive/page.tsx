@@ -2,6 +2,7 @@ import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
+import { guidePicks } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: "Best Multimeter for Automotive Diagnostics",
@@ -9,7 +10,7 @@ export const metadata = buildMetadata({
   path: "/multimeters/best-multimeter-for-automotive",
 });
 
-const names = ["Craftsman CMMT14171", "AstroAI DM6000AR", "Klein Tools MM400", "KAIWEETS KM200s"];
+const names = guidePicks("/multimeters/best-multimeter-for-automotive");
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);
 
 const faqs = [

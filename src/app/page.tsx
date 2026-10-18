@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ContentCard } from "@/components/ContentCard";
+import { GuideCard } from "@/components/GuideCard";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -110,11 +111,10 @@ const CATEGORY_ORDER: { category: Category; label: string; text: string }[] = [
   { category: "oscilloscopes", label: "Oscilloscopes", text: "text-cat-oscilloscopes" },
 ];
 
-// Use-case guides per category, straight from the content registry.
-const guidesByCategory = CATEGORY_ORDER.map((c) => ({
-  ...c,
-  guides: content.filter((e) => e.category === c.category && e.type === "use-case-guide"),
-}));
+// Use-case guides across all categories, straight from the content registry.
+const useCaseGuides = CATEGORY_ORDER.flatMap((c) =>
+  content.filter((e) => e.category === c.category && e.type === "use-case-guide"),
+);
 
 // Two reviews per category (skipping the top picks already featured above), and
 // one comparison per category.
@@ -354,25 +354,14 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 py-16">
         <Eyebrow>MORE GUIDES</Eyebrow>
         <h2 className="text-2xl font-semibold">Shop by use case</h2>
-        <div className="mt-8 grid sm:grid-cols-3 gap-8">
-          {guidesByCategory.map((c) => (
-            <div key={c.category}>
-              <p className={`font-display text-xs uppercase tracking-wide mb-3 ${c.text}`}>{c.label}</p>
-              <div className="space-y-3">
-                {c.guides.map((g) => (
-                  <Link
-                    key={g.href}
-                    href={g.href}
-                    className="group min-w-0 flex items-center justify-between gap-3 rounded-lg border border-border bg-surface-raised px-4 py-3 hover:border-accent transition-colors"
-                  >
-                    <span className="min-w-0">
-                      <span className="block font-medium group-hover:text-accent transition-colors">{g.title}</span>
-                      <span className="block text-sm text-muted">{g.description}</span>
-                    </span>
-                    <span className="text-accent shrink-0">→</span>
-                  </Link>
-                ))}
-              </div>
+        <p className="mt-2 text-muted max-w-2xl">
+          Not sure which tool fits? Start from what you&apos;ll actually use it for.
+        </p>
+        {/* Mobile: swipeable row with a peek of the next card. sm+: grid. */}
+        <div className="mt-8 -mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:overflow-visible sm:pb-0">
+          {useCaseGuides.map((g) => (
+            <div key={g.href} className="snap-start shrink-0 w-[82%] sm:w-auto flex">
+              <GuideCard entry={g} />
             </div>
           ))}
         </div>

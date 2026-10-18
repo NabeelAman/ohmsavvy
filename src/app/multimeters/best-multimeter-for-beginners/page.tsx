@@ -2,6 +2,7 @@ import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { buildMetadata } from "@/lib/metadata";
 import { picks as allPicks } from "../best-multimeters/page";
+import { guidePicks } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: "Best Multimeter for Beginners",
@@ -9,7 +10,7 @@ export const metadata = buildMetadata({
   path: "/multimeters/best-multimeter-for-beginners",
 });
 
-const names = ["KAIWEETS KM200s", "UNI-T UT139C", "AstroAI DM6000AR"];
+const names = guidePicks("/multimeters/best-multimeter-for-beginners");
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);
 
 const faqs = [

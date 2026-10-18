@@ -12,6 +12,8 @@ export type ContentEntry = {
   title: string;
   description: string;
   href: string;
+  /** Use-case guides only: the verified Pick names the guide recommends, in order. */
+  picks?: string[];
 };
 
 export const CONTENT_TYPE_LABELS: Record<ContentType, string> = {
@@ -29,6 +31,7 @@ export const content: ContentEntry[] = [
     title: "For Electricians",
     description: "CAT III/IV picks for panel work",
     href: "/multimeters/best-multimeter-for-electricians",
+    picks: ["Fluke 117", "Fluke 87V", "Southwire 14070T", "Klein Tools MM400", "Milwaukee 2235-20"],
   },
   {
     category: "multimeters",
@@ -36,6 +39,7 @@ export const content: ContentEntry[] = [
     title: "For Automotive",
     description: "RPM, dwell, and duty-cycle ready",
     href: "/multimeters/best-multimeter-for-automotive",
+    picks: ["Craftsman CMMT14171", "AstroAI DM6000AR", "Klein Tools MM400", "KAIWEETS KM200s"],
   },
   {
     category: "multimeters",
@@ -43,6 +47,7 @@ export const content: ContentEntry[] = [
     title: "For Home & DIY",
     description: "Easy, affordable, no overkill",
     href: "/multimeters/best-multimeter-for-home-use",
+    picks: ["KAIWEETS KM200s", "UNI-T UT139C", "Extech EX330", "AstroAI DM6000AR"],
   },
   {
     category: "multimeters",
@@ -50,6 +55,7 @@ export const content: ContentEntry[] = [
     title: "For Beginners",
     description: "Auto-ranging, forgiving, easy to learn on",
     href: "/multimeters/best-multimeter-for-beginners",
+    picks: ["KAIWEETS KM200s", "UNI-T UT139C", "AstroAI DM6000AR"],
   },
   {
     category: "multimeters",
@@ -57,6 +63,7 @@ export const content: ContentEntry[] = [
     title: "Under $100",
     description: "Budget tier without cutting corners on safety",
     href: "/multimeters/best-multimeter-under-100",
+    picks: ["KAIWEETS KM200s", "UNI-T UT139C", "Extech EX330"],
   },
   {
     category: "multimeters",
@@ -199,6 +206,7 @@ export const content: ContentEntry[] = [
     title: "For Circuit Board Repair",
     description: "Precise temperature control, fast thermal recovery",
     href: "/soldering-irons/best-soldering-iron-for-circuit-board-repair",
+    picks: ["Hakko FX888D", "Pinecil V2"],
   },
   {
     category: "soldering-irons",
@@ -206,6 +214,7 @@ export const content: ContentEntry[] = [
     title: "For Beginners",
     description: "Simple controls, forgiving, low cost of entry",
     href: "/soldering-irons/best-soldering-iron-for-beginners",
+    picks: ["Q-MING 60W Kit", "Pinecil V2"],
   },
   {
     category: "soldering-irons",
@@ -264,6 +273,7 @@ export const content: ContentEntry[] = [
     title: "For a Home Electronics Lab",
     description: "General-purpose 4-channel picks for varied projects",
     href: "/oscilloscopes/best-oscilloscope-for-home-electronics-lab",
+    picks: ["Rigol DS1054Z", "Siglent SDS1104X-E"],
   },
   {
     category: "oscilloscopes",
@@ -271,6 +281,7 @@ export const content: ContentEntry[] = [
     title: "For Arduino Projects",
     description: "Microcontroller-speed debugging, no overpaying for headroom",
     href: "/oscilloscopes/best-oscilloscope-for-arduino-projects",
+    picks: ["Rigol DS1054Z", "FNIRSI DSO152"],
   },
   {
     category: "oscilloscopes",
@@ -315,6 +326,13 @@ export const content: ContentEntry[] = [
     href: "/oscilloscopes/rigol-ds1054z-vs-hantek-dso2d10",
   },
 ];
+
+/** The Pick names a use-case guide recommends (single source for the page and its cards). */
+export function guidePicks(href: string): string[] {
+  const entry = content.find((e) => e.href === href);
+  if (!entry?.picks) throw new Error(`No picks registered for ${href}`);
+  return entry.picks;
+}
 
 export function getContentByCategory(category: Category): ContentEntry[] {
   return content.filter((c) => c.category === category);

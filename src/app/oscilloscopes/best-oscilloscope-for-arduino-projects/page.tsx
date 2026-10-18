@@ -2,6 +2,7 @@ import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-beginner-oscilloscopes/page";
 import { buildMetadata } from "@/lib/metadata";
+import { guidePicks } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: "Best Oscilloscope for Arduino Projects",
@@ -9,7 +10,7 @@ export const metadata = buildMetadata({
   path: "/oscilloscopes/best-oscilloscope-for-arduino-projects",
 });
 
-const names = ["Rigol DS1054Z", "FNIRSI DSO152"];
+const names = guidePicks("/oscilloscopes/best-oscilloscope-for-arduino-projects");
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);
 
 const faqs = [

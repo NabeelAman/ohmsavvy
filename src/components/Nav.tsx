@@ -2,146 +2,440 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { getContentByCategoryGrouped, type Category } from "@/lib/content";
+import { useEffect, useRef, useState } from "react";
+import { Badge } from "./ui/Badge";
+import { Stars } from "./ui/Stars";
 
-type MenuLink = { href: string; label: string };
-type CategoryMenu = { label: string; match: string; href: string; primary: MenuLink[]; guides: MenuLink[] };
+type NavLink = { href: string; label: string; desc: string };
 
-function buildMenu(category: Category, label: string, roundup: MenuLink): CategoryMenu {
-  const g = getContentByCategoryGrouped(category);
-  return {
-    label,
-    match: `/${category}`,
-    href: roundup.href,
-    primary: [
-      roundup,
-      ...(g.review?.length ? [{ href: `/${category}/reviews`, label: `All reviews (${g.review.length})` }] : []),
-      ...(g.comparison?.length ? [{ href: `/${category}/comparisons`, label: `Comparisons (${g.comparison.length})` }] : []),
-    ],
-    guides: [...(g["use-case-guide"] ?? []), ...(g["buying-guide"] ?? [])].map((e) => ({ href: e.href, label: e.title })),
-  };
-}
+export type NavMenu = {
+  key: string;
+  label: string;
+  tone: "multimeters" | "soldering" | "oscilloscopes";
+  href: string;
+  match: string;
+  featured: { name: string; image?: string; badge: string; rating: number; href: string };
+  primary: NavLink[];
+  guides: NavLink[];
+};
 
-const menus: CategoryMenu[] = [
-  buildMenu("multimeters", "Multimeters", { href: "/multimeters/best-multimeters", label: "Top 10 multimeters" }),
-  buildMenu("soldering-irons", "Soldering Irons", { href: "/soldering-irons/best-soldering-irons", label: "Best soldering irons" }),
-  buildMenu("oscilloscopes", "Oscilloscopes", {
-    href: "/oscilloscopes/best-beginner-oscilloscopes",
-    label: "Best beginner oscilloscopes",
-  }),
+const TONE = {
+  multimeters: { text: "text-cat-multimeters", bg: "bg-cat-multimeters" },
+  soldering: { text: "text-cat-soldering", bg: "bg-cat-soldering" },
+  oscilloscopes: { text: "text-cat-oscilloscopes", bg: "bg-cat-oscilloscopes" },
+} as const;
+
+const PRIMARY_ICONS = [
+  // Top picks: trophy
+  <path key="t" d="M7 4h6v3a3 3 0 0 1-6 0V4Zm-3 0h3v2a2 2 0 0 1-3-1.7V4Zm9 0h3v.3A2 2 0 0 1 13 6V4ZM10 10v3m-3 3h6m-5-3h4" />,
+  // Reviews: document with star
+  <path key="r" d="M6 3h6l3 3v11H6V3Zm6 0v3h3m-5.5 3.5.9 1.8 2 .3-1.4 1.4.3 2-1.8-1-1.8 1 .3-2-1.4-1.4 2-.3.9-1.8Z" />,
+  // Comparisons: scales
+  <path key="c" d="M10 3v14m-5 0h10M4 7h12M4 7l-2 5a2.5 2.5 0 0 0 4 0L4 7Zm12 0-2 5a2.5 2.5 0 0 0 4 0l-2-5Z" />,
 ];
 
-function MenuColumns({ menu, onNavigate }: { menu: CategoryMenu; onNavigate?: () => void }) {
+function Icon({ i }: { i: number }) {
   return (
-    <div className="grid gap-5 sm:grid-cols-2">
-      <div>
-        <p className="font-display text-[11px] text-muted uppercase tracking-wide mb-2">Picks & reviews</p>
-        <ul className="space-y-1.5">
-          {menu.primary.map((l) => (
-            <li key={l.href}>
-              <Link href={l.href} onClick={onNavigate} className="block py-1 text-sm text-foreground hover:text-accent">
-                {l.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      {menu.guides.length > 0 && (
-        <div>
-          <p className="font-display text-[11px] text-muted uppercase tracking-wide mb-2">Guides</p>
-          <ul className="space-y-1.5">
-            {menu.guides.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} onClick={onNavigate} className="block py-1 text-sm text-foreground hover:text-accent">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {PRIMARY_ICONS[i] ?? PRIMARY_ICONS[0]}
+    </svg>
+  );
+}
+
+function Chevron({ open, className = "" }: { open: boolean; className?: string }) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      aria-hidden
+      className={`transition-transform duration-300 ease-out motion-reduce:transition-none ${open ? "rotate-180" : ""} ${className}`}
+    >
+      <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function FeaturedCard({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => void }) {
+  const tone = TONE[menu.tone];
+  const f = menu.featured;
+  return (
+    <Link
+      href={f.href}
+      onClick={onNavigate}
+      className="group/feat flex flex-col rounded-xl border border-border bg-surface-raised p-3 hover:border-accent hover:shadow-md transition-all duration-200"
+    >
+      <span className={`font-display text-[10px] uppercase tracking-[0.15em] ${tone.text}`}>Our top pick</span>
+      <span className="mt-2 h-32 flex items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden">
+        {f.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={f.image}
+            alt={f.name}
+            className="h-full w-full object-contain p-2 transition-transform duration-300 ease-out group-hover/feat:scale-105 motion-reduce:transition-none"
+          />
+        ) : (
+          <span className="text-[11px] text-muted">Photo pending</span>
+        )}
+      </span>
+      <span className="mt-3">
+        <Badge variant="signal">{f.badge}</Badge>
+      </span>
+      <span className="mt-2 font-semibold leading-snug">{f.name}</span>
+      <Stars rating={f.rating} />
+      <span className="mt-2 text-xs font-medium text-accent">
+        Read the review <span className="inline-block transition-transform group-hover/feat:translate-x-0.5">→</span>
+      </span>
+    </Link>
+  );
+}
+
+function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => void }) {
+  const tone = TONE[menu.tone];
+  return (
+    <div className="relative w-[min(46rem,calc(100vw-3rem))] overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-black/10 font-sans">
+      <div className={`h-1 ${tone.bg}`} />
+      <div className="grid grid-cols-[13rem_1fr] gap-6 p-5">
+        <FeaturedCard menu={menu} onNavigate={onNavigate} />
+        <div className="grid grid-cols-2 gap-6">
+          <div>
+            <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-2">Picks & reviews</p>
+            <ul className="space-y-1">
+              {menu.primary.map((l, i) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    onClick={onNavigate}
+                    className="group/item flex gap-3 rounded-lg p-2 -mx-2 hover:bg-surface-raised transition-colors"
+                  >
+                    <span
+                      className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface-raised border border-border ${tone.text} transition-colors group-hover/item:border-current`}
+                    >
+                      <Icon i={i} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium text-foreground group-hover/item:text-accent transition-colors">
+                        {l.label}
+                      </span>
+                      <span className="block text-xs text-muted leading-5">{l.desc}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {menu.guides.length > 0 && (
+            <div>
+              <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-2">Guides</p>
+              <ul className="space-y-0.5">
+                {menu.guides.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      onClick={onNavigate}
+                      className="group/item flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 -mx-2 hover:bg-surface-raised transition-colors"
+                    >
+                      <span className="text-sm text-foreground group-hover/item:text-accent transition-colors">{l.label}</span>
+                      <span className="text-accent opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200">
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
 
-export function Nav() {
+export function Nav({ menus }: { menus: NavMenu[] }) {
   const pathname = usePathname();
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const closeMobile = () => setMobileOpen(false);
+  const [expanded, setExpanded] = useState<string | null>(
+    () => menus.find((m) => pathname?.startsWith(m.match))?.key ?? menus[0]?.key ?? null,
+  );
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const openMenu = (key: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenKey(key);
+  };
+  // Small delay so moving the pointer from the trigger to the panel doesn't flicker it shut.
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpenKey(null), 140);
+  };
+  const closeAll = () => {
+    setOpenKey(null);
+    setMobileOpen(false);
+  };
+
+  // Escape closes any open menu.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpenKey(null);
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Lock page scroll behind the open mobile menu. Only <html> is locked: putting
+  // overflow:hidden on <body> turns it into a scroll container, which un-sticks the
+  // sticky header (and the menu with it) and resets the scroll position on close.
+  useEffect(() => {
+    document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  // When a section is expanded, bring it to the top of the menu panel once the
+  // previous one has collapsed, so the newly opened links are in view.
+  const panelRef = useRef<HTMLDivElement>(null);
+  const toggleSection = (key: string, el: HTMLElement) => {
+    const opening = expanded !== key;
+    setExpanded(opening ? key : null);
+    if (opening) {
+      setTimeout(() => {
+        const panel = panelRef.current;
+        if (panel) panel.scrollTo({ top: el.offsetTop - 8, behavior: "smooth" });
+      }, 320);
+    }
+  };
 
   return (
     <>
-      <nav className="hidden md:flex items-center gap-8 font-display text-sm">
-        {menus.map((m, i) => {
+      {/* Desktop */}
+      <nav className="relative hidden md:flex items-center gap-1 font-display text-sm" aria-label="Main">
+        {menus.map((m) => {
           const active = pathname?.startsWith(m.match);
-          const align = i === 0 ? "left-0" : i === menus.length - 1 ? "right-0" : "left-1/2 -translate-x-1/2";
+          const open = openKey === m.key;
           return (
-            <div key={m.match} className="relative group">
+            <div
+              key={m.key}
+              onMouseEnter={() => openMenu(m.key)}
+              onMouseLeave={scheduleClose}
+              onFocus={() => openMenu(m.key)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) scheduleClose();
+              }}
+            >
               <Link
                 href={m.href}
-                className={`relative inline-flex items-center gap-1 py-1.5 transition-colors ${
-                  active ? "text-accent" : "text-muted hover:text-foreground"
+                onClick={closeAll}
+                aria-expanded={open}
+                className={`relative inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 transition-colors duration-200 ${
+                  active ? "text-accent" : open ? "text-foreground bg-surface-raised" : "text-muted hover:text-foreground"
                 }`}
               >
                 {m.label}
-                <span aria-hidden className="text-[10px] opacity-60">▾</span>
+                <Chevron open={open} className="opacity-60" />
+                {/* pointer arrow, centred under this trigger and overlapping the panel's top edge */}
                 <span
-                  className={`absolute -bottom-px left-0 right-0 h-0.5 rounded-full bg-accent transition-transform origin-left ${
+                  aria-hidden
+                  className={`absolute left-1/2 top-[calc(100%+6px)] z-[60] -ml-1.5 h-3 w-3 rotate-45 rounded-[2px] border-l border-t border-border bg-surface transition-opacity duration-200 ${
+                    open ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+                <span
+                  className={`absolute bottom-0.5 left-3.5 right-3.5 h-0.5 rounded-full bg-accent transition-transform duration-300 origin-left ${
                     active ? "scale-x-100" : "scale-x-0"
                   }`}
                 />
               </Link>
-              {/* Hover / keyboard-focus dropdown; pt-3 bridges the gap so it doesn't close on the way down. */}
-              <div className={`invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition-opacity absolute ${align} top-full pt-3 z-50`}>
-                <div className="w-[min(30rem,calc(100vw-3rem))] rounded-xl border border-border bg-surface shadow-lg p-5 font-sans">
-                  <MenuColumns menu={m} />
-                </div>
+
+              <div
+                className={`absolute right-0 top-full pt-3 z-50 origin-top-right transition-all duration-200 ease-out motion-reduce:transition-none ${
+                  open
+                    ? "visible opacity-100 translate-y-0 scale-100"
+                    : "invisible opacity-0 -translate-y-2 scale-[0.98] pointer-events-none"
+                }`}
+              >
+                <DesktopPanel menu={m} onNavigate={closeAll} />
               </div>
             </div>
           );
         })}
         <Link
           href="/about"
-          className={`py-1.5 transition-colors ${pathname?.startsWith("/about") ? "text-accent" : "text-muted hover:text-foreground"}`}
+          onClick={closeAll}
+          className={`rounded-full px-3.5 py-2 transition-colors duration-200 ${
+            pathname?.startsWith("/about") ? "text-accent" : "text-muted hover:text-foreground"
+          }`}
         >
           About
         </Link>
       </nav>
 
+      {/* Mobile */}
       <div className="md:hidden">
         <button
           type="button"
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           onClick={() => setMobileOpen((o) => !o)}
-          className="rounded-md border border-border px-3 py-2 font-display text-sm text-foreground"
+          className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface transition-colors hover:border-accent"
         >
-          {mobileOpen ? "Close ✕" : "Menu ☰"}
+          <span className="relative block h-3.5 w-5">
+            <span
+              className={`absolute left-0 h-0.5 w-5 rounded-full bg-foreground transition-all duration-300 ease-out ${
+                mobileOpen ? "top-1.5 rotate-45" : "top-0"
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-foreground transition-all duration-200 ${
+                mobileOpen ? "opacity-0 scale-x-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute left-0 h-0.5 w-5 rounded-full bg-foreground transition-all duration-300 ease-out ${
+                mobileOpen ? "top-1.5 -rotate-45" : "top-3"
+              }`}
+            />
+          </span>
         </button>
-        {mobileOpen && (
+
+        {/* backdrop */}
+        <div
+          aria-hidden
+          onClick={() => setMobileOpen(false)}
+          className={`absolute inset-x-0 top-full h-[100dvh] bg-black/30 backdrop-blur-[2px] transition-opacity duration-300 ${
+            mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        />
+
+        <div
+          id="mobile-menu"
+          className={`absolute inset-x-0 top-full border-b border-border bg-surface shadow-2xl transition-all duration-300 ease-out motion-reduce:transition-none ${
+            mobileOpen ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-3 pointer-events-none"
+          }`}
+        >
           <div
-            id="mobile-menu"
-            className="absolute inset-x-0 top-full border-b border-border bg-surface shadow-lg max-h-[calc(100dvh-4rem)] overflow-y-auto"
+            ref={panelRef}
+            className="relative max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain px-4 py-4 pb-8 space-y-2"
           >
-            <div className="px-6 py-5 space-y-6">
-              {menus.map((m) => (
-                <div key={m.match}>
-                  <Link href={m.href} onClick={closeMobile} className="font-display text-base text-accent">
-                    {m.label}
-                  </Link>
-                  <div className="mt-3">
-                    <MenuColumns menu={m} onNavigate={closeMobile} />
+            {menus.map((m, idx) => {
+              const tone = TONE[m.tone];
+              const isOpen = expanded === m.key;
+              return (
+                <div
+                  key={m.key}
+                  className={`rounded-xl border border-border bg-surface-raised overflow-hidden transition-all duration-300 motion-reduce:transition-none ${
+                    mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+                  }`}
+                  style={{ transitionDelay: mobileOpen ? `${60 + idx * 50}ms` : "0ms" }}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    onClick={(e) => toggleSection(m.key, e.currentTarget.parentElement as HTMLElement)}
+                    className="flex w-full items-center justify-between px-4 py-3.5 text-left"
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className={`h-2 w-2 rounded-full ${tone.bg}`} />
+                      <span className="font-display text-base text-foreground">{m.label}</span>
+                    </span>
+                    <Chevron open={isOpen} className="text-muted" />
+                  </button>
+                  {/* Height animation via grid-template-rows 0fr -> 1fr. */}
+                  <div
+                    className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-4 pb-4 space-y-4">
+                        <Link
+                          href={m.featured.href}
+                          onClick={closeAll}
+                          className="flex items-center gap-3 rounded-lg border border-border bg-surface p-2.5"
+                        >
+                          <span className="h-14 w-14 shrink-0 flex items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
+                            {m.featured.image ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img src={m.featured.image} alt={m.featured.name} className="h-full w-full object-contain p-1" />
+                            ) : (
+                              <span className="text-[9px] text-muted text-center">Photo pending</span>
+                            )}
+                          </span>
+                          <span className="min-w-0">
+                            <span className={`block font-display text-[10px] uppercase tracking-[0.15em] ${tone.text}`}>
+                              Top pick
+                            </span>
+                            <span className="block text-sm font-semibold truncate">{m.featured.name}</span>
+                            <Stars rating={m.featured.rating} />
+                          </span>
+                        </Link>
+                        <div className="grid gap-1">
+                          {m.primary.map((l, i) => (
+                            <Link
+                              key={l.href}
+                              href={l.href}
+                              onClick={closeAll}
+                              className="flex items-center gap-3 rounded-lg px-2 py-2 active:bg-surface"
+                            >
+                              <span
+                                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface border border-border ${tone.text}`}
+                              >
+                                <Icon i={i} />
+                              </span>
+                              <span className="min-w-0">
+                                <span className="block text-sm font-medium">{l.label}</span>
+                                <span className="block text-xs text-muted">{l.desc}</span>
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                        {m.guides.length > 0 && (
+                          <div>
+                            <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-1.5 px-2">Guides</p>
+                            <div className="flex flex-wrap gap-2">
+                              {m.guides.map((l) => (
+                                <Link
+                                  key={l.href}
+                                  href={l.href}
+                                  onClick={closeAll}
+                                  className="rounded-full border border-border bg-surface px-3 py-1.5 text-sm active:border-accent"
+                                >
+                                  {l.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
-              <Link href="/about" onClick={closeMobile} className="block font-display text-base text-foreground">
-                About
-              </Link>
-            </div>
+              );
+            })}
+            <Link
+              href="/about"
+              onClick={closeAll}
+              className="block rounded-xl border border-border bg-surface-raised px-4 py-3.5 font-display text-base"
+            >
+              About
+            </Link>
           </div>
-        )}
+        </div>
       </div>
     </>
   );

@@ -36,10 +36,34 @@ const securityHeaders = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
 ];
 
+// Hostnames serving verified product photos (automation/content-queue.json's
+// verifiedRoster). Add a new entry here whenever a product from a new
+// manufacturer/retailer domain is added to a picks array — next/image refuses
+// to optimize any host not explicitly allowlisted.
+const PRODUCT_IMAGE_HOSTS = [
+  "assets.craftsman.com",
+  "assets.southwire.com",
+  "cdn.astroai.com",
+  "data.kleintools.com",
+  "e42.psgsm.net",
+  "hakkousa.com",
+  "kaiweets.com",
+  "media.fluke.com",
+  "meters.uni-trend.com",
+  "pine64.org",
+  "valuetronics.com",
+  "www.extech.com",
+  "www.milwaukeetool.com",
+  "www.weller-tools.com",
+];
+
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  images: {
+    remotePatterns: PRODUCT_IMAGE_HOSTS.map((hostname) => ({ protocol: "https" as const, hostname })),
+  },
   turbopack: {
     rules: {
       "*.css": {

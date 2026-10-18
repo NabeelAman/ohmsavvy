@@ -156,6 +156,20 @@ export const content: ContentEntry[] = [
     description: "Do you need a clamp meter too?",
     href: "/multimeters/fluke-117-vs-milwaukee-2235-20",
   },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Southwire 14070T vs Craftsman CMMT14171",
+    description: "Job-site toughness vs. automotive functions",
+    href: "/multimeters/southwire-14070t-vs-craftsman-cmmt14171",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Extech EX330 vs UNI-T UT139C",
+    description: "Pocket size vs. True RMS on a budget",
+    href: "/multimeters/extech-ex330-vs-uni-t-ut139c",
+  },
 
   // Soldering irons
   {

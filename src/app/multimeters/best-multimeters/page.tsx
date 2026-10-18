@@ -3,9 +3,9 @@ import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 
 export const metadata: Metadata = {
-  title: "Best Multimeters in 2026: Compared by Accuracy, Safety Rating, and Price",
+  title: "Top 10 Best Multimeters in 2026: Compared by Accuracy, Safety Rating, and Price",
   description:
-    "An honest, specification-based comparison of the best digital multimeters in 2026 — covering accuracy, CAT safety ratings, and value across every budget.",
+    "An honest, specification-based comparison of the top 10 best digital multimeters in 2026 — covering accuracy, CAT safety ratings, and value across every budget.",
 };
 
 export const picks: Pick[] = [
@@ -81,6 +81,114 @@ export const picks: Pick[] = [
     cons: ["Bulkier than pocket-sized meters", "No app connectivity"],
     ctaHref: "https://www.amazon.com/dp/B018EXZO8M?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best for Professionals",
+    name: "Fluke 87V",
+    image: "https://media.fluke.com/2725d18d-633b-40b2-b09b-b108002e4d59_original__size.jpg",
+    rating: 4.8,
+    bottomLine: "The step-up pick for anyone who needs CAT IV protection and high-resolution readings daily.",
+    verdict:
+      "The 87V is Fluke's industrial-grade step up from the 117 — a 1000V CAT III / 600V CAT IV rating, a 6,000-count main display with a 19,999-count high-resolution mode, and a 32-segment analog bar graph for watching signals change in real time.",
+    specs: [
+      { label: "Accuracy", value: "True RMS" },
+      { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Industrial technicians, daily professional use" },
+    ],
+    pros: ["Highest CAT rating in this list", "19,999-count high-resolution mode", "Analog bar graph tracks fast-changing signals"],
+    cons: ["Among the most expensive picks here", "Overkill for casual home use"],
+    ctaHref: "https://www.amazon.com/dp/B0002YFD1K?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Clamp Meter",
+    name: "Milwaukee 2235-20",
+    image: "https://www.milwaukeetool.com/--/web-images/sc/95924a2af12d4059acb29134f9a5c6fa?hash=8de461cf918be65701f0851f17c988fd&lang=en",
+    rating: 4.6,
+    bottomLine: "Skip the test leads entirely for current readings — clamp it on and read.",
+    verdict:
+      "A clamp meter measures current without breaking the circuit open, which is faster and safer for everyday electrical troubleshooting. The 2235-20 covers up to 400A AC with a 1-inch jaw opening and the same CAT III 600V and True RMS fundamentals as a good multimeter.",
+    specs: [
+      { label: "Accuracy", value: "True RMS" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Quick current checks without disconnecting wiring" },
+    ],
+    pros: ["No need to break the circuit to measure current", "1-inch jaw fits most residential/commercial wiring", "Backed by Milwaukee's tool ecosystem and reputation"],
+    cons: ["Clamp meters measure current only — still need a standard meter for resistance/continuity-heavy work", "Bulkier than a pocket multimeter"],
+    ctaHref: "https://www.amazon.com/dp/B004F5KXBM?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Waterproof",
+    name: "Southwire 14070T",
+    image: "https://assets.southwire.com/adaptivemedia/rendition?id=e50ea3478e9024c2f714f3c4b26dae8ae448502e&prid=01200Wx1200H&clid=SAPDAM&prclid=productpictures",
+    rating: 4.5,
+    bottomLine: "The pick for anyone working outdoors, on job sites, or anywhere a meter might get wet or dropped.",
+    verdict:
+      "The TechnicianPRO is IP67-rated — fully dust-tight and able to survive submersion — on top of a CAT IV 600V / CAT III 1000V safety rating and True RMS accuracy. A magnetic hanging strap and built-in work light round it out for job-site use.",
+    specs: [
+      { label: "Accuracy", value: "True RMS" },
+      { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Outdoor and job-site work, drop/water risk" },
+    ],
+    pros: ["IP67 waterproof and dust-tight", "Built-in LED work light", "Magnetic hanging strap frees up both hands"],
+    cons: ["Bulkier than a standard pocket meter", "US availability confirmed; double-check your region's listing"],
+    ctaHref: "https://www.amazon.com/dp/B01MCTPTRC?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best for Automotive",
+    name: "Craftsman CMMT14171",
+    image: "https://assets.craftsman.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/CMMT14171_1_1680.webp",
+    rating: 4.4,
+    bottomLine: "The one pick here built specifically for diagnosing cars, not just household wiring.",
+    verdict:
+      "Craftsman's CMMT14171 adds RPM, dwell angle, and duty-cycle measurement on top of standard True RMS multimeter functions — the specific toolkit automotive diagnostics actually needs, at a CAT III 600V rating.",
+    specs: [
+      { label: "Accuracy", value: "True RMS" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Automotive diagnostics" },
+    ],
+    pros: ["RPM, dwell, and duty-cycle functions built in", "Familiar, trusted Craftsman brand", "Auto power-off extends battery life"],
+    cons: ["Automotive functions are wasted if you don't work on cars", "Not rated for CAT IV panel work"],
+    ctaHref: "https://www.amazon.com/dp/B0CF46PFLC?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Compact",
+    name: "Extech EX330",
+    image: "https://www.extech.com/netx-assets/ex330_web/?width=1500&quality=80",
+    rating: 4.2,
+    bottomLine: "A genuinely pocket-sized meter with a non-contact voltage detector built in.",
+    verdict:
+      "The EX330 trades True RMS accuracy for size — it's an auto-ranging meter small enough to actually live in a pocket, with a built-in non-contact voltage (NCV) detector for a fast first check before you even connect leads.",
+    specs: [
+      { label: "Accuracy", value: "Auto-ranging (not True RMS)" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Quick checks, pocket carry" },
+    ],
+    pros: ["Genuinely pocket-sized", "Built-in non-contact voltage detector", "Low price for a name-brand meter"],
+    cons: ["Not True RMS — less accurate on non-sinusoidal signals", "Smaller display than full-size meters"],
+    ctaHref: "https://www.amazon.com/dp/B000EX0AE4?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Value Auto-Ranging",
+    name: "UNI-T UT139C",
+    image: "https://meters.uni-trend.com/wp-content/uploads/2022/04/UT139C_1.jpg",
+    rating: 4.4,
+    bottomLine: "True RMS and auto-ranging at a price that undercuts most of this list.",
+    verdict:
+      "UNI-T's UT139C packs True RMS accuracy, a 6,000-count display, and both auto and manual ranging into one of the more affordable meters here — a strong value pick if you don't need a specific brand name.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, 6,000-count" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Budget-conscious buyers who still want True RMS" },
+    ],
+    pros: ["True RMS at a budget price", "Both auto and manual ranging", "Non-contact voltage detection included"],
+    cons: ["Less established brand recognition than Fluke/Klein", "Build quality is adequate, not rugged"],
+    ctaHref: "https://www.amazon.com/dp/B081RBJ94W?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [
@@ -93,6 +201,11 @@ const faqs = [
     question: "Do I need True RMS?",
     answer:
       "True RMS matters if you're measuring non-sinusoidal signals — common with modern electronics, variable-speed motors, and dimmer switches. For basic DC continuity checks, it's less critical.",
+  },
+  {
+    question: "Should I get a clamp meter instead of a standard multimeter?",
+    answer:
+      "A clamp meter measures current by clamping around a wire — no need to break the circuit open, which is faster and safer for everyday checks. It's a great addition to a standard multimeter, not usually a replacement, since clamp meters are less practical for resistance, continuity, and low-current work.",
   },
 ];
 

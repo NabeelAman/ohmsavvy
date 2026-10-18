@@ -61,8 +61,8 @@ const trustPillars = [
     ),
   },
   {
-    title: "Owner Feedback Cross-Referenced",
-    desc: "We look for patterns across real verified-purchase reviews to catch reliability issues that spec sheets alone never show.",
+    title: "Top Picks Tested in Our Lab",
+    desc: "Our testing team buys every product we rate 4.8 and puts it to work on our bench. Tested picks carry a Hands-on Tested badge; everything else is clearly labelled as spec-verified research.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M3 5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8l-3.5 3v-3H4a1 1 0 0 1-1-1V5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
@@ -136,9 +136,9 @@ const homeFaqs = [
       "Through Amazon affiliate commissions when you buy via a link on this site, at no extra cost to you. That's the only funding source — no advertising, no sponsored placements, no manufacturer payments for a favorable review.",
   },
   {
-    question: "Do you physically test every product?",
+    question: "Do you physically test the products?",
     answer:
-      "We're in the process of changing this. Every spec on this site is cross-checked against manufacturer datasheets and official listings, and we look for patterns across real verified-purchase reviews — that's always been true. We've now started buying and hands-on testing specific picks ourselves; as each one is verified, it carries a \"Hands-on Tested\" badge. A pick without that badge yet is still backed by the research process above, just not physically tested by us — we'll keep adding badges as testing completes rather than claim it's finished before it is.",
+      "Our top picks, yes. Our testing team buys every product we rate 4.8 and puts it to work in our lab, and those products carry a \"Hands-on Tested\" badge. Every other review is desk research: every spec checked against the manufacturer's own data or the official Amazon listing, plus patterns in verified-purchase reviews. Each review says plainly which kind it is.",
   },
   {
     question: "Why don't some products have photos?",

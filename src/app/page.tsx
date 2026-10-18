@@ -49,14 +49,33 @@ const trustPillars = [
   {
     title: "Spec Verified",
     desc: "Every specification is cross-checked against the manufacturer's own datasheet or official listing — not marketing copy. If a number is ambiguous, we say so.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M5 3h7l3 3v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M12 3v3h3" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M6.5 11.5l2 2 4-4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
   },
   {
     title: "Owner Feedback Cross-Referenced",
     desc: "We look for patterns across real verified-purchase reviews to catch reliability issues that spec sheets alone never show.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M3 5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8l-3.5 3v-3H4a1 1 0 0 1-1-1V5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M7 8h6M7 10.5h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+    ),
   },
   {
     title: "No Sponsored Picks",
     desc: "We earn through Amazon affiliate links at no extra cost to you — that's it. No brand deals, no paid placements, no manufacturer relationships that influence a verdict.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2.5l6 2.2v4.8c0 4-2.6 6.9-6 8-3.4-1.1-6-4-6-8V4.7L10 2.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M7.5 10l1.8 1.8L12.8 8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
   },
 ];
 
@@ -68,15 +87,8 @@ const topPicks = featured.map((f) => ({ ...f.picks[0], category: f.category, tex
 export default function Home() {
   return (
     <div>
-      <section className="relative overflow-hidden border-b border-border bg-surface-raised">
-        <div
-          className="absolute inset-0 opacity-[0.07] bg-accent"
-          style={{
-            maskImage: "repeating-linear-gradient(115deg, black 0 2px, transparent 2px 60px)",
-            WebkitMaskImage: "repeating-linear-gradient(115deg, black 0 2px, transparent 2px 60px)",
-          }}
-        />
-        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-12">
+      <section className="border-b border-border bg-surface-raised">
+        <div className="mx-auto max-w-6xl px-6 pt-20 pb-12">
           <Eyebrow>ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</Eyebrow>
           <h1 className="text-4xl sm:text-5xl leading-tight max-w-2xl">
             Find the right tool for your workbench, not the one with the biggest ad budget.
@@ -86,8 +98,14 @@ export default function Home() {
             that actually matter — CAT ratings, accuracy, thermal recovery — so you can buy with
             confidence.
           </p>
+          <p className="mt-6 text-sm text-muted">
+            Researched and maintained by the{" "}
+            <Link href="/about" className="text-accent hover:underline font-medium">
+              OhmSavvy Research Team
+            </Link>
+          </p>
         </div>
-        <div className="relative border-t border-border bg-surface">
+        <div className="border-t border-border bg-surface">
           <div className="mx-auto max-w-6xl px-6 py-8 grid grid-cols-3 gap-6">
             {trustStats.map((s) => (
               <div key={s.label}>
@@ -157,15 +175,13 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-16">
           <Eyebrow>WHY TRUST THIS SITE</Eyebrow>
           <h2 className="text-2xl font-semibold max-w-xl">
-            Built by people who buy these tools too.
+            A consistent standard, applied the same way to every product.
           </h2>
           <div className="mt-10 grid sm:grid-cols-3 gap-8">
             {trustPillars.map((t) => (
               <div key={t.title}>
                 <div className="w-10 h-10 rounded-lg bg-signal-bg flex items-center justify-center text-signal mb-3">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  {t.icon}
                 </div>
                 <h3 className="font-medium mb-2">{t.title}</h3>
                 <p className="text-sm text-muted leading-6">{t.desc}</p>

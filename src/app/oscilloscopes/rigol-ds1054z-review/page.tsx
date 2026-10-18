@@ -20,13 +20,14 @@ const review: ProductReviewContent = {
   considerIf: [
     "You want four channels for multi-signal timing work on a beginner budget",
     "Your work is microcontroller signals, audio-range work, and general digital debugging",
-    "You value strong community support and documentation while you learn"
+    "You value strong community support and documentation while you learn",
+    "You'd rather buy the hands-on tested pick in this category than one assessed from its spec sheet alone"
   ],
   skipIf: [
     "You work on RF or need bandwidth well beyond 50MHz",
     "You want the most intuitive menus — navigation has a learning curve"
   ],
-  tradeOffs: "50MHz of bandwidth is modest. It covers most beginner and hobby work, but if your projects are heading toward faster signals, the 100MHz Siglent SDS1104X-E gives more headroom.",
+  tradeOffs: "50MHz of bandwidth is modest. It covers most beginner and hobby work, but if your projects are heading toward faster signals, the 100MHz Siglent SDS1104X-E gives more headroom from the factory, no firmware workaround required.",
   assessment: [
     {
       heading: "Channels and display",
@@ -35,6 +36,14 @@ const review: ProductReviewContent = {
     {
       heading: "Bandwidth and sample rate",
       body: "50MHz and 1 GSa/s. By the 3–5× rule of thumb, that's comfortable on signals up to roughly 10–17MHz: enough for most microcontroller and audio-range work, but modest for RF. Higher bandwidth can be unlocked via firmware."
+    },
+    {
+      heading: "Hands-on in our lab",
+      body: "Our testing team bought this unit and used it directly rather than relying only on Rigol's published specifications, which is why it carries our \"Hands-on Tested\" badge. In practice, the large display and 4-channel layout make it genuinely comfortable to use for comparing multiple signals, and the controls feel solid rather than flimsy. We're not reporting specific bench measurements here — our lab testing program is still early and limited in scope — but using it directly didn't turn up anything that contradicts its long-standing reputation as the default beginner recommendation."
+    },
+    {
+      heading: "About the firmware bandwidth unlock",
+      body: "The DS1054Z is widely known to share hardware with higher-bandwidth models in Rigol's lineup, and the broader hobbyist community has documented unofficial firmware methods to raise it past 50MHz. We haven't tested any of these modifications ourselves, and we don't recommend them — they typically void your warranty, and we can't vouch for their safety or long-term reliability. If you want guaranteed higher bandwidth, buying a model rated for it from the factory, like the Siglent SDS1104X-E, is the more straightforward route."
     }
   ],
   alternatives: [
@@ -62,6 +71,10 @@ const review: ProductReviewContent = {
     {
       question: "Rigol DS1054Z or Siglent SDS1104X-E?",
       answer: "Both have 4 channels and 1 GSa/s. The Siglent doubles bandwidth to 100MHz and is praised for its interface; the Rigol costs less."
+    },
+    {
+      question: "Is the menu navigation learning curve a dealbreaker?",
+      answer: "No, but it's real — expect to spend some time early on figuring out where common settings live, since several adjustments take a few more button presses than they do on scopes with a more streamlined interface. It's the kind of friction that fades with repetition rather than one that persists, and for most beginners it's outweighed by the four channels and large display you get at this price."
     }
   ],
   roundup: {

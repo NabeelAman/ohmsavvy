@@ -35,6 +35,10 @@ const review: ProductReviewContent = {
     {
       heading: "Safety and accuracy",
       body: "CAT IV 600V / CAT III 1000V is the same dual rating as the Fluke 87V, the highest in our multimeter guide. True RMS and auto-ranging cover the measurement side."
+    },
+    {
+      heading: "Who this is overkill for",
+      body: "If your meter mostly lives on a bench or in a clean indoor shop, the IP67 rating and rugged job-site features here are capability you're paying for without exercising. This meter earns its design the moment it's dropped, rained on, or buried in sawdust — in a controlled environment, a lighter, cheaper meter does the same measurement job."
     }
   ],
   alternatives: [
@@ -57,6 +61,10 @@ const review: ProductReviewContent = {
     {
       question: "Southwire 14070T or Fluke 87V?",
       answer: "Both carry CAT IV 600V / CAT III 1000V and True RMS. Choose the 14070T if water, dust, and drops are part of your workday. Choose the 87V if you need its 19,999-count high-resolution mode and analog bar graph."
+    },
+    {
+      question: "What's the practical benefit of the magnetic hanging strap?",
+      answer: "It lets you stick the meter to any metal surface — a panel door, an enclosure, a piece of equipment — so it stays visible and accessible without using a hand or a pocket to hold it. Combined with the LED work light, it's built around the reality of working in awkward positions: up a ladder, inside a cramped electrical room, or anywhere you need both hands free for the actual task."
     }
   ],
   roundup: {

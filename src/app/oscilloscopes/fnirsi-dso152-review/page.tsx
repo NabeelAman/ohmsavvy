@@ -35,6 +35,14 @@ const review: ProductReviewContent = {
     {
       heading: "Single channel",
       body: "With one channel, you can't view an input and output together or check timing between two signals, the kind of comparison the 4-channel Rigol DS1054Z handles easily."
+    },
+    {
+      heading: "What it's genuinely good for",
+      body: "This isn't a scaled-down bench scope — it's a different category of tool, and judging it against a Rigol or Siglent misses the point. A pocket scope this size is for the moment you want to actually see what a waveform looks like, rather than guess from a multimeter's single number: confirming a PWM signal is toggling, checking that an audio signal isn't clipping, or just learning what a sine wave versus a square wave looks like on a screen for the first time. For that kind of hands-on, low-stakes learning, its portability and low price matter more than its bandwidth ceiling."
+    },
+    {
+      heading: "The step up, when you need it",
+      body: "The moment you need to compare two signals against each other, work with anything faster than audio frequencies, or do real circuit debugging rather than basic learning, this tool has reached its ceiling. That's by design rather than a flaw — it's priced and built for a narrower job than a bench scope, and the right response is to add a 4-channel scope like the Rigol DS1054Z alongside it, not to expect this one to grow into that role."
     }
   ],
   alternatives: [
@@ -57,6 +65,10 @@ const review: ProductReviewContent = {
     {
       question: "What signals can the FNIRSI DSO152 measure?",
       answer: "Audio-range and other low-frequency signals. Its 200kHz bandwidth and 2.5 MSa/s sample rate rule out fast digital and RF work."
+    },
+    {
+      question: "Is this a good way to decide whether I even want to get into oscilloscopes?",
+      answer: "Yes, and that's arguably its best use case. At this price, it's a low-stakes way to find out whether you'll actually use a scope regularly before spending several times more on a bench instrument like the Rigol DS1054Z. If you find yourself reaching for it often and running into its single-channel, low-bandwidth limits, that's a strong signal a bench scope is worth the investment — and if it mostly sits in a drawer, you've learned that cheaply rather than finding out after a bigger purchase."
     }
   ],
   roundup: {

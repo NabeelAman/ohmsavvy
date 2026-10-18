@@ -35,6 +35,10 @@ const review: ProductReviewContent = {
     {
       heading: "Build",
       body: "Build quality is adequate rather than rugged. For home and bench use that's fine; for a meter that lives in a work truck, the Klein Tools MM400 or Fluke 117 has a stronger durability reputation."
+    },
+    {
+      heading: "Manual ranging, when auto-ranging alone isn't enough",
+      body: "Most budget meters, including several others in our guide, are auto-ranging only. The UT139C's manual option matters in a specific situation: when you're taking repeated readings in a known range and want to lock the display there, rather than waiting a beat each time for auto-ranging to settle. It's a small workflow improvement, but one that separates this meter from pure auto-ranging-only competitors at a similar price."
     }
   ],
   alternatives: [
@@ -62,6 +66,10 @@ const review: ProductReviewContent = {
     {
       question: "UNI-T UT139C or AstroAI DM6000AR?",
       answer: "On paper they're close: both are True RMS, 6,000-count, auto and manual ranging, and CAT III 600V. The UT139C includes non-contact voltage detection, while the DM6000AR is notably compact and lightweight. Compare current prices and pick the form factor you prefer."
+    },
+    {
+      question: "Is it risky to buy a meter from a less internationally known brand like UNI-T?",
+      answer: "UNI-T is a large, established test-equipment manufacturer internationally, even if its name recognition in the US lags Fluke or Klein — it's not an unknown or fly-by-night brand. The real tradeoff isn't reliability of the company itself, it's that you're giving up the decades of field reputation and documented durability that brands like Fluke have built specifically among US tradespeople. For home, bench, and light-duty use, that gap matters far less than it would for a meter headed into a work truck every day."
     }
   ],
   roundup: {

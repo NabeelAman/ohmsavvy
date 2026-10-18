@@ -24,7 +24,8 @@ const review: ProductReviewContent = {
   ],
   skipIf: [
     "You only need a meter a few times a year for basic home checks — the premium buys durability casual use won't exercise",
-    "You want Bluetooth or app connectivity"
+    "You want Bluetooth or app connectivity",
+    "You specifically need CAT IV protection — that's what the Fluke 87V is for"
   ],
   tradeOffs: "You pay a premium over mid-range meters like the Klein Tools MM400 for Fluke's well-documented reliability and the built-in NCV detector, not for a higher safety rating or extra resolution.",
   assessment: [
@@ -35,6 +36,10 @@ const review: ProductReviewContent = {
     {
       heading: "Non-contact voltage detection",
       body: "The built-in NCV detector gives a fast first check for live voltage before the probes ever touch a circuit, a practical safety habit for anyone working on building wiring."
+    },
+    {
+      heading: "Daily handling and build quality",
+      body: "This unit was bought and tested in our lab rather than assessed from its spec sheet alone. In day-to-day handling it behaves exactly like its reputation suggests: solid switch and dial feel, no lag between probing a circuit and seeing a stable reading, and nothing that felt fragile or cheaply assembled. We're not publishing specific accuracy figures or stress-test numbers — our lab testing is still limited in scope — but nothing about handling the 117 directly gave us a reason to doubt the reliability record Fluke is known for."
     }
   ],
   alternatives: [
@@ -62,6 +67,10 @@ const review: ProductReviewContent = {
     {
       question: "Fluke 117 or Fluke 87V?",
       answer: "The 117 covers residential and light commercial work. The 87V adds CAT IV 600V / CAT III 1000V protection, a 19,999-count high-resolution mode, and an analog bar graph for industrial use."
+    },
+    {
+      question: "Is the Fluke 117 hands-on tested, or based on the spec sheet?",
+      answer: "Hands-on tested. Our testing team bought this unit and used it directly rather than relying only on Fluke's published specifications, which is why you'll see a \"Hands-on Tested\" badge on this page. We still don't publish specific lab measurements or bench numbers — our testing program is early and limited in scope — but the assessment above reflects actual use of this meter, not just its datasheet."
     }
   ],
   roundup: {

@@ -26,7 +26,7 @@ const review: ProductReviewContent = {
     "You want a meter that fits in a pocket — the MM400 is bulkier",
     "You want app connectivity"
   ],
-  tradeOffs: "The MM400 sits between the budget meters and the Fluke 117: the same CAT III 600V rating and True RMS as the Fluke, at a mid-range price, in a larger body.",
+  tradeOffs: "The MM400 sits between the budget meters and the Fluke 117: the same CAT III 600V rating and True RMS as the Fluke, at a mid-range price, in a larger body — a sensible middle ground if brand premium matters less to you than the core safety rating.",
   assessment: [
     {
       heading: "Low-impedance mode",
@@ -62,6 +62,10 @@ const review: ProductReviewContent = {
     {
       question: "Klein Tools MM400 or Fluke 117?",
       answer: "Both are CAT III 600V and True RMS. The Fluke 117 adds built-in non-contact voltage detection and Fluke's reputation for reliability at a premium price. The MM400 delivers the core safety and accuracy for less, so if budget matters more than brand, it's the sensible choice."
+    },
+    {
+      question: "Why does Klein's reputation matter if it isn't a dedicated test-equipment brand?",
+      answer: "Klein Tools built its name on hand tools and equipment that tradespeople carry and depend on every day — pliers, strippers, fish tapes — which is a different kind of track record than a meter-specific brand like Fluke, but not a lesser one. It signals that the company understands what durability actually looks like in a tool bag or a work truck, not just on paper. The MM400 benefits from that same design philosophy: it's built to be picked up and used daily, not babied."
     }
   ],
   roundup: {

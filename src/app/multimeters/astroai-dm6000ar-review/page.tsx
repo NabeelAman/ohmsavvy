@@ -26,7 +26,7 @@ const review: ProductReviewContent = {
     "You want high-quality test leads out of the box",
     "You need calibration services or a broad accessory range"
   ],
-  tradeOffs: "It's inexpensive enough not to worry about on the bench. The build and included leads reflect that price.",
+  tradeOffs: "It's inexpensive enough not to worry about on the bench. The build and included leads reflect that price, and that's a reasonable trade for a meter that mostly sees low-voltage, low-stakes use.",
   assessment: [
     {
       heading: "Resolution for electronics work",
@@ -35,6 +35,10 @@ const review: ProductReviewContent = {
     {
       heading: "Safety and accuracy",
       body: "True RMS and a CAT III 600V rating mean it isn't limited to the bench, though its strengths lie in hobby electronics rather than panel work."
+    },
+    {
+      heading: "Where the budget price shows",
+      body: "The included test leads are the most obvious compromise — functional for low-voltage bench work, but not the kind you'd trust for anything demanding, and many hobbyists upgrade them early. There's also no calibration service or wide accessory ecosystem behind this meter the way there is with an established test-equipment brand, so if you ever need a replacement part or a specific probe type, you're shopping generically rather than through a dedicated accessory line."
     }
   ],
   alternatives: [
@@ -62,6 +66,10 @@ const review: ProductReviewContent = {
     {
       question: "Does the AstroAI DM6000AR have manual ranging?",
       answer: "Yes. It offers both auto and manual ranging."
+    },
+    {
+      question: "Should I upgrade the included test leads?",
+      answer: "Many hobbyists do, and it's a reasonable upgrade rather than a necessary fix. The stock leads work fine for low-voltage microcontroller and hobby circuits, but a set of silicone-insulated leads with sharper probe tips makes a noticeable difference once you're working with tight header pins or need more flexibility on the bench. It's a cheap upgrade and not a sign the included leads are unsafe — just a step up in day-to-day convenience."
     }
   ],
   roundup: {

@@ -20,7 +20,8 @@ const review: ProductReviewContent = {
   considerIf: [
     "You want True RMS and auto-ranging without paying Fluke prices",
     "You'll mostly check batteries, outlets, appliances, and hobby circuits",
-    "You often work in dim spaces — the display is backlit"
+    "You often work in dim spaces — the display is backlit",
+    "You'd rather pay less upfront and accept CAT II's narrower scope than overbuy for work you won't do"
   ],
   skipIf: [
     "You plan to work inside a breaker panel — the KM200s is rated CAT II 600V, not CAT III",
@@ -62,6 +63,10 @@ const review: ProductReviewContent = {
     {
       question: "Is the KAIWEETS KM200s True RMS?",
       answer: "Yes. It measures True RMS, auto-ranges, and includes non-contact voltage detection."
+    },
+    {
+      question: "Does the backlit display make a real difference, or is it just a spec-sheet bullet point?",
+      answer: "For the situations it's built for, it's a real convenience. A backlight matters most when you're reading a meter somewhere without good ambient light — behind a cluttered workbench, inside a cabinet, under a car dash, or in a garage with a single overhead bulb. For a meter that's rated for outlets and appliances rather than panel work, those low-light spots come up often enough that the backlight earns its place on the spec sheet rather than just padding it."
     }
   ],
   roundup: {

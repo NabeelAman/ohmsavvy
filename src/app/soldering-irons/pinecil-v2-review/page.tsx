@@ -20,13 +20,14 @@ const review: ProductReviewContent = {
   considerIf: [
     "You solder away from a bench: at a desk, on site, or while travelling",
     "You already own a USB-C PD charger or power bank",
-    "You want fast heat-up in a small tool"
+    "You want fast heat-up in a small tool",
+    "You're fine budgeting separately for a stand and a few extra tips to get the portability you want"
   ],
   skipIf: [
     "You want a stand and a wide tip range out of the box",
     "You solder for hours at a dedicated bench — a station like the Hakko FX888D suits that better"
   ],
-  tradeOffs: "The Pinecil's portability comes at the cost of extras: there's no stand included by default, and the tip selection is smaller than Hakko's.",
+  tradeOffs: "The Pinecil's portability comes at the cost of extras: there's no stand included by default, and the tip selection is smaller than Hakko's, so factor those add-on costs into the price before comparing it directly against a complete kit.",
   assessment: [
     {
       heading: "Power and heat-up",
@@ -35,6 +36,10 @@ const review: ProductReviewContent = {
     {
       heading: "Control and portability",
       body: "Temperature is set and shown on an OLED display. The iron is pocket-sized, and because it runs from any USB-C PD source, a power bank can stand in for a wall outlet."
+    },
+    {
+      heading: "Why no stand changes how you use it",
+      body: "Skipping a stand is a real trade-off, not just a missing accessory. A hot iron needs somewhere safe to rest between joints, and without a dedicated stand you're improvising — propping it against something, or being extra deliberate about where you set it down. Budgeting for a basic stand as part of the purchase, rather than an optional extra, is the practical way to use this iron safely from day one."
     }
   ],
   alternatives: [
@@ -57,6 +62,10 @@ const review: ProductReviewContent = {
     {
       question: "Does the Pinecil V2 come with a stand?",
       answer: "Not by default. Plan to buy a stand separately so the hot iron has a safe place to rest between joints."
+    },
+    {
+      question: "Is the Pinecil V2 actually fast enough to replace a bench station for field repairs?",
+      answer: "For the job it's built for, yes. A ~12-second heat-up means you're not waiting around on a repair call or at a workbench away from home, and the OLED temperature control gives you the same kind of precision a bench station offers, just in a pocket-sized body. What it doesn't replace is the fast thermal recovery of a dedicated station like the Hakko FX888D on demanding, repeated joints — for occasional field repairs and portable use, that gap rarely matters."
     }
   ],
   roundup: {

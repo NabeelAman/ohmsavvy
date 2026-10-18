@@ -62,6 +62,10 @@ const review: ProductReviewContent = {
     {
       question: "Does the Fluke 87V measure True RMS?",
       answer: "Yes. True RMS keeps AC readings accurate on non-sinusoidal waveforms, such as those produced by variable-speed drives and switching power supplies."
+    },
+    {
+      question: "Does hands-on testing change the assessment of this meter at all?",
+      answer: "It confirms rather than changes it. This unit was bought and used directly by our testing team, and nothing in that hands-on use contradicted Fluke's published specs or the reputation that comes with the brand — the bar graph tracks moving signals smoothly, and the high-resolution mode behaves as documented. We're not reporting specific bench measurements here, since our lab testing program is still early, but the 87V held up to the same scrutiny we applied to the Fluke 117."
     }
   ],
   roundup: {

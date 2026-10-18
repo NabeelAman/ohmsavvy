@@ -20,13 +20,14 @@ const review: ProductReviewContent = {
   considerIf: [
     "You diagnose engines and need RPM, dwell angle, or duty-cycle readings",
     "You want one garage meter that also handles household checks",
-    "You prefer a familiar tool brand"
+    "You prefer a familiar tool brand",
+    "You'd rather own one meter that covers both the garage and the breaker panel than two specialized tools"
   ],
   skipIf: [
     "You never work on vehicles — you'd be paying for functions you won't use",
     "You need CAT IV protection for service-entrance work"
   ],
-  tradeOffs: "Its value is in the automotive functions. Without them, it's a capable CAT III 600V True RMS meter, but not one that stands out from cheaper general-purpose picks.",
+  tradeOffs: "Its value is in the automotive functions. Without them, it's a capable CAT III 600V True RMS meter, but not one that stands out from cheaper general-purpose picks — so buy this specifically because you need the vehicle diagnostics, not as a generic first meter.",
   assessment: [
     {
       heading: "Automotive functions",
@@ -35,6 +36,10 @@ const review: ProductReviewContent = {
     {
       heading: "General measurement",
       body: "Underneath, it's a True RMS, auto-ranging meter rated CAT III 600V, with auto power-off to save the battery when you forget to switch it off."
+    },
+    {
+      heading: "One meter, two toolboxes",
+      body: "The practical appeal here is consolidation: rather than owning a separate automotive code reader or ignition analyzer plus a household multimeter, the CMMT14171 covers both jobs from one case. For a DIYer who splits time between the garage and the breaker panel, that's a real convenience even though it means neither role gets a dedicated, specialized instrument the way a Fluke 117 or a standalone automotive scan tool would."
     }
   ],
   alternatives: [
@@ -57,6 +62,10 @@ const review: ProductReviewContent = {
     {
       question: "Can I use the CMMT14171 for household electrical work?",
       answer: "Yes, within its CAT III 600V rating, which covers household panels and building wiring. It isn't rated CAT IV."
+    },
+    {
+      question: "What does duty cycle actually tell you about a car part?",
+      answer: "Duty cycle measures the percentage of time a pulse-width-modulated signal spends on versus off, expressed as a percentage. On a fuel injector or an idle air control solenoid, that percentage is how the engine computer controls flow without a fully analog signal — a higher duty cycle generally means the component is being told to do more work. Reading it with the CMMT14171 lets you check whether the computer's command matches what you'd expect for current conditions, which is a diagnostic step a standard multimeter without this function can't perform at all."
     }
   ],
   roundup: {

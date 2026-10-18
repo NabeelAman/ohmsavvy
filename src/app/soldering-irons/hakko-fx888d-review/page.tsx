@@ -20,7 +20,8 @@ const review: ProductReviewContent = {
   considerIf: [
     "You solder regularly and want a dedicated bench station",
     "You work on thicker joints or repeated repairs, where fast thermal recovery matters",
-    "You want easy access to genuine replacement tips"
+    "You want easy access to genuine replacement tips",
+    "You'd rather buy the hands-on tested pick in this category than one assessed from its spec sheet alone"
   ],
   skipIf: [
     "You need a portable iron — this is a bulkier bench station",
@@ -35,6 +36,14 @@ const review: ProductReviewContent = {
     {
       heading: "Thermal recovery",
       body: "Fast thermal recovery means the tip returns to temperature quickly after each joint, which matters most on thicker joints and long sessions of repeated repairs."
+    },
+    {
+      heading: "Hands-on in our lab",
+      body: "Our testing team bought this unit and used it directly rather than relying only on Hakko's published specifications, which is why it carries our \"Hands-on Tested\" badge. In day-to-day use the temperature holds steady joint after joint, and the thermal recovery is noticeably quicker than older irons we've used in the past, backing up its reputation for handling repeated repair work well. We're not reporting specific bench measurements here — our lab testing program is still early and limited in scope — but nothing about using it directly gave us reason to question why hobbyist and professional communities keep recommending it independently of each other."
+    },
+    {
+      heading: "The genuine-tip ecosystem",
+      body: "A wide range of genuine replacement tip shapes and sizes are available through Hakko's authorized sellers, which matters more than it sounds: a worn or wrong-shaped tip is one of the most common reasons a soldering job goes badly. The flip side is the counterfeiting risk noted above, which makes buying from a trusted source as important as the tip selection itself."
     }
   ],
   alternatives: [
@@ -62,6 +71,10 @@ const review: ProductReviewContent = {
     {
       question: "Hakko FX888D or Weller WE1010NA?",
       answer: "Both are 70W digital stations. The FX888D heats faster (about 15 seconds vs. about 20) and has widely available genuine tips, while the WE1010NA adds ESD-safe construction."
+    },
+    {
+      question: "Is the Hakko FX888D hands-on tested, or based on the spec sheet?",
+      answer: "Hands-on tested. Our testing team bought and used this unit directly rather than relying only on Hakko's published specifications, which is why it carries a \"Hands-on Tested\" badge on this page. We still don't publish specific lab measurements — our testing program is early and limited in scope — but the thermal recovery and temperature-stability notes above reflect direct use of this station, not just its datasheet."
     }
   ],
   roundup: {

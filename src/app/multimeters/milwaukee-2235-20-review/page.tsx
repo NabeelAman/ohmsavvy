@@ -26,7 +26,7 @@ const review: ProductReviewContent = {
     "Most of your work is resistance and continuity — you'll still want a standard multimeter",
     "You want something pocket-sized"
   ],
-  tradeOffs: "A clamp meter is a specialist. It makes current measurement faster and safer, and it complements a standard multimeter rather than replacing one.",
+  tradeOffs: "A clamp meter is a specialist. It makes current measurement faster and safer, and it complements a standard multimeter rather than replacing one — budget for both if current checks are a regular part of your work.",
   assessment: [
     {
       heading: "Measuring current without opening the circuit",
@@ -35,6 +35,10 @@ const review: ProductReviewContent = {
     {
       heading: "Safety and accuracy",
       body: "CAT III 600V and True RMS match what we look for in a good general-purpose meter, so readings on non-sinusoidal loads stay trustworthy."
+    },
+    {
+      heading: "What it won't do",
+      body: "The 2235-20 is an AC-only clamp — it's not built to read DC current, so solar arrays, battery systems, or anything running on direct current need a different, typically pricier, DC-capable clamp. It's also not a substitute for a standard meter on resistance or continuity work; those measurements aren't something a clamp meter does at all, by design."
     }
   ],
   alternatives: [
@@ -57,6 +61,10 @@ const review: ProductReviewContent = {
     {
       question: "What size wire does the Milwaukee 2235-20 fit?",
       answer: "Its jaw opens to 1 inch, which fits most residential and commercial wiring. It reads up to 400A AC."
+    },
+    {
+      question: "Does being part of Milwaukee's tool ecosystem matter for a meter?",
+      answer: "Less than it would for a power tool, since the 2235-20 doesn't share batteries or chargers with Milwaukee's cordless lineup — it's a standalone instrument. What carries over is Milwaukee's broader reputation for job-site durability, which matters for a tool that's going to live in a van or tool bag alongside everything else rather than sit on a bench."
     }
   ],
   roundup: {

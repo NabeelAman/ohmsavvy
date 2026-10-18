@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Multimeter for Home Use & DIY in 2026",
-  description:
-    "The multimeters that make the most sense for home electrical checks and DIY projects — easy to use, accurate, and not overpriced for occasional work.",
-  alternates: { canonical: "/multimeters/best-multimeter-for-home-use" },
-};
+  description: "The multimeters that make the most sense for home electrical checks and DIY projects — easy to use, accurate, and not overpriced for occasional work.",
+  path: "/multimeters/best-multimeter-for-home-use",
+});
 
 const names = ["KAIWEETS KM200s", "UNI-T UT139C", "Extech EX330", "AstroAI DM6000AR"];
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);

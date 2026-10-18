@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "AstroAI DM6000AR Review",
-  description:
-    "AstroAI DM6000AR review: True RMS, 6,000-count resolution and CAT III 600V for Arduino, Raspberry Pi and hobby electronics, and where the budget build shows.",
-  alternates: { canonical: "/multimeters/astroai-dm6000ar-review" },
-};
+  description: "AstroAI DM6000AR review: True RMS, 6,000-count resolution and CAT III 600V for Arduino, Raspberry Pi and hobby electronics, and where the budget build shows.",
+  path: "/multimeters/astroai-dm6000ar-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "AstroAI DM6000AR")!,

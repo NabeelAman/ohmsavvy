@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Fluke 87V Review",
-  description:
-    "Fluke 87V review: CAT III 1000V / CAT IV 600V protection, a 19,999-count high-resolution mode, and whether the step up from the Fluke 117 is worth it.",
-  alternates: { canonical: "/multimeters/fluke-87v-review" },
-};
+  description: "Fluke 87V review: CAT III 1000V / CAT IV 600V protection, a 19,999-count high-resolution mode, and whether the step up from the Fluke 117 is worth it.",
+  path: "/multimeters/fluke-87v-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Fluke 87V")!,

@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Pinecil V2 vs Q-MING 60W Kit",
-  description:
-    "Pinecil V2 vs Q-MING 60W Kit: a portable 65W USB-C iron against a complete budget starter kit. Heat-up, temperature control and what comes in the box.",
-  alternates: { canonical: "/soldering-irons/pinecil-v2-vs-q-ming-60w-kit" },
-};
+  description: "Pinecil V2 vs Q-MING 60W Kit: a portable 65W USB-C iron against a complete budget starter kit. Heat-up, temperature control and what comes in the box.",
+  path: "/soldering-irons/pinecil-v2-vs-q-ming-60w-kit",
+});
 
 const comparison: ProductComparisonContent = {
   category: "soldering-irons",

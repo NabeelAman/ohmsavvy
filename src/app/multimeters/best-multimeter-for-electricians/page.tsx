@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Multimeter for Electricians in 2026",
-  description:
-    "The multimeters with the safety ratings and features electricians actually need — CAT III/IV protection, True RMS, and field durability compared.",
-  alternates: { canonical: "/multimeters/best-multimeter-for-electricians" },
-};
+  description: "The multimeters with the safety ratings and features electricians actually need — CAT III/IV protection, True RMS, and field durability compared.",
+  path: "/multimeters/best-multimeter-for-electricians",
+});
 
 const names = ["Fluke 117", "Fluke 87V", "Southwire 14070T", "Klein Tools MM400", "Milwaukee 2235-20"];
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);

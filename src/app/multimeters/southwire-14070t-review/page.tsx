@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Southwire 14070T Review",
-  description:
-    "Southwire 14070T TechnicianPRO review: IP67 waterproofing, CAT IV 600V / CAT III 1000V, True RMS and a built-in work light for outdoor and job-site use.",
-  alternates: { canonical: "/multimeters/southwire-14070t-review" },
-};
+  description: "Southwire 14070T TechnicianPRO review: IP67 waterproofing, CAT IV 600V / CAT III 1000V, True RMS and a built-in work light for outdoor and job-site use.",
+  path: "/multimeters/southwire-14070t-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Southwire 14070T")!,

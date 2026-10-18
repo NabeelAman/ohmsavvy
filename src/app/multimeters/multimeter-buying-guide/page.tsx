@@ -1,15 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Multimeter Buying Guide",
-  description:
-    "What CAT rating, True RMS, resolution, and input impedance actually mean, and how to match a multimeter to your actual use case before you buy.",
-  alternates: { canonical: "/multimeters/multimeter-buying-guide" },
-};
+  description: "What CAT rating, True RMS, resolution, and input impedance actually mean, and how to match a multimeter to your actual use case before you buy.",
+  path: "/multimeters/multimeter-buying-guide",
+});
 
 const featured = ["Fluke 117", "KAIWEETS KM200s", "Fluke 87V"].map(
   (name) => picks.find((p) => p.name === name)!

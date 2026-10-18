@@ -32,7 +32,10 @@ for (const file of pageFiles) {
 
   const titleMatch = content.match(/title:\s*"([^"]+)"/);
   const descMatch = content.match(/description:\s*\n?\s*"([^"]+)"/);
-  const canonicalMatch = content.match(/canonical:\s*"([^"]+)"/);
+  // "canonical:" is the raw alternates.canonical style; "path:" is buildMetadata()'s
+  // param (src/lib/metadata.ts), which every page should use now — support both so
+  // this doesn't silently stop checking if a page ever reverts to the raw style.
+  const canonicalMatch = content.match(/(?:canonical|path):\s*"([^"]+)"/);
 
   if (!titleMatch) {
     problems.push(`${file}: no title found in metadata export`);
@@ -65,6 +68,17 @@ for (const file of pageFiles) {
 
   if (!canonicalMatch) {
     problems.push(`${file}: missing alternates.canonical in metadata export`);
+  }
+
+  // Without its own openGraph object, a page silently inherits the ROOT
+  // LAYOUT'S openGraph wholesale (title, description, AND og:url all pointing
+  // at the homepage) — Next.js does not derive it from the plain title/description
+  // fields the way it does for the <title> tag's template. This was a real,
+  // sitewide bug: every shared link's social preview card was wrong. A page
+  // satisfies this either by setting openGraph directly, or (the normal case
+  // now) by calling buildMetadata(), which sets it on the page's behalf.
+  if (!content.includes("openGraph") && !content.includes("buildMetadata")) {
+    problems.push(`${file}: no openGraph field and no buildMetadata() call — social share previews (Slack/WhatsApp/Facebook/etc.) will show the homepage's generic title/description/url instead of this page's. Use buildMetadata() from "@/lib/metadata".`);
   }
 }
 

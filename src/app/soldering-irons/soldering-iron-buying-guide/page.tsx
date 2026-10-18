@@ -1,15 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Soldering Iron Buying Guide",
-  description:
-    "What wattage, temperature control, tip selection, and lead-free solder compatibility actually mean, so you can pick the right iron for your work.",
-  alternates: { canonical: "/soldering-irons/soldering-iron-buying-guide" },
-};
+  description: "What wattage, temperature control, tip selection, and lead-free solder compatibility actually mean, so you can pick the right iron for your work.",
+  path: "/soldering-irons/soldering-iron-buying-guide",
+});
 
 const featured = ["Hakko FX888D", "Pinecil V2", "Weller WE1010NA"].map(
   (name) => picks.find((p) => p.name === name)!

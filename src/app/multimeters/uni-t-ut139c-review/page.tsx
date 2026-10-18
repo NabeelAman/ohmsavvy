@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "UNI-T UT139C Review",
-  description:
-    "UNI-T UT139C review: True RMS, a 6,000-count display, auto and manual ranging and NCV on a budget. Where it matches pricier meters, and where it doesn't.",
-  alternates: { canonical: "/multimeters/uni-t-ut139c-review" },
-};
+  description: "UNI-T UT139C review: True RMS, a 6,000-count display, auto and manual ranging and NCV on a budget. Where it matches pricier meters, and where it doesn't.",
+  path: "/multimeters/uni-t-ut139c-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "UNI-T UT139C")!,

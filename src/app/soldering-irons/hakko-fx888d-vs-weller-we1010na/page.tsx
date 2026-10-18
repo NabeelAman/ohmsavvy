@@ -1,20 +1,19 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SpecValue } from "@/components/ui/SpecValue";
 import { Stars } from "@/components/ui/Stars";
 import { picks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
 const a = picks.find((p) => p.name === "Hakko FX888D")!;
 const b = picks.find((p) => p.name === "Weller WE1010NA")!;
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Hakko FX888D vs Weller WE1010NA",
-  description:
-    "A spec-by-spec comparison of the Hakko FX888D and Weller WE1010NA soldering stations — heat-up time, ESD safety, and which fits your bench.",
-  alternates: { canonical: "/soldering-irons/hakko-fx888d-vs-weller-we1010na" },
-};
+  description: "A spec-by-spec comparison of the Hakko FX888D and Weller WE1010NA soldering stations — heat-up time, ESD safety, and which fits your bench.",
+  path: "/soldering-irons/hakko-fx888d-vs-weller-we1010na",
+});
 
 export default function HakkoVsWellerPage() {
   const jsonLd = {

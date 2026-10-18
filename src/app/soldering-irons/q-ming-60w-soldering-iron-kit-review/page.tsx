@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Q-MING 60W Soldering Iron Kit Review",
-  description:
-    "Q-MING 60W soldering iron kit review: a ceramic heater, 5 tips and a stand in one low-cost box. A sensible first kit, with an analog dial that limits precision.",
-  alternates: { canonical: "/soldering-irons/q-ming-60w-soldering-iron-kit-review" },
-};
+  description: "Q-MING 60W soldering iron kit review: a ceramic heater, 5 tips and a stand in one low-cost box. A sensible first kit, with an analog dial that limits precision.",
+  path: "/soldering-irons/q-ming-60w-soldering-iron-kit-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Q-MING 60W Kit")!,

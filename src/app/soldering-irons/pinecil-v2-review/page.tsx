@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Pinecil V2 Review",
-  description:
-    "Pinecil V2 review: a 65W USB-C PD soldering iron that heats in ~12 seconds. Who it suits, what's missing from the box, and how it compares with a bench station.",
-  alternates: { canonical: "/soldering-irons/pinecil-v2-review" },
-};
+  description: "Pinecil V2 review: a 65W USB-C PD soldering iron that heats in ~12 seconds. Who it suits, what's missing from the box, and how it compares with a bench station.",
+  path: "/soldering-irons/pinecil-v2-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Pinecil V2")!,

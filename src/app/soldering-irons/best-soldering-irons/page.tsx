@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Soldering Irons for Electronics in 2026",
-  description:
-    "From pocket-sized portables to full bench stations — an honest comparison of the best soldering irons by heat-up time, temperature stability, and price.",
-  alternates: { canonical: "/soldering-irons/best-soldering-irons" },
-};
+  description: "From pocket-sized portables to full bench stations — an honest comparison of the best soldering irons by heat-up time, temperature stability, and price.",
+  path: "/soldering-irons/best-soldering-irons",
+});
 
 export const picks: Pick[] = [
   {

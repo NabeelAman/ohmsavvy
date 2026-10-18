@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Fluke 117 vs Milwaukee 2235-20 Clamp Meter",
-  description:
-    "Fluke 117 vs Milwaukee 2235-20: a standard multimeter against a 400A clamp meter. Which one fits your work, and when you'll want both on the van.",
-  alternates: { canonical: "/multimeters/fluke-117-vs-milwaukee-2235-20" },
-};
+  description: "Fluke 117 vs Milwaukee 2235-20: a standard multimeter against a 400A clamp meter. Which one fits your work, and when you'll want both on the van.",
+  path: "/multimeters/fluke-117-vs-milwaukee-2235-20",
+});
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

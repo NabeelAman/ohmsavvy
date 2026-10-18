@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -6,15 +5,15 @@ import { ProsCons } from "@/components/ui/ProsCons";
 import { SpecList } from "@/components/ui/SpecList";
 import { Stars } from "@/components/ui/Stars";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
 const pick = picks.find((p) => p.name === "Fluke 117")!;
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Fluke 117 Review",
-  description:
-    "A detailed look at the Fluke 117's True RMS accuracy, CAT III 600V rating, and NCV detection, and who it's actually worth buying for.",
-  alternates: { canonical: "/multimeters/fluke-117-review" },
-};
+  description: "A detailed look at the Fluke 117's True RMS accuracy, CAT III 600V rating, and NCV detection, and who it's actually worth buying for.",
+  path: "/multimeters/fluke-117-review",
+});
 
 export default function Fluke117ReviewPage() {
   const jsonLd = {

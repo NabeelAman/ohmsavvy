@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Privacy Policy",
   description: "What data OhmSavvy collects (and doesn't), and how Amazon affiliate links work.",
-  alternates: { canonical: "/privacy-policy" },
-};
+  path: "/privacy-policy",
+});
 
 export default function PrivacyPolicyPage() {
   return (

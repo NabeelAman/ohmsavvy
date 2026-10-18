@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Siglent SDS1104X-E Review",
-  description:
-    "Siglent SDS1104X-E review: 100MHz, 4 channels and 1 GSa/s with a well-regarded interface. Who should pay more for it over the Rigol DS1054Z, and who shouldn't.",
-  alternates: { canonical: "/oscilloscopes/siglent-sds1104x-e-review" },
-};
+  description: "Siglent SDS1104X-E review: 100MHz, 4 channels and 1 GSa/s with a well-regarded interface. Who should pay more for it over the Rigol DS1054Z, and who shouldn't.",
+  path: "/oscilloscopes/siglent-sds1104x-e-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Siglent SDS1104X-E")!,

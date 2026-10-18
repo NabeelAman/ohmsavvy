@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "FNIRSI DSO152 Review",
-  description:
-    "FNIRSI DSO152 review: a pocket oscilloscope with 200kHz bandwidth and 2.5 MSa/s. What it can show you, where it runs out, and when to buy a bench scope.",
-  alternates: { canonical: "/oscilloscopes/fnirsi-dso152-review" },
-};
+  description: "FNIRSI DSO152 review: a pocket oscilloscope with 200kHz bandwidth and 2.5 MSa/s. What it can show you, where it runs out, and when to buy a bench scope.",
+  path: "/oscilloscopes/fnirsi-dso152-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "FNIRSI DSO152")!,

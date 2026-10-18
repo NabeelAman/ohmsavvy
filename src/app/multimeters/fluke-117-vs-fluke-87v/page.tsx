@@ -1,20 +1,19 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SpecValue } from "@/components/ui/SpecValue";
 import { Stars } from "@/components/ui/Stars";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
 const a = picks.find((p) => p.name === "Fluke 117")!;
 const b = picks.find((p) => p.name === "Fluke 87V")!;
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 87V",
-  description:
-    "A spec-by-spec comparison of the Fluke 117 and Fluke 87V — CAT rating, resolution, and which one actually fits daily professional use.",
-  alternates: { canonical: "/multimeters/fluke-117-vs-fluke-87v" },
-};
+  description: "A spec-by-spec comparison of the Fluke 117 and Fluke 87V — CAT rating, resolution, and which one actually fits daily professional use.",
+  path: "/multimeters/fluke-117-vs-fluke-87v",
+});
 
 export default function Fluke117VsFluke87VPage() {
   const jsonLd = {

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -6,15 +5,15 @@ import { ProsCons } from "@/components/ui/ProsCons";
 import { SpecList } from "@/components/ui/SpecList";
 import { Stars } from "@/components/ui/Stars";
 import { picks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
 const pick = picks.find((p) => p.name === "Rigol DS1054Z")!;
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Rigol DS1054Z Review",
-  description:
-    "A detailed look at the Rigol DS1054Z's bandwidth, 4-channel design, and sample rate, and who it's actually worth buying for.",
-  alternates: { canonical: "/oscilloscopes/rigol-ds1054z-review" },
-};
+  description: "A detailed look at the Rigol DS1054Z's bandwidth, 4-channel design, and sample rate, and who it's actually worth buying for.",
+  path: "/oscilloscopes/rigol-ds1054z-review",
+});
 
 export default function RigolDs1054zReviewPage() {
   const jsonLd = {

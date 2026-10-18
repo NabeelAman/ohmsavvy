@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Terms of Service",
   description: "Terms for using OhmSavvy's content and affiliate links.",
-  alternates: { canonical: "/terms-of-service" },
-};
+  path: "/terms-of-service",
+});
 
 export default function TermsOfServicePage() {
   return (

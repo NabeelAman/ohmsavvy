@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Hantek DSO2D10 Review",
-  description:
-    "Hantek DSO2D10 review: a 100MHz, 2-channel oscilloscope with a built-in waveform generator. Who the two-in-one design suits, and the trade-offs to know.",
-  alternates: { canonical: "/oscilloscopes/hantek-dso2d10-review" },
-};
+  description: "Hantek DSO2D10 review: a 100MHz, 2-channel oscilloscope with a built-in waveform generator. Who the two-in-one design suits, and the trade-offs to know.",
+  path: "/oscilloscopes/hantek-dso2d10-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Hantek DSO2D10")!,

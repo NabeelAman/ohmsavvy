@@ -1,15 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Oscilloscope Buying Guide",
-  description:
-    "What bandwidth, sample rate, channel count, and memory depth actually mean for a beginner, so the spec sheet makes sense before you buy.",
-  alternates: { canonical: "/oscilloscopes/oscilloscope-buying-guide" },
-};
+  description: "What bandwidth, sample rate, channel count, and memory depth actually mean for a beginner, so the spec sheet makes sense before you buy.",
+  path: "/oscilloscopes/oscilloscope-buying-guide",
+});
 
 const featured = ["Rigol DS1054Z", "FNIRSI DSO152", "Siglent SDS1104X-E"].map(
   (name) => picks.find((p) => p.name === name)!

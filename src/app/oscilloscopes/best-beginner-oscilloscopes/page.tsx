@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Oscilloscopes for Beginners in 2026",
-  description:
-    "Bandwidth, sample rate, and channel count explained simply — an honest comparison of the best beginner-friendly oscilloscopes.",
-  alternates: { canonical: "/oscilloscopes/best-beginner-oscilloscopes" },
-};
+  description: "Bandwidth, sample rate, and channel count explained simply — an honest comparison of the best beginner-friendly oscilloscopes.",
+  path: "/oscilloscopes/best-beginner-oscilloscopes",
+});
 
 export const picks: Pick[] = [
   {

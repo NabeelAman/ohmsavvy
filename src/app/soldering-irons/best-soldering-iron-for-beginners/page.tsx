@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Soldering Iron for Beginners",
-  description:
-    "Simple controls, forgiving temperature range, and a low cost of entry — the soldering irons that make the most sense for a first purchase.",
-  alternates: { canonical: "/soldering-irons/best-soldering-iron-for-beginners" },
-};
+  description: "Simple controls, forgiving temperature range, and a low cost of entry — the soldering irons that make the most sense for a first purchase.",
+  path: "/soldering-irons/best-soldering-iron-for-beginners",
+});
 
 const names = ["Q-MING 60W Kit", "Pinecil V2"];
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);

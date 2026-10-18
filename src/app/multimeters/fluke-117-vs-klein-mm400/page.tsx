@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Fluke 117 vs Klein Tools MM400",
-  description:
-    "Fluke 117 vs Klein Tools MM400: both CAT III 600V and True RMS. How built-in NCV, a low-impedance mode and the price gap decide which meter to buy.",
-  alternates: { canonical: "/multimeters/fluke-117-vs-klein-mm400" },
-};
+  description: "Fluke 117 vs Klein Tools MM400: both CAT III 600V and True RMS. How built-in NCV, a low-impedance mode and the price gap decide which meter to buy.",
+  path: "/multimeters/fluke-117-vs-klein-mm400",
+});
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

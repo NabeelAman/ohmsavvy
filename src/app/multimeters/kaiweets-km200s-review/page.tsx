@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "KAIWEETS KM200s Review",
-  description:
-    "KAIWEETS KM200s review: True RMS, auto-ranging and NCV at under half the Fluke 117's price, and why its CAT II rating keeps it out of service panels.",
-  alternates: { canonical: "/multimeters/kaiweets-km200s-review" },
-};
+  description: "KAIWEETS KM200s review: True RMS, auto-ranging and NCV at under half the Fluke 117's price, and why its CAT II rating keeps it out of service panels.",
+  path: "/multimeters/kaiweets-km200s-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "KAIWEETS KM200s")!,

@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Extech EX330 Review",
-  description:
-    "Extech EX330 review: a pocket-sized auto-ranging meter with built-in NCV and CAT III 600V. Why it isn't True RMS, and when that actually matters.",
-  alternates: { canonical: "/multimeters/extech-ex330-review" },
-};
+  description: "Extech EX330 review: a pocket-sized auto-ranging meter with built-in NCV and CAT III 600V. Why it isn't True RMS, and when that actually matters.",
+  path: "/multimeters/extech-ex330-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Extech EX330")!,

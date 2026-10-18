@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Oscilloscope for a Home Electronics Lab",
-  description:
-    "4-channel, general-purpose scopes with enough bandwidth and sample rate to cover most home-lab electronics work without overpaying for headroom you won't use.",
-  alternates: { canonical: "/oscilloscopes/best-oscilloscope-for-home-electronics-lab" },
-};
+  description: "4-channel, general-purpose scopes with enough bandwidth and sample rate to cover most home-lab electronics work without overpaying for headroom you won't use.",
+  path: "/oscilloscopes/best-oscilloscope-for-home-electronics-lab",
+});
 
 const names = ["Rigol DS1054Z", "Siglent SDS1104X-E"];
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);

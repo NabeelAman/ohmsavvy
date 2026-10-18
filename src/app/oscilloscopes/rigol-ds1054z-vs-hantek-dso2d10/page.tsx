@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Rigol DS1054Z vs Hantek DSO2D10",
-  description:
-    "Rigol DS1054Z vs Hantek DSO2D10: four channels at 50MHz against two at 100MHz with a built-in waveform generator. Which one suits your bench?",
-  alternates: { canonical: "/oscilloscopes/rigol-ds1054z-vs-hantek-dso2d10" },
-};
+  description: "Rigol DS1054Z vs Hantek DSO2D10: four channels at 50MHz against two at 100MHz with a built-in waveform generator. Which one suits your bench?",
+  path: "/oscilloscopes/rigol-ds1054z-vs-hantek-dso2d10",
+});
 
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",

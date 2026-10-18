@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "KAIWEETS KM200s vs UNI-T UT139C",
-  description:
-    "KAIWEETS KM200s vs UNI-T UT139C: two budget True RMS multimeters compared. The safety-rating gap that matters most, plus display, ranging and NCV.",
-  alternates: { canonical: "/multimeters/kaiweets-km200s-vs-uni-t-ut139c" },
-};
+  description: "KAIWEETS KM200s vs UNI-T UT139C: two budget True RMS multimeters compared. The safety-rating gap that matters most, plus display, ranging and NCV.",
+  path: "/multimeters/kaiweets-km200s-vs-uni-t-ut139c",
+});
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

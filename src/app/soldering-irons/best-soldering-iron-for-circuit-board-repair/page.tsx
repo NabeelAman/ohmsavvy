@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Soldering Iron for Circuit Board Repair",
-  description:
-    "Precise temperature control and fast thermal recovery matter most for board-level repair work — these are the picks built for it.",
-  alternates: { canonical: "/soldering-irons/best-soldering-iron-for-circuit-board-repair" },
-};
+  description: "Precise temperature control and fast thermal recovery matter most for board-level repair work — these are the picks built for it.",
+  path: "/soldering-irons/best-soldering-iron-for-circuit-board-repair",
+});
 
 const names = ["Hakko FX888D", "Pinecil V2"];
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);

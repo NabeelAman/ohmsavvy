@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Top 10 Best Multimeters in 2026",
-  description:
-    "An honest, specification-based comparison of the top 10 best digital multimeters in 2026 — covering accuracy, CAT safety ratings, and value across every budget.",
-  alternates: { canonical: "/multimeters/best-multimeters" },
-};
+  description: "An honest, specification-based comparison of the top 10 best digital multimeters in 2026 — covering accuracy, CAT safety ratings, and value across every budget.",
+  path: "/multimeters/best-multimeters",
+});
 
 export const picks: Pick[] = [
   {

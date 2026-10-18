@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -6,15 +5,15 @@ import { ProsCons } from "@/components/ui/ProsCons";
 import { SpecList } from "@/components/ui/SpecList";
 import { Stars } from "@/components/ui/Stars";
 import { picks } from "../best-soldering-irons/page";
+import { buildMetadata } from "@/lib/metadata";
 
 const pick = picks.find((p) => p.name === "Hakko FX888D")!;
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Hakko FX888D Review",
-  description:
-    "A detailed look at the Hakko FX888D's thermal recovery, temperature stability, and tip ecosystem, and who it's actually worth buying for.",
-  alternates: { canonical: "/soldering-irons/hakko-fx888d-review" },
-};
+  description: "A detailed look at the Hakko FX888D's thermal recovery, temperature stability, and tip ecosystem, and who it's actually worth buying for.",
+  path: "/soldering-irons/hakko-fx888d-review",
+});
 
 export default function HakkoFx888dReviewPage() {
   const jsonLd = {

@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Craftsman CMMT14171 Review",
-  description:
-    "Craftsman CMMT14171 review: an automotive multimeter with RPM, dwell and duty-cycle modes, True RMS and CAT III 600V. Who it suits and who should skip it.",
-  alternates: { canonical: "/multimeters/craftsman-cmmt14171-review" },
-};
+  description: "Craftsman CMMT14171 review: an automotive multimeter with RPM, dwell and duty-cycle modes, True RMS and CAT III 600V. Who it suits and who should skip it.",
+  path: "/multimeters/craftsman-cmmt14171-review",
+});
 
 const review: ProductReviewContent = {
   pick: picks.find((p) => p.name === "Craftsman CMMT14171")!,

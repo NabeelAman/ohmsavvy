@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Oscilloscope for Arduino Projects",
-  description:
-    "Microcontroller signals rarely need high bandwidth — these picks cover Arduino-speed debugging without paying for headroom you won't use.",
-  alternates: { canonical: "/oscilloscopes/best-oscilloscope-for-arduino-projects" },
-};
+  description: "Microcontroller signals rarely need high bandwidth — these picks cover Arduino-speed debugging without paying for headroom you won't use.",
+  path: "/oscilloscopes/best-oscilloscope-for-arduino-projects",
+});
 
 const names = ["Rigol DS1054Z", "FNIRSI DSO152"];
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);

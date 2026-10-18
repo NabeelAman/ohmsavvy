@@ -1,20 +1,19 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SpecValue } from "@/components/ui/SpecValue";
 import { Stars } from "@/components/ui/Stars";
 import { picks } from "../best-beginner-oscilloscopes/page";
+import { buildMetadata } from "@/lib/metadata";
 
 const a = picks.find((p) => p.name === "Rigol DS1054Z")!;
 const b = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Rigol DS1054Z vs Siglent SDS1104X-E",
-  description:
-    "A spec-by-spec comparison of the Rigol DS1054Z and Siglent SDS1104X-E oscilloscopes — bandwidth, sample rate, and which fits your projects.",
-  alternates: { canonical: "/oscilloscopes/rigol-ds1054z-vs-siglent-sds1104x-e" },
-};
+  description: "A spec-by-spec comparison of the Rigol DS1054Z and Siglent SDS1104X-E oscilloscopes — bandwidth, sample rate, and which fits your projects.",
+  path: "/oscilloscopes/rigol-ds1054z-vs-siglent-sds1104x-e",
+});
 
 export default function RigolVsSiglentPage() {
   const jsonLd = {

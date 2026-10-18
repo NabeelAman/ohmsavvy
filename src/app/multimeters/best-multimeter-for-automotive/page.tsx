@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Best Multimeter for Automotive Diagnostics",
-  description:
-    "Multimeters with the RPM, dwell, and duty-cycle functions automotive diagnostics actually needs — compared on accuracy and real-world usability.",
-  alternates: { canonical: "/multimeters/best-multimeter-for-automotive" },
-};
+  description: "Multimeters with the RPM, dwell, and duty-cycle functions automotive diagnostics actually needs — compared on accuracy and real-world usability.",
+  path: "/multimeters/best-multimeter-for-automotive",
+});
 
 const names = ["Craftsman CMMT14171", "AstroAI DM6000AR", "Klein Tools MM400", "KAIWEETS KM200s"];
 const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boolean);

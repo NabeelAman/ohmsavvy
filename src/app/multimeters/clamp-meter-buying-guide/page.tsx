@@ -1,15 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-multimeters/page";
+import { buildMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Clamp Meter Buying Guide",
-  description:
-    "What a clamp meter actually does differently from a multimeter, AC vs. AC/DC clamping, jaw size, and when you genuinely need one.",
-  alternates: { canonical: "/multimeters/clamp-meter-buying-guide" },
-};
+  description: "What a clamp meter actually does differently from a multimeter, AC vs. AC/DC clamping, jaw size, and when you genuinely need one.",
+  path: "/multimeters/clamp-meter-buying-guide",
+});
 
 const pick = picks.find((p) => p.name === "Milwaukee 2235-20")!;
 

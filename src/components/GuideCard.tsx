@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { picksForEntry } from "@/lib/catalog";
 import type { Category, ContentEntry } from "@/lib/content";
@@ -53,7 +54,7 @@ export function GuideCard({ entry }: { entry: ContentEntry }) {
                 }`}
               >
                 {p.image ? (
-                  <Image src={p.image} alt={p.name} fill sizes="96px" loading="lazy" className="object-contain p-2" />
+                  <Image src={p.image} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="96px" loading="lazy" className="object-contain p-2" />
                 ) : (
                   <span className="flex h-full items-center justify-center px-2 text-center text-[10px] text-muted">
                     Photo pending

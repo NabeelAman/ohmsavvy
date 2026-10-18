@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import type { Category } from "@/lib/content";
 import type { Faq, Pick } from "./ReviewArticle";
@@ -88,7 +89,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
               // exactly this case. This is the ProductReview hero — the LCP element
               // on individual review pages — hence `priority`, not lazy.
               <Image
-                src={pick.image}
+                src={pick.image} unoptimized={skipOptimizer(pick.image)}
                 alt={review.imageAlt}
                 width={480}
                 height={480}

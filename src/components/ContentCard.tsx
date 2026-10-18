@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { picksForEntry } from "@/lib/catalog";
 import type { ContentEntry } from "@/lib/content";
@@ -12,7 +13,7 @@ function Thumb({ pick, tall }: { pick: Pick; tall: boolean }) {
       className={`relative ${tall ? "h-40" : "h-28"} flex-1 min-w-0 flex items-center justify-center rounded-md bg-white border border-border/60`}
     >
       {pick.image ? (
-        <Image src={pick.image} alt={pick.name} fill sizes="200px" loading="lazy" className="object-contain p-3" />
+        <Image src={pick.image} unoptimized={skipOptimizer(pick.image)} alt={pick.name} fill sizes="200px" loading="lazy" className="object-contain p-3" />
       ) : (
         <span className="px-3 text-center text-[11px] text-muted">Photo pending</span>
       )}

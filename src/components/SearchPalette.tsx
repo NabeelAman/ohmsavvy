@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { skipOptimizer } from "@/lib/images";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -247,7 +248,7 @@ function Palette({ items, onClose }: { items: SearchItem[]; onClose: () => void 
                       {item.group === "Products" ? (
                         <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border/60 bg-white">
                           {item.image ? (
-                            <Image src={item.image} alt="" fill sizes="44px" className="object-contain p-1" />
+                            <Image src={item.image} unoptimized={skipOptimizer(item.image)} alt="" fill sizes="44px" className="object-contain p-1" />
                           ) : (
                             <span className="text-[8px] text-muted">Photo pending</span>
                           )}

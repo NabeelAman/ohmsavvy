@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { content } from "@/lib/content";
 import { ArticleTocBar, ArticleTocSidebar, type TocItem } from "./ArticleToc";
@@ -84,7 +85,7 @@ function ProductImage({
 }) {
   return pick.image ? (
     <Image
-      src={pick.image}
+      src={pick.image} unoptimized={skipOptimizer(pick.image)}
       alt={pick.name}
       fill
       sizes={sizes}
@@ -353,7 +354,7 @@ export function ReviewArticle({
                             <div className="relative h-60 flex items-center justify-center overflow-hidden">
                               <ImageLightbox src={p.image} alt={p.name}>
                                 <Image
-                                  src={p.image}
+                                  src={p.image} unoptimized={skipOptimizer(p.image)}
                                   alt={p.name}
                                   fill
                                   sizes="(min-width: 640px) 240px, 100vw"

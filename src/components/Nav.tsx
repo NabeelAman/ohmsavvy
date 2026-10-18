@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -80,7 +81,7 @@ function FeaturedCard({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
       <span className="relative mt-2 h-32 flex items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden">
         {f.image ? (
           <Image
-            src={f.image}
+            src={f.image} unoptimized={skipOptimizer(f.image)}
             alt={f.name}
             fill
             sizes="200px"
@@ -292,17 +293,6 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
             </div>
           );
         })}
-        <Link
-          href="/about"
-          onClick={closeAll}
-          onMouseEnter={(e) => movePill(e.currentTarget)}
-          onFocus={(e) => movePill(e.currentTarget)}
-          className={`relative z-10 rounded-full px-3.5 py-2 transition-colors duration-200 ${
-            pathname?.startsWith("/about") ? "text-accent" : "text-muted hover:text-foreground"
-          }`}
-        >
-          About
-        </Link>
       </nav>
 
       {search}
@@ -393,7 +383,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                         >
                           <span className="relative h-14 w-14 shrink-0 flex items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
                             {m.featured.image ? (
-                              <Image src={m.featured.image} alt={m.featured.name} fill sizes="56px" className="object-contain p-1" />
+                              <Image src={m.featured.image} unoptimized={skipOptimizer(m.featured.image)} alt={m.featured.name} fill sizes="56px" className="object-contain p-1" />
                             ) : (
                               <span className="text-[9px] text-muted text-center">Photo pending</span>
                             )}
@@ -449,13 +439,6 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                 </div>
               );
             })}
-            <Link
-              href="/about"
-              onClick={closeAll}
-              className="block rounded-xl border border-border bg-surface-raised px-4 py-3.5 font-display text-base"
-            >
-              About
-            </Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import type { Category } from "@/lib/content";
 import type { ReviewLink } from "./ProductReview";
@@ -47,7 +48,7 @@ function ProductCard({ side }: { side: ComparisonSide }) {
           // These 2 cards are the comparison page's hero content, near the top —
           // same LCP treatment as ReviewArticle's top-3 picks.
           <Image
-            src={pick.image}
+            src={pick.image} unoptimized={skipOptimizer(pick.image)}
             alt={side.imageAlt}
             fill
             sizes="(min-width: 640px) 350px, 100vw"

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { picks } from "../best-soldering-irons/page";
 
 export const metadata: Metadata = {
   title: "Soldering Iron Buying Guide",
@@ -8,6 +10,10 @@ export const metadata: Metadata = {
     "What wattage, temperature control, tip selection, and lead-free solder compatibility actually mean, so you can pick the right iron for your work.",
   alternates: { canonical: "/soldering-irons/soldering-iron-buying-guide" },
 };
+
+const featured = ["Hakko FX888D", "Pinecil V2", "Weller WE1010NA"].map(
+  (name) => picks.find((p) => p.name === name)!
+);
 
 export default function SolderingIronBuyingGuidePage() {
   return (
@@ -24,6 +30,31 @@ export default function SolderingIronBuyingGuidePage() {
         </Link>{" "}
         comparison.
       </p>
+
+      <div className="mt-10 grid sm:grid-cols-3 gap-4">
+        {featured.map((p) => (
+          <div key={p.name} className="rounded-lg border border-border bg-surface-raised overflow-hidden">
+            <div className="h-1.5 bg-accent" />
+            {p.image ? (
+              <div className="h-32 flex items-center justify-center bg-surface p-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.image} alt={p.name} className="h-full object-contain" />
+              </div>
+            ) : (
+              <div className="h-32 flex items-center justify-center bg-surface text-xs text-muted p-3 text-center">
+                Photo pending manufacturer confirmation
+              </div>
+            )}
+            <div className="p-3">
+              <p className="text-xs text-muted uppercase tracking-wide">{p.badge}</p>
+              <p className="font-medium text-sm mt-0.5">{p.name}</p>
+              <Button href={p.ctaHref} className="mt-2 w-full">
+                Check price →
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
 
       <div className="mt-12 space-y-10">
         <section>

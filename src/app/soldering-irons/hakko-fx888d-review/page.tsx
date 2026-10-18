@@ -39,7 +39,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Hands-on in our lab",
-      body: "Our testing team bought this unit and used it directly rather than relying only on Hakko's published specifications, which is why it carries our \"Hands-on Tested\" badge. In day-to-day use the temperature holds steady joint after joint, and the thermal recovery is noticeably quicker than older irons we've used in the past, backing up its reputation for handling repeated repair work well. We're not reporting specific bench measurements here — our lab testing program is still early and limited in scope — but nothing about using it directly gave us reason to question why hobbyist and professional communities keep recommending it independently of each other."
+      body: "Our testing team bought this unit and tested it in our lab, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published here yet; when they are, they'll sit in this section with the method we used. Until then, the heat-up time, power and temperature-control details on this page are verified against Hakko's own published data, and the verdict rests on what they mean for regular electronics and repair work.",
     },
     {
       heading: "The genuine-tip ecosystem",
@@ -74,7 +74,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Is the Hakko FX888D hands-on tested, or based on the spec sheet?",
-      answer: "Hands-on tested. Our testing team bought and used this unit directly rather than relying only on Hakko's published specifications, which is why it carries a \"Hands-on Tested\" badge on this page. We still don't publish specific lab measurements — our testing program is early and limited in scope — but the thermal recovery and temperature-stability notes above reflect direct use of this station, not just its datasheet."
+      answer: "Hands-on tested. Our testing team bought this unit and tested it in our lab, which is why it carries a \"Hands-on Tested\" badge on this page. We haven't published detailed test results here yet, so the power, heat-up and temperature-control details above come from Hakko's own published specifications. We'll add our results to this review when they're ready.",
     }
   ],
   roundup: {

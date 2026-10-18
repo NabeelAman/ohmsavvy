@@ -65,7 +65,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Does hands-on testing change the assessment of this meter at all?",
-      answer: "It confirms rather than changes it. This unit was bought and used directly by our testing team, and nothing in that hands-on use contradicted Fluke's published specs or the reputation that comes with the brand — the bar graph tracks moving signals smoothly, and the high-resolution mode behaves as documented. We're not reporting specific bench measurements here, since our lab testing program is still early, but the 87V held up to the same scrutiny we applied to the Fluke 117."
+      answer: "Not so far. This unit was bought and tested in our lab by our testing team, which is why it carries the badge, but we haven't published detailed findings from that testing on this page yet. The assessment above rests on Fluke's published specifications and the work those specs suit. If our testing ever changes the verdict, we'll update this review and say so clearly rather than quietly editing it.",
     }
   ],
   roundup: {

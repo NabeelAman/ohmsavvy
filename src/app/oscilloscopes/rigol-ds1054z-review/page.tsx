@@ -39,7 +39,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Hands-on in our lab",
-      body: "Our testing team bought this unit and used it directly rather than relying only on Rigol's published specifications, which is why it carries our \"Hands-on Tested\" badge. In practice, the large display and 4-channel layout make it genuinely comfortable to use for comparing multiple signals, and the controls feel solid rather than flimsy. We're not reporting specific bench measurements here — our lab testing program is still early and limited in scope — but using it directly didn't turn up anything that contradicts its long-standing reputation as the default beginner recommendation."
+      body: "Our testing team bought this unit and tested it in our lab, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published on this page yet; when they are, they'll appear here with the method we used. Until then, the bandwidth, channel count, sample rate and display details on this page are verified against Rigol's own published data, and the verdict rests on what those specs mean for beginner and hobby work.",
     },
     {
       heading: "About the firmware bandwidth unlock",

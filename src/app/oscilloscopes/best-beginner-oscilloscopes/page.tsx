@@ -68,7 +68,6 @@ export const picks: Pick[] = [
   {
     badge: "Best Compact Bench Option",
     name: "Hantek DSO2D10",
-    image: "https://m.media-amazon.com/images/I/61p25oiz60L._SL1200_.jpg",
     rating: 4.3,
     bottomLine: "An oscilloscope and waveform generator in one unit — practical for space-limited benches.",
     verdict:

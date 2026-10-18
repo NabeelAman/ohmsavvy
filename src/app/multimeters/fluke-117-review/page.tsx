@@ -39,7 +39,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Daily handling and build quality",
-      body: "This unit was bought and tested in our lab rather than assessed from its spec sheet alone. In day-to-day handling it behaves exactly like its reputation suggests: solid switch and dial feel, no lag between probing a circuit and seeing a stable reading, and nothing that felt fragile or cheaply assembled. We're not publishing specific accuracy figures or stress-test numbers — our lab testing is still limited in scope — but nothing about handling the 117 directly gave us a reason to doubt the reliability record Fluke is known for."
+      body: "This unit was bought by OhmSavvy and hands-on tested in our lab, which is why it carries our \"Hands-on Tested\" badge instead of being assessed from its spec sheet alone. Detailed results from that testing aren't published on this page yet; when they are, they'll appear here alongside the method we used, so you can judge them for yourself. Until then, every spec, strength and limitation on this page is checked against Fluke's own published data, and the verdict rests on what those specs mean for the work you'll actually do with the meter.",
     }
   ],
   alternatives: [
@@ -70,7 +70,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Is the Fluke 117 hands-on tested, or based on the spec sheet?",
-      answer: "Hands-on tested. Our testing team bought this unit and used it directly rather than relying only on Fluke's published specifications, which is why you'll see a \"Hands-on Tested\" badge on this page. We still don't publish specific lab measurements or bench numbers — our testing program is early and limited in scope — but the assessment above reflects actual use of this meter, not just its datasheet."
+      answer: "Hands-on tested. Our testing team bought this unit and tested it in our lab, which is why you'll see a \"Hands-on Tested\" badge on this page. We haven't published detailed test results here yet, and we won't describe findings we haven't published. The specs and assessments on this page are verified against Fluke's own data, and we'll update the review with our results when they're ready.",
     }
   ],
   roundup: {

@@ -145,50 +145,57 @@ export function ReviewArticle({
         ))}
       </div>
 
-      <section id="full-comparison" className="mt-16 rounded-lg border border-border bg-surface-raised p-6 scroll-mt-24">
+      <section id="full-comparison" className="mt-16 rounded-xl border border-border bg-surface-raised p-6 shadow-sm scroll-mt-24">
         <h2 className="text-xl font-semibold mb-4">Full comparison</h2>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border text-left">
-                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">#</th>
-                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Model</th>
-                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Award</th>
-                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Rating</th>
-                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[0]?.label}</th>
-                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[1]?.label}</th>
-                <th className="py-2 pr-4 font-display text-xs text-muted uppercase">Best For</th>
-                <th className="py-2 font-display text-xs text-muted uppercase"></th>
+              <tr className="bg-surface border-b border-border text-left">
+                <th className="py-3 pl-4 pr-4 font-display text-xs text-muted uppercase">#</th>
+                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Model</th>
+                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Award</th>
+                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Rating</th>
+                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[0]?.label}</th>
+                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[1]?.label}</th>
+                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Best For</th>
+                <th className="py-3 pr-4 font-display text-xs text-muted uppercase"></th>
               </tr>
             </thead>
             <tbody>
               {picks.map((p, i) => (
-                <tr key={p.name} className="border-b border-border last:border-0">
-                  <td className="py-3 pr-4 text-muted font-display">{i + 1}</td>
-                  <td className="py-3 pr-4 font-medium">
+                <tr
+                  key={p.name}
+                  className={`border-b border-border last:border-0 transition-colors hover:bg-surface ${
+                    i === 0 ? "bg-accent/5" : ""
+                  }`}
+                >
+                  <td className={`py-3.5 pl-4 pr-4 font-display ${i === 0 ? "border-l-2 border-accent text-accent font-semibold" : "text-muted"}`}>
+                    {i + 1}
+                  </td>
+                  <td className="py-3.5 pr-4 font-medium">
                     <a href={`#${p.name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-accent">
                       {p.name}
                     </a>
                   </td>
-                  <td className="py-3 pr-4">
+                  <td className="py-3.5 pr-4">
                     <Badge variant="signal">{p.badge}</Badge>
                   </td>
-                  <td className="py-3 pr-4">
+                  <td className="py-3.5 pr-4">
                     <Stars rating={p.rating} />
                   </td>
-                  <td className="py-3 pr-4 text-muted">
+                  <td className="py-3.5 pr-4 text-muted">
                     <SpecValue value={p.specs[0]?.value ?? ""} />
                   </td>
-                  <td className="py-3 pr-4 text-muted">
+                  <td className="py-3.5 pr-4 text-muted">
                     <SpecValue value={p.specs[1]?.value ?? ""} />
                   </td>
-                  <td className="py-3 pr-4 text-muted">{p.specs[p.specs.length - 1]?.value}</td>
-                  <td className="py-3">
+                  <td className="py-3.5 pr-4 text-muted">{p.specs[p.specs.length - 1]?.value}</td>
+                  <td className="py-3.5 pr-4">
                     <a
                       href={p.ctaHref}
-                      className="inline-block rounded-md bg-accent text-accent-foreground px-3 py-1.5 text-xs font-medium whitespace-nowrap hover:opacity-90 transition-opacity"
+                      className="inline-block rounded-md bg-accent text-accent-foreground px-4 py-2 text-xs font-semibold whitespace-nowrap shadow-sm hover:opacity-90 hover:shadow transition-all"
                     >
-                      Check price
+                      Check price →
                     </a>
                   </td>
                 </tr>

@@ -263,6 +263,25 @@ export default function BestMultimetersPage() {
           </div>
         </div>
       </section>
+      <section className="mx-auto max-w-4xl px-6 py-12 border-t border-border">
+        <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Reviews &amp; comparisons</p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <a
+            href="/multimeters/fluke-117-review"
+            className="rounded-lg border border-border bg-surface-raised p-4 hover:border-accent transition-colors"
+          >
+            <p className="font-medium">Fluke 117 Review</p>
+            <p className="mt-1 text-sm text-muted">A closer look at our Best Overall pick</p>
+          </a>
+          <a
+            href="/multimeters/fluke-117-vs-fluke-87v"
+            className="rounded-lg border border-border bg-surface-raised p-4 hover:border-accent transition-colors"
+          >
+            <p className="font-medium">Fluke 117 vs Fluke 87V</p>
+            <p className="mt-1 text-sm text-muted">Which Fluke tier actually fits your work</p>
+          </a>
+        </div>
+      </section>
     </>
   );
 }

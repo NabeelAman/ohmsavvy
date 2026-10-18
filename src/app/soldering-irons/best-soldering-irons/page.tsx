@@ -117,13 +117,29 @@ export default function BestSolderingIronsPage() {
       <section className="border-t border-border bg-surface-raised">
         <div className="mx-auto max-w-4xl px-6 py-12">
           <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Learn more</p>
-          <a
-            href="/soldering-irons/soldering-iron-buying-guide"
-            className="block rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors sm:max-w-sm"
-          >
-            <p className="font-medium">Soldering Iron Buying Guide</p>
-            <p className="mt-1 text-sm text-muted">Wattage, temperature control, and tip selection explained</p>
-          </a>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <a
+              href="/soldering-irons/soldering-iron-buying-guide"
+              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">Buying Guide</p>
+              <p className="mt-1 text-sm text-muted">Wattage, temperature control, and tips explained</p>
+            </a>
+            <a
+              href="/soldering-irons/hakko-fx888d-review"
+              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">Hakko FX888D Review</p>
+              <p className="mt-1 text-sm text-muted">A closer look at our Best Overall pick</p>
+            </a>
+            <a
+              href="/soldering-irons/hakko-fx888d-vs-weller-we1010na"
+              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">Hakko vs Weller</p>
+              <p className="mt-1 text-sm text-muted">Fast heat-up vs. ESD-safe construction</p>
+            </a>
+          </div>
         </div>
       </section>
     </>

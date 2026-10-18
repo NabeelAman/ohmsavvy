@@ -20,6 +20,13 @@ export type Pick = {
   pros: string[];
   cons: string[];
   ctaHref: string;
+  /**
+   * True only once this exact unit has actually been bought and hands-on
+   * tested by OhmSavvy — not aspirational, not "testing in progress" for this
+   * item specifically. Leave unset/false until a real result exists; the site
+   * explicitly discloses the distinction (see /about), so this must stay honest.
+   */
+  handsOnTested?: boolean;
 };
 
 export type Faq = { question: string; answer: string };
@@ -114,6 +121,7 @@ export function ReviewArticle({
                   <RankBadge rank={i + 1} />
                   <Badge variant="signal">{p.badge}</Badge>
                   <Stars rating={p.rating} />
+                  {p.handsOnTested && <Badge variant="accent">Hands-on Tested</Badge>}
                 </div>
                 <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
                   <h2 className="text-2xl font-semibold">{p.name}</h2>

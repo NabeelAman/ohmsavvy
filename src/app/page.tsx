@@ -129,7 +129,7 @@ const homeFaqs = [
   {
     question: "Do you physically test every product?",
     answer:
-      "No, and we'd rather say that plainly than imply otherwise. This is desk-based research — every spec is cross-checked against manufacturer datasheets and official listings, and we look for patterns across real verified-purchase reviews, but we don't buy and bench-test each unit ourselves.",
+      "We're in the process of changing this. Every spec on this site is cross-checked against manufacturer datasheets and official listings, and we look for patterns across real verified-purchase reviews — that's always been true. We've now started buying and hands-on testing specific picks ourselves; as each one is verified, it carries a \"Hands-on Tested\" badge. A pick without that badge yet is still backed by the research process above, just not physically tested by us — we'll keep adding badges as testing completes rather than claim it's finished before it is.",
   },
   {
     question: "Why don't some products have photos?",

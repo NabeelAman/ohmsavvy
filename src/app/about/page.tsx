@@ -32,9 +32,13 @@ export default function AboutPage() {
           </p>
           <p className="mt-3 text-muted leading-7">
             We also cross-reference patterns across real verified buyer reviews to catch reliability
-            issues that spec sheets alone don&apos;t show. This is desk-based research and verification,
-            not physical bench-testing of purchased units — we want to be upfront about that
-            distinction rather than imply hands-on lab testing that isn&apos;t happening.
+            issues that spec sheets alone don&apos;t show. Historically this has been desk-based research
+            and verification, not physical bench-testing of purchased units, and we were upfront about
+            that distinction rather than imply hands-on testing that wasn&apos;t happening. We&apos;re now in
+            the process of changing that — we&apos;ve started buying and hands-on testing specific picks
+            ourselves, and each one we&apos;ve verified this way carries a &quot;Hands-on Tested&quot; badge. A
+            pick without that badge yet is still backed by the research process above, just not
+            physically tested by us.
           </p>
         </section>
 

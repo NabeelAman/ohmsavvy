@@ -163,7 +163,7 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
   );
 }
 
-export function Nav({ menus }: { menus: NavMenu[] }) {
+export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactNode }) {
   const pathname = usePathname();
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -171,6 +171,12 @@ export function Nav({ menus }: { menus: NavMenu[] }) {
     () => menus.find((m) => pathname?.startsWith(m.match))?.key ?? menus[0]?.key ?? null,
   );
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Hover pill that glides between top-level items. Position is kept when it
+  // fades out, so the next hover slides from where it was instead of from 0.
+  const [pill, setPill] = useState({ left: 0, width: 0, visible: false });
+  const movePill = (el: HTMLElement) => setPill({ left: el.offsetLeft, width: el.offsetWidth, visible: true });
+  const hidePill = () => setPill((p) => ({ ...p, visible: false }));
 
   const openMenu = (key: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -225,7 +231,12 @@ export function Nav({ menus }: { menus: NavMenu[] }) {
   return (
     <>
       {/* Desktop */}
-      <nav className="relative hidden md:flex items-center gap-1 font-display text-sm" aria-label="Main">
+      <nav className="relative hidden lg:flex items-center gap-1 font-display text-sm" aria-label="Main" onMouseLeave={hidePill}>
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 h-9 -translate-y-1/2 rounded-full bg-surface-raised ring-1 ring-border shadow-sm transition-[left,width,opacity] duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-opacity"
+          style={{ left: pill.left, width: pill.width, opacity: pill.visible ? 1 : 0 }}
+        />
         {menus.map((m) => {
           const active = pathname?.startsWith(m.match);
           const open = openKey === m.key;
@@ -242,11 +253,17 @@ export function Nav({ menus }: { menus: NavMenu[] }) {
               <Link
                 href={m.href}
                 onClick={closeAll}
+                onMouseEnter={(e) => movePill(e.currentTarget)}
+                onFocus={(e) => movePill(e.currentTarget)}
                 aria-expanded={open}
-                className={`relative inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 transition-colors duration-200 ${
-                  active ? "text-accent" : open ? "text-foreground bg-surface-raised" : "text-muted hover:text-foreground"
+                className={`relative z-10 inline-flex items-center gap-2 rounded-full px-3.5 py-2 transition-colors duration-200 ${
+                  active ? "text-accent" : open ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
               >
+                <span
+                  aria-hidden
+                  className={`h-1.5 w-1.5 rounded-full ${TONE[m.tone].bg} transition-transform duration-300 ${open || active ? "scale-125" : "scale-100 opacity-70"}`}
+                />
                 {m.label}
                 <Chevron open={open} className="opacity-60" />
                 {/* pointer arrow, centred under this trigger and overlapping the panel's top edge */}
@@ -278,7 +295,9 @@ export function Nav({ menus }: { menus: NavMenu[] }) {
         <Link
           href="/about"
           onClick={closeAll}
-          className={`rounded-full px-3.5 py-2 transition-colors duration-200 ${
+          onMouseEnter={(e) => movePill(e.currentTarget)}
+          onFocus={(e) => movePill(e.currentTarget)}
+          className={`relative z-10 rounded-full px-3.5 py-2 transition-colors duration-200 ${
             pathname?.startsWith("/about") ? "text-accent" : "text-muted hover:text-foreground"
           }`}
         >
@@ -286,8 +305,10 @@ export function Nav({ menus }: { menus: NavMenu[] }) {
         </Link>
       </nav>
 
-      {/* Mobile */}
-      <div className="md:hidden">
+      {search}
+
+      {/* Mobile + tablet */}
+      <div className="lg:hidden">
         <button
           type="button"
           aria-expanded={mobileOpen}

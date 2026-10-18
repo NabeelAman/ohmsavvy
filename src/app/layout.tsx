@@ -3,7 +3,7 @@ import { Big_Shoulders, IBM_Plex_Mono, Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
 import GoogleAnalyticsLoader from "@/components/GoogleAnalyticsLoader";
 import { Logo } from "@/components/Logo";
-import { SiteNav } from "@/components/SiteNav";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 // Self-hosted via next/font instead of a CSS @import — avoids the extra
@@ -66,19 +66,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <header className="border-b border-border sticky top-0 z-40 bg-background/80 backdrop-blur-md">
-          <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-            <Link href="/">
-              <Logo />
-            </Link>
-            <SiteNav />
-          </div>
-        </header>
+        <SiteHeader />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-border bg-surface-raised">
           <div className="mx-auto max-w-6xl px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
             <div className="lg:col-span-2">
-              <Logo />
+              <Link href="/" aria-label="OhmSavvy home">
+                <Logo />
+              </Link>
               <p className="mt-4 max-w-sm text-sm text-muted leading-6">
                 Specification-based reviews of multimeters, soldering irons, oscilloscopes, and
                 test equipment — verified against manufacturer data, not marketing copy.

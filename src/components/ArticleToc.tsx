@@ -76,7 +76,7 @@ export function ArticleTocBar({ items, className = "" }: { items: TocItem[]; cla
   }, [active]);
 
   return (
-    <nav aria-label="On this page" className={`lg:hidden sticky top-[73px] z-30 -mx-6 border-y border-border bg-background/90 backdrop-blur-md ${className}`}>
+    <nav aria-label="On this page" className={`lg:hidden sticky top-[75px] z-30 -mx-6 border-y border-border bg-background/90 backdrop-blur-md ${className}`}>
       <div
         ref={scroller}
         className="flex gap-2 overflow-x-auto px-6 py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

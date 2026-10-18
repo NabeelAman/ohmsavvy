@@ -2,6 +2,7 @@ node_modules
 .next
 .env*.local
 *.log
+*.tsbuildinfo
 
 *storybook.log
 storybook-static

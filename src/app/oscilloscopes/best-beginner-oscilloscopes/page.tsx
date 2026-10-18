@@ -12,6 +12,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Overall",
     name: "Rigol DS1054Z",
+    image: "https://valuetronics.com/cdn/shop/files/rigol_ds1054z-new_grande.jpg",
     rating: 4.8,
     bottomLine: "The default beginner oscilloscope recommendation for years, and still worth it.",
     verdict:

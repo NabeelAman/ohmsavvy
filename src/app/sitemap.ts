@@ -6,6 +6,9 @@ const staticRoutes = [
   "/privacy-policy",
   "/terms-of-service",
   "/multimeters/best-multimeters",
+  "/multimeters/best-multimeter-for-electricians",
+  "/multimeters/best-multimeter-for-automotive",
+  "/multimeters/best-multimeter-for-home-use",
   "/soldering-irons/best-soldering-irons",
   "/oscilloscopes/best-beginner-oscilloscopes",
 ];

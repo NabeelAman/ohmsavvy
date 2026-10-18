@@ -227,6 +227,34 @@ export default function BestMultimetersPage() {
         ]}
       />
       <ReviewArticle picks={picks} faqs={faqs} />
+      <section className="border-t border-border bg-surface-raised">
+        <div className="mx-auto max-w-4xl px-6 py-12">
+          <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Shop by use case</p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <a
+              href="/multimeters/best-multimeter-for-electricians"
+              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">For Electricians</p>
+              <p className="mt-1 text-sm text-muted">CAT III/IV picks for panel work</p>
+            </a>
+            <a
+              href="/multimeters/best-multimeter-for-automotive"
+              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">For Automotive</p>
+              <p className="mt-1 text-sm text-muted">RPM, dwell, and duty-cycle ready</p>
+            </a>
+            <a
+              href="/multimeters/best-multimeter-for-home-use"
+              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
+            >
+              <p className="font-medium">For Home & DIY</p>
+              <p className="mt-1 text-sm text-muted">Easy, affordable, no overkill</p>
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

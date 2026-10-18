@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Stars } from "@/components/ui/Stars";
@@ -44,29 +45,38 @@ const trustStats = [
   { value: "$0", label: "Paid Placements" },
 ];
 
-const methodology = [
+const trustPillars = [
   {
-    step: "01",
-    title: "We verify specs, not marketing copy",
-    desc: "Every accuracy, safety, and performance claim is cross-checked against the manufacturer's actual datasheet — not the ad copy on the product page.",
+    title: "Spec Verified",
+    desc: "Every specification is cross-checked against the manufacturer's own datasheet or official listing — not marketing copy. If a number is ambiguous, we say so.",
   },
   {
-    step: "02",
-    title: "We cross-reference real owner feedback",
-    desc: "Patterns across verified purchase reviews reveal reliability issues that spec sheets alone never show.",
+    title: "Owner Feedback Cross-Referenced",
+    desc: "We look for patterns across real verified-purchase reviews to catch reliability issues that spec sheets alone never show.",
   },
   {
-    step: "03",
-    title: "Rankings are never for sale",
-    desc: "Our picks are never influenced by which brand pays the highest affiliate commission. A $12 meter can outrank a $120 one if the numbers say so.",
+    title: "No Sponsored Picks",
+    desc: "We earn through Amazon affiliate links at no extra cost to you — that's it. No brand deals, no paid placements, no manufacturer relationships that influence a verdict.",
   },
 ];
+
+// Top pick (badge: "Best Overall") per category, for the homepage's
+// product-first section — the part of the page that actually drives
+// affiliate clicks, rather than just linking out to articles.
+const topPicks = featured.map((f) => ({ ...f.picks[0], category: f.category, text: f.text, articleHref: f.href }));
 
 export default function Home() {
   return (
     <div>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 pt-20 pb-12">
+      <section className="relative overflow-hidden border-b border-border bg-surface-raised">
+        <div
+          className="absolute inset-0 opacity-[0.07] bg-accent"
+          style={{
+            maskImage: "repeating-linear-gradient(115deg, black 0 2px, transparent 2px 60px)",
+            WebkitMaskImage: "repeating-linear-gradient(115deg, black 0 2px, transparent 2px 60px)",
+          }}
+        />
+        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-12">
           <Eyebrow>ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</Eyebrow>
           <h1 className="text-4xl sm:text-5xl leading-tight max-w-2xl">
             Find the right tool for your workbench, not the one with the biggest ad budget.
@@ -77,7 +87,7 @@ export default function Home() {
             confidence.
           </p>
         </div>
-        <div className="border-t border-border bg-surface-raised">
+        <div className="relative border-t border-border bg-surface">
           <div className="mx-auto max-w-6xl px-6 py-8 grid grid-cols-3 gap-6">
             {trustStats.map((s) => (
               <div key={s.label}>
@@ -90,8 +100,84 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
+        <Eyebrow>EDITORIAL PICKS</Eyebrow>
+        <h2 className="text-2xl font-semibold">Our top pick in every category</h2>
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {topPicks.map((p) => (
+            <Card key={p.name} className="flex flex-col">
+              {p.image ? (
+                <div className="rounded-lg border border-border bg-surface shadow-sm overflow-hidden">
+                  <div className={`h-1.5 bg-accent`} />
+                  <div className="h-48 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-full h-full object-contain scale-125"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="h-48 rounded-lg border border-border bg-surface-raised flex flex-col items-center justify-center gap-2 text-muted">
+                  <svg width="28" height="28" viewBox="0 0 32 18" fill="none">
+                    <path
+                      d="M1 9 C4 1,8 1,11 9 C14 17,18 17,21 9 L26 9"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <circle cx="26" cy="9" r="1.9" fill="currentColor" />
+                  </svg>
+                  <span className="text-xs">Photo pending manufacturer confirmation</span>
+                </div>
+              )}
+              <div className="mt-4 flex items-center justify-between">
+                <span className={`font-display text-xs uppercase tracking-wide ${p.text}`}>{p.category}</span>
+                <Stars rating={p.rating} />
+              </div>
+              <h3 className="mt-2 text-lg font-semibold leading-snug">{p.name}</h3>
+              <p className="mt-1.5 text-sm text-muted leading-6 flex-1">{p.bottomLine}</p>
+              <div className="mt-4 flex items-center gap-3">
+                <Button href={p.ctaHref}>Check price on Amazon →</Button>
+                <Link
+                  href={`${p.articleHref}#${p.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  className={`text-sm font-medium ${p.text} hover:underline whitespace-nowrap`}
+                >
+                  Full review
+                </Link>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface-raised">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <Eyebrow>WHY TRUST THIS SITE</Eyebrow>
+          <h2 className="text-2xl font-semibold max-w-xl">
+            Built by people who buy these tools too.
+          </h2>
+          <div className="mt-10 grid sm:grid-cols-3 gap-8">
+            {trustPillars.map((t) => (
+              <div key={t.title}>
+                <div className="w-10 h-10 rounded-lg bg-signal-bg flex items-center justify-center text-signal mb-3">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <h3 className="font-medium mb-2">{t.title}</h3>
+                <p className="text-sm text-muted leading-6">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="flex items-baseline justify-between mb-8">
-          <h2 className="text-2xl font-semibold">Start here</h2>
+          <h2 className="text-2xl font-semibold">Browse by category</h2>
           <span className="text-sm text-muted">{featured.length} categories reviewed</span>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -122,24 +208,6 @@ export default function Home() {
               </Link>
             );
           })}
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <Eyebrow>HOW WE REVIEW</Eyebrow>
-          <h2 className="text-2xl font-semibold max-w-xl">
-            A simple process, applied consistently to every product.
-          </h2>
-          <div className="mt-10 grid sm:grid-cols-3 gap-8">
-            {methodology.map((m) => (
-              <div key={m.step}>
-                <div className="font-display text-3xl text-border mb-3">{m.step}</div>
-                <h3 className="font-medium mb-2">{m.title}</h3>
-                <p className="text-sm text-muted leading-6">{m.desc}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </div>

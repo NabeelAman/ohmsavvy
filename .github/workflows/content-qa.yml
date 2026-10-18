@@ -1,0 +1,43 @@
+name: Content QA
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Install Chromium for the image-embed check
+        run: npx playwright install --with-deps chromium
+
+      - name: Check every image URL actually renders cross-origin in a browser
+        run: node automation/check-images.mjs
+
+      - name: Verify no orphan pages (every sitemap route has an inbound internal link)
+        run: node automation/check-internal-links.mjs
+
+      - name: Check on-page SEO baseline (titles, descriptions, canonicals, alt text)
+        run: node automation/check-seo.mjs
+
+      - name: Report keyword cannibalization risk (advisory, non-blocking)
+        run: node automation/check-cannibalization.mjs || true
+
+      - name: Verify no product name appears outside the verified roster
+        run: node automation/check-roster.mjs

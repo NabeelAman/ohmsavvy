@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { ContentCard } from "@/components/ContentCard";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Stars } from "@/components/ui/Stars";
+import { content, type Category } from "@/lib/content";
 import { picks as multimeterPicks } from "./multimeters/best-multimeters/page";
 import { picks as solderingIronPicks } from "./soldering-irons/best-soldering-irons/page";
 import { picks as oscilloscopePicks } from "./oscilloscopes/best-beginner-oscilloscopes/page";
@@ -102,23 +104,30 @@ const buyingBasics = [
   },
 ];
 
-const moreGuides = [
-  {
-    href: "/multimeters/best-multimeter-for-electricians",
-    title: "Best Multimeter for Electricians",
-    desc: "CAT III/IV picks built for panel work",
-  },
-  {
-    href: "/multimeters/best-multimeter-for-automotive",
-    title: "Best Multimeter for Automotive",
-    desc: "RPM, dwell, and duty-cycle diagnostics",
-  },
-  {
-    href: "/multimeters/best-multimeter-for-home-use",
-    title: "Best Multimeter for Home & DIY",
-    desc: "Easy, affordable, no overkill",
-  },
+const CATEGORY_ORDER: { category: Category; label: string; text: string }[] = [
+  { category: "multimeters", label: "Multimeters", text: "text-cat-multimeters" },
+  { category: "soldering-irons", label: "Soldering Irons", text: "text-cat-soldering" },
+  { category: "oscilloscopes", label: "Oscilloscopes", text: "text-cat-oscilloscopes" },
 ];
+
+// Use-case guides per category, straight from the content registry.
+const guidesByCategory = CATEGORY_ORDER.map((c) => ({
+  ...c,
+  guides: content.filter((e) => e.category === c.category && e.type === "use-case-guide"),
+}));
+
+// Two reviews per category (skipping the top picks already featured above), and
+// one comparison per category.
+const topPickNames = new Set(featured.map((f) => f.picks[0].name));
+const latestReviews = CATEGORY_ORDER.flatMap((c) =>
+  content
+    .filter((e) => e.category === c.category && e.type === "review")
+    .filter((e) => ![...topPickNames].some((n) => e.title.startsWith(n)))
+    .slice(0, 2),
+);
+const featuredComparisons = CATEGORY_ORDER.flatMap((c) =>
+  content.filter((e) => e.category === c.category && e.type === "comparison").slice(0, 1),
+);
 
 const homeFaqs = [
   {
@@ -276,13 +285,51 @@ export default function Home() {
                   <div className="mt-4 flex items-center justify-between text-sm">
                     <span className="text-muted">{item.picks.length} models compared</span>
                     <span className={`${item.text} group-hover:translate-x-0.5 transition-transform`}>
-                      Read review →
+                      See all picks →
                     </span>
                   </div>
                 </Card>
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <Eyebrow>IN-DEPTH REVIEWS</Eyebrow>
+          <div className="flex flex-wrap items-baseline justify-between gap-4 mb-8">
+            <h2 className="text-2xl font-semibold">Product reviews</h2>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+              <Link href="/multimeters/reviews" className="text-accent hover:underline">All multimeter reviews →</Link>
+              <Link href="/soldering-irons/reviews" className="text-accent hover:underline">Soldering irons →</Link>
+              <Link href="/oscilloscopes/reviews" className="text-accent hover:underline">Oscilloscopes →</Link>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {latestReviews.map((e) => (
+              <ContentCard key={e.href} entry={e} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <Eyebrow>HEAD TO HEAD</Eyebrow>
+          <div className="flex flex-wrap items-baseline justify-between gap-4 mb-8">
+            <h2 className="text-2xl font-semibold">Comparisons</h2>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+              <Link href="/multimeters/comparisons" className="text-accent hover:underline">All multimeter comparisons →</Link>
+              <Link href="/soldering-irons/comparisons" className="text-accent hover:underline">Soldering irons →</Link>
+              <Link href="/oscilloscopes/comparisons" className="text-accent hover:underline">Oscilloscopes →</Link>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {featuredComparisons.map((e) => (
+              <ContentCard key={e.href} entry={e} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -307,16 +354,26 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 py-16">
         <Eyebrow>MORE GUIDES</Eyebrow>
         <h2 className="text-2xl font-semibold">Shop by use case</h2>
-        <div className="mt-8 grid sm:grid-cols-3 gap-6">
-          {moreGuides.map((g) => (
-            <Link
-              key={g.href}
-              href={g.href}
-              className="rounded-lg border border-border bg-surface-raised p-5 hover:border-accent transition-colors"
-            >
-              <p className="font-medium">{g.title}</p>
-              <p className="mt-1.5 text-sm text-muted leading-6">{g.desc}</p>
-            </Link>
+        <div className="mt-8 grid sm:grid-cols-3 gap-8">
+          {guidesByCategory.map((c) => (
+            <div key={c.category}>
+              <p className={`font-display text-xs uppercase tracking-wide mb-3 ${c.text}`}>{c.label}</p>
+              <div className="space-y-3">
+                {c.guides.map((g) => (
+                  <Link
+                    key={g.href}
+                    href={g.href}
+                    className="group min-w-0 flex items-center justify-between gap-3 rounded-lg border border-border bg-surface-raised px-4 py-3 hover:border-accent transition-colors"
+                  >
+                    <span className="min-w-0">
+                      <span className="block font-medium group-hover:text-accent transition-colors">{g.title}</span>
+                      <span className="block text-sm text-muted">{g.description}</span>
+                    </span>
+                    <span className="text-accent shrink-0">→</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>

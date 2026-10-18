@@ -1,107 +1,98 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ProsCons } from "@/components/ui/ProsCons";
-import { SpecList } from "@/components/ui/SpecList";
-import { Stars } from "@/components/ui/Stars";
-import { picks } from "../best-multimeters/page";
+import { ContentLinks } from "@/components/ContentLinks";
+import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { buildMetadata } from "@/lib/metadata";
-
-const pick = picks.find((p) => p.name === "Fluke 117")!;
+import { picks } from "../best-multimeters/page";
 
 export const metadata = buildMetadata({
   title: "Fluke 117 Review",
   description: "A detailed look at the Fluke 117's True RMS accuracy, CAT III 600V rating, and NCV detection, and who it's actually worth buying for.",
   path: "/multimeters/fluke-117-review",
+  image: picks.find((p) => p.name === "Fluke 117")?.image,
 });
 
-export default function Fluke117ReviewPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: pick.name,
-    ...(pick.image ? { image: pick.image } : {}),
-    description: pick.bottomLine,
-    review: {
-      "@type": "Review",
-      reviewRating: { "@type": "Rating", ratingValue: pick.rating, bestRating: "5" },
-      author: { "@type": "Organization", name: "OhmSavvy" },
+const review: ProductReviewContent = {
+  pick: picks.find((p) => p.name === "Fluke 117")!,
+  category: "multimeters",
+  heading: "Fluke 117 Review",
+  productType: "Digital multimeter",
+  intendedBuyer: "Electricians and serious hobbyists doing real electrical work",
+  imageAlt: "Fluke 117 digital multimeter",
+  considerIf: [
+    "You work in residential panels and building wiring, where CAT III 600V is the right rating",
+    "You want a non-contact voltage detector built into the meter",
+    "You want a meter durable enough for daily field use"
+  ],
+  skipIf: [
+    "You only need a meter a few times a year for basic home checks — the premium buys durability casual use won't exercise",
+    "You want Bluetooth or app connectivity"
+  ],
+  tradeOffs: "You pay a premium over mid-range meters like the Klein Tools MM400 for Fluke's well-documented reliability and the built-in NCV detector, not for a higher safety rating or extra resolution.",
+  assessment: [
+    {
+      heading: "Safety and accuracy",
+      body: "CAT III 600V covers household panels and fixed building wiring, and True RMS keeps AC readings accurate on non-sinusoidal loads. Auto-ranging keeps operation quick."
     },
-  };
+    {
+      heading: "Non-contact voltage detection",
+      body: "The built-in NCV detector gives a fast first check for live voltage before the probes ever touch a circuit, a practical safety habit for anyone working on building wiring."
+    }
+  ],
+  alternatives: [
+    {
+      name: "Fluke 87V",
+      href: "/multimeters/fluke-87v-review",
+      reason: "CAT IV 600V / CAT III 1000V and a 19,999-count high-resolution mode for industrial work."
+    },
+    {
+      name: "Klein Tools MM400",
+      href: "/multimeters/klein-mm400-review",
+      reason: "The same CAT III 600V and True RMS at a mid-range price, with a low-impedance mode."
+    },
+    {
+      name: "Milwaukee 2235-20",
+      href: "/multimeters/milwaukee-2235-20-review",
+      reason: "Add a clamp meter if you measure current often."
+    }
+  ],
+  faqs: [
+    {
+      question: "Is the Fluke 117 good for home electrical work?",
+      answer: "It's well suited, with CAT III 600V and True RMS. For occasional basic checks, a cheaper meter from our home-use guide may be enough."
+    },
+    {
+      question: "Fluke 117 or Fluke 87V?",
+      answer: "The 117 covers residential and light commercial work. The 87V adds CAT IV 600V / CAT III 1000V protection, a 19,999-count high-resolution mode, and an analog bar graph for industrial use."
+    }
+  ],
+  roundup: {
+    label: "See the full Top 10 multimeter comparison",
+    href: "/multimeters/best-multimeters"
+  },
+  related: [
+    {
+      label: "Fluke 117 vs Fluke 87V",
+      href: "/multimeters/fluke-117-vs-fluke-87v"
+    },
+    {
+      label: "Fluke 117 vs Klein Tools MM400",
+      href: "/multimeters/fluke-117-vs-klein-mm400"
+    },
+    {
+      label: "Fluke 117 vs Milwaukee 2235-20",
+      href: "/multimeters/fluke-117-vs-milwaukee-2235-20"
+    },
+    {
+      label: "Best multimeter for electricians",
+      href: "/multimeters/best-multimeter-for-electricians"
+    }
+  ],
+};
 
+export default function Fluke117ReviewPage() {
   return (
-    <article className="mx-auto max-w-3xl px-6 py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
-      <Eyebrow>REVIEW</Eyebrow>
-      <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-3xl sm:text-4xl leading-tight">Fluke 117 Review</h1>
-        <Stars rating={pick.rating} />
-      </div>
-      <p className="mt-5 text-lg text-muted leading-7">{pick.bottomLine}</p>
-
-      {pick.image && (
-        <div className="mt-8 rounded-lg border border-border bg-surface-raised p-8 flex justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={pick.image} alt="Fluke 117 digital multimeter" className="max-h-64 object-contain" />
-        </div>
-      )}
-
-      <div className="mt-10 space-y-10">
-        <section>
-          <h2 className="text-xl font-semibold mb-3">The verdict</h2>
-          <p className="text-muted leading-7">{pick.verdict}</p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Specifications</h2>
-          <SpecList specs={pick.specs} />
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Reasons to buy and reasons to avoid</h2>
-          <ProsCons pros={pick.pros} cons={pick.cons} />
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Who it&apos;s actually for</h2>
-          <p className="text-muted leading-7">
-            The Fluke 117&apos;s CAT III 600V rating and True RMS accuracy make it a realistic
-            choice for electricians and serious hobbyists doing real electrical work, not just
-            casual continuity checks. The built-in non-contact voltage detection adds a fast first
-            check before probes even touch a circuit.
-          </p>
-          <p className="mt-3 text-muted leading-7">
-            It&apos;s a harder sell for someone who only needs a meter a few times a year for
-            basic home use — the price premium buys safety rating and durability that casual use
-            doesn&apos;t fully exercise. For that buyer, see our{" "}
-            <Link href="/multimeters/best-multimeter-for-home-use" className="text-accent hover:underline">
-              Best Multimeter for Home Use & DIY
-            </Link>{" "}
-            picks instead.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">How it compares</h2>
-          <p className="text-muted leading-7">
-            If you&apos;re deciding between the 117 and Fluke&apos;s higher-tier option, see{" "}
-            <Link href="/multimeters/fluke-117-vs-fluke-87v" className="text-accent hover:underline">
-              Fluke 117 vs Fluke 87V
-            </Link>{" "}
-            for a direct, spec-by-spec comparison.
-          </p>
-        </section>
-
-        <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-border">
-          <Button href={pick.ctaHref}>Check price on Amazon →</Button>
-          <Link href="/multimeters/best-multimeters" className="text-sm font-medium text-accent hover:underline">
-            See the full Top 10 comparison
-          </Link>
-        </div>
-      </div>
-    </article>
+    <>
+      <ProductReview review={review} />
+      <ContentLinks category="multimeters" current="/multimeters/fluke-117-review" />
+    </>
   );
 }

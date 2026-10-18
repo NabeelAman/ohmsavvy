@@ -79,7 +79,7 @@ export default function Southwire14070TReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/southwire-14070t-review" />
     </>
   );
 }

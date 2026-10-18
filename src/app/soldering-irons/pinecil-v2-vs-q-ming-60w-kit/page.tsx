@@ -68,7 +68,7 @@ export default function PinecilV2VsQMing60wKitPage() {
   return (
     <>
       <ProductComparison comparison={comparison} />
-      <ContentLinks category="soldering-irons" />
+      <ContentLinks category="soldering-irons" current="/soldering-irons/pinecil-v2-vs-q-ming-60w-kit" />
     </>
   );
 }

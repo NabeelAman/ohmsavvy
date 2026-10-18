@@ -68,7 +68,7 @@ export default function Fluke117VsKleinMm400Page() {
   return (
     <>
       <ProductComparison comparison={comparison} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/fluke-117-vs-klein-mm400" />
     </>
   );
 }

@@ -68,7 +68,7 @@ export default function RigolDs1054zVsHantekDso2d10Page() {
   return (
     <>
       <ProductComparison comparison={comparison} />
-      <ContentLinks category="oscilloscopes" />
+      <ContentLinks category="oscilloscopes" current="/oscilloscopes/rigol-ds1054z-vs-hantek-dso2d10" />
     </>
   );
 }

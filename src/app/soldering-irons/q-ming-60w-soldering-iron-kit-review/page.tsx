@@ -75,7 +75,7 @@ export default function QMing60wKitReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="soldering-irons" />
+      <ContentLinks category="soldering-irons" current="/soldering-irons/q-ming-60w-soldering-iron-kit-review" />
     </>
   );
 }

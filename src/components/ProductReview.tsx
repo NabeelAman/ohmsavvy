@@ -7,6 +7,7 @@ import { Card } from "./ui/Card";
 import { Eyebrow } from "./ui/Eyebrow";
 import { ProsCons } from "./ui/ProsCons";
 import { SpecList } from "./ui/SpecList";
+import { SpecValue } from "./ui/SpecValue";
 import { Stars } from "./ui/Stars";
 
 export type ReviewLink = { label: string; href: string };
@@ -55,7 +56,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
   };
 
   return (
-    <article className="mx-auto max-w-4xl px-6 py-16">
+    <article className="mx-auto max-w-4xl px-6 pt-16 pb-28 sm:pb-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
@@ -63,61 +64,79 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
 
       <Eyebrow>REVIEW · {CATEGORY_LABELS[review.category].toUpperCase()}</Eyebrow>
 
-      <div className="flex flex-col sm:flex-row gap-8">
-        <div className="shrink-0 w-full sm:w-72 rounded-lg border border-border bg-surface shadow-sm overflow-hidden">
-          <div className="h-1.5 bg-accent" />
-          <div className="h-72 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface">
+      <h1 className="text-3xl sm:text-4xl leading-tight">{review.heading}</h1>
+      <p className="mt-4 text-lg text-muted leading-7 max-w-3xl">{pick.bottomLine}</p>
+
+      {/* Product box: the at-a-glance summary and primary Amazon CTA, directly under the title. */}
+      <div className="mt-8 rounded-xl border-2 border-accent/40 bg-surface shadow-md overflow-hidden">
+        <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 bg-accent/10 border-b border-border">
+          <div className="flex flex-wrap items-center gap-3">
+            <Badge variant="signal">{pick.badge}</Badge>
+            {pick.handsOnTested && <Badge variant="accent">Hands-on Tested</Badge>}
+          </div>
+          <Stars rating={pick.rating} />
+        </div>
+
+        <div className="grid md:grid-cols-[240px_1fr_250px]">
+          <div className="h-56 md:h-auto min-h-56 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface border-b md:border-b-0 md:border-r border-border">
             {pick.image ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={pick.image} alt={review.imageAlt} className="w-full h-full object-contain p-6" />
+              <img src={pick.image} alt={review.imageAlt} className="w-full h-full max-h-64 object-contain p-3" />
             ) : (
               <span className="px-6 text-center text-xs text-muted">Photo pending manufacturer confirmation</span>
             )}
           </div>
-        </div>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-center gap-3">
-            <Badge variant="signal">{pick.badge}</Badge>
-            <Stars rating={pick.rating} />
-            {pick.handsOnTested && <Badge variant="accent">Hands-on Tested</Badge>}
-          </div>
-          <h1 className="mt-3 text-3xl sm:text-4xl leading-tight">{review.heading}</h1>
-          <p className="mt-4 text-lg font-medium leading-7">{pick.bottomLine}</p>
+          <table className="w-full text-sm self-center">
+            <caption className="sr-only">{pick.name} at a glance</caption>
+            <tbody>
+              <tr className="border-b border-border">
+                <th scope="row" className="py-2.5 px-5 text-left font-normal text-muted">Model</th>
+                <td className="py-2.5 px-5 font-semibold">{pick.name}</td>
+              </tr>
+              {pick.specs
+                .filter((s) => s.label !== "Best for")
+                .map((s) => (
+                  <tr key={s.label} className="border-b border-border">
+                    <th scope="row" className="py-2.5 px-5 text-left font-normal text-muted">{s.label}</th>
+                    <td className="py-2.5 px-5 font-medium"><SpecValue value={s.value} /></td>
+                  </tr>
+                ))}
+              <tr className="border-b border-border">
+                <th scope="row" className="py-2.5 px-5 text-left font-normal text-muted">Best for</th>
+                <td className="py-2.5 px-5 font-medium">{review.intendedBuyer}</td>
+              </tr>
+              <tr>
+                <th scope="row" className="py-2.5 px-5 text-left font-normal text-muted">Review status</th>
+                <td className="py-2.5 px-5 text-muted">
+                  {pick.handsOnTested ? "Hands-on tested by OhmSavvy" : "Desk research, not bench-tested"}
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-          <Card padding="p-5" className="mt-6">
-            <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
-              <dt className="text-muted">Model</dt>
-              <dd className="font-medium">{pick.name}</dd>
-              <dt className="text-muted">Category</dt>
-              <dd className="font-medium">{review.productType}</dd>
-              <dt className="text-muted">Best for</dt>
-              <dd className="font-medium">{review.intendedBuyer}</dd>
-              <dt className="text-muted">Review status</dt>
-              <dd className="font-medium">
-                {pick.handsOnTested
-                  ? "Hands-on tested by OhmSavvy"
-                  : "Desk research: specs cross-checked, not bench-tested"}
-              </dd>
-            </dl>
-          </Card>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Button href={pick.ctaHref}>Check price on Amazon →</Button>
-          </div>
-          <p className="mt-3 text-xs text-muted leading-5">
-            Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through these
-            links, at no extra cost to you.{" "}
-            <a href="/about#how-were-funded" className="text-accent hover:underline">
-              How we&apos;re funded
+          <div className="flex flex-col justify-center gap-3 p-5 border-t md:border-t-0 md:border-l border-border bg-surface-raised">
+            <Button href={pick.ctaHref} className="w-full py-3 text-base whitespace-nowrap shadow-sm">
+              Check price on Amazon →
+            </Button>
+            <p className="text-xs text-muted text-center leading-5">Current price and availability shown on Amazon</p>
+            <a href="#verdict" className="text-sm font-medium text-accent text-center hover:underline">
+              Read our verdict ↓
             </a>
-            .
-          </p>
+          </div>
         </div>
       </div>
+      <p className="mt-3 text-xs text-muted leading-5">
+        Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through these links,
+        at no extra cost to you.{" "}
+        <a href="/about#how-were-funded" className="text-accent hover:underline">
+          How we&apos;re funded
+        </a>
+        .
+      </p>
 
       <div className="mt-14 space-y-14">
-        <section>
+        <section id="verdict" className="scroll-mt-24">
           <h2 className="text-2xl font-semibold mb-4">The verdict</h2>
           <p className="text-muted leading-7">{pick.verdict}</p>
           <div className="mt-6 grid sm:grid-cols-2 gap-4">
@@ -245,6 +264,16 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
             ))}
           </div>
         </section>
+      </div>
+      {/* Mobile-only sticky CTA so the Amazon link stays in reach on long reviews. */}
+      <div className="sm:hidden fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface/95 backdrop-blur px-4 py-3 flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-sm font-semibold truncate">{pick.name}</p>
+          <Stars rating={pick.rating} />
+        </div>
+        <Button href={pick.ctaHref} className="shrink-0">
+          Check price →
+        </Button>
       </div>
     </article>
   );

@@ -79,7 +79,7 @@ export default function SiglentSds1104xeReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="oscilloscopes" />
+      <ContentLinks category="oscilloscopes" current="/oscilloscopes/siglent-sds1104x-e-review" />
     </>
   );
 }

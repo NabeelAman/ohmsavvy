@@ -88,7 +88,7 @@ export default function Fluke87VReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/fluke-87v-review" />
     </>
   );
 }

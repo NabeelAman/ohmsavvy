@@ -88,7 +88,7 @@ export default function KleinMm400ReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/klein-mm400-review" />
     </>
   );
 }

@@ -79,7 +79,7 @@ export default function WellerWe1010naReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="soldering-irons" />
+      <ContentLinks category="soldering-irons" current="/soldering-irons/weller-we1010na-review" />
     </>
   );
 }

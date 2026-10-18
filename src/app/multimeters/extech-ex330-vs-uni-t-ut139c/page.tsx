@@ -68,7 +68,7 @@ export default function ExtechEx330VsUniTUt139cPage() {
   return (
     <>
       <ProductComparison comparison={comparison} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/extech-ex330-vs-uni-t-ut139c" />
     </>
   );
 }

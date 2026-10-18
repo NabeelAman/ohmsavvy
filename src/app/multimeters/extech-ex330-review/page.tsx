@@ -79,7 +79,7 @@ export default function ExtechEx330ReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/extech-ex330-review" />
     </>
   );
 }

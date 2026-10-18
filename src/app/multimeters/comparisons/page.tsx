@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { CategoryListing } from "@/components/CategoryListing";
 import { buildMetadata } from "@/lib/metadata";
-import { picks } from "../best-multimeters/page";
 
 export const metadata = buildMetadata({
   title: "Multimeter Comparisons",
@@ -14,7 +13,6 @@ export default function MultimetersComparisonsPage() {
     <CategoryListing
       category="multimeters"
       type="comparison"
-      picks={picks}
       heading="Multimeter Comparisons"
       intro="Head-to-head comparisons between the multimeters in our guide. Each one puts verified specs side by side and tells you which model fits which buyer."
     >

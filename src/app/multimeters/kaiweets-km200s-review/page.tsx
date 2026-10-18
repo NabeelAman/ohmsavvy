@@ -84,7 +84,7 @@ export default function KaiweetsKm200sReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/kaiweets-km200s-review" />
     </>
   );
 }

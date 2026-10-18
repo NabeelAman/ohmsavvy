@@ -84,7 +84,7 @@ export default function UniTUt139cReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/uni-t-ut139c-review" />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { CategoryListing } from "@/components/CategoryListing";
 import { buildMetadata } from "@/lib/metadata";
-import { picks } from "../best-beginner-oscilloscopes/page";
 
 export const metadata = buildMetadata({
   title: "Oscilloscope Comparisons",
@@ -14,7 +13,6 @@ export default function OscilloscopesComparisonsPage() {
     <CategoryListing
       category="oscilloscopes"
       type="comparison"
-      picks={picks}
       heading="Oscilloscope Comparisons"
       intro="Head-to-head comparisons between the oscilloscopes in our guide. Each one puts verified specs side by side and tells you which model fits which buyer."
     >

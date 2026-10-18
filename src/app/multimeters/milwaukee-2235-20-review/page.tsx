@@ -79,7 +79,7 @@ export default function Milwaukee223520ReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/milwaukee-2235-20-review" />
     </>
   );
 }

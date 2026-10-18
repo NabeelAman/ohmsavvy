@@ -84,7 +84,7 @@ export default function AstroAiDm6000arReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/astroai-dm6000ar-review" />
     </>
   );
 }

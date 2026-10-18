@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { CategoryListing } from "@/components/CategoryListing";
 import { buildMetadata } from "@/lib/metadata";
-import { picks } from "../best-soldering-irons/page";
 
 export const metadata = buildMetadata({
   title: "Soldering Iron Comparisons",
@@ -14,7 +13,6 @@ export default function SolderingIronsComparisonsPage() {
     <CategoryListing
       category="soldering-irons"
       type="comparison"
-      picks={picks}
       heading="Soldering Iron Comparisons"
       intro="Head-to-head comparisons between the soldering irons in our guide. Each one puts verified specs side by side and tells you which model fits which buyer."
     >

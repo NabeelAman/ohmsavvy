@@ -75,7 +75,7 @@ export default function FnirsiDso152ReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="oscilloscopes" />
+      <ContentLinks category="oscilloscopes" current="/oscilloscopes/fnirsi-dso152-review" />
     </>
   );
 }

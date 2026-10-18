@@ -68,7 +68,7 @@ export default function KaiweetsKm200sVsUniTUt139cPage() {
   return (
     <>
       <ProductComparison comparison={comparison} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/kaiweets-km200s-vs-uni-t-ut139c" />
     </>
   );
 }

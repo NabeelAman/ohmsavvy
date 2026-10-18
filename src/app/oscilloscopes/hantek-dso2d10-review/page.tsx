@@ -79,7 +79,7 @@ export default function HantekDso2d10ReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="oscilloscopes" />
+      <ContentLinks category="oscilloscopes" current="/oscilloscopes/hantek-dso2d10-review" />
     </>
   );
 }

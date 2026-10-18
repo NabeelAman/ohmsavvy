@@ -75,7 +75,7 @@ export default function PinecilV2ReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="soldering-irons" />
+      <ContentLinks category="soldering-irons" current="/soldering-irons/pinecil-v2-review" />
     </>
   );
 }

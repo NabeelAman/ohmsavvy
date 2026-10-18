@@ -79,7 +79,7 @@ export default function CraftsmanCmmt14171ReviewPage() {
   return (
     <>
       <ProductReview review={review} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/craftsman-cmmt14171-review" />
     </>
   );
 }

@@ -68,7 +68,7 @@ export default function Southwire14070TVsCraftsmanCmmt14171Page() {
   return (
     <>
       <ProductComparison comparison={comparison} />
-      <ContentLinks category="multimeters" />
+      <ContentLinks category="multimeters" current="/multimeters/southwire-14070t-vs-craftsman-cmmt14171" />
     </>
   );
 }

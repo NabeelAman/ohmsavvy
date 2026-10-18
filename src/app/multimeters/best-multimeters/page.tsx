@@ -227,7 +227,11 @@ export default function BestMultimetersPage() {
           { value: "$0", label: "Sponsored" },
         ]}
       />
-      <ReviewArticle picks={picks} faqs={faqs} />
+      <ReviewArticle
+        picks={picks}
+        faqs={faqs}
+        howWeChose="We started from the multimeters most often recommended by electricians and hobbyists, then compared CAT safety rating, True RMS, resolution, and extras like NCV and low-impedance mode against the work each kind of buyer actually does."
+      />
       <ContentLinks category="multimeters" />
     </>
   );

@@ -113,7 +113,11 @@ export default function BestOscilloscopesPage() {
           { value: "$0", label: "Sponsored" },
         ]}
       />
-      <ReviewArticle picks={picks} faqs={faqs} />
+      <ReviewArticle
+        picks={picks}
+        faqs={faqs}
+        howWeChose="We compared bandwidth, channel count, and sample rate against the signals beginners and hobbyists actually measure, from audio-range work to microcontroller debugging."
+      />
       <ContentLinks category="oscilloscopes" />
     </>
   );

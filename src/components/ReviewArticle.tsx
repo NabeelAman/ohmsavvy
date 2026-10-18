@@ -1,7 +1,11 @@
+import Link from "next/link";
+import { content } from "@/lib/content";
+import { ArticleTocBar, ArticleTocSidebar, type TocItem } from "./ArticleToc";
 import { ImageLightbox } from "./ImageLightbox";
+import { ReadingProgress } from "./ReadingProgress";
+import { Reveal } from "./Reveal";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
-import { Card } from "./ui/Card";
 import { ProsCons } from "./ui/ProsCons";
 import { RankBadge } from "./ui/RankBadge";
 import { SpecList, type Spec } from "./ui/SpecList";
@@ -32,12 +36,52 @@ export type Pick = {
 
 export type Faq = { question: string; answer: string };
 
+const slug = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
+const reviewHrefFor = (name: string) =>
+  content.find((e) => e.type === "review" && e.title === `${name} Review`)?.href;
+const bestFor = (p: Pick) => p.specs.find((s) => s.label === "Best for")?.value;
+
+const METHOD = [
+  {
+    title: "Specs from the source",
+    body: "Every spec is checked against the manufacturer's official product page or datasheet and the official Amazon listing. Where sources disagree, we say so.",
+    icon: "M5 3h7l3 3v11H5V3Zm7 0v3h3M7.5 11l2 2 3.5-4",
+  },
+  {
+    title: "Fit over feature count",
+    body: "Each pick earns its place for a specific kind of buyer, and we name who should skip it, rather than ranking on spec-sheet length.",
+    icon: "M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z",
+  },
+  {
+    title: "Owner feedback, cross-checked",
+    body: "We look for patterns in verified-purchase reviews to catch reliability issues that spec sheets never show.",
+    icon: "M4 5h12v8H8l-4 3V5Zm3 3h6M7 10.5h4",
+  },
+  {
+    title: "No paid placement",
+    body: "We earn Amazon affiliate commissions only. No brand pays for a spot, a ranking, or a badge.",
+    icon: "M10 3 4 5.5V10c0 3.5 2.6 6.2 6 7 3.4-.8 6-3.5 6-7V5.5L10 3Z",
+  },
+];
+
+function ProductImage({ pick, className, eager }: { pick: Pick; className: string; eager?: boolean }) {
+  return pick.image ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={pick.image} alt={pick.name} className={className} loading={eager ? "eager" : "lazy"} />
+  ) : (
+    <span className="px-3 text-center text-[11px] text-muted">Photo pending</span>
+  );
+}
+
 export function ReviewArticle({
   picks,
   faqs,
+  howWeChose,
 }: {
   picks: Pick[];
   faqs: Faq[];
+  /** Optional page-specific methodology note shown above the standard criteria. */
+  howWeChose?: string;
 }) {
   // A Review per pick, not an AggregateRating — this is a single editorial rating,
   // not an aggregate of multiple independent reviews, and claiming otherwise would
@@ -55,178 +99,349 @@ export function ReviewArticle({
         description: p.bottomLine,
         review: {
           "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: p.rating,
-            bestRating: "5",
-          },
-          author: {
-            "@type": "Organization",
-            name: "OhmSavvy",
-          },
+          reviewRating: { "@type": "Rating", ratingValue: p.rating, bestRating: "5" },
+          author: { "@type": "Organization", name: "OhmSavvy" },
         },
       },
     })),
   };
 
+  const featured = picks.slice(0, Math.min(3, picks.length));
+  const alsoGreat = picks.slice(featured.length);
+
+  const toc: TocItem[] = [
+    { id: "top-picks", label: "Top picks" },
+    { id: "full-comparison", label: "Compare" },
+    { id: "picks", label: "Detailed reviews" },
+    ...picks.map((p, i) => ({ id: slug(p.name), label: `${i + 1}. ${p.name}`, sub: true })),
+    { id: "how-we-chose", label: "How we chose" },
+    ...(faqs.length ? [{ id: "faq", label: "FAQ" }] : []),
+  ];
+
   return (
-    <article className="mx-auto max-w-4xl px-6 py-16">
+    <article className="mx-auto max-w-6xl px-6 pt-10 pb-16">
+      <ReadingProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      <p className="text-xs text-muted leading-5">
-        Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through the links
-        below, at no extra cost to you.{" "}
-        <a href="/about#how-were-funded" className="text-accent hover:underline">
-          How we&apos;re funded
-        </a>
-        .
-      </p>
-      <Card padding="p-5" className="mt-4">
-        <p className="font-display text-xs text-muted uppercase tracking-wide mb-3">Jump to a pick</p>
-        <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          {picks.map((p, i) => (
-            <li key={p.name}>
-              <a href={`#${p.name.toLowerCase().replace(/\s+/g, "-")}`} className="text-accent hover:underline">
-                #{i + 1} {p.badge}: {p.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 pt-3 border-t border-border text-xs text-muted">
-          Specs verified against manufacturer datasheets. We don&apos;t accept payment for placement.
-        </p>
-      </Card>
 
-      <div className="mt-14 space-y-14">
-        {picks.map((p, i) => (
-          <section key={p.name} id={p.name.toLowerCase().replace(/\s+/g, "-")} className="scroll-mt-24">
-            <div className="flex flex-col sm:flex-row gap-6">
-              {p.image && (
-                <div className="group shrink-0 w-full sm:w-64 rounded-lg border border-border bg-surface shadow-sm overflow-hidden">
-                  <div className="h-1.5 bg-accent" />
-                  <div className="h-64 flex items-center justify-center bg-gradient-to-b from-surface-raised to-surface overflow-hidden">
-                    <ImageLightbox src={p.image} alt={p.name}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={p.image}
-                        alt={p.name}
-                        className="w-full h-full object-contain scale-125 transition-transform duration-300 group-hover:scale-[1.35]"
-                        loading="lazy"
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-12">
+        <div className="min-w-0">
+          {/* Byline + disclosure */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+            <span className="inline-flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 font-display text-xs text-accent">
+                OS
+              </span>
+              <span>
+                By <span className="font-medium">OhmSavvy Research Team</span>
+              </span>
+            </span>
+            <span className="text-muted">Desk research · specs verified against manufacturer data</span>
+          </div>
+          <p className="mt-3 text-xs text-muted leading-5">
+            Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through the links below, at no
+            extra cost to you.{" "}
+            <a href="/about#how-were-funded" className="text-accent hover:underline">
+              How we&apos;re funded
+            </a>
+            .
+          </p>
+
+          {/* Direct child of the column so it can stick for the whole article. */}
+          <ArticleTocBar items={toc} className="mt-6" />
+
+          {/* 1. Top picks at a glance */}
+          <section id="top-picks" className="mt-10 scroll-mt-36">
+            <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">At a glance</p>
+            <h2 className="mt-1 text-2xl sm:text-3xl font-semibold">Our top picks</h2>
+            <div className={`mt-6 grid gap-5 ${featured.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
+              {featured.map((p, i) => (
+                <Reveal key={p.name} delay={i * 90} className="flex">
+                  <div className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-accent/60 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                    {i === 0 && <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent to-signal" />}
+                    <div className="relative m-3 mb-0 flex h-44 items-center justify-center rounded-xl bg-white border border-border/60 overflow-hidden">
+                      <span className="absolute left-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-accent font-display text-xs font-semibold text-accent-foreground shadow">
+                        {i + 1}
+                      </span>
+                      <ProductImage
+                        pick={p}
+                        eager
+                        className="h-full w-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110 motion-reduce:transition-none"
                       />
-                    </ImageLightbox>
+                    </div>
+                    <div className="flex flex-1 flex-col gap-2 p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <Badge variant="signal">{p.badge}</Badge>
+                        <Stars rating={p.rating} />
+                      </div>
+                      <h3 className="text-lg font-semibold leading-snug">{p.name}</h3>
+                      <p className="flex-1 text-sm text-muted leading-6">{p.bottomLine}</p>
+                      <Button href={p.ctaHref} className="mt-2 w-full whitespace-nowrap">
+                        Check price on Amazon →
+                      </Button>
+                      <a href={`#${slug(p.name)}`} className="text-center text-xs font-medium text-accent hover:underline">
+                        Why we picked it ↓
+                      </a>
+                    </div>
                   </div>
-                </div>
-              )}
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-3">
-                  <RankBadge rank={i + 1} />
-                  <Badge variant="signal">{p.badge}</Badge>
-                  <Stars rating={p.rating} />
-                  {p.handsOnTested && <Badge variant="accent">Hands-on Tested</Badge>}
-                </div>
-                <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
-                  <h2 className="text-2xl font-semibold">{p.name}</h2>
-                  <Button href={p.ctaHref}>Check price on Amazon →</Button>
-                </div>
-                <p className="mt-3 font-medium leading-6 max-w-2xl">{p.bottomLine}</p>
-                <p className="mt-2 text-muted leading-7 max-w-2xl">{p.verdict}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {alsoGreat.length > 0 && (
+              <Reveal className="mt-8">
+                <h3 className="font-display text-xs text-muted uppercase tracking-[0.15em] mb-3">Also great</h3>
+                <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+                  {alsoGreat.map((p, j) => {
+                    const rank = featured.length + j + 1;
+                    return (
+                      <li key={p.name} className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 transition-colors hover:bg-surface-raised">
+                        <span className="w-6 shrink-0 text-center font-display text-sm text-muted">{rank}</span>
+                        <a
+                          href={`#${slug(p.name)}`}
+                          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden"
+                        >
+                          <ProductImage pick={p} className="h-full w-full object-contain p-1 transition-transform duration-300 group-hover:scale-110" />
+                        </a>
+                        <div className="min-w-0 flex-1">
+                          <a href={`#${slug(p.name)}`} className="block font-semibold leading-snug hover:text-accent">
+                            {p.name}
+                          </a>
+                          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                            <Badge variant="signal">{p.badge}</Badge>
+                            <span className="hidden sm:inline">
+                              <Stars rating={p.rating} />
+                            </span>
+                          </div>
+                        </div>
+                        <Button href={p.ctaHref} className="shrink-0 px-3 py-2 text-xs whitespace-nowrap">
+                          <span className="hidden sm:inline">Check price</span>
+                          <span className="sm:hidden">Price</span> →
+                        </Button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
+            )}
+          </section>
+
+          {/* 2. Quick-shopping comparison table */}
+          <section id="full-comparison" className="mt-16 scroll-mt-36">
+            <Reveal>
+              <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">Quick shopping</p>
+              <h2 className="mt-1 text-2xl sm:text-3xl font-semibold">Compare at a glance</h2>
+              <p className="mt-2 text-sm text-muted">Swipe sideways on mobile to see every spec.</p>
+              <div className="mt-5 overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
+                <table className="w-full min-w-[44rem] text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-surface-raised text-left">
+                      <th className="sticky left-0 z-10 bg-surface-raised py-3 pl-4 pr-4 font-display text-xs text-muted uppercase">
+                        Model
+                      </th>
+                      <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Award</th>
+                      <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Rating</th>
+                      {picks[0]?.specs
+                        .filter((s) => s.label !== "Best for")
+                        .map((s) => (
+                          <th key={s.label} className="py-3 pr-4 font-display text-xs text-muted uppercase">
+                            {s.label}
+                          </th>
+                        ))}
+                      <th className="py-3 pr-4"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {picks.map((p, i) => (
+                      <tr
+                        key={p.name}
+                        className={`border-b border-border last:border-0 transition-colors hover:bg-surface-raised ${i === 0 ? "bg-accent/5" : ""}`}
+                      >
+                        <td className={`sticky left-0 z-10 py-3 pl-4 pr-4 ${i === 0 ? "bg-[color-mix(in_srgb,var(--accent)_5%,var(--surface))]" : "bg-surface"}`}>
+                          <a href={`#${slug(p.name)}`} className="flex items-center gap-3 font-medium hover:text-accent">
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
+                              <ProductImage pick={p} className="h-full w-full object-contain p-0.5" />
+                            </span>
+                            <span className="leading-snug">
+                              <span className="block text-[11px] font-display text-muted">#{i + 1}</span>
+                              {p.name}
+                            </span>
+                          </a>
+                        </td>
+                        <td className="py-3 pr-4">
+                          <Badge variant="signal">{p.badge}</Badge>
+                        </td>
+                        <td className="py-3 pr-4">
+                          <Stars rating={p.rating} />
+                        </td>
+                        {picks[0]?.specs
+                          .filter((s) => s.label !== "Best for")
+                          .map((s) => (
+                            <td key={s.label} className="py-3 pr-4 text-muted">
+                              <SpecValue value={p.specs.find((x) => x.label === s.label)?.value ?? "—"} />
+                            </td>
+                          ))}
+                        <td className="py-3 pr-4">
+                          <Button href={p.ctaHref} className="px-3.5 py-2 text-xs whitespace-nowrap">
+                            Check price →
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            </div>
+            </Reveal>
+          </section>
 
-            <div className="mt-6 grid sm:grid-cols-2 gap-6">
-              <SpecList specs={p.specs} />
-              <ProsCons pros={p.pros} cons={p.cons} />
-            </div>
+          {/* 3. Detailed reviews */}
+          <section id="picks" className="mt-16 scroll-mt-36">
+            <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">In depth</p>
+            <h2 className="mt-1 text-2xl sm:text-3xl font-semibold">Detailed reviews</h2>
+            <div className="mt-8 space-y-12">
+              {picks.map((p, i) => {
+                const reviewHref = reviewHrefFor(p.name);
+                const forWho = bestFor(p);
+                return (
+                  <Reveal key={p.name}>
+                    <section
+                      id={slug(p.name)}
+                      className="scroll-mt-36 rounded-2xl border border-border bg-surface p-5 sm:p-6 shadow-sm"
+                    >
+                      <div className="flex flex-col sm:flex-row gap-6">
+                        {p.image && (
+                          <div className="group shrink-0 w-full sm:w-60 rounded-xl border border-border bg-white overflow-hidden">
+                            <div className="h-60 flex items-center justify-center overflow-hidden">
+                              <ImageLightbox src={p.image} alt={p.name}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={p.image}
+                                  alt={p.name}
+                                  className="w-full h-full object-contain p-3 transition-transform duration-300 group-hover:scale-110"
+                                  loading="lazy"
+                                />
+                              </ImageLightbox>
+                            </div>
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-3">
+                            <RankBadge rank={i + 1} />
+                            <Badge variant="signal">{p.badge}</Badge>
+                            <Stars rating={p.rating} />
+                            {p.handsOnTested && <Badge variant="accent">Hands-on Tested</Badge>}
+                          </div>
+                          <h3 className="mt-3 text-2xl font-semibold">{p.name}</h3>
+                          <p className="mt-2 font-medium leading-6">{p.bottomLine}</p>
+                          {forWho && (
+                            <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-signal-bg px-3 py-1 text-xs">
+                              <span className="font-medium text-signal">Best for:</span>
+                              <span>{forWho}</span>
+                            </p>
+                          )}
+                          <p className="mt-3 text-muted leading-7">{p.verdict}</p>
+                        </div>
+                      </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Button href={p.ctaHref}>Check price on Amazon →</Button>
-              <span className="text-xs text-muted">Price shown at retailer — may fluctuate.</span>
+                      <div className="mt-6 grid sm:grid-cols-2 gap-6">
+                        <SpecList specs={p.specs} />
+                        <ProsCons pros={p.pros} cons={p.cons} />
+                      </div>
+
+                      <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
+                        <Button href={p.ctaHref}>Check price on Amazon →</Button>
+                        {reviewHref && (
+                          <Link href={reviewHref} className="text-sm font-medium text-accent hover:underline">
+                            Read the full {p.name} review →
+                          </Link>
+                        )}
+                        <span className="text-xs text-muted sm:ml-auto">Price shown at retailer, may fluctuate.</span>
+                      </div>
+                    </section>
+                  </Reveal>
+                );
+              })}
             </div>
           </section>
-        ))}
+
+          {/* 4. How we chose */}
+          <section id="how-we-chose" className="mt-16 scroll-mt-36">
+            <Reveal>
+              <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">Methodology</p>
+              <h2 className="mt-1 text-2xl sm:text-3xl font-semibold">How we chose</h2>
+              {howWeChose && <p className="mt-3 text-muted leading-7 max-w-3xl">{howWeChose}</p>}
+              <div className="mt-6 grid sm:grid-cols-2 gap-4">
+                {METHOD.map((m) => (
+                  <div key={m.title} className="flex gap-4 rounded-2xl border border-border bg-surface p-5">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-signal-bg text-signal">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                        <path d={m.icon} />
+                      </svg>
+                    </span>
+                    <span>
+                      <span className="block font-medium">{m.title}</span>
+                      <span className="mt-1 block text-sm text-muted leading-6">{m.body}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-sm text-muted leading-6">
+                This is desk research, not bench testing. A pick only carries a &quot;Hands-on Tested&quot; badge once we
+                have actually bought and tested that unit.{" "}
+                <a href="/about" className="text-accent hover:underline">
+                  More on how we research
+                </a>
+                .
+              </p>
+            </Reveal>
+          </section>
+
+          {/* 5. FAQ */}
+          {faqs.length > 0 && (
+            <section id="faq" className="mt-16 scroll-mt-36">
+              <Reveal>
+                <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">Questions</p>
+                <h2 className="mt-1 text-2xl sm:text-3xl font-semibold">Frequently asked questions</h2>
+                <div className="mt-6 space-y-3">
+                  {faqs.map((f) => (
+                    <details key={f.question} className="group rounded-2xl border border-border bg-surface p-5 open:shadow-sm">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium [&::-webkit-details-marker]:hidden">
+                        {f.question}
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border text-accent transition-transform duration-300 group-open:rotate-45">
+                          +
+                        </span>
+                      </summary>
+                      <p className="mt-3 text-sm text-muted leading-6">{f.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </Reveal>
+            </section>
+          )}
+        </div>
+
+        {/* Sticky sidebar (desktop) */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 space-y-6">
+            <ArticleTocSidebar items={toc} />
+            {picks[0] && (
+              <div className="rounded-2xl border border-border bg-surface p-4 shadow-sm">
+                <p className="font-display text-[11px] text-accent uppercase tracking-[0.15em]">Our top pick</p>
+                <div className="mt-3 flex h-28 items-center justify-center rounded-xl bg-white border border-border/60 overflow-hidden">
+                  <ProductImage pick={picks[0]} className="h-full w-full object-contain p-2" />
+                </div>
+                <p className="mt-3 font-semibold leading-snug">{picks[0].name}</p>
+                <Stars rating={picks[0].rating} />
+                <Button href={picks[0].ctaHref} className="mt-3 w-full px-3 text-xs whitespace-nowrap">
+                  Check price on Amazon →
+                </Button>
+              </div>
+            )}
+          </div>
+        </aside>
       </div>
-
-      <section id="full-comparison" className="mt-16 rounded-xl border border-border bg-surface-raised p-6 shadow-sm scroll-mt-24">
-        <h2 className="text-xl font-semibold mb-4">Full comparison</h2>
-        <div className="overflow-x-auto rounded-lg border border-border">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-surface border-b border-border text-left">
-                <th className="py-3 pl-4 pr-4 font-display text-xs text-muted uppercase">#</th>
-                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Model</th>
-                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Award</th>
-                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Rating</th>
-                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[0]?.label}</th>
-                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">{picks[0]?.specs[1]?.label}</th>
-                <th className="py-3 pr-4 font-display text-xs text-muted uppercase">Best For</th>
-                <th className="py-3 pr-4 font-display text-xs text-muted uppercase"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {picks.map((p, i) => (
-                <tr
-                  key={p.name}
-                  className={`border-b border-border last:border-0 transition-colors hover:bg-surface ${
-                    i === 0 ? "bg-accent/5" : ""
-                  }`}
-                >
-                  <td className={`py-3.5 pl-4 pr-4 font-display ${i === 0 ? "border-l-2 border-accent text-accent font-semibold" : "text-muted"}`}>
-                    {i + 1}
-                  </td>
-                  <td className="py-3.5 pr-4 font-medium">
-                    <a href={`#${p.name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-accent">
-                      {p.name}
-                    </a>
-                  </td>
-                  <td className="py-3.5 pr-4">
-                    <Badge variant="signal">{p.badge}</Badge>
-                  </td>
-                  <td className="py-3.5 pr-4">
-                    <Stars rating={p.rating} />
-                  </td>
-                  <td className="py-3.5 pr-4 text-muted">
-                    <SpecValue value={p.specs[0]?.value ?? ""} />
-                  </td>
-                  <td className="py-3.5 pr-4 text-muted">
-                    <SpecValue value={p.specs[1]?.value ?? ""} />
-                  </td>
-                  <td className="py-3.5 pr-4 text-muted">{p.specs[p.specs.length - 1]?.value}</td>
-                  <td className="py-3.5 pr-4">
-                    <a
-                      href={p.ctaHref}
-                      className="inline-block rounded-md bg-accent text-accent-foreground px-4 py-2 text-xs font-semibold whitespace-nowrap shadow-sm hover:opacity-90 hover:shadow transition-all"
-                    >
-                      Check price →
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section id="faq" className="mt-16 scroll-mt-24">
-        <h2 className="font-display text-xl font-semibold mb-5">Frequently asked questions</h2>
-        <div className="space-y-5">
-          {faqs.map((f) => (
-            <div key={f.question}>
-              <h3 className="font-medium">{f.question}</h3>
-              <p className="mt-1.5 text-sm text-muted leading-6">{f.answer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <footer className="mt-16 pt-6 border-t border-border text-sm text-muted leading-6">
-        <p>
-          This comparison is based on published manufacturer specifications, safety
-          certifications, and patterns in verified buyer feedback. We do not accept payment for
-          placement or ranking.
-        </p>
-      </footer>
     </article>
   );
 }

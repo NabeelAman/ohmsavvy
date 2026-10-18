@@ -113,7 +113,11 @@ export default function BestSolderingIronsPage() {
           { value: "$0", label: "Sponsored" },
         ]}
       />
-      <ReviewArticle picks={picks} faqs={faqs} />
+      <ReviewArticle
+        picks={picks}
+        faqs={faqs}
+        howWeChose="We compared power, heat-up time, temperature control, and tip availability, weighing portable irons and bench stations against how often and where you will actually solder."
+      />
       <ContentLinks category="soldering-irons" />
     </>
   );

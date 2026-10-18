@@ -33,13 +33,31 @@ function routeFromFile(file) {
 
 const pageFiles = findPageFiles("src/app");
 const routes = new Set(pageFiles.map(routeFromFile));
+const registryContent = readFileSync("src/lib/content.ts", "utf8");
 
 const hrefPattern = /href=\{?["'`](\/[a-zA-Z0-9\-/#]*)["'`]\}?/g;
 const inbound = new Map([...routes].map((r) => [r, new Set()]));
 
+// src/lib/content.ts registry entries, so <ContentLinks category="x"> (a dynamic
+// component — its hrefs come from this data, not literal strings in its own
+// source) can be resolved to the real links it renders at runtime.
+const registryEntries = [...registryContent.matchAll(/category:\s*"([^"]+)"[^}]*?href:\s*"([^"]+)"/gs)]
+  .map(([, category, href]) => ({ category, href }));
+
 for (const file of pageFiles) {
   const fromRoute = routeFromFile(file);
   const content = readFileSync(file, "utf8");
+
+  const contentLinksMatch = content.match(/<ContentLinks\s+category="([^"]+)"/);
+  if (contentLinksMatch) {
+    const category = contentLinksMatch[1];
+    for (const entry of registryEntries) {
+      if (entry.category === category && routes.has(entry.href)) {
+        inbound.get(entry.href).add(fromRoute);
+      }
+    }
+  }
+
   for (const match of content.matchAll(hrefPattern)) {
     const target = match[1].split("#")[0] || "/";
     if (routes.has(target) && target !== fromRoute) {
@@ -64,8 +82,11 @@ for (const file of ["src/components/Nav.tsx", "src/app/layout.tsx"]) {
   }
 }
 
+// sitemap.ts now generates most routes from src/lib/content.ts's registry rather
+// than listing them as literal strings itself — read both files so this check
+// still sees every real route instead of only the handful still hardcoded.
 const sitemapContent = readFileSync("src/app/sitemap.ts", "utf8");
-const sitemapRoutes = [...sitemapContent.matchAll(/"(\/[a-zA-Z0-9\-/]*)"/g)]
+const sitemapRoutes = [...(sitemapContent + registryContent).matchAll(/"(\/[a-zA-Z0-9\-/]*)"/g)]
   .map((m) => m[1])
   .filter((r) => r !== "");
 sitemapRoutes.push("/"); // the "" entry maps to root

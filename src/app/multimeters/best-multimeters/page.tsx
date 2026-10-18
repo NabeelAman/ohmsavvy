@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CategoryHero } from "@/components/CategoryHero";
+import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 
 export const metadata: Metadata = {
@@ -228,60 +229,7 @@ export default function BestMultimetersPage() {
         ]}
       />
       <ReviewArticle picks={picks} faqs={faqs} />
-      <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-4xl px-6 py-12">
-          <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Shop by use case</p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <a
-              href="/multimeters/best-multimeter-for-electricians"
-              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
-            >
-              <p className="font-medium">For Electricians</p>
-              <p className="mt-1 text-sm text-muted">CAT III/IV picks for panel work</p>
-            </a>
-            <a
-              href="/multimeters/best-multimeter-for-automotive"
-              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
-            >
-              <p className="font-medium">For Automotive</p>
-              <p className="mt-1 text-sm text-muted">RPM, dwell, and duty-cycle ready</p>
-            </a>
-            <a
-              href="/multimeters/best-multimeter-for-home-use"
-              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
-            >
-              <p className="font-medium">For Home & DIY</p>
-              <p className="mt-1 text-sm text-muted">Easy, affordable, no overkill</p>
-            </a>
-            <a
-              href="/multimeters/multimeter-buying-guide"
-              className="rounded-lg border border-border bg-surface p-4 hover:border-accent transition-colors"
-            >
-              <p className="font-medium">Buying Guide</p>
-              <p className="mt-1 text-sm text-muted">CAT ratings, True RMS, and more explained</p>
-            </a>
-          </div>
-        </div>
-      </section>
-      <section className="mx-auto max-w-4xl px-6 py-12 border-t border-border">
-        <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Reviews &amp; comparisons</p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          <a
-            href="/multimeters/fluke-117-review"
-            className="rounded-lg border border-border bg-surface-raised p-4 hover:border-accent transition-colors"
-          >
-            <p className="font-medium">Fluke 117 Review</p>
-            <p className="mt-1 text-sm text-muted">A closer look at our Best Overall pick</p>
-          </a>
-          <a
-            href="/multimeters/fluke-117-vs-fluke-87v"
-            className="rounded-lg border border-border bg-surface-raised p-4 hover:border-accent transition-colors"
-          >
-            <p className="font-medium">Fluke 117 vs Fluke 87V</p>
-            <p className="mt-1 text-sm text-muted">Which Fluke tier actually fits your work</p>
-          </a>
-        </div>
-      </section>
+      <ContentLinks category="multimeters" />
     </>
   );
 }

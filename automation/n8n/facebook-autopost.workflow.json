@@ -1,0 +1,309 @@
+{
+  "name": "OhmSavvy: Facebook autopost (3/day)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9,13,19 * * *"
+            }
+          ]
+        }
+      },
+      "id": "a1",
+      "name": "3x daily (9:00, 13:00, 19:00)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c1",
+              "name": "pageId",
+              "value": "PASTE_YOUR_FACEBOOK_PAGE_ID",
+              "type": "string"
+            },
+            {
+              "id": "c2",
+              "name": "graphVersion",
+              "value": "v23.0",
+              "type": "string"
+            },
+            {
+              "id": "c3",
+              "name": "feedUrl",
+              "value": "https://ohmsavvy.com/feed.json",
+              "type": "string"
+            },
+            {
+              "id": "c4",
+              "name": "recycleAfterDays",
+              "value": 14,
+              "type": "number"
+            },
+            {
+              "id": "c5",
+              "name": "utmCampaign",
+              "value": "fb_autopost",
+              "type": "string"
+            },
+            {
+              "id": "c6",
+              "name": "dryRun",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.feedUrl }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "a3",
+      "name": "Fetch site feed",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Chooses the next page to post. Never-posted content goes first (content added\n// after the workflow went live is treated as \"new\" and jumps the queue); once\n// everything has been posted, the longest-ago post is recycled after\n// recycleAfterDays. Categories take turns: the category posted least recently\n// goes next, so no category is starved.\n// Static data only persists for active (production) runs, not manual tests.\nconst cfg = $('Config').first().json;\nconst items = $input.first().json.items || [];\nconst data = $getWorkflowStaticData('global');\ndata.firstSeen = data.firstSeen || {};\ndata.posted = data.posted || {};\ndata.categoryLastPosted = data.categoryLastPosted || {};\n\nconst now = Date.now();\nconst firstRun = Object.keys(data.firstSeen).length === 0;\nfor (const it of items) {\n  // On the very first run everything is \"backlog\" (0); afterwards, anything\n  // not seen before is genuinely new and gets the current time.\n  if (data.firstSeen[it.url] === undefined) data.firstSeen[it.url] = firstRun ? 0 : now;\n}\n\nconst TYPE_ORDER = { review: 0, comparison: 1, 'use-case-guide': 2, roundup: 3, 'buying-guide': 4 };\n// Of the candidates, take the first one from the category that has waited longest.\nconst fairest = (list) => {\n  if (!list.length) return undefined;\n  const cats = [...new Set(list.map((i) => i.category))];\n  cats.sort((a, b) => (data.categoryLastPosted[a] || 0) - (data.categoryLastPosted[b] || 0));\n  return list.find((i) => i.category === cats[0]);\n};\n\nconst unposted = items\n  .filter((i) => !data.posted[i.url])\n  .sort((a, b) => (data.firstSeen[b.url] - data.firstSeen[a.url]) || (TYPE_ORDER[a.type] - TYPE_ORDER[b.type]));\n\nlet pick = fairest(unposted);\nif (!pick) {\n  const cutoff = now - Number(cfg.recycleAfterDays) * 86400000;\n  const recyclable = items\n    .filter((i) => data.posted[i.url] && data.posted[i.url] < cutoff)\n    .sort((a, b) => data.posted[a.url] - data.posted[b.url]);\n  pick = fairest(recyclable);\n}\n\nif (!pick) return []; // everything posted recently: skip this slot\nreturn [{ json: { ...pick, isRepost: Boolean(data.posted[pick.url]) } }];"
+      },
+      "id": "a4",
+      "name": "Pick next post",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Builds the Facebook caption. Plain, specific and honest: no prices (they\n// change), no hype words, and \"tested\" only when the feed says so.\nconst it = $input.first().json;\nconst cfg = $('Config').first().json;\n\n// Deterministic variety: the same page gets a different opener on different days.\nconst seed = [...(it.url + new Date().toDateString())].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);\nconst pickOne = (arr) => arr[seed % arr.length];\n\nconst TAGS = {\n  multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',\n  'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',\n  oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',\n};\nconst LABEL = { multimeters: 'multimeter', 'soldering-irons': 'soldering iron', oscilloscopes: 'oscilloscope' };\n\nconst sep = it.url.includes('?') ? '&' : '?';\nconst link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);\nconst p = it.topPick;\nconst products = it.products || [];\nconst lines = [];\n\nswitch (it.type) {\n  case 'review':\n    lines.push(pickOne([\n      '🔍 ' + it.title,\n      'Is the ' + (p ? p.name : it.title) + ' worth it? Here is our verdict.',\n      'New on OhmSavvy: ' + it.title,\n    ]));\n    if (p && p.bottomLine) lines.push(p.bottomLine);\n    if (p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');\n    if (it.handsOnTested) lines.push('✅ Hands-on tested in the OhmSavvy lab.');\n    lines.push('Specs, strengths, limitations, and who should skip it:');\n    break;\n  case 'comparison':\n    lines.push(pickOne([\n      '⚖️ ' + it.title,\n      (products[0] || 'Which one') + ' or ' + (products[1] || 'the alternative') + '? We compared them side by side.',\n      'Torn between two ' + LABEL[it.category] + 's? ' + it.title,\n    ]));\n    lines.push(it.description + '.');\n    if (it.handsOnTested) lines.push('✅ Includes a pick we have tested hands-on.');\n    lines.push('Specs side by side and which to choose for your work:');\n    break;\n  case 'use-case-guide':\n    lines.push(pickOne([\n      '🧰 Best ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase().replace(LABEL[it.category] + ' ', ''),\n      'Choosing a ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase() + '? Start here.',\n    ]));\n    lines.push(it.description + '.');\n    if (products.length) lines.push('Our picks include: ' + products.slice(0, 3).join(', ') + '.');\n    break;\n  case 'roundup':\n    lines.push(pickOne(['🏅 ' + it.title + ', compared honestly', 'Shopping for a ' + LABEL[it.category] + '? ' + it.title]));\n    lines.push(it.description);\n    if (p) lines.push('Our top pick: ' + p.name + ' (' + p.rating + '/5).');\n    if (it.handsOnTested) lines.push('✅ Our top picks are hands-on tested in our lab.');\n    break;\n  default:\n    lines.push('📘 ' + it.title);\n    lines.push(it.description + '.');\n}\n\nlines.push('👉 ' + link);\nlines.push(TAGS[it.category] || '');\n\nreturn [{ json: { ...it, link, message: lines.filter(Boolean).join('\\n\\n') } }];"
+      },
+      "id": "a5",
+      "name": "Build caption",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "d1",
+              "leftValue": "={{ $('Config').first().json.dryRun }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a6",
+      "name": "Dry run?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a7",
+      "name": "Dry run: caption only (not posted)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/{{ $('Config').first().json.graphVersion }}/{{ $('Config').first().json.pageId }}/feed",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json.link }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a8",
+      "name": "Post to Facebook Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1320,
+        120
+      ],
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "",
+          "name": "Facebook Page token (access_token)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Records the post only after Facebook accepted it.\nconst post = $('Build caption').first().json;\nconst data = $getWorkflowStaticData('global');\ndata.posted = data.posted || {};\ndata.posted[post.url] = Date.now();\ndata.categoryLastPosted = data.categoryLastPosted || {};\ndata.categoryLastPosted[post.category] = Date.now();\nreturn [{ json: { postedUrl: post.url, facebookPostId: $input.first().json.id, repost: post.isRepost } }];"
+      },
+      "id": "a9",
+      "name": "Mark as posted",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        120
+      ]
+    }
+  ],
+  "connections": {
+    "3x daily (9:00, 13:00, 19:00)": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Fetch site feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch site feed": {
+      "main": [
+        [
+          {
+            "node": "Pick next post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick next post": {
+      "main": [
+        [
+          {
+            "node": "Build caption",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build caption": {
+      "main": [
+        [
+          {
+            "node": "Dry run?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dry run?": {
+      "main": [
+        [
+          {
+            "node": "Dry run: caption only (not posted)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post to Facebook Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Facebook Page": {
+      "main": [
+        [
+          {
+            "node": "Mark as posted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Dubai"
+  },
+  "pinData": {}
+}

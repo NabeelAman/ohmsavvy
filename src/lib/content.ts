@@ -53,6 +53,13 @@ export const content: ContentEntry[] = [
   },
   {
     category: "multimeters",
+    type: "buying-guide",
+    title: "Clamp Meter Buying Guide",
+    description: "AC vs. AC/DC clamping, jaw size, and when you need one",
+    href: "/multimeters/clamp-meter-buying-guide",
+  },
+  {
+    category: "multimeters",
     type: "review",
     title: "Fluke 117 Review",
     description: "A closer look at our Best Overall pick",

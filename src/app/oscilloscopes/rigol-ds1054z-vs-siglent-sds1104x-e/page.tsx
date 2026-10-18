@@ -1,134 +1,95 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { SpecValue } from "@/components/ui/SpecValue";
-import { Stars } from "@/components/ui/Stars";
+import { ContentLinks } from "@/components/ContentLinks";
+import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-beginner-oscilloscopes/page";
 import { buildMetadata } from "@/lib/metadata";
 
-const a = picks.find((p) => p.name === "Rigol DS1054Z")!;
-const b = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
-
 export const metadata = buildMetadata({
   title: "Rigol DS1054Z vs Siglent SDS1104X-E",
-  description: "A spec-by-spec comparison of the Rigol DS1054Z and Siglent SDS1104X-E oscilloscopes — bandwidth, sample rate, and which fits your projects.",
+  description:
+    "Rigol DS1054Z vs Siglent SDS1104X-E: both 4-channel, 1 GSa/s scopes. How the 50MHz vs 100MHz bandwidth gap decides which fits your projects.",
   path: "/oscilloscopes/rigol-ds1054z-vs-siglent-sds1104x-e",
 });
 
+const comparison: ProductComparisonContent = {
+  category: "oscilloscopes",
+  heading: "Rigol DS1054Z vs Siglent SDS1104X-E",
+  intro:
+    "Both are 4-channel, 1 GSa/s scopes aimed at the same general audience — the real difference is bandwidth headroom and price, and whether you'll actually use the extra 50MHz the Siglent offers.",
+  a: {
+    pick: picks.find((p) => p.name === "Rigol DS1054Z")!,
+    reviewHref: "/oscilloscopes/rigol-ds1054z-review",
+    imageAlt: "Rigol DS1054Z oscilloscope",
+    chooseIf: [
+      "You want the lower-cost entry point into 4-channel scopes",
+      "50MHz covers your actual signal work — general electronics, microcontrollers, audio-range",
+      "You value a large community and documentation base for troubleshooting",
+      "You'd rather buy the hands-on tested pick in this pairing",
+    ],
+  },
+  b: {
+    pick: picks.find((p) => p.name === "Siglent SDS1104X-E")!,
+    reviewHref: "/oscilloscopes/siglent-sds1104x-e-review",
+    imageAlt: "Siglent SDS1104X-E oscilloscope",
+    chooseIf: [
+      "You expect your projects to get more demanding over time",
+      "You want bandwidth headroom now rather than upgrading later",
+      "You prefer Siglent's interface over Rigol's",
+      "You'd rather have 100MHz guaranteed by the manufacturer than rely on a community firmware unlock",
+    ],
+  },
+  differences: [
+    "The Siglent's bandwidth is double the Rigol's: 100MHz vs 50MHz.",
+    "Channel count and sample rate are identical between the two — 4 channels, 1 GSa/s.",
+    "The Rigol has a larger installed user base and more third-party documentation and tutorials.",
+    "The Siglent carries a price premium for its bandwidth headroom.",
+    "The Rigol's bandwidth is known to be unlockable higher via firmware; the Siglent's 100MHz is fixed as sold.",
+    "The Rigol's menu navigation has a learning curve; the Siglent's interface is generally regarded as more intuitive to pick up.",
+  ],
+  bottomLine:
+    "Channel count and sample rate are identical between these two — the decision really comes down to the 50MHz vs. 100MHz bandwidth gap and whether that headroom is worth the Siglent's higher price for your actual signal work. For pure beginners doing general electronics, the DS1054Z remains the more practical first scope.",
+  faqs: [
+    {
+      question: "Is 50MHz enough bandwidth for a beginner oscilloscope?",
+      answer:
+        "For general electronics, microcontroller work, and audio-range signals, yes — 50MHz covers the large majority of hobbyist and student work. You'd only outgrow it for RF work or high-speed digital signals.",
+    },
+    {
+      question: "Should I just buy the higher-bandwidth Siglent to avoid upgrading later?",
+      answer:
+        "If you're confident your projects will get more demanding — moving into faster digital signals or more advanced debugging — the Siglent's headroom is worth paying for now. If you're not sure, the Rigol's 50MHz still covers most beginner and intermediate work comfortably.",
+    },
+    {
+      question: "Is it true the Rigol DS1054Z's bandwidth can be unlocked past 50MHz?",
+      answer:
+        "The DS1054Z ships at 50MHz but is widely known to share hardware with Rigol's higher-bandwidth models in the same series, and the broader community has documented firmware-based unlock methods that raise it. OhmSavvy doesn't test or recommend unofficial firmware modifications — they can void your warranty and we haven't verified their safety or reliability ourselves. If you specifically want higher bandwidth with manufacturer support, the Siglent's 100MHz as-sold is the more straightforward route.",
+    },
+    {
+      question: "How much does the menu and UI design actually matter when choosing a scope?",
+      answer:
+        "More than it might seem for a first scope. The Rigol's menu navigation has a real learning curve — settings are often a few button presses deep, and it takes time to build muscle memory for common adjustments. The Siglent is generally regarded as more intuitive out of the box, with a layout that's faster to pick up cold. For a few minutes of setup per session, that gap barely registers. For someone learning electronics and reaching for the scope dozens of times a week, a friendlier UI measurably lowers the friction of actually using the instrument instead of fighting it — one reason some buyers pay the Siglent's premium for interface alone, independent of the bandwidth difference.",
+    },
+  ],
+  roundup: {
+    label: "See the full oscilloscope comparison",
+    href: "/oscilloscopes/best-beginner-oscilloscopes",
+  },
+  related: [
+    {
+      label: "Best oscilloscope for a home electronics lab",
+      href: "/oscilloscopes/best-oscilloscope-for-home-electronics-lab",
+    },
+    {
+      label: "Best oscilloscope for Arduino projects",
+      href: "/oscilloscopes/best-oscilloscope-for-arduino-projects",
+    },
+  ],
+};
+
 export default function RigolVsSiglentPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: [a, b].map((p, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "Product",
-        name: p.name,
-        ...(p.image ? { image: p.image } : {}),
-        description: p.bottomLine,
-        review: {
-          "@type": "Review",
-          reviewRating: { "@type": "Rating", ratingValue: p.rating, bestRating: "5" },
-          author: { "@type": "Organization", name: "OhmSavvy" },
-        },
-      },
-    })),
-  };
-
   return (
-    <article className="mx-auto max-w-3xl px-6 py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
-      <Eyebrow>COMPARISON</Eyebrow>
-      <h1 className="text-3xl sm:text-4xl leading-tight">Rigol DS1054Z vs Siglent SDS1104X-E</h1>
-      <p className="mt-5 text-lg text-muted leading-7">
-        Both are 4-channel, 1 GSa/s scopes aimed at the same general audience — the real
-        difference is bandwidth headroom and price, and whether you&apos;ll actually use the
-        extra 50MHz the Siglent offers.
-      </p>
-
-      <div className="mt-10 overflow-x-auto rounded-lg border border-border">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="bg-surface-raised border-b border-border text-left">
-              <th className="py-3 px-4 font-display text-xs text-muted uppercase"></th>
-              <th className="py-3 px-4 font-display text-xs text-muted uppercase">Rigol DS1054Z</th>
-              <th className="py-3 px-4 font-display text-xs text-muted uppercase">Siglent SDS1104X-E</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b border-border">
-              <td className="py-3 px-4 text-muted">Rating</td>
-              <td className="py-3 px-4"><Stars rating={a.rating} /></td>
-              <td className="py-3 px-4"><Stars rating={b.rating} /></td>
-            </tr>
-            {a.specs.map((spec, i) => (
-              <tr key={spec.label} className="border-b border-border last:border-0">
-                <td className="py-3 px-4 text-muted">{spec.label}</td>
-                <td className="py-3 px-4 font-medium"><SpecValue value={spec.value} /></td>
-                <td className="py-3 px-4 font-medium"><SpecValue value={b.specs[i]?.value ?? ""} /></td>
-              </tr>
-            ))}
-            <tr>
-              <td className="py-3 px-4"></td>
-              <td className="py-3 px-4">
-                <Button href={a.ctaHref}>Check price →</Button>
-              </td>
-              <td className="py-3 px-4">
-                <Button href={b.ctaHref}>Check price →</Button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div className="mt-10 space-y-10">
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Choose the Rigol DS1054Z if...</h2>
-          <p className="text-muted leading-7">
-            You want the lower-cost entry point into 4-channel scopes, 50MHz covers your actual
-            signal work (general electronics, microcontrollers, audio-range), and you value the
-            DS1054Z&apos;s large community and documentation base. {a.bottomLine}
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Choose the Siglent SDS1104X-E if...</h2>
-          <p className="text-muted leading-7">
-            You expect your projects to get more demanding over time and want the bandwidth
-            headroom now rather than upgrading later, or you prefer Siglent&apos;s interface.{" "}
-            {b.bottomLine}
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">The bottom line</h2>
-          <p className="text-muted leading-7">
-            Channel count and sample rate are identical between these two — the decision really
-            comes down to the 50MHz vs. 100MHz bandwidth gap and whether that headroom is worth
-            the Siglent&apos;s higher price for your actual signal work. For pure beginners doing
-            general electronics, the DS1054Z remains the more practical first scope.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-3">Read the full review</h2>
-          <p className="text-muted leading-7">
-            See the{" "}
-            <Link href="/oscilloscopes/rigol-ds1054z-review" className="text-accent hover:underline">
-              full Rigol DS1054Z review
-            </Link>{" "}
-            or browse the{" "}
-            <Link href="/oscilloscopes/best-beginner-oscilloscopes" className="text-accent hover:underline">
-              complete oscilloscope comparison
-            </Link>{" "}
-            for more options.
-          </p>
-        </section>
-      </div>
-    </article>
+    <>
+      <ProductComparison comparison={comparison} />
+      <ContentLinks category="oscilloscopes" current="/oscilloscopes/rigol-ds1054z-vs-siglent-sds1104x-e" />
+    </>
   );
 }

@@ -19,7 +19,8 @@ const comparison: ProductComparisonContent = {
     imageAlt: "Fluke 117 digital multimeter",
     chooseIf: [
       "Your work is mostly voltage, resistance, and continuity checks",
-      "You want one meter with built-in non-contact voltage detection"
+      "You want one meter with built-in non-contact voltage detection",
+      "You need to measure resistance or continuity, which the clamp meter can't do at all"
     ]
   },
   b: {
@@ -28,14 +29,16 @@ const comparison: ProductComparisonContent = {
     imageAlt: "Milwaukee 2235-20 clamp meter",
     chooseIf: [
       "You check current draw often and don't want to open the circuit",
-      "You already own a standard meter and want to add fast current measurement"
+      "You already own a standard meter and want to add fast current measurement",
+      "Your jaw needs to fit around standard residential or commercial wiring — the 2235-20 opens to 1 inch"
     ]
   },
   differences: [
     "The 2235-20 reads up to 400A AC by clamping around a conductor, with no need to open the circuit.",
     "The Fluke 117 is a standard meter suited to voltage, resistance, and continuity work, with built-in NCV.",
     "Both are CAT III 600V, True RMS, and auto-ranging.",
-    "The clamp meter is bulkier than a pocket multimeter."
+    "The clamp meter is bulkier than a pocket multimeter.",
+    "The 2235-20 is rated for AC current only — it's not a combination AC/DC clamp, so DC current measurement still needs a different tool."
   ],
   bottomLine: "If you can own only one, the Fluke 117 covers more everyday electrical work. Add the Milwaukee 2235-20 when measuring current becomes a regular part of the job. The two complement each other rather than compete.",
   faqs: [
@@ -46,6 +49,14 @@ const comparison: ProductComparisonContent = {
     {
       question: "Can a clamp meter replace my multimeter?",
       answer: "Not for resistance- and continuity-heavy work. For that, you'll still want a standard meter such as the Fluke 117."
+    },
+    {
+      question: "Does the Milwaukee 2235-20 measure DC current as well as AC?",
+      answer: "No — it's rated for AC current up to 400A, not a combination AC/DC clamp meter. If your work involves DC current measurement, such as solar installations or battery systems, you'd need a clamp meter specifically rated for DC, which typically costs more because it requires a Hall-effect sensor rather than the simpler AC-only induction method."
+    },
+    {
+      question: "Why do electricians often carry both a standard meter and a clamp meter?",
+      answer: "They solve different problems and neither fully covers the other's job. The Fluke 117 handles voltage, resistance, and continuity — the bulk of panel and circuit troubleshooting — while the 2235-20 answers a specific question fast: how much current is this circuit actually drawing right now, without disconnecting anything. On a real job, you might use the 117 to confirm a circuit is dead before working on it, then clamp the 2235-20 around a feeder afterward to check load balance or diagnose a tripping breaker. Carrying both means never having to guess which tool a given task calls for."
     }
   ],
   roundup: {

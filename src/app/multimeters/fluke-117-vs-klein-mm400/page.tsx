@@ -19,7 +19,8 @@ const comparison: ProductComparisonContent = {
     imageAlt: "Fluke 117 digital multimeter",
     chooseIf: [
       "You want non-contact voltage detection built into the meter for a fast first check",
-      "You want the meter working electricians most often reach for, and will pay the premium"
+      "You want the meter working electricians most often reach for, and will pay the premium",
+      "Brand reliability record matters more to you than saving money upfront",
     ]
   },
   b: {
@@ -28,14 +29,17 @@ const comparison: ProductComparisonContent = {
     imageAlt: "Klein Tools MM400 digital multimeter",
     chooseIf: [
       "You want CAT III 600V and True RMS for less money",
-      "You want a low-impedance mode to rule out ghost-voltage readings"
+      "You want a low-impedance mode to rule out ghost-voltage readings",
+      "You value field durability built for tradespeople over brand name recognition",
     ]
   },
   differences: [
     "The Fluke 117 has non-contact voltage (NCV) detection built in.",
     "The Klein MM400 has a low-impedance mode that avoids false readings from ghost voltages.",
     "The MM400 sits at a mid-range price; the Fluke 117 carries a premium.",
-    "Fluke's reputation rests on well-documented reliability; Klein's on field durability among tradespeople."
+    "Fluke's reputation rests on well-documented reliability; Klein's on field durability among tradespeople.",
+    "Both share the same core safety and accuracy fundamentals — CAT III 600V and True RMS — so neither gives up measurement capability to the other.",
+    "Neither meter offers Bluetooth or app connectivity — if wireless logging matters to you, you'd need to look outside this pairing entirely."
   ],
   bottomLine: "On core safety and accuracy, these two are equal. If budget matters, the MM400 gives up little most buyers will miss. If you want built-in NCV and Fluke's reliability record, the 117 is worth the premium.",
   faqs: [
@@ -46,6 +50,18 @@ const comparison: ProductComparisonContent = {
     {
       question: "Which is better for home electrical work?",
       answer: "Either is suitable. The MM400 costs less, and the Fluke 117 adds built-in NCV detection. If you only need a meter a few times a year, our home-use guide covers cheaper options too."
+    },
+    {
+      question: "What is a low-impedance mode and why would I want it?",
+      answer: "It intentionally loads the circuit slightly to drain away \"ghost voltage\" — stray induced voltage on a disconnected wire that a high-impedance meter can falsely read as live. It helps confirm a circuit is genuinely de-energized before you work on it, which is exactly the kind of feature tradespeople value in day-to-day panel work."
+    },
+    {
+      question: "Should I rely on non-contact voltage detection by itself before touching a wire?",
+      answer: "No. NCV detectors like the one built into the Fluke 117 sense the electric field around a live conductor without contact, which makes them useful as a fast first pass — but they can miss voltage through thick insulation or shielded cable, and they can't confirm a circuit is safe the way a proper lead-based voltage check can. Treat NCV as a quick screening step, not a substitute for testing with leads before you work on a circuit. Neither the 117 nor the MM400 is a replacement for standard lockout/tagout and verification procedures."
+    },
+    {
+      question: "Is paying extra for the Fluke name actually about reliability, or just reputation?",
+      answer: "Both, but they're connected. Fluke's reputation was built on a long track record of meters that survive daily field abuse and keep reading accurately, which is why so many working electricians specify it by name rather than by spec sheet. Klein has built a comparable reputation in its own lane — tool durability for tradespeople — without charging the same premium. Buying the Fluke 117 isn't paying for a logo; it's paying for a longer, more consistent track record in exactly the kind of punishing daily use this category of meter sees."
     }
   ],
   roundup: {

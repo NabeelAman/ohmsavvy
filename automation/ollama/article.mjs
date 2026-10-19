@@ -130,7 +130,7 @@ Write these fields:
 - registryDescription: max 60 characters, a short card subtitle.
 - howWeChose: about 70 words (must be 50-90) on what mattered for THIS use case when choosing these products.
 - fitNotes: exactly one entry per product (product = exact name), each note about 60 words (must be 45-80) explaining why it fits this use case, using its specs.
-- advice: exactly 3 sections, each with a short heading and a body of about 115 words (must be 90-140) of practical buying advice for this use case.
+- advice: exactly 3 sections, each with a short heading and a body of about 100 words (must be 60-140) of practical buying advice for this use case.
 - faqs: exactly 4 questions a buyer with this need would ask, each answer about 65 words (must be 45-90), all specific to this topic (no generic copy).`,
     },
   ];
@@ -192,7 +192,7 @@ function validate(d, { keyword, picks, roster, meta }) {
     `fitNotes must have exactly one entry for each of: ${names.join(", ")} (exact names).`);
   for (const f of d.fitNotes || []) range(`fitNote for ${f.product}`, f.note, 35, 95);
   need((d.advice || []).length === 3, `advice must have exactly 3 sections.`);
-  for (const a of d.advice || []) range(`advice "${a.heading}"`, a.body, 70, 160);
+  for (const a of d.advice || []) range(`advice "${a.heading}"`, a.body, 55, 160);
   need((d.faqs || []).length === 4, `faqs must have exactly 4 entries.`);
   for (const f of d.faqs || []) range(`faq answer "${f.question}"`, f.answer, 35, 100);
   const qs = (d.faqs || []).map((f) => f.question.toLowerCase());
@@ -417,7 +417,10 @@ async function draft(args) {
   log(`\n✎ Drafting "${keyword}"\n  category: ${category}\n  products: ${pickNames.join(", ")}\n  model:    ${MODEL} (this takes several minutes on CPU)`);
 
   const meta = existingMeta();
-  const messages = buildPrompt(keyword, category, picks);
+  // Retries send only the original prompt plus the latest draft and its errors, not
+  // the whole history; on a CPU, a growing context makes every attempt slower.
+  const base = buildPrompt(keyword, category, picks);
+  let messages = base;
   let d, errs = [];
   let qa = [];
   const path0 = `/${category}/${slugify(keyword)}`;
@@ -446,7 +449,7 @@ async function draft(args) {
     }
     if (!errs.length) { log("  ✔ all content checkpoints passed"); break; }
     log(`  ✖ ${errs.length} problem(s):\n    - ${errs.slice(0, 12).join("\n    - ")}`);
-    messages.push({ role: "assistant", content: raw }, { role: "user", content: `Your draft broke these rules. Fix every one and return the full corrected JSON:\n- ${errs.join("\n- ")}` });
+    messages = [...base, { role: "assistant", content: raw }, { role: "user", content: `Your draft broke these rules. Fix every one and return the full corrected JSON:\n- ${errs.join("\n- ")}` }];
   }
   if (errs.length) die(`The draft still failed QA after ${MAX_ATTEMPTS} attempts, so nothing was written. Try again, or try another keyword.`);
 

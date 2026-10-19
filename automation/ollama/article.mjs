@@ -461,7 +461,13 @@ async function draft(args) {
   writeFileSync(REGISTRY, reg.slice(0, at) + entryText + reg.slice(at));
   const state = { keyword, category, path, entryText, queueKeyword: entry?.keyword ?? null, createdAt: new Date().toISOString() };
   writeFileSync(STATE, JSON.stringify(state, null, 2));
-  if (entry) { entry.status = "drafted"; entry.notes = `draft at ${path}`; saveQueue(q); }
+  if (entry) {
+    // Re-read the queue: drafting takes a long time and other sessions may have
+    // edited it (e.g. added to verifiedRoster) since we loaded it.
+    const fresh = queue();
+    const e = fresh.keywords.find((k) => k.keyword === entry.keyword);
+    if (e) { e.status = "drafted"; e.notes = `draft at ${path}`; saveQueue(fresh); }
+  }
 
   log("\n▶ Running site checks…");
   try {

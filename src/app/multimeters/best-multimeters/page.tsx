@@ -30,6 +30,25 @@ export const picks: Pick[] = [
     handsOnTested: true,
   },
   {
+    badge: "Best for Field Service",
+    name: "Fluke 115",
+    image: "https://media.fluke.com/340af005-26f3-41df-9f6a-b108002dd5d7_original__size.jpg",
+    rating: 4.8,
+    bottomLine: "The same Fluke reliability as the 117, in a smaller body, without the electrician-specific extras.",
+    verdict:
+      "The Fluke 115 is Fluke's compact field-service meter — True RMS, CAT III 600V, and a 6,000-count backlit display, like the 117, but without non-contact voltage detection or the AutoVolt AC/DC auto-selector. A strong pick if you want Fluke's reliability without the electrician-focused extras.",
+    specs: [
+      { label: "Accuracy", value: "True RMS" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Field technicians, general electrical and electronics work" },
+    ],
+    pros: ["Same Fluke reliability and accuracy as the 117", "More compact and lighter than the 117", "Includes capacitance and frequency measurement"],
+    cons: ["No non-contact voltage (NCV) detection", "No AutoVolt AC/DC auto-selector or LoZ mode the 117 has"],
+    ctaHref: "https://www.amazon.com/dp/B000OCFFMW?tag=ohmsavvy-20",
+    handsOnTested: true,
+  },
+  {
     badge: "Best Budget",
     name: "KAIWEETS KM200s",
     image: "https://kaiweets.com/cdn/shop/files/KAIWEETS-KM200s-True-RMS-Smart-Digital-Multimeter.jpg?width=1000",

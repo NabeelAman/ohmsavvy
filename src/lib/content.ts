@@ -103,6 +103,20 @@ export const content: ContentEntry[] = [
   },
   {
     category: "multimeters",
+    type: "review",
+    title: "Fluke 115 Review",
+    description: "Our Best for Field Service pick",
+    href: "/multimeters/fluke-115-review",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 115 vs Fluke 117",
+    description: "Field-service generalist vs. electrician-specific meter",
+    href: "/multimeters/fluke-115-vs-fluke-117",
+  },
+  {
+    category: "multimeters",
     type: "comparison",
     title: "Fluke 117 vs Fluke 87V",
     description: "Which Fluke tier actually fits your work",

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node automation/submit-indexnow.mjs",
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",

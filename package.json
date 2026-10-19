@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "article": "node automation/ollama/article.mjs",
+    "article:list": "node automation/ollama/article.mjs list",
+    "article:publish": "node automation/ollama/article.mjs publish",
+    "article:discard": "node automation/ollama/article.mjs discard",
+    "article:service": "node automation/ollama/server.mjs"
   },
   "dependencies": {
     "next": "16.4.2",

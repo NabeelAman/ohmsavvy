@@ -102,11 +102,17 @@ export function ReviewArticle({
   picks,
   faqs,
   howWeChose,
+  fitNotes,
+  advice,
 }: {
   picks: Pick[];
   faqs: Faq[];
   /** Optional page-specific methodology note shown above the standard criteria. */
   howWeChose?: string;
+  /** Optional per-pick "why it fits this use case" note, keyed by Pick name. */
+  fitNotes?: Record<string, string>;
+  /** Optional buying-advice sections for this page's use case. */
+  advice?: { heading: string; body: string }[];
 }) {
   // A Review per pick, not an AggregateRating — this is a single editorial rating,
   // not an aggregate of multiple independent reviews, and claiming otherwise would
@@ -140,6 +146,7 @@ export function ReviewArticle({
     { id: "full-comparison", label: "Compare" },
     { id: "picks", label: "Detailed reviews" },
     ...picks.map((p, i) => ({ id: slug(p.name), label: `${i + 1}. ${p.name}`, sub: true })),
+    ...(advice?.length ? [{ id: "buying-advice", label: "Buying advice" }] : []),
     { id: "how-we-chose", label: "How we chose" },
     ...(faqs.length ? [{ id: "faq", label: "FAQ" }] : []),
   ];
@@ -381,6 +388,12 @@ export function ReviewArticle({
                             </p>
                           )}
                           <p className="mt-3 text-muted leading-7">{p.verdict}</p>
+                          {fitNotes?.[p.name] && (
+                            <p className="mt-3 rounded-lg border-l-2 border-accent bg-accent/5 px-4 py-3 text-sm leading-6">
+                              <span className="font-medium text-accent">Why it fits: </span>
+                              {fitNotes[p.name]}
+                            </p>
+                          )}
                         </div>
                       </div>
 
@@ -404,6 +417,24 @@ export function ReviewArticle({
               })}
             </div>
           </section>
+
+          {/* Buying advice (optional, page-specific) */}
+          {advice && advice.length > 0 && (
+            <section id="buying-advice" className="mt-16 scroll-mt-36">
+              <Reveal>
+                <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">Before you buy</p>
+                <h2 className="mt-1 text-2xl sm:text-3xl font-semibold">Buying advice</h2>
+                <div className="mt-6 space-y-6">
+                  {advice.map((a) => (
+                    <div key={a.heading}>
+                      <h3 className="text-lg font-semibold">{a.heading}</h3>
+                      <p className="mt-2 max-w-3xl text-muted leading-7">{a.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </section>
+          )}
 
           {/* 4. How we chose */}
           <section id="how-we-chose" className="mt-16 scroll-mt-36">

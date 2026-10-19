@@ -1,3 +1,4 @@
+import { ContentLinks } from "@/components/ContentLinks";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { buildMetadata } from "@/lib/metadata";
@@ -44,6 +45,7 @@ export default function BestMultimeterForBeginnersPage() {
         ]}
       />
       <ReviewArticle picks={picks} faqs={faqs} />
+      <ContentLinks category="multimeters" current="/multimeters/best-multimeter-for-beginners" />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { ContentLinks } from "@/components/ContentLinks";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -16,6 +17,7 @@ const featured = ["Hakko FX888D", "Pinecil V2", "Weller WE1010NA"].map(
 
 export default function SolderingIronBuyingGuidePage() {
   return (
+    <>
     <article className="mx-auto max-w-3xl px-6 py-16">
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Soldering Iron Buying Guide</h1>
@@ -237,5 +239,7 @@ export default function SolderingIronBuyingGuidePage() {
         </section>
       </div>
     </article>
+    <ContentLinks category="soldering-irons" current="/soldering-irons/soldering-iron-buying-guide" />
+    </>
   );
 }

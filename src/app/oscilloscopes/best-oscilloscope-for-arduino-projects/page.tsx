@@ -1,3 +1,4 @@
+import { ContentLinks } from "@/components/ContentLinks";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-beginner-oscilloscopes/page";
@@ -44,6 +45,7 @@ export default function BestOscilloscopeForArduinoProjectsPage() {
         ]}
       />
       <ReviewArticle picks={picks} faqs={faqs} />
+      <ContentLinks category="oscilloscopes" current="/oscilloscopes/best-oscilloscope-for-arduino-projects" />
     </>
   );
 }

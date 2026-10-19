@@ -1,3 +1,4 @@
+import { ContentLinks } from "@/components/ContentLinks";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
 import { picks as allPicks } from "../best-soldering-irons/page";
@@ -44,6 +45,7 @@ export default function BestSolderingIronForCircuitBoardRepairPage() {
         ]}
       />
       <ReviewArticle picks={picks} faqs={faqs} />
+      <ContentLinks category="soldering-irons" current="/soldering-irons/best-soldering-iron-for-circuit-board-repair" />
     </>
   );
 }

@@ -103,7 +103,7 @@ export default function BestOscilloscopesPage() {
       <CategoryHero
         category="oscilloscopes"
         label="Oscilloscopes"
-        heading="Which Oscilloscope Should You Actually Buy?"
+        heading="Best Beginner Oscilloscopes: Which One Should You Buy?"
         tagline="Compared honestly — no pay-for-placement."
         description="Bandwidth, sample rate, and channel count explained simply, with picks that won't overwhelm a first-time buyer — or leave you needing to upgrade in six months."
         primaryCta={{ label: "Browse All Oscilloscopes", href: "#rigol-ds1054z" }}

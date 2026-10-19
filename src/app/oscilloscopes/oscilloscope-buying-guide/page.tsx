@@ -1,3 +1,4 @@
+import { ContentLinks } from "@/components/ContentLinks";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -16,6 +17,7 @@ const featured = ["Rigol DS1054Z", "FNIRSI DSO152", "Siglent SDS1104X-E"].map(
 
 export default function OscilloscopeBuyingGuidePage() {
   return (
+    <>
     <article className="mx-auto max-w-3xl px-6 py-16">
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Oscilloscope Buying Guide</h1>
@@ -223,5 +225,7 @@ export default function OscilloscopeBuyingGuidePage() {
         </section>
       </div>
     </article>
+    <ContentLinks category="oscilloscopes" current="/oscilloscopes/oscilloscope-buying-guide" />
+    </>
   );
 }

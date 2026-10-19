@@ -218,7 +218,7 @@ export default function BestMultimetersPage() {
       <CategoryHero
         category="multimeters"
         label="Multimeters"
-        heading="Find the Multimeter That Actually Fits Your Work"
+        heading="Best Multimeters: Find the One That Fits Your Work"
         tagline="Compared honestly — no pay-for-placement."
         description="We compared accuracy specifications, CAT safety ratings, and feature sets across the multimeters most recommended by electricians, hobbyists, and verified buyer feedback."
         primaryCta={{ label: "Browse All Multimeters", href: "#fluke-117" }}

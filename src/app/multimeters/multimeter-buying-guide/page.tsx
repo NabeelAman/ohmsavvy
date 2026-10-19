@@ -1,3 +1,4 @@
+import { ContentLinks } from "@/components/ContentLinks";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -16,6 +17,7 @@ const featured = ["Fluke 117", "KAIWEETS KM200s", "Fluke 87V"].map(
 
 export default function MultimeterBuyingGuidePage() {
   return (
+    <>
     <article className="mx-auto max-w-3xl px-6 py-16">
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Multimeter Buying Guide</h1>
@@ -312,5 +314,7 @@ export default function MultimeterBuyingGuidePage() {
         </section>
       </div>
     </article>
+    <ContentLinks category="multimeters" current="/multimeters/multimeter-buying-guide" />
+    </>
   );
 }

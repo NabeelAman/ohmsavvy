@@ -1,3 +1,4 @@
+import { ContentLinks } from "@/components/ContentLinks";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -14,6 +15,7 @@ const pick = picks.find((p) => p.name === "Milwaukee 2235-20")!;
 
 export default function ClampMeterBuyingGuidePage() {
   return (
+    <>
     <article className="mx-auto max-w-3xl px-6 py-16">
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Clamp Meter Buying Guide</h1>
@@ -132,5 +134,7 @@ export default function ClampMeterBuyingGuidePage() {
         </section>
       </div>
     </article>
+    <ContentLinks category="multimeters" current="/multimeters/clamp-meter-buying-guide" />
+    </>
   );
 }

@@ -103,7 +103,7 @@ export default function BestSolderingIronsPage() {
       <CategoryHero
         category="soldering"
         label="Soldering Irons"
-        heading="Find the Right Iron for Your Workbench"
+        heading="Best Soldering Irons: Find the Right One for Your Bench"
         tagline="Compared honestly — no pay-for-placement."
         description="From the pocket-sized Pinecil to full bench stations like the Hakko FX888D, we compared heat-up time, temperature stability, and real owner feedback."
         primaryCta={{ label: "Browse All Soldering Irons", href: "#hakko-fx888d" }}

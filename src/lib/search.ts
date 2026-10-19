@@ -21,6 +21,7 @@ const GROUP_BY_TYPE: Record<ContentType, SearchGroup> = {
   comparison: "Comparisons",
   "use-case-guide": "Guides",
   "buying-guide": "Guides",
+  "how-to-guide": "Guides",
 };
 
 const ROUNDUPS: { category: Category; title: string; href: string; desc: string }[] = [

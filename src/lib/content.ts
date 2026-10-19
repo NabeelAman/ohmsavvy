@@ -4,7 +4,7 @@
 // in the sitemap AND linked from somewhere else on the site (never an orphan).
 
 export type Category = "multimeters" | "soldering-irons" | "oscilloscopes";
-export type ContentType = "use-case-guide" | "buying-guide" | "review" | "comparison";
+export type ContentType = "use-case-guide" | "buying-guide" | "how-to-guide" | "review" | "comparison";
 
 export type ContentEntry = {
   category: Category;
@@ -19,6 +19,7 @@ export type ContentEntry = {
 export const CONTENT_TYPE_LABELS: Record<ContentType, string> = {
   "use-case-guide": "Shop by use case",
   "buying-guide": "Buying guide",
+  "how-to-guide": "How-to guide",
   review: "Product reviews",
   comparison: "Comparisons",
 };
@@ -78,6 +79,20 @@ export const content: ContentEntry[] = [
     title: "Clamp Meter Buying Guide",
     description: "AC vs. AC/DC clamping, jaw size, and when you need one",
     href: "/multimeters/clamp-meter-buying-guide",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Use a Multimeter",
+    description: "Every mode explained: voltage, resistance, continuity, and current",
+    href: "/multimeters/how-to-use-a-multimeter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Test a Capacitor With a Multimeter",
+    description: "Safe discharge, resistance-mode screening, and capacitance mode",
+    href: "/multimeters/how-to-test-a-capacitor-with-a-multimeter",
   },
   {
     category: "multimeters",

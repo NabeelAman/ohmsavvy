@@ -34,7 +34,11 @@ export function ContentLinks({ category, current }: { category: Category; curren
   const grouped = getContentByCategoryGrouped(category);
   const notCurrent = (e: ContentEntry) => e.href !== current;
 
-  const guides = [...(grouped["use-case-guide"] ?? []), ...(grouped["buying-guide"] ?? [])].filter(notCurrent);
+  const guides = [
+    ...(grouped["use-case-guide"] ?? []),
+    ...(grouped["buying-guide"] ?? []),
+    ...(grouped["how-to-guide"] ?? []),
+  ].filter(notCurrent);
   const allReviews = grouped.review ?? [];
   const allComparisons = grouped.comparison ?? [];
   const reviews = allReviews.filter(notCurrent).slice(0, REVIEW_LIMIT);

@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Soldering Iron Comparisons",
-  description: "Head-to-head soldering iron comparisons: specs side by side, the differences that matter, and which model to choose for your work.",
+  description: "Soldering iron comparisons centered on whichever trade-off actually matters per pair: heat-up speed, ESD-safe construction, or a complete kit versus a bare iron.",
   path: "/soldering-irons/comparisons",
 });
 
@@ -14,7 +14,7 @@ export default function SolderingIronsComparisonsPage() {
       category="soldering-irons"
       type="comparison"
       heading="Soldering Iron Comparisons"
-      intro="Head-to-head comparisons between the soldering irons in our guide. Each one puts verified specs side by side and tells you which model fits which buyer."
+      intro="Two irons at a similar price rarely differ on power alone — it's usually heat-up speed, ESD-safe construction, portability, or whether a stand and tips come in the box. Each comparison here is built around whichever of those is the actual deciding factor for that specific pair."
     >
       <Link href="/soldering-irons/best-soldering-irons" className="font-medium text-accent hover:underline">
         Best soldering irons

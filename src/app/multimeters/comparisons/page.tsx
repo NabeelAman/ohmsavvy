@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Multimeter Comparisons",
-  description: "Head-to-head multimeter comparisons: specs side by side, the differences that matter, and which model to choose for your work.",
+  description: "Multimeter head-to-heads built around the one spec that actually decides most purchases: CAT safety rating versus the work you'll actually use the meter for.",
   path: "/multimeters/comparisons",
 });
 
@@ -14,7 +14,7 @@ export default function MultimetersComparisonsPage() {
       category="multimeters"
       type="comparison"
       heading="Multimeter Comparisons"
-      intro="Head-to-head comparisons between the multimeters in our guide. Each one puts verified specs side by side and tells you which model fits which buyer."
+      intro="Most multimeter decisions come down to a safety-rating or feature trade-off — CAT II versus CAT III, True RMS versus a cheaper average-responding meter, a clamp function versus a standard probe setup. Each comparison here names that trade-off directly instead of burying it under a spec table."
     >
       <Link href="/multimeters/best-multimeters" className="font-medium text-accent hover:underline">
         Top 10 multimeters

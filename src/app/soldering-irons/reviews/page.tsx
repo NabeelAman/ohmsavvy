@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Soldering Iron Reviews",
-  description: "Every soldering iron we review, in one place: verified specs, honest strengths and limitations, and who each model actually suits.",
+  description: "Soldering iron reviews focused on heat-up time, thermal recovery under load, and temperature stability — the specs that actually change how a repair goes.",
   path: "/soldering-irons/reviews",
 });
 
@@ -14,7 +14,7 @@ export default function SolderingIronsReviewsPage() {
       category="soldering-irons"
       type="review"
       heading="Soldering Iron Reviews"
-      intro="In-depth reviews of every soldering iron in our guide. Each one covers verified specs, who it suits and who should skip it, and the alternatives worth considering."
+      intro="Heat-up time and temperature stability under real use get checked first here, because that's what actually separates a frustrating session from an easy one. Each review also covers build quality, tip availability, and the kind of work — bench repair, portable fixes, first-time soldering — each iron is genuinely built for."
     >
       <Link href="/soldering-irons/best-soldering-irons" className="font-medium text-accent hover:underline">
         Best soldering irons

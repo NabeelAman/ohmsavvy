@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Multimeter Reviews",
-  description: "Every multimeter we review, in one place: verified specs, honest strengths and limitations, and who each model actually suits.",
+  description: "Multimeter reviews built around CAT safety rating and True RMS accuracy first, then features — with an honest list of who should buy something else instead.",
   path: "/multimeters/reviews",
 });
 
@@ -14,7 +14,7 @@ export default function MultimetersReviewsPage() {
       category="multimeters"
       type="review"
       heading="Multimeter Reviews"
-      intro="In-depth reviews of every multimeter in our guide. Each one covers verified specs, who it suits and who should skip it, and the alternatives worth considering."
+      intro="Before anything else, every review here checks the safety rating and True RMS accuracy against what the meter is actually sold for. From there we cover resolution, build quality, and the specific buyer each model is a good fit for — and who'd be better off with a different pick entirely."
     >
       <Link href="/multimeters/best-multimeters" className="font-medium text-accent hover:underline">
         Top 10 multimeters

@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Oscilloscope Reviews",
-  description: "Every oscilloscope we review, in one place: verified specs, honest strengths and limitations, and who each model actually suits.",
+  description: "Oscilloscope reviews weighed on bandwidth, sample rate, and channel count against the signals you're actually likely to be debugging, not spec-sheet bragging rights.",
   path: "/oscilloscopes/reviews",
 });
 
@@ -14,7 +14,7 @@ export default function OscilloscopesReviewsPage() {
       category="oscilloscopes"
       type="review"
       heading="Oscilloscope Reviews"
-      intro="In-depth reviews of every oscilloscope in our guide. Each one covers verified specs, who it suits and who should skip it, and the alternatives worth considering."
+      intro="Bandwidth and channel count only matter relative to what you're actually debugging, so each review here starts from the kind of signal work a scope is realistically good for — hobby electronics, microcontroller timing, general bench use — before getting into display size and extras like a built-in waveform generator."
     >
       <Link href="/oscilloscopes/best-beginner-oscilloscopes" className="font-medium text-accent hover:underline">
         Best beginner oscilloscopes

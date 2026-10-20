@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Oscilloscope Comparisons",
-  description: "Head-to-head oscilloscope comparisons: specs side by side, the differences that matter, and which model to choose for your work.",
+  description: "Oscilloscope comparisons built around bandwidth headroom, channel count, and the compact-combo trade-offs that actually decide which scope earns bench space.",
   path: "/oscilloscopes/comparisons",
 });
 
@@ -14,7 +14,7 @@ export default function OscilloscopesComparisonsPage() {
       category="oscilloscopes"
       type="comparison"
       heading="Oscilloscope Comparisons"
-      intro="Head-to-head comparisons between the oscilloscopes in our guide. Each one puts verified specs side by side and tells you which model fits which buyer."
+      intro="The scopes in this category tend to differ on one or two axes at most — bandwidth headroom, channel count, or a built-in waveform generator traded for a smaller display and fewer channels. Each comparison isolates that specific trade-off rather than restating a spec sheet both scopes already share."
     >
       <Link href="/oscilloscopes/best-beginner-oscilloscopes" className="font-medium text-accent hover:underline">
         Best beginner oscilloscopes

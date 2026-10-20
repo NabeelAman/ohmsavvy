@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, IBM_Plex_Mono, Source_Sans_3 } from "next/font/google";
 import Link from "next/link";
+import Script from "next/script";
 import GoogleAnalyticsLoader from "@/components/GoogleAnalyticsLoader";
 import { Logo } from "@/components/Logo";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
+
+// Applies a stored light/dark override before paint, so switching theme
+// doesn't flash the wrong colors on load. No stored value = the three-state
+// CSS system in globals.css falls through to prefers-color-scheme as normal.
+const THEME_INIT_SCRIPT = `
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+`;
 
 // Self-hosted via next/font instead of a CSS @import — avoids the extra
 // render-blocking round trip (fetch font CSS, then fetch the font files)
@@ -86,6 +97,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Script id="theme-init" strategy="beforeInteractive">{THEME_INIT_SCRIPT}</Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd).replace(/</g, "\\u003c") }}

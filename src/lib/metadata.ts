@@ -14,6 +14,7 @@ export function buildMetadata({
   description,
   path,
   image,
+  languages,
 }: {
   title: string;
   description: string;
@@ -21,13 +22,15 @@ export function buildMetadata({
   /** A verified product photo for review/comparison pages — falls back to the
    * site-wide branded default when omitted (most guide/category pages). */
   image?: string;
+  /** hreflang alternates for a translated page, e.g. { de: "/de/...", "x-default": "/..." }. */
+  languages?: Record<string, string>;
 }): Metadata {
   const url = `https://ohmsavvy.com${path}`;
   const ogImage = image ?? DEFAULT_OG_IMAGE;
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, ...(languages ? { languages } : {}) },
     openGraph: {
       type: "article",
       siteName: "OhmSavvy",

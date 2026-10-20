@@ -1,16 +1,32 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ScopeScreen, StepHeading } from "@/components/HowTo";
+import {
+  Callout,
+  DataTable,
+  Figure,
+  FlowDiagram,
+  FrontPanel,
+  HowToShell,
+  InfoCards,
+  KeyIdea,
+  ProductStrip,
+  ScopeScreen,
+  StepHeading,
+} from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-beginner-oscilloscopes/page";
 
+const description =
+  "How to use an oscilloscope, step by step: connect and set the probe, press Autoset, adjust V/div and time/div, set the trigger, and take first measurements.";
+
 export const metadata = buildMetadata({
   title: "How to Use an Oscilloscope: First Session Guide",
-  description:
-    "How to use an oscilloscope, step by step: connect and set the probe, press Autoset, adjust V/div and time/div, set the trigger, and take first measurements.",
+  description,
   path: "/oscilloscopes/how-to-use-an-oscilloscope",
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const fnirsi = picks.find((p) => p.name === "FNIRSI DSO152")!;
 
 const link = "text-accent hover:underline";
 
@@ -18,8 +34,10 @@ export default function HowToUseAnOscilloscopePage() {
   return (
     <HowToShell
       title="How to Use an Oscilloscope"
+      description={description}
       path="/oscilloscopes/how-to-use-an-oscilloscope"
       category="oscilloscopes"
+      published="2026-10-20"
       intro={
         <>
           Learning how to use an oscilloscope is mostly about four controls: vertical scale, horizontal
@@ -30,18 +48,55 @@ export default function HowToUseAnOscilloscopePage() {
       }
       aside={{
         image: rigol.image,
-        alt: "A four-channel benchtop digital oscilloscope with its front-panel controls",
+        alt: "Rigol DS1054Z four-channel digital benchtop oscilloscope with a 7-inch display",
         caption: (
           <>
-            The steps below apply to nearly any digital scope, including the 4-channel Rigol DS1054Z in
-            our{" "}
-            <Link href="/oscilloscopes/best-beginner-oscilloscopes" className={link}>
-              beginner oscilloscope picks
+            The steps below apply to nearly any digital scope, including the 4-channel, 50MHz Rigol
+            DS1054Z. See our{" "}
+            <Link href="/oscilloscopes/rigol-ds1054z-review" className={link}>
+              full review
             </Link>
             .
           </>
         ),
       }}
+      toc={[
+        { id: "controls-overview", label: "The controls you'll use" },
+        { id: "first-session-overview", label: "The first session at a glance" },
+        { id: "reset-to-known-state", label: "Power on and reset" },
+        { id: "connect-the-probe", label: "Connect the probe at 10x" },
+        { id: "built-in-test-signal", label: "Hook up to the test signal" },
+        { id: "press-autoset", label: "Press Autoset" },
+        { id: "vertical-scale", label: "Adjust V/div and position" },
+        { id: "horizontal-scale", label: "Adjust time/div" },
+        { id: "set-the-trigger", label: "Set the trigger" },
+        { id: "first-measurements", label: "Take your first measurements" },
+        { id: "real-circuit", label: "Move to a real circuit" },
+        { id: "starting-settings", label: "Quick reference: starting settings" },
+        { id: "which-scope", label: "Which scope to practise on" },
+      ]}
+      faq={[
+        {
+          q: "Should I use 1x or 10x on my oscilloscope probe?",
+          a: "Use 10x for most measurements. It loads the circuit far less and lets the scope see higher frequencies through the probe. The 1x setting is mainly for very small signals, where the extra sensitivity helps. Whichever you choose, set the channel's probe ratio in the scope menu to match, or every voltage reading will be off by a factor of ten.",
+        },
+        {
+          q: "Why is my waveform moving across the oscilloscope screen?",
+          a: "A rolling or drifting waveform almost always means the trigger is not locking onto the signal. Check that the trigger source is the channel you are probing, the type is Edge, and the level sits between the lowest and highest point of the waveform. If the signal is very small or noisy, enlarging it with a smaller V/div setting first makes a stable trigger easier.",
+        },
+        {
+          q: "Why does my oscilloscope only show a flat line?",
+          a: "Work through the simple causes first: the channel may be switched off, the probe tip or ground clip may not be making contact, or the trace may be off screen because of the vertical position. A V/div setting far too large for the signal can also flatten it. Pressing Autoset with the probe on the test output is a quick way to confirm the probe and channel work.",
+        },
+        {
+          q: "Can I measure mains voltage with an oscilloscope?",
+          a: "Not with a standard setup. On a mains-powered bench scope the probe's ground clip is tied to earth, so clipping it onto a non-isolated mains circuit creates a short. Mains work needs an isolation transformer on the device under test, a differential probe, or an isolated-channel or handheld scope rated for the job, plus probes whose rating covers the voltage.",
+        },
+        {
+          q: "What is the difference between AC and DC coupling on an oscilloscope?",
+          a: "DC coupling shows the full signal, including any steady DC level, which is why it is the usual starting setting. AC coupling blocks the DC part and shows only what changes, centred on the zero line. That lets you use a small V/div setting to magnify, for example, a few tens of millivolts of ripple sitting on top of a 5 V supply rail.",
+        },
+      ]}
       next={[
         {
           href: "/oscilloscopes/how-to-read-an-oscilloscope",
@@ -78,7 +133,7 @@ export default function HowToUseAnOscilloscopePage() {
       </Callout>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">The controls you&apos;ll use in every session</h2>
+        <h2 id="controls-overview" className="text-xl font-semibold mb-3">The controls you&apos;ll use in every session</h2>
         <p className="text-muted leading-7 mb-5">
           Front panels differ between brands, but the same groups of controls appear on nearly every
           digital storage oscilloscope. Find each one on your scope before you start; the labels may be
@@ -94,10 +149,56 @@ export default function HowToUseAnOscilloscopePage() {
             { label: "Run/Stop and Single", desc: "Freeze the display, or capture one triggered event and hold it." },
           ]}
         />
+        <p className="text-muted leading-7 mt-5 mb-4">
+          On most bench scopes these controls sit to the right of the screen, grouped roughly as in
+          the diagram below: a knob for vertical, one for horizontal, one for the trigger, with the
+          channel inputs and probe compensation terminals along the bottom edge.
+        </p>
+        <Figure
+          caption={
+            <>
+              Where the controls usually live on a digital scope: VERTICAL (V/div), HORIZ. (time/div)
+              and TRIGGER (level) knobs, the Auto, Run/Stop and Single buttons, the CH1 to CH4 inputs
+              and the probe comp terminals you will use in step 3. Layouts vary by model, so match
+              these groups to the labels on your own scope.
+            </>
+          }
+        >
+          <FrontPanel />
+        </Figure>
       </section>
 
       <section>
-        <StepHeading n={1}>Power on and reset to a known state</StepHeading>
+        <h2 id="first-session-overview" className="text-xl font-semibold mb-3">The first session at a glance</h2>
+        <p className="text-muted leading-7 mb-4">
+          The nine steps below follow one simple sequence. Once you have done it a couple of times,
+          it becomes the routine you run at the start of every measurement: get to a known state, let
+          Autoset find the signal, then take control of the scales and trigger before you trust a
+          number.
+        </p>
+        <Figure
+          caption={
+            <>
+              The first-session routine in five stages. Steps 1 and 2 cover the first box, step 3 the
+              second, step 4 the third, steps 5 to 7 the fourth and step 8 the last. Step 9 repeats
+              the routine on a real low-voltage circuit.
+            </>
+          }
+        >
+          <FlowDiagram
+            steps={[
+              { label: "Reset & connect", sub: "Default Setup, probe on CH1 at 10x" },
+              { label: "Test signal", sub: "Clip onto the probe comp output" },
+              { label: "Autoset", sub: "Let the scope pick starting settings" },
+              { label: "Scales & trigger", sub: "Tune V/div, time/div and edge trigger" },
+              { label: "Measure", sub: "Count divisions, check with Measure" },
+            ]}
+          />
+        </Figure>
+      </section>
+
+      <section>
+        <StepHeading n={1} id="reset-to-known-state">Power on and reset to a known state</StepHeading>
         <p className="text-muted leading-7">
           Plug the scope into an earthed outlet and switch it on. Many scopes have a Default Setup (or
           Default/Factory) button that clears whatever settings the last user left behind. Pressing it
@@ -108,7 +209,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={2}>Connect the probe and match the 1x/10x setting</StepHeading>
+        <StepHeading n={2} id="connect-the-probe">Connect the probe and match the 1x/10x setting</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Push the probe&apos;s BNC connector onto the Channel 1 input and twist it to lock. Most probes
           supplied with a scope have a 1x/10x switch on the body. Set it to 10x: it divides the signal by
@@ -123,7 +224,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={3}>Hook up to the built-in test signal</StepHeading>
+        <StepHeading n={3} id="built-in-test-signal">Hook up to the built-in test signal</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Almost every scope has a small probe compensation output on the front panel, usually two
           terminals: one signal tab and one ground. It produces a square wave, commonly around 1 kHz; the
@@ -142,7 +243,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={4}>Press Autoset</StepHeading>
+        <StepHeading n={4} id="press-autoset">Press Autoset</StepHeading>
         <p className="text-muted leading-7 mb-5">
           Press Autoset (or Auto). The scope looks at the incoming signal and picks a vertical scale, a
           horizontal scale and a trigger level that should give you a few stable cycles on screen. For
@@ -176,7 +277,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={5}>Adjust the vertical scale (V/div) and position</StepHeading>
+        <StepHeading n={5} id="vertical-scale">Adjust the vertical scale (V/div) and position</StepHeading>
         <p className="text-muted leading-7">
           Turn the Channel 1 vertical scale knob one click at a time and watch the waveform grow or
           shrink. Smaller V/div values make the signal taller. Aim to have the waveform fill most of the
@@ -188,7 +289,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={6}>Adjust the horizontal scale (time/div)</StepHeading>
+        <StepHeading n={6} id="horizontal-scale">Adjust the horizontal scale (time/div)</StepHeading>
         <p className="text-muted leading-7">
           Now turn the horizontal scale knob. A faster setting (fewer microseconds per division)
           stretches the waveform out so you can see edge detail; a slower setting squeezes more cycles
@@ -200,7 +301,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={7}>Set the trigger so the waveform stands still</StepHeading>
+        <StepHeading n={7} id="set-the-trigger">Set the trigger so the waveform stands still</StepHeading>
         <p className="text-muted leading-7 mb-4">
           The trigger tells the scope where in the signal to start each sweep. Without a sensible trigger,
           a repeating waveform drifts or rolls across the screen. For a first session, set the trigger to:
@@ -234,7 +335,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={8}>Take your first measurements</StepHeading>
+        <StepHeading n={8} id="first-measurements">Take your first measurements</StepHeading>
         <p className="text-muted leading-7 mb-4">
           There are three ways to measure, and it&apos;s worth trying all of them on the test signal:
         </p>
@@ -274,7 +375,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={9}>Move to a real (low-voltage) circuit</StepHeading>
+        <StepHeading n={9} id="real-circuit">Move to a real (low-voltage) circuit</StepHeading>
         <p className="text-muted leading-7">
           Once the test signal behaves, try a safe real signal, such as a PWM pin on a USB-powered
           microcontroller board. Connect the ground clip to the circuit&apos;s ground first, then touch the
@@ -293,7 +394,7 @@ export default function HowToUseAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Quick reference: starting settings</h2>
+        <h2 id="starting-settings" className="text-xl font-semibold mb-3">Quick reference: starting settings</h2>
         <p className="text-muted leading-7 mb-4">
           A sensible starting point for a repeating low-voltage signal on a typical digital scope.
           Autoset will usually land close to this, and you fine-tune from there.
@@ -321,7 +422,7 @@ export default function HowToUseAnOscilloscopePage() {
       </KeyIdea>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Which scope should you practise on?</h2>
+        <h2 id="which-scope" className="text-xl font-semibold mb-3">Which scope should you practise on?</h2>
         <p className="text-muted leading-7">
           Any digital scope with a probe compensation output will do. If you&apos;re still choosing, a
           bench model such as the{" "}
@@ -346,6 +447,34 @@ export default function HowToUseAnOscilloscopePage() {
           </Link>{" "}
           covers the different types.
         </p>
+        <div className="mt-6">
+          <ProductStrip
+            title="Good first scopes"
+            items={[
+              {
+                name: "Rigol DS1054Z",
+                image: rigol.image,
+                alt: "Rigol DS1054Z four-channel digital benchtop oscilloscope with a 7-inch display",
+                href: "/oscilloscopes/rigol-ds1054z-review",
+                note: "4 channels, 50MHz, 1 GSa/s, with strong community documentation.",
+              },
+              {
+                name: "Siglent SDS1104X-E",
+                image: siglent.image,
+                alt: "Siglent SDS1104X-E four-channel digital benchtop oscilloscope",
+                href: "/oscilloscopes/siglent-sds1104x-e-review",
+                note: "Bench scope: 4 channels, 100MHz, 1 GSa/s.",
+              },
+              {
+                name: "FNIRSI DSO152",
+                image: fnirsi.image,
+                alt: "FNIRSI DSO152 pocket-sized single-channel handheld oscilloscope",
+                href: "/oscilloscopes/fnirsi-dso152-review",
+                note: "Pocket-sized: 1 channel, 200kHz, 2.5 MSa/s.",
+              },
+            ]}
+          />
+        </div>
       </section>
     </HowToShell>
   );

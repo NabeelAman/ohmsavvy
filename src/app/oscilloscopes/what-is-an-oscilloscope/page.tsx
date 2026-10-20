@@ -1,16 +1,32 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ScopeScreen } from "@/components/HowTo";
+import {
+  BarChart,
+  Callout,
+  DataTable,
+  Figure,
+  FlowDiagram,
+  FrontPanel,
+  HowToShell,
+  InfoCards,
+  KeyIdea,
+  ProductStrip,
+  ScopeScreen,
+} from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-beginner-oscilloscopes/page";
 
+const description =
+  "What is an oscilloscope? A plain-English guide to what a scope shows, how it differs from a multimeter, the main types, and what people actually use one for.";
+
 export const metadata = buildMetadata({
   title: "What Is an Oscilloscope? A Beginner Explainer",
-  description:
-    "What is an oscilloscope? A plain-English guide to what a scope shows, how it differs from a multimeter, the main types, and what people actually use one for.",
+  description,
   path: "/oscilloscopes/what-is-an-oscilloscope",
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const fnirsi = picks.find((p) => p.name === "FNIRSI DSO152")!;
 
 const linkCls = "text-accent hover:underline";
 
@@ -18,8 +34,10 @@ export default function WhatIsAnOscilloscopePage() {
   return (
     <HowToShell
       title="What Is an Oscilloscope?"
+      description={description}
       path="/oscilloscopes/what-is-an-oscilloscope"
       category="oscilloscopes"
+      published="2026-10-20"
       intro={
         <>
           An oscilloscope is an instrument that draws a graph of voltage over time, so you can see
@@ -31,19 +49,51 @@ export default function WhatIsAnOscilloscopePage() {
         </>
       }
       aside={{
-        image: rigol.image,
-        alt: "A four-channel digital benchtop oscilloscope with a 7-inch display",
+        image: siglent.image,
+        alt: "Siglent SDS1104X-E four-channel digital benchtop oscilloscope",
         caption: (
           <>
-            A typical entry-level bench scope: the Rigol DS1054Z, a 4-channel, 50MHz digital
-            model. See our{" "}
-            <Link href="/oscilloscopes/rigol-ds1054z-review" className={linkCls}>
+            A typical entry-level bench scope: the Siglent SDS1104X-E, a 4-channel, 100MHz
+            digital model. See our{" "}
+            <Link href="/oscilloscopes/siglent-sds1104x-e-review" className={linkCls}>
               full review
             </Link>
             .
           </>
         ),
       }}
+      toc={[
+        { id: "what-a-scope-shows", label: "What an oscilloscope shows" },
+        { id: "front-panel-controls", label: "The controls on the front panel" },
+        { id: "scope-vs-meter", label: "What a scope reveals that a meter can't" },
+        { id: "how-it-works", label: "How a digital scope works" },
+        { id: "types-of-oscilloscope", label: "The main types of oscilloscope" },
+        { id: "specs-that-matter", label: "The specs that matter" },
+        { id: "what-scopes-are-used-for", label: "What oscilloscopes are used for" },
+        { id: "do-you-need-one", label: "Do you need one?" },
+      ]}
+      faq={[
+        {
+          q: "Can an oscilloscope measure current?",
+          a: "Not directly: a scope input measures voltage. To see current, the usual method is to measure the voltage across a small resistor of known value placed in the current path and divide by its resistance (I = V / R), or to use a current probe made for oscilloscopes. On a mains-powered scope, remember the probe ground clip is earthed, so place the resistor where the ground clip can safely connect.",
+        },
+        {
+          q: "Does an oscilloscope measure AC or DC?",
+          a: "Both. With DC coupling, the scope shows the whole signal, including any steady DC level, so a 5 V rail sits 5 V above the ground marker. With AC coupling, the DC part is blocked and only the changing part is shown, which is handy for magnifying a small ripple riding on top of a supply rail.",
+        },
+        {
+          q: "How much bandwidth does a beginner oscilloscope need?",
+          a: "Work out the fastest signal you expect to look at and apply the rule of thumb of 3 to 5 times that frequency. Audio-range and slow sensor signals can be viewed on a pocket scope with a few hundred kilohertz of bandwidth, while microcontroller clocks, PWM edges and serial buses benefit from a 50 to 100MHz bench scope.",
+        },
+        {
+          q: "Can an oscilloscope replace a multimeter?",
+          a: "Not in practice. A scope can read voltages, but it is not built for resistance, continuity or current checks, and it is bulkier for quick jobs. A multimeter gives one accurate number for steady values; a scope shows how a voltage changes over time. Most people who work on circuits keep both on the bench.",
+        },
+        {
+          q: "Is an oscilloscope hard to learn for a beginner?",
+          a: "The basics are quicker to learn than the number of buttons suggests. Most of the work comes down to four things: volts per division, time per division, the trigger and the measurement menu. Practising on the scope's built-in probe compensation output, a safe low-voltage square wave, is the easiest way to learn what each control does.",
+        },
+      ]}
       next={[
         {
           href: "/oscilloscopes/how-to-use-an-oscilloscope",
@@ -58,7 +108,7 @@ export default function WhatIsAnOscilloscopePage() {
       ]}
     >
       <section>
-        <h2 className="text-xl font-semibold mb-3">What an oscilloscope shows you</h2>
+        <h2 id="what-a-scope-shows" className="text-xl font-semibold mb-3">What an oscilloscope shows you</h2>
         <p className="text-muted leading-7 mb-4">
           The screen is a grid called the graticule. On most scopes it is 10 divisions wide and 8
           divisions tall. The vertical axis is voltage and the horizontal axis is time, and you set
@@ -98,7 +148,38 @@ export default function WhatIsAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">What a scope can reveal that a meter cannot</h2>
+        <h2 id="front-panel-controls" className="text-xl font-semibold mb-3">The controls on the front panel</h2>
+        <p className="text-muted leading-7 mb-4">
+          A digital scope&apos;s front panel looks busy, but the controls fall into a few groups. The
+          vertical knob sets V/div for each channel, the horizontal knob sets time/div, and the
+          trigger level knob decides which point on the signal each capture lines up on. Buttons
+          such as Auto, Run/Stop and Single set up the display or freeze a capture, and the probe
+          compensation terminals give you a safe square wave to practise on.
+        </p>
+        <Figure
+          caption={
+            <>
+              A generic digital scope front panel: screen on the left, then the vertical (V/div),
+              horizontal (time/div) and trigger knobs, the Auto, Run/Stop and Single buttons, four
+              channel inputs and the probe compensation terminals. Layouts vary by model, but these
+              groups appear on almost every digital scope.
+            </>
+          }
+        >
+          <FrontPanel />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          Two-channel and handheld scopes have fewer inputs and often share one knob between
+          functions, but the ideas are the same. Our guide on{" "}
+          <Link href="/oscilloscopes/how-to-use-an-oscilloscope" className={linkCls}>
+            how to use an oscilloscope
+          </Link>{" "}
+          takes you through each control in a first session.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="scope-vs-meter" className="text-xl font-semibold mb-3">What a scope can reveal that a meter cannot</h2>
         <p className="text-muted leading-7 mb-5">
           A multimeter averages or summarises a signal into one number. That is ideal for steady
           values, but it hides anything that changes quickly. A scope shows the changes themselves:
@@ -123,8 +204,8 @@ export default function WhatIsAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">How a digital oscilloscope works, briefly</h2>
-        <p className="text-muted leading-7">
+        <h2 id="how-it-works" className="text-xl font-semibold mb-3">How a digital oscilloscope works, briefly</h2>
+        <p className="text-muted leading-7 mb-4">
           Almost every scope sold new today is digital. The probe carries the signal to an input
           amplifier, which scales it to suit the V/div setting. An analog-to-digital converter then
           samples the voltage at a fixed rate, measured in samples per second (for example 1 GSa/s,
@@ -138,10 +219,35 @@ export default function WhatIsAnOscilloscopePage() {
           </Link>{" "}
           covers this in detail.
         </p>
+        <Figure
+          caption={
+            <>
+              The signal path inside a digital scope. The front end scales the signal, the ADC turns
+              it into a stream of numbers at the sample rate, memory holds one capture, and the
+              display draws it. The trigger decides which slice of the signal ends up in memory.
+            </>
+          }
+        >
+          <FlowDiagram
+            steps={[
+              { label: "Probe", sub: "Picks up the signal at the circuit" },
+              { label: "Attenuator / amp", sub: "Scales it to suit the V/div setting" },
+              { label: "ADC (sampling)", sub: "Measures the voltage, e.g. 1 GSa/s" },
+              { label: "Memory", sub: "Stores the samples of one capture" },
+              { label: "Display", sub: "Draws the stored points as the trace" },
+            ]}
+          />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          Each stage sets a limit. The front end&apos;s bandwidth caps how fast a signal it can pass
+          without shrinking it, the sample rate caps how finely the ADC can record it, and memory
+          depth caps how long a stretch can be recorded at that rate. Those three limits are the
+          specs covered further down.
+        </p>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">The main types of oscilloscope</h2>
+        <h2 id="types-of-oscilloscope" className="text-xl font-semibold mb-3">The main types of oscilloscope</h2>
         <p className="text-muted leading-7 mb-4">
           &quot;Oscilloscope&quot; covers several quite different instruments. These are the
           categories you will run into when shopping or reading forums:
@@ -193,10 +299,38 @@ export default function WhatIsAnOscilloscopePage() {
           has a single channel and 200kHz of bandwidth: enough for audio-range and slow signals, but
           not for fast digital work.
         </p>
+        <div className="mt-6">
+          <ProductStrip
+            title="Examples of each type"
+            items={[
+              {
+                name: "FNIRSI DSO152",
+                image: fnirsi.image,
+                alt: "FNIRSI DSO152 pocket-sized single-channel handheld oscilloscope",
+                href: "/oscilloscopes/fnirsi-dso152-review",
+                note: "Handheld: pocket-sized, 1 channel, 200kHz bandwidth, 2.5 MSa/s.",
+              },
+              {
+                name: "Rigol DS1054Z",
+                image: rigol.image,
+                alt: "Rigol DS1054Z four-channel digital benchtop oscilloscope with a 7-inch display",
+                href: "/oscilloscopes/rigol-ds1054z-review",
+                note: "Bench DSO: 4 channels, 50MHz, 1 GSa/s, 7-inch display.",
+              },
+              {
+                name: "Siglent SDS1104X-E",
+                image: siglent.image,
+                alt: "Siglent SDS1104X-E four-channel digital benchtop oscilloscope",
+                href: "/oscilloscopes/siglent-sds1104x-e-review",
+                note: "Bench DSO: 4 channels, 100MHz, 1 GSa/s.",
+              },
+            ]}
+          />
+        </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">The specs that matter</h2>
+        <h2 id="specs-that-matter" className="text-xl font-semibold mb-3">The specs that matter</h2>
         <p className="text-muted leading-7 mb-4">
           Four numbers do most of the work when comparing scopes:
         </p>
@@ -230,6 +364,31 @@ export default function WhatIsAnOscilloscopePage() {
             time window.
           </li>
         </ul>
+        <p className="text-muted leading-7 mt-5 mb-4">
+          Bandwidth is where scopes differ most. The four models mentioned on this page cover a
+          500-to-1 range: the FNIRSI DSO152&apos;s 200kHz is 250 times lower than the Rigol
+          DS1054Z&apos;s 50MHz, and 500 times lower than the 100MHz of the Siglent SDS1104X-E and
+          Hantek DSO2D10.
+        </p>
+        <Figure
+          caption={
+            <>
+              Rated bandwidth of the four example scopes. Applying the 3-to-5-times rule, 200kHz
+              suits signals up to roughly 40 to 67kHz, while 100MHz suits signals up to roughly 20 to
+              33MHz.
+            </>
+          }
+        >
+          <BarChart
+            log
+            items={[
+              { label: "FNIRSI DSO152", value: 200e3, display: "200 kHz" },
+              { label: "Rigol DS1054Z", value: 50e6, display: "50 MHz" },
+              { label: "Siglent SDS1104X-E", value: 100e6, display: "100 MHz" },
+              { label: "Hantek DSO2D10", value: 100e6, display: "100 MHz" },
+            ]}
+          />
+        </Figure>
         <div className="mt-5">
           <KeyIdea title="Rule of thumb">
             Bandwidth decides which frequencies the scope can show accurately; sample rate decides
@@ -243,7 +402,7 @@ export default function WhatIsAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">What oscilloscopes are used for</h2>
+        <h2 id="what-scopes-are-used-for" className="text-xl font-semibold mb-3">What oscilloscopes are used for</h2>
         <p className="text-muted leading-7 mb-4">
           Scopes show up anywhere the timing or shape of a signal matters, not just its average
           value. Common jobs include:
@@ -270,7 +429,7 @@ export default function WhatIsAnOscilloscopePage() {
       </Callout>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Do you need one?</h2>
+        <h2 id="do-you-need-one" className="text-xl font-semibold mb-3">Do you need one?</h2>
         <p className="text-muted leading-7">
           If you mostly check batteries, continuity and outlet voltages, a multimeter covers it,
           and our{" "}

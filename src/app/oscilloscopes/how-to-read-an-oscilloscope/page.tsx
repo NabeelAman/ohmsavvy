@@ -1,16 +1,31 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ScopeScreen } from "@/components/HowTo";
+import {
+  BarChart,
+  Callout,
+  DataTable,
+  Figure,
+  FlowDiagram,
+  HowToShell,
+  InfoCards,
+  KeyIdea,
+  ProductStrip,
+  ScopeScreen,
+} from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-beginner-oscilloscopes/page";
 
+const description =
+  "Learn how to read an oscilloscope screen: the graticule, V/div and time/div, and how to turn grid divisions into voltage, period and frequency, with examples.";
+
 export const metadata = buildMetadata({
   title: "How to Read an Oscilloscope Screen",
-  description:
-    "Learn how to read an oscilloscope screen: the graticule, V/div and time/div, and how to turn grid divisions into voltage, period and frequency, with examples.",
+  description,
   path: "/oscilloscopes/how-to-read-an-oscilloscope",
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const fnirsi = picks.find((p) => p.name === "FNIRSI DSO152")!;
 
 const link = "text-accent hover:underline";
 
@@ -18,6 +33,8 @@ export default function HowToReadAnOscilloscopePage() {
   return (
     <HowToShell
       title="How to Read an Oscilloscope Screen"
+      description={description}
+      published="2026-10-20"
       path="/oscilloscopes/how-to-read-an-oscilloscope"
       category="oscilloscopes"
       intro={
@@ -29,19 +46,51 @@ export default function HowToReadAnOscilloscopePage() {
         </>
       }
       aside={{
-        image: rigol.image,
-        alt: "A benchtop digital oscilloscope showing a waveform on its graticule display",
+        image: fnirsi.image,
+        alt: "FNIRSI DSO152 pocket-sized single-channel handheld oscilloscope",
         caption: (
           <>
-            The 7-inch screen on the Rigol DS1054Z uses the same grid layout as most digital scopes. See
-            our{" "}
-            <Link href="/oscilloscopes/rigol-ds1054z-review" className={link}>
-              DS1054Z review
+            The reading rules in this guide apply to any scope, from a pocket-sized unit like the FNIRSI
+            DSO152 (200kHz, 1 channel) to a four-channel bench model. See our{" "}
+            <Link href="/oscilloscopes/fnirsi-dso152-review" className={link}>
+              FNIRSI DSO152 review
             </Link>
             .
           </>
         ),
       }}
+      toc={[
+        { id: "the-graticule", label: "The graticule" },
+        { id: "screen-readouts", label: "Readouts around the grid" },
+        { id: "divisions-to-values", label: "Turning divisions into values" },
+        { id: "example-sine-wave", label: "Example 1: a sine wave" },
+        { id: "example-square-wave", label: "Example 2: a square wave" },
+        { id: "example-dc-level", label: "Example 3: a DC level" },
+        { id: "conversion-table", label: "Quick conversion table" },
+        { id: "accuracy-tips", label: "Tips for reading accurately" },
+      ]}
+      faq={[
+        {
+          q: "How many divisions are on an oscilloscope screen?",
+          a: "Most digital oscilloscopes use a grid of 10 divisions across and 8 divisions up and down. The centre lines carry finer tick marks, often five per division, so you can estimate to a fraction of a division. A few models use a different grid, so check how many divisions yours shows before converting a count into volts or seconds.",
+        },
+        {
+          q: "What does V/div mean on an oscilloscope?",
+          a: "V/div means volts per division: how much voltage one vertical square on the grid represents for that channel. At 2 V/div, a trace that is 3 divisions tall spans 6 V. Each channel has its own V/div setting, and it only reads correctly if the channel's probe setting (1x or 10x) matches the probe you are using.",
+        },
+        {
+          q: "How do you work out frequency from an oscilloscope screen?",
+          a: "Count how many horizontal divisions one full cycle takes, multiply by the time/div setting to get the period, then divide 1 by the period. For example, 5 divisions per cycle at 1 ms/div is a 5 ms period, and 1 / 0.005 s = 200 Hz. Measure between matching points, such as one rising edge to the next.",
+        },
+        {
+          q: "Why does my oscilloscope read voltages 10 times too low?",
+          a: "Almost always the probe is switched to 10x while the channel is set to 1x. A 10x probe divides the signal by ten before it reaches the scope, so the channel has to multiply it back. Set the channel's probe ratio to match the switch on the probe and the readings and on-screen V/div will be correct again.",
+        },
+        {
+          q: "When should I use AC coupling instead of DC coupling?",
+          a: "Use DC coupling for most readings, because it shows the true levels, including where the signal sits relative to 0 V. Switch to AC coupling when you want to see a small variation, such as ripple, riding on a large DC voltage. It removes the DC part so you can turn the V/div down without the trace leaving the screen.",
+        },
+      ]}
       next={[
         {
           href: "/oscilloscopes/how-to-measure-voltage-with-an-oscilloscope",
@@ -77,7 +126,7 @@ export default function HowToReadAnOscilloscopePage() {
       </Callout>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">The graticule: a grid of divisions</h2>
+        <h2 id="the-graticule" className="text-xl font-semibold mb-3">The graticule: a grid of divisions</h2>
         <p className="text-muted leading-7 mb-4">
           The grid on the screen is called the graticule. On most scopes it has 10 divisions across and 8
           divisions up and down. Each square is one major division. The two solid centre lines are
@@ -93,7 +142,7 @@ export default function HowToReadAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">What the readouts around the grid mean</h2>
+        <h2 id="screen-readouts" className="text-xl font-semibold mb-3">What the readouts around the grid mean</h2>
         <p className="text-muted leading-7 mb-5">
           Digital scopes print their settings around the edge of the graticule. Layouts differ between
           brands, but these are the items to look for:
@@ -110,17 +159,45 @@ export default function HowToReadAnOscilloscopePage() {
         />
       </section>
 
-      <KeyIdea title="The two formulas">
-        <p>
-          <strong className="text-foreground">Voltage = vertical divisions × V/div</strong>
-          <br />
-          <strong className="text-foreground">Time = horizontal divisions × time/div</strong>, and
-          frequency = 1 ÷ period.
+      <section>
+        <h2 id="divisions-to-values" className="text-xl font-semibold mb-3">
+          Turning divisions into volts and seconds
+        </h2>
+        <p className="text-muted leading-7 mb-5">
+          Every reading on the screen follows the same three steps, whether you are measuring a voltage
+          or a time. Count the divisions, multiply by the matching scale setting, and you have the value.
+          For time, one more step turns a period into a frequency.
         </p>
-      </KeyIdea>
+        <Figure
+          caption={
+            <>
+              The whole method in three steps. Use V/div for vertical counts and time/div for horizontal
+              counts; never mix them.
+            </>
+          }
+        >
+          <FlowDiagram
+            steps={[
+              { label: "Count divisions", sub: "Up and down, or across, to 0.2 div" },
+              { label: "× scale setting", sub: "V/div vertically, time/div across" },
+              { label: "Read the value", sub: "Volts, or seconds; f = 1 ÷ period" },
+            ]}
+          />
+        </Figure>
+        <div className="mt-5">
+          <KeyIdea title="The two formulas">
+            <p>
+              <strong className="text-foreground">Voltage = vertical divisions × V/div</strong>
+              <br />
+              <strong className="text-foreground">Time = horizontal divisions × time/div</strong>, and
+              frequency = 1 ÷ period.
+            </p>
+          </KeyIdea>
+        </div>
+      </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Example 1: reading a sine wave</h2>
+        <h2 id="example-sine-wave" className="text-xl font-semibold mb-3">Example 1: reading a sine wave</h2>
         <p className="text-muted leading-7 mb-5">
           The screen below is set to 2 V/div and 1 ms/div. Read the vertical size first, then the
           horizontal.
@@ -169,7 +246,7 @@ export default function HowToReadAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Example 2: reading a square wave (a logic signal)</h2>
+        <h2 id="example-square-wave" className="text-xl font-semibold mb-3">Example 2: reading a square wave (a logic signal)</h2>
         <p className="text-muted leading-7 mb-5">
           Here the scope is set to 2 V/div and 10 µs/div, with the channel&apos;s 0 V marker on the centre
           line and DC coupling. The low part of the wave sits on 0 V and the high part sits above it,
@@ -220,7 +297,7 @@ export default function HowToReadAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Example 3: reading a DC level</h2>
+        <h2 id="example-dc-level" className="text-xl font-semibold mb-3">Example 3: reading a DC level</h2>
         <p className="text-muted leading-7 mb-5">
           A steady DC voltage shows as a flat horizontal line. Its value is simply its height above the 0
           V marker. Here the scope is at 1 V/div with 0 V on the centre line.
@@ -255,7 +332,7 @@ export default function HowToReadAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Quick conversion table</h2>
+        <h2 id="conversion-table" className="text-xl font-semibold mb-3">Quick conversion table</h2>
         <p className="text-muted leading-7 mb-4">
           The same counted divisions mean very different things at different settings. A few examples:
         </p>
@@ -271,10 +348,32 @@ export default function HowToReadAnOscilloscopePage() {
             ["4 div per cycle", "0.25 µs/div", "1 µs period = 1 MHz"],
           ]}
         />
+        <p className="text-muted leading-7 mt-5 mb-5">
+          To see how much the V/div setting matters, take the 6-division count from Example 1. At 2 V/div
+          it meant 12 V peak-to-peak, but the same 6 divisions counted at other settings give completely
+          different voltages. The count alone tells you nothing until you multiply it by the scale.
+        </p>
+        <Figure
+          caption={
+            <>
+              The same 6-division peak-to-peak count read at four V/div settings: 6 × 0.5 V = 3 V, 6 × 1 V
+              = 6 V, 6 × 2 V = 12 V (Example 1) and 6 × 5 V = 30 V. Always check the scale before you read.
+            </>
+          }
+        >
+          <BarChart
+            items={[
+              { label: "6 div at 0.5 V/div", value: 3, display: "3 V p-p" },
+              { label: "6 div at 1 V/div", value: 6, display: "6 V p-p" },
+              { label: "6 div at 2 V/div", value: 12, display: "12 V p-p", highlight: true },
+              { label: "6 div at 5 V/div", value: 30, display: "30 V p-p" },
+            ]}
+          />
+        </Figure>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Tips for reading more accurately</h2>
+        <h2 id="accuracy-tips" className="text-xl font-semibold mb-3">Tips for reading more accurately</h2>
         <ul className="space-y-2 text-muted leading-7 list-disc pl-5">
           <li>
             <strong className="text-foreground">Fill the screen.</strong> A waveform that spans 6
@@ -300,6 +399,29 @@ export default function HowToReadAnOscilloscopePage() {
             to confirm they make sense.
           </li>
         </ul>
+        <p className="mt-4 mb-5 text-muted leading-7">
+          The graticule and the two scale settings work the same way on every digital scope, so these
+          habits carry over whichever model you use. These are two of the bench scopes we cover:
+        </p>
+        <ProductStrip
+          title="Scopes in our reviews"
+          items={[
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "50MHz, 4 channels, 1 GSa/s, with a 7-inch display and strong community documentation.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "100MHz, 4 channels, 1 GSa/s.",
+            },
+          ]}
+        />
         <p className="mt-4 text-muted leading-7">
           If you haven&apos;t got a stable waveform to read yet, start with{" "}
           <Link href="/oscilloscopes/how-to-use-an-oscilloscope" className={link}>

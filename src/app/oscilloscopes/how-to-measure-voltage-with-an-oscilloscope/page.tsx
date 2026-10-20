@@ -1,16 +1,31 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ScopeScreen, StepHeading } from "@/components/HowTo";
+import {
+  BarChart,
+  Callout,
+  DataTable,
+  Figure,
+  HowToShell,
+  InfoCards,
+  KeyIdea,
+  MeterReadout,
+  ProductStrip,
+  ScopeScreen,
+  StepHeading,
+} from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-beginner-oscilloscopes/page";
 
+const description =
+  "How to measure voltage with an oscilloscope: read peak-to-peak, peak, RMS and DC level, choose AC or DC coupling, and use cursors and auto measurements.";
+
 export const metadata = buildMetadata({
   title: "How to Measure Voltage With an Oscilloscope",
-  description:
-    "How to measure voltage with an oscilloscope: read peak-to-peak, peak, RMS and DC level, choose AC or DC coupling, and use cursors and auto measurements.",
+  description,
   path: "/oscilloscopes/how-to-measure-voltage-with-an-oscilloscope",
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
 
 const link = "text-accent hover:underline";
 
@@ -18,6 +33,8 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
   return (
     <HowToShell
       title="How to Measure Voltage With an Oscilloscope"
+      description={description}
+      published="2026-10-20"
       path="/oscilloscopes/how-to-measure-voltage-with-an-oscilloscope"
       category="oscilloscopes"
       intro={
@@ -30,19 +47,52 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
         </>
       }
       aside={{
-        image: rigol.image,
-        alt: "Rigol DS1054Z four-channel digital oscilloscope, front view",
+        image: siglent.image,
+        alt: "Siglent SDS1104X-E four-channel benchtop digital oscilloscope, front view",
         caption: (
           <>
-            The Rigol DS1054Z (50MHz, 4 channels) has the cursors and automatic voltage measurements used
-            in this guide; most digital scopes offer the same tools. See our{" "}
-            <Link href="/oscilloscopes/rigol-ds1054z-review" className={link}>
-              DS1054Z review
+            The Siglent SDS1104X-E (100MHz, 4 channels, 1 GSa/s) is one of the bench scopes in our
+            reviews; the division-counting method in this guide works the same on it as on any digital
+            scope. See our{" "}
+            <Link href="/oscilloscopes/siglent-sds1104x-e-review" className={link}>
+              SDS1104X-E review
             </Link>
             .
           </>
         ),
       }}
+      toc={[
+        { id: "set-up-the-channel", label: "Set up the channel" },
+        { id: "read-peak-to-peak", label: "Read peak-to-peak voltage" },
+        { id: "peak-and-rms", label: "Peak-to-peak to peak and RMS" },
+        { id: "dc-level", label: "Measure a DC level" },
+        { id: "ac-coupling-ripple", label: "AC coupling for ripple" },
+        { id: "cursors-and-measurements", label: "Cursors and auto measurements" },
+        { id: "accurate-readings", label: "Getting an accurate reading" },
+        { id: "which-scope", label: "Which scope you need" },
+      ]}
+      faq={[
+        {
+          q: "Can an oscilloscope measure AC voltage?",
+          a: "Yes. An oscilloscope shows the AC waveform itself, so you can read its peak-to-peak and peak values straight from the grid. Most digital scopes also calculate RMS from the samples. For a clean sine you can work it out yourself: a 6 V peak-to-peak sine has a 3 V peak and an RMS of about 2.12 V.",
+        },
+        {
+          q: "Why does my oscilloscope reading not match my multimeter?",
+          a: "Usually they are reporting different things. A scope's grid gives peak-to-peak or peak voltage, while a multimeter's AC range reports RMS, so a 6 V peak-to-peak sine reads about 2.12 V on the meter. Meters that are not True-RMS also assume a sine wave and misread other shapes, and a scope's vertical accuracy is typically only a few percent.",
+        },
+        {
+          q: "Can you measure mains voltage with an oscilloscope?",
+          a: "Not with a standard bench scope and ordinary passive probe. The probe's ground clip is tied to mains earth, so clipping it to a mains circuit can short it out, and most 1x/10x probes are not rated for mains. It needs a differential probe, an isolation transformer on the device under test, or a suitably rated isolated scope. For a simple mains reading, use a rated multimeter.",
+        },
+        {
+          q: "How does a 10x probe affect voltage readings?",
+          a: "A 10x probe divides the signal by ten before it reaches the scope input, which lets the scope handle larger voltages and loads the circuit less. The scope must be told about it: set the channel's probe ratio to 10x and it multiplies the reading back. If the channel is left on 1x, every voltage reads ten times too low.",
+        },
+        {
+          q: "How accurate is an oscilloscope for measuring voltage?",
+          a: "Good enough for seeing levels, swings, ripple and spikes, but not a precision instrument. Vertical accuracy is typically specified as a few percent, and your model's datasheet gives the exact figure. Filling the screen vertically and staying well inside the scope's bandwidth help. For a precise DC value, such as checking a regulator output, a good multimeter is usually the better tool.",
+        },
+      ]}
       next={[
         {
           href: "/oscilloscopes/how-to-measure-frequency-with-an-oscilloscope",
@@ -85,7 +135,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </Callout>
 
       <section>
-        <StepHeading n={1}>Set up the channel before you read anything</StepHeading>
+        <StepHeading n={1} id="set-up-the-channel">Set up the channel before you read anything</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Most voltage-reading mistakes happen before the signal is even on screen. Three settings decide
           whether the numbers you read are correct:
@@ -109,7 +159,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={2}>Read peak-to-peak voltage from the grid</StepHeading>
+        <StepHeading n={2} id="read-peak-to-peak">Read peak-to-peak voltage from the grid</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Peak-to-peak (Vpp) is the distance from the highest point of the waveform to the lowest. Count
           the vertical divisions between them and multiply by V/div. Most scope screens have 8 vertical
@@ -145,7 +195,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={3}>Turn peak-to-peak into peak and RMS</StepHeading>
+        <StepHeading n={3} id="peak-and-rms">Turn peak-to-peak into peak and RMS</StepHeading>
         <p className="text-muted leading-7 mb-4">
           For a waveform centred on 0 V, the peak (amplitude) is half the peak-to-peak value. For a pure
           sine wave only, the RMS value, which is what a multimeter&apos;s AC voltage range is trying to
@@ -161,6 +211,52 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
           ]}
           mono={[2]}
         />
+        <p className="text-muted leading-7 mt-5 mb-5">
+          Side by side, the three numbers for the same signal look very different. That is why a voltage
+          value means little until you know which one it is: 6 V, 3 V and 2.12 V can all describe this one
+          sine wave.
+        </p>
+        <Figure
+          caption={
+            <>
+              One 6 V peak-to-peak sine, three ways: Vpp = 6 V, Vpk = 6 ÷ 2 = 3 V, Vrms = 3 × 0.707 ≈ 2.12
+              V. RMS is always the smallest of the three for a sine.
+            </>
+          }
+        >
+          <BarChart
+            items={[
+              { label: "Peak-to-peak (Vpp)", value: 6, display: "6 V" },
+              { label: "Peak (Vpk)", value: 3, display: "3 V" },
+              { label: "RMS (Vrms)", value: 2.12, display: "≈ 2.12 V", highlight: true },
+            ]}
+          />
+        </Figure>
+        <p className="text-muted leading-7 mt-5 mb-5">
+          This is also why a scope and a multimeter can disagree about the same signal without either
+          being wrong. Below, the 6 V peak-to-peak sine from step 2 is shown at 2 V/div, where it spans 3
+          divisions, next to what a True-RMS multimeter on its AC voltage range would report for it.
+        </p>
+        <Figure
+          caption={
+            <>
+              Left: the same sine at 2 V/div spans 3 divisions, 3 × 2 V = 6 V peak-to-peak. Right: a
+              True-RMS meter reports the RMS value of that sine, about 2.12 V AC, not the peak or
+              peak-to-peak.
+            </>
+          }
+        >
+          <div className="grid sm:grid-cols-2 gap-4 items-center">
+            <ScopeScreen
+              wave="sine"
+              cycles={2}
+              amplitude={1.5}
+              labels={{ left: "CH1 2 V/div", right: "1 ms/div" }}
+              marks={[{ x1: 1.25, y1: 2.5, x2: 1.25, y2: 5.5, text: "3 div = 6 V p-p" }]}
+            />
+            <MeterReadout value="2.12" unit="V AC" mode="AC V" />
+          </div>
+        </Figure>
         <KeyIdea title="The √2 rule only works for sine waves">
           A square wave that swings evenly between +3 V and -3 V has an RMS of 3 V, not 2.12 V. Triangle
           waves, PWM and distorted waveforms each have a different ratio. For anything that isn&apos;t a
@@ -170,7 +266,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={4}>Measure a DC level or a signal that sits above 0 V</StepHeading>
+        <StepHeading n={4} id="dc-level">Measure a DC level or a signal that sits above 0 V</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Many real signals don&apos;t sit around 0 V. A logic output or PWM signal, for example, switches
           between 0 V and a supply voltage. With DC coupling, measure each level from the ground marker:
@@ -202,7 +298,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={5}>Use AC coupling to see small ripple on a DC rail</StepHeading>
+        <StepHeading n={5} id="ac-coupling-ripple">Use AC coupling to see small ripple on a DC rail</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Suppose you want to see the ripple on a 5 V supply. At 2 V/div, DC coupled, the rail sits 2.5
           divisions above ground and 200 mV of ripple is only a tenth of a division tall, which is
@@ -246,7 +342,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </section>
 
       <section>
-        <StepHeading n={6}>Use cursors and automatic measurements</StepHeading>
+        <StepHeading n={6} id="cursors-and-measurements">Use cursors and automatic measurements</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Counting divisions is the skill to learn, but a digital scope can do it more precisely.
           Horizontal voltage cursors (often labelled Y or amplitude cursors) are two lines you place on
@@ -276,7 +372,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Getting an accurate voltage reading</h2>
+        <h2 id="accurate-readings" className="text-xl font-semibold mb-3">Getting an accurate voltage reading</h2>
         <ul className="space-y-2 list-disc pl-5 text-muted leading-7">
           <li>
             <strong className="text-foreground">Fill the screen vertically.</strong> Both your eye and the
@@ -316,7 +412,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Which scope do you need for voltage measurements?</h2>
+        <h2 id="which-scope" className="text-xl font-semibold mb-3">Which scope do you need for voltage measurements?</h2>
         <p className="text-muted leading-7">
           Any working scope can measure voltage; the differences are in what signals it can keep up with.
           A pocket unit like the{" "}
@@ -353,6 +449,27 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
           </Link>
           .
         </p>
+        <div className="mt-6">
+          <ProductStrip
+            title="Bench scopes in our reviews"
+            items={[
+              {
+                name: "Rigol DS1054Z",
+                image: rigol.image,
+                alt: "Rigol DS1054Z four-channel benchtop digital oscilloscope",
+                href: "/oscilloscopes/rigol-ds1054z-review",
+                note: "50MHz, 4 channels, 1 GSa/s, with a 7-inch display and strong community documentation.",
+              },
+              {
+                name: "Siglent SDS1104X-E",
+                image: siglent.image,
+                alt: "Siglent SDS1104X-E four-channel benchtop digital oscilloscope",
+                href: "/oscilloscopes/siglent-sds1104x-e-review",
+                note: "100MHz, 4 channels, 1 GSa/s.",
+              },
+            ]}
+          />
+        </div>
       </section>
     </HowToShell>
   );

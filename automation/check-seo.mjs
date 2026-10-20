@@ -31,7 +31,10 @@ for (const file of pageFiles) {
   const content = readFileSync(file, "utf8");
 
   const titleMatch = content.match(/title:\s*"([^"]+)"/);
-  const descMatch = content.match(/description:\s*\n?\s*"([^"]+)"/);
+  // Also accept a page-level `const description = "..."` passed to buildMetadata as
+  // shorthand, which pages use when the same text also feeds their Article schema.
+  const descMatch =
+    content.match(/description:\s*\n?\s*"([^"]+)"/) ?? content.match(/const description\s*=\s*\n?\s*"([^"]+)"/);
   // "canonical:" is the raw alternates.canonical style; "path:" is buildMetadata()'s
   // param (src/lib/metadata.ts), which every page should use now — support both so
   // this doesn't silently stop checking if a page ever reverts to the raw style.

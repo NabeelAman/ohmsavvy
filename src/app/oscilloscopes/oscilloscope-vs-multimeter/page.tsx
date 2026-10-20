@@ -1,16 +1,30 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ScopeScreen } from "@/components/HowTo";
+import {
+  Callout,
+  DataTable,
+  Figure,
+  HowToShell,
+  InfoCards,
+  KeyIdea,
+  MeterReadout,
+  ProductStrip,
+  ScopeScreen,
+} from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks as meterPicks } from "../../multimeters/best-multimeters/page";
 import { picks } from "../best-beginner-oscilloscopes/page";
+
+const description =
+  "Oscilloscope vs multimeter: which tool fits which job, where they overlap, why a meter is better for steady values and a scope for signals changing over time.";
 
 export const metadata = buildMetadata({
   title: "Oscilloscope vs Multimeter: Which to Use",
-  description:
-    "Oscilloscope vs multimeter: which tool fits which job, where they overlap, why a meter is better for steady values and a scope for signals changing over time.",
+  description,
   path: "/oscilloscopes/oscilloscope-vs-multimeter",
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const fluke = meterPicks.find((p) => p.name === "Fluke 117")!;
 
 const linkCls = "text-accent hover:underline";
 
@@ -18,6 +32,8 @@ export default function OscilloscopeVsMultimeterPage() {
   return (
     <HowToShell
       title="When to Use an Oscilloscope vs a Multimeter"
+      description={description}
+      published="2026-10-20"
       path="/oscilloscopes/oscilloscope-vs-multimeter"
       category="oscilloscopes"
       intro={
@@ -35,8 +51,11 @@ export default function OscilloscopeVsMultimeterPage() {
         alt: "Rigol DS1054Z four-channel digital benchtop oscilloscope",
         caption: (
           <>
-            A bench scope like the Rigol DS1054Z complements a multimeter rather than replacing it.
-            Compare options in our{" "}
+            A bench scope like the{" "}
+            <Link href="/oscilloscopes/rigol-ds1054z-review" className={linkCls}>
+              Rigol DS1054Z
+            </Link>{" "}
+            complements a multimeter rather than replacing it. Compare options in our{" "}
             <Link href="/oscilloscopes/best-beginner-oscilloscopes" className={linkCls}>
               beginner scope picks
             </Link>
@@ -44,6 +63,37 @@ export default function OscilloscopeVsMultimeterPage() {
           </>
         ),
       }}
+      toc={[
+        { id: "short-answer", label: "The short answer" },
+        { id: "side-by-side", label: "Side by side" },
+        { id: "multimeter-jobs", label: "Jobs for the multimeter" },
+        { id: "oscilloscope-jobs", label: "Jobs for the oscilloscope" },
+        { id: "overlap", label: "Where the two tools overlap" },
+        { id: "why-both", label: "Why most benches have both" },
+        { id: "choosing-a-scope", label: "Choosing a scope for your meter" },
+      ]}
+      faq={[
+        {
+          q: "Can an oscilloscope replace a multimeter?",
+          a: "Not fully. A scope can read DC and AC voltage and work out frequency, but it cannot measure resistance or continuity, it only measures current indirectly through a shunt or current probe, and its vertical accuracy is typically coarser than a meter's. Bench scopes are also unsuited to direct mains work without isolation. Most people keep a multimeter even after buying a scope.",
+        },
+        {
+          q: "Why does my multimeter show a different AC voltage than my oscilloscope?",
+          a: "Usually because they are reporting different things. A meter on AC volts shows RMS, while a scope often displays peak-to-peak by default. A 10 Vpp sine is 5 V peak and about 3.54 V RMS, so both can be correct. Other causes are a meter that is not True RMS reading a non-sine wave, or a signal above the meter's rated AC frequency range.",
+        },
+        {
+          q: "Can a multimeter measure frequency?",
+          a: "Many can, through a Hz mode, as long as the signal is clean, repetitive and within the meter's rated frequency and voltage range. The meter simply counts cycles, so noise or extra edges can make the reading jump or come out wrong, and you cannot see why. A scope shows the waveform behind the number, which is the deciding factor on noisy or irregular signals.",
+        },
+        {
+          q: "Should a beginner buy a multimeter or an oscilloscope first?",
+          a: "A multimeter first, for almost everyone. It covers the checks most projects need, such as supply voltages, resistor values, continuity and current draw, and it is small and quick to use. An oscilloscope becomes worth adding once your projects involve signals that switch, oscillate or communicate, such as PWM, clocks, audio or serial data, where the shape over time matters.",
+        },
+        {
+          q: "What does a multimeter show when measuring a PWM signal?",
+          a: "On DC volts a meter typically settles near the average of the waveform, which is the high level multiplied by the duty cycle: a 5 V signal high 20% of the time averages about 1 V. The exact reading depends on how the meter filters a fast-changing input. It tells you nothing about the pulse height, frequency or edges, which only the scope shows.",
+        },
+      ]}
       next={[
         {
           href: "/oscilloscopes/what-is-an-oscilloscope",
@@ -82,16 +132,43 @@ export default function OscilloscopeVsMultimeterPage() {
       </Callout>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">The short answer</h2>
+        <h2 id="short-answer" className="text-xl font-semibold mb-3">The short answer</h2>
         <KeyIdea title="Rule of thumb">
           If the value you care about is steady, or you only need its average or RMS, reach for the
           multimeter. If you care about how the signal changes over time (its shape, frequency,
           edges, noise or timing against another signal), you need the oscilloscope.
         </KeyIdea>
+        <p className="mt-5 text-muted leading-7 mb-4">
+          Put another way: start from the question you are asking. If the answer is one steady
+          value, use the meter; if the answer depends on what the signal does over time, use the
+          scope. The guide below sorts common questions that way.
+        </p>
+        <Figure
+          caption={
+            <>
+              A quick decision guide. Questions with a single steady answer go to the multimeter;
+              questions about shape, timing or brief events go to the oscilloscope.
+            </>
+          }
+        >
+          <DataTable
+            head={["What you need to know", "Steady or changing?", "Reach for"]}
+            rows={[
+              ["Is this supply rail at 5 V?", "Steady value", "Multimeter"],
+              ["What is this resistor's value?", "Steady value", "Multimeter"],
+              ["Is this fuse or cable continuous?", "Steady value", "Multimeter"],
+              ["How much current does the circuit draw?", "Steady value", "Multimeter"],
+              ["Is there ripple or noise on the rail?", "Changing in time", "Oscilloscope"],
+              ["Are this square wave's edges clean?", "Changing in time", "Oscilloscope"],
+              ["Is the PWM duty cycle what I set?", "Changing in time", "Oscilloscope"],
+              ["Does a brief dropout ever happen?", "Changing in time", "Oscilloscope"],
+            ]}
+          />
+        </Figure>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Side by side</h2>
+        <h2 id="side-by-side" className="text-xl font-semibold mb-3">Side by side</h2>
         <p className="text-muted leading-7 mb-4">
           The details vary by model, but the general split between the two instruments looks like
           this:
@@ -113,7 +190,7 @@ export default function OscilloscopeVsMultimeterPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Jobs where the multimeter is the right tool</h2>
+        <h2 id="multimeter-jobs" className="text-xl font-semibold mb-3">Jobs where the multimeter is the right tool</h2>
         <p className="text-muted leading-7 mb-5">
           Plenty of everyday electronics work never needs a scope. These are the measurements a
           multimeter does better, faster or more safely:
@@ -142,7 +219,7 @@ export default function OscilloscopeVsMultimeterPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Jobs where you need the oscilloscope</h2>
+        <h2 id="oscilloscope-jobs" className="text-xl font-semibold mb-3">Jobs where you need the oscilloscope</h2>
         <p className="text-muted leading-7 mb-4">
           The scope earns its place whenever the answer depends on what happens within a fraction of
           a second. A classic example is PWM, the rapid on-off switching a microcontroller uses to
@@ -199,7 +276,7 @@ export default function OscilloscopeVsMultimeterPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Where the two tools overlap</h2>
+        <h2 id="overlap" className="text-xl font-semibold mb-3">Where the two tools overlap</h2>
         <p className="text-muted leading-7 mb-4">
           Some measurements can be made with either instrument, and knowing the difference helps
           you pick the right one:
@@ -233,10 +310,40 @@ export default function OscilloscopeVsMultimeterPage() {
             .
           </li>
         </ul>
+        <p className="text-muted leading-7 mt-5 mb-4">
+          The figure below shows the AC case. The same 100 Hz sine wave goes to both instruments.
+          The meter boils it down to one RMS number; the scope shows the whole wave, from which you
+          can read the peak-to-peak voltage and the period, and check that it really is a clean
+          sine before trusting the RMS conversion.
+        </p>
+        <Figure
+          caption={
+            <>
+              One sine wave, two views. The scope at 2 V/div and 2 ms/div shows 5 divisions peak to
+              peak (10 Vpp, so 5 V peak) and one cycle every 5 divisions (10 ms, so 100 Hz). A True
+              RMS meter on AC volts shows 3.54 V, which is 5 V ÷ √2. The numbers agree; only the
+              scope shows the shape.
+            </>
+          }
+        >
+          <div className="grid sm:grid-cols-2 gap-4 items-center">
+            <MeterReadout value="3.54" unit="V AC" mode="AC V" />
+            <ScopeScreen
+              wave="sine"
+              cycles={2}
+              amplitude={2.5}
+              labels={{ left: "2 V/div", right: "2 ms/div" }}
+              marks={[
+                { x1: 1.25, y1: 0.6, x2: 6.25, y2: 0.6, text: "1 cycle = 5 div" },
+                { x1: 0.6, y1: 1.5, x2: 0.6, y2: 6.5, text: "10 Vpp" },
+              ]}
+            />
+          </div>
+        </Figure>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Why most benches have both</h2>
+        <h2 id="why-both" className="text-xl font-semibold mb-3">Why most benches have both</h2>
         <p className="text-muted leading-7">
           A typical debugging session uses the two together. The multimeter confirms the basics
           (power is present, the rail is the right voltage, a connection is continuous), and the
@@ -246,10 +353,31 @@ export default function OscilloscopeVsMultimeterPage() {
           first because it covers more everyday jobs. Add a scope once your projects involve
           anything that switches, oscillates or communicates.
         </p>
+        <div className="mt-6">
+          <ProductStrip
+            title="Two tools, two jobs"
+            items={[
+              {
+                name: "Fluke 117",
+                image: fluke.image,
+                alt: "Fluke 117 True-RMS digital multimeter",
+                href: "/multimeters/fluke-117-review",
+                note: "A True-RMS digital multimeter for electrical work.",
+              },
+              {
+                name: "Rigol DS1054Z",
+                image: rigol.image,
+                alt: "Rigol DS1054Z four-channel digital bench oscilloscope",
+                href: "/oscilloscopes/rigol-ds1054z-review",
+                note: "50MHz, 4 channels, 1 GSa/s, with a 7-inch display.",
+              },
+            ]}
+          />
+        </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Choosing a scope to go with your meter</h2>
+        <h2 id="choosing-a-scope" className="text-xl font-semibold mb-3">Choosing a scope to go with your meter</h2>
         <p className="text-muted leading-7">
           For hobby and repair work, an entry-level digital bench scope is the usual next step. The{" "}
           <Link href="/oscilloscopes/rigol-ds1054z-review" className={linkCls}>

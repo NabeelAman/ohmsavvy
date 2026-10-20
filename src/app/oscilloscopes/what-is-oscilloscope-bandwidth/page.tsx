@@ -1,16 +1,30 @@
 import Link from "next/link";
-import { DataTable, Figure, HowToShell, InfoCards, KeyIdea, ScopeScreen } from "@/components/HowTo";
+import {
+  BarChart,
+  DataTable,
+  Figure,
+  HowToShell,
+  InfoCards,
+  KeyIdea,
+  ProductStrip,
+  ResponseChart,
+  ScopeScreen,
+} from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-beginner-oscilloscopes/page";
 
+const description =
+  "What oscilloscope bandwidth means: the -3 dB point, why a sine reads about 29% low there, the 3-5x rule, rise time from 0.35/BW, and how much you need.";
+
 export const metadata = buildMetadata({
   title: "What Is Oscilloscope Bandwidth?",
-  description:
-    "What oscilloscope bandwidth means: the -3 dB point, why a sine reads about 29% low there, the 3-5x rule, rise time from 0.35/BW, and how much you need.",
+  description,
   path: "/oscilloscopes/what-is-oscilloscope-bandwidth",
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const fnirsi = picks.find((p) => p.name === "FNIRSI DSO152")!;
 
 const link = "text-accent hover:underline";
 
@@ -18,6 +32,8 @@ export default function WhatIsOscilloscopeBandwidthPage() {
   return (
     <HowToShell
       title="What Is Oscilloscope Bandwidth?"
+      description={description}
+      published="2026-10-20"
       path="/oscilloscopes/what-is-oscilloscope-bandwidth"
       category="oscilloscopes"
       intro={
@@ -44,6 +60,37 @@ export default function WhatIsOscilloscopeBandwidthPage() {
           </>
         ),
       }}
+      toc={[
+        { id: "minus-3-db-definition", label: "The -3 dB definition" },
+        { id: "the-3-5x-rule", label: "Why the 3-5x rule exists" },
+        { id: "square-waves-and-edges", label: "Square waves and edges" },
+        { id: "rise-time", label: "Rise time ≈ 0.35 / bandwidth" },
+        { id: "probes-and-settings", label: "Probes and settings" },
+        { id: "how-much-bandwidth", label: "How much bandwidth you need" },
+        { id: "bandwidth-and-sample-rate", label: "Bandwidth and sample rate" },
+      ]}
+      faq={[
+        {
+          q: "Is a 50MHz oscilloscope enough for a beginner?",
+          a: "For most hobby microcontroller, audio and power work, yes. A 50MHz scope keeps amplitude error small on sines up to roughly 10-17MHz and shows a 10MHz clock, just with softened edges. Its own rise time is about 7 ns, so it is not the right tool for timing very fast edges, but slow serial buses, PWM and audio signals sit far inside its range.",
+        },
+        {
+          q: "What happens if a signal is above the oscilloscope's bandwidth?",
+          a: "The scope does not block it. The signal keeps getting smaller as its frequency rises past the -3 dB point, so you may still see a trace at twice the rated bandwidth, only shrunken and distorted. A square wave whose harmonics fall above the bandwidth loses its sharp corners and starts to look rounded, closer to a sine than to the real waveform.",
+        },
+        {
+          q: "Can a probe reduce oscilloscope bandwidth?",
+          a: "Yes. What you measure is limited by the whole system, not just the scope. A probe rated below the scope caps the result at the probe's figure, and a passive probe in 1x mode usually has far less bandwidth than in 10x mode. A long ground lead adds ringing on fast edges, and an uncompensated probe distorts square waves whatever the bandwidth.",
+        },
+        {
+          q: "How do you calculate oscilloscope bandwidth from rise time?",
+          a: "For typical scopes below about 1GHz, bandwidth is roughly 0.35 divided by rise time, and rise time is roughly 0.35 divided by bandwidth. A 7 ns rise time corresponds to about 50MHz, and 3.5 ns to about 100MHz. To measure an edge accurately, choose a scope whose own rise time is 3-5x faster than the edge you want to see.",
+        },
+        {
+          q: "Does more bandwidth make an oscilloscope better?",
+          a: "Only if your signals need it. Extra bandwidth improves accuracy on fast sines and sharp edges, but it also lets more high-frequency noise reach the screen, which is why many scopes offer a bandwidth-limit setting. If your highest frequency of interest is already below a fifth of the rated bandwidth, more bandwidth changes very little about the readings you take.",
+        },
+      ]}
       next={[
         {
           href: "/oscilloscopes/what-does-gsa-s-mean",
@@ -58,7 +105,7 @@ export default function WhatIsOscilloscopeBandwidthPage() {
       ]}
     >
       <section>
-        <h2 className="text-xl font-semibold mb-3">The -3 dB definition, in plain numbers</h2>
+        <h2 id="minus-3-db-definition" className="text-xl font-semibold mb-3">The -3 dB definition, in plain numbers</h2>
         <p className="text-muted leading-7">
           Every oscilloscope input behaves like a low-pass filter. Slow signals pass through at
           full size; as frequency rises, the amplifiers, input capacitance and probe start to
@@ -99,7 +146,7 @@ export default function WhatIsOscilloscopeBandwidthPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Why the 3-5x rule exists</h2>
+        <h2 id="the-3-5x-rule" className="text-xl font-semibold mb-3">Why the 3-5x rule exists</h2>
         <p className="text-muted leading-7 mb-4">
           Because the response starts rolling off well before the -3 dB point, the{" "}
           <Link href="/oscilloscopes/oscilloscope-buying-guide" className={link}>
@@ -124,10 +171,29 @@ export default function WhatIsOscilloscopeBandwidthPage() {
           datasheet values. The pattern is the point: a 3x margin keeps amplitude error to a few
           percent, and 5x makes it small enough to ignore for most bench work.
         </p>
+        <p className="mt-3 text-muted leading-7">
+          The chart below plots both models. They agree exactly at 1x, where each reads 70.7%, and
+          differ by only a few percent elsewhere: about 89% and 92% at half the bandwidth, 95% and
+          96% at one-third, and 98% and 99% at one-fifth. Notice how early the single-pole curve
+          leaves the 100% line; that early droop is the reason for the margin.
+        </p>
+        <div className="mt-5">
+          <Figure
+            caption={
+              <>
+                Displayed amplitude against signal frequency as a fraction of the scope&apos;s rated
+                bandwidth. Both textbook curves cross 70.7% (-3 dB) at 1x; at ⅕x they are back to
+                about 98-99%, which is where the 5x rule comes from.
+              </>
+            }
+          >
+            <ResponseChart />
+          </Figure>
+        </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Square waves: bandwidth is really about edges</h2>
+        <h2 id="square-waves-and-edges" className="text-xl font-semibold mb-3">Square waves: bandwidth is really about edges</h2>
         <p className="text-muted leading-7">
           A sine wave contains a single frequency. A square wave does not: mathematically it is a
           fundamental plus odd harmonics at 3x, 5x, 7x and so on, each smaller than the last.
@@ -144,7 +210,7 @@ export default function WhatIsOscilloscopeBandwidthPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Rise time ≈ 0.35 / bandwidth</h2>
+        <h2 id="rise-time" className="text-xl font-semibold mb-3">Rise time ≈ 0.35 / bandwidth</h2>
         <p className="text-muted leading-7 mb-4">
           A scope&apos;s own rise time (10% to 90%) is linked to its bandwidth. For most scopes
           below about 1GHz, which have a gently rolling response, the standard approximation is
@@ -185,7 +251,7 @@ export default function WhatIsOscilloscopeBandwidthPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">The rest of the chain: probes and settings</h2>
+        <h2 id="probes-and-settings" className="text-xl font-semibold mb-3">The rest of the chain: probes and settings</h2>
         <p className="text-muted leading-7 mb-4">
           The bandwidth on the front panel is the scope alone. What you actually get is limited by
           everything between the circuit and the screen:
@@ -228,7 +294,7 @@ export default function WhatIsOscilloscopeBandwidthPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">How much bandwidth do you need?</h2>
+        <h2 id="how-much-bandwidth" className="text-xl font-semibold mb-3">How much bandwidth do you need?</h2>
         <p className="text-muted leading-7 mb-4">
           Work out the highest frequency that matters in your signal, then apply the margin. For
           sines, that is the signal frequency; for digital and square signals, start from 5x the
@@ -244,6 +310,29 @@ export default function WhatIsOscilloscopeBandwidthPage() {
             ["10MHz clock or square wave", "50MHz (to 5th harmonic)", "50MHz minimum, 100MHz for more margin"],
           ]}
         />
+        <p className="mt-4 text-muted leading-7 mb-4">
+          The four scopes in our comparison span a wide range. The FNIRSI DSO152&apos;s 200kHz is
+          250 times lower than the Rigol DS1054Z&apos;s 50MHz, and the two 100MHz models double
+          the Rigol again:
+        </p>
+        <Figure
+          caption={
+            <>
+              Rated bandwidth of the four scopes in our beginner comparison, on a logarithmic
+              scale. The highlighted Rigol DS1054Z (50MHz) is the example used throughout this page.
+            </>
+          }
+        >
+          <BarChart
+            log
+            items={[
+              { label: "FNIRSI DSO152", value: 0.2, display: "200 kHz" },
+              { label: "Rigol DS1054Z", value: 50, display: "50 MHz", highlight: true },
+              { label: "Siglent SDS1104X-E", value: 100, display: "100 MHz" },
+              { label: "Hantek DSO2D10", value: 100, display: "100 MHz" },
+            ]}
+          />
+        </Figure>
         <p className="mt-4 text-muted leading-7">
           Applied to real models: the{" "}
           <Link href="/oscilloscopes/fnirsi-dso152-review" className={link}>
@@ -270,10 +359,38 @@ export default function WhatIsOscilloscopeBandwidthPage() {
           </Link>{" "}
           cluster there.
         </p>
+        <div className="mt-6">
+          <ProductStrip
+            title="Scopes discussed on this page"
+            items={[
+              {
+                name: "Rigol DS1054Z",
+                image: rigol.image,
+                alt: "Rigol DS1054Z four-channel 50MHz digital oscilloscope, front view",
+                href: "/oscilloscopes/rigol-ds1054z-review",
+                note: "50MHz, 4 channels, 1 GSa/s, 7-inch display, with strong community documentation.",
+              },
+              {
+                name: "Siglent SDS1104X-E",
+                image: siglent.image,
+                alt: "Siglent SDS1104X-E four-channel 100MHz digital oscilloscope",
+                href: "/oscilloscopes/siglent-sds1104x-e-review",
+                note: "100MHz, 4 channels, 1 GSa/s: twice the Rigol's bandwidth.",
+              },
+              {
+                name: "FNIRSI DSO152",
+                image: fnirsi.image,
+                alt: "FNIRSI DSO152 pocket-sized single-channel handheld oscilloscope",
+                href: "/oscilloscopes/fnirsi-dso152-review",
+                note: "200kHz, 1 channel, 2.5 MSa/s, pocket-sized.",
+              },
+            ]}
+          />
+        </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Bandwidth is half the story</h2>
+        <h2 id="bandwidth-and-sample-rate" className="text-xl font-semibold mb-3">Bandwidth is half the story</h2>
         <p className="text-muted leading-7">
           A front end with plenty of bandwidth still needs enough samples to draw the waveform.
           That second limit is the sample rate, covered in{" "}

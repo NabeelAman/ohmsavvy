@@ -96,6 +96,20 @@ export const content: ContentEntry[] = [
   },
   {
     category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Use an Analog Multimeter",
+    description: "Reading the scales, avoiding parallax error, and zeroing for resistance",
+    href: "/multimeters/how-to-use-an-analog-multimeter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Test Electrical Wires With a Multimeter",
+    description: "Finding opens and shorts, plus testing automotive wiring",
+    href: "/multimeters/how-to-test-electrical-wires-with-a-multimeter",
+  },
+  {
+    category: "multimeters",
     type: "review",
     title: "Fluke 117 Review",
     description: "A closer look at our Best Overall pick",

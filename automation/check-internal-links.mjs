@@ -31,8 +31,19 @@ function routeFromFile(file) {
   return route === "" ? "/" : route;
 }
 
+// Pilot i18n locales (src/app/[locale]/...) — kept in sync with
+// src/lib/i18n.ts's LOCALES by hand, since this script reads .ts files as
+// plain text rather than importing them. Expand the literal "[locale]"
+// dynamic-segment route into one concrete route per real locale, the same
+// way Next.js's generateStaticParams does at build time.
+const LOCALES = ["de", "fr", "it", "es"];
+function expandLocaleRoute(route) {
+  if (!route.includes("[locale]")) return [route];
+  return LOCALES.map((locale) => route.replace("[locale]", locale));
+}
+
 const pageFiles = findPageFiles("src/app");
-const routes = new Set(pageFiles.map(routeFromFile));
+const routes = new Set(pageFiles.flatMap((f) => expandLocaleRoute(routeFromFile(f))));
 const registryContent = readFileSync("src/lib/content.ts", "utf8");
 
 const hrefPattern = /href=\{?["'`](\/[a-zA-Z0-9\-/#]*)["'`]\}?/g;
@@ -66,6 +77,22 @@ for (const file of pageFiles) {
   }
 }
 
+// The [locale] pages' language-switcher links are built with template-literal
+// hrefs (`/${l}${path}`), which hrefPattern can't match as a literal string.
+// Model the switcher directly instead: every locale variant of a pilot page
+// links to every other locale variant of that same page (and separately,
+// a plain-string literal href already credits the English original).
+for (const route of routes) {
+  const match = route.match(/^\/(de|fr|it|es)(\/.*)?$/);
+  if (!match) continue;
+  const [, locale, rest = ""] = match;
+  for (const other of LOCALES) {
+    if (other === locale) continue;
+    const sibling = `/${other}${rest}`;
+    if (routes.has(sibling)) inbound.get(route).add(sibling);
+  }
+}
+
 // Also count links from shared components rendered on every page (nav + the
 // root layout's footer, which is actually where most routes get their link —
 // Nav.tsx alone misses privacy-policy, terms-of-service, and "/" via the logo).
@@ -90,6 +117,14 @@ const sitemapRoutes = [...(sitemapContent + registryContent).matchAll(/"(\/[a-zA
   .map((m) => m[1])
   .filter((r) => r !== "");
 sitemapRoutes.push("/"); // the "" entry maps to root
+
+// sitemap.ts builds the pilot locale routes with a template literal
+// (`/${locale}${p}`), not literal strings, so the regex above can't see them —
+// mirror its TRANSLATED_PAGES list here and expand it the same way.
+const TRANSLATED_PAGES = ["", "/multimeters/fluke-117-review"];
+for (const locale of LOCALES) {
+  for (const p of TRANSLATED_PAGES) sitemapRoutes.push(`/${locale}${p}`);
+}
 
 const sitemapRouteSet = new Set(sitemapRoutes);
 const missingFromSitemap = [...routes].filter(

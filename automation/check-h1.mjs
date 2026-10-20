@@ -20,7 +20,11 @@ function findHtml(dir, out = []) {
   return out;
 }
 
-const pages = findHtml(root).filter((f) => !/[\\/]_(not-found|global-error)/.test(f));
+// Dynamic segments (e.g. src/app/[locale]/...) emit a literal "[locale].html"
+// PPR shell artifact alongside the real per-param static files once
+// cacheComponents/partialPrefetching is on — not a reachable route, just a
+// build-time placeholder, so it's excluded the same way _not-found is.
+const pages = findHtml(root).filter((f) => !/[\\/]_(not-found|global-error)/.test(f) && !/\[[^\]]+\]/.test(f));
 const problems = [];
 for (const file of pages) {
   const count = (readFileSync(file, "utf8").match(/<h1[\s>]/g) ?? []).length;

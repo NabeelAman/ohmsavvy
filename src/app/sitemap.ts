@@ -1,5 +1,10 @@
 import type { MetadataRoute } from "next";
 import { content } from "@/lib/content";
+import { LOCALES } from "@/lib/i18n";
+
+// Translated pilot pages: homepage + flagship review, in each pilot locale.
+const TRANSLATED_PAGES = ["", "/multimeters/fluke-117-review"];
+const localeRoutes = LOCALES.flatMap((locale) => TRANSLATED_PAGES.map((p) => `/${locale}${p}`));
 
 const staticPages = [
   "",
@@ -19,7 +24,7 @@ const staticPages = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [...staticPages, ...content.map((c) => c.href)];
+  const routes = [...staticPages, ...content.map((c) => c.href), ...localeRoutes];
   return routes.map((route) => ({
     url: `https://ohmsavvy.com${route}`,
     lastModified: new Date(),

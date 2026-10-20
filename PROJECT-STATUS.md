@@ -135,6 +135,18 @@ Protocol that's worked all session:
    an invented lab-testing claim, an unsourced third-party review claim) — fix it immediately,
    don't argue the standard, and verify the fix the same way as any other change.
 
+## Standing rule: keep translated pages in sync with English
+
+If you change the design or content of an English page listed in `src/lib/i18n.ts`'s
+`TRANSLATED_PATHS` (currently `/` and `/multimeters/fluke-117-review`), apply the equivalent
+change to its `/de`, `/fr`, `/it`, `/es` versions too — don't let translations silently drift
+from a redesigned English original. The i18n pilot pages are intentionally standalone (they
+don't import `src/app/page.tsx` or `ProductReview.tsx`) specifically so a shared-component
+change can't break them, but that also means a **visual** redesign of the English page doesn't
+propagate automatically — it has to be brought over by hand. If you're about to redesign a
+translated path's English version, a heads-up to whoever's maintaining i18n is worth it so the
+translated version doesn't fall behind for long.
+
 ## Known gaps / natural next steps
 
 - i18n: only 2 pages translated. `check-seo.mjs` can't see `generateMetadata`-based pages

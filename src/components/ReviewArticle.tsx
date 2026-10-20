@@ -104,7 +104,10 @@ export function ReviewArticle({
   howWeChose,
   fitNotes,
   advice,
+  hideByline = false,
 }: {
+  /** True when the page header already shows the byline (RoundupHero); the disclosure still renders. */
+  hideByline?: boolean;
   picks: Pick[];
   faqs: Faq[];
   /** Optional page-specific methodology note shown above the standard criteria. */
@@ -162,7 +165,7 @@ export function ReviewArticle({
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-12">
         <div className="min-w-0">
           {/* Byline + disclosure */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+          <div className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-sm ${hideByline ? "hidden" : ""}`}>
             <span className="inline-flex items-center gap-2">
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 font-display text-xs text-accent">
                 OS
@@ -179,9 +182,9 @@ export function ReviewArticle({
           <p className="mt-3 text-xs text-muted leading-5">
             Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through the links below, at no
             extra cost to you.{" "}
-            <a href="/about#how-were-funded" className="text-accent hover:underline">
+            <Link href="/about#how-were-funded" className="text-accent hover:underline">
               How we&apos;re funded
-            </a>
+            </Link>
             .
           </p>
 
@@ -460,9 +463,9 @@ export function ReviewArticle({
               <p className="mt-4 text-sm text-muted leading-6">
                 Picks marked &quot;Hands-on Tested&quot; have been bought and tested by us; the rest are desk research. A
                 pick only carries that badge once we have actually bought and tested that unit.{" "}
-                <a href="/about" className="text-accent hover:underline">
+                <Link href="/about" className="text-accent hover:underline">
                   More on how we research
-                </a>
+                </Link>
                 .
               </p>
             </Reveal>

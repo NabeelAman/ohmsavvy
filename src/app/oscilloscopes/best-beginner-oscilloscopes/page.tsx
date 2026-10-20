@@ -1,4 +1,4 @@
-import { CategoryHero } from "@/components/CategoryHero";
+import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 import { buildMetadata } from "@/lib/metadata";
@@ -100,21 +100,17 @@ const faqs = [
 export default function BestOscilloscopesPage() {
   return (
     <>
-      <CategoryHero
+      <RoundupHero
         category="oscilloscopes"
         label="Oscilloscopes"
+        path="/oscilloscopes/best-beginner-oscilloscopes"
         heading="Best Beginner Oscilloscopes: Which One Should You Buy?"
-        tagline="Compared honestly — no pay-for-placement."
         description="Bandwidth, sample rate, and channel count explained simply, with picks that won't overwhelm a first-time buyer — or leave you needing to upgrade in six months."
-        primaryCta={{ label: "Browse All Oscilloscopes", href: "#rigol-ds1054z" }}
-        secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
-        stats={[
-          { value: `${picks.length}`, label: "Compared" },
-          { value: "100%", label: "Spec-Verified" },
-          { value: "$0", label: "Sponsored" },
-        ]}
+        updated="2026-10-21"
+        picks={picks}
       />
       <ReviewArticle
+        hideByline
         picks={picks}
         faqs={faqs}
         howWeChose="We compared bandwidth, channel count, and sample rate against the signals beginners and hobbyists actually measure, from audio-range work to microcontroller debugging."

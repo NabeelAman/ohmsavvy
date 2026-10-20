@@ -1,4 +1,4 @@
-import { CategoryHero } from "@/components/CategoryHero";
+import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 import { buildMetadata } from "@/lib/metadata";
@@ -118,21 +118,17 @@ const faqs = [
 export default function BestSolderingIronsPage() {
   return (
     <>
-      <CategoryHero
-        category="soldering"
+      <RoundupHero
+        category="soldering-irons"
         label="Soldering Irons"
+        path="/soldering-irons/best-soldering-irons"
         heading="Best Soldering Irons: Find the Right One for Your Bench"
-        tagline="Compared honestly — no pay-for-placement."
         description="From the pocket-sized Pinecil to full bench stations like the Hakko FX888D, we compared heat-up time, temperature stability, and real owner feedback."
-        primaryCta={{ label: "Browse All Soldering Irons", href: "#hakko-fx888d" }}
-        secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
-        stats={[
-          { value: `${picks.length}`, label: "Compared" },
-          { value: "100%", label: "Spec-Verified" },
-          { value: "$0", label: "Sponsored" },
-        ]}
+        updated="2026-10-21"
+        picks={picks}
       />
       <ReviewArticle
+        hideByline
         picks={picks}
         faqs={faqs}
         howWeChose="We compared power, heat-up time, temperature control, and tip availability, weighing portable irons and bench stations against how often and where you will actually solder."

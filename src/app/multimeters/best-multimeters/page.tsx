@@ -1,4 +1,4 @@
-import { CategoryHero } from "@/components/CategoryHero";
+import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 import { buildMetadata } from "@/lib/metadata";
@@ -234,21 +234,17 @@ const faqs = [
 export default function BestMultimetersPage() {
   return (
     <>
-      <CategoryHero
+      <RoundupHero
         category="multimeters"
         label="Multimeters"
+        path="/multimeters/best-multimeters"
         heading="Best Multimeters: Find the One That Fits Your Work"
-        tagline="Compared honestly — no pay-for-placement."
         description="We compared accuracy specifications, CAT safety ratings, and feature sets across the multimeters most recommended by electricians, hobbyists, and verified buyer feedback."
-        primaryCta={{ label: "Browse All Multimeters", href: "#fluke-117" }}
-        secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
-        stats={[
-          { value: `${picks.length}`, label: "Compared" },
-          { value: "100%", label: "Spec-Verified" },
-          { value: "$0", label: "Sponsored" },
-        ]}
+        updated="2026-10-21"
+        picks={picks}
       />
       <ReviewArticle
+        hideByline
         picks={picks}
         faqs={faqs}
         howWeChose="We started from the multimeters most often recommended by electricians and hobbyists, then compared CAT safety rating, True RMS, resolution, and extras like NCV and low-impedance mode against the work each kind of buyer actually does."

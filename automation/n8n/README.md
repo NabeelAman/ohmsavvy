@@ -25,7 +25,7 @@ instead of being skipped.
 - **Queue order:** never-posted pages first. Anything that appears after the workflow went live is treated as new
   and posted before the backlog. Categories take turns (multimeters → soldering irons → oscilloscopes).
 - **Recycling:** once everything has been posted, the page posted longest ago is reposted, but never within
-  `recycleAfterDays` (default 14) of its last post.
+  `recycleAfterDays` (default 10) of its last post.
 - **Captions and images come from the article page itself** (*Fetch article page* → *Build caption*): the page's
   H1 as the title, its opening paragraph (two for reviews), then its section headings (how-to and buying guides) or
   the verified picks it covers. The photo is the page's own product image (og:image, else the first figure in the

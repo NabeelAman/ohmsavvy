@@ -159,7 +159,7 @@ const workflow = {
             { id: "c1", name: "pageId", value: "108696581096211", type: "string" },
             { id: "c2", name: "graphVersion", value: "v23.0", type: "string" },
             { id: "c3", name: "feedUrl", value: "https://ohmsavvy.com/feed.json", type: "string" },
-            { id: "c4", name: "recycleAfterDays", value: 14, type: "number" },
+            { id: "c4", name: "recycleAfterDays", value: 10, type: "number" },
             { id: "c5", name: "utmCampaign", value: "fb_autopost", type: "string" },
             { id: "c6", name: "dryRun", value: true, type: "boolean" },
           ],

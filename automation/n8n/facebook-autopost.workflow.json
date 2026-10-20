@@ -46,7 +46,7 @@
             {
               "id": "c4",
               "name": "recycleAfterDays",
-              "value": 14,
+              "value": 10,
               "type": "number"
             },
             {

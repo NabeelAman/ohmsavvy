@@ -44,6 +44,8 @@ function Highlight({ text, terms }: { text: string; terms: string[] }) {
   );
 }
 
+export const OPEN_SEARCH_EVENT = "ohmsavvy:open-search";
+
 export function SearchButton({ items }: { items: SearchItem[] }) {
   const [open, setOpen] = useState(false);
   const [isMac, setIsMac] = useState(false);
@@ -59,10 +61,14 @@ export function SearchButton({ items }: { items: SearchItem[] }) {
         setOpen((o) => !o);
       }
     };
+    // Other triggers (e.g. the homepage hero search box) open the same palette.
+    const onOpen = () => setOpen(true);
     window.addEventListener("keydown", onKey);
+    window.addEventListener(OPEN_SEARCH_EVENT, onOpen);
     return () => {
       cancelAnimationFrame(id);
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener(OPEN_SEARCH_EVENT, onOpen);
     };
   }, []);
 

@@ -13,6 +13,8 @@ import { RankBadge } from "./ui/RankBadge";
 import { SpecList, type Spec } from "./ui/SpecList";
 import { SpecValue } from "./ui/SpecValue";
 import { Stars } from "./ui/Stars";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { categoryOfPick } from "@/lib/catalog";
 
 export type Pick = {
   badge: string;
@@ -94,7 +96,7 @@ function ProductImage({
       loading={eager ? undefined : "lazy"}
     />
   ) : (
-    <span className="px-3 text-center text-[11px] text-muted">Photo pending</span>
+    <PhotoPlaceholder category={categoryOfPick(pick.name)} size={sizes === "40px" || sizes === "56px" ? "xs" : "sm"} />
   );
 }
 

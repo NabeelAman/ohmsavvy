@@ -11,6 +11,8 @@ import { ProsCons } from "./ui/ProsCons";
 import { SpecList } from "./ui/SpecList";
 import { SpecValue } from "./ui/SpecValue";
 import { Stars } from "./ui/Stars";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { categoryOfPick } from "@/lib/catalog";
 
 export type ReviewLink = { label: string; href: string };
 export type ReviewAlternative = { name: string; href: string; reason: string };
@@ -97,7 +99,9 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
                 className="w-full h-full max-h-64 object-contain p-3"
               />
             ) : (
-              <span className="px-6 text-center text-xs text-muted">Photo pending manufacturer confirmation</span>
+              <span className="relative block h-64 w-full">
+                <PhotoPlaceholder category={categoryOfPick(pick.name)} size="md" />
+              </span>
             )}
           </div>
 
@@ -143,9 +147,9 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
       <p className="mt-3 text-xs text-muted leading-5">
         Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through these links,
         at no extra cost to you.{" "}
-        <a href="/about#how-were-funded" className="text-accent hover:underline">
+        <Link href="/about#how-were-funded" className="text-accent hover:underline">
           How we&apos;re funded
-        </a>
+        </Link>
         .
       </p>
 
@@ -206,9 +210,9 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
             <p className="mb-6 text-xs text-muted leading-5">
               We haven&apos;t bench-tested this unit. This assessment is based on its published
               specifications and on what those specifications mean in practice.{" "}
-              <a href="/about" className="text-accent hover:underline">
+              <Link href="/about" className="text-accent hover:underline">
                 How we research
-              </a>
+              </Link>
               .
             </p>
           )}

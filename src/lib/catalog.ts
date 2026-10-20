@@ -41,3 +41,9 @@ export function picksForEntry(entry: ContentEntry): Pick[] {
     .sort((x, y) => x.at - y.at)
     .map((m) => m.p);
 }
+
+/** The category a verified pick belongs to, by exact name (for category-specific placeholders). */
+export function categoryOfPick(name: string): Category | undefined {
+  const categories: Category[] = ["multimeters", "soldering-irons", "oscilloscopes"];
+  return categories.find((c) => getPicks(c).some((p) => p.name === name));
+}

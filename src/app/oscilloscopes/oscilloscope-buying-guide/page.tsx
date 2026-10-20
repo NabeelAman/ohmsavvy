@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-beginner-oscilloscopes/page";
 import { buildMetadata } from "@/lib/metadata";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 
 export const metadata = buildMetadata({
   title: "Oscilloscope Buying Guide",
@@ -42,8 +43,8 @@ export default function OscilloscopeBuyingGuidePage() {
                 <img src={p.image} alt={p.name} className="h-full object-contain" />
               </div>
             ) : (
-              <div className="h-32 flex items-center justify-center bg-surface text-xs text-muted p-3 text-center">
-                Photo pending manufacturer confirmation
+              <div className="relative h-32">
+                <PhotoPlaceholder category="oscilloscopes" size="sm" />
               </div>
             )}
             <div className="p-3">

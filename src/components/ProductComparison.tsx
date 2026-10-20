@@ -10,6 +10,8 @@ import { Card } from "./ui/Card";
 import { Eyebrow } from "./ui/Eyebrow";
 import { SpecValue } from "./ui/SpecValue";
 import { Stars } from "./ui/Stars";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { categoryOfPick } from "@/lib/catalog";
 
 export type ComparisonSide = {
   /** Verified Pick from the category's main article — the only source of product facts. */
@@ -56,7 +58,7 @@ function ProductCard({ side }: { side: ComparisonSide }) {
             className="object-contain p-6"
           />
         ) : (
-          <span className="px-6 text-center text-xs text-muted">Photo pending manufacturer confirmation</span>
+          <PhotoPlaceholder category={categoryOfPick(pick.name)} size="md" />
         )}
       </div>
       <div className="p-5 flex flex-col gap-3 flex-1">
@@ -113,9 +115,9 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
       <p className="mt-4 text-xs text-muted leading-5">
         Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through these links,
         at no extra cost to you.{" "}
-        <a href="/about#how-were-funded" className="text-accent hover:underline">
+        <Link href="/about#how-were-funded" className="text-accent hover:underline">
           How we&apos;re funded
-        </a>
+        </Link>
         .
       </p>
 
@@ -159,9 +161,9 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
               : a.pick.handsOnTested || b.pick.handsOnTested
                 ? `${(a.pick.handsOnTested ? a : b).pick.name} is hands-on tested by OhmSavvy; the ${(a.pick.handsOnTested ? b : a).pick.name} assessment is desk research.`
                 : "Desk research, not bench testing."}{" "}
-            <a href="/about" className="text-accent hover:underline">
+            <Link href="/about" className="text-accent hover:underline">
               How we research
-            </a>
+            </Link>
             .
           </p>
         </section>

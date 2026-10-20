@@ -7,6 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { SearchGroup, SearchItem } from "@/lib/search";
 import { Stars } from "./ui/Stars";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
 
 const GROUP_ORDER: SearchGroup[] = ["Top picks", "Products", "Reviews", "Comparisons", "Guides"];
 const DOT: Record<SearchItem["category"], string> = {
@@ -256,7 +257,7 @@ function Palette({ items, onClose }: { items: SearchItem[]; onClose: () => void 
                           {item.image ? (
                             <Image src={item.image} unoptimized={skipOptimizer(item.image)} alt="" fill sizes="44px" className="object-contain p-1" />
                           ) : (
-                            <span className="text-[8px] text-muted">Photo pending</span>
+                            <PhotoPlaceholder size="xs" />
                           )}
                         </span>
                       ) : (

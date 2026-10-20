@@ -6,6 +6,7 @@ import type { Pick } from "./ReviewArticle";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
 import { Stars } from "./ui/Stars";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
 
 const SITE = "https://ohmsavvy.com";
 
@@ -164,7 +165,7 @@ export function RoundupHero({
                   className="object-contain p-6"
                 />
               ) : (
-                <span className="flex h-full items-center justify-center text-xs text-muted">Photo pending</span>
+                <PhotoPlaceholder category={category} size="md" />
               )}
             </a>
             <div className="p-5 border-t border-border">

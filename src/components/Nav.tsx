@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Badge } from "./ui/Badge";
 import { Stars } from "./ui/Stars";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
 
 type NavLink = { href: string; label: string; desc: string };
 
@@ -88,7 +89,7 @@ function FeaturedCard({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
             className="object-contain p-2 transition-transform duration-300 ease-out group-hover/feat:scale-105 motion-reduce:transition-none"
           />
         ) : (
-          <span className="text-[11px] text-muted">Photo pending</span>
+          <PhotoPlaceholder size="sm" />
         )}
       </span>
       <span className="mt-3">
@@ -385,7 +386,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                             {m.featured.image ? (
                               <Image src={m.featured.image} unoptimized={skipOptimizer(m.featured.image)} alt={m.featured.name} fill sizes="56px" className="object-contain p-1" />
                             ) : (
-                              <span className="text-[9px] text-muted text-center">Photo pending</span>
+                              <PhotoPlaceholder size="xs" />
                             )}
                           </span>
                           <span className="min-w-0">

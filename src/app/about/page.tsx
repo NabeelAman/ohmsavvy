@@ -77,7 +77,7 @@ const NEVER = [
   ["Sell rankings", "No brand can pay for a placement, a higher rating or a favourable review."],
   ["Invent test results", "We never publish a measurement or finding we didn't actually get on our own bench."],
   ["Badge before testing", "Hands-on Tested goes on a product only after its testing is complete."],
-  ["Show the wrong photo", "If we can't confirm a photo is the exact model, the slot says \"Photo pending\" instead of guessing."],
+  ["Show the wrong photo", "If we can't confirm a photo is the exact model, the slot shows a labelled \"Photo coming soon\" illustration instead of guessing."],
   ["Fake people", "No invented author bios or credentials. We publish as the OhmSavvy team."],
   ["Skip the safety notes", "Guides that touch mains or high voltage say so plainly, with the ratings and precautions that apply."],
 ];
@@ -96,7 +96,7 @@ const FAQS = [
     a: "No. Rankings come from the specs, owner feedback and, for top picks, our own testing. A cheaper tool can and does outrank a pricier one when it suits the job better.",
   },
   {
-    q: "Why do some products show Photo pending?",
+    q: "Why do some products show Photo coming soon?",
     a: "Because we only show a photo we can confirm is the exact model. Many budget tools share a body with other brands, so when we can't verify the image, we leave the slot empty rather than risk showing the wrong product.",
   },
   {

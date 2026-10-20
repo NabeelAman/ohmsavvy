@@ -3,6 +3,7 @@ import { skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { picksForEntry } from "@/lib/catalog";
 import type { Category, ContentEntry } from "@/lib/content";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
 
 const TONE: Record<Category, { text: string; bg: string; soft: string }> = {
   multimeters: { text: "text-cat-multimeters", bg: "bg-cat-multimeters", soft: "from-cat-multimeters/15" },
@@ -56,9 +57,7 @@ export function GuideCard({ entry }: { entry: ContentEntry }) {
                 {p.image ? (
                   <Image src={p.image} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="96px" loading="lazy" className="object-contain p-2" />
                 ) : (
-                  <span className="flex h-full items-center justify-center px-2 text-center text-[10px] text-muted">
-                    Photo pending
-                  </span>
+                  <PhotoPlaceholder category={entry.category} size="xs" />
                 )}
               </div>
             ))}

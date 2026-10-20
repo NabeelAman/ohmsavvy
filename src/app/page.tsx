@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContentCard } from "@/components/ContentCard";
 import { GuideCard } from "@/components/GuideCard";
 import { HeroSearch } from "@/components/HeroSearch";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { Reveal } from "@/components/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -62,7 +63,7 @@ const totalGuides = content.filter((e) => e.type !== "review" && e.type !== "com
 // leads with a buying answer rather than only links to articles.
 const topPicks = CATEGORIES.map((c) => {
   const p = c.picks[0];
-  return { ...p, label: c.label, tone: c.tone, reviewHref: reviewHrefFor(p.name) ?? c.roundup.href };
+  return { ...p, category: c.category, label: c.label, tone: c.tone, reviewHref: reviewHrefFor(p.name) ?? c.roundup.href };
 });
 
 const quickLinks = [
@@ -137,7 +138,7 @@ const homeFaqs = [
   {
     question: "Why don't some products have photos?",
     answer:
-      "We'd rather show no photo than a wrong one. If we can't find an image we can visually confirm matches the exact model — not a shared sibling-product photo — we leave the slot showing \"Photo pending manufacturer confirmation\" instead of guessing.",
+      "We'd rather show no photo than a wrong one. If we can't find an image we can visually confirm matches the exact model — not a shared sibling-product photo — we show a clearly labelled \"Photo coming soon\" illustration instead of guessing.",
   },
   {
     question: "How often are picks updated?",
@@ -254,7 +255,7 @@ export default function Home() {
                     {p.image ? (
                       <Image src={p.image} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
                     ) : (
-                      <span className="flex h-full items-center justify-center text-[10px] text-muted">Photo pending</span>
+                      <PhotoPlaceholder category={p.category} size="xs" />
                     )}
                   </Link>
                   <div className="min-w-0 flex-1">

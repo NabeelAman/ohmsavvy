@@ -6,8 +6,9 @@ import type { ContentEntry } from "@/lib/content";
 import type { Pick } from "./ReviewArticle";
 import { Badge } from "./ui/Badge";
 import { Stars } from "./ui/Stars";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
 
-function Thumb({ pick, tall }: { pick: Pick; tall: boolean }) {
+function Thumb({ pick, tall, category }: { pick: Pick; tall: boolean; category: ContentEntry["category"] }) {
   return (
     <div
       className={`relative ${tall ? "h-40" : "h-28"} flex-1 min-w-0 flex items-center justify-center rounded-md bg-white border border-border/60`}
@@ -15,7 +16,7 @@ function Thumb({ pick, tall }: { pick: Pick; tall: boolean }) {
       {pick.image ? (
         <Image src={pick.image} unoptimized={skipOptimizer(pick.image)} alt={pick.name} fill sizes="200px" loading="lazy" className="object-contain p-3" />
       ) : (
-        <span className="px-3 text-center text-[11px] text-muted">Photo pending</span>
+        <PhotoPlaceholder category={category} size={tall ? "sm" : "xs"} />
       )}
     </div>
   );
@@ -35,7 +36,7 @@ export function ContentCard({ entry }: { entry: ContentEntry }) {
       {shown.length > 0 && (
         <div className="relative flex gap-2 p-3 pb-0">
           {shown.map((p) => (
-            <Thumb key={p.name} pick={p} tall={isReview} />
+            <Thumb key={p.name} pick={p} tall={isReview} category={entry.category} />
           ))}
           {!isReview && shown.length === 2 && (
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mt-1.5 rounded-full bg-accent text-accent-foreground font-display text-[11px] font-semibold px-2 py-1 shadow">

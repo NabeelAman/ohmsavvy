@@ -28,7 +28,7 @@
             {
               "id": "c1",
               "name": "pageId",
-              "value": "PASTE_YOUR_FACEBOOK_PAGE_ID",
+              "value": "me",
               "type": "string"
             },
             {
@@ -109,14 +109,35 @@
     },
     {
       "parameters": {
-        "jsCode": "// Builds the Facebook caption. Plain, specific and honest: no prices (they\n// change), no hype words, and \"tested\" only when the feed says so.\nconst it = $input.first().json;\nconst cfg = $('Config').first().json;\n\n// Deterministic variety: the same page gets a different opener on different days.\nconst seed = [...(it.url + new Date().toDateString())].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);\nconst pickOne = (arr) => arr[seed % arr.length];\n\nconst TAGS = {\n  multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',\n  'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',\n  oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',\n};\nconst LABEL = { multimeters: 'multimeter', 'soldering-irons': 'soldering iron', oscilloscopes: 'oscilloscope' };\n\nconst sep = it.url.includes('?') ? '&' : '?';\nconst link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);\nconst p = it.topPick;\nconst products = it.products || [];\nconst lines = [];\n\nswitch (it.type) {\n  case 'review':\n    lines.push(pickOne([\n      '🔍 ' + it.title,\n      'Is the ' + (p ? p.name : it.title) + ' worth it? Here is our verdict.',\n      'New on OhmSavvy: ' + it.title,\n    ]));\n    if (p && p.bottomLine) lines.push(p.bottomLine);\n    if (p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');\n    if (it.handsOnTested) lines.push('✅ Hands-on tested in the OhmSavvy lab.');\n    lines.push('Specs, strengths, limitations, and who should skip it:');\n    break;\n  case 'comparison':\n    lines.push(pickOne([\n      '⚖️ ' + it.title,\n      (products[0] || 'Which one') + ' or ' + (products[1] || 'the alternative') + '? We compared them side by side.',\n      'Torn between two ' + LABEL[it.category] + 's? ' + it.title,\n    ]));\n    lines.push(it.description + '.');\n    if (it.handsOnTested) lines.push('✅ Includes a pick we have tested hands-on.');\n    lines.push('Specs side by side and which to choose for your work:');\n    break;\n  case 'use-case-guide':\n    lines.push(pickOne([\n      '🧰 Best ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase().replace(LABEL[it.category] + ' ', ''),\n      'Choosing a ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase() + '? Start here.',\n    ]));\n    lines.push(it.description + '.');\n    if (products.length) lines.push('Our picks include: ' + products.slice(0, 3).join(', ') + '.');\n    break;\n  case 'roundup':\n    lines.push(pickOne(['🏅 ' + it.title + ', compared honestly', 'Shopping for a ' + LABEL[it.category] + '? ' + it.title]));\n    lines.push(it.description);\n    if (p) lines.push('Our top pick: ' + p.name + ' (' + p.rating + '/5).');\n    if (it.handsOnTested) lines.push('✅ Our top picks are hands-on tested in our lab.');\n    break;\n  default:\n    lines.push('📘 ' + it.title);\n    lines.push(it.description + '.');\n}\n\nlines.push('👉 ' + link);\nlines.push(TAGS[it.category] || '');\n\n// Posted as a photo (the product image) with this caption when the page has an\n// image; otherwise as a link post, where Facebook draws the page's own card.\nreturn [{ json: { ...it, link, photo: it.image || '', message: lines.filter(Boolean).join('\\n\\n') } }];"
+        "url": "={{ $json.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      },
+      "id": "a13",
+      "name": "Fetch article page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Builds the Facebook post from the article page itself: its headline, opening\n// paragraphs and section headings, and the image the page shows. All of it is\n// already-published, verified copy, so nothing new is written here (no prices,\n// no hype). \"Tested\" comes only from the feed's handsOnTested flag.\nconst it = $('Pick next post').first().json;\nconst cfg = $('Config').first().json;\nconst html = String($input.first().json.data || '');\n\nconst decode = (s) => s.replace(/&#x27;|&#39;/g, \"'\").replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');\nconst text = (s) => decode(s.replace(/<[^>]+>/g, '')).replace(/\\s+/g, ' ').trim();\nconst meta = (prop) => { const m = html.match(new RegExp('<meta (?:property|name)=\"' + prop + '\" content=\"([^\"]*)\"')); return m ? decode(m[1]) : ''; };\nconst main = (html.match(/<main[\\s\\S]*?<\\/main>/) || [html])[0];\n// Cuts at the last full sentence that fits.\nconst clip = (t, n) => { if (t.length <= n) return t; const cut = t.slice(0, n); const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('? '), cut.lastIndexOf('! ')); return end > 60 ? cut.slice(0, end + 1) : cut.replace(/\\s+\\S*$/, '') + '…'; };\n\nconst h1 = (main.match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/) || [])[1];\nconst title = (h1 && text(h1)) || meta('og:title').replace(/\\s*\\|\\s*OhmSavvy$/, '') || it.title;\n\n// Opening paragraph(s), skipping the affiliate disclosure and short card blurbs.\n// Reviews take two (the verdict line and the summary); everything else takes one,\n// since later paragraphs lean on the page around them (\"the steps below\").\n// Also skips paragraphs that continue an earlier thought (\"Put another way: …\").\nconst SKIP = /^(Disclosure|Affiliate|As an Amazon|Prices|Last updated|Put another way|In other words|That said|But |So |And |Also )/i;\nconst paras = [...main.matchAll(/<p[^>]*>([\\s\\S]*?)<\\/p>/g)].map((m) => text(m[1])).filter((t) => t.length >= 80 && !SKIP.test(t) && !t.endsWith(':'));\nconst body = [];\nfor (const para of paras) {\n  const room = 560 - body.join(' ').length;\n  if (room < 120) break;\n  body.push(clip(para, room));\n  if (body.length === (it.type === 'review' ? 2 : 1)) break;\n}\nif (!body.length) body.push(meta('description') || it.description);\n\n// How-to and buying guides list their section headings; picks-based pages list\n// the verified products they cover (from the feed); reviews need neither.\nconst GENERIC = /^(Frequently asked questions|FAQ|Guides|Product reviews|Comparisons|Where to buy|How we chose|Sources|Related)/i;\nconst sections = [...main.matchAll(/<h2[^>]*>([\\s\\S]*?)<\\/h2>/g)].map((m) => text(m[1]).replace(/^\\d+\\s*/, '')).filter((t) => t && !GENERIC.test(t)).slice(0, 4);\n\n// Image: the page's own product image (og:image); else the feed image; else the\n// first figure in the article body (direct src only, so the lazy \"related\n// products\" cards, which show other products, are never used); else the site's\n// branded default image.\nconst og = meta('og:image');\nlet photo = og && !/og-default/.test(og) ? og : (it.image || '');\nif (!photo) { const m = main.match(/<img[^>]*\\ssrc=\"(https?:\\/\\/[^\"]+)\"/); if (m) photo = decode(m[1]); }\nif (!photo) photo = og;\n\nconst TAGS = {\n  multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',\n  'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',\n  oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',\n};\nconst EMOJI = { review: '🔍', comparison: '⚖️', 'use-case-guide': '🧰', roundup: '🏅', 'buying-guide': '🛒', 'how-to-guide': '🛠️' };\n\nconst sep = it.url.includes('?') ? '&' : '?';\nconst link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);\nconst p = it.topPick;\nconst lines = [(EMOJI[it.type] || '📘') + ' ' + title, ...body];\nif (it.type === 'review' && p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');\nif (it.handsOnTested) lines.push(it.type === 'review' ? '✅ Hands-on tested in the OhmSavvy lab.' : '✅ Includes picks we have tested hands-on.');\nconst products = it.products || [];\nif ((it.type === 'how-to-guide' || it.type === 'buying-guide') && sections.length) lines.push(\"What's inside:\\n\" + sections.map((s) => '• ' + s).join('\\n'));\nelse if (it.type !== 'review' && products.length) lines.push('Picks covered: ' + products.slice(0, 4).join(', ') + (products.length > 4 ? ' and more' : '') + '.');\nlines.push('👉 Read it: ' + link);\nlines.push(TAGS[it.category] || '');\n\nreturn [{ json: { ...it, title, link, photo, message: lines.filter(Boolean).join('\\n\\n') } }];"
       },
       "id": "a5",
       "name": "Build caption",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        880,
+        1100,
         0
       ]
     },
@@ -149,7 +170,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1100,
+        1320,
         0
       ]
     },
@@ -160,7 +181,7 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        1320,
+        1540,
         -120
       ]
     },
@@ -193,7 +214,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1320,
+        1540,
         120
       ]
     },
@@ -230,7 +251,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1540,
+        1760,
         40
       ],
       "credentials": {
@@ -269,7 +290,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1760,
+        1980,
         40
       ]
     },
@@ -300,7 +321,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1980,
+        2200,
         200
       ],
       "credentials": {
@@ -319,7 +340,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2200,
+        2420,
         40
       ]
     }
@@ -359,6 +380,17 @@
       ]
     },
     "Pick next post": {
+      "main": [
+        [
+          {
+            "node": "Fetch article page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch article page": {
       "main": [
         [
           {

@@ -26,13 +26,17 @@ instead of being skipped.
   and posted before the backlog. Categories take turns (multimeters → soldering irons → oscilloscopes).
 - **Recycling:** once everything has been posted, the page posted longest ago is reposted, but never within
   `recycleAfterDays` (default 14) of its last post.
-- **Captions:** built from the verified page data: title, the product's one-line verdict, award and rating, and
-  "Hands-on tested in the OhmSavvy lab" only for products flagged as tested. No prices (they change) and no hype.
+- **Captions and images come from the article page itself** (*Fetch article page* → *Build caption*): the page's
+  H1 as the title, its opening paragraph (two for reviews), then its section headings (how-to and buying guides) or
+  the verified picks it covers. The photo is the page's own product image (og:image, else the first figure in the
+  article body, else the site's default image). Award and rating come from the feed, and "Hands-on tested in the
+  OhmSavvy lab" appears only for products flagged as tested. Nothing new is written, so there are no prices or hype.
+- **No Page ID needed:** `pageId` is `me`, so a Page access token posts as its own Page (facebook.com/ohmsavvy).
   Links carry `utm_source=facebook&utm_medium=social&utm_campaign=fb_autopost`, so GA4 shows the traffic.
 
 ## One-time setup
 
-1. **Facebook Page ID:** on the Page, go to *About → Page transparency*, or *Settings → Page setup*.
+1. **Facebook Page ID:** not needed (`pageId` is `me`; the Page token identifies the Page).
 2. **Page access token** with the `pages_manage_posts` and `pages_read_engagement` permissions:
    - Create an app at developers.facebook.com (type: Business) and add the Pages use case.
    - In Graph API Explorer, select the app, request those two permissions, then *Get Page Access Token* for the

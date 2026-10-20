@@ -48,75 +48,73 @@ if (!pick) {
 if (!pick) return []; // everything posted recently: skip this slot
 return [{ json: { ...pick, isRepost: Boolean(data.posted[pick.url]) } }];`;
 
-const buildCaption = String.raw`// Builds the Facebook caption. Plain, specific and honest: no prices (they
-// change), no hype words, and "tested" only when the feed says so.
-const it = $input.first().json;
+const buildCaption = String.raw`// Builds the Facebook post from the article page itself: its headline, opening
+// paragraphs and section headings, and the image the page shows. All of it is
+// already-published, verified copy, so nothing new is written here (no prices,
+// no hype). "Tested" comes only from the feed's handsOnTested flag.
+const it = $('Pick next post').first().json;
 const cfg = $('Config').first().json;
+const html = String($input.first().json.data || '');
 
-// Deterministic variety: the same page gets a different opener on different days.
-const seed = [...(it.url + new Date().toDateString())].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
-const pickOne = (arr) => arr[seed % arr.length];
+const decode = (s) => s.replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');
+const text = (s) => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+const meta = (prop) => { const m = html.match(new RegExp('<meta (?:property|name)="' + prop + '" content="([^"]*)"')); return m ? decode(m[1]) : ''; };
+const main = (html.match(/<main[\s\S]*?<\/main>/) || [html])[0];
+// Cuts at the last full sentence that fits.
+const clip = (t, n) => { if (t.length <= n) return t; const cut = t.slice(0, n); const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('? '), cut.lastIndexOf('! ')); return end > 60 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'; };
+
+const h1 = (main.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1];
+const title = (h1 && text(h1)) || meta('og:title').replace(/\s*\|\s*OhmSavvy$/, '') || it.title;
+
+// Opening paragraph(s), skipping the affiliate disclosure and short card blurbs.
+// Reviews take two (the verdict line and the summary); everything else takes one,
+// since later paragraphs lean on the page around them ("the steps below").
+// Also skips paragraphs that continue an earlier thought ("Put another way: …").
+const SKIP = /^(Disclosure|Affiliate|As an Amazon|Prices|Last updated|Put another way|In other words|That said|But |So |And |Also )/i;
+const paras = [...main.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)].map((m) => text(m[1])).filter((t) => t.length >= 80 && !SKIP.test(t) && !t.endsWith(':'));
+const body = [];
+for (const para of paras) {
+  const room = 560 - body.join(' ').length;
+  if (room < 120) break;
+  body.push(clip(para, room));
+  if (body.length === (it.type === 'review' ? 2 : 1)) break;
+}
+if (!body.length) body.push(meta('description') || it.description);
+
+// How-to and buying guides list their section headings; picks-based pages list
+// the verified products they cover (from the feed); reviews need neither.
+const GENERIC = /^(Frequently asked questions|FAQ|Guides|Product reviews|Comparisons|Where to buy|How we chose|Sources|Related)/i;
+const sections = [...main.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => text(m[1]).replace(/^\d+\s*/, '')).filter((t) => t && !GENERIC.test(t)).slice(0, 4);
+
+// Image: the page's own product image (og:image); else the feed image; else the
+// first figure in the article body (direct src only, so the lazy "related
+// products" cards, which show other products, are never used); else the site's
+// branded default image.
+const og = meta('og:image');
+let photo = og && !/og-default/.test(og) ? og : (it.image || '');
+if (!photo) { const m = main.match(/<img[^>]*\ssrc="(https?:\/\/[^"]+)"/); if (m) photo = decode(m[1]); }
+if (!photo) photo = og;
 
 const TAGS = {
   multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',
   'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',
   oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',
 };
-const LABEL = { multimeters: 'multimeter', 'soldering-irons': 'soldering iron', oscilloscopes: 'oscilloscope' };
+const EMOJI = { review: '🔍', comparison: '⚖️', 'use-case-guide': '🧰', roundup: '🏅', 'buying-guide': '🛒', 'how-to-guide': '🛠️' };
 
 const sep = it.url.includes('?') ? '&' : '?';
 const link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);
 const p = it.topPick;
+const lines = [(EMOJI[it.type] || '📘') + ' ' + title, ...body];
+if (it.type === 'review' && p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');
+if (it.handsOnTested) lines.push(it.type === 'review' ? '✅ Hands-on tested in the OhmSavvy lab.' : '✅ Includes picks we have tested hands-on.');
 const products = it.products || [];
-const lines = [];
-
-switch (it.type) {
-  case 'review':
-    lines.push(pickOne([
-      '🔍 ' + it.title,
-      'Is the ' + (p ? p.name : it.title) + ' worth it? Here is our verdict.',
-      'New on OhmSavvy: ' + it.title,
-    ]));
-    if (p && p.bottomLine) lines.push(p.bottomLine);
-    if (p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');
-    if (it.handsOnTested) lines.push('✅ Hands-on tested in the OhmSavvy lab.');
-    lines.push('Specs, strengths, limitations, and who should skip it:');
-    break;
-  case 'comparison':
-    lines.push(pickOne([
-      '⚖️ ' + it.title,
-      (products[0] || 'Which one') + ' or ' + (products[1] || 'the alternative') + '? We compared them side by side.',
-      'Torn between two ' + LABEL[it.category] + 's? ' + it.title,
-    ]));
-    lines.push(it.description + '.');
-    if (it.handsOnTested) lines.push('✅ Includes a pick we have tested hands-on.');
-    lines.push('Specs side by side and which to choose for your work:');
-    break;
-  case 'use-case-guide':
-    lines.push(pickOne([
-      '🧰 Best ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase().replace(LABEL[it.category] + ' ', ''),
-      'Choosing a ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase() + '? Start here.',
-    ]));
-    lines.push(it.description + '.');
-    if (products.length) lines.push('Our picks include: ' + products.slice(0, 3).join(', ') + '.');
-    break;
-  case 'roundup':
-    lines.push(pickOne(['🏅 ' + it.title + ', compared honestly', 'Shopping for a ' + LABEL[it.category] + '? ' + it.title]));
-    lines.push(it.description);
-    if (p) lines.push('Our top pick: ' + p.name + ' (' + p.rating + '/5).');
-    if (it.handsOnTested) lines.push('✅ Our top picks are hands-on tested in our lab.');
-    break;
-  default:
-    lines.push('📘 ' + it.title);
-    lines.push(it.description + '.');
-}
-
-lines.push('👉 ' + link);
+if ((it.type === 'how-to-guide' || it.type === 'buying-guide') && sections.length) lines.push("What's inside:\n" + sections.map((s) => '• ' + s).join('\n'));
+else if (it.type !== 'review' && products.length) lines.push('Picks covered: ' + products.slice(0, 4).join(', ') + (products.length > 4 ? ' and more' : '') + '.');
+lines.push('👉 Read it: ' + link);
 lines.push(TAGS[it.category] || '');
 
-// Posted as a photo (the product image) with this caption when the page has an
-// image; otherwise as a link post, where Facebook draws the page's own card.
-return [{ json: { ...it, link, photo: it.image || '', message: lines.filter(Boolean).join('\n\n') } }];`;
+return [{ json: { ...it, title, link, photo, message: lines.filter(Boolean).join('\n\n') } }];`;
 
 const markPosted = String.raw`// Records the post only after Facebook accepted it.
 const post = $('Build caption').first().json;
@@ -158,7 +156,7 @@ const workflow = {
       parameters: {
         assignments: {
           assignments: [
-            { id: "c1", name: "pageId", value: "PASTE_YOUR_FACEBOOK_PAGE_ID", type: "string" },
+            { id: "c1", name: "pageId", value: "me", type: "string" },
             { id: "c2", name: "graphVersion", value: "v23.0", type: "string" },
             { id: "c3", name: "feedUrl", value: "https://ohmsavvy.com/feed.json", type: "string" },
             { id: "c4", name: "recycleAfterDays", value: 14, type: "number" },
@@ -183,7 +181,15 @@ const workflow = {
       position: [440, 0],
     },
     { parameters: { jsCode: pickNext }, id: "a4", name: "Pick next post", type: "n8n-nodes-base.code", typeVersion: 2, position: [660, 0] },
-    { parameters: { jsCode: buildCaption }, id: "a5", name: "Build caption", type: "n8n-nodes-base.code", typeVersion: 2, position: [880, 0] },
+    {
+      parameters: { url: "={{ $json.url }}", options: { response: { response: { responseFormat: "text", outputPropertyName: "data" } } } },
+      id: "a13",
+      name: "Fetch article page",
+      type: "n8n-nodes-base.httpRequest",
+      typeVersion: 4.2,
+      position: [880, 0],
+    },
+    { parameters: { jsCode: buildCaption }, id: "a5", name: "Build caption", type: "n8n-nodes-base.code", typeVersion: 2, position: [1100, 0] },
     {
       parameters: {
         conditions: {
@@ -204,10 +210,10 @@ const workflow = {
       name: "Dry run?",
       type: "n8n-nodes-base.if",
       typeVersion: 2,
-      position: [1100, 0],
+      position: [1320, 0],
     },
-    { parameters: {}, id: "a7", name: "Dry run: caption only (not posted)", type: "n8n-nodes-base.noOp", typeVersion: 1, position: [1320, -120] },
-    ifNotEmpty("a10", "Has a photo?", [1320, 120], "={{ $json.photo }}"),
+    { parameters: {}, id: "a7", name: "Dry run: caption only (not posted)", type: "n8n-nodes-base.noOp", typeVersion: 1, position: [1540, -120] },
+    ifNotEmpty("a10", "Has a photo?", [1540, 120], "={{ $json.photo }}"),
     {
       // Facebook downloads the product image from its URL. If it can't (some
       // manufacturer sites block hotlinking), the slot falls back to a link post.
@@ -230,10 +236,10 @@ const workflow = {
       name: "Post photo + caption",
       type: "n8n-nodes-base.httpRequest",
       typeVersion: 4.2,
-      position: [1540, 40],
+      position: [1760, 40],
       credentials: fbCred,
     },
-    ifNotEmpty("a12", "Photo accepted?", [1760, 40], "={{ $json.post_id || '' }}"),
+    ifNotEmpty("a12", "Photo accepted?", [1980, 40], "={{ $json.post_id || '' }}"),
     {
       parameters: {
         method: "POST",
@@ -254,16 +260,17 @@ const workflow = {
       name: "Post link (no photo)",
       type: "n8n-nodes-base.httpRequest",
       typeVersion: 4.2,
-      position: [1980, 200],
+      position: [2200, 200],
       credentials: fbCred,
     },
-    { parameters: { jsCode: markPosted }, id: "a9", name: "Mark as posted", type: "n8n-nodes-base.code", typeVersion: 2, position: [2200, 40] },
+    { parameters: { jsCode: markPosted }, id: "a9", name: "Mark as posted", type: "n8n-nodes-base.code", typeVersion: 2, position: [2420, 40] },
   ],
   connections: {
     "3x daily (9:00, 13:00, 19:00)": { main: [[{ node: "Config", type: "main", index: 0 }]] },
     Config: { main: [[{ node: "Fetch site feed", type: "main", index: 0 }]] },
     "Fetch site feed": { main: [[{ node: "Pick next post", type: "main", index: 0 }]] },
-    "Pick next post": { main: [[{ node: "Build caption", type: "main", index: 0 }]] },
+    "Pick next post": { main: [[{ node: "Fetch article page", type: "main", index: 0 }]] },
+    "Fetch article page": { main: [[{ node: "Build caption", type: "main", index: 0 }]] },
     "Build caption": { main: [[{ node: "Dry run?", type: "main", index: 0 }]] },
     "Dry run?": {
       main: [

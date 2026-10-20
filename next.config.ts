@@ -52,6 +52,7 @@ const PRODUCT_IMAGE_HOSTS = [
   "media.fluke.com",
   "meters.uni-trend.com",
   "pine64.org",
+  "ueeshop.ly200-cdn.com",
   "valuetronics.com",
   "www.extech.com",
   "www.milwaukeetool.com",

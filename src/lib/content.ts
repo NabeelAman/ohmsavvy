@@ -296,6 +296,20 @@ export const content: ContentEntry[] = [
   },
   {
     category: "soldering-irons",
+    type: "review",
+    title: "YIHUA 862BD+ Review",
+    description: "Our Best 2-in-1 with Hot Air Rework pick",
+    href: "/soldering-irons/yihua-862bd-plus-review",
+  },
+  {
+    category: "soldering-irons",
+    type: "comparison",
+    title: "Weller WE1010NA vs YIHUA 862BD+",
+    description: "A dedicated ESD-safe iron vs. a 2-in-1 rework station",
+    href: "/soldering-irons/weller-we1010na-vs-yihua-862bd-plus",
+  },
+  {
+    category: "soldering-irons",
     type: "comparison",
     title: "Pinecil V2 vs Q-MING 60W Kit",
     description: "Portable iron vs. budget starter kit",

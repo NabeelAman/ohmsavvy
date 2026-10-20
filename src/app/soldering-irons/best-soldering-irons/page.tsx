@@ -82,6 +82,24 @@ export const picks: Pick[] = [
     cons: ["Higher price point than hobbyist kits", "Not portable — bench-only design"],
     ctaHref: "https://www.amazon.com/dp/B077JDGY1J?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best 2-in-1 with Hot Air Rework",
+    name: "YIHUA 862BD+",
+    image: "https://ueeshop.ly200-cdn.com/u_file/UPAY/UPAY521/2305/15/products/862BD800x8001-0f91.jpg",
+    rating: 4.3,
+    bottomLine: "A soldering iron and a hot air rework station in one box, for SMD and BGA work a plain iron can't touch.",
+    verdict:
+      "The 862BD+ pairs a 75W soldering iron with a separate 650W hot air gun in one station, aimed at SMD and BGA rework rather than general through-hole soldering alone. It's a genuinely different tool category from a standalone iron, not just a cheaper or pricier version of one.",
+    specs: [
+      { label: "Power", value: "75W iron / 650W hot air" },
+      { label: "Temperature range", value: "200–480°C iron, 100–480°C hot air" },
+      { label: "Display", value: "LED, independent iron/air readouts" },
+      { label: "Best for", value: "SMD/BGA rework alongside general soldering" },
+    ],
+    pros: ["Combines a soldering iron and hot air rework station in one unit", "Wide temperature range on both the iron and the hot air gun", "Reviewers report fast heat-up"],
+    cons: ["Input is rated 220V per the manufacturer's spec sheet — confirm voltage compatibility for your region before buying", "Some users report the temperature display running inaccurate", "No ESD-safe construction on this specific variant"],
+    ctaHref: "https://www.amazon.com/dp/B07RY5XWVG?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

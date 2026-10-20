@@ -1,5 +1,5 @@
 {
-  "name": "OhmSavvy: Facebook autopost (3/day)",
+  "name": "OhmSavvy: Facebook autopost (5/day)",
   "nodes": [
     {
       "parameters": {
@@ -7,13 +7,13 @@
           "interval": [
             {
               "field": "cronExpression",
-              "expression": "0 9,13,19 * * *"
+              "expression": "0 8,11,14,17,20 * * *"
             }
           ]
         }
       },
       "id": "a1",
-      "name": "3x daily (9:00, 13:00, 19:00)",
+      "name": "5x daily (8, 11, 14, 17, 20)",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
@@ -346,7 +346,7 @@
     }
   ],
   "connections": {
-    "3x daily (9:00, 13:00, 19:00)": {
+    "5x daily (8, 11, 14, 17, 20)": {
       "main": [
         [
           {

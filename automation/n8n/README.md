@@ -1,16 +1,16 @@
 # Facebook autopost (n8n)
 
-Posts 3 times a day (9:00, 13:00 and 19:00 Dubai time) to the OhmSavvy Facebook Page. Each slot is a **photo post**
+Posts 5 times a day (8:00, 11:00, 14:00, 17:00 and 20:00 Dubai time) to the OhmSavvy Facebook Page. Each slot is a **photo post**
 (the product image, with the caption and the page URL as its text). Pages without a product image (most how-tos and
 buying guides) go out as a link post, where Facebook draws the page's card. New reviews, comparisons and guides go
 out first, automatically.
 
-Live on the cloud n8n as **"OhmSavvy: Facebook autopost (3/day)"**: https://n8n.nabeelaman.com/workflow/zjheKM1k4yJna134
+Live on the cloud n8n as **"OhmSavvy: Facebook autopost (5/day)"**: https://n8n.nabeelaman.com/workflow/zjheKM1k4yJna134
 
 ## How it works
 
 ```
-Schedule (3x daily) → Config → Fetch https://ohmsavvy.com/feed.json → Pick next post
+Schedule (5x daily) → Config → Fetch https://ohmsavvy.com/feed.json → Pick next post
   → Build caption → Dry run? ──yes──► stop (caption visible in the execution log)
                               └─no──► Has a photo? ──yes──► POST /{page-id}/photos ─► accepted? ──yes──► Mark as posted
                                                    │                                  └─no─┐
@@ -57,7 +57,7 @@ instead of being skipped.
 
 ## Changing things
 
-- **Times / frequency:** edit the cron in the trigger node (`0 9,13,19 * * *`). The timezone is set in the
+- **Times / frequency:** edit the cron in the trigger node (`0 8,11,14,17,20 * * *`). The timezone is set in the
   workflow settings (`Asia/Dubai`).
 - **Caption wording or hashtags:** edit `automation/n8n/build-workflow.mjs`, run
   `node automation/n8n/build-workflow.mjs`, and re-import, so the repo stays the source of truth.

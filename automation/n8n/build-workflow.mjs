@@ -142,12 +142,12 @@ const graph = (edge) => `=https://graph.facebook.com/{{ $('Config').first().json
 const fbCred = { httpQueryAuth: { id: "", name: "Facebook Page token (access_token)" } };
 
 const workflow = {
-  name: "OhmSavvy: Facebook autopost (3/day)",
+  name: "OhmSavvy: Facebook autopost (5/day)",
   nodes: [
     {
-      parameters: { rule: { interval: [{ field: "cronExpression", expression: "0 9,13,19 * * *" }] } },
+      parameters: { rule: { interval: [{ field: "cronExpression", expression: "0 8,11,14,17,20 * * *" }] } },
       id: "a1",
-      name: "3x daily (9:00, 13:00, 19:00)",
+      name: "5x daily (8, 11, 14, 17, 20)",
       type: "n8n-nodes-base.scheduleTrigger",
       typeVersion: 1.2,
       position: [0, 0],
@@ -266,7 +266,7 @@ const workflow = {
     { parameters: { jsCode: markPosted }, id: "a9", name: "Mark as posted", type: "n8n-nodes-base.code", typeVersion: 2, position: [2420, 40] },
   ],
   connections: {
-    "3x daily (9:00, 13:00, 19:00)": { main: [[{ node: "Config", type: "main", index: 0 }]] },
+    "5x daily (8, 11, 14, 17, 20)": { main: [[{ node: "Config", type: "main", index: 0 }]] },
     Config: { main: [[{ node: "Fetch site feed", type: "main", index: 0 }]] },
     "Fetch site feed": { main: [[{ node: "Pick next post", type: "main", index: 0 }]] },
     "Pick next post": { main: [[{ node: "Fetch article page", type: "main", index: 0 }]] },

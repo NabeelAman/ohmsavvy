@@ -31,12 +31,12 @@ instead of being skipped.
   the verified picks it covers. The photo is the page's own product image (og:image, else the first figure in the
   article body, else the site's default image). Award and rating come from the feed, and "Hands-on tested in the
   OhmSavvy lab" appears only for products flagged as tested. Nothing new is written, so there are no prices or hype.
-- **No Page ID needed:** `pageId` is `me`, so a Page access token posts as its own Page (facebook.com/ohmsavvy).
+- **Page:** Ohm Savvy, ID `108696581096211`, set as `pageId` in the Config node.
   Links carry `utm_source=facebook&utm_medium=social&utm_campaign=fb_autopost`, so GA4 shows the traffic.
 
 ## One-time setup
 
-1. **Facebook Page ID:** not needed (`pageId` is `me`; the Page token identifies the Page).
+1. **Facebook Page ID:** `108696581096211` (Ohm Savvy, facebook.com/ohmsavvy), already set in the Config node.
 2. **Page access token** with the `pages_manage_posts` and `pages_read_engagement` permissions:
    - Create an app at developers.facebook.com (type: Business) and add the Pages use case.
    - In Graph API Explorer, select the app, request those two permissions, then *Get Page Access Token* for the

@@ -156,7 +156,7 @@ const workflow = {
       parameters: {
         assignments: {
           assignments: [
-            { id: "c1", name: "pageId", value: "me", type: "string" },
+            { id: "c1", name: "pageId", value: "108696581096211", type: "string" },
             { id: "c2", name: "graphVersion", value: "v23.0", type: "string" },
             { id: "c3", name: "feedUrl", value: "https://ohmsavvy.com/feed.json", type: "string" },
             { id: "c4", name: "recycleAfterDays", value: 14, type: "number" },

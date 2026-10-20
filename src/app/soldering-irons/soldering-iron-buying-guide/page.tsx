@@ -95,6 +95,28 @@ export default function SolderingIronBuyingGuidePage() {
             than assuming hotter is always better. Running consistently hotter than necessary
             shortens tip life and increases the risk of lifting pads on thin PCB traces.
           </p>
+          <div className="mt-4 overflow-x-auto rounded-lg border border-border">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-surface-raised border-b border-border text-left">
+                  <th className="py-2.5 px-4 font-display text-xs text-muted uppercase">Solder type</th>
+                  <th className="py-2.5 px-4 font-display text-xs text-muted uppercase">Typical tip temperature</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Leaded (60/40, 63/37)", "315–370°C (600–700°F)"],
+                  ["Lead-free", "350–400°C (650–750°F)"],
+                  ["Heat-sensitive components", "Lower temp, longer dwell time — check the datasheet"],
+                ].map(([type, temp]) => (
+                  <tr key={type} className="border-b border-border last:border-0">
+                    <td className="py-2.5 px-4 font-medium">{type}</td>
+                    <td className="py-2.5 px-4 text-muted font-mono">{temp}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section>
@@ -107,6 +129,29 @@ export default function SolderingIronBuyingGuidePage() {
             specific iron before buying — a cheap iron with expensive, hard-to-find tips can cost
             more over time than a slightly pricier iron with a wide, affordable tip ecosystem.
           </p>
+          <div className="mt-4 grid grid-cols-3 gap-3 max-w-md">
+            <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-3 flex flex-col items-center text-center gap-2">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-accent" aria-hidden="true">
+                <path d="M16 4v16l6 8h-12l6-8Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+              </svg>
+              <p className="text-xs font-medium">Conical</p>
+              <p className="text-[11px] text-muted leading-4">General-purpose work</p>
+            </div>
+            <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-3 flex flex-col items-center text-center gap-2">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-accent" aria-hidden="true">
+                <path d="M16 4v18l10 6H6l10-6Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+              </svg>
+              <p className="text-xs font-medium">Chisel</p>
+              <p className="text-[11px] text-muted leading-4">Faster heat transfer, larger joints</p>
+            </div>
+            <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-3 flex flex-col items-center text-center gap-2">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-accent" aria-hidden="true">
+                <path d="M16 4v20l2 4h-4l2-4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+              </svg>
+              <p className="text-xs font-medium">Fine-point</p>
+              <p className="text-[11px] text-muted leading-4">Dense, closely-spaced SMD work</p>
+            </div>
+          </div>
           <p className="mt-3 text-muted leading-7">
             Tip life depends heavily on maintenance, not just the tip&apos;s material quality.
             Tinning the tip (coating it in a thin layer of fresh solder) before storage, wiping it

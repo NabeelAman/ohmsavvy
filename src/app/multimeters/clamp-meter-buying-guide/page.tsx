@@ -60,6 +60,19 @@ export default function ClampMeterBuyingGuidePage() {
             quick checks on live panels, HVAC circuits, or anything where disconnecting isn&apos;t
             practical, this is the real reason clamp meters exist.
           </p>
+          <div className="mt-4 rounded-lg border border-border bg-surface-raised shadow-sm p-4 max-w-sm">
+            <svg viewBox="0 0 160 100" className="w-full h-auto text-muted" aria-hidden="true">
+              <line x1="10" y1="50" x2="150" y2="50" stroke="currentColor" strokeWidth="2.5" />
+              <path d="M60 50 A 20 20 0 1 1 100 50" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+              <path d="M60 50 A 20 20 0 0 0 100 50" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeDasharray="4 3" />
+              <text x="80" y="25" textAnchor="middle" fontSize="9" fill="currentColor">clamp jaw</text>
+              <text x="80" y="70" textAnchor="middle" fontSize="9" fill="currentColor">conductor (not cut or opened)</text>
+            </svg>
+            <p className="mt-2 text-xs text-muted leading-5 text-center">
+              The jaw opens around the conductor and reads it directly — the circuit never gets
+              broken open the way a standard multimeter&apos;s in-series current check requires.
+            </p>
+          </div>
         </section>
 
         <section>

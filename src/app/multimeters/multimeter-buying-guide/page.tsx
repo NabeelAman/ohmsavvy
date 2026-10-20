@@ -77,26 +77,29 @@ export default function MultimeterBuyingGuidePage() {
             itself becoming dangerous. This isn&apos;t a marketing number — it&apos;s a real
             electrical safety boundary.
           </p>
-          <ul className="mt-3 space-y-2 text-muted leading-7 list-disc pl-5">
-            <li>
-              <strong className="text-foreground">CAT I</strong> — protected, low-energy
-              electronic circuits (signal-level work, not mains-connected).
-            </li>
-            <li>
-              <strong className="text-foreground">CAT II</strong> — single-phase receptacle
-              outlets and plug-in equipment (lamps, small appliances).
-            </li>
-            <li>
-              <strong className="text-foreground">CAT III</strong> — fixed building wiring:
-              distribution panels, circuit breakers, hardwired equipment. This is the practical
-              minimum for most home and electrical work.
-            </li>
-            <li>
-              <strong className="text-foreground">CAT IV</strong> — the origin of the
-              installation: the utility connection, outdoor overhead/underground service
-              entrance, where transient energy is highest.
-            </li>
-          </ul>
+          <div className="mt-3 overflow-x-auto rounded-lg border border-border">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-surface-raised border-b border-border text-left">
+                  <th className="py-2.5 px-4 font-display text-xs text-muted uppercase">CAT</th>
+                  <th className="py-2.5 px-4 font-display text-xs text-muted uppercase">Covers</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["CAT I", "Protected, low-energy electronic circuits (signal-level work, not mains-connected)"],
+                  ["CAT II", "Single-phase receptacle outlets and plug-in equipment (lamps, small appliances)"],
+                  ["CAT III", "Fixed building wiring — distribution panels, circuit breakers, hardwired equipment"],
+                  ["CAT IV", "The origin of the installation — the utility connection, overhead/underground service entrance"],
+                ].map(([cat, covers]) => (
+                  <tr key={cat} className="border-b border-border last:border-0">
+                    <td className="py-2.5 px-4 font-medium">{cat}</td>
+                    <td className="py-2.5 px-4 text-muted">{covers}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p className="mt-3 text-muted leading-7">
             The number after the category (e.g. &quot;CAT III 600V&quot;) is the maximum voltage
             the meter is rated for at that category. A CAT III 600V meter is NOT automatically
@@ -114,6 +117,26 @@ export default function MultimeterBuyingGuidePage() {
             assuming a clean sine wave — it&apos;s only accurate on signals that actually look
             like one.
           </p>
+          <div className="mt-4 grid sm:grid-cols-2 gap-4">
+            <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-4">
+              <svg viewBox="0 0 160 70" className="w-full h-auto text-muted" aria-hidden="true">
+                <path d="M5 35 C 25 5, 45 5, 65 35 S 105 65, 125 35 S 145 5, 155 35" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                <line x1="5" y1="35" x2="155" y2="35" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" />
+              </svg>
+              <p className="mt-2 text-xs text-muted leading-5 text-center">
+                Clean sine wave — both meter types read this one accurately.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-4">
+              <svg viewBox="0 0 160 70" className="w-full h-auto text-muted" aria-hidden="true">
+                <path d="M5 50 L5 15 L40 15 L40 50 L45 50 L45 20 L80 20 L80 50 L85 50 L85 10 L120 10 L120 50 L125 50 L125 25 L155 25" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                <line x1="5" y1="50" x2="155" y2="50" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" />
+              </svg>
+              <p className="mt-2 text-xs text-muted leading-5 text-center">
+                Chopped/distorted waveform (dimmer, VFD) — only a True RMS meter reads this correctly.
+              </p>
+            </div>
+          </div>
           <p className="mt-3 text-muted leading-7">
             This matters more than it used to. Variable-frequency drives, dimmer switches, UPS
             output, and most modern electronics all produce distorted, non-sinusoidal AC. On

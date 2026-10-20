@@ -69,6 +69,24 @@ export default function OscilloscopeBuyingGuidePage() {
             contains higher-frequency harmonics that shape its edges, and a bandwidth-limited scope
             will round those edges off even if the fundamental frequency is well within spec.
           </p>
+          <div className="mt-4 grid sm:grid-cols-2 gap-4">
+            <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-4">
+              <svg viewBox="0 0 160 70" className="w-full h-auto text-muted" aria-hidden="true">
+                <path d="M5 50 L5 15 L55 15 L55 50 L75 50 L75 15 L125 15 L125 50 L145 50 L145 15 L155 15" fill="none" stroke="currentColor" strokeWidth="1.8" />
+              </svg>
+              <p className="mt-2 text-xs text-muted leading-5 text-center">
+                Adequate bandwidth: sharp edges stay sharp.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-4">
+              <svg viewBox="0 0 160 70" className="w-full h-auto text-muted" aria-hidden="true">
+                <path d="M5 50 C 20 50, 30 15, 55 15 C 70 15, 80 50, 75 50 C 90 50, 105 15, 125 15 C 140 15, 150 50, 155 50" fill="none" stroke="currentColor" strokeWidth="1.8" />
+              </svg>
+              <p className="mt-2 text-xs text-muted leading-5 text-center">
+                Under-specced bandwidth: the same signal&apos;s edges round off.
+              </p>
+            </div>
+          </div>
           <p className="mt-3 text-muted leading-7">
             For general electronics, microcontroller, and audio-range work, 50-100MHz covers the
             overwhelming majority of hobbyist and most professional bench needs. RF work, high-speed

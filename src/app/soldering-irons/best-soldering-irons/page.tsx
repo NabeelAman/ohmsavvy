@@ -50,6 +50,8 @@ export const picks: Pick[] = [
   {
     badge: "Best Budget",
     name: "Q-MING 60W Kit",
+    // Main photo of this exact Amazon listing (ASIN in ctaHref), verified by eye.
+    image: "https://m.media-amazon.com/images/I/716mcSHUCjS._AC_SL1500_.jpg",
     rating: 4.3,
     bottomLine: "A genuinely complete starter kit — easy first purchase for anyone new to soldering.",
     verdict:

@@ -1,15 +1,24 @@
 # Facebook autopost (n8n)
 
-Posts 3 times a day (9:00, 13:00 and 19:00 Dubai time) to the OhmSavvy Facebook Page: one link post per slot,
-with a caption and the page URL. New reviews, comparisons and guides go out first, automatically.
+Posts 3 times a day (9:00, 13:00 and 19:00 Dubai time) to the OhmSavvy Facebook Page. Each slot is a **photo post**
+(the product image, with the caption and the page URL as its text). Pages without a product image (most how-tos and
+buying guides) go out as a link post, where Facebook draws the page's card. New reviews, comparisons and guides go
+out first, automatically.
+
+Live on the cloud n8n as **"OhmSavvy: Facebook autopost (3/day)"**: https://n8n.nabeelaman.com/workflow/zjheKM1k4yJna134
 
 ## How it works
 
 ```
 Schedule (3x daily) → Config → Fetch https://ohmsavvy.com/feed.json → Pick next post
   → Build caption → Dry run? ──yes──► stop (caption visible in the execution log)
-                              └─no──► POST /{page-id}/feed → Mark as posted
+                              └─no──► Has a photo? ──yes──► POST /{page-id}/photos ─► accepted? ──yes──► Mark as posted
+                                                   │                                  └─no─┐
+                                                   └─no──────────────────────────────► POST /{page-id}/feed (link) ─► Mark as posted
 ```
+
+If Facebook can't fetch a product image (some manufacturer sites block hotlinking), that slot falls back to a link post
+instead of being skipped.
 
 - **Content source:** `https://ohmsavvy.com/feed.json`, generated from `src/lib/content.ts`. Publish a page with
   its registry entry and it's in the feed on the next deploy. No other step is needed.

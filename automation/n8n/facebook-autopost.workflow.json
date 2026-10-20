@@ -109,7 +109,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Builds the Facebook caption. Plain, specific and honest: no prices (they\n// change), no hype words, and \"tested\" only when the feed says so.\nconst it = $input.first().json;\nconst cfg = $('Config').first().json;\n\n// Deterministic variety: the same page gets a different opener on different days.\nconst seed = [...(it.url + new Date().toDateString())].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);\nconst pickOne = (arr) => arr[seed % arr.length];\n\nconst TAGS = {\n  multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',\n  'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',\n  oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',\n};\nconst LABEL = { multimeters: 'multimeter', 'soldering-irons': 'soldering iron', oscilloscopes: 'oscilloscope' };\n\nconst sep = it.url.includes('?') ? '&' : '?';\nconst link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);\nconst p = it.topPick;\nconst products = it.products || [];\nconst lines = [];\n\nswitch (it.type) {\n  case 'review':\n    lines.push(pickOne([\n      '🔍 ' + it.title,\n      'Is the ' + (p ? p.name : it.title) + ' worth it? Here is our verdict.',\n      'New on OhmSavvy: ' + it.title,\n    ]));\n    if (p && p.bottomLine) lines.push(p.bottomLine);\n    if (p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');\n    if (it.handsOnTested) lines.push('✅ Hands-on tested in the OhmSavvy lab.');\n    lines.push('Specs, strengths, limitations, and who should skip it:');\n    break;\n  case 'comparison':\n    lines.push(pickOne([\n      '⚖️ ' + it.title,\n      (products[0] || 'Which one') + ' or ' + (products[1] || 'the alternative') + '? We compared them side by side.',\n      'Torn between two ' + LABEL[it.category] + 's? ' + it.title,\n    ]));\n    lines.push(it.description + '.');\n    if (it.handsOnTested) lines.push('✅ Includes a pick we have tested hands-on.');\n    lines.push('Specs side by side and which to choose for your work:');\n    break;\n  case 'use-case-guide':\n    lines.push(pickOne([\n      '🧰 Best ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase().replace(LABEL[it.category] + ' ', ''),\n      'Choosing a ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase() + '? Start here.',\n    ]));\n    lines.push(it.description + '.');\n    if (products.length) lines.push('Our picks include: ' + products.slice(0, 3).join(', ') + '.');\n    break;\n  case 'roundup':\n    lines.push(pickOne(['🏅 ' + it.title + ', compared honestly', 'Shopping for a ' + LABEL[it.category] + '? ' + it.title]));\n    lines.push(it.description);\n    if (p) lines.push('Our top pick: ' + p.name + ' (' + p.rating + '/5).');\n    if (it.handsOnTested) lines.push('✅ Our top picks are hands-on tested in our lab.');\n    break;\n  default:\n    lines.push('📘 ' + it.title);\n    lines.push(it.description + '.');\n}\n\nlines.push('👉 ' + link);\nlines.push(TAGS[it.category] || '');\n\nreturn [{ json: { ...it, link, message: lines.filter(Boolean).join('\\n\\n') } }];"
+        "jsCode": "// Builds the Facebook caption. Plain, specific and honest: no prices (they\n// change), no hype words, and \"tested\" only when the feed says so.\nconst it = $input.first().json;\nconst cfg = $('Config').first().json;\n\n// Deterministic variety: the same page gets a different opener on different days.\nconst seed = [...(it.url + new Date().toDateString())].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);\nconst pickOne = (arr) => arr[seed % arr.length];\n\nconst TAGS = {\n  multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',\n  'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',\n  oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',\n};\nconst LABEL = { multimeters: 'multimeter', 'soldering-irons': 'soldering iron', oscilloscopes: 'oscilloscope' };\n\nconst sep = it.url.includes('?') ? '&' : '?';\nconst link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);\nconst p = it.topPick;\nconst products = it.products || [];\nconst lines = [];\n\nswitch (it.type) {\n  case 'review':\n    lines.push(pickOne([\n      '🔍 ' + it.title,\n      'Is the ' + (p ? p.name : it.title) + ' worth it? Here is our verdict.',\n      'New on OhmSavvy: ' + it.title,\n    ]));\n    if (p && p.bottomLine) lines.push(p.bottomLine);\n    if (p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');\n    if (it.handsOnTested) lines.push('✅ Hands-on tested in the OhmSavvy lab.');\n    lines.push('Specs, strengths, limitations, and who should skip it:');\n    break;\n  case 'comparison':\n    lines.push(pickOne([\n      '⚖️ ' + it.title,\n      (products[0] || 'Which one') + ' or ' + (products[1] || 'the alternative') + '? We compared them side by side.',\n      'Torn between two ' + LABEL[it.category] + 's? ' + it.title,\n    ]));\n    lines.push(it.description + '.');\n    if (it.handsOnTested) lines.push('✅ Includes a pick we have tested hands-on.');\n    lines.push('Specs side by side and which to choose for your work:');\n    break;\n  case 'use-case-guide':\n    lines.push(pickOne([\n      '🧰 Best ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase().replace(LABEL[it.category] + ' ', ''),\n      'Choosing a ' + LABEL[it.category] + ' ' + it.title.replace(/^For /i, 'for ').toLowerCase() + '? Start here.',\n    ]));\n    lines.push(it.description + '.');\n    if (products.length) lines.push('Our picks include: ' + products.slice(0, 3).join(', ') + '.');\n    break;\n  case 'roundup':\n    lines.push(pickOne(['🏅 ' + it.title + ', compared honestly', 'Shopping for a ' + LABEL[it.category] + '? ' + it.title]));\n    lines.push(it.description);\n    if (p) lines.push('Our top pick: ' + p.name + ' (' + p.rating + '/5).');\n    if (it.handsOnTested) lines.push('✅ Our top picks are hands-on tested in our lab.');\n    break;\n  default:\n    lines.push('📘 ' + it.title);\n    lines.push(it.description + '.');\n}\n\nlines.push('👉 ' + link);\nlines.push(TAGS[it.category] || '');\n\n// Posted as a photo (the product image) with this caption when the page has an\n// image; otherwise as a link post, where Facebook draws the page's own card.\nreturn [{ json: { ...it, link, photo: it.image || '', message: lines.filter(Boolean).join('\\n\\n') } }];"
       },
       "id": "a5",
       "name": "Build caption",
@@ -166,8 +166,41 @@
     },
     {
       "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "a10c",
+              "leftValue": "={{ $json.photo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a10",
+      "name": "Has a photo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        120
+      ]
+    },
+    {
+      "parameters": {
         "method": "POST",
-        "url": "=https://graph.facebook.com/{{ $('Config').first().json.graphVersion }}/{{ $('Config').first().json.pageId }}/feed",
+        "url": "=https://graph.facebook.com/{{ $('Config').first().json.graphVersion }}/{{ $('Config').first().json.pageId }}/photos",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpQueryAuth",
         "sendBody": true,
@@ -175,24 +208,30 @@
         "bodyParameters": {
           "parameters": [
             {
-              "name": "message",
-              "value": "={{ $json.message }}"
+              "name": "url",
+              "value": "={{ $json.photo }}"
             },
             {
-              "name": "link",
-              "value": "={{ $json.link }}"
+              "name": "caption",
+              "value": "={{ $json.message }}"
             }
           ]
         },
-        "options": {}
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
       },
-      "id": "a8",
-      "name": "Post to Facebook Page",
+      "id": "a11",
+      "name": "Post photo + caption",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1320,
-        120
+        1540,
+        40
       ],
       "credentials": {
         "httpQueryAuth": {
@@ -203,15 +242,85 @@
     },
     {
       "parameters": {
-        "jsCode": "// Records the post only after Facebook accepted it.\nconst post = $('Build caption').first().json;\nconst data = $getWorkflowStaticData('global');\ndata.posted = data.posted || {};\ndata.posted[post.url] = Date.now();\ndata.categoryLastPosted = data.categoryLastPosted || {};\ndata.categoryLastPosted[post.category] = Date.now();\nreturn [{ json: { postedUrl: post.url, facebookPostId: $input.first().json.id, repost: post.isRepost } }];"
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "a12c",
+              "leftValue": "={{ $json.post_id || '' }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a12",
+      "name": "Photo accepted?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/{{ $('Config').first().json.graphVersion }}/{{ $('Config').first().json.pageId }}/feed",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $('Build caption').first().json.message }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $('Build caption').first().json.link }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a8",
+      "name": "Post link (no photo)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1980,
+        200
+      ],
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "",
+          "name": "Facebook Page token (access_token)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Records the post only after Facebook accepted it.\nconst post = $('Build caption').first().json;\nconst data = $getWorkflowStaticData('global');\ndata.posted = data.posted || {};\ndata.posted[post.url] = Date.now();\ndata.categoryLastPosted = data.categoryLastPosted || {};\ndata.categoryLastPosted[post.category] = Date.now();\nconst res = $input.first().json;\nreturn [{ json: { postedUrl: post.url, facebookPostId: res.post_id || res.id, format: res.post_id ? 'photo' : 'link', repost: post.isRepost } }];"
       },
       "id": "a9",
       "name": "Mark as posted",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1540,
-        120
+        2200,
+        40
       ]
     }
   ],
@@ -282,14 +391,61 @@
         ],
         [
           {
-            "node": "Post to Facebook Page",
+            "node": "Has a photo?",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Post to Facebook Page": {
+    "Has a photo?": {
+      "main": [
+        [
+          {
+            "node": "Post photo + caption",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post link (no photo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post photo + caption": {
+      "main": [
+        [
+          {
+            "node": "Photo accepted?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Photo accepted?": {
+      "main": [
+        [
+          {
+            "node": "Mark as posted",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post link (no photo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post link (no photo)": {
       "main": [
         [
           {

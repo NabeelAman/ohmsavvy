@@ -3,6 +3,21 @@
 Drafts a new **use-case buying guide** on your laptop with a local AI model (Ollama), using only the site's verified
 product data. Every draft goes through 5 QA checkpoints, then you review a preview and choose Publish or Discard.
 
+## Daily automatic article (no review)
+
+Windows Task Scheduler runs **"OhmSavvy daily article"** at 6:00 every morning (it wakes the laptop; a missed run
+starts when the laptop is next on). It runs `automation/ollama/daily-article.ps1`, which starts Ollama if needed and
+runs `node automation/ollama/article.mjs --next --auto`:
+
+- Every checkpoint passes → published straight away (git push, live in ~2 minutes), before the 9:00 Facebook slot.
+- Any checkpoint fails → the draft is discarded and nothing is published. A keyword that fails twice is skipped
+  (counts in `automation/ollama/.tmp-auto-failures.json`; delete an entry to retry it).
+- A manual draft waiting for your review is never touched; that day's run just skips.
+- Log: `automation/ollama/.tmp-daily.log`. Pause: disable the task in Task Scheduler.
+
+This skips the human review step (owner's decision, 2026-10-21), so the checks are the only gate. It only writes
+`remix` buying guides from verified products. Reviews of new products and how-to guides aren't auto-drafted.
+
 ## The easy way: the n8n form
 
 1. Make sure **Docker Desktop** and the **Ollama** app are running.

@@ -371,6 +371,20 @@ const readState = () => (existsSync(STATE) ? JSON.parse(readFileSync(STATE, "utf
 const queue = () => JSON.parse(readFileSync(QUEUE, "utf8"));
 const saveQueue = (q) => writeFileSync(QUEUE, JSON.stringify(q, null, 2) + "\n");
 
+// --auto (the daily scheduled run): publish without the human review step when
+// every checkpoint passes, discard otherwise. Keywords that fail twice are skipped
+// by --next so one bad keyword can't block the queue. The counts live in a
+// gitignored file, not the queue, so a failed run leaves the tree clean.
+const AUTO = process.argv.includes("--auto");
+const FAILS = "automation/ollama/.tmp-auto-failures.json";
+const autoFailures = () => (existsSync(FAILS) ? JSON.parse(readFileSync(FAILS, "utf8")) : {});
+const recordAutoFailure = (keyword) => {
+  if (!AUTO || !keyword) return;
+  const f = autoFailures();
+  f[keyword] = (f[keyword] || 0) + 1;
+  writeFileSync(FAILS, JSON.stringify(f, null, 2));
+};
+
 function list() {
   const q = queue();
   const live = readFileSync(REGISTRY, "utf8");
@@ -384,6 +398,9 @@ function list() {
 }
 
 async function draft(args) {
+  // A draft left by an earlier --auto run that couldn't publish is cleared; a
+  // manual draft waiting for review is never touched.
+  if (AUTO && readState()?.auto) { log("Clearing a stale draft from an earlier automatic run."); discard(); }
   if (readState()) die(`A draft is already waiting. Run "npm run article:publish" or "npm run article:discard" first.`);
   try { await fetch(`${OLLAMA}/api/tags`); } catch { die(`Ollama isn't running at ${OLLAMA}. Start the Ollama app and try again.`); }
   const tags = await (await fetch(`${OLLAMA}/api/tags`)).json();
@@ -395,7 +412,8 @@ async function draft(args) {
   let entry;
   if (args.includes("--next")) {
     const live = readFileSync(REGISTRY, "utf8");
-    entry = q.keywords.find((k) => k.type === "remix" && k.status === "pending" && k.targetPicks?.length && !live.includes(`/${k.category}/${slugify(k.keyword)}"`));
+    const fails = autoFailures();
+    entry = q.keywords.find((k) => k.type === "remix" && k.status === "pending" && k.targetPicks?.length && !live.includes(`/${k.category}/${slugify(k.keyword)}"`) && (!AUTO || (fails[k.keyword] || 0) < 2));
     if (!entry) die("No pending keywords left in the queue.");
     keyword = entry.keyword;
   } else if (keyword) {
@@ -451,6 +469,7 @@ async function draft(args) {
     log(`  ✖ ${errs.length} problem(s):\n    - ${errs.slice(0, 12).join("\n    - ")}`);
     messages = [...base, { role: "assistant", content: raw }, { role: "user", content: `Your draft broke these rules. Fix every one and return the full corrected JSON:\n- ${errs.join("\n- ")}` }];
   }
+  if (errs.length) recordAutoFailure(entry?.keyword);
   if (errs.length) die(`The draft still failed QA after ${MAX_ATTEMPTS} attempts, so nothing was written. Try again, or try another keyword.`);
 
   // Write the page + registry entry + queue status.
@@ -462,7 +481,7 @@ async function draft(args) {
   if (at < 0) die(`Couldn't find where to add the registry entry (${JSON.stringify(marker)}).`);
   const entryText = registryEntry({ category, path, d, picks });
   writeFileSync(REGISTRY, reg.slice(0, at) + entryText + reg.slice(at));
-  const state = { keyword, category, path, entryText, queueKeyword: entry?.keyword ?? null, createdAt: new Date().toISOString() };
+  const state = { keyword, category, path, entryText, queueKeyword: entry?.keyword ?? null, auto: AUTO, createdAt: new Date().toISOString() };
   writeFileSync(STATE, JSON.stringify(state, null, 2));
   if (entry) {
     // Re-read the queue: drafting takes a long time and other sessions may have
@@ -481,6 +500,7 @@ async function draft(args) {
     run("npx tsc --noEmit --incremental false -p .", { quiet: true });
   } catch (e) {
     log(String(e.stdout || e.message));
+    if (AUTO) { recordAutoFailure(entry?.keyword); discard(); die("Site checks failed, so the automatic draft was discarded."); }
     die(`Site checks failed. The draft is still on disk; fix it or run "npm run article:discard".`);
   }
   log("  ✔ roster, SEO, links, lint, types");
@@ -500,8 +520,18 @@ async function draft(args) {
   const icon = (s) => (s === "pass" ? "✔ PASS   " : s === "skipped" ? "– SKIPPED" : "✖ FAIL   ");
   log(`\n──────── QA report ────────`);
   for (const c of qa) log(`  ${icon(c.status)}  ${c.name}${c.notes.length ? `\n              ${c.notes.join("\n              ")}` : ""}`);
-  log(`  ✋ PENDING   7. Your review of the preview`);
   const failed = qa.filter((c) => c.status === "fail");
+  if (AUTO) {
+    if (failed.length) {
+      log(`\n  ✖ ${failed.length} checkpoint(s) failed:\n    - ${failed.flatMap((c) => c.errors).join("\n    - ")}`);
+      recordAutoFailure(entry?.keyword);
+      discard();
+      die("Automatic run: the draft failed a checkpoint, so it was discarded and nothing was published.");
+    }
+    log("\n  ✔ every checkpoint passed: publishing automatically (--auto)");
+    return publish();
+  }
+  log(`  ✋ PENDING   7. Your review of the preview`);
   if (failed.length) {
     log(`\n  ⚠ ${failed.length} checkpoint(s) failed:\n    - ${failed.flatMap((c) => c.errors).join("\n    - ")}`);
     log("  Publishing is blocked until fixed (discard and re-run, or fix the page and use publish --force).");
@@ -536,7 +566,7 @@ function publish(force = process.argv.includes("--force")) {
   const e = st.queueKeyword && q.keywords.find((k) => k.keyword === st.queueKeyword);
   if (e) { e.status = "published"; e.notes = `live at ${st.path}`; saveQueue(q); }
   run(`git add "src/app${st.path}/page.tsx" ${REGISTRY} ${QUEUE}`, { quiet: true });
-  const msg = `Add ${st.keyword} guide (drafted locally, fact-checked)\n\nDrafted by ${MODEL} via automation/ollama/article.mjs from verified Pick data only;\npassed the mechanical fact-check (no unverified numbers or models, no prices,\nno testing claims) and the site checks, then reviewed in preview.`;
+  const msg = `Add ${st.keyword} guide (drafted locally, fact-checked)\n\nDrafted by ${MODEL} via automation/ollama/article.mjs from verified Pick data only;\npassed the mechanical fact-check (no unverified numbers or models, no prices,\nno testing claims) and the site checks, then ${st.auto ? "published automatically by the daily run (no human review)" : "reviewed in preview"}.`;
   writeFileSync(".tmp-commit-msg.txt", msg);
   run("git commit -q -F .tmp-commit-msg.txt", { quiet: true });
   rmSync(".tmp-commit-msg.txt");

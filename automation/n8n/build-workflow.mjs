@@ -114,7 +114,9 @@ switch (it.type) {
 lines.push('👉 ' + link);
 lines.push(TAGS[it.category] || '');
 
-return [{ json: { ...it, link, message: lines.filter(Boolean).join('\n\n') } }];`;
+// Posted as a photo (the product image) with this caption when the page has an
+// image; otherwise as a link post, where Facebook draws the page's own card.
+return [{ json: { ...it, link, photo: it.image || '', message: lines.filter(Boolean).join('\n\n') } }];`;
 
 const markPosted = String.raw`// Records the post only after Facebook accepted it.
 const post = $('Build caption').first().json;
@@ -123,7 +125,23 @@ data.posted = data.posted || {};
 data.posted[post.url] = Date.now();
 data.categoryLastPosted = data.categoryLastPosted || {};
 data.categoryLastPosted[post.category] = Date.now();
-return [{ json: { postedUrl: post.url, facebookPostId: $input.first().json.id, repost: post.isRepost } }];`;
+const res = $input.first().json;
+return [{ json: { postedUrl: post.url, facebookPostId: res.post_id || res.id, format: res.post_id ? 'photo' : 'link', repost: post.isRepost } }];`;
+
+// IF node (v2) that passes when `left` is a non-empty string.
+const ifNotEmpty = (id, name, position, left) => ({
+  parameters: {
+    conditions: {
+      options: { caseSensitive: true, leftValue: "", typeValidation: "loose" },
+      conditions: [{ id: `${id}c`, leftValue: left, rightValue: "", operator: { type: "string", operation: "notEmpty", singleValue: true } }],
+      combinator: "and",
+    },
+    options: {},
+  },
+  id, name, type: "n8n-nodes-base.if", typeVersion: 2, position,
+});
+const graph = (edge) => `=https://graph.facebook.com/{{ $('Config').first().json.graphVersion }}/{{ $('Config').first().json.pageId }}/${edge}`;
+const fbCred = { httpQueryAuth: { id: "", name: "Facebook Page token (access_token)" } };
 
 const workflow = {
   name: "OhmSavvy: Facebook autopost (3/day)",
@@ -189,30 +207,57 @@ const workflow = {
       position: [1100, 0],
     },
     { parameters: {}, id: "a7", name: "Dry run: caption only (not posted)", type: "n8n-nodes-base.noOp", typeVersion: 1, position: [1320, -120] },
+    ifNotEmpty("a10", "Has a photo?", [1320, 120], "={{ $json.photo }}"),
     {
+      // Facebook downloads the product image from its URL. If it can't (some
+      // manufacturer sites block hotlinking), the slot falls back to a link post.
       parameters: {
         method: "POST",
-        url: "=https://graph.facebook.com/{{ $('Config').first().json.graphVersion }}/{{ $('Config').first().json.pageId }}/feed",
+        url: graph("photos"),
         authentication: "genericCredentialType",
         genericAuthType: "httpQueryAuth",
         sendBody: true,
         contentType: "form-urlencoded",
         bodyParameters: {
           parameters: [
-            { name: "message", value: "={{ $json.message }}" },
-            { name: "link", value: "={{ $json.link }}" },
+            { name: "url", value: "={{ $json.photo }}" },
+            { name: "caption", value: "={{ $json.message }}" },
+          ],
+        },
+        options: { response: { response: { neverError: true } } },
+      },
+      id: "a11",
+      name: "Post photo + caption",
+      type: "n8n-nodes-base.httpRequest",
+      typeVersion: 4.2,
+      position: [1540, 40],
+      credentials: fbCred,
+    },
+    ifNotEmpty("a12", "Photo accepted?", [1760, 40], "={{ $json.post_id || '' }}"),
+    {
+      parameters: {
+        method: "POST",
+        url: graph("feed"),
+        authentication: "genericCredentialType",
+        genericAuthType: "httpQueryAuth",
+        sendBody: true,
+        contentType: "form-urlencoded",
+        bodyParameters: {
+          parameters: [
+            { name: "message", value: "={{ $('Build caption').first().json.message }}" },
+            { name: "link", value: "={{ $('Build caption').first().json.link }}" },
           ],
         },
         options: {},
       },
       id: "a8",
-      name: "Post to Facebook Page",
+      name: "Post link (no photo)",
       type: "n8n-nodes-base.httpRequest",
       typeVersion: 4.2,
-      position: [1320, 120],
-      credentials: { httpQueryAuth: { id: "", name: "Facebook Page token (access_token)" } },
+      position: [1980, 200],
+      credentials: fbCred,
     },
-    { parameters: { jsCode: markPosted }, id: "a9", name: "Mark as posted", type: "n8n-nodes-base.code", typeVersion: 2, position: [1540, 120] },
+    { parameters: { jsCode: markPosted }, id: "a9", name: "Mark as posted", type: "n8n-nodes-base.code", typeVersion: 2, position: [2200, 40] },
   ],
   connections: {
     "3x daily (9:00, 13:00, 19:00)": { main: [[{ node: "Config", type: "main", index: 0 }]] },
@@ -223,10 +268,13 @@ const workflow = {
     "Dry run?": {
       main: [
         [{ node: "Dry run: caption only (not posted)", type: "main", index: 0 }],
-        [{ node: "Post to Facebook Page", type: "main", index: 0 }],
+        [{ node: "Has a photo?", type: "main", index: 0 }],
       ],
     },
-    "Post to Facebook Page": { main: [[{ node: "Mark as posted", type: "main", index: 0 }]] },
+    "Has a photo?": { main: [[{ node: "Post photo + caption", type: "main", index: 0 }], [{ node: "Post link (no photo)", type: "main", index: 0 }]] },
+    "Post photo + caption": { main: [[{ node: "Photo accepted?", type: "main", index: 0 }]] },
+    "Photo accepted?": { main: [[{ node: "Mark as posted", type: "main", index: 0 }], [{ node: "Post link (no photo)", type: "main", index: 0 }]] },
+    "Post link (no photo)": { main: [[{ node: "Mark as posted", type: "main", index: 0 }]] },
   },
   settings: { executionOrder: "v1", timezone: "Asia/Dubai" },
   pinData: {},

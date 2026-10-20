@@ -39,7 +39,7 @@ const comparison: ProductComparisonContent = {
     "The WE1010NA is ESD-safe by design; the 862BD+'s spec sheet makes no ESD-safety claim, and its official photos show no ESD-safe badge on the unit.",
     "The WE1010NA's iron is 70W; the 862BD+'s iron is 75W, with a similar overall temperature range on the soldering side.",
     "The 862BD+ is rated 220V per the manufacturer's own spec sheet — confirm voltage compatibility for your region before buying; the WE1010NA is sold as a US-market unit.",
-    "Reviewers report the 862BD+ heating up quickly but note its temperature display can run inaccurate; the WE1010NA's temperature stability under sustained use is a specifically documented strength.",
+    "The WE1010NA's temperature stability under sustained use is a specifically documented strength; the 862BD+'s spec sheet doesn't make an equivalent accuracy claim for either its iron or hot air readout.",
   ],
   bottomLine:
     "If your work is purely soldering — especially anything static-sensitive — the WE1010NA's ESD-safe, single-purpose design is the more trustworthy tool. If you regularly need to reflow or desolder surface-mount parts and don't want a second instrument taking up bench space, the 862BD+ covers that job the WE1010NA simply can't, as long as you've confirmed it'll run on your mains supply.",

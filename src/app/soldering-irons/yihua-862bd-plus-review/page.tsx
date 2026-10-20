@@ -34,8 +34,8 @@ const review: ProductReviewContent = {
       body: "A soldering iron alone can't reflow or remove surface-mount components — that needs controlled hot air. Buying the 862BD+ instead of a standalone iron plus a separate hot air station saves bench space and a second purchase, provided you'll actually use the hot air side. If your work is purely through-hole soldering, that half of the unit goes unused and a dedicated iron is the simpler buy.",
     },
     {
-      heading: "Temperature range and what reviewers report",
-      body: "Per the manufacturer's spec sheet, the iron runs 200–480°C and the hot air gun 100–480°C, independently adjustable with their own LED readouts — a wide enough range to cover leaded and lead-free solder plus SMD rework temperatures. Third-party reviews we found consistently mention fast heat-up, but some users report the temperature display running inaccurate; if precise, trusted temperature readout matters for your work, verify it against a separate thermometer rather than taking the display at face value.",
+      heading: "Temperature range",
+      body: "Per the manufacturer's spec sheet, the iron runs 200–480°C and the hot air gun 100–480°C, independently adjustable with their own LED readouts — a wide enough range to cover leaded and lead-free solder plus SMD rework temperatures. As with any budget digital display, it's worth confirming the readout against a separate thermometer on a unit this price before trusting it for a temperature-sensitive job, rather than assuming the display is lab-calibrated out of the box.",
     },
     {
       heading: "What this unit doesn't have",

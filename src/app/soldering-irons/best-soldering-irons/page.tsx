@@ -96,8 +96,8 @@ export const picks: Pick[] = [
       { label: "Display", value: "LED, independent iron/air readouts" },
       { label: "Best for", value: "SMD/BGA rework alongside general soldering" },
     ],
-    pros: ["Combines a soldering iron and hot air rework station in one unit", "Wide temperature range on both the iron and the hot air gun", "Reviewers report fast heat-up"],
-    cons: ["Input is rated 220V per the manufacturer's spec sheet — confirm voltage compatibility for your region before buying", "Some users report the temperature display running inaccurate", "No ESD-safe construction on this specific variant"],
+    pros: ["Combines a soldering iron and hot air rework station in one unit", "Wide temperature range on both the iron and the hot air gun", "Independently adjustable iron and hot air temperatures with separate LED readouts"],
+    cons: ["Input is rated 220V per the manufacturer's spec sheet — confirm voltage compatibility for your region before buying", "No ESD-safe construction on this specific variant"],
     ctaHref: "https://www.amazon.com/dp/B07RY5XWVG?tag=ohmsavvy-20",
   },
 ];

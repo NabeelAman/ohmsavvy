@@ -16,6 +16,17 @@ export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value);
 }
 
+/** The 2 pilot pages that actually have translations — add here as the rollout grows. */
+export const TRANSLATED_PATHS = ["/", "/multimeters/fluke-117-review"];
+
+export const FLAGS: Record<"en" | Locale, string> = {
+  en: "🇺🇸",
+  de: "🇩🇪",
+  fr: "🇫🇷",
+  it: "🇮🇹",
+  es: "🇪🇸",
+};
+
 /** hreflang alternates map for a translated page, including the English original as x-default. */
 export function localeAlternates(path: string): Record<string, string> {
   const languages: Record<string, string> = { en: path, "x-default": path };

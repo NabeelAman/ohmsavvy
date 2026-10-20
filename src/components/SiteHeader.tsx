@@ -1,13 +1,14 @@
 import { HeaderLogo } from "./HeaderLogo";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ScrollHeader } from "./ScrollHeader";
 import { SiteNav } from "./SiteNav";
 import { ThemeToggle } from "./ThemeToggle";
 
 /**
  * Site header: animated logo, mega-menu nav, search palette trigger, theme
- * toggle, and the mobile menu. Slims down on lg+ once the page scrolls
- * (mobile height stays fixed so the sticky "On this page" bar can sit flush
- * beneath it).
+ * toggle, language switcher, and the mobile menu. Slims down on lg+ once the
+ * page scrolls (mobile height stays fixed so the sticky "On this page" bar
+ * can sit flush beneath it).
  */
 export function SiteHeader() {
   return (
@@ -16,6 +17,7 @@ export function SiteHeader() {
         <HeaderLogo />
         <div className="flex items-center gap-2 lg:gap-4">
           <SiteNav />
+          <LanguageSwitcher />
           <ThemeToggle />
         </div>
       </div>

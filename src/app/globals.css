@@ -98,3 +98,15 @@ h1, h2, h3 {
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
+
+/* FAQ accordion: answers slide in when a <details> item opens. */
+@keyframes faq-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+details[open] > .faq-answer {
+  animation: faq-in 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  details[open] > .faq-answer { animation: none; }
+}

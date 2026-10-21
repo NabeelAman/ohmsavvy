@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContentCard } from "@/components/ContentCard";
 import { GuideCard } from "@/components/GuideCard";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { HeroSearch } from "@/components/HeroSearch";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { Reveal } from "@/components/Reveal";
@@ -135,6 +136,11 @@ const reviewSteps = [
 ];
 
 const homeFaqs = [
+  {
+    question: "I'm new to electronics. Where should I start?",
+    answer:
+      "Start with our three beginner guides: How to Use a Multimeter, How to Use a Soldering Iron and How to Use an Oscilloscope. Each walks through a first session step by step, with the safety checks that matter. When you're ready to buy, every category roundup leads with our top pick and the best option for beginners.",
+  },
   {
     question: "How does OhmSavvy make money?",
     answer:
@@ -559,19 +565,40 @@ export default function Home() {
 
       {/* FAQ */}
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <SectionHead eyebrow="FAQ" title="Common questions about this site" />
-          <div className="divide-y divide-border rounded-2xl border border-border bg-surface">
-            {homeFaqs.map((f) => (
-              <details key={f.question} className="group p-5 [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                  <h3 className="font-medium">{f.question}</h3>
-                  <span className="shrink-0 text-accent transition-transform duration-200 group-open:rotate-45 text-xl leading-none">+</span>
-                </summary>
-                <p className="mt-3 text-sm text-muted leading-6">{f.answer}</p>
-              </details>
-            ))}
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Eyebrow>FAQ</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">Common questions about this site</h2>
+            <p className="mt-3 text-muted leading-7">
+              How we make money, how we test, and how to find your way around. Short, straight answers.
+            </p>
+            <div className="mt-8 rounded-2xl border border-border bg-surface p-6">
+              <p className="font-display text-[11px] uppercase tracking-wide text-accent">Want the detail?</p>
+              <ul className="mt-3 space-y-2.5 text-sm">
+                <li>
+                  <Link href="/about" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                    <span>How we test and review</span>
+                    <span className="text-muted" aria-hidden="true">→</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about#how-were-funded" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                    <span>How we&apos;re funded</span>
+                    <span className="text-muted" aria-hidden="true">→</span>
+                  </Link>
+                </li>
+                {featuredHowTos.map((g) => (
+                  <li key={g.href}>
+                    <Link href={g.href} className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                      <span>{g.title}</span>
+                      <span className="text-muted" aria-hidden="true">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+          <FaqAccordion items={homeFaqs.map((f) => ({ q: f.question, a: f.answer }))} />
         </div>
       </section>
     </div>

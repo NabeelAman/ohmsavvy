@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContentCard } from "@/components/ContentCard";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { GuideCard } from "@/components/GuideCard";
 import { Reveal } from "@/components/Reveal";
 import { Badge } from "@/components/ui/Badge";
@@ -107,7 +108,7 @@ type Dict = {
   moreUseCasesLabel: string;
   guidesWord: string;
   howWeReview: { eyebrow: string; title: string; links: [string, string]; steps: [Step, Step, Step, Step]; handsOnTestedNote: string };
-  faq: { eyebrow: string; title: string; items: [Faq, Faq, Faq, Faq] };
+  faq: { eyebrow: string; title: string; intro: string; detailLabel: string; howWeTest: string; howFunded: string; items: Faq[] };
   switcherLabel: string;
   inEnglishSuffix: string;
   disclosure: string;
@@ -162,7 +163,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     faq: {
       eyebrow: "FAQ",
       title: "Häufige Fragen zu dieser Website",
+      intro: "Wie wir Geld verdienen, wie wir testen und wie Sie sich zurechtfinden. Kurze, klare Antworten.",
+      detailLabel: "Mehr erfahren",
+      howWeTest: "So testen und bewerten wir",
+      howFunded: "So finanzieren wir uns",
       items: [
+        { q: "Ich bin neu in der Elektronik. Wo fange ich an?", a: "Beginnen Sie mit unseren drei Einsteiger-Ratgebern: How to Use a Multimeter, How to Use a Soldering Iron und How to Use an Oscilloscope (auf Englisch). Jeder führt Schritt für Schritt durch die erste Anwendung, mit den wichtigen Sicherheitschecks. Wenn Sie kaufen möchten, beginnt jede Kategorie-Rangliste mit unserer Top-Empfehlung und der besten Option für Einsteiger." },
         { q: "Wie verdient OhmSavvy Geld?", a: "Durch Amazon-Partnerprovisionen, wenn Sie über einen Link auf dieser Seite kaufen, ohne Mehrkosten für Sie. Das ist die einzige Einnahmequelle — keine Werbung, keine gesponserten Platzierungen, keine Herstellerzahlungen für eine positive Bewertung." },
         { q: "Testen Sie die Produkte wirklich selbst?", a: "Unsere Top-Empfehlungen ja. Unser Testteam kauft jedes Produkt, das wir mit 4,8 bewerten, und setzt es in unserem Labor ein — diese tragen das Abzeichen \"In der Praxis getestet\". Jeder andere Test ist Schreibtischrecherche: jede Spezifikation mit den Herstellerdaten oder der offiziellen Amazon-Liste abgeglichen, plus Muster aus verifizierten Käuferbewertungen. Jeder Test gibt offen an, um welche Art es sich handelt." },
         { q: "Warum haben manche Produkte keine Fotos?", a: "Wir zeigen lieber kein Foto als ein falsches. Wenn wir kein Bild finden, das wir visuell dem genauen Modell zuordnen können — kein Foto eines ähnlichen Schwestermodells —, zeigen wir stattdessen eine klar gekennzeichnete Illustration mit \"Photo coming soon\", statt zu raten." },
@@ -221,7 +227,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     faq: {
       eyebrow: "FAQ",
       title: "Questions fréquentes sur ce site",
+      intro: "Comment nous gagnons de l'argent, comment nous testons et comment vous repérer. Des réponses courtes et claires.",
+      detailLabel: "En savoir plus",
+      howWeTest: "Comment nous testons et évaluons",
+      howFunded: "Comment nous sommes financés",
       items: [
+        { q: "Je débute en électronique. Par où commencer ?", a: "Commencez par nos trois guides pour débutants : How to Use a Multimeter, How to Use a Soldering Iron et How to Use an Oscilloscope (en anglais). Chacun accompagne une première utilisation étape par étape, avec les vérifications de sécurité essentielles. Au moment d'acheter, chaque classement de catégorie commence par notre meilleur choix et la meilleure option pour débuter." },
         { q: "Comment OhmSavvy gagne-t-il de l'argent ?", a: "Grâce aux commissions d'affiliation Amazon lorsque vous achetez via un lien de ce site, sans frais supplémentaires pour vous. C'est notre seule source de revenus — pas de publicité, pas de placements sponsorisés, pas de paiements de fabricants pour un avis favorable." },
         { q: "Testez-vous vraiment les produits physiquement ?", a: "Nos meilleurs choix, oui. Notre équipe de test achète chaque produit noté 4,8 et l'utilise dans notre labo, et ces produits portent le badge \"Testé en conditions réelles\". Tout autre avis est une recherche documentaire : chaque spécification vérifiée par rapport aux données du fabricant ou à la fiche Amazon officielle, plus les tendances des avis d'achat vérifiés. Chaque avis précise clairement de quel type il s'agit." },
         { q: "Pourquoi certains produits n'ont-ils pas de photo ?", a: "Nous préférons ne montrer aucune photo plutôt qu'une mauvaise. Si nous ne trouvons pas d'image que nous pouvons confirmer visuellement comme correspondant exactement au modèle — pas la photo d'un modèle apparenté — nous affichons à la place une illustration clairement indiquée \"Photo coming soon\", plutôt que de deviner." },
@@ -280,7 +291,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     faq: {
       eyebrow: "Domande frequenti",
       title: "Domande comuni su questo sito",
+      intro: "Come guadagniamo, come testiamo e come orientarti nel sito. Risposte brevi e dirette.",
+      detailLabel: "Approfondisci",
+      howWeTest: "Come testiamo e recensiamo",
+      howFunded: "Come ci finanziamo",
       items: [
+        { q: "Sono alle prime armi con l'elettronica. Da dove inizio?", a: "Inizia dalle nostre tre guide per principianti: How to Use a Multimeter, How to Use a Soldering Iron e How to Use an Oscilloscope (in inglese). Ognuna accompagna passo passo il primo utilizzo, con i controlli di sicurezza che contano. Quando sei pronto ad acquistare, ogni classifica di categoria parte dalla nostra scelta migliore e dall'opzione migliore per principianti." },
         { q: "Come guadagna OhmSavvy?", a: "Attraverso le commissioni di affiliazione Amazon quando acquisti tramite un link su questo sito, senza costi aggiuntivi per te. Questa è l'unica fonte di guadagno — nessuna pubblicità, nessun posizionamento sponsorizzato, nessun pagamento dai produttori per una recensione favorevole." },
         { q: "Testate fisicamente i prodotti?", a: "Le nostre scelte migliori, sì. Il nostro team acquista ogni prodotto che valutiamo 4,8 e lo mette alla prova nel nostro laboratorio, e questi prodotti portano il badge \"Testato praticamente\". Ogni altra recensione è ricerca a tavolino: ogni specifica verificata con i dati del produttore o con l'inserzione ufficiale Amazon, più i pattern delle recensioni di acquisti verificati. Ogni recensione dichiara chiaramente di che tipo si tratta." },
         { q: "Perché alcuni prodotti non hanno foto?", a: "Preferiamo non mostrare nessuna foto piuttosto che una sbagliata. Se non troviamo un'immagine che possiamo confermare visivamente corrisponda esattamente al modello — non la foto di un modello simile della stessa famiglia — mostriamo invece un'illustrazione chiaramente etichettata \"Photo coming soon\", piuttosto che indovinare." },
@@ -339,7 +355,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     faq: {
       eyebrow: "Preguntas frecuentes",
       title: "Preguntas comunes sobre este sitio",
+      intro: "Cómo ganamos dinero, cómo probamos y cómo orientarte en el sitio. Respuestas breves y directas.",
+      detailLabel: "Más información",
+      howWeTest: "Cómo probamos y analizamos",
+      howFunded: "Cómo nos financiamos",
       items: [
+        { q: "Soy nuevo en electrónica. ¿Por dónde empiezo?", a: "Empieza por nuestras tres guías para principiantes: How to Use a Multimeter, How to Use a Soldering Iron y How to Use an Oscilloscope (en inglés). Cada una te guía paso a paso en el primer uso, con las comprobaciones de seguridad importantes. Cuando quieras comprar, cada clasificación de categoría empieza con nuestra mejor opción y la mejor alternativa para principiantes." },
         { q: "¿Cómo gana dinero OhmSavvy?", a: "Mediante comisiones de afiliado de Amazon cuando compras a través de un enlace de este sitio, sin costo adicional para ti. Esa es la única fuente de ingresos — sin publicidad, sin colocaciones patrocinadas, sin pagos de fabricantes por una reseña favorable." },
         { q: "¿Prueban físicamente los productos?", a: "Nuestras mejores opciones, sí. Nuestro equipo de pruebas compra cada producto que calificamos con 4.8 y lo pone a prueba en nuestro laboratorio, y esos productos llevan la insignia \"Probado en la práctica\". Cualquier otra reseña es investigación de escritorio: cada especificación verificada con los datos del fabricante o la ficha oficial de Amazon, más patrones en reseñas de compras verificadas. Cada reseña indica claramente de qué tipo se trata." },
         { q: "¿Por qué algunos productos no tienen fotos?", a: "Preferimos no mostrar ninguna foto antes que una incorrecta. Si no encontramos una imagen que podamos confirmar visualmente que corresponde exactamente al modelo — no la foto de un modelo hermano parecido — mostramos en su lugar una ilustración claramente etiquetada como \"Photo coming soon\", en lugar de adivinar." },
@@ -645,24 +666,53 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
       </section>
 
       {/* FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            inLanguage: locale,
+            mainEntity: d.faq.items.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <div className="mb-8 max-w-2xl">
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:self-start">
             <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.faq.eyebrow.toUpperCase()}</p>
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.faq.title}</h2>
+            <p className="mt-3 text-muted leading-7">{d.faq.intro}</p>
+            <div className="mt-8 rounded-2xl border border-border bg-surface p-6">
+              <p className="font-display text-[11px] uppercase tracking-wide text-accent">{d.faq.detailLabel}</p>
+              <ul className="mt-3 space-y-2.5 text-sm">
+                <li>
+                  <Link href="/about" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                    <span>{d.faq.howWeTest}{d.inEnglishSuffix}</span>
+                    <span className="text-muted" aria-hidden="true">→</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about#how-were-funded" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                    <span>{d.faq.howFunded}{d.inEnglishSuffix}</span>
+                    <span className="text-muted" aria-hidden="true">→</span>
+                  </Link>
+                </li>
+                {featuredHowTos.map((g) => (
+                  <li key={g.href}>
+                    <Link href={g.href} className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                      <span>{g.title}{d.inEnglishSuffix}</span>
+                      <span className="text-muted" aria-hidden="true">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="divide-y divide-border rounded-2xl border border-border bg-surface">
-            {d.faq.items.map((f) => (
-              <details key={f.q} className="group p-5 [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                  <h3 className="font-medium">{f.q}</h3>
-                  <span className="shrink-0 text-accent transition-transform duration-200 group-open:rotate-45 text-xl leading-none">+</span>
-                </summary>
-                <p className="mt-3 text-sm text-muted leading-6">{f.a}</p>
-              </details>
-            ))}
-          </div>
-          <p className="mt-10 text-xs text-muted leading-5 border-t border-border pt-6">{d.disclosure}</p>
+          <FaqAccordion items={d.faq.items} />
+        </div>
+        <div className="mx-auto max-w-6xl px-6 pb-12">
+          <p className="text-xs text-muted leading-5 border-t border-border pt-6">{d.disclosure}</p>
         </div>
       </section>
     </div>

@@ -4,6 +4,8 @@ node_modules
 *.log
 *.tsbuildinfo
 .tmp-*
+# Isolated build-check copies made by Claude sessions (zz-buildcheck, zz-faq, ...)
+/zz-*/
 
 *storybook.log
 storybook-static

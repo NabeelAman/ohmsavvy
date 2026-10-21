@@ -96,14 +96,17 @@ for (const route of routes) {
 // Also count links from shared components rendered on every page (nav + the
 // root layout's footer, which is actually where most routes get their link —
 // Nav.tsx alone misses privacy-policy, terms-of-service, and "/" via the logo).
-for (const file of ["src/components/Nav.tsx", "src/app/layout.tsx"]) {
+// SiteFooter.tsx holds the footer since it moved out of layout.tsx; its links
+// live in data arrays (`href: "/x"`), so match that form as well.
+const dataHrefPattern = /href:\s*["'`](\/[a-zA-Z0-9\-/#]*)["'`]/g;
+for (const file of ["src/components/Nav.tsx", "src/app/layout.tsx", "src/components/SiteFooter.tsx"]) {
   let content;
   try {
     content = readFileSync(file, "utf8");
   } catch {
     continue;
   }
-  for (const match of content.matchAll(hrefPattern)) {
+  for (const match of [...content.matchAll(hrefPattern), ...content.matchAll(dataHrefPattern)]) {
     const target = match[1].split("#")[0] || "/";
     if (routes.has(target)) inbound.get(target).add("(global nav)");
   }

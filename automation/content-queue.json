@@ -54,23 +54,25 @@
       "keyword": "best multimeter for diy",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "KAIWEETS KM200s",
         "UNI-T UT139C",
         "Extech EX330"
-      ]
+      ],
+      "notes": "same picks and intent as /multimeters/best-multimeter-for-home-use (\"Best Multimeter for Home Use & DIY\")"
     },
     {
       "keyword": "best multimeter for hobbyists",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "KAIWEETS KM200s",
         "AstroAI DM6000AR",
         "UNI-T UT139C"
-      ]
+      ],
+      "notes": "same picks and audience as /multimeters/best-multimeter-for-home-use"
     },
     {
       "keyword": "best multimeter for beginners",
@@ -191,12 +193,13 @@
       "keyword": "best multimeter for electrical panel work",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Fluke 87V",
         "Southwire 14070T",
         "Klein Tools MM400"
-      ]
+      ],
+      "notes": "same intent as /multimeters/best-multimeter-for-electricians (leads with panel work)"
     },
     {
       "keyword": "best multimeter under $50",
@@ -325,11 +328,12 @@
       "keyword": "fluke vs klein multimeter",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Fluke 117",
         "Klein Tools MM400"
-      ]
+      ],
+      "notes": "covered by /multimeters/fluke-117-vs-klein-mm400"
     },
     {
       "keyword": "fluke 117 vs fluke 87v",
@@ -1108,11 +1112,12 @@
       "keyword": "best oscilloscope for arduino",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Rigol DS1054Z",
         "FNIRSI DSO152"
-      ]
+      ],
+      "notes": "same intent as /oscilloscopes/best-oscilloscope-for-arduino-projects"
     },
     {
       "keyword": "best oscilloscope for audio",
@@ -1524,11 +1529,12 @@
       "keyword": "hantek vs rigol oscilloscope",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Hantek DSO2D10",
         "Rigol DS1054Z"
-      ]
+      ],
+      "notes": "covered by /oscilloscopes/rigol-ds1054z-vs-hantek-dso2d10"
     },
     {
       "keyword": "fnirsi dso152 review",

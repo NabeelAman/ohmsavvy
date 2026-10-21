@@ -112,12 +112,13 @@
       "keyword": "best multimeter for HVAC technicians",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "published",
       "targetPicks": [
         "Fluke 117",
         "Milwaukee 2235-20",
         "Klein Tools MM400"
-      ]
+      ],
+      "notes": "already live at /multimeters/best-multimeter-for-hvac-technicians (written manually 2026-10-21)"
     },
     {
       "keyword": "best multimeter for motorcycle",
@@ -517,13 +518,15 @@
       "keyword": "multimeter accuracy explained",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "skip-duplicate",
+      "notes": "covered by /multimeters/multimeter-accuracy-for-electronics-repair"
     },
     {
       "keyword": "multimeter resolution vs accuracy",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "skip-duplicate",
+      "notes": "covered by /multimeters/multimeter-accuracy-for-electronics-repair (counts vs resolution vs accuracy section)"
     },
     {
       "keyword": "multimeter input impedance explained",

@@ -587,6 +587,65 @@ export function FrontPanel() {
   );
 }
 
+/**
+ * Simple DC circuit: source on the left, load on the right, and a meter either
+ * in series (breaking the top wire: current) or in parallel (across the load:
+ * voltage). Labels are short strings, e.g. source "12 V battery", load "Load".
+ */
+export function CircuitDiagram({
+  mode,
+  meter,
+  source,
+  load,
+  note,
+}: {
+  mode: "series" | "parallel";
+  /** Text inside the meter circle, e.g. "mA" or "V". */
+  meter: string;
+  source: string;
+  load: string;
+  note?: string;
+}) {
+  const series = mode === "series";
+  return (
+    <svg viewBox="0 0 340 190" className="w-full h-auto" role="img" aria-label={`Circuit with the meter connected in ${mode}`}>
+      <g className="stroke-foreground" strokeWidth="1.8" fill="none" strokeLinecap="round">
+        {/* battery */}
+        <path d="M60 70 V120" />
+        <path d="M44 88 H76 M50 100 H70" />
+        <path d="M60 88 V70 M60 100 V120" />
+        {/* top wire, broken by the meter in series mode */}
+        {series ? <path d="M60 70 V40 H140 M200 40 H280 V70" /> : <path d="M60 70 V40 H280 V70" />}
+        {/* load */}
+        <rect x="266" y="70" width="28" height="50" rx="3" className="fill-surface" />
+        {/* bottom wire */}
+        <path d="M60 120 V150 H280 V120" />
+        {/* parallel meter leads */}
+        {!series && <path d="M280 55 H318 V78 M318 112 V135 H280" className="stroke-accent" strokeDasharray="4 3" />}
+      </g>
+      <g>
+        <circle cx={series ? 170 : 318} cy={series ? 40 : 95} r="17" className="fill-surface stroke-accent" strokeWidth="2.2" />
+        <text x={series ? 170 : 318} y={series ? 44.5 : 99.5} fontSize="13" fontWeight="700" textAnchor="middle" className="fill-accent">
+          {meter}
+        </text>
+      </g>
+      <g fontSize="10.5" className="fill-muted">
+        <text x="60" y="140" textAnchor="middle" className="fill-foreground">{source}</text>
+        <text x="40" y="86" textAnchor="middle">+</text>
+        <text x="280" y="64" textAnchor="middle" className="fill-foreground">{load}</text>
+        <text x={series ? 170 : 300} y={series ? 72 : 168} textAnchor="middle" className="fill-accent">
+          {series ? "Meter in series: all current flows through it" : "Meter in parallel, across the load"}
+        </text>
+      </g>
+      {note && (
+        <text x="170" y="184" fontSize="9.5" textAnchor="middle" className="fill-muted">
+          {note}
+        </text>
+      )}
+    </svg>
+  );
+}
+
 /** A multimeter-style LCD readout, for side-by-side comparisons with a ScopeScreen. */
 export function MeterReadout({ value, unit, mode }: { value: string; unit: string; mode: string }) {
   return (

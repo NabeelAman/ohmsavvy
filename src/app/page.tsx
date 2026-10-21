@@ -95,7 +95,11 @@ const useCaseGuides = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guid
 
 // Learning hub: the two "start here" how-tos featured, then every other
 // how-to and buying guide as a compact list.
-const FEATURED_HOWTO = ["/multimeters/how-to-use-a-multimeter", "/oscilloscopes/how-to-use-an-oscilloscope"];
+const FEATURED_HOWTO = [
+  "/multimeters/how-to-use-a-multimeter",
+  "/soldering-irons/how-to-use-a-soldering-iron",
+  "/oscilloscopes/how-to-use-an-oscilloscope",
+];
 const featuredHowTos = FEATURED_HOWTO.map((h) => content.find((e) => e.href === h)).filter((e): e is ContentEntry => !!e);
 const otherHowTos = content.filter((e) => e.type === "how-to-guide" && !FEATURED_HOWTO.includes(e.href));
 const buyingGuides = content.filter((e) => e.type === "buying-guide");

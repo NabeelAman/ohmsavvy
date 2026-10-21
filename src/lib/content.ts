@@ -315,6 +315,41 @@ export const content: ContentEntry[] = [
     description: "Portable iron vs. budget starter kit",
     href: "/soldering-irons/pinecil-v2-vs-q-ming-60w-kit",
   },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "How to Use a Soldering Iron",
+    description: "Tinning, prepping a joint, and spotting a cold solder joint",
+    href: "/soldering-irons/how-to-use-a-soldering-iron",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Soldering Iron Tip Care",
+    description: "Cleaning, tinning, and knowing when to replace a tip",
+    href: "/soldering-irons/soldering-iron-tip-care",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Why Won't My Soldering Iron Melt Solder?",
+    description: "The usual causes, from a cold tip to the wrong solder",
+    href: "/soldering-irons/soldering-iron-not-melting-solder",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Soldering Iron vs. Soldering Station",
+    description: "What a closed-loop station actually buys you over a wand iron",
+    href: "/soldering-irons/soldering-iron-vs-soldering-station",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "60/40 vs 63/37 Solder: What's the Difference?",
+    description: "Eutectic vs. non-eutectic alloys, and which to buy",
+    href: "/soldering-irons/60-40-vs-63-37-solder",
+  },
 
   // Oscilloscopes
   {

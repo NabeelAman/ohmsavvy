@@ -616,11 +616,12 @@
       "keyword": "best soldering iron for car audio",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Q-MING 60W Kit",
         "Weller WE1010NA"
-      ]
+      ],
+      "notes": "Covered by /soldering-irons/best-soldering-iron-for-automotive-electronics (use-case guide, targetPicks Weller WE1010NA + Pinecil V2 + Q-MING 60W Kit) — merged, not published separately."
     },
     {
       "keyword": "best soldering iron for automotive wiring",

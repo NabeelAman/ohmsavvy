@@ -207,14 +207,16 @@ export default function SolderingIronTipCarePage() {
         </p>
       </section>
 
-      <KeyIdea title="What never to do to a tip">
-        <ul className="space-y-1 list-disc pl-5">
-          <li>Don&apos;t file, sand, or scrape a plated tip — that removes the protective plating permanently.</li>
-          <li>Don&apos;t run the iron at the top of its temperature range for routine work — excess heat accelerates oxidation and plating wear for no benefit on most joints.</li>
-          <li>Don&apos;t leave the iron on, unused, at temperature for long stretches — oxidation continues the whole time it&apos;s hot.</li>
-          <li>Don&apos;t force a cold, dirty tip to melt solder by pressing harder — clean and re-tin it instead.</li>
-        </ul>
-      </KeyIdea>
+      <section id="what-not-to-do">
+        <KeyIdea title="What never to do to a tip">
+          <ul className="space-y-1 list-disc pl-5">
+            <li>Don&apos;t file, sand, or scrape a plated tip — that removes the protective plating permanently.</li>
+            <li>Don&apos;t run the iron at the top of its temperature range for routine work — excess heat accelerates oxidation and plating wear for no benefit on most joints.</li>
+            <li>Don&apos;t leave the iron on, unused, at temperature for long stretches — oxidation continues the whole time it&apos;s hot.</li>
+            <li>Don&apos;t force a cold, dirty tip to melt solder by pressing harder — clean and re-tin it instead.</li>
+          </ul>
+        </KeyIdea>
+      </section>
 
       <section>
         <h2 id="irons-with-good-tip-systems" className="text-xl font-semibold mb-3">Irons with easy tip maintenance</h2>

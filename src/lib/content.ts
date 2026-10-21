@@ -234,6 +234,62 @@ export const content: ContentEntry[] = [
     description: "Pocket size vs. True RMS on a budget",
     href: "/multimeters/extech-ex330-vs-uni-t-ut139c",
   },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Measure Resistance in a Parallel Circuit",
+    description: "Why a multimeter reads the combined value, not one resistor alone",
+    href: "/multimeters/how-to-measure-resistance-in-a-parallel-circuit",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Test a Diode With a Multimeter",
+    description: "Reading diode mode, and why it beats resistance mode for this",
+    href: "/multimeters/how-to-test-a-diode-with-a-multimeter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Test an Automotive Relay With a Multimeter",
+    description: "Coil resistance, resting contacts, and energized switching",
+    href: "/multimeters/how-to-test-an-automotive-relay-with-a-multimeter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Measure AC Current With a Clamp Meter",
+    description: "The single-conductor rule, and why clamping a whole cable reads zero",
+    href: "/multimeters/how-to-measure-ac-current-with-a-clamp-meter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "What Does OL Mean on a Multimeter?",
+    description: "Overload or open circuit — it depends on the mode selected",
+    href: "/multimeters/what-does-ol-mean-on-a-multimeter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Test a Fuse Without Removing It",
+    description: "A live-circuit voltage-drop test, and when to use it instead",
+    href: "/multimeters/how-to-test-a-fuse-without-removing-it",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Measure Voltage Across a Resistor",
+    description: "No isolation needed, plus using the reading to calculate current",
+    href: "/multimeters/how-to-measure-voltage-across-a-resistor",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "What Causes Unstable Multimeter Readings?",
+    description: "Loose probes, a weak battery, noise, or a genuinely changing signal",
+    href: "/multimeters/unstable-multimeter-readings",
+  },
 
   // Soldering irons
   {
@@ -421,6 +477,27 @@ export const content: ContentEntry[] = [
     title: "Soldering Iron Tip Types Explained",
     description: "Conical, chisel, bevel, and knife tips, and what each is for",
     href: "/soldering-irons/soldering-iron-tip-types",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Why Does Solder Bead Up Instead of Flowing?",
+    description: "An oxidised surface, too little flux, or a joint that isn't hot enough",
+    href: "/soldering-irons/solder-beading-up-not-flowing",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "How to Solder Wires Without Overheating Insulation",
+    description: "Strip back further, pre-tin the ends, and use a heat sink clip",
+    href: "/soldering-irons/how-to-solder-wires-without-overheating-insulation",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "How to Choose Solder Wire Diameter",
+    description: "Thinner for fine SMD control, thicker for faster feed on bigger joints",
+    href: "/soldering-irons/solder-wire-diameter-guide",
   },
 
   // Oscilloscopes
@@ -643,6 +720,27 @@ export const content: ContentEntry[] = [
     title: "How to Measure PWM Duty Cycle",
     description: "High time, period, cursors and averages",
     href: "/oscilloscopes/how-to-measure-pwm-duty-cycle-with-an-oscilloscope",
+  },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "Why Does an Oscilloscope Waveform Look Noisy?",
+    description: "A long ground lead, ground loops, or genuinely real noise",
+    href: "/oscilloscopes/why-oscilloscope-waveform-is-noisy",
+  },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "How to Measure Phase Difference on an Oscilloscope",
+    description: "Timing the delay between two channels, plus Lissajous figures",
+    href: "/oscilloscopes/how-to-measure-phase-difference-oscilloscope",
+  },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "Analog vs Digital Oscilloscopes",
+    description: "Live beam vs. sampled memory, and the aliasing trade-off",
+    href: "/oscilloscopes/analog-vs-digital-oscilloscope",
   },
 ];
 

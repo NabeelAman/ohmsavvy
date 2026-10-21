@@ -117,15 +117,17 @@ export default function HowToStoreASolderingIronPage() {
         </p>
       </section>
 
-      <KeyIdea title="What to avoid">
-        <ul className="space-y-1 list-disc pl-5">
-          <li>Setting a hot iron down anywhere other than its stand, even for a moment.</li>
-          <li>Closing a warm iron into a case or bag before it&apos;s genuinely cool.</li>
-          <li>Storing it with a dirty, dross-covered tip rather than a freshly tinned one.</li>
-          <li>Coiling the cord very tightly around the iron body for storage, which stresses it at the bend points.</li>
-          <li>Leaving it powered on and unattended for extended periods between uses.</li>
-        </ul>
-      </KeyIdea>
+      <section id="what-to-avoid">
+        <KeyIdea title="What to avoid">
+          <ul className="space-y-1 list-disc pl-5">
+            <li>Setting a hot iron down anywhere other than its stand, even for a moment.</li>
+            <li>Closing a warm iron into a case or bag before it&apos;s genuinely cool.</li>
+            <li>Storing it with a dirty, dross-covered tip rather than a freshly tinned one.</li>
+            <li>Coiling the cord very tightly around the iron body for storage, which stresses it at the bend points.</li>
+            <li>Leaving it powered on and unattended for extended periods between uses.</li>
+          </ul>
+        </KeyIdea>
+      </section>
 
       <section>
         <h2 id="quick-reference" className="text-xl font-semibold mb-3">Quick reference</h2>

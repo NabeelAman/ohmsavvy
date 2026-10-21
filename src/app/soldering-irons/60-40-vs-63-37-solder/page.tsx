@@ -147,16 +147,18 @@ export default function SolderComparisonPage() {
         </p>
       </section>
 
-      <Callout title="Why the plastic range actually matters for joint quality">
-        During 60/40&apos;s plastic range, the joint is soft enough that movement — a nudged wire, a
-        bumped board, even vibration — can disturb the forming crystal structure, producing exactly the
-        dull, grainy, fractured appearance of a cold solder joint described in our{" "}
-        <Link href="/soldering-irons/how-to-use-a-soldering-iron" className="underline">
-          how-to guide
-        </Link>
-        . 63/37 has no such window to protect, which is the main practical reason many hobbyists prefer
-        it for hand soldering.
-      </Callout>
+      <section id="why-it-matters">
+        <Callout title="Why the plastic range actually matters for joint quality">
+          During 60/40&apos;s plastic range, the joint is soft enough that movement — a nudged wire, a
+          bumped board, even vibration — can disturb the forming crystal structure, producing exactly
+          the dull, grainy, fractured appearance of a cold solder joint described in our{" "}
+          <Link href="/soldering-irons/how-to-use-a-soldering-iron" className="underline">
+            how-to guide
+          </Link>
+          . 63/37 has no such window to protect, which is the main practical reason many hobbyists
+          prefer it for hand soldering.
+        </Callout>
+      </section>
 
       <section>
         <h2 id="side-by-side" className="text-xl font-semibold mb-3">Side-by-side comparison</h2>

@@ -242,16 +242,18 @@ export default function HowToUseASolderingIronPage() {
         />
       </section>
 
-      <KeyIdea title="Common first-timer mistakes to watch for">
-        <ul className="space-y-1 list-disc pl-5">
-          <li>Melting solder directly onto the tip, then wiping it onto the joint — this skips proper heating of the joint itself.</li>
-          <li>Pulling the iron away the instant solder starts to flow, before the joint is fully wetted.</li>
-          <li>Holding a part in loose tweezers that lets it shift during cooling.</li>
-          <li>Using a cold, oxidised tip and wondering why nothing melts — see the{" "}
-            <Link href="/soldering-irons/soldering-iron-not-melting-solder" className={link}>troubleshooting guide</Link> for this specifically.
-          </li>
-        </ul>
-      </KeyIdea>
+      <section id="common-mistakes">
+        <KeyIdea title="Common first-timer mistakes to watch for">
+          <ul className="space-y-1 list-disc pl-5">
+            <li>Melting solder directly onto the tip, then wiping it onto the joint — this skips proper heating of the joint itself.</li>
+            <li>Pulling the iron away the instant solder starts to flow, before the joint is fully wetted.</li>
+            <li>Holding a part in loose tweezers that lets it shift during cooling.</li>
+            <li>Using a cold, oxidised tip and wondering why nothing melts — see the{" "}
+              <Link href="/soldering-irons/soldering-iron-not-melting-solder" className={link}>troubleshooting guide</Link> for this specifically.
+            </li>
+          </ul>
+        </KeyIdea>
+      </section>
 
       <section>
         <h2 id="which-iron" className="text-xl font-semibold mb-3">Which iron should you practise on?</h2>

@@ -175,12 +175,14 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
         />
       </section>
 
-      <KeyIdea title="Which method should you use?">
-        Single joint or a handful of leads: solder wick or a solder sucker both work well — wick if
-        you&apos;re still building confidence, a sucker once you&apos;re comfortable with the timing.
-        Multi-pin components (ICs, connectors) or SMD parts: hot air removes the whole part evenly in
-        one step, which a wick or sucker can&apos;t do without working pin by pin.
-      </KeyIdea>
+      <section id="which-to-use">
+        <KeyIdea title="Which method should you use?">
+          Single joint or a handful of leads: solder wick or a solder sucker both work well — wick if
+          you&apos;re still building confidence, a sucker once you&apos;re comfortable with the timing.
+          Multi-pin components (ICs, connectors) or SMD parts: hot air removes the whole part evenly
+          in one step, which a wick or sucker can&apos;t do without working pin by pin.
+        </KeyIdea>
+      </section>
     </HowToShell>
   );
 }

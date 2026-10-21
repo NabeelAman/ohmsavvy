@@ -123,16 +123,18 @@ export default function SolderingIronTemperatureByMetalPage() {
         />
       </section>
 
-      <Callout title="Why hotter isn't simply better">
-        Running the iron hotter than a joint needs doesn&apos;t make soldering faster or easier — it
-        accelerates tip oxidation (see our{" "}
-        <Link href="/soldering-irons/soldering-iron-tip-care" className="underline">
-          tip care guide
-        </Link>
-        ), increases the risk of heat damage to components and board traces, and can scorch flux before
-        it has a chance to do its job cleaning the joint. Match the setting to the joint instead of
-        defaulting to the highest setting &quot;to be safe.&quot;
-      </Callout>
+      <section id="why-hotter-isnt-better">
+        <Callout title="Why hotter isn't simply better">
+          Running the iron hotter than a joint needs doesn&apos;t make soldering faster or easier — it
+          accelerates tip oxidation (see our{" "}
+          <Link href="/soldering-irons/soldering-iron-tip-care" className="underline">
+            tip care guide
+          </Link>
+          ), increases the risk of heat damage to components and board traces, and can scorch flux
+          before it has a chance to do its job cleaning the joint. Match the setting to the joint
+          instead of defaulting to the highest setting &quot;to be safe.&quot;
+        </Callout>
+      </section>
 
       <section>
         <h2 id="signs-to-adjust" className="text-xl font-semibold mb-3">Signs your temperature setting needs adjusting</h2>
@@ -150,18 +152,20 @@ export default function SolderingIronTemperatureByMetalPage() {
         />
       </section>
 
-      <KeyIdea title="Quick reference: where to start">
-        <ul className="space-y-1 list-disc pl-5">
-          <li>General through-hole electronics, leaded solder: 300–330°C</li>
-          <li>Fine SMD work, leaded solder: 280–310°C with a fine tip</li>
-          <li>Lead-free solder, general work: 340–370°C</li>
-          <li>Large ground planes or thick wire: upper end of range, plus a larger tip and longer dwell</li>
-        </ul>
-        <p className="mt-3 text-xs">
-          These are reasonable starting points, not fixed rules — adjust based on what you actually see
-          at the joint, as covered above.
-        </p>
-      </KeyIdea>
+      <section id="quick-reference">
+        <KeyIdea title="Quick reference: where to start">
+          <ul className="space-y-1 list-disc pl-5">
+            <li>General through-hole electronics, leaded solder: 300–330°C</li>
+            <li>Fine SMD work, leaded solder: 280–310°C with a fine tip</li>
+            <li>Lead-free solder, general work: 340–370°C</li>
+            <li>Large ground planes or thick wire: upper end of range, plus a larger tip and longer dwell</li>
+          </ul>
+          <p className="mt-3 text-xs">
+            These are reasonable starting points, not fixed rules — adjust based on what you actually
+            see at the joint, as covered above.
+          </p>
+        </KeyIdea>
+      </section>
     </HowToShell>
   );
 }

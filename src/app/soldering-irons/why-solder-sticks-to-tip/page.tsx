@@ -3,6 +3,7 @@ import {
   Callout,
   DataTable,
   Figure,
+  FlowDiagram,
   HowToShell,
   KeyIdea,
   StepHeading,
@@ -40,10 +41,12 @@ export default function WhySolderSticksToTipPage() {
       toc={[
         { id: "sticking-vs-not-melting", label: "Sticking vs. not melting — different problems" },
         { id: "what-is-dross", label: "What dross actually is" },
+        { id: "dross-progression", label: "How dross builds up over repeated reheats" },
         { id: "clean-the-tip", label: "1. Clean off dross and old solder" },
         { id: "reduce-solder-feed", label: "2. Feed less solder at a time" },
         { id: "re-tin-properly", label: "3. Re-tin with fresh solder" },
         { id: "check-the-joint", label: "4. Confirm the joint itself is clean" },
+        { id: "temperature-and-dross", label: "Does a hotter iron make dross form faster?" },
         { id: "quick-reference", label: "Quick reference" },
       ]}
       faq={[
@@ -125,6 +128,31 @@ export default function WhySolderSticksToTipPage() {
         </Figure>
       </section>
 
+      <section>
+        <h2 id="dross-progression" className="text-xl font-semibold mb-3">How dross builds up over repeated reheats</h2>
+        <p className="text-muted leading-7 mb-4">
+          Dross doesn&apos;t appear all at once — it&apos;s the end point of the same small blob of
+          solder being reheated again and again without ever being wiped off or replaced.
+        </p>
+        <Figure
+          caption={
+            <>
+              The same bit of solder left on the tip, reheated at each new joint instead of being
+              refreshed, darkens and stiffens a little more each time until it stops wetting altogether.
+            </>
+          }
+        >
+          <FlowDiagram
+            steps={[
+              { label: "Fresh solder", sub: "Shiny, fluid, wets readily" },
+              { label: "1 reheat", sub: "Slightly duller, still usable" },
+              { label: "Several reheats", sub: "Visibly grey, sluggish" },
+              { label: "Dross", sub: "Won't wet at all — wipe off" },
+            ]}
+          />
+        </Figure>
+      </section>
+
       <Callout title="Don't keep reheating the same blob of solder">
         If solder is sticking to the tip, the instinct to keep pressing it against the joint and
         reheating doesn&apos;t fix it — it makes it worse, oxidising that solder further into more dross.
@@ -170,6 +198,16 @@ export default function WhySolderSticksToTipPage() {
           wet solder either, and solder with nowhere to wet onto tends to stay where you put it — on the
           tip.
         </p>
+      </section>
+
+      <section id="temperature-and-dross">
+        <KeyIdea title="Does a hotter iron make dross form faster?">
+          Yes — oxidation of the tin in solder speeds up with temperature, the same way an oxidised tip
+          forms faster on an iron run hotter than a job needs. A setting that&apos;s higher than the
+          joint actually requires doesn&apos;t just risk heat damage elsewhere; it also turns a given
+          blob of solder into unusable dross sooner, meaning more frequent cleaning and re-tinning than
+          running at a setting matched to the work.
+        </KeyIdea>
       </section>
 
       <section>

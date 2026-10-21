@@ -4,6 +4,7 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  InfoCards,
   KeyIdea,
   StepHeading,
 } from "@/components/HowTo";
@@ -55,6 +56,7 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
       toc={[
         { id: "the-underlying-principle", label: "The underlying principle" },
         { id: "what-you-need", label: "What this method requires" },
+        { id: "fuse-types", label: "Where to probe, by fuse type" },
         { id: "step-by-step", label: "Testing a fuse in-circuit, step by step" },
         { id: "reading-the-result", label: "Reading the result" },
         { id: "standard-method-comparison", label: "When to use the standard method instead" },
@@ -75,6 +77,10 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
         {
           q: "What if I read 0V across the fuse but the circuit still doesn't work?",
           a: "A near-0V reading across the fuse indicates the fuse itself is passing current normally, so the fault lies elsewhere in the circuit — a different connector, switch, ground, or component. This test only rules the fuse in or out; it doesn't diagnose the rest of the circuit.",
+        },
+        {
+          q: "Can I probe a glass tube fuse the same way as a blade fuse?",
+          a: "Yes, as long as you can reach the two metal end caps safely — the principle doesn't change, only where you physically place the probes. On a blade fuse the two flat prongs are the terminals; on a glass tube or cartridge fuse it's the metal caps at each end, often recessed slightly into a holder, which can make a confident, non-slipping probe contact a bit fiddlier than on exposed blade prongs.",
         },
       ]}
       next={[
@@ -144,6 +150,58 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
           difference this test relies on. You also need safe, direct access to both terminals of the
           fuse itself, which is easiest on blade-style fuses in an accessible holder or panel.
         </p>
+      </section>
+
+      <section id="fuse-types">
+        <h2 className="text-xl font-semibold mb-3">Where to probe, by fuse type</h2>
+        <p className="text-muted leading-7 mb-4">
+          The principle is identical across fuse styles — only the physical probing point changes:
+        </p>
+        <InfoCards
+          items={[
+            { label: "Blade fuse", desc: "Two flat prongs on the top face are the terminals — easiest style to probe directly." },
+            { label: "Glass tube / cartridge", desc: "Metal end caps are the terminals, sometimes recessed into a holder clip." },
+            { label: "Bolt-down / high-current", desc: "Terminals are the bolted lugs themselves — probe each lug, not the fuse body." },
+          ]}
+        />
+        <Figure
+          caption={
+            <>
+              Probe points differ by fuse style: a blade fuse&apos;s two exposed prongs, a glass tube
+              fuse&apos;s two end caps, or a bolt-down fuse&apos;s two lugs — the voltage-drop principle
+              on the previous diagram applies to all three.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 110" className="w-full h-auto" role="img" aria-label="Diagram showing probe points on a blade fuse versus a glass tube fuse">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="30" y="25" width="36" height="55" rx="3" />
+              <line x1="42" y1="25" x2="42" y2="10" />
+              <line x1="54" y1="25" x2="54" y2="10" />
+            </g>
+            <circle cx="42" cy="8" r="2.5" className="fill-accent" />
+            <circle cx="54" cy="8" r="2.5" className="fill-accent" />
+            <text x="48" y="98" fontSize="9" textAnchor="middle" className="fill-foreground">Blade: two prongs</text>
+
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="130" y="40" width="50" height="22" rx="11" />
+              <circle cx="135" cy="51" r="9" className="fill-muted" />
+              <circle cx="175" cy="51" r="9" className="fill-muted" />
+            </g>
+            <circle cx="135" cy="51" r="2.5" className="fill-accent" />
+            <circle cx="175" cy="51" r="2.5" className="fill-accent" />
+            <text x="155" y="98" fontSize="9" textAnchor="middle" className="fill-foreground">Glass tube: two end caps</text>
+
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="235" y="35" width="50" height="32" rx="3" />
+              <circle cx="245" cy="35" r="3.5" />
+              <circle cx="275" cy="35" r="3.5" />
+            </g>
+            <circle cx="245" cy="35" r="2.5" className="fill-accent" />
+            <circle cx="275" cy="35" r="2.5" className="fill-accent" />
+            <text x="260" y="98" fontSize="9" textAnchor="middle" className="fill-foreground">Bolt-down: two lugs</text>
+          </svg>
+        </Figure>
       </section>
 
       <section>

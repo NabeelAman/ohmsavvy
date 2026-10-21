@@ -1,11 +1,14 @@
 import Link from "next/link";
 import {
   Callout,
+  Figure,
   HowToShell,
   InfoCards,
   KeyIdea,
+  MeterReadout,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-multimeters/page";
 
 const description =
   "OL on a multimeter means overload or open circuit, depending on the mode — resistance reads OL for open, voltage and current read OL for out-of-range.";
@@ -15,6 +18,8 @@ export const metadata = buildMetadata({
   description,
   path: "/multimeters/what-does-ol-mean-on-a-multimeter",
 });
+
+const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
 
 const link = "text-accent hover:underline";
 
@@ -35,9 +40,25 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
           than they do in voltage mode.
         </>
       }
+      aside={{
+        image: kaiweets.image,
+        alt: "KAIWEETS KM200s digital multimeter",
+        caption: (
+          <>
+            Any auto-ranging meter reduces how often you&apos;ll see OL from a simple range mismatch.
+            See our{" "}
+            <Link href="/multimeters/kaiweets-km200s-review" className={link}>
+              KAIWEETS KM200s review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
+        { id: "what-ol-looks-like", label: "What OL actually looks like on screen" },
         { id: "it-depends-on-mode", label: "OL means different things in different modes" },
         { id: "resistance-and-continuity", label: "OL in resistance and continuity mode" },
+        { id: "continuity-beep-mode", label: "Does continuity (beep) mode show OL too?" },
         { id: "diode-mode", label: "OL in diode mode" },
         { id: "voltage-and-current", label: "OL in voltage and current mode" },
         { id: "quick-reference", label: "Quick reference" },
@@ -74,6 +95,29 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
         },
       ]}
     >
+      <section id="what-ol-looks-like">
+        <h2 className="text-xl font-semibold mb-3">What OL actually looks like on screen</h2>
+        <p className="text-muted leading-7 mb-4">
+          The display itself looks identical whether OL means &quot;open circuit&quot; or
+          &quot;overload&quot; — the only way to tell which one you&apos;re looking at is to check what
+          mode the dial is set to.
+        </p>
+        <Figure
+          caption={
+            <>
+              The same &quot;OL&quot; reading, shown on resistance mode (left, meaning an open circuit)
+              and on voltage mode (right, meaning the reading exceeds the selected range). Nothing on
+              the display itself distinguishes the two — only the dial position does.
+            </>
+          }
+        >
+          <div className="grid grid-cols-2 gap-4">
+            <MeterReadout value="OL" unit="Ω" mode="RESISTANCE" />
+            <MeterReadout value="OL" unit="V" mode="VOLTAGE (200V RANGE)" />
+          </div>
+        </Figure>
+      </section>
+
       <section>
         <h2 id="it-depends-on-mode" className="text-xl font-semibold mb-3">OL means different things in different modes</h2>
         <p className="text-muted leading-7">
@@ -93,6 +137,19 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
           supposed to be connected. It becomes diagnostically useful the moment you expected continuity
           (a fuse, a wire, a closed switch) and got OL instead — that&apos;s the signal of a genuine open
           or break.
+        </p>
+      </section>
+
+      <section id="continuity-beep-mode">
+        <h2 className="text-xl font-semibold mb-3">Does continuity (beep) mode show OL too?</h2>
+        <p className="text-muted leading-7">
+          On most meters, the audible &quot;beep&quot; continuity setting is really resistance mode with
+          a threshold added: the meter beeps when resistance falls below a low cutoff (often a few
+          hundred ohms), and shows exactly the same OL on the display as plain resistance mode does when
+          there&apos;s no path at all — it just stays silent instead of beeping. So a dead-quiet meter
+          with OL on the display and a dead-quiet meter that simply isn&apos;t beeping for some other
+          reason can look identical at a glance; check the number on the screen, not just whether you
+          heard a beep.
         </p>
       </section>
 

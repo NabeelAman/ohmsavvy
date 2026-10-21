@@ -1,6 +1,7 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
+import { BarChart } from "@/components/HowTo";
 import { picks as allPicks } from "../best-soldering-irons/page";
 import { buildMetadata } from "@/lib/metadata";
 import { guidePicks } from "@/lib/content";
@@ -30,6 +31,11 @@ const faqs = [
     answer:
       "Both have a place. Crimped connections are standard for serviceable, vibration-prone joints because they don't fatigue and crack the way a rigid soldered joint can under constant vibration. Soldering is common for permanent splices, sensor pigtails, and repairs where a proper crimp isn't practical — adding heat-shrink for strain relief matters more in a vehicle than almost anywhere else.",
   },
+  {
+    question: "Does under-hood heat affect a portable, battery-powered iron?",
+    answer:
+      "It can affect runtime more than soldering performance directly — a hot engine bay on a summer afternoon puts extra thermal load on any battery pack, and lithium cells generally deliver less usable capacity in high ambient heat. For longer under-hood sessions in hot conditions, a USB-C powered iron run from a vehicle's own 12V-to-USB adapter avoids depending on a battery's capacity altogether.",
+  },
 ];
 
 export default function BestSolderingIronForAutomotiveElectronicsPage() {
@@ -49,6 +55,21 @@ export default function BestSolderingIronForAutomotiveElectronicsPage() {
           { value: "$0", label: "Sponsored" },
         ]}
       />
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <h2 className="text-xl font-semibold mb-3">Wattage headroom by automotive wire type</h2>
+        <p className="text-muted leading-7 mb-5">
+          Automotive wiring spans a much wider range of thermal mass than general electronics work —
+          thin signal wire on one end, thick ground straps and power leads on the other. These are
+          reasonable starting wattage ranges for each, not fixed rules:
+        </p>
+        <BarChart
+          items={[
+            { label: "Thin signal/sensor wire", value: 40, display: "40–60W comfortable" },
+            { label: "Standard harness wiring", value: 60, display: "60–70W comfortable", highlight: true },
+            { label: "Thick power leads, ground straps", value: 75, display: "70W+ recommended" },
+          ]}
+        />
+      </section>
       <ReviewArticle picks={picks} faqs={faqs} />
       <ContentLinks category="soldering-irons" current="/soldering-irons/best-soldering-iron-for-automotive-electronics" />
     </>

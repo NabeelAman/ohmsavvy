@@ -7,6 +7,7 @@ import {
   KeyIdea,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
 
 const description =
   "Ceramic vs nichrome soldering iron heating elements: ceramic heats faster and more precisely, while nichrome-wound irons are simpler and cheaper to build.";
@@ -16,6 +17,8 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/ceramic-vs-nichrome-heating-element",
 });
+
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
 
@@ -35,10 +38,26 @@ export default function CeramicVsNichromeHeatingElementPage() {
           lifespan — that it&apos;s worth knowing which one is in an iron you&apos;re considering.
         </>
       }
+      aside={{
+        image: weller.image,
+        alt: "Weller WE1010NA ESD-safe soldering station",
+        caption: (
+          <>
+            Closed-loop stations like the Weller WE1010NA pair a heating element with active
+            temperature control. See our{" "}
+            <Link href="/soldering-irons/weller-we1010na-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "how-each-works", label: "How each type actually works" },
         { id: "practical-differences", label: "Practical differences that matter" },
+        { id: "heat-up-curves", label: "Heat-up speed, visualised" },
         { id: "side-by-side", label: "Side-by-side comparison" },
+        { id: "self-regulating-ptc", label: "Self-regulating (PTC) ceramic elements" },
         { id: "which-irons-use-which", label: "Which irons use which" },
         { id: "does-it-matter", label: "Does this actually matter for your purchase?" },
       ]}
@@ -126,6 +145,37 @@ export default function CeramicVsNichromeHeatingElementPage() {
       </section>
 
       <section>
+        <h2 id="heat-up-curves" className="text-xl font-semibold mb-3">Heat-up speed, visualised</h2>
+        <p className="text-muted leading-7 mb-4">
+          The practical difference in heat-up speed looks roughly like this: both elements eventually
+          reach the same set-point, but a ceramic element typically climbs there faster from cold,
+          while a nichrome element takes longer to reach the same working temperature.
+        </p>
+        <Figure
+          caption={
+            <>
+              Rough heat-up curves from cold: ceramic (solid) climbs to working temperature faster than
+              nichrome (dashed), though both reach the same eventual set-point.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 150" className="w-full h-auto" role="img" aria-label="Chart comparing heat-up speed over time for ceramic versus nichrome heating elements">
+            <g className="stroke-border" strokeWidth="1">
+              <line x1="30" y1="10" x2="30" y2="120" />
+              <line x1="30" y1="120" x2="280" y2="120" />
+            </g>
+            <line x1="30" y1="35" x2="280" y2="35" className="stroke-muted" strokeWidth="1" strokeDasharray="3 3" />
+            <text x="285" y="39" fontSize="9" className="fill-muted">set-point</text>
+            <path d="M30 115 C 70 60, 100 35, 280 35" className="fill-none stroke-accent" strokeWidth="2.2" />
+            <path d="M30 115 C 120 100, 180 60, 280 35" className="fill-none stroke-foreground" strokeWidth="2" strokeDasharray="5 3" />
+            <text x="60" y="65" fontSize="9" className="fill-accent">ceramic</text>
+            <text x="140" y="95" fontSize="9" className="fill-foreground">nichrome</text>
+            <text x="150" y="137" fontSize="9" textAnchor="middle" className="fill-muted">Time from power-on →</text>
+          </svg>
+        </Figure>
+      </section>
+
+      <section>
         <h2 id="side-by-side" className="text-xl font-semibold mb-3">Side-by-side comparison</h2>
         <DataTable
           head={["", "Nichrome element", "Ceramic element"]}
@@ -149,6 +199,19 @@ export default function CeramicVsNichromeHeatingElementPage() {
         </Link>
         ) all matter too.
       </KeyIdea>
+
+      <section id="self-regulating-ptc">
+        <h2 className="text-xl font-semibold mb-3">Self-regulating (PTC) ceramic elements</h2>
+        <p className="text-muted leading-7">
+          A subset of ceramic elements use a positive temperature coefficient (PTC) material: its
+          electrical resistance rises as it heats up, which automatically reduces the current (and so
+          the heat) the element draws as it approaches its design temperature, without needing a
+          separate sensor and controller to do that job. This gives some basic, low-end irons a degree
+          of built-in thermal self-regulation even without full closed-loop electronics, though it&apos;s
+          a cruder form of control than a proper sensor-driven station and isn&apos;t something you can
+          fine-tune to an arbitrary setpoint the way a true closed-loop iron can.
+        </p>
+      </section>
 
       <section>
         <h2 id="which-irons-use-which" className="text-xl font-semibold mb-3">Which irons use which</h2>

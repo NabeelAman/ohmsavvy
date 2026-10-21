@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
@@ -61,11 +62,16 @@ export default function HowToMeasureResistanceInAParallelCircuitPage() {
         { id: "measuring-individual", label: "2. Measuring one resistor's own value" },
         { id: "power-off-first", label: "Always de-energize the circuit first" },
         { id: "worked-example", label: "Worked example" },
+        { id: "three-resistor-example", label: "Three resistors: visualizing the drop" },
       ]}
       faq={[
         {
           q: "Why is my resistance reading lower than the resistor's printed value?",
           a: "This is the classic sign of an unintended parallel path. If the reading is lower than expected, a second route for current exists between your probes — another resistor, a wire, or another component in parallel with the one you're testing. Combined parallel resistance is always lower than the smallest individual resistance in the group.",
+        },
+        {
+          q: "If one resistor is much smaller than the others, does it dominate the combined reading?",
+          a: "Yes — when one parallel resistor is much lower in value than the rest, the combined resistance ends up close to that smallest resistor's own value, since it offers by far the easiest path for current. A 10Ω resistor in parallel with a 10kΩ resistor reads close to 10Ω combined, not somewhere in between the two.",
         },
         {
           q: "Can I measure parallel resistance with the circuit powered on?",
@@ -195,6 +201,23 @@ export default function HowToMeasureResistanceInAParallelCircuitPage() {
           close to 68.7Ω. If you instead lift one leg of the 100Ω resistor and measure across just its
           own leads, you should read close to 100Ω on its own.
         </p>
+      </section>
+
+      <section>
+        <h2 id="three-resistor-example" className="text-xl font-semibold mb-3">Three resistors: visualizing the drop</h2>
+        <p className="text-muted leading-7 mb-4">
+          Adding a third resistor in parallel only pulls the combined value down further. With 100Ω,
+          220Ω, and 330Ω all in parallel: 1/R = 1/100 + 1/220 + 1/330 ≈ 0.01758, so R ≈ 56.9Ω — lower
+          than any single resistor in the group, including the smallest one.
+        </p>
+        <BarChart
+          items={[
+            { label: "R1 = 100Ω", value: 100, display: "100Ω" },
+            { label: "R2 = 220Ω", value: 220, display: "220Ω" },
+            { label: "R3 = 330Ω", value: 330, display: "330Ω" },
+            { label: "Combined (all three in parallel)", value: 56.9, display: "≈56.9Ω", highlight: true },
+          ]}
+        />
       </section>
     </HowToShell>
   );

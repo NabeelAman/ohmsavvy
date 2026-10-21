@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
@@ -57,10 +58,12 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
       }}
       toc={[
         { id: "three-methods", label: "Three methods, compared" },
+        { id: "learning-curve", label: "Learning curve and typical pace" },
         { id: "solder-wick", label: "Using solder wick (desoldering braid)" },
         { id: "solder-sucker", label: "Using a solder sucker (vacuum pump)" },
         { id: "hot-air", label: "Using hot air for whole components" },
         { id: "protecting-pads", label: "Protecting pads and traces" },
+        { id: "plated-through-holes", label: "Plated through-holes need extra care" },
         { id: "which-to-use", label: "Which method should you use" },
       ]}
       faq={[
@@ -79,6 +82,10 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
         {
           q: "Is a solder sucker or solder wick better for beginners?",
           a: "Solder wick is generally more forgiving to learn on — it doesn't have moving parts that can disturb the board, and it's easier to see exactly how much solder has been absorbed. A solder sucker removes larger amounts faster once you're comfortable with the timing of triggering it right as the solder melts.",
+        },
+        {
+          q: "Why does a through-hole lead still feel stuck after I've cleared the visible solder?",
+          a: "On a multi-layer board, the hole itself is usually plated with a thin copper lining connecting inner layers to the outer pads, and solder can remain inside that barrel even once the top of the pad looks clear. A second wicking or suction pass, sized to the pad rather than oversized, usually clears it.",
         },
       ]}
       next={[
@@ -107,6 +114,22 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
             { label: "Solder wick", desc: "Copper braid wicks molten solder away by capillary action. Good for single joints and cleanup." },
             { label: "Solder sucker", desc: "Spring-loaded vacuum pump pulls molten solder out of a hole. Fast for clearing through-holes." },
             { label: "Hot air", desc: "Heats a whole component evenly so it lifts free without picking at individual pins." },
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="learning-curve" className="text-xl font-semibold mb-3">Learning curve and typical pace</h2>
+        <p className="text-muted leading-7 mb-4">
+          None of the three methods takes long to learn, but they differ in how forgiving they are
+          while you&apos;re still building confidence versus how quickly they clear solder once
+          you&apos;re comfortable with the timing.
+        </p>
+        <BarChart
+          items={[
+            { label: "Solder wick — forgiving for beginners", value: 2, display: "slower, easy to control" },
+            { label: "Solder sucker — faster once comfortable", value: 3.5, display: "fast, timing-sensitive" },
+            { label: "Hot air — fast on multi-pin parts", value: 4, display: "fast, needs even heating", highlight: true },
           ]}
         />
       </section>
@@ -173,6 +196,17 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
             ["Match tip size to the joint", "A too-small tip concentrates heat and takes longer, increasing total heat exposure"],
           ]}
         />
+      </section>
+
+      <section id="plated-through-holes">
+        <KeyIdea title="Plated through-holes need extra care">
+          A through-hole pad on a multi-layer board usually has a thin copper plating lining the barrel
+          of the hole itself, connecting inner layers to the outer pads. Solder can hide inside that
+          barrel even after the top looks clear, so a lead may still feel stuck after a first wicking or
+          suction pass. Match the wick width to the pad size — a wick noticeably wider than the pad
+          mostly wastes heat on the surrounding board instead of drawing solder out of the hole — and
+          expect to repeat the pass once or twice on a well-plated via before a lead pulls free cleanly.
+        </KeyIdea>
       </section>
 
       <section id="which-to-use">

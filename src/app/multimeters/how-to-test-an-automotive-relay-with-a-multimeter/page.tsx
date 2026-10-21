@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
@@ -60,6 +61,8 @@ export default function HowToTestAnAutomotiveRelayWithAMultimeterPage() {
         { id: "resting-contacts", label: "2. Check the resting contact state" },
         { id: "energized-contacts", label: "3. Energize the coil and recheck" },
         { id: "interpreting-results", label: "Interpreting the results" },
+        { id: "relay-sizes", label: "Mini, micro, and standard relay sizes" },
+        { id: "coil-resistance-ranges", label: "Typical coil resistance by relay type" },
       ]}
       faq={[
         {
@@ -193,6 +196,38 @@ export default function HowToTestAnAutomotiveRelayWithAMultimeterPage() {
         switch contacts are actually passing current cleanly. Always confirm continuity through the
         contacts in both the resting and energized states, not just listen for the click.
       </KeyIdea>
+
+      <section>
+        <h2 id="relay-sizes" className="text-xl font-semibold mb-3">Mini, micro, and standard relay sizes</h2>
+        <p className="text-muted leading-7 mb-4">
+          The 5-pin layout and testing process above apply regardless of physical size — automotive
+          relays mainly come in three common form factors, distinguished by case size and current
+          rating rather than by how their pins function.
+        </p>
+        <InfoCards
+          items={[
+            { label: "Standard (ISO) relay", desc: "The common full-size automotive relay body, typically rated well above 20A on the switched contacts." },
+            { label: "Mini relay", desc: "A smaller case for the same basic function, common in modern vehicle fuse/relay boxes." },
+            { label: "Micro relay", desc: "Smaller still, often used where panel space is tight; typically a lower current rating than mini or standard." },
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="coil-resistance-ranges" className="text-xl font-semibold mb-3">Typical coil resistance by relay type</h2>
+        <p className="text-muted leading-7 mb-4">
+          These are commonly cited ranges, not a substitute for checking the specific relay&apos;s own
+          datasheet or case marking — individual parts vary by manufacturer even within the same
+          category.
+        </p>
+        <BarChart
+          items={[
+            { label: "Standard 12V automotive relay", value: 95, display: "~70–120Ω" },
+            { label: "Mini relay", value: 70, display: "~50–90Ω" },
+            { label: "Micro relay", value: 60, display: "~40–80Ω" },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

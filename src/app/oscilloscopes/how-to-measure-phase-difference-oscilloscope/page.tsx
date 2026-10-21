@@ -2,9 +2,12 @@ import {
   Callout,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-beginner-oscilloscopes/page";
 
 const description =
   "How to measure phase difference between two signals: time the delay between matching points, then convert it to degrees using the signal's period.";
@@ -14,6 +17,9 @@ export const metadata = buildMetadata({
   description,
   path: "/oscilloscopes/how-to-measure-phase-difference-oscilloscope",
 });
+
+const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
 
 export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
   return (
@@ -37,6 +43,8 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
         { id: "manual-method", label: "Method 1: Timing the delay manually" },
         { id: "automatic-method", label: "Method 2: Automatic phase measurement" },
         { id: "lissajous-method", label: "Method 3: Lissajous figure (XY mode)" },
+        { id: "phase-as-rotation", label: "Thinking of phase as a rotation" },
+        { id: "rc-filter-example", label: "A real-world reference point: the RC filter" },
         { id: "common-mistakes", label: "Common mistakes" },
       ]}
       faq={[
@@ -177,6 +185,48 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
         </p>
       </section>
 
+      <section id="phase-as-rotation">
+        <h2 className="text-xl font-semibold mb-3">Thinking of phase as a rotation</h2>
+        <p className="text-muted leading-7 mb-4">
+          Time-domain traces and Lissajous figures both show phase indirectly. It can help to picture
+          one full cycle as one full turn of a clock hand: 0° is 12 o&apos;clock, 90° is 3 o&apos;clock,
+          180° is 6 o&apos;clock, and 270° is 9 o&apos;clock. A &quot;90° phase difference&quot; is just
+          one signal&apos;s hand sitting a quarter-turn ahead of the other&apos;s, repeating every cycle.
+        </p>
+        <Figure
+          caption={
+            <>
+              Phase difference as rotation: each signal is a hand sweeping one full circle per cycle.
+              The angle between the two hands at any instant is the phase difference.
+            </>
+          }
+        >
+          <svg viewBox="0 0 220 140" className="w-full h-auto" role="img" aria-label="Clock-face diagram showing phase difference as the angle between two rotating hands">
+            <circle cx="110" cy="65" r="55" className="fill-none stroke-border" strokeWidth="1.5" />
+            {[0, 90, 180, 270].map((deg) => {
+              const rad = (deg - 90) * (Math.PI / 180);
+              const x = 110 + 60 * Math.cos(rad);
+              const y = 65 + 60 * Math.sin(rad);
+              return <text key={deg} x={x} y={y} fontSize="9" textAnchor="middle" className="fill-muted">{deg}°</text>;
+            })}
+            <line x1="110" y1="65" x2="110" y2="14" className="stroke-accent" strokeWidth="2.5" />
+            <line x1="110" y1="65" x2="152" y2="35" className="stroke-foreground" strokeWidth="2.5" />
+            <text x="110" y="130" fontSize="10" textAnchor="middle" className="fill-foreground">~45° apart, repeating every cycle</text>
+          </svg>
+        </Figure>
+      </section>
+
+      <section id="rc-filter-example">
+        <KeyIdea title="A real-world reference point: the RC filter">
+          A simple RC low-pass filter is a convenient, well-known benchmark: at its cutoff frequency
+          specifically, the output is always 45° behind the input, regardless of the exact resistor and
+          capacitor values chosen — it&apos;s a property of the cutoff point itself, not of any one
+          component pair. Measuring a known RC filter at its cutoff and confirming you read close to 45°
+          is a quick way to sanity-check that your probes, triggering, and method are all working
+          correctly before trusting a phase measurement on an unknown circuit.
+        </KeyIdea>
+      </section>
+
       <section id="common-mistakes">
         <Callout title="Common mistakes">
           <ul className="space-y-1 list-disc pl-5">
@@ -185,6 +235,33 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
             <li>Forgetting to check which channel is set as the trigger source, leaving one trace unstable.</li>
           </ul>
         </Callout>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold mb-3">Scopes with two channels for this measurement</h2>
+        <p className="text-muted leading-7 mb-6">
+          Phase comparison needs at least two input channels, and ideally XY mode for the Lissajous
+          method above.
+        </p>
+        <ProductStrip
+          title="Two-channel-and-up scopes"
+          items={[
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital benchtop oscilloscope with a 7-inch display",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "4 channels, 50MHz, with XY mode for Lissajous figures.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital benchtop oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "Bench scope: 4 channels, 100MHz, 1 GSa/s.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

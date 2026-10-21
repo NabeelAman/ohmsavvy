@@ -3,11 +3,14 @@ import {
   Callout,
   DataTable,
   Figure,
+  FlowDiagram,
   HowToShell,
   KeyIdea,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
+
 const description =
   "Why a soldering iron won't melt solder, in order of likelihood: a dirty tip, too low a temperature, not enough wattage, or lead-free solder.";
 
@@ -16,6 +19,8 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/soldering-iron-not-melting-solder",
 });
+
+const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 
 const link = "text-accent hover:underline";
 
@@ -36,6 +41,20 @@ export default function SolderingIronNotMeltingSolderPage() {
           quickest fix to the least likely.
         </>
       }
+      aside={{
+        image: yihua.image,
+        alt: "YIHUA 862BD+ soldering iron and hot air rework station",
+        caption: (
+          <>
+            On a 2-in-1 unit like the YIHUA 862BD+, the iron and hot air sides have separate heating
+            elements — see the note on this below. Full{" "}
+            <Link href="/soldering-irons/yihua-862bd-plus-review" className={link}>
+              review here
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "check-order", label: "The order to check things in" },
         { id: "dirty-tip", label: "1. Oxidised or dirty tip" },
@@ -61,6 +80,10 @@ export default function SolderingIronNotMeltingSolderPage() {
         {
           q: "How do I know if the heating element itself has failed, not just the tip?",
           a: "If the iron no longer reaches a noticeably hot temperature at all — the tip stays close to room temperature, or barely warms after several minutes powered on, even with a known-good, freshly cleaned tip installed — that points to the heating element or its control circuit rather than tip condition. At that point the fix is repair or replacement, not cleaning.",
+        },
+        {
+          q: "Can more than one of these causes be happening at the same time?",
+          a: "Yes, and it's one reason the problem can seem to persist after a single fix — a dirty tip combined with a slightly-too-low temperature setting is a common pairing, since both make heat transfer worse together. If cleaning the tip improves things but doesn't fully resolve it, move on to the next cause on the list rather than assuming the cleaning didn't work.",
         },
       ]}
       next={[
@@ -115,6 +138,24 @@ export default function SolderingIronNotMeltingSolderPage() {
             ))}
           </svg>
         </Figure>
+        <Figure
+          caption={
+            <>
+              The practical elimination order: each step is quick to check, so work left to right
+              rather than guessing which cause applies first.
+            </>
+          }
+        >
+          <FlowDiagram
+            steps={[
+              { label: "Clean & re-tin tip", sub: "Rules out the #1 cause in seconds" },
+              { label: "Check temperature", sub: "Confirm setpoint matches your solder" },
+              { label: "Check wattage vs. joint", sub: "Ground planes need more headroom" },
+              { label: "Check solder type", sub: "Lead-free needs a hotter setting" },
+              { label: "Suspect hardware fault", sub: "Only once the above are ruled out" },
+            ]}
+          />
+        </Figure>
       </section>
 
       <section>
@@ -159,6 +200,12 @@ export default function SolderingIronNotMeltingSolderPage() {
           <Link href="/soldering-irons/soldering-iron-buying-guide" className={link}>buying guide</Link>{" "}
           for wattage guidance by use case.
         </p>
+        <KeyIdea title="A quick test to tell wattage apart from tip condition">
+          With a freshly cleaned, re-tinned tip, try a small isolated pad first. If that melts solder
+          normally within a second or two but a ground-plane or thick-wire joint next to it still
+          won&apos;t, the tip itself is ruled out and the problem is almost certainly thermal mass
+          outrunning the iron&apos;s wattage, not a dirty or cold tip.
+        </KeyIdea>
       </section>
 
       <section>

@@ -7,6 +7,7 @@ import {
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
 
 const description =
   "How to solder wires without overheating or melting the insulation: strip back far enough, pre-tin the ends, use a heat sink clip, and keep dwell time short.";
@@ -18,6 +19,8 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
   return (
@@ -36,11 +39,25 @@ export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
           properly in the first place.
         </>
       }
+      aside={{
+        image: pinecil.image,
+        alt: "Pinecil V2 portable USB-C powered soldering iron",
+        caption: (
+          <>
+            Fast heat-up means less time hovering near insulation waiting for a joint to take. See our{" "}
+            <Link href="/soldering-irons/pinecil-v2-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "why-insulation-is-at-risk", label: "Why insulation is the vulnerable part" },
         { id: "strip-back-enough", label: "1. Strip back far enough" },
         { id: "pre-tin-the-ends", label: "2. Pre-tin the wire ends separately" },
         { id: "use-a-heat-sink", label: "3. Use a heat sink clip" },
+        { id: "heat-sink-effect", label: "How much does a heat sink clip actually help?" },
         { id: "minimize-dwell-time", label: "4. Keep dwell time short, not the temperature low" },
         { id: "insulation-types", label: "Does insulation type matter?" },
         { id: "quick-reference", label: "Quick reference" },
@@ -61,6 +78,10 @@ export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
         {
           q: "Does using less solder reduce the risk of overheating insulation?",
           a: "Only indirectly — solder quantity itself doesn't generate heat, dwell time does. Using the right amount of solder (not excessive) does tend to correlate with a quicker, more controlled joint, which is really the dwell-time benefit, not something solder quantity causes on its own.",
+        },
+        {
+          q: "Does a faster-heating iron reduce insulation risk, or just the iron's own warm-up time?",
+          a: "Both, in a sense, but the more relevant factor here is thermal recovery once the tip is on the joint — an iron that holds temperature steady under load reaches a wetted joint faster per touch than one that sags and needs longer dwell to compensate. A quick cold start matters less for this specific risk than staying hot through the actual joint.",
         },
       ]}
       next={[
@@ -152,6 +173,42 @@ export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
           </Link>
           , do more to protect insulation than deliberately running cooler.
         </p>
+      </section>
+
+      <section id="heat-sink-effect">
+        <h2 className="text-xl font-semibold mb-3">How much does a heat sink clip actually help?</h2>
+        <p className="text-muted leading-7 mb-4">
+          A heat sink clip works by giving heat an easier path to travel than through the insulation —
+          metal conducts heat far better than plastic insulation does, so a clip clamped onto the wire
+          intercepts and carries away heat that would otherwise keep migrating toward the insulation
+          edge the longer the iron stays on the joint.
+        </p>
+        <Figure
+          caption={
+            <>
+              Without a heat sink (left), heat keeps building toward the insulation edge the longer the
+              iron stays on the joint. With a clip clamped between the joint and the insulation (right),
+              much of that heat is intercepted and carried away before it reaches the insulation.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 110" className="w-full h-auto" role="img" aria-label="Diagram comparing heat migration toward insulation with and without a heat sink clip">
+            <g>
+              <line x1="20" y1="55" x2="130" y2="55" className="stroke-muted" strokeWidth="5" />
+              <circle cx="40" cy="55" r="7" className="fill-accent" />
+              <path d="M40 55 L80 55" className="stroke-accent" strokeWidth="2" strokeDasharray="3 2" opacity="0.8" />
+              <path d="M80 55 L115 55" className="stroke-accent" strokeWidth="2" strokeDasharray="3 2" opacity="0.4" />
+              <text x="75" y="95" fontSize="10" textAnchor="middle" className="fill-foreground">No heat sink: heat keeps spreading</text>
+            </g>
+            <g>
+              <line x1="170" y1="55" x2="280" y2="55" className="stroke-muted" strokeWidth="5" />
+              <circle cx="190" cy="55" r="7" className="fill-accent" />
+              <rect x="210" y="40" width="10" height="30" rx="2" className="fill-foreground" />
+              <path d="M190 55 L207 55" className="stroke-accent" strokeWidth="2" strokeDasharray="3 2" opacity="0.8" />
+              <text x="225" y="95" fontSize="10" textAnchor="middle" className="fill-foreground">With clip: heat intercepted here</text>
+            </g>
+          </svg>
+        </Figure>
       </section>
 
       <section id="insulation-types">

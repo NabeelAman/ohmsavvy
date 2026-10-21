@@ -63,6 +63,7 @@ export default function HowToSolderWiresTogetherPage() {
         { id: "join-mechanically", label: "3. Join the strands mechanically" },
         { id: "heat-and-flow", label: "4. Heat the joint and flow solder in" },
         { id: "cool-and-shrink", label: "5. Let it cool, then shrink the tubing" },
+        { id: "conductivity-note", label: "Does a soldered splice conduct as well as the original wire?" },
         { id: "common-mistakes", label: "Common mistakes with wire splices" },
       ]}
       faq={[
@@ -130,6 +131,31 @@ export default function HowToSolderWiresTogetherPage() {
             ["Lap (flow) splice", "Lay stripped ends alongside each other, solder flows between them", "Flat or tight spaces where a twisted bulge doesn't fit"],
           ]}
         />
+        <div className="mt-4">
+          <Figure
+            caption={
+              <>
+                A twist splice crosses and winds both wires into one round bundle before soldering. A
+                lap splice runs them alongside each other, soldered along the overlap — flatter, but
+                with less mechanical interlock before the solder goes on.
+              </>
+            }
+          >
+            <svg viewBox="0 0 300 110" className="w-full h-auto" role="img" aria-label="Comparison of a twist splice versus a lap (flow) splice shape before soldering">
+              <g className="stroke-foreground" strokeWidth="2.2" fill="none">
+                <path d="M30 40 Q50 55 30 70 Q50 85 70 70 Q90 55 70 40 Q90 25 110 40" />
+                <path d="M30 40 Q50 25 70 40 Q90 55 70 70 Q50 85 30 70" className="stroke-accent" />
+              </g>
+              <text x="70" y="100" fontSize="10" textAnchor="middle" className="fill-foreground">Twist splice: wound together</text>
+              <g className="stroke-foreground" strokeWidth="2.2" fill="none">
+                <line x1="170" y1="50" x2="230" y2="50" />
+                <line x1="190" y1="60" x2="250" y2="60" className="stroke-accent" />
+              </g>
+              <rect x="190" y="46" width="40" height="18" className="fill-accent/15 stroke-accent" strokeWidth="1" strokeDasharray="3 2" />
+              <text x="220" y="90" fontSize="10" textAnchor="middle" className="fill-foreground">Lap splice: overlapped, soldered flat</text>
+            </svg>
+          </Figure>
+        </div>
       </section>
 
       <section>
@@ -207,6 +233,17 @@ export default function HowToSolderWiresTogetherPage() {
           . Once cool, slide the heat-shrink tubing over the finished joint, centering it so tubing
           extends past the solder on both sides, and apply heat evenly until it shrinks down snugly.
         </p>
+      </section>
+
+      <section id="conductivity-note">
+        <KeyIdea title="Does a soldered splice conduct as well as the original wire?">
+          Close to it, when properly wetted — solder itself is a reasonable conductor, and a thin,
+          well-bonded layer between two clean copper strands adds negligible resistance compared to the
+          wire itself. What actually costs you conductivity is a poor connection: a loose twist with
+          only a few strands touching, corrosion left on the wire before soldering, or a cold joint with
+          a cracked, grainy bond — any of these add real resistance at the joint, far more than solder
+          alloy itself ever would in a sound connection.
+        </KeyIdea>
       </section>
 
       <KeyIdea title="Common mistakes specific to wire splices">

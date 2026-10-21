@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   DataTable,
   Figure,
   HowToShell,
@@ -7,6 +8,7 @@ import {
   KeyIdea,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
 
 const description =
   "Soldering iron tip types explained: conical, chisel, bevel, and knife tips, how their shape changes heat transfer and precision, and which to pick for which job.";
@@ -16,6 +18,8 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/soldering-iron-tip-types",
 });
+
+const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
 
 const link = "text-accent hover:underline";
 
@@ -36,12 +40,28 @@ export default function SolderingIronTipTypesPage() {
           installed.
         </>
       }
+      aside={{
+        image: hakko.image,
+        alt: "Hakko FX888D soldering station with iron and stand",
+        caption: (
+          <>
+            A station with a wide genuine tip ecosystem, like the Hakko FX888D, makes it easy to add
+            shapes as your work changes. See our{" "}
+            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "common-tip-shapes", label: "Common tip shapes" },
+        { id: "relative-heat-transfer", label: "Relative heat transfer by shape" },
         { id: "conical", label: "Conical tips" },
         { id: "chisel", label: "Chisel tips" },
         { id: "bevel", label: "Bevel tips" },
         { id: "knife", label: "Knife tips" },
+        { id: "specialty-shapes", label: "Specialty shapes beyond the core four" },
         { id: "side-by-side", label: "Side-by-side comparison" },
         { id: "choosing", label: "Choosing a tip for the job" },
       ]}
@@ -116,6 +136,26 @@ export default function SolderingIronTipTypesPage() {
         </Figure>
       </section>
 
+      <section id="relative-heat-transfer">
+        <h2 className="text-xl font-semibold mb-3">Relative heat transfer by shape</h2>
+        <p className="text-muted leading-7 mb-4">
+          As a rough guide to how much contact area (and so heat-transfer capacity) each shape offers
+          at a comparable tip size:
+        </p>
+        <BarChart
+          items={[
+            { label: "Conical — smallest contact area", value: 1, display: "lowest" },
+            { label: "Knife — thin edge, longer contact line", value: 1.5, display: "low-moderate" },
+            { label: "Bevel — rounded, angled face", value: 2, display: "moderate" },
+            { label: "Chisel — flat, broad face", value: 3, display: "highest", highlight: true },
+          ]}
+        />
+        <p className="mt-4 text-xs text-muted">
+          A relative, qualitative comparison — actual heat transfer also depends on tip size, the
+          iron&apos;s wattage, and how cleanly the tip is tinned.
+        </p>
+      </section>
+
       <section>
         <h2 id="conical" className="text-xl font-semibold mb-3">Conical tips: precision over throughput</h2>
         <p className="text-muted leading-7">
@@ -154,6 +194,19 @@ export default function SolderingIronTipTypesPage() {
           a row of closely-spaced pins (common on ICs) while solder flows along the edge from pin to
           pin, rather than touching down on each pin individually. It&apos;s a specialised shape, not a
           general-purpose one.
+        </p>
+      </section>
+
+      <section id="specialty-shapes">
+        <h2 className="text-xl font-semibold mb-3">Specialty shapes beyond the core four</h2>
+        <p className="text-muted leading-7">
+          A few less common shapes show up for specific jobs. A &quot;hoof&quot; tip has a rounded,
+          slightly concave face, often used for soldering connector pins and light rework where a
+          chisel feels too flat-edged and a conical feels too pointed. A micro-conical tip — a much
+          finer version of the standard conical shape — is aimed specifically at extremely small SMD
+          packages (0201, 01005), where even a standard fine conical tip is too large to approach a
+          single pad without risking its neighbours. Most hobbyists never need either, but they exist
+          for a reason once work gets small or specialized enough.
         </p>
       </section>
 

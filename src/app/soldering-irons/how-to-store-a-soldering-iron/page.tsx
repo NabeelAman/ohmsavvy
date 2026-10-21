@@ -2,12 +2,14 @@ import Link from "next/link";
 import {
   Callout,
   DataTable,
+  Figure,
   FlowDiagram,
   HowToShell,
   KeyIdea,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
 
 const description =
   "How to store a soldering iron safely between uses and for the long term: cool it fully, tin the tip, protect the cord, and keep it somewhere dry and ventilated.";
@@ -17,6 +19,8 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/how-to-store-a-soldering-iron",
 });
+
+const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
 
 const link = "text-accent hover:underline";
 
@@ -36,10 +40,25 @@ export default function HowToStoreASolderingIronPage() {
           and it noticeably extends how long a tip and iron both stay in good working condition.
         </>
       }
+      aside={{
+        image: qming.image,
+        alt: "Q-MING 60W soldering iron kit with stand and tips",
+        caption: (
+          <>
+            A kit that ships with its own stand, like the Q-MING 60W Kit, makes the storage routine
+            below effortless. See our{" "}
+            <Link href="/soldering-irons/q-ming-60w-soldering-iron-kit-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "between-joints", label: "Between joints, during a session" },
         { id: "end-of-session", label: "Shutting down at the end of a session" },
         { id: "long-term-storage", label: "Storing an iron for weeks or months" },
+        { id: "traveling-with-an-iron", label: "Traveling or transporting an iron" },
         { id: "what-to-avoid", label: "What to avoid" },
         { id: "quick-reference", label: "Quick reference" },
       ]}
@@ -107,13 +126,48 @@ export default function HowToStoreASolderingIronPage() {
 
       <section>
         <StepHeading n={1} id="long-term-storage">Storing an iron for weeks or months</StepHeading>
-        <p className="text-muted leading-7">
+        <p className="text-muted leading-7 mb-4">
           Beyond the end-of-session routine, longer storage benefits from a few extra precautions:
           coil the cord loosely rather than tightly (tight coils stress the cord&apos;s internal
           conductors at the bend points over time), store it somewhere dry to limit corrosion, and avoid
           stacking heavy items on top of a case containing the iron and its stand. If the iron uses
           replaceable tips, leaving the currently-installed tip tinned, as covered above, protects it
           through the storage period too.
+        </p>
+        <Figure
+          caption={
+            <>
+              A good storage setup: the iron resting tip-up in its stand, the cord coiled in a loose
+              loop rather than a tight wrap, well clear of anything stacked on top.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 130" className="w-full h-auto" role="img" aria-label="Diagram of a soldering iron properly stored in a stand with a loosely coiled cord">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <path d="M70 40 L140 70" strokeLinecap="round" strokeWidth="3" />
+              <circle cx="70" cy="40" r="4" className="fill-accent stroke-accent" />
+              <path d="M60 95 L100 85 L80 110 Z" />
+              <line x1="80" y1="95" x2="80" y2="110" />
+            </g>
+            <text x="80" y="124" fontSize="9" textAnchor="middle" className="fill-muted">stand</text>
+            <path d="M140 70 C 170 90, 150 110, 180 105 C 210 100, 190 75, 215 80" className="fill-none stroke-muted" strokeWidth="2.5" strokeDasharray="1 5" strokeLinecap="round" />
+            <text x="185" y="35" fontSize="9" textAnchor="middle" className="fill-foreground">tip held up, clear of bench</text>
+            <text x="190" y="120" fontSize="9" textAnchor="middle" className="fill-muted">cord: loose loop, not tight coils</text>
+          </svg>
+        </Figure>
+      </section>
+
+      <section id="traveling-with-an-iron">
+        <h2 className="text-xl font-semibold mb-3">Traveling or transporting an iron</h2>
+        <p className="text-muted leading-7">
+          A portable, USB-C powered iron like the{" "}
+          <Link href="/soldering-irons/pinecil-v2-review" className={link}>Pinecil V2</Link>{" "}
+          raises a slightly different storage question: there&apos;s no base station to hold the tip
+          safely, so a dedicated silicone or metal tip cover (sold separately or sometimes included)
+          matters more than it does for a bench iron. A cover protects the tip from knocks in a bag, and
+          — just as importantly — keeps anything else in the bag away from a tip that may still be warm
+          immediately after use. Let a portable iron cool fully before capping and packing it away,
+          exactly as you would with a bench iron&apos;s stand.
         </p>
       </section>
 

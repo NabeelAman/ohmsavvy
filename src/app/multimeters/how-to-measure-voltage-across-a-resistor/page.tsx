@@ -58,6 +58,7 @@ export default function HowToMeasureVoltageAcrossAResistorPage() {
         { id: "step-by-step", label: "Measuring voltage across a resistor" },
         { id: "polarity", label: "Probe polarity and what a negative reading means" },
         { id: "using-ohms-law", label: "Using the reading to calculate current" },
+        { id: "series-example", label: "Worked example: three resistors in series" },
         { id: "common-mistakes", label: "Common mistakes" },
       ]}
       faq={[
@@ -76,6 +77,10 @@ export default function HowToMeasureVoltageAcrossAResistorPage() {
         {
           q: "Why does my reading fluctuate instead of settling on one number?",
           a: "This usually reflects something genuinely changing in the circuit, such as a varying load, a PWM-controlled signal, or a loose connection at the resistor's leads — not an inaccurate meter. If the fluctuation is rapid and regular, it may actually be a signal you'd be better off viewing on an oscilloscope rather than reading as a single multimeter value.",
+        },
+        {
+          q: "Do the voltages across several resistors in series add up to anything useful?",
+          a: "Yes — in a series chain, the individual voltage drops across each resistor always add up to the total supply voltage across the whole chain. Measuring each drop and checking that they sum correctly is a quick way to confirm you haven't missed a component or misread one of the values.",
         },
       ]}
       next={[
@@ -151,6 +156,58 @@ export default function HowToMeasureVoltageAcrossAResistorPage() {
           through that resistor — and since it&apos;s a single series path, that&apos;s the current
           flowing through everything else in series with it too.
         </KeyIdea>
+      </section>
+
+      <section id="series-example">
+        <h2 className="text-xl font-semibold mb-3">Worked example: three resistors in series</h2>
+        <p className="text-muted leading-7 mb-4">
+          The same technique extends naturally to a chain of several resistors in series: measure
+          across each one individually, and the drops should add up to the supply voltage across the
+          whole chain.
+        </p>
+        <Figure
+          caption={
+            <>
+              A 12V supply across three series resistors (100Ω, 220Ω, 330Ω). Each resistor drops a
+              share of the 12V proportional to its own resistance, and the three drops sum to the full
+              12V.
+            </>
+          }
+        >
+          <svg viewBox="0 0 320 110" className="w-full h-auto" role="img" aria-label="Diagram of three resistors in series with a 12V supply, showing individual voltage drops">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <line x1="20" y1="55" x2="60" y2="55" />
+              <rect x="60" y="47" width="50" height="16" />
+              <line x1="110" y1="55" x2="140" y2="55" />
+              <rect x="140" y="47" width="50" height="16" />
+              <line x1="190" y1="55" x2="220" y2="55" />
+              <rect x="220" y="47" width="50" height="16" />
+              <line x1="270" y1="55" x2="300" y2="55" />
+            </g>
+            <text x="85" y="40" fontSize="10" textAnchor="middle" className="fill-foreground">100Ω</text>
+            <text x="165" y="40" fontSize="10" textAnchor="middle" className="fill-foreground">220Ω</text>
+            <text x="245" y="40" fontSize="10" textAnchor="middle" className="fill-foreground">330Ω</text>
+            <text x="85" y="85" fontSize="10" textAnchor="middle" className="fill-accent">1.85V</text>
+            <text x="165" y="85" fontSize="10" textAnchor="middle" className="fill-accent">4.06V</text>
+            <text x="245" y="85" fontSize="10" textAnchor="middle" className="fill-accent">6.09V</text>
+            <text x="160" y="100" fontSize="9" textAnchor="middle" className="fill-muted">drops sum to 12V across the full chain</text>
+          </svg>
+        </Figure>
+        <DataTable
+          head={["Resistor", "Voltage drop", "Share of total"]}
+          rows={[
+            ["100Ω", "1.85V", "15%"],
+            ["220Ω", "4.06V", "34%"],
+            ["330Ω", "6.09V", "51%"],
+            ["Total (650Ω, 12V supply)", "1.85 + 4.06 + 6.09 = 12.00V", "100%"],
+          ]}
+        />
+        <p className="mt-4 text-muted leading-7">
+          Each resistor&apos;s share of the total voltage is proportional to its own resistance relative
+          to the chain&apos;s combined resistance (650Ω here) — this is the voltage-divider relationship
+          that series resistor chains follow, and it&apos;s the same current (12V ÷ 650Ω ≈ 18.5mA) flowing
+          through all three, since they share one series path.
+        </p>
       </section>
 
       <section>

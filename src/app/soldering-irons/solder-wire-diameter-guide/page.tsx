@@ -3,10 +3,12 @@ import {
   BarChart,
   Callout,
   DataTable,
+  Figure,
   HowToShell,
   KeyIdea,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
 
 const description =
   "How to choose solder wire diameter: thinner wire gives finer control for SMD work, thicker wire feeds faster on larger joints and wire splices.";
@@ -16,6 +18,9 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/solder-wire-diameter-guide",
 });
+
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const link = "text-accent hover:underline";
 
 export default function SolderWireDiameterGuidePage() {
   return (
@@ -34,10 +39,26 @@ export default function SolderWireDiameterGuidePage() {
           equally well.
         </>
       }
+      aside={{
+        image: pinecil.image,
+        alt: "Pinecil V2 portable USB-C powered soldering iron",
+        caption: (
+          <>
+            Pairing a finer solder diameter with a precise iron, like the Pinecil V2, is what actually
+            makes fine-pitch work controllable. See our{" "}
+            <Link href="/soldering-irons/pinecil-v2-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "why-diameter-matters", label: "Why diameter matters beyond “more solder, faster”" },
         { id: "common-diameters", label: "Common solder wire diameters" },
         { id: "by-use-case", label: "Which diameter for which job" },
+        { id: "bridging-risk", label: "Seeing the bridging risk directly" },
+        { id: "the-area-math", label: "Why a small diameter change matters more than it looks" },
         { id: "diameter-vs-flux", label: "Diameter is separate from flux type and core %" },
         { id: "one-spool-or-several", label: "Do you need more than one spool?" },
       ]}
@@ -107,6 +128,53 @@ export default function SolderWireDiameterGuidePage() {
             ["Heavy-gauge wire, bulk/production soldering", "1.0mm or thicker", "Minimizes feed time across many larger joints"],
           ]}
         />
+      </section>
+
+      <section id="bridging-risk">
+        <h2 className="text-xl font-semibold mb-3">Seeing the bridging risk directly</h2>
+        <p className="text-muted leading-7 mb-4">
+          On a small, closely-spaced SMD pad, a thin wire lets you place just enough solder to wet
+          that one pad; a thick wire feeds more than the pad can hold per touch, and the excess has
+          nowhere to go but sideways — onto the neighbouring pad.
+        </p>
+        <Figure
+          caption={
+            <>
+              Same pad spacing, two wire diameters. The thin wire (left) deposits a controlled amount
+              that stays on its own pad. The thick wire (right) feeds more solder than the pad needs,
+              and the excess bridges to the pad next to it.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 120" className="w-full h-auto" role="img" aria-label="Diagram comparing thin and thick solder wire feeding onto closely-spaced SMD pads">
+            <g>
+              <rect x="20" y="70" width="24" height="30" rx="2" className="fill-muted/40 stroke-border" strokeWidth="1" />
+              <rect x="56" y="70" width="24" height="30" rx="2" className="fill-muted/40 stroke-border" strokeWidth="1" />
+              <circle cx="32" cy="72" r="6" className="fill-accent/70 stroke-accent" strokeWidth="1.2" />
+              <line x1="32" y1="40" x2="32" y2="60" className="stroke-foreground" strokeWidth="2" />
+              <text x="50" y="112" fontSize="10" textAnchor="middle" className="fill-foreground">Thin wire: stays on its pad</text>
+            </g>
+            <g>
+              <rect x="200" y="70" width="24" height="30" rx="2" className="fill-muted/40 stroke-border" strokeWidth="1" />
+              <rect x="236" y="70" width="24" height="30" rx="2" className="fill-muted/40 stroke-border" strokeWidth="1" />
+              <ellipse cx="224" cy="72" rx="20" ry="7" className="fill-accent/70 stroke-accent" strokeWidth="1.2" />
+              <line x1="212" y1="38" x2="212" y2="58" className="stroke-foreground" strokeWidth="4" />
+              <text x="230" y="112" fontSize="10" textAnchor="middle" className="fill-foreground">Thick wire: bridges to the next pad</text>
+            </g>
+          </svg>
+        </Figure>
+      </section>
+
+      <section id="the-area-math">
+        <KeyIdea title="Why a small diameter change matters more than it looks">
+          Wire diameter doesn&apos;t scale the amount of solder you&apos;re feeding in a straight line —
+          the cross-sectional area (and so the volume fed per length of wire) scales with the diameter
+          <em>squared</em>. Going from 0.5mm to 1.0mm sounds like &quot;twice as much wire,&quot; but
+          it&apos;s actually about four times the solder volume for the same length fed, since area is
+          proportional to diameter squared (πr²). That&apos;s the real reason a &quot;slightly
+          thicker&quot; spool can feel dramatically more prone to over-applying on fine work than the
+          diameter numbers alone suggest.
+        </KeyIdea>
       </section>
 
       <section id="diameter-vs-flux">

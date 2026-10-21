@@ -4,9 +4,12 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   SamplingChart,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-beginner-oscilloscopes/page";
 
 const description =
   "Analog vs digital oscilloscopes: analog draws the signal live with no sampling or memory, while digital samples and stores it — with a real aliasing trade-off.";
@@ -18,6 +21,10 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const fnirsi = picks.find((p) => p.name === "FNIRSI DSO152")!;
 
 export default function AnalogVsDigitalOscilloscopePage() {
   return (
@@ -39,7 +46,9 @@ export default function AnalogVsDigitalOscilloscopePage() {
       toc={[
         { id: "how-analog-works", label: "How an analog (CRT) scope works" },
         { id: "how-digital-works", label: "How a digital scope works" },
+        { id: "sample-moments", label: "Continuous beam vs. discrete sample moments" },
         { id: "the-aliasing-trade-off", label: "The aliasing trade-off, unique to digital" },
+        { id: "storage-crt-history", label: "Analog's one attempt at “freezing” a capture" },
         { id: "side-by-side", label: "Side-by-side comparison" },
         { id: "where-analog-still-has-an-edge", label: "Where analog still has a genuine edge" },
         { id: "which-should-you-buy", label: "Which should you actually buy today" },
@@ -98,6 +107,46 @@ export default function AnalogVsDigitalOscilloscopePage() {
         </p>
       </section>
 
+      <section id="sample-moments">
+        <h2 className="text-xl font-semibold mb-3">Continuous beam vs. discrete sample moments</h2>
+        <p className="text-muted leading-7 mb-4">
+          Visualized over time, the difference is literal: an analog beam traces every instant of the
+          signal continuously, while a digital scope only knows the signal&apos;s value at the specific
+          moments it samples, filling in the gaps between those moments when it redraws the trace.
+        </p>
+        <Figure
+          caption={
+            <>
+              An analog beam (smooth curve) tracks the signal at every instant. A digital scope only
+              captures the signal&apos;s value at discrete sample moments (dots), reconstructing the rest.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 110" className="w-full h-auto" role="img" aria-label="Diagram comparing a continuous analog trace to discrete digital sample moments">
+            <polyline
+              fill="none"
+              className="stroke-foreground"
+              strokeWidth="2"
+              points={Array.from({ length: 121 }, (_, i) => `${(i * 2.5).toFixed(1)},${(30 - 20 * Math.sin((i / 120) * 4 * Math.PI)).toFixed(1)}`).join(" ")}
+            />
+            <text x="10" y="10" fontSize="9" className="fill-foreground">Analog: continuous beam</text>
+            <polyline
+              fill="none"
+              className="stroke-accent"
+              strokeWidth="1.5"
+              strokeDasharray="3 2"
+              points={Array.from({ length: 121 }, (_, i) => `${(i * 2.5).toFixed(1)},${(90 - 20 * Math.sin((i / 120) * 4 * Math.PI)).toFixed(1)}`).join(" ")}
+            />
+            {Array.from({ length: 13 }, (_, i) => {
+              const t = (i / 12) * 300;
+              const y = 90 - 20 * Math.sin((t / 300) * 4 * Math.PI);
+              return <circle key={i} cx={t} cy={y} r="3" className="fill-accent" />;
+            })}
+            <text x="10" y="70" fontSize="9" className="fill-accent">Digital: discrete samples, line fitted between</text>
+          </svg>
+        </Figure>
+      </section>
+
       <section>
         <h2 id="the-aliasing-trade-off" className="text-xl font-semibold mb-3">The aliasing trade-off, unique to digital</h2>
         <p className="text-muted leading-7 mb-4">
@@ -135,6 +184,18 @@ export default function AnalogVsDigitalOscilloscopePage() {
         />
       </section>
 
+      <section id="storage-crt-history">
+        <KeyIdea title="Analog's one attempt at &quot;freezing&quot; a capture">
+          Before digital storage existed, a small number of specialized analog instruments —
+          &quot;storage oscilloscopes&quot; — used a special mesh and phosphor inside the CRT that
+          could hold a captured trace glowing for an extended time after the beam had moved on,
+          specifically to let engineers study a one-off or slow-moving event without it vanishing
+          instantly. It was a genuinely clever analog workaround for the same problem digital memory
+          solves outright, though it never offered anything like exporting data or taking automatic
+          measurements.
+        </KeyIdea>
+      </section>
+
       <section id="where-analog-still-has-an-edge">
         <Callout title="Where analog still has a genuine edge">
           A true analog display has zero sampling delay and zero aliasing risk by its very nature, and
@@ -161,6 +222,34 @@ export default function AnalogVsDigitalOscilloscopePage() {
           for how the other types (mixed-signal, handheld, PC-based) fit in alongside this core
           analog-vs-digital distinction.
         </p>
+        <div className="mt-6">
+          <ProductStrip
+            title="Digital scopes worth considering"
+            items={[
+              {
+                name: "Rigol DS1054Z",
+                image: rigol.image,
+                alt: "Rigol DS1054Z four-channel digital benchtop oscilloscope with a 7-inch display",
+                href: "/oscilloscopes/rigol-ds1054z-review",
+                note: "4 channels, 50MHz, 1 GSa/s — well above most hobby signals.",
+              },
+              {
+                name: "Siglent SDS1104X-E",
+                image: siglent.image,
+                alt: "Siglent SDS1104X-E four-channel digital benchtop oscilloscope",
+                href: "/oscilloscopes/siglent-sds1104x-e-review",
+                note: "Bench scope: 4 channels, 100MHz, 1 GSa/s.",
+              },
+              {
+                name: "FNIRSI DSO152",
+                image: fnirsi.image,
+                alt: "FNIRSI DSO152 pocket-sized single-channel handheld oscilloscope",
+                href: "/oscilloscopes/fnirsi-dso152-review",
+                note: "Pocket-sized digital scope for quick, low-frequency checks.",
+              },
+            ]}
+          />
+        </div>
       </section>
     </HowToShell>
   );

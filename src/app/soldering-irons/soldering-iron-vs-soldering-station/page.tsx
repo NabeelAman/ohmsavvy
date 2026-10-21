@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   DataTable,
+  Figure,
   HowToShell,
   InfoCards,
   KeyIdea,
@@ -41,6 +42,20 @@ export default function SolderingIronVsSolderingStationPage() {
           temperature many times a second — a real engineering difference, not a marketing one.
         </>
       }
+      aside={{
+        image: hakko.image,
+        alt: "Hakko FX888D soldering station with iron and stand",
+        caption: (
+          <>
+            A base-unit station like the Hakko FX888D is the classic closed-loop design this page
+            compares against a simple iron. See our{" "}
+            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "the-core-difference", label: "The core difference: closed-loop control" },
         { id: "simple-iron", label: "What a simple iron is" },
@@ -67,6 +82,10 @@ export default function SolderingIronVsSolderingStationPage() {
           q: "Do stations heat up faster than simple irons?",
           a: "Not inherently — heat-up time is mostly a function of the heating element's wattage and the tip's thermal mass, which both simple irons and stations can have in either direction. What a station adds is holding temperature steady once at the setpoint, under the load of an actual joint pulling heat away, rather than reaching temperature faster in the first place.",
         },
+        {
+          q: "What does \"PID control\" mean on a station's spec sheet?",
+          a: "PID stands for Proportional-Integral-Derivative, a standard feedback-control algorithm that adjusts power based on how far the tip is from the setpoint (proportional), how long it's been off target (integral), and how fast the temperature is currently changing (derivative). In practice it just means the station's closed-loop correction is tuned to respond smoothly rather than overshooting or oscillating around the setpoint.",
+        },
       ]}
       next={[
         {
@@ -91,6 +110,51 @@ export default function SolderingIronVsSolderingStationPage() {
           size, price, or how many parts the box has — is what separates a &quot;station&quot; from a
           basic &quot;iron&quot; in practice.
         </p>
+        <Figure
+          caption={
+            <>
+              Open loop (top): power is set once and has no way to react to the joint pulling heat
+              away. Closed loop (bottom): a sensor at the tip continuously reports back, so the
+              controller can push more power in exactly when the joint demands it.
+            </>
+          }
+        >
+          <svg viewBox="0 0 320 150" className="w-full h-auto" role="img" aria-label="Block diagram comparing open-loop and closed-loop soldering iron temperature control">
+            <g className="stroke-foreground" strokeWidth="1.5" fill="none">
+              <rect x="20" y="20" width="90" height="30" rx="4" />
+              <text x="65" y="39" fontSize="10" textAnchor="middle" className="fill-foreground">Power dial</text>
+              <path d="M110 35 H160" markerEnd="url(#arrowA)" />
+              <rect x="160" y="20" width="70" height="30" rx="4" />
+              <text x="195" y="39" fontSize="10" textAnchor="middle" className="fill-foreground">Heater</text>
+              <path d="M230 35 H280" markerEnd="url(#arrowA)" />
+              <rect x="280" y="20" width="30" height="30" rx="4" className="fill-accent/20" />
+              <text x="295" y="39" fontSize="9" textAnchor="middle" className="fill-foreground">Tip</text>
+            </g>
+            <text x="20" y="12" fontSize="10" className="fill-muted">Open loop — no feedback path</text>
+
+            <g className="stroke-accent" strokeWidth="1.5" fill="none" transform="translate(0,80)">
+              <rect x="20" y="20" width="90" height="30" rx="4" className="stroke-foreground" />
+              <text x="65" y="39" fontSize="10" textAnchor="middle" className="fill-foreground">Controller</text>
+              <path d="M110 35 H160" className="stroke-foreground" markerEnd="url(#arrowB)" />
+              <rect x="160" y="20" width="70" height="30" rx="4" className="stroke-foreground" />
+              <text x="195" y="39" fontSize="10" textAnchor="middle" className="fill-foreground">Heater</text>
+              <path d="M230 35 H280" className="stroke-foreground" markerEnd="url(#arrowB)" />
+              <rect x="280" y="20" width="30" height="30" rx="4" className="fill-accent/20 stroke-foreground" />
+              <text x="295" y="39" fontSize="9" textAnchor="middle" className="fill-foreground">Tip</text>
+              <path d="M295 50 V65 H65 V50" strokeDasharray="4 3" markerEnd="url(#arrowB)" />
+              <text x="180" y="62" fontSize="9" textAnchor="middle" className="fill-accent">sensor feedback, many times/sec</text>
+            </g>
+            <text x="20" y="92" fontSize="10" className="fill-muted">Closed loop — continuous feedback corrects power</text>
+            <defs>
+              <marker id="arrowA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0 0L10 5L0 10z" className="fill-foreground" />
+              </marker>
+              <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0 0L10 5L0 10z" className="fill-accent" />
+              </marker>
+            </defs>
+          </svg>
+        </Figure>
       </section>
 
       <section>

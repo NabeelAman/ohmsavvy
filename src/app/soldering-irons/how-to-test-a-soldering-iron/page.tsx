@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   FlowDiagram,
@@ -8,6 +9,7 @@ import {
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
 
 const description =
   "How to test a soldering iron before relying on it: a cold continuity check with a multimeter, a visual inspection, then a timed heat-up and solder-melt test.";
@@ -17,6 +19,8 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/how-to-test-a-soldering-iron",
 });
+
+const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
 
 const link = "text-accent hover:underline";
 
@@ -36,9 +40,24 @@ export default function HowToTestASolderingIronPage() {
           once powered on. Together they catch most of what actually goes wrong with a soldering iron.
         </>
       }
+      aside={{
+        image: hakko.image,
+        alt: "Hakko FX888D soldering station with iron and stand",
+        caption: (
+          <>
+            The cold continuity check applies to a wand iron or a station handpiece like the Hakko
+            FX888D alike. See our{" "}
+            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "why-test-first", label: "Why test before you rely on it" },
         { id: "cold-continuity-check", label: "1. Cold continuity check (unplugged)" },
+        { id: "expected-resistance", label: "What resistance should you expect?" },
         { id: "visual-inspection", label: "2. Visual inspection" },
         { id: "heat-up-test", label: "3. Timed heat-up test" },
         { id: "solder-melt-test", label: "4. Solder-melt test" },
@@ -108,6 +127,30 @@ export default function HowToTestASolderingIronPage() {
           documentation for where the element terminals are exposed, if at all). A stable, finite
           reading means the element has continuity; an infinite or &quot;OL&quot; reading points at an
           open, failed element; a reading at or very near zero ohms suggests a short.
+        </p>
+      </section>
+
+      <section id="expected-resistance">
+        <h2 className="text-xl font-semibold mb-3">What resistance should you actually expect?</h2>
+        <p className="text-muted leading-7 mb-4">
+          There&apos;s a real reason the &quot;right&quot; number varies so much between irons: a
+          resistive heating element&apos;s resistance follows R = V² ÷ P, so it depends on both the
+          iron&apos;s wattage and the mains voltage it&apos;s designed for. A higher-wattage element has
+          lower resistance at the same voltage, and the same wattage element rated for 230V mains reads
+          roughly four times the resistance of one rated for 120V, since resistance scales with the
+          square of the voltage.
+        </p>
+        <BarChart
+          items={[
+            { label: "30W element (illustrative, 230V)", value: 1760, display: "~1.8 kΩ" },
+            { label: "60W element (illustrative, 230V)", value: 880, display: "~880 Ω", highlight: true },
+            { label: "80W element (illustrative, 230V)", value: 660, display: "~660 Ω" },
+          ]}
+        />
+        <p className="mt-4 text-xs text-muted">
+          Figures above are illustrative, calculated from R = V² ÷ P at 230V — a 120V iron of the same
+          wattage reads roughly a quarter of these values. Always check your specific iron&apos;s own
+          documentation rather than relying on a generic figure.
         </p>
       </section>
 

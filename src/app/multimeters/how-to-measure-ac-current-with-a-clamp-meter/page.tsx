@@ -56,7 +56,9 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
         { id: "single-conductor-rule", label: "The single-conductor rule" },
         { id: "step-by-step", label: "Measuring AC current step by step" },
         { id: "accuracy-tips", label: "Getting an accurate reading" },
+        { id: "jaw-size", label: "Jaw size vs. what you're clamping" },
         { id: "ac-only-vs-ac-dc", label: "Confirm your meter reads AC" },
+        { id: "inrush-current", label: "Can it catch a brief inrush spike?" },
       ]}
       faq={[
         {
@@ -156,6 +158,39 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
         />
       </section>
 
+      <section id="jaw-size">
+        <h2 className="text-xl font-semibold mb-3">Jaw size vs. what you&apos;re clamping</h2>
+        <p className="text-muted leading-7 mb-4">
+          A clamp meter&apos;s jaw opening is a hard physical limit, separate from its current rating —
+          a meter rated for hundreds of amps still can&apos;t clamp around a conductor or bundle too
+          thick to fit inside the jaw.
+        </p>
+        <Figure
+          caption={
+            <>
+              A single wire fits easily inside a typical clamp jaw. A thick cable bundle or bus bar may
+              simply be too large to close the jaw around, regardless of the meter&apos;s current
+              rating.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 120" className="w-full h-auto" role="img" aria-label="Diagram comparing a single wire and a thick cable bundle against the same clamp meter jaw opening">
+            <g>
+              <path d="M40 20 A40 40 0 1 1 39 20" className="fill-none stroke-foreground" strokeWidth="6" />
+              <circle cx="40" cy="60" r="7" className="fill-accent" />
+              <text x="40" y="112" fontSize="10" textAnchor="middle" className="fill-foreground">Single wire: fits easily</text>
+            </g>
+            <g>
+              <path d="M220 20 A40 40 0 1 1 219 20" className="fill-none stroke-foreground" strokeWidth="6" />
+              <circle cx="205" cy="50" r="11" className="fill-muted" />
+              <circle cx="228" cy="50" r="11" className="fill-muted" />
+              <circle cx="216" cy="70" r="11" className="fill-muted" />
+              <text x="220" y="112" fontSize="10" textAnchor="middle" className="fill-foreground">Thick bundle: may not fit</text>
+            </g>
+          </svg>
+        </Figure>
+      </section>
+
       <section id="ac-only-vs-ac-dc">
         <KeyIdea title="Confirm your meter actually reads AC current">
           Not every clamp meter reads current the same way — standard AC-only clamp meters use a
@@ -166,6 +201,22 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
           </Link>{" "}
           before assuming a given meter covers the current type you need.
         </KeyIdea>
+      </section>
+
+      <section id="inrush-current">
+        <h2 className="text-xl font-semibold mb-3">Can it catch a brief inrush spike?</h2>
+        <p className="text-muted leading-7">
+          Motors, transformers, and some electronics draw a short current surge well above their normal
+          running current the instant they switch on, lasting only a fraction of a second. A standard
+          clamp meter&apos;s display updates too slowly to catch that spike&apos;s true peak — it shows
+          a smoothed, averaged reading rather than the instantaneous surge. Meters with a dedicated
+          &quot;inrush&quot; or &quot;peak hold&quot; function are built specifically to capture this;
+          an oscilloscope with a current probe shows the full shape of the spike directly, which our{" "}
+          <Link href="/oscilloscopes/oscilloscope-vs-multimeter" className={link}>
+            oscilloscope vs multimeter
+          </Link>{" "}
+          guide covers in more depth.
+        </p>
       </section>
     </HowToShell>
   );

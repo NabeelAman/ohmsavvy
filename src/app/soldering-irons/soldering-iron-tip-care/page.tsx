@@ -3,6 +3,7 @@ import {
   Callout,
   DataTable,
   Figure,
+  FlowDiagram,
   HowToShell,
   KeyIdea,
   ProductStrip,
@@ -58,11 +59,13 @@ export default function SolderingIronTipCarePage() {
       }}
       toc={[
         { id: "why-tips-fail", label: "Why tips look “dead”" },
+        { id: "tip-lifecycle", label: "A tip's life cycle, stage by stage" },
         { id: "plated-vs-copper", label: "Plated tips vs. bare copper tips" },
         { id: "daily-cleaning", label: "Daily cleaning routine" },
         { id: "sponge-vs-brass", label: "Wet sponge vs. brass wool" },
         { id: "end-of-session", label: "Tinning before you put the iron away" },
         { id: "when-to-replace", label: "When to replace a tip" },
+        { id: "realistic-lifespan", label: "How long should a tip actually last?" },
         { id: "what-not-to-do", label: "What never to do to a tip" },
       ]}
       faq={[
@@ -111,6 +114,34 @@ export default function SolderingIronTipCarePage() {
           work perfectly again a minute later, right after a proper clean and re-tin. Genuine
           end-of-life wear (the plating eroded through) looks different and is covered further down.
         </p>
+      </section>
+
+      <section>
+        <h2 id="tip-lifecycle" className="text-xl font-semibold mb-3">A tip&apos;s life cycle, stage by stage</h2>
+        <p className="text-muted leading-7 mb-4">
+          Every tip cycles through the same stages repeatedly over its working life. Seeing them laid
+          out end to end makes it obvious where the daily cleaning routine actually intervenes, and
+          where genuine wear sits apart from it.
+        </p>
+        <Figure
+          caption={
+            <>
+              The first four stages repeat constantly through a tip&apos;s working life — cleaning resets
+              it back to tinned. Only the fifth stage, genuine plating wear, is one-way and means
+              replacement.
+            </>
+          }
+        >
+          <FlowDiagram
+            steps={[
+              { label: "Fresh/tinned", sub: "Shiny, solder-wetted surface" },
+              { label: "In use", sub: "Transfers heat into joints" },
+              { label: "Oxidising", sub: "Film builds up between joints" },
+              { label: "Cleaned & re-tinned", sub: "Back to stage one" },
+              { label: "Worn out", sub: "Plating gone — replace it" },
+            ]}
+          />
+        </Figure>
       </section>
 
       <section>
@@ -205,6 +236,17 @@ export default function SolderingIronTipCarePage() {
           joint quality no matter how good your technique is — it&apos;s one of the few consumable parts
           worth replacing proactively rather than running to total failure.
         </p>
+      </section>
+
+      <section id="realistic-lifespan">
+        <KeyIdea title="How long should a tip actually last?">
+          There&apos;s no fixed number of hours or joints, because cleaning habits matter more than raw
+          usage time — a tip cleaned and re-tinned consistently, as covered above, can stay serviceable
+          for many months of regular hobby use. The same tip left dirty, run hotter than it needs to be,
+          or stored uncleaned between long gaps can wear out far sooner, since oxidation and plating
+          wear both accelerate with unnecessary heat and neglected cleaning rather than with calendar
+          time alone.
+        </KeyIdea>
       </section>
 
       <section id="what-not-to-do">

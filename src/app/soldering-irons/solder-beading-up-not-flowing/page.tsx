@@ -7,6 +7,7 @@ import {
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-soldering-irons/page";
 
 const description =
   "Why solder beads up into a ball instead of flowing and wetting a wire: an oxidised or contaminated surface, too little flux, or the workpiece not hot enough.";
@@ -18,6 +19,8 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 export default function SolderBeadingUpNotFlowingPage() {
   return (
@@ -36,10 +39,24 @@ export default function SolderBeadingUpNotFlowingPage() {
           list of causes.
         </>
       }
+      aside={{
+        image: weller.image,
+        alt: "Weller WE1010NA ESD-safe soldering station",
+        caption: (
+          <>
+            Stable, correctly-set temperature matters more for wetting than raw wattage. See our{" "}
+            <Link href="/soldering-irons/weller-we1010na-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "wetting-vs-beading", label: "Wetting vs. beading" },
         { id: "surface-contamination", label: "1. Oxidised or contaminated surface" },
         { id: "not-enough-flux", label: "2. Not enough flux" },
+        { id: "how-flux-works", label: "How flux actually fixes this" },
         { id: "workpiece-not-hot-enough", label: "3. The workpiece itself isn't hot enough" },
         { id: "lead-free-factor", label: "Does lead-free solder bead more easily?" },
         { id: "quick-reference", label: "Quick reference" },
@@ -60,6 +77,10 @@ export default function SolderBeadingUpNotFlowingPage() {
         {
           q: "Does wire material (copper vs. tinned vs. silver-plated) affect beading?",
           a: "Yes, somewhat — bare copper oxidises faster than pre-tinned or silver-plated wire, so bare copper that's sat exposed to air for a while is more prone to beading than freshly stripped or pre-tinned wire. This is one reason pre-tinned wire is popular for repeated or delayed soldering work.",
+        },
+        {
+          q: "Can too much flux cause its own problems?",
+          a: "Excess flux residue left around a joint isn't usually a wetting problem by itself, but it can look messy and, left uncleaned for a long time on some board types, slowly become mildly corrosive or attract dust. It's rarely the cause of beading — too little flux is far more often the actual issue — so clean up visible excess afterward rather than treating it as a wetting fix.",
         },
       ]}
       next={[
@@ -136,6 +157,36 @@ export default function SolderBeadingUpNotFlowingPage() {
           . Hold the iron against the workpiece itself first, then feed solder once the workpiece is
           genuinely up to temperature.
         </p>
+      </section>
+
+      <section id="how-flux-works">
+        <h2 className="text-xl font-semibold mb-3">How flux actually fixes this</h2>
+        <p className="text-muted leading-7 mb-4">
+          Flux doesn&apos;t make solder stickier — it chemically strips the thin oxide layer off the
+          metal surface right as heat is applied, exposing bare metal for solder to bond to underneath.
+          Without that cleaning action, solder has nothing but oxide to try to wet, which is exactly
+          when it draws up into a ball instead.
+        </p>
+        <Figure
+          caption={
+            <>
+              Flux reacts with the oxide layer and lifts it away as heat is applied, exposing clean
+              metal underneath right before solder reaches the surface — without this step, solder has
+              only oxide to try (and fail) to bond to.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 120" className="w-full h-auto" role="img" aria-label="Diagram of flux removing an oxide layer from a metal surface before solder bonds to it">
+            <rect x="20" y="70" width="260" height="14" className="fill-muted" />
+            <text x="150" y="110" fontSize="9" textAnchor="middle" className="fill-muted">bare metal underneath</text>
+            <rect x="20" y="58" width="110" height="10" className="fill-foreground" opacity="0.35" />
+            <text x="75" y="52" fontSize="9" textAnchor="middle" className="fill-foreground">oxide layer (untouched)</text>
+            <path d="M160 58 Q175 48 190 58 Q205 68 220 58 Q235 48 250 58 L270 58" className="fill-none stroke-accent" strokeWidth="2" strokeDasharray="4 3" />
+            <text x="210" y="40" fontSize="9" textAnchor="middle" className="fill-accent">flux lifting oxide away</text>
+            <rect x="160" y="68" width="110" height="2" className="fill-accent" opacity="0.6" />
+            <text x="215" y="110" fontSize="9" textAnchor="middle" className="fill-accent">clean metal, ready for solder</text>
+          </svg>
+        </Figure>
       </section>
 
       <section id="lead-free-factor">

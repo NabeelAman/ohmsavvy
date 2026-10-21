@@ -5,6 +5,7 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  InfoCards,
   KeyIdea,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -145,6 +146,15 @@ export default function SolderComparisonPage() {
           eutectic temperature itself. 63/37&apos;s entire transition happens right at that point; 60/40
           needs another 8°C of cooling past it before it&apos;s genuinely solid all the way through.
         </p>
+        <div className="mt-5">
+          <InfoCards
+            items={[
+              { label: "Wire splicing", desc: "63/37 is easier to keep still through — no plastic window to protect." },
+              { label: "General PCB repair", desc: "Either works well; 60/40 is fine if the joint can stay undisturbed while cooling." },
+              { label: "Fine-pitch / SMD rework", desc: "63/37's sharp set point is the safer default when movement is hard to avoid." },
+            ]}
+          />
+        </div>
       </section>
 
       <section id="why-it-matters">
@@ -182,6 +192,17 @@ export default function SolderComparisonPage() {
         </Link>{" "}
         apply equally to both alloys.
       </KeyIdea>
+
+      <section id="third-alloy">
+        <Callout title="There's a third common alloy worth knowing about: 62/36/2">
+          Adding roughly 2% silver to the 63/37 ratio (giving 62% tin, 36% lead, 2% silver) produces an
+          alloy with a very similar eutectic-like melting behaviour, slightly stronger joints, and
+          better wetting on silver-plated components and terminals. It costs more than plain 63/37 and
+          isn&apos;t necessary for everyday work, but it&apos;s a reasonable upgrade specifically for
+          silver-plated connectors and RF/precision work where the extra wetting and joint strength pay
+          off.
+        </Callout>
+      </section>
 
       <section>
         <h2 id="which-to-buy" className="text-xl font-semibold mb-3">Which one should you buy?</h2>

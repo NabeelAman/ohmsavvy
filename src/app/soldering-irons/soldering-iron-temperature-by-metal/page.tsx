@@ -3,6 +3,7 @@ import {
   BarChart,
   Callout,
   DataTable,
+  Figure,
   HowToShell,
   KeyIdea,
 } from "@/components/HowTo";
@@ -40,8 +41,10 @@ export default function SolderingIronTemperatureByMetalPage() {
         { id: "the-two-variables", label: "The two variables: alloy and thermal mass" },
         { id: "by-solder-alloy", label: "Setpoint by solder alloy" },
         { id: "by-joint-type", label: "Setpoint by joint / metal type" },
+        { id: "heat-flow-diagram", label: "Why thermal mass changes the picture" },
         { id: "why-hotter-isnt-better", label: "Why hotter isn't simply better" },
         { id: "signs-to-adjust", label: "Signs you should adjust" },
+        { id: "preheating-tip", label: "Preheating for extreme thermal mass" },
         { id: "quick-reference", label: "Quick reference table" },
       ]}
       faq={[
@@ -123,6 +126,53 @@ export default function SolderingIronTemperatureByMetalPage() {
         />
       </section>
 
+      <section>
+        <h2 id="heat-flow-diagram" className="text-xl font-semibold mb-3">Why thermal mass changes the picture</h2>
+        <p className="text-muted leading-7 mb-4">
+          The same tip, at the same setpoint, delivers heat into very different surroundings depending
+          on the joint. A small, isolated pad has almost nowhere for that heat to escape to, so it comes
+          up to temperature quickly. A pad connected to a wide copper pour or ground plane has a huge
+          amount of surrounding metal pulling heat away in every direction, so the same tip at the same
+          temperature takes noticeably longer to bring that specific joint up to melting point.
+        </p>
+        <Figure
+          caption={
+            <>
+              Heat from the tip spreads into whatever metal it touches. A small, isolated pad (left)
+              heats quickly since there&apos;s little surrounding copper to absorb the energy. A pad tied
+              into a ground plane (right) loses heat outward in every direction, so the same tip setting
+              takes longer to bring that joint up to temperature.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 120" className="w-full h-auto" role="img" aria-label="Diagram comparing heat spreading from a soldering iron tip into an isolated pad versus a ground-plane pad">
+            <g>
+              <circle cx="70" cy="60" r="18" className="fill-accent/70 stroke-accent" strokeWidth="1.5" />
+              <line x1="70" y1="25" x2="70" y2="42" className="stroke-foreground" strokeWidth="3" />
+              <text x="70" y="104" fontSize="10" textAnchor="middle" className="fill-foreground">Isolated pad: heats fast</text>
+            </g>
+            <g>
+              <rect x="180" y="20" width="100" height="80" className="fill-accent/15 stroke-border" strokeWidth="1" />
+              <circle cx="230" cy="60" r="14" className="fill-accent/70 stroke-accent" strokeWidth="1.5" />
+              <line x1="230" y1="25" x2="230" y2="46" className="stroke-foreground" strokeWidth="3" />
+              {[0, 60, 120, 180, 240, 300].map((deg) => (
+                <line
+                  key={deg}
+                  x1={230 + 15 * Math.cos((deg * Math.PI) / 180)}
+                  y1={60 + 15 * Math.sin((deg * Math.PI) / 180)}
+                  x2={230 + 36 * Math.cos((deg * Math.PI) / 180)}
+                  y2={60 + 36 * Math.sin((deg * Math.PI) / 180)}
+                  className="stroke-muted"
+                  strokeWidth="1.2"
+                  strokeDasharray="2 2"
+                />
+              ))}
+              <text x="230" y="104" fontSize="10" textAnchor="middle" className="fill-foreground">Ground-plane pad: heat escapes outward</text>
+            </g>
+          </svg>
+        </Figure>
+      </section>
+
       <section id="why-hotter-isnt-better">
         <Callout title="Why hotter isn't simply better">
           Running the iron hotter than a joint needs doesn&apos;t make soldering faster or easier — it
@@ -150,6 +200,18 @@ export default function SolderingIronTemperatureByMetalPage() {
             ["Large joints never fully melt despite a high setting", "Switch to a larger tip or higher-wattage iron rather than raising temperature further"],
           ]}
         />
+      </section>
+
+      <section id="preheating-tip">
+        <KeyIdea title="Preheating for extreme thermal mass">
+          For a board with many large ground-plane joints, or dense rework where several big pads sit
+          close together, some people preheat the whole board with an external heat source — a hot
+          plate, or hot air held well back and moved continuously — before touching it with the iron.
+          Bringing the board partway up to temperature first means the iron only has to supply the last
+          stretch of heat at each joint, rather than fighting the full thermal mass of the board from
+          room temperature alone. This is a step beyond what a single joint usually needs, worth
+          reaching for only when the quick reference below genuinely isn&apos;t enough.
+        </KeyIdea>
       </section>
 
       <section id="quick-reference">

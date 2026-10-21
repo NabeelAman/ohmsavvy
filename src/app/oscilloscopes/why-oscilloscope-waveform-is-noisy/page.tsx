@@ -6,8 +6,10 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-beginner-oscilloscopes/page";
 
 const description =
   "Why an oscilloscope waveform looks noisy: a long probe ground lead picking up interference, ground loops, real electrical noise, or too much bandwidth.";
@@ -19,6 +21,10 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const fnirsi = picks.find((p) => p.name === "FNIRSI DSO152")!;
 
 export default function WhyOscilloscopeWaveformIsNoisyPage() {
   return (
@@ -48,6 +54,7 @@ export default function WhyOscilloscopeWaveformIsNoisyPage() {
         { id: "bandwidth-too-high", label: "3. Bandwidth capturing noise above your signal" },
         { id: "probe-compensation", label: "4. A miscompensated probe" },
         { id: "real-electrical-noise", label: "When the noise is actually real" },
+        { id: "never-float-the-ground", label: "Never “fix” noise by floating the ground" },
         { id: "quick-reference", label: "Quick reference" },
       ]}
       faq={[
@@ -128,12 +135,43 @@ export default function WhyOscilloscopeWaveformIsNoisyPage() {
 
       <section>
         <h2 id="ground-loops" className="text-xl font-semibold mb-3">2. Ground loops between equipment</h2>
-        <p className="text-muted leading-7">
+        <p className="text-muted leading-7 mb-4">
           When the scope, the circuit under test, and other mains-powered equipment are all grounded
           through separate paths, small differences between those ground potentials can drive circulating
           currents that show up as noise on the trace. Powering test equipment from the same outlet or
           power strip, and minimizing the number of separate ground paths, often reduces this.
         </p>
+        <Figure
+          caption={
+            <>
+              Two instruments plugged into different outlets, each with its own path to earth. A small
+              potential difference between those two ground paths drives a circulating current through
+              whatever connects them — including a scope probe&apos;s ground lead.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 130" className="w-full h-auto" role="img" aria-label="Diagram of a ground loop formed between two mains-powered instruments connected by a probe ground lead">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="20" y="20" width="70" height="40" rx="4" />
+              <rect x="210" y="20" width="70" height="40" rx="4" />
+              <line x1="55" y1="60" x2="55" y2="100" />
+              <line x1="245" y1="60" x2="245" y2="100" />
+              <path d="M40 100 H70 M48 108 H62 M52 114 H58" />
+              <path d="M230 100 H260 M238 108 H252 M242 114 H248" />
+            </g>
+            <text x="55" y="40" fontSize="10" textAnchor="middle" className="fill-foreground">Scope</text>
+            <text x="245" y="40" fontSize="10" textAnchor="middle" className="fill-foreground">Other instrument</text>
+            <text x="55" y="126" fontSize="9" textAnchor="middle" className="fill-muted">ground path A</text>
+            <text x="245" y="126" fontSize="9" textAnchor="middle" className="fill-muted">ground path B</text>
+            <path d="M90 40 H210" className="stroke-accent" strokeWidth="2" strokeDasharray="4 3" markerEnd="url(#noisearrow)" />
+            <defs>
+              <marker id="noisearrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" className="fill-accent" />
+              </marker>
+            </defs>
+            <text x="150" y="30" fontSize="9" textAnchor="middle" className="fill-accent">circulating current via probe ground</text>
+          </svg>
+        </Figure>
       </section>
 
       <section>
@@ -190,6 +228,51 @@ export default function WhyOscilloscopeWaveformIsNoisyPage() {
         either genuinely present in the circuit or coming from somewhere external, not from the scope
         and probe setup itself.
       </KeyIdea>
+
+      <section id="never-float-the-ground">
+        <Callout title="Never &quot;fix&quot; noise by floating the ground">
+          A tempting-looking shortcut is removing the scope&apos;s own earth pin (using a
+          three-to-two-prong adapter, or cutting the ground pin) to break a ground loop. Don&apos;t do
+          this. It removes the safety ground that keeps the scope&apos;s chassis at earth potential,
+          which can leave exposed metal on the instrument live at a dangerous voltage if an internal
+          fault occurs. Ground loops are solved by better cabling and power arrangement, never by
+          defeating a safety ground.
+        </Callout>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold mb-3">Scopes worth checking a noisy trace on</h2>
+        <p className="text-muted leading-7 mb-6">
+          Any digital scope benefits from the ground-lead and shorted-input checks above. These are a
+          few from our full comparison, spanning bench and pocket form factors.
+        </p>
+        <ProductStrip
+          title="Good scopes for this kind of hands-on diagnosis"
+          items={[
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital benchtop oscilloscope with a 7-inch display",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "4 channels, 50MHz, with a bandwidth-limit function.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital benchtop oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "Bench scope: 4 channels, 100MHz, 1 GSa/s.",
+            },
+            {
+              name: "FNIRSI DSO152",
+              image: fnirsi.image,
+              alt: "FNIRSI DSO152 pocket-sized single-channel handheld oscilloscope",
+              href: "/oscilloscopes/fnirsi-dso152-review",
+              note: "Pocket-sized, battery-powered — sidesteps mains ground loops entirely.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

@@ -1,6 +1,7 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import { CategoryHero } from "@/components/CategoryHero";
 import { ReviewArticle } from "@/components/ReviewArticle";
+import { FlowDiagram } from "@/components/HowTo";
 import { picks as allPicks } from "../best-soldering-irons/page";
 import { buildMetadata } from "@/lib/metadata";
 import { guidePicks } from "@/lib/content";
@@ -30,6 +31,11 @@ const faqs = [
     answer:
       "Yes, for the large majority of hobby projects — through-hole kits, breadboard-to-perfboard builds, wire splicing, and basic repairs. You'd only need a second, more specialized tool (like a hot air rework station) once you're regularly doing SMD or BGA rework, which is a smaller, more specific slice of DIY electronics work.",
   },
+  {
+    question: "Should I budget for anything beyond the iron itself?",
+    answer:
+      "Yes — tips, solder, flux, and a stand/sponge are recurring costs worth planning for alongside the iron's own price. A cheap iron with no spare tips available, or one using a nonstandard tip mount, can end up costing more over time than a slightly pricier iron with a wide, affordable tip ecosystem.",
+  },
 ];
 
 export default function BestSolderingIronForDiyElectronicsPage() {
@@ -49,6 +55,21 @@ export default function BestSolderingIronForDiyElectronicsPage() {
           { value: "$0", label: "Sponsored" },
         ]}
       />
+      <section className="mx-auto max-w-6xl px-6 py-10">
+        <h2 className="text-xl font-semibold mb-3">How a DIY habit typically escalates</h2>
+        <p className="text-muted leading-7 mb-5">
+          Buying for where your projects are headed, not just where they are today, is worth planning
+          for — this is the progression most hobbyists end up following:
+        </p>
+        <FlowDiagram
+          steps={[
+            { label: "First LED/kit project", sub: "Simple through-hole, forgiving joints" },
+            { label: "Perfboard builds", sub: "More joints, denser layouts" },
+            { label: "Microcontroller boards", sub: "Finer pitch, more precision needed" },
+            { label: "Occasional SMD rework", sub: "Benefits from a second, specialized tool" },
+          ]}
+        />
+      </section>
       <ReviewArticle picks={picks} faqs={faqs} />
       <ContentLinks category="soldering-irons" current="/soldering-irons/best-soldering-iron-for-diy-electronics" />
     </>

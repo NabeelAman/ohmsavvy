@@ -76,6 +76,10 @@ export default function HowToTestADiodeWithAMultimeterPage() {
           q: "Can I test a diode while it's still soldered into a circuit?",
           a: "Sometimes, but be cautious — other components in parallel with the diode can provide an alternate path for the test current, giving a misleading reading just like the parallel-resistance problem covered in our resistance guide. For a reliable reading, isolate the diode (lift one leg) whenever the in-circuit reading looks inconsistent with what you'd expect.",
         },
+        {
+          q: "Can the forward voltage reading tell me what type of diode I'm holding?",
+          a: "It's a useful clue, not a certainty. Roughly 0.5-0.7V points to an ordinary silicon rectifier or signal diode, 0.2-0.4V points to a Schottky diode or germanium diode, and Zener diodes read close to an ordinary silicon diode's forward value in this direction (their special reverse-breakdown behaviour doesn't show up in a simple forward/reverse diode-mode check). Markings on the part itself are more reliable than voltage alone when you need to be sure of the exact type.",
+        },
       ]}
       next={[
         {
@@ -168,12 +172,32 @@ export default function HowToTestADiodeWithAMultimeterPage() {
 
       <section>
         <StepHeading n={2} id="testing-leds">Testing an LED the same way</StepHeading>
-        <p className="text-muted leading-7">
+        <p className="text-muted leading-7 mb-4">
           LEDs are diodes, so the same test applies, with one bonus: many meters&apos; diode-test
           current is enough to make the LED visibly glow when oriented for forward conduction. That
           glow confirms polarity and that the LED isn&apos;t open or shorted, without needing an external
           power supply to light it.
         </p>
+        <Figure
+          caption={
+            <>
+              Two physical clues for LED polarity, both usually present on the same part: a flat edge
+              molded into the side of the case marks the cathode, and the shorter of the two legs
+              (before any trimming) is also the cathode.
+            </>
+          }
+        >
+          <svg viewBox="0 0 220 140" className="w-full h-auto" role="img" aria-label="Diagram of LED polarity markings: flat side and shorter lead both indicate the cathode">
+            <path d="M70 20 A40 40 0 1 1 69 20 Z" className="fill-accent/40 stroke-foreground" strokeWidth="1.6" />
+            <path d="M30 20 L30 55 L110 55 L110 20" className="fill-none stroke-foreground" strokeWidth="1.6" />
+            <line x1="30" y1="55" x2="30" y2="30" className="stroke-foreground" strokeWidth="6" />
+            <text x="18" y="70" fontSize="9" textAnchor="middle" className="fill-accent">flat side</text>
+            <line x1="45" y1="95" x2="45" y2="118" className="stroke-foreground" strokeWidth="2" />
+            <line x1="95" y1="95" x2="95" y2="108" className="stroke-foreground" strokeWidth="2" />
+            <text x="45" y="130" fontSize="9" textAnchor="middle" className="fill-foreground">anode (+)</text>
+            <text x="95" y="122" fontSize="9" textAnchor="middle" className="fill-accent">cathode (−)</text>
+          </svg>
+        </Figure>
       </section>
 
       <section id="in-circuit-caveat">

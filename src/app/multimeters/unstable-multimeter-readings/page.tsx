@@ -2,11 +2,13 @@ import Link from "next/link";
 import {
   Callout,
   DataTable,
+  Figure,
   FlowDiagram,
   HowToShell,
   InfoCards,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+import { picks } from "../best-multimeters/page";
 
 const description =
   "What causes unstable multimeter readings: poor probe contact, a genuinely fluctuating signal, electrical noise, a weak battery, or a meter hunting between ranges.";
@@ -18,6 +20,8 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
 
 export default function UnstableMultimeterReadingsPage() {
   return (
@@ -35,11 +39,26 @@ export default function UnstableMultimeterReadingsPage() {
           apart, rather than assuming the meter is faulty, is most of the troubleshooting here.
         </>
       }
+      aside={{
+        image: fluke117.image,
+        alt: "Fluke 117 digital multimeter",
+        caption: (
+          <>
+            A True RMS meter like the Fluke 117 handles genuinely fluctuating signals more predictably
+            than a budget averaging meter. See our{" "}
+            <Link href="/multimeters/fluke-117-review" className={link}>
+              full review
+            </Link>
+            .
+          </>
+        ),
+      }}
       toc={[
         { id: "two-categories", label: "Two categories of cause" },
         { id: "checklist", label: "A quick elimination checklist" },
         { id: "measurement-side-causes", label: "Measurement-side causes" },
         { id: "real-signal-causes", label: "The signal is actually fluctuating" },
+        { id: "meter-vs-scope-view", label: "Why a scope shows what a meter can't" },
       ]}
       faq={[
         {
@@ -57,6 +76,10 @@ export default function UnstableMultimeterReadingsPage() {
         {
           q: "Could nearby equipment actually be causing this?",
           a: "Yes — motors, variable-frequency drives, switching power supplies, and fluorescent or LED drivers all radiate electrical noise that test leads can pick up like small antennas, especially on sensitive, high-impedance measurements. Moving away from the equipment, shortening test leads, or testing at a different time can help confirm this as the cause.",
+        },
+        {
+          q: "Does a True RMS meter give a steadier reading on a fluctuating AC signal?",
+          a: "Not necessarily steadier, but more accurate on non-sinusoidal waveforms specifically — a True RMS meter calculates the actual effective value of a distorted AC signal (from a motor drive or dimmer, for example), where a non-True-RMS meter can show a reading that's both unstable and simply wrong. Either type will still show genuine fluctuation from a signal that's actually varying in amplitude over time.",
         },
       ]}
       next={[
@@ -128,6 +151,43 @@ export default function UnstableMultimeterReadingsPage() {
           </Link>{" "}
           guide for when that switch is worth making.
         </p>
+      </section>
+
+      <section id="meter-vs-scope-view">
+        <h2 className="text-xl font-semibold mb-3">Why a scope shows what a meter can&apos;t</h2>
+        <p className="text-muted leading-7 mb-4">
+          A multimeter boils a changing signal down to one number per update (often several updates a
+          second), which is exactly why a genuinely fluctuating signal looks like &quot;instability&quot;
+          on its display — there&apos;s no way to show the signal&apos;s actual shape in a single digit
+          readout. An oscilloscope instead draws the full waveform over time, turning what looked like a
+          flickering, hard-to-pin-down number into a clearly visible, explainable shape.
+        </p>
+        <Figure
+          caption={
+            <>
+              The same fluctuating signal: a multimeter can only show one changing number at a time
+              (left), while an oscilloscope draws the actual waveform shape behind that number (right).
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 120" className="w-full h-auto" role="img" aria-label="Comparison of a multimeter's single fluctuating number versus an oscilloscope's full waveform view of the same signal">
+            <g>
+              <rect x="20" y="30" width="100" height="50" rx="6" className="fill-none stroke-foreground" strokeWidth="1.6" />
+              <text x="70" y="60" fontSize="18" textAnchor="middle" fontFamily="ui-monospace, monospace" className="fill-accent">4.87</text>
+              <text x="70" y="100" fontSize="10" textAnchor="middle" className="fill-foreground">Multimeter: one jumping number</text>
+            </g>
+            <g>
+              <rect x="170" y="30" width="110" height="50" rx="4" className="fill-[#0f1a14]" />
+              <polyline
+                fill="none"
+                stroke="#7CFC9A"
+                strokeWidth="1.8"
+                points={Array.from({ length: 61 }, (_, i) => `${(170 + i * 1.8).toFixed(1)},${(55 - 18 * Math.sin((i / 60) * 3 * Math.PI)).toFixed(1)}`).join(" ")}
+              />
+              <text x="225" y="100" fontSize="10" textAnchor="middle" className="fill-foreground">Oscilloscope: the actual shape</text>
+            </g>
+          </svg>
+        </Figure>
       </section>
 
       <Callout title="Rule out the simple causes before assuming a fault">

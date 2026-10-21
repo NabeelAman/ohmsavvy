@@ -68,7 +68,9 @@ export default function HowToUseASolderingIronPage() {
         { id: "feed-the-solder", label: "Feed solder into the heat" },
         { id: "remove-and-cool", label: "Remove the iron and let it cool" },
         { id: "inspect-the-joint", label: "Inspect the joint" },
+        { id: "wetting-angle", label: "What the fillet shape actually tells you" },
         { id: "common-mistakes", label: "Common first-timer mistakes" },
+        { id: "blowing-on-joints", label: "Myth: blowing on a joint to cool it" },
         { id: "which-iron", label: "Which iron to practise on" },
       ]}
       faq={[
@@ -242,6 +244,38 @@ export default function HowToUseASolderingIronPage() {
         />
       </section>
 
+      <section>
+        <h2 id="wetting-angle" className="text-xl font-semibold mb-3">What the fillet shape actually tells you</h2>
+        <p className="text-muted leading-7 mb-4">
+          Looking at a joint from the side, in cross-section, says more than a quick glance from above.
+          A wetted joint tapers from the pad up to the lead at a shallow, concave angle, because the
+          molten solder was pulled thin across the whole surface. A cold or unwetted joint instead balls
+          up at a much steeper angle, because the solder never spread properly in the first place — it
+          just solidified roughly where it landed.
+        </p>
+        <Figure
+          caption={
+            <>
+              Side profile of the same joint: a wetted fillet (left) tapers in a low, concave curve
+              because the solder spread across the whole surface. A cold or unwetted joint (right)
+              balls up at a steep angle, since it never spread before solidifying.
+            </>
+          }
+        >
+          <svg viewBox="0 0 300 120" className="w-full h-auto" role="img" aria-label="Side profile comparison of a wetted solder fillet versus a cold, unwetted joint">
+            <line x1="10" y1="90" x2="140" y2="90" className="stroke-muted" strokeWidth="4" />
+            <path d="M55 90 Q85 68 115 90" className="fill-accent/60 stroke-accent" strokeWidth="1.5" />
+            <line x1="85" y1="90" x2="85" y2="45" className="stroke-foreground" strokeWidth="3" />
+            <text x="85" y="108" fontSize="10" textAnchor="middle" className="fill-foreground">Wetted: shallow, concave</text>
+
+            <line x1="160" y1="90" x2="290" y2="90" className="stroke-muted" strokeWidth="4" />
+            <circle cx="225" cy="75" r="15" className="fill-accent/60 stroke-accent" strokeWidth="1.5" />
+            <line x1="225" y1="90" x2="225" y2="45" className="stroke-foreground" strokeWidth="3" />
+            <text x="225" y="108" fontSize="10" textAnchor="middle" className="fill-foreground">Cold/unwetted: steep ball</text>
+          </svg>
+        </Figure>
+      </section>
+
       <section id="common-mistakes">
         <KeyIdea title="Common first-timer mistakes to watch for">
           <ul className="space-y-1 list-disc pl-5">
@@ -252,6 +286,16 @@ export default function HowToUseASolderingIronPage() {
               <Link href="/soldering-irons/soldering-iron-not-melting-solder" className={link}>troubleshooting guide</Link> for this specifically.
             </li>
           </ul>
+        </KeyIdea>
+      </section>
+
+      <section id="blowing-on-joints">
+        <KeyIdea title="Myth: blowing on a joint cools it faster, with no downside">
+          It&apos;s a common habit, but moving air across a joint while it&apos;s still molten is just
+          another form of disturbing it during the exact window it needs to stay still — the same
+          problem as a nudged wire or a twitchy hand. If you want a joint to cool sooner, give it a
+          moment longer under the iron so less heat has soaked into the surrounding board, then leave it
+          alone in still air rather than blowing on it.
         </KeyIdea>
       </section>
 

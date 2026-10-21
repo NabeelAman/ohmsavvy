@@ -25,6 +25,9 @@ export default function OscilloscopesReviewsPage() {
       <Link href="/oscilloscopes/oscilloscope-buying-guide" className="text-accent hover:underline">
         Oscilloscope buying guide
       </Link>
+      <Link href="/oscilloscopes/guides" className="text-accent hover:underline">
+        All oscilloscope guides
+      </Link>
     </CategoryListing>
   );
 }

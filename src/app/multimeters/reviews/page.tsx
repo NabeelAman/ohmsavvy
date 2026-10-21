@@ -25,6 +25,9 @@ export default function MultimetersReviewsPage() {
       <Link href="/multimeters/multimeter-buying-guide" className="text-accent hover:underline">
         Multimeter buying guide
       </Link>
+      <Link href="/multimeters/guides" className="text-accent hover:underline">
+        All multimeter guides
+      </Link>
     </CategoryListing>
   );
 }

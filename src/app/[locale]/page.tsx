@@ -57,7 +57,9 @@ const latestReviews = CATEGORY_KEYS.flatMap((cat) =>
   ofType(cat, "review").filter((e) => ![...topPickNames].some((n) => e.title.startsWith(n))).slice(0, 2),
 );
 const featuredComparisons = CATEGORY_KEYS.flatMap((cat) => ofType(cat, "comparison").slice(0, 1));
-const useCaseGuides = CATEGORY_KEYS.flatMap((cat) => ofType(cat, "use-case-guide"));
+// Two use-case guides per category as cards; the rest as compact links.
+const useCaseGuides = CATEGORY_KEYS.flatMap((cat) => ofType(cat, "use-case-guide").slice(0, 2));
+const moreUseCases = CATEGORY_KEYS.flatMap((cat) => ofType(cat, "use-case-guide").slice(2));
 
 const FEATURED_HOWTO = [
   "/multimeters/how-to-use-a-multimeter",
@@ -101,6 +103,9 @@ type Dict = {
   useCaseSection: { eyebrow: string; title: string; intro: string };
   comparisonsSection: { eyebrow: string; title: string };
   learnSection: { eyebrow: string; title: string; intro: string; startHereLabel: string; readGuideLabel: string; buyingGuidesLabel: string; howToGuidesLabel: string };
+  learnCols: { allGuides: (n: number) => string; guidesCount: (n: number) => string; buyingTag: string };
+  moreUseCasesLabel: string;
+  guidesWord: string;
   howWeReview: { eyebrow: string; title: string; links: [string, string]; steps: [Step, Step, Step, Step]; handsOnTestedNote: string };
   faq: { eyebrow: string; title: string; items: [Faq, Faq, Faq, Faq] };
   switcherLabel: string;
@@ -135,10 +140,13 @@ const DICTIONARY: Record<Locale, Dict> = {
     reviewsWord: "Tests",
     comparisonsWord: "Vergleiche",
     seeAll: (n, m) => `Alle ${n} Produkte ansehen · ${m} Ratgeber`,
-    reviewsSection: { eyebrow: "Ausführliche Tests", title: "Neueste Produkttests" },
+    reviewsSection: { eyebrow: "Ausführliche Tests", title: "Ausführliche Produkttests" },
     useCaseSection: { eyebrow: "Nach Einsatzzweck", title: "Wählen Sie nach dem, was Sie tatsächlich vorhaben", intro: "Nicht sicher, welches Werkzeug passt? Starten Sie bei der Aufgabe: Schalttafelarbeiten, Kfz-Diagnose, Platinenreparatur oder das erste Heimlabor." },
     comparisonsSection: { eyebrow: "Direkter Vergleich", title: "Vergleiche für knappe Entscheidungen" },
     learnSection: { eyebrow: "Grundlagen lernen", title: "Ratgeber, die die Spezifikationen vor dem Kauf erklären", intro: "Verständliche Anleitungen und Kaufratgeber mit Diagrammen, Beispielen und Sicherheitshinweisen.", startHereLabel: "Hier starten", readGuideLabel: "Ratgeber lesen →", buyingGuidesLabel: "Kaufratgeber", howToGuidesLabel: "Anleitungen" },
+    learnCols: { allGuides: (n) => `Alle ${n} Ratgeber`, guidesCount: (n) => `${n} Ratgeber`, buyingTag: "Kauf" },
+    moreUseCasesLabel: "Weitere Empfehlungen nach Einsatz:",
+    guidesWord: "Ratgeber",
     howWeReview: {
       eyebrow: "Wie wir testen",
       title: "Ein Standard, gleich angewendet auf jedes Produkt",
@@ -191,10 +199,13 @@ const DICTIONARY: Record<Locale, Dict> = {
     reviewsWord: "Avis",
     comparisonsWord: "Comparaisons",
     seeAll: (n, m) => `Voir les ${n} produits · ${m} guides`,
-    reviewsSection: { eyebrow: "Avis détaillés", title: "Derniers avis produits" },
+    reviewsSection: { eyebrow: "Avis détaillés", title: "Avis produits détaillés" },
     useCaseSection: { eyebrow: "Par cas d'usage", title: "Choisissez selon ce que vous allez vraiment en faire", intro: "Pas sûr de l'outil qui convient ? Partez du besoin : travail sur tableau électrique, diagnostic automobile, réparation de circuits ou premier labo à la maison." },
     comparisonsSection: { eyebrow: "Face à face", title: "Comparaisons pour les choix serrés" },
     learnSection: { eyebrow: "Apprendre les bases", title: "Des guides qui expliquent les spécifications avant d'acheter", intro: "Des guides pratiques et d'achat en langage clair, avec schémas, exemples concrets et consignes de sécurité.", startHereLabel: "Commencer ici", readGuideLabel: "Lire le guide →", buyingGuidesLabel: "Guides d'achat", howToGuidesLabel: "Guides pratiques" },
+    learnCols: { allGuides: (n) => `Les ${n} guides`, guidesCount: (n) => `${n} guides`, buyingTag: "Achat" },
+    moreUseCasesLabel: "Autres sélections par usage :",
+    guidesWord: "Guides",
     howWeReview: {
       eyebrow: "Comment nous testons",
       title: "Un seul standard, appliqué de la même façon à chaque produit",
@@ -247,10 +258,13 @@ const DICTIONARY: Record<Locale, Dict> = {
     reviewsWord: "Recensioni",
     comparisonsWord: "Confronti",
     seeAll: (n, m) => `Vedi tutti i ${n} prodotti · ${m} guide`,
-    reviewsSection: { eyebrow: "Recensioni approfondite", title: "Ultime recensioni dei prodotti" },
+    reviewsSection: { eyebrow: "Recensioni approfondite", title: "Recensioni approfondite dei prodotti" },
     useCaseSection: { eyebrow: "Per caso d'uso", title: "Scegli in base a cosa ne farai davvero", intro: "Non sei sicuro quale strumento fa per te? Parti dal lavoro: quadri elettrici, diagnostica auto, riparazione di circuiti o il tuo primo laboratorio di casa." },
     comparisonsSection: { eyebrow: "Testa a testa", title: "Confronti per le scelte più difficili" },
     learnSection: { eyebrow: "Impara le basi", title: "Guide che spiegano le specifiche prima di acquistare", intro: "Guide pratiche e all'acquisto in linguaggio semplice, con diagrammi, esempi pratici e note di sicurezza.", startHereLabel: "Inizia qui", readGuideLabel: "Leggi la guida →", buyingGuidesLabel: "Guide all'acquisto", howToGuidesLabel: "Guide pratiche" },
+    learnCols: { allGuides: (n) => `Tutte le ${n} guide`, guidesCount: (n) => `${n} guide`, buyingTag: "Acquisto" },
+    moreUseCasesLabel: "Altre scelte per utilizzo:",
+    guidesWord: "Guide",
     howWeReview: {
       eyebrow: "Come recensiamo",
       title: "Uno standard, applicato allo stesso modo a ogni prodotto",
@@ -303,10 +317,13 @@ const DICTIONARY: Record<Locale, Dict> = {
     reviewsWord: "Reseñas",
     comparisonsWord: "Comparaciones",
     seeAll: (n, m) => `Ver los ${n} productos · ${m} guías`,
-    reviewsSection: { eyebrow: "Reseñas detalladas", title: "Últimas reseñas de productos" },
+    reviewsSection: { eyebrow: "Reseñas detalladas", title: "Reseñas detalladas de productos" },
     useCaseSection: { eyebrow: "Por caso de uso", title: "Elige según lo que realmente harás con ella", intro: "¿No sabes qué herramienta te conviene? Empieza por la tarea: trabajo en cuadros eléctricos, diagnóstico automotriz, reparación de circuitos o tu primer laboratorio casero." },
     comparisonsSection: { eyebrow: "Cara a cara", title: "Comparaciones para decisiones reñidas" },
     learnSection: { eyebrow: "Aprende lo básico", title: "Guías que explican las especificaciones antes de comprar", intro: "Guías prácticas y de compra en lenguaje claro, con diagramas, ejemplos y notas de seguridad.", startHereLabel: "Empieza aquí", readGuideLabel: "Leer la guía →", buyingGuidesLabel: "Guías de compra", howToGuidesLabel: "Guías prácticas" },
+    learnCols: { allGuides: (n) => `Las ${n} guías`, guidesCount: (n) => `${n} guías`, buyingTag: "Compra" },
+    moreUseCasesLabel: "Más selecciones por uso:",
+    guidesWord: "Guías",
     howWeReview: {
       eyebrow: "Cómo evaluamos",
       title: "Un mismo estándar, aplicado igual a cada producto",
@@ -436,7 +453,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
           <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.categoryHub.title}</h2>
           <p className="mt-2 text-muted leading-7">{d.categoryHub.intro}</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="-mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0">
           {CATEGORY_KEYS.map((category, i) => {
             const top = PICKS[category][0];
             const tone = TONES[category];
@@ -444,9 +461,8 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             const comparisons = ofType(category, "comparison").length;
             const guides = content.filter((e) => e.category === category && e.type !== "review" && e.type !== "comparison").length;
             const buying = ofType(category, "buying-guide")[0];
-            const howTo = ofType(category, "how-to-guide")[0];
             return (
-              <Reveal key={category} delay={i * 80} className="flex">
+              <Reveal key={category} delay={i * 80} className="flex snap-start shrink-0 w-[85%] md:w-auto">
                 <div className="group w-full flex flex-col rounded-2xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-shadow hover:shadow-md">
                   <Link href={ROUNDUPS[category]} className={`relative block h-44 bg-gradient-to-b ${tone.soft} to-transparent`}>
                     <div className={`absolute top-0 inset-x-0 h-1 ${tone.bg}`} />
@@ -465,8 +481,8 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                     <ul className="mt-5 flex-1 space-y-2 text-sm">
                       <li><Link href={`/${category}/reviews`} className="flex justify-between text-muted hover:text-accent"><span>{d.reviewsWord}</span><span className="font-mono text-xs">{reviews}</span></Link></li>
                       <li><Link href={`/${category}/comparisons`} className="flex justify-between text-muted hover:text-accent"><span>{d.comparisonsWord}</span><span className="font-mono text-xs">{comparisons}</span></Link></li>
+                      <li><Link href={`/${category}/guides`} className="flex justify-between text-muted hover:text-accent"><span>{d.guidesWord}</span><span className="font-mono text-xs">{guides}</span></Link></li>
                       {buying && <li><Link href={buying.href} className="flex justify-between text-muted hover:text-accent"><span>{buying.title}{d.inEnglishSuffix}</span><span aria-hidden="true">→</span></Link></li>}
-                      {howTo && <li><Link href={howTo.href} className="flex justify-between text-muted hover:text-accent"><span>{howTo.title}{d.inEnglishSuffix}</span><span aria-hidden="true">→</span></Link></li>}
                     </ul>
                     <Link href={ROUNDUPS[category]} className={`mt-6 inline-flex items-center justify-between rounded-lg border ${tone.border} px-4 py-2.5 text-sm font-medium ${tone.text} hover:bg-surface transition-colors`}>
                       {d.seeAll(PICKS[category].length, guides)}
@@ -504,6 +520,16 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
           <p className="mt-2 text-muted leading-7">{d.useCaseSection.intro}</p>
         </div>
         <div className={CAROUSEL}>{useCaseGuides.map((g) => <div key={g.href} className={CAROUSEL_ITEM}><GuideCard entry={g} /></div>)}</div>
+        {moreUseCases.length > 0 && (
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <span className="mr-1 font-display text-[11px] uppercase tracking-wide text-muted">{d.moreUseCasesLabel}</span>
+            {moreUseCases.map((g) => (
+              <Link key={g.href} href={g.href} className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors">
+                <span className={TONES[g.category].text}>●</span> {d.categoryLabels[CATEGORY_KEYS.indexOf(g.category)]}: {g.title}{d.inEnglishSuffix}
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Comparisons */}
@@ -530,51 +556,59 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.learnSection.title}</h2>
             <p className="mt-2 text-muted leading-7">{d.learnSection.intro}</p>
           </div>
-          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8">
-            <div className="space-y-4">
-              {featuredHowTos.map((g) => {
-                const tone = TONES[g.category];
-                const idx = CATEGORY_KEYS.indexOf(g.category);
-                return (
-                  <Link key={g.href} href={g.href} className="group block rounded-2xl border border-border bg-surface p-6 shadow-sm hover:border-accent transition-colors">
-                    <div className="flex items-center gap-2">
-                      <span className={`h-2 w-2 rounded-full ${tone.bg}`} />
-                      <span className={`font-display text-[11px] uppercase tracking-wide ${tone.text}`}>{d.learnSection.startHereLabel} · {d.categoryLabels[idx]}</span>
-                    </div>
-                    <p className="mt-3 text-xl font-semibold group-hover:text-accent transition-colors">{g.title}{d.inEnglishSuffix}</p>
-                    <p className="mt-1.5 text-sm text-muted leading-6">{g.description}</p>
-                    <span className="mt-4 inline-block text-sm font-medium text-accent">{d.learnSection.readGuideLabel}</span>
+          <div className="grid lg:grid-cols-3 gap-6">
+            {CATEGORY_KEYS.map((category, i) => {
+              const tone = TONES[category];
+              const start = featuredHowTos.find((g) => g.category === category);
+              const more = otherHowTos.filter((g) => g.category === category);
+              const buying = buyingGuides.filter((g) => g.category === category);
+              // Same count as the category card and the /guides page: every guide, incl. use-case picks.
+              const total = content.filter((e) => e.category === category && e.type !== "review" && e.type !== "comparison").length;
+              return (
+                <div key={category} className="flex flex-col rounded-2xl border border-border bg-surface shadow-sm overflow-hidden">
+                  <div className={`h-1 ${tone.bg}`} />
+                  <div className="flex items-center justify-between px-5 pt-5">
+                    <span className={`font-display text-xs uppercase tracking-wide ${tone.text}`}>{d.categoryLabels[i]}</span>
+                    <span className="font-mono text-xs text-muted">{d.learnCols.guidesCount(total)}</span>
+                  </div>
+                  {start && (
+                    <Link href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
+                      <span className="font-display text-[10px] uppercase tracking-wide text-accent">{d.learnSection.startHereLabel}</span>
+                      <span className="mt-1 block font-semibold group-hover:text-accent transition-colors">{start.title}{d.inEnglishSuffix}</span>
+                      <span className="mt-1 block text-xs text-muted leading-5">{start.description}</span>
+                    </Link>
+                  )}
+                  <ul className="mt-3 flex-1 divide-y divide-border px-5">
+                    {more.slice(0, 5).map((g) => (
+                      <li key={g.href}>
+                        <Link href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                          <span className="group-hover:text-accent transition-colors">{g.title}{d.inEnglishSuffix}</span>
+                          <span className="text-muted" aria-hidden="true">→</span>
+                        </Link>
+                      </li>
+                    ))}
+                    {buying.map((g) => (
+                      <li key={g.href}>
+                        <Link href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                          <span className="group-hover:text-accent transition-colors">
+                            <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-[10px] uppercase text-signal">{d.learnCols.buyingTag}</span>
+                            {g.title}{d.inEnglishSuffix}
+                          </span>
+                          <span className="text-muted" aria-hidden="true">→</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/${category}/guides`}
+                    className={`mx-5 mb-5 mt-4 inline-flex items-center justify-between rounded-lg border ${tone.border} px-4 py-2.5 text-sm font-medium ${tone.text} hover:bg-surface-raised transition-colors`}
+                  >
+                    {d.learnCols.allGuides(total)}{d.inEnglishSuffix}
+                    <span aria-hidden="true">→</span>
                   </Link>
-                );
-              })}
-              <div className="rounded-2xl border border-border bg-surface p-6">
-                <p className="font-display text-[11px] uppercase tracking-wide text-accent mb-3">{d.learnSection.buyingGuidesLabel}</p>
-                <ul className="space-y-2.5">
-                  {buyingGuides.map((g) => (
-                    <li key={g.href}><Link href={g.href} className="flex items-center justify-between gap-3 text-sm hover:text-accent transition-colors"><span>{g.title}{d.inEnglishSuffix}</span><span className="text-muted" aria-hidden="true">→</span></Link></li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-border bg-surface p-6">
-              <p className="font-display text-[11px] uppercase tracking-wide text-accent mb-4">{d.learnSection.howToGuidesLabel}</p>
-              <ul className="grid sm:grid-cols-2 gap-x-8">
-                {otherHowTos.map((g) => {
-                  const tone = TONES[g.category];
-                  return (
-                    <li key={g.href} className="border-b border-border last:border-0 sm:[&:nth-last-child(2)]:border-0">
-                      <Link href={g.href} className="group flex items-start gap-3 py-3">
-                        <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${tone.bg}`} />
-                        <span className="min-w-0">
-                          <span className="block text-sm font-medium group-hover:text-accent transition-colors">{g.title}{d.inEnglishSuffix}</span>
-                          <span className="block text-xs text-muted leading-5">{g.description}</span>
-                        </span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

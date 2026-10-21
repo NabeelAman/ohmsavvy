@@ -25,6 +25,9 @@ export default function SolderingIronsReviewsPage() {
       <Link href="/soldering-irons/soldering-iron-buying-guide" className="text-accent hover:underline">
         Soldering iron buying guide
       </Link>
+      <Link href="/soldering-irons/guides" className="text-accent hover:underline">
+        All soldering iron guides
+      </Link>
     </CategoryListing>
   );
 }

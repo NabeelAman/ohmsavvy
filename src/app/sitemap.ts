@@ -21,6 +21,10 @@ const staticPages = [
   "/soldering-irons/comparisons",
   "/oscilloscopes/reviews",
   "/oscilloscopes/comparisons",
+  // Guide index pages (<GuideListing>), one per category.
+  "/multimeters/guides",
+  "/soldering-irons/guides",
+  "/oscilloscopes/guides",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

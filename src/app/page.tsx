@@ -20,6 +20,7 @@ type Tone = { text: string; bg: string; border: string; soft: string };
 const CATEGORIES: {
   category: Category;
   label: string;
+  noun: string;
   roundup: { href: string; title: string };
   blurb: string;
   picks: typeof multimeterPicks;
@@ -28,6 +29,7 @@ const CATEGORIES: {
   {
     category: "multimeters",
     label: "Multimeters",
+    noun: "multimeter",
     roundup: { href: "/multimeters/best-multimeters", title: "Best Multimeters" },
     blurb: "CAT safety ratings, True RMS and accuracy, from first meters to panel-rated electrician tools.",
     picks: multimeterPicks,
@@ -36,6 +38,7 @@ const CATEGORIES: {
   {
     category: "soldering-irons",
     label: "Soldering Irons",
+    noun: "soldering iron",
     roundup: { href: "/soldering-irons/best-soldering-irons", title: "Best Soldering Irons" },
     blurb: "Heat-up time, temperature stability and tips, from portable pens to full bench stations.",
     picks: solderingIronPicks,
@@ -44,6 +47,7 @@ const CATEGORIES: {
   {
     category: "oscilloscopes",
     label: "Oscilloscopes",
+    noun: "oscilloscope",
     roundup: { href: "/oscilloscopes/best-beginner-oscilloscopes", title: "Best Beginner Oscilloscopes" },
     blurb: "Bandwidth, sample rate and channels explained simply, from pocket scopes to four-channel benches.",
     picks: oscilloscopePicks,
@@ -91,7 +95,9 @@ const latestReviews = CATEGORY_ORDER.flatMap((cat) =>
     .slice(0, 2),
 );
 const featuredComparisons = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "comparison").slice(0, 1));
-const useCaseGuides = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guide"));
+// Two use-case guides per category as cards; the rest as compact links.
+const useCaseGuides = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guide").slice(0, 2));
+const moreUseCases = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guide").slice(2));
 
 // Learning hub: the two "start here" how-tos featured, then every other
 // how-to and buying guide as a compact list.
@@ -303,16 +309,15 @@ export default function Home() {
           title="Start with the tool you need"
           intro="Each category has a ranked roundup, individual reviews, head-to-head comparisons and guides that explain the specs."
         />
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="-mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0">
           {CATEGORIES.map((c, i) => {
             const top = c.picks[0];
             const reviews = ofType(c.category, "review").length;
             const comparisons = ofType(c.category, "comparison").length;
             const guides = content.filter((e) => e.category === c.category && e.type !== "review" && e.type !== "comparison").length;
             const buying = ofType(c.category, "buying-guide")[0];
-            const howTo = ofType(c.category, "how-to-guide")[0];
             return (
-              <Reveal key={c.category} delay={i * 80} className="flex">
+              <Reveal key={c.category} delay={i * 80} className="flex snap-start shrink-0 w-[85%] md:w-auto">
                 <div className="group w-full flex flex-col rounded-2xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-shadow hover:shadow-md">
                   <Link href={c.roundup.href} className={`relative block h-44 bg-gradient-to-b ${c.tone.soft} to-transparent`}>
                     <div className={`absolute top-0 inset-x-0 h-1 ${c.tone.bg}`} />
@@ -350,18 +355,16 @@ export default function Home() {
                           <span className="font-mono text-xs">{comparisons}</span>
                         </Link>
                       </li>
+                      <li>
+                        <Link href={`/${c.category}/guides`} className="flex justify-between text-muted hover:text-accent">
+                          <span>Guides</span>
+                          <span className="font-mono text-xs">{guides}</span>
+                        </Link>
+                      </li>
                       {buying && (
                         <li>
                           <Link href={buying.href} className="flex justify-between text-muted hover:text-accent">
                             <span>{buying.title}</span>
-                            <span aria-hidden="true">→</span>
-                          </Link>
-                        </li>
-                      )}
-                      {howTo && (
-                        <li>
-                          <Link href={howTo.href} className="flex justify-between text-muted hover:text-accent">
-                            <span>{howTo.title}</span>
                             <span aria-hidden="true">→</span>
                           </Link>
                         </li>
@@ -387,7 +390,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-16">
           <SectionHead
             eyebrow="IN-DEPTH REVIEWS"
-            title="Latest product reviews"
+            title="In-depth product reviews"
             links={[
               { href: "/multimeters/reviews", label: "Multimeters" },
               { href: "/soldering-irons/reviews", label: "Soldering irons" },
@@ -418,6 +421,20 @@ export default function Home() {
             </div>
           ))}
         </div>
+        {moreUseCases.length > 0 && (
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <span className="mr-1 font-display text-[11px] uppercase tracking-wide text-muted">More picks by job:</span>
+            {moreUseCases.map((g) => (
+              <Link
+                key={g.href}
+                href={g.href}
+                className={`rounded-full border border-border bg-surface px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors`}
+              >
+                <span className={TONE_BY_CATEGORY[g.category].tone.text}>●</span> {TONE_BY_CATEGORY[g.category].label}: {g.title}
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Comparisons */}
@@ -450,59 +467,58 @@ export default function Home() {
             title="Guides that explain the specs before you spend"
             intro="Plain-English how-to guides and buying guides, with diagrams, worked examples and safety notes."
           />
-          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8">
-            <div className="space-y-4">
-              {featuredHowTos.map((g) => {
-                const c = TONE_BY_CATEGORY[g.category];
-                return (
+          <div className="grid lg:grid-cols-3 gap-6">
+            {CATEGORIES.map((c) => {
+              const start = featuredHowTos.find((g) => g.category === c.category);
+              const more = otherHowTos.filter((g) => g.category === c.category);
+              const buying = buyingGuides.filter((g) => g.category === c.category);
+              // Same count as the category card and the /guides page: every guide, incl. use-case picks.
+              const total = content.filter((e) => e.category === c.category && e.type !== "review" && e.type !== "comparison").length;
+              return (
+                <div key={c.category} className="flex flex-col rounded-2xl border border-border bg-surface shadow-sm overflow-hidden">
+                  <div className={`h-1 ${c.tone.bg}`} />
+                  <div className="flex items-center justify-between px-5 pt-5">
+                    <span className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</span>
+                    <span className="font-mono text-xs text-muted">{total} guides</span>
+                  </div>
+                  {start && (
+                    <Link href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
+                      <span className="font-display text-[10px] uppercase tracking-wide text-accent">Start here</span>
+                      <span className="mt-1 block font-semibold group-hover:text-accent transition-colors">{start.title}</span>
+                      <span className="mt-1 block text-xs text-muted leading-5">{start.description}</span>
+                    </Link>
+                  )}
+                  <ul className="mt-3 flex-1 divide-y divide-border px-5">
+                    {more.slice(0, 5).map((g) => (
+                      <li key={g.href}>
+                        <Link href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                          <span className="group-hover:text-accent transition-colors">{g.title}</span>
+                          <span className="text-muted" aria-hidden="true">→</span>
+                        </Link>
+                      </li>
+                    ))}
+                    {buying.map((g) => (
+                      <li key={g.href}>
+                        <Link href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                          <span className="group-hover:text-accent transition-colors">
+                            <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-[10px] uppercase text-signal">Buying</span>
+                            {g.title}
+                          </span>
+                          <span className="text-muted" aria-hidden="true">→</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                   <Link
-                    key={g.href}
-                    href={g.href}
-                    className="group block rounded-2xl border border-border bg-surface p-6 shadow-sm hover:border-accent transition-colors"
+                    href={`/${c.category}/guides`}
+                    className={`mx-5 mb-5 mt-4 inline-flex items-center justify-between rounded-lg border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} hover:bg-surface-raised transition-colors`}
                   >
-                    <div className="flex items-center gap-2">
-                      <span className={`h-2 w-2 rounded-full ${c.tone.bg}`} />
-                      <span className={`font-display text-[11px] uppercase tracking-wide ${c.tone.text}`}>Start here · {c.label}</span>
-                    </div>
-                    <p className="mt-3 text-xl font-semibold group-hover:text-accent transition-colors">{g.title}</p>
-                    <p className="mt-1.5 text-sm text-muted leading-6">{g.description}</p>
-                    <span className="mt-4 inline-block text-sm font-medium text-accent">Read the guide →</span>
+                    All {total} {c.noun} guides
+                    <span aria-hidden="true">→</span>
                   </Link>
-                );
-              })}
-              <div className="rounded-2xl border border-border bg-surface p-6">
-                <p className="font-display text-[11px] uppercase tracking-wide text-accent mb-3">Buying guides</p>
-                <ul className="space-y-2.5">
-                  {buyingGuides.map((g) => (
-                    <li key={g.href}>
-                      <Link href={g.href} className="flex items-center justify-between gap-3 text-sm hover:text-accent transition-colors">
-                        <span>{g.title}</span>
-                        <span className="text-muted" aria-hidden="true">→</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="rounded-2xl border border-border bg-surface p-6">
-              <p className="font-display text-[11px] uppercase tracking-wide text-accent mb-4">How-to guides</p>
-              <ul className="grid sm:grid-cols-2 gap-x-8">
-                {otherHowTos.map((g) => {
-                  const c = TONE_BY_CATEGORY[g.category];
-                  return (
-                    <li key={g.href} className="border-b border-border last:border-0 sm:[&:nth-last-child(2)]:border-0">
-                      <Link href={g.href} className="group flex items-start gap-3 py-3">
-                        <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${c.tone.bg}`} />
-                        <span className="min-w-0">
-                          <span className="block text-sm font-medium group-hover:text-accent transition-colors">{g.title}</span>
-                          <span className="block text-xs text-muted leading-5">{g.description}</span>
-                        </span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

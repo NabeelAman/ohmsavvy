@@ -13,6 +13,7 @@ runs `node automation/ollama/article.mjs --next --auto`:
 - Any checkpoint fails → the draft is discarded and nothing is published. A keyword that fails twice is skipped
   (counts in `automation/ollama/.tmp-auto-failures.json`; delete an entry to retry it).
 - A manual draft waiting for your review is never touched; that day's run just skips.
+- If another session has uncommitted edits in `src/lib/content.ts` or the queue, publishing waits (checks every 10 minutes for up to 2 hours) instead of discarding. Pushes from other sessions in the meantime are pulled in safely.
 - Log: `automation/ollama/.tmp-daily.log`. Pause: disable the task in Task Scheduler.
 
 This skips the human review step (owner's decision, 2026-10-21), so the checks are the only gate. It only writes

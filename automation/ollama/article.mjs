@@ -552,16 +552,33 @@ function publish(force = process.argv.includes("--force")) {
   if (failed.length && !force) die(`Publishing blocked: ${failed.map((c) => c.name).join(", ")} failed. Discard and re-run, or fix the page and run "npm run article:publish -- --force".`);
   stopPreview(st);
   log(`\n▶ Publishing ${st.path}`);
+  // Never sweep someone else's uncommitted edits into this commit: the registry and
+  // queue may differ from HEAD only by this draft's own changes. Other sessions often
+  // edit these files, so an automatic run waits for them (up to 2 hours) instead of
+  // giving up.
+  const norm = (s) => s.replace(/\r\n/g, "\n");
+  const atHead = (f) => norm(execSync(`git show HEAD:${f}`, { encoding: "utf8" }));
+  const mineOnly = () => {
+    const regOk = norm(readFileSync(REGISTRY, "utf8")).replace(st.entryText, "") === atHead(REGISTRY);
+    const strip = (q) => JSON.stringify(q.keywords.map((k) => (k.keyword === st.queueKeyword ? k.keyword : k)));
+    return regOk && strip(JSON.parse(atHead(QUEUE))) === strip(queue());
+  };
+  for (let tries = 0; !mineOnly(); tries++) {
+    if (!AUTO || tries >= 12) die(`${REGISTRY} or ${QUEUE} has other uncommitted changes (another session's work?). Commit or stash those first, then run publish again. Your draft is untouched.`);
+    log("  … another session has uncommitted edits in the registry or queue; checking again in 10 minutes");
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 600000);
+  }
+  // Pull with this draft's own edits lifted out, so pushes from other sessions to the
+  // same files can't block the fast-forward, then put the entry back in.
+  // (Safe: mineOnly() just confirmed the only changes in these two files are ours.)
+  run(`git checkout HEAD -- ${REGISTRY} ${QUEUE}`, { quiet: true });
   run("git pull --ff-only", { quiet: true });
+  const fresh = readFileSync(REGISTRY, "utf8");
+  const at = fresh.indexOf(CATEGORIES[st.category].next);
+  if (at < 0) die(`Couldn't find where to put the registry entry back after pulling. The page is still at src/app${st.path}; run "npm run article:discard".`);
+  writeFileSync(REGISTRY, fresh.slice(0, at) + st.entryText + fresh.slice(at));
   run("node automation/check-seo.mjs", { quiet: true });
   run("node automation/check-internal-links.mjs", { quiet: true });
-  // Never sweep someone else's uncommitted edits into this commit: the registry may
-  // differ from HEAD only by this draft's own entry.
-  const head = execSync(`git show HEAD:${REGISTRY}`, { encoding: "utf8" }).replace(/\r\n/g, "\n");
-  const working = readFileSync(REGISTRY, "utf8").replace(/\r\n/g, "\n");
-  if (working.replace(st.entryText, "") !== head) {
-    die(`${REGISTRY} has other uncommitted changes (another session's work?). Commit or stash those first, then run publish again. Your draft is untouched.`);
-  }
   const q = queue();
   const e = st.queueKeyword && q.keywords.find((k) => k.keyword === st.queueKeyword);
   if (e) { e.status = "published"; e.notes = `live at ${st.path}`; saveQueue(q); }
@@ -570,7 +587,8 @@ function publish(force = process.argv.includes("--force")) {
   writeFileSync(".tmp-commit-msg.txt", msg);
   run("git commit -q -F .tmp-commit-msg.txt", { quiet: true });
   rmSync(".tmp-commit-msg.txt");
-  run("git push -q", { quiet: true });
+  // Another session may push between our pull and push: rebase onto it once and retry.
+  try { run("git push -q", { quiet: true }); } catch { run("git pull --rebase -q", { quiet: true }); run("git push -q", { quiet: true }); }
   rmSync(STATE);
   log(`\n✔ Pushed. Live in ~2 minutes at https://ohmsavvy.com${st.path}\n  It's in the sitemap and feed.json, so the Facebook autoposter will share it in its next slot.`);
 }

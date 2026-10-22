@@ -35,7 +35,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Scope performance",
-      body: "100MHz bandwidth and 1 GSa/s match the Siglent SDS1104X-E on paper, but with 2 channels instead of 4 and a smaller display."
+      body: "100MHz bandwidth and 1 GSa/s match the Siglent SDS1104X-E on paper, but with 2 channels instead of 4. Its 7-inch 800 × 480 screen is the same size as the Siglent’s."
     },
     {
       heading: "A newer name in this category",

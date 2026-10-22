@@ -237,25 +237,6 @@ export const picks: Pick[] = [
     ctaHref: "https://www.amazon.com/dp/B00012Z0V6?tag=ohmsavvy-20",
   },
   {
-    badge: "Best Rugged Klein",
-    // Specs per Klein's MM700 product page and multimeter features chart. Klein lists it as no longer in production (MM720 replaces it).
-    name: "Klein Tools MM700",
-    image: "https://media.kleintools.io/images/original/klein/mm700.jpg",
-    rating: 4.5,
-    bottomLine: "Klein's toughest classic meter: True RMS, low impedance, CAT IV 600V and a 2 m drop rating, now replaced by the MM720.",
-    verdict:
-      "The MM700 was the top of Klein's original meter line and the only one in it with True RMS and a low-impedance mode, per Klein's own feature chart. It is rated CAT IV 600V and CAT III 1000V, survives a 2 m drop, is IP42 rated, and reads temperature to 1500°F. Klein now lists it as no longer in production, so buy it only at a fair price or look at the MM720 that replaces it.",
-    specs: [
-      { label: "Accuracy", value: "True RMS" },
-      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
-      { label: "Auto-ranging", value: "Yes" },
-      { label: "Best for", value: "Electricians who need CAT IV and a tough build" },
-    ],
-    pros: ["Low-impedance mode to rule out ghost voltage", "2 m drop rating and IP42", "Temperature to 1500°F and capacitance to 4,000 µF"],
-    cons: ["Discontinued by Klein (replaced by the MM720)", "4,000-count display, coarser than 6,000-count meters", "Heavier than slim meters at 408 g"],
-    ctaHref: "https://www.amazon.com/dp/B018CMKWSC?tag=ohmsavvy-20",
-  },
-  {
     badge: "Best Slim True RMS",
     // Specs per Klein's MM450 product page. The CAT IV 600V / CAT III 1000V figure on listings applies to the included leads; the meter is CAT III 600V.
     name: "Klein Tools MM450",

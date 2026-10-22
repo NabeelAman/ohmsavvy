@@ -12,14 +12,14 @@ export const metadata = buildMetadata({
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Rigol DS1054Z vs Hantek DSO2D10",
-  intro: "Both are 1 GSa/s bench scopes aimed at hobbyists. The Rigol gives you four channels and a large 7-inch display at 50MHz; the Hantek trades two channels for 100MHz of bandwidth and a built-in waveform generator in a compact body.",
+  intro: "Both are 1 GSa/s bench scopes aimed at hobbyists. The Rigol gives you four channels at 50MHz; the Hantek trades two channels for 100MHz of bandwidth and a built-in waveform generator in a compact body.",
   a: {
     pick: picks.find((p) => p.name === "Rigol DS1054Z")!,
     reviewHref: "/oscilloscopes/rigol-ds1054z-review",
     imageAlt: "Rigol DS1054Z digital oscilloscope",
     chooseIf: [
       "You need to watch three or four signals at once, such as timing across a bus",
-      "You're a beginner who wants a large display and plenty of community tutorials",
+      "You're a beginner who wants four channels and plenty of community tutorials",
       "Your bench has room for a full-size instrument rather than a compact one",
     ]
   },
@@ -37,7 +37,7 @@ const comparison: ProductComparisonContent = {
     "Channels: 4 on the Rigol vs. 2 on the Hantek — the Rigol can watch twice as many signals at once.",
     "Bandwidth: 50MHz on the Rigol vs. 100MHz on the Hantek, both at the same 1 GSa/s sample rate.",
     "The Hantek has a built-in waveform generator; the Rigol doesn't include one.",
-    "The Rigol has a larger 7-inch display and strong community support and documentation built up over years as a default beginner recommendation.",
+    "Both have 7-inch screens (Hantek lists 800 × 480); the Rigol's edge is strong community support and documentation built up over years as a default beginner recommendation.",
     "The Hantek's two-in-one design trades a channel for a smaller overall footprint on a shared bench.",
     "User ratings reflect the gap in track record: 4.8 for the Rigol against years as a default recommendation, 4.3 for the newer, less established Hantek."
   ],

@@ -94,9 +94,9 @@ export default function HowToCheckA24vTransformerWithAMultimeterPage() {
           desc: "Meters suited to 24V control circuits, capacitors and line-voltage work.",
         },
         {
-          href: "/multimeters/how-to-measure-ac-current-with-a-clamp-meter",
-          title: "How to Measure AC Current With a Clamp Meter",
-          desc: "Check how much current the 24V circuit actually draws against the VA rating.",
+          href: "/multimeters/how-to-test-a-doorbell-transformer-with-a-multimeter",
+          title: "How to Test a Doorbell Transformer With a Multimeter",
+          desc: "The same checks on the lower-voltage transformer behind a wired doorbell.",
         },
       ]}
     >

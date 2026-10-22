@@ -133,6 +133,18 @@ export function GuideListing({ category, intro, path }: { category: Category; in
           </div>
         </div>
       )}
+
+      <div className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-8 text-sm">
+        <Link href={c.roundup} className="font-medium text-accent hover:underline">
+          Best {c.noun.toLowerCase()}s
+        </Link>
+        <Link href={`/${category}/reviews`} className="text-accent hover:underline">
+          All {c.noun.toLowerCase()} reviews
+        </Link>
+        <Link href={`/${category}/comparisons`} className="text-accent hover:underline">
+          All {c.noun.toLowerCase()} comparisons
+        </Link>
+      </div>
     </section>
   );
 }

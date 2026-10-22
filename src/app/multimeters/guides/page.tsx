@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { GuideListing } from "@/components/GuideListing";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -10,23 +9,10 @@ export const metadata = buildMetadata({
 
 export default function MultimeterGuidesPage() {
   return (
-    <>
-      <GuideListing
-        category="multimeters"
-        path="/multimeters/guides"
-        intro="Step-by-step how-to guides for measuring voltage, current and resistance, testing components and cars, plus buying guides and picks for each kind of work."
-      />
-      <div className="mx-auto max-w-6xl px-6 pb-16 -mt-4 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-8 text-sm">
-        <Link href="/multimeters/best-multimeters" className="font-medium text-accent hover:underline">
-          Best multimeters
-        </Link>
-        <Link href="/multimeters/reviews" className="text-accent hover:underline">
-          All multimeter reviews
-        </Link>
-        <Link href="/multimeters/comparisons" className="text-accent hover:underline">
-          All multimeter comparisons
-        </Link>
-      </div>
-    </>
+    <GuideListing
+      category="multimeters"
+      path="/multimeters/guides"
+      intro="Whether you are chasing a dead car battery, checking a MOSFET on a repair bench or working out what OL means on the display, these guides walk through each measurement step by step: which jack and range to use, where the probes go, what a good reading looks like and the safety rules that apply. Buying guides and job-by-job picks help when it is time for a new meter."
+    />
   );
 }

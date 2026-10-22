@@ -25,7 +25,7 @@ const GROUP_BY_TYPE: Record<ContentType, SearchGroup> = {
 };
 
 const ROUNDUPS: { category: Category; title: string; href: string; desc: string }[] = [
-  { category: "multimeters", title: "Top 10 multimeters", href: "/multimeters/best-multimeters", desc: "Every multimeter we recommend, ranked" },
+  { category: "multimeters", title: "Best multimeters", href: "/multimeters/best-multimeters", desc: "Every multimeter we recommend, ranked" },
   { category: "soldering-irons", title: "Best soldering irons", href: "/soldering-irons/best-soldering-irons", desc: "Bench stations to USB-C portables" },
   {
     category: "oscilloscopes",

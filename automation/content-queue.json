@@ -12,20 +12,41 @@
       "Southwire 14070T",
       "Craftsman CMMT14171",
       "Extech EX330",
-      "UNI-T UT139C"
+      "UNI-T UT139C",
+      "Fluke 107",
+      "Fluke 15B+",
+      "Fluke 17B+",
+      "Fluke 179",
+      "Klein Tools MM700",
+      "Klein Tools MM450",
+      "Brymen BM235",
+      "Fluke 106",
+      "Fluke 101",
+      "Fluke T5-600"
     ],
     "soldering-irons": [
       "Hakko FX888D",
       "Pinecil V2",
       "Q-MING 60W Kit",
       "Weller WE1010NA",
-      "YIHUA 862BD+"
+      "YIHUA 862BD+",
+      "Hakko FX-888DX",
+      "Hakko FX-601",
+      "Miniware TS101"
     ],
     "oscilloscopes": [
       "Rigol DS1054Z",
       "FNIRSI DSO152",
       "Siglent SDS1104X-E",
-      "Hantek DSO2D10"
+      "Hantek DSO2D10",
+      "Rigol DHO804",
+      "Rigol DS1102Z-E",
+      "Siglent SDS1202X-E",
+      "Siglent SDS1102CML+",
+      "Hantek 2D72",
+      "FNIRSI 2C53T",
+      "PicoScope 2204A",
+      "Digilent Analog Discovery 3"
     ]
   },
   "keywords": [

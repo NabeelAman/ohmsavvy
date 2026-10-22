@@ -14,7 +14,7 @@ const MENU_CONFIG: {
     category: "multimeters",
     label: "Multimeters",
     tone: "multimeters",
-    roundup: { href: "/multimeters/best-multimeters", label: "Top 10 multimeters", desc: "Ranked and compared, every budget" },
+    roundup: { href: "/multimeters/best-multimeters", label: "Best multimeters", desc: "Ranked and compared, every budget" },
   },
   {
     category: "soldering-irons",

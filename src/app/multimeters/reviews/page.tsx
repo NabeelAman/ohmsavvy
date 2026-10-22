@@ -17,7 +17,7 @@ export default function MultimetersReviewsPage() {
       intro="Before anything else, every review here checks the safety rating and True RMS accuracy against what the meter is actually sold for. From there we cover resolution, build quality, and the specific buyer each model is a good fit for — and who'd be better off with a different pick entirely."
     >
       <Link href="/multimeters/best-multimeters" className="font-medium text-accent hover:underline">
-        Top 10 multimeters
+        Best multimeters
       </Link>
       <Link href="/multimeters/comparisons" className="text-accent hover:underline">
         All multimeter comparisons

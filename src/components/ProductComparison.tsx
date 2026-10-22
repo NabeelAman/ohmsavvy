@@ -16,7 +16,8 @@ import { categoryOfPick } from "@/lib/catalog";
 export type ComparisonSide = {
   /** Verified Pick from the category's main article — the only source of product facts. */
   pick: Pick;
-  reviewHref: string;
+  /** Omit when the product has no review page yet; the card then links nowhere extra. */
+  reviewHref?: string;
   imageAlt: string;
   chooseIf: string[];
 };
@@ -32,7 +33,29 @@ export type ProductComparisonContent = {
   faqs: Faq[];
   roundup: ReviewLink;
   related: ReviewLink[];
+  /** Canonical path; enables visible breadcrumbs and BreadcrumbList schema. */
+  path?: string;
+  /** ISO dates (YYYY-MM-DD) for the byline and Article schema. */
+  published?: string;
+  updated?: string;
+  /** Extra rows for the spec table, beyond the Pick's own specs. Each value must come from a verified source. */
+  extraSpecs?: { label: string; a: string; b: string }[];
+  /** Optional page-specific sections (charts, diagrams, prose) shown after the key differences. */
+  sections?: React.ReactNode;
 };
+
+const SITE = "https://ohmsavvy.com";
+const CATEGORY_HUB: Record<Category, string> = {
+  multimeters: "/multimeters/best-multimeters",
+  "soldering-irons": "/soldering-irons/best-soldering-irons",
+  oscilloscopes: "/oscilloscopes/best-beginner-oscilloscopes",
+};
+
+function formatDate(iso: string) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  return `${months[m - 1]} ${d}, ${y}`;
+}
 
 const CATEGORY_LABELS: Record<Category, string> = {
   multimeters: "Multimeters",
@@ -71,9 +94,11 @@ function ProductCard({ side }: { side: ComparisonSide }) {
         <p className="text-sm text-muted leading-6 flex-1">{pick.bottomLine}</p>
         <div className="flex flex-wrap items-center gap-3">
           <Button href={pick.ctaHref}>Check price →</Button>
-          <Link href={side.reviewHref} className="text-sm font-medium text-accent hover:underline">
-            Full review
-          </Link>
+          {side.reviewHref && (
+            <Link href={side.reviewHref} className="text-sm font-medium text-accent hover:underline">
+              Full review
+            </Link>
+          )}
         </div>
       </div>
     </div>
@@ -83,8 +108,7 @@ function ProductCard({ side }: { side: ComparisonSide }) {
 export function ProductComparison({ comparison }: { comparison: ProductComparisonContent }) {
   const { a, b } = comparison;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const itemList = {
     "@type": "ItemList",
     itemListElement: [a.pick, b.pick].map((p, i) => ({
       "@type": "ListItem",
@@ -102,6 +126,40 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
       },
     })),
   };
+  const url = comparison.path ? `${SITE}${comparison.path}` : undefined;
+  const hub = CATEGORY_HUB[comparison.category];
+  const graph: Record<string, unknown>[] = [itemList];
+  if (url) {
+    graph.push({
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+        { "@type": "ListItem", position: 2, name: CATEGORY_LABELS[comparison.category], item: `${SITE}${hub}` },
+        { "@type": "ListItem", position: 3, name: comparison.heading, item: url },
+      ],
+    });
+  }
+  if (url && comparison.published) {
+    graph.push({
+      "@type": "Article",
+      headline: comparison.heading,
+      description: comparison.intro,
+      url,
+      mainEntityOfPage: url,
+      ...(a.pick.image || b.pick.image ? { image: [a.pick.image, b.pick.image].filter(Boolean) } : {}),
+      datePublished: comparison.published,
+      dateModified: comparison.updated ?? comparison.published,
+      author: { "@type": "Organization", name: "OhmSavvy Research Team", url: `${SITE}/about` },
+      publisher: { "@type": "Organization", name: "OhmSavvy", url: SITE },
+    });
+  }
+  if (comparison.faqs.length) {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: comparison.faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })),
+    });
+  }
+  const jsonLd = { "@context": "https://schema.org", "@graph": graph };
 
   return (
     <article className="mx-auto max-w-4xl px-6 py-16">
@@ -109,9 +167,31 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
+      {url && (
+        <nav aria-label="Breadcrumb" className="mb-5 text-xs text-muted">
+          <ol className="flex flex-wrap items-center gap-1.5">
+            <li>
+              <Link href="/" className="hover:text-accent transition-colors">Home</Link>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li>
+              <Link href={hub} className="hover:text-accent transition-colors">{CATEGORY_LABELS[comparison.category]}</Link>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li aria-current="page" className="text-foreground">{comparison.heading}</li>
+          </ol>
+        </nav>
+      )}
       <Eyebrow>COMPARISON · {CATEGORY_LABELS[comparison.category].toUpperCase()}</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">{comparison.heading}</h1>
       <p className="mt-5 text-lg text-muted leading-7 max-w-3xl">{comparison.intro}</p>
+      {comparison.published && (
+        <p className="mt-4 text-xs text-muted">
+          By the <Link href="/about" className="underline underline-offset-2 hover:text-accent">OhmSavvy Research Team</Link>
+          {" · "}
+          <time dateTime={comparison.updated ?? comparison.published}>Updated {formatDate(comparison.updated ?? comparison.published)}</time>
+        </p>
+      )}
       <p className="mt-4 text-xs text-muted leading-5">
         Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through these links,
         at no extra cost to you.{" "}
@@ -151,6 +231,13 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
                     <td className="py-3 px-4 font-medium"><SpecValue value={b.pick.specs[i]?.value ?? ""} /></td>
                   </tr>
                 ))}
+                {comparison.extraSpecs?.map((row) => (
+                  <tr key={row.label} className="border-b border-border last:border-0">
+                    <td className="py-3 px-4 text-muted">{row.label}</td>
+                    <td className="py-3 px-4 font-medium"><SpecValue value={row.a} /></td>
+                    <td className="py-3 px-4 font-medium"><SpecValue value={row.b} /></td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -179,6 +266,8 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
             ))}
           </ul>
         </section>
+
+        {comparison.sections}
 
         <section className="grid sm:grid-cols-2 gap-4">
           {[a, b].map((side) => (

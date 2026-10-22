@@ -36,7 +36,7 @@ const comparison: ProductComparisonContent = {
   differences: [
     "The Fluke 117 has non-contact voltage (NCV) detection built in.",
     "The Fluke 117 is True RMS and has a low-impedance (AutoVolt/LoZ) mode; Klein's feature chart shows neither on the MM400.",
-    "The MM400 measures temperature (0°F to 1000°F with the supplied thermocouple); the 117 does not.",
+    "The MM400 measures temperature from 0°F to 1000°F with its included thermocouple; Fluke doesn’t list temperature consistently for the 117.",
     "Klein lists the MM400 as no longer in production, replaced by the MM420.",
     "The MM400 sits at a mid-range price; the Fluke 117 carries a premium.",
     "Fluke's reputation rests on well-documented reliability; Klein's on field durability among tradespeople.",
@@ -67,7 +67,7 @@ const comparison: ProductComparisonContent = {
     }
   ],
   roundup: {
-    label: "See the full Top 10 multimeter comparison",
+    label: "See the full multimeter roundup",
     href: "/multimeters/best-multimeters"
   },
   related: [

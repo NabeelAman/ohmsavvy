@@ -36,7 +36,7 @@ export default function BestMultimeterForBeginnersPage() {
         heading="Best Multimeter for Beginners"
         tagline="Compared honestly — no pay-for-placement."
         description="Your first multimeter should be easy to learn on, not intimidating. These are the most approachable, auto-ranging picks from our full comparison for anyone just starting out."
-        primaryCta={{ label: "See the Full Top 10", href: "/multimeters/best-multimeters" }}
+        primaryCta={{ label: "See the Full Roundup", href: "/multimeters/best-multimeters" }}
         secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
         stats={[
           { value: `${picks.length}`, label: "Compared" },

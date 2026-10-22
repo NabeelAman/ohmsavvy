@@ -68,7 +68,7 @@ export default function HowToTestElectricalWiresWithAMultimeterPage() {
             <p className="px-4 py-3 text-xs text-muted leading-5">
               Any meter with a continuity or resistance mode can do this — see our{" "}
               <Link href="/multimeters/best-multimeters" className="text-accent hover:underline">
-                Top 10 comparison
+                full multimeter roundup
               </Link>
               .
             </p>

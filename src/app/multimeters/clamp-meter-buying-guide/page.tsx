@@ -141,7 +141,7 @@ export default function ClampMeterBuyingGuidePage() {
             </Link>{" "}
             , or browse the{" "}
             <Link href="/multimeters/best-multimeters" className="text-accent hover:underline">
-              full Top 10 multimeter comparison
+              full multimeter roundup
             </Link>
             .
           </p>

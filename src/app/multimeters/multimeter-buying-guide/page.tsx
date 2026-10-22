@@ -28,7 +28,7 @@ export default function MultimeterBuyingGuidePage() {
         you&apos;re doing. This guide walks through the terms that matter before you compare
         models, so the numbers on our{" "}
         <Link href="/multimeters/best-multimeters" className="text-accent hover:underline">
-          Top 10 Best Multimeters
+          Best Multimeters
         </Link>{" "}
         comparison actually mean something to you.
       </p>
@@ -325,7 +325,7 @@ export default function MultimeterBuyingGuidePage() {
           <p className="text-muted leading-7">
             With these terms in hand, the spec columns in our{" "}
             <Link href="/multimeters/best-multimeters" className="text-accent hover:underline">
-              full Top 10 multimeter comparison
+              full multimeter roundup
             </Link>{" "}
             should read less like marketing copy and more like the actual safety and accuracy
             trade-offs they represent. Every spec in that comparison is checked against the

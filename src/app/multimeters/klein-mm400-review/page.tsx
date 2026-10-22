@@ -62,7 +62,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Klein Tools MM400 or Fluke 117?",
-      answer: "Both are CAT III 600V and auto-ranging, but only the Fluke 117 is True RMS, and it adds a low-impedance mode and built-in non-contact voltage detection. The MM400 adds temperature measurement the 117 lacks. For electrical work the 117 is the better meter; the MM400 only makes sense at a clear discount, especially now it is discontinued."
+      answer: "Both are CAT III 600V and auto-ranging, but only the Fluke 117 is True RMS, and it adds a low-impedance mode and built-in non-contact voltage detection. The MM400 adds temperature readings with its included thermocouple. For electrical work the 117 is the better meter; the MM400 only makes sense at a clear discount, especially now it is discontinued."
     },
     {
       question: "Why does Klein's reputation matter if it isn't a dedicated test-equipment brand?",
@@ -70,7 +70,7 @@ const review: ProductReviewContent = {
     }
   ],
   roundup: {
-    label: "See the full Top 10 multimeter comparison",
+    label: "See the full multimeter roundup",
     href: "/multimeters/best-multimeters"
   },
   related: [

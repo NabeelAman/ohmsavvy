@@ -36,7 +36,7 @@ export default function BestMultimeterForHomeUsePage() {
         heading="Best Multimeter for Home Use & DIY"
         tagline="Compared honestly — no pay-for-placement."
         description="You don't need an industrial-grade meter to check an outlet or troubleshoot an appliance. These are the easiest, most approachable picks from our full comparison for home and DIY work."
-        primaryCta={{ label: "See the Full Top 10", href: "/multimeters/best-multimeters" }}
+        primaryCta={{ label: "See the Full Roundup", href: "/multimeters/best-multimeters" }}
         secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
         stats={[
           { value: `${picks.length}`, label: "Compared" },

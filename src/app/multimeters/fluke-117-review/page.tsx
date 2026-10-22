@@ -74,7 +74,7 @@ const review: ProductReviewContent = {
     }
   ],
   roundup: {
-    label: "See the full Top 10 multimeter comparison",
+    label: "See the full multimeter roundup",
     href: "/multimeters/best-multimeters"
   },
   related: [

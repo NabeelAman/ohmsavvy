@@ -36,7 +36,7 @@ export default function BestMultimeterUnder100Page() {
         heading="Best Multimeter Under $100"
         tagline="Compared honestly — no pay-for-placement."
         description="Budget doesn't have to mean compromised — these picks from our full comparison keep auto-ranging, True RMS, and real CAT safety ratings without the premium-brand price tag."
-        primaryCta={{ label: "See the Full Top 10", href: "/multimeters/best-multimeters" }}
+        primaryCta={{ label: "See the Full Roundup", href: "/multimeters/best-multimeters" }}
         secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
         stats={[
           { value: `${picks.length}`, label: "Compared" },

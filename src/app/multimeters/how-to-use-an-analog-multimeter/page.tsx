@@ -183,7 +183,7 @@ export default function HowToUseAnAnalogMultimeterPage() {
                 href="/multimeters/best-multimeters"
                 className="group rounded-lg border border-border bg-surface p-5 hover:border-accent transition-colors"
               >
-                <p className="font-medium group-hover:text-accent transition-colors">Top 10 Multimeter Comparison →</p>
+                <p className="font-medium group-hover:text-accent transition-colors">Full Multimeter Roundup →</p>
                 <p className="mt-1 text-sm text-muted leading-6">
                   Every meter in our guide is digital — see why digital has mostly replaced analog
                   for everyday use.

@@ -107,6 +107,63 @@ export const picks: Pick[] = [
     cons: ["This US listing is the 110–127V version; buyers elsewhere need their region's variant", "Larger and more complex than a basic iron if you never do SMD rework"],
     ctaHref: "https://www.amazon.com/dp/B07RY5XWVG?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Current Hakko Station",
+    // Specs per hakkousa.com (FX-888DX page): 100W/120VAC station, FX-8801 65W iron with T18 tips, 50–480°C, ±1°C idle, ESD safe, 5 presets.
+    name: "Hakko FX-888DX",
+    image: "https://hakkousa.com/media/catalog/product/cache/df61d37d6011304edba9471c8a539a49/d/x/dx_001.jpg",
+    rating: 4.7,
+    bottomLine: "The FX-888D's replacement: the same T18 tips and handpiece, with a 100W station, a proper dial and five presets.",
+    verdict:
+      "Hakko replaced the FX-888D with the FX-888DX. It keeps the FX-8801 handpiece and T18 tips, the 50–480°C range and ±1°C idle stability, but the station rises from 70W to 100W, swaps the old button interface for a push-button rotary dial with a digital °F/°C display, stores five presets and adds a parameter lock against accidental calibration. It is ESD safe and also drives Hakko's tweezers, solder gun and larger irons.",
+    specs: [
+      { label: "Power", value: "100W station (65W iron)" },
+      { label: "Heat-up time", value: "Not stated by Hakko" },
+      { label: "Temperature control", value: "Digital, closed-loop, 50–480°C" },
+      { label: "Best for", value: "Serious hobbyists, repair benches" },
+    ],
+    pros: ["Same T18 tips as the FX-888D", "Rotary dial and five temperature presets", "ESD safe; drives other Hakko handpieces"],
+    cons: ["Some colours often show as unavailable", "Counterfeits exist: buy from authorized sellers", "No stated sleep or standby mode"],
+    ctaHref: "https://www.amazon.com/dp/B0D4DJW54S?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Stationless Iron",
+    // Specs per hakkousa.com (FX-601 page, US model FX601-02): 67W/120V, 240–540°C dial on the handle, ceramic heater with sensor, T19 tips, 68 g.
+    name: "Hakko FX-601",
+    image: "https://hakkousa.com/media/catalog/product/cache/df61d37d6011304edba9471c8a539a49/f/x/fx601_001.jpg",
+    rating: 4.4,
+    bottomLine: "A temperature-controlled Hakko iron with the dial on the handle and no station to find room for.",
+    verdict:
+      "The FX-601 is a mains-powered iron with closed-loop temperature control built into the handle: a ceramic heater with its own sensor, a 240–540°C dial and a lock key to stop it being knocked. At 67W it reaches higher than most bench stations, which suits heavy wire, terminals and stained-glass work, but it has no display and its lowest setting of 240°C is warm for fine electronics.",
+    specs: [
+      { label: "Power", value: "67W (120V)" },
+      { label: "Heat-up time", value: "Not stated by Hakko" },
+      { label: "Temperature control", value: "Dial on handle, closed-loop, 240–540°C" },
+      { label: "Best for", value: "Heavy wire, terminals, stained glass" },
+    ],
+    pros: ["No station: plugs straight into the wall", "High 540°C ceiling for big joints", "Lock key keeps the setting fixed"],
+    cons: ["No temperature display", "240°C minimum is hot for delicate SMD work", "Sold by third parties on Amazon; Hakko warns of counterfeits"],
+    ctaHref: "https://www.amazon.com/dp/B00FZPSX3G?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Portable Smart Iron",
+    // Specs per Miniware's Amazon listing (B0BF63H4ZC); Miniware's own site was unreachable. Maximum wattage figures conflict, so none is quoted.
+    name: "Miniware TS101",
+    image: "https://m.media-amazon.com/images/I/514HV-4EdgL._AC_SL1000_.jpg",
+    rating: 4.4,
+    bottomLine: "A portable smart iron with an OLED screen, USB-C PD or DC input and TS100 tip compatibility.",
+    verdict:
+      "Miniware's TS101 is the successor to the TS100: a portable iron with an OLED display, 50–400°C range, motion-sensing sleep, an overheat warning and a Boost button, powered from USB-C PD (9–20V) or a 9–24V DC supply. This kit includes a 65W USB-C adapter, and TS100 tips fit. It goes head to head with the Pinecil V2; Miniware's listing gives conflicting wattage figures, so we don't quote one.",
+    specs: [
+      { label: "Power", value: "USB-C PD 9–20V or DC 9–24V (65W adapter included)" },
+      { label: "Heat-up time", value: "Not stated" },
+      { label: "Temperature control", value: "Digital, OLED, 50–400°C" },
+      { label: "Best for", value: "Portable kits, field repairs" },
+    ],
+    pros: ["USB-C PD or DC input; 65W adapter in the box", "Motion-sensing sleep and Boost button", "Takes TS100 tips"],
+    cons: ["400°C ceiling is lower than bench stations", "Maximum wattage not clearly stated by Miniware", "Amazon listing is a kit sold by a third-party seller"],
+    ctaHref: "https://www.amazon.com/dp/B0BF63H4ZC?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

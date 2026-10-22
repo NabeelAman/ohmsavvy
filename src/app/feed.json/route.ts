@@ -11,7 +11,7 @@ const SITE = "https://ohmsavvy.com";
 const ROUNDUPS: { category: Category; title: string; description: string; href: string }[] = [
   {
     category: "multimeters",
-    title: "Top 10 Best Multimeters",
+    title: "Best Multimeters",
     description: "Every multimeter we recommend, ranked and compared on safety rating, accuracy and value.",
     href: "/multimeters/best-multimeters",
   },

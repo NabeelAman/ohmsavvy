@@ -81,7 +81,7 @@ export default function HowToUseAMultimeterPage() {
             <p className="px-4 py-3 text-xs text-muted leading-5">
               Most multimeters, including every pick in our{" "}
               <Link href="/multimeters/best-multimeters" className="text-accent hover:underline">
-                Top 10 comparison
+                full multimeter roundup
               </Link>
               , share the same core layout. The steps below apply regardless of which one you own.
             </p>
@@ -397,7 +397,7 @@ export default function HowToUseAMultimeterPage() {
                 href="/multimeters/best-multimeters"
                 className="group rounded-lg border border-border bg-surface p-5 hover:border-accent transition-colors"
               >
-                <p className="font-medium group-hover:text-accent transition-colors">Top 10 Multimeter Comparison →</p>
+                <p className="font-medium group-hover:text-accent transition-colors">Full Multimeter Roundup →</p>
                 <p className="mt-1 text-sm text-muted leading-6">
                   Verified picks across every budget, spec-checked against manufacturer data.
                 </p>

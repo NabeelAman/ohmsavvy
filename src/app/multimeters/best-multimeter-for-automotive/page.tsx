@@ -36,7 +36,7 @@ export default function BestMultimeterForAutomotivePage() {
         heading="Best Multimeter for Automotive Diagnostics"
         tagline="Compared honestly — no pay-for-placement."
         description="From basic battery/fuse checks to RPM, dwell, and duty-cycle diagnostics — these are the picks from our full comparison best suited to working on cars."
-        primaryCta={{ label: "See the Full Top 10", href: "/multimeters/best-multimeters" }}
+        primaryCta={{ label: "See the Full Roundup", href: "/multimeters/best-multimeters" }}
         secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
         stats={[
           { value: `${picks.length}`, label: "Compared" },

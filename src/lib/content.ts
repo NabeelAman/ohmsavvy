@@ -1491,6 +1491,13 @@ export const content: ContentEntry[] = [
     description: "Quadrature phase, direction, rpm and index",
     href: "/oscilloscopes/how-to-measure-an-encoder-signal-using-a-two-channel-oscilloscope",
   },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 115 vs Klein Tools MM400",
+    description: "True RMS and 6,000 counts vs temperature and µA",
+    href: "/multimeters/fluke-115-vs-klein-mm400",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

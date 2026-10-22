@@ -87,6 +87,158 @@ export const picks: Pick[] = [
     cons: ["Only 2 channels, vs. 4 on the Rigol and Siglent", "The built-in generator is single-channel (25 MHz)"],
     ctaHref: "https://www.amazon.com/dp/B0D6B7HRMG?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best 12-bit Upgrade",
+    // Specs per rigolna.com (DHO800 series page and datasheet). Photo: main image of the exact Amazon listing (B0CGHQHQN7), panel reads "DHO804".
+    name: "Rigol DHO804",
+    image: "https://m.media-amazon.com/images/I/71FtRIGVfLL._SL1500_.jpg",
+    rating: 4.7,
+    bottomLine: "Four channels, 12-bit resolution and a 7-inch touchscreen in a compact body that runs from USB-C power.",
+    verdict:
+      "The DHO804 brings 12-bit vertical resolution to a beginner budget: 70 MHz, four channels, up to 1.25 GSa/s and 25 Mpts with one channel on, a 7-inch 1024 × 600 capacitive touchscreen, HDMI output and serial decoding of UART, I2C, SPI, CAN and parallel buses. It is powered over USB-C, so it can run from a portable power source. There is no built-in signal generator or logic channels, and sample rate and memory fall as you enable more channels (312.5 MSa/s and 5 Mpts with all four on).",
+    specs: [
+      { label: "Bandwidth", value: "70MHz" },
+      { label: "Channels", value: "4" },
+      { label: "Sample rate", value: "1.25 GSa/s (1 ch); 312.5 MSa/s (4 ch)" },
+      { label: "Best for", value: "Hobbyists who want 12-bit detail and a touchscreen" },
+    ],
+    pros: ["12-bit vertical resolution", "7-inch 1024 × 600 touchscreen and HDMI out", "USB-C powered, compact body"],
+    cons: ["No built-in signal generator or logic channels", "Per-channel sample rate drops to 312.5 MSa/s with four channels on"],
+    ctaHref: "https://www.amazon.com/dp/B0CGHQHQN7?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 2-Channel Rigol",
+    // Specs per rigolna.com and the DS1000Z-E datasheet (24 Mpts standard per the datasheet; the series page says 12M standard). Photo: Amazon listing B08J3SDBDT, panel reads "DS1102Z-E".
+    name: "Rigol DS1102Z-E",
+    image: "https://m.media-amazon.com/images/I/710w1XllKOL._SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "Rigol's two-channel, 100 MHz benchtop with deep memory, for people who never need a third or fourth channel.",
+    verdict:
+      "The DS1102Z-E is a two-channel version of the DS1000Z platform with 100 MHz bandwidth: 1 GSa/s on one channel (500 MSa/s on two), 24 Mpts of memory per Rigol's datasheet, a 7-inch 800 × 480 display, up to 30,000 waveforms per second and standard decoding of UART, I2C, SPI and parallel buses. It has no built-in generator or digital channels. Choose it over the DS1054Z if bandwidth matters more to you than channel count.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s (1 ch); 500 MSa/s (2 ch)" },
+      { label: "Best for", value: "Two-channel debugging, students" },
+    ],
+    pros: ["100 MHz on two channels", "Deep memory: 24 Mpts per Rigol's datasheet", "Serial decoding included"],
+    cons: ["Only 2 channels", "8-bit ADC (12-bit only in High Resolution mode)", "No built-in generator"],
+    ctaHref: "https://www.amazon.com/dp/B08J3SDBDT?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 200MHz Value",
+    // Specs per siglentna.com (SDS1000X-E series). Photo: Amazon listing B06XZML6RD, panel reads "SDS1202X-E".
+    name: "Siglent SDS1202X-E",
+    image: "https://m.media-amazon.com/images/I/811dT41e3HL._SL1500_.jpg",
+    rating: 4.5,
+    bottomLine: "200 MHz on two channels with a fast 100,000 wfm/s update rate and standard serial decoding.",
+    verdict:
+      "The SDS1202X-E is the two-channel member of Siglent's X-E line with 200 MHz bandwidth: 1 GSa/s with one channel (500 MSa/s each with two), 14 Mpts of memory on one channel, 100,000 waveforms per second (400,000 in sequence mode), a 7-inch 800 × 480 display and standard I2C, SPI, UART, CAN and LIN trigger and decode. The MSO, AWG module, Bode plot and Wi-Fi options belong to the four-channel models, so don't count on them here.",
+    specs: [
+      { label: "Bandwidth", value: "200MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s (1 ch); 500 MSa/s (2 ch)" },
+      { label: "Best for", value: "Faster digital and switching work on two channels" },
+    ],
+    pros: ["200 MHz bandwidth", "100,000 wfm/s update rate", "Serial trigger and decode as standard"],
+    cons: ["Only 2 channels", "No MSO, AWG or Bode plot (four-channel models only)", "Memory halves to 7 Mpts per channel with both on"],
+    ctaHref: "https://www.amazon.com/dp/B06XZML6RD?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Basic Benchtop",
+    // Specs per siglentna.com (SDS1000CML+ series). Siglent's Amazon listing says 1 Mpts memory; Siglent NA says 2 Mpts long-memory / 40 Kpts normal. Photo: Amazon listing B01J1MQC3G.
+    name: "Siglent SDS1102CML+",
+    image: "https://m.media-amazon.com/images/I/81yeXZHp8TL._SL1500_.jpg",
+    rating: 4.2,
+    bottomLine: "A simple 100 MHz, two-channel benchtop with a frequency counter and pass/fail testing, but shallow memory.",
+    verdict:
+      "The SDS1102CML+ is an older, simpler Siglent benchtop: 100 MHz, two channels, 1 GSa/s real-time, a 7-inch 800 × 480 display, 32 automatic measurements, FFT, a 6-digit frequency counter and pass/fail testing. Its memory is the weak point: Siglent lists 40 Kpts in normal mode and 2 Mpts in long-memory mode (its Amazon listing says 1 Mpts). It suits learning the basics; for deeper captures the X-E series and Rigol's Z-E models offer far more memory.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s" },
+      { label: "Best for", value: "Classrooms and basic waveform viewing" },
+    ],
+    pros: ["100 MHz on two channels", "6-digit frequency counter and pass/fail", "Still sold new by Siglent NA"],
+    cons: ["Shallow memory: 40 Kpts normal, 2 Mpts long-memory", "Older platform without serial decoding", "Sources disagree on memory depth"],
+    ctaHref: "https://www.amazon.com/dp/B01J1MQC3G?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 3-in-1 Handheld",
+    // Specs per hantek.com (Hantek2000 series page). Photo: hantek.com, bezel reads "Hantek2D72".
+    name: "Hantek 2D72",
+    image: "https://www.hantek.com/uploadpic/hantek/image/20200530/20200530083942_1184605554.jpg",
+    rating: 4.3,
+    bottomLine: "A handheld oscilloscope, multimeter and signal generator in one: 70 MHz, two channels, battery powered.",
+    verdict:
+      "The 2D72 combines a 70 MHz, two-channel oscilloscope (250 MSa/s on one channel), a 4,000-count multimeter and a one-channel signal generator (sine to 25 MHz) in a 624 g handheld with a stand and USB-C charging. The trade-offs are a 2.8-inch 320 × 240 screen and very short record length: 6K samples on one channel, 3K per channel with two. Hantek's site and the Amazon listing disagree on whether batteries are included.",
+    specs: [
+      { label: "Bandwidth", value: "70MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "250 MSa/s (1 ch); 125 MSa/s (2 ch)" },
+      { label: "Best for", value: "Field service and portable kits" },
+    ],
+    pros: ["Scope, multimeter and generator in one handheld", "Sine output to 25 MHz", "Battery powered with USB-C charging"],
+    cons: ["Small 2.8-inch screen", "Record length only 6K samples", "Battery inclusion differs between Hantek and the listing"],
+    ctaHref: "https://www.amazon.com/dp/B0DYVD4YF6?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Budget Handheld 3-in-1",
+    // Specs per fnirsi.com (2C53T page) and FNIRSI's Amazon listing. Vertical resolution isn't stated by FNIRSI.
+    name: "FNIRSI 2C53T",
+    image: "https://www.fnirsi.com/cdn/shop/files/fnirsi-2c53t-50mhz-250mss-handheld-3in1-oscilloscope-multimeter-signal-generatordigital-oscilloscopefnirsifnirsi-3123073.jpg",
+    rating: 4.1,
+    bottomLine: "A low-cost two-channel handheld scope with a 19,999-count True RMS multimeter and a basic generator.",
+    verdict:
+      "The 2C53T pairs a 50 MHz, two-channel scope at 250 MS/s with a 19,999-count True RMS multimeter (to 1000V DC and 750V AC) and a simple function generator to 50 kHz, in a 300 g handheld with a 3,000 mAh battery. The scope side is basic: 1 Kpts record depth, a 2.8-inch 320 × 240 screen and a ±400V input limit, and FNIRSI doesn't state its vertical resolution. Its multimeter is stronger than the Hantek 2D72's; its scope and generator are weaker.",
+    specs: [
+      { label: "Bandwidth", value: "50MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "250 MSa/s" },
+      { label: "Best for", value: "Beginners who want a meter and scope in one" },
+    ],
+    pros: ["19,999-count True RMS multimeter built in", "Light: 300 g", "Built-in 3,000 mAh battery"],
+    cons: ["1 Kpts record depth", "Generator tops out at 50 kHz", "Vertical resolution not stated"],
+    ctaHref: "https://www.amazon.com/dp/B0D6VX6BFL?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Compact USB Scope",
+    // Specs per picotech.com (PicoScope 2000 series page and datasheet). Photo: main image of the exact Amazon listing (B00GZMRZ3M); the case reads "PicoScope 2000 Series".
+    name: "PicoScope 2204A",
+    image: "https://m.media-amazon.com/images/I/71qPziZzn9L._SL1500_.jpg",
+    rating: 4.3,
+    bottomLine: "A pocket USB scope with Pico's polished software: serial decoding, spectrum analysis and a built-in generator.",
+    verdict:
+      "The 2204A is a two-channel, 10 MHz USB oscilloscope that uses your computer's screen through PicoScope 7 software on Windows, macOS or Linux. It samples at 100 MS/s on one channel (50 MS/s on two), has 8 kS of capture memory but can stream up to 100 MS over USB, and adds a function generator and AWG to 100 kHz, serial protocol decoding, a spectrum analyzer, mask testing and math channels. Its 10 MHz bandwidth limits it to audio, sensors and slower digital buses.",
+    specs: [
+      { label: "Bandwidth", value: "10MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "100 MS/s (1 ch); 50 MS/s (2 ch)" },
+      { label: "Best for", value: "Laptop users, audio and slow digital buses" },
+    ],
+    pros: ["Polished PicoScope 7 software on Windows, macOS and Linux", "Serial decoding, spectrum analyzer and mask testing", "USB powered, under 0.2 kg"],
+    cons: ["Only 10 MHz bandwidth", "8 kS capture memory (streaming aside)", "Needs a computer to use"],
+    ctaHref: "https://www.amazon.com/dp/B00GZMRZ3M?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Lab-in-a-Box",
+    // Specs per digilent.com (Analog Discovery 3 shop page). Buffer depth is not stated publicly; Digilent's spec pages were unreachable.
+    name: "Digilent Analog Discovery 3",
+    image: "https://cdn11.bigcommerce.com/s-7gavg/images/stencil/1280x1280/products/752/6126/AnalogDiscovery3-obl-2000__36112.1685545096.png?c=2",
+    rating: 4.6,
+    bottomLine: "A USB instrument that is a 14-bit two-channel scope, two-channel generator, 16-channel logic analyzer and power supply.",
+    verdict:
+      "The Analog Discovery 3 replaces a bench of instruments with one USB-C device and Digilent's free WaveForms software: a two-channel, 14-bit, 125 MS/s oscilloscope with 30+ MHz bandwidth (using the BNC adapter), a two-channel 14-bit waveform generator, 16 digital I/O lines for logic analysis and pattern generation with SPI, I2C, UART and CAN decoding, programmable ±5V supplies, and spectrum, network and impedance analyzers. It needs a computer, and Digilent doesn't publish its buffer size on the shop page.",
+    specs: [
+      { label: "Bandwidth", value: "30+ MHz (with BNC adapter)" },
+      { label: "Channels", value: "2 analog + 16 digital" },
+      { label: "Sample rate", value: "125 MS/s per channel" },
+      { label: "Best for", value: "Students and embedded developers" },
+    ],
+    pros: ["14-bit scope and two-channel 14-bit generator", "16-channel logic analyzer and protocol decoding", "Programmable ±5V supplies"],
+    cons: ["Needs a computer to use", "Full bandwidth needs the BNC adapter", "Buffer size not published on the shop page"],
+    ctaHref: "https://www.amazon.com/dp/B0C4L59R83?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

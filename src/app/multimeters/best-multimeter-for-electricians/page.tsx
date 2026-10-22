@@ -36,7 +36,7 @@ export default function BestMultimeterForElectriciansPage() {
         heading="Best Multimeter for Electricians"
         tagline="Compared honestly — no pay-for-placement."
         description="Panel work demands real CAT III/IV protection, True RMS accuracy, and a meter that survives daily field use. These are the picks from our full comparison that actually hold up on the job."
-        primaryCta={{ label: "See the Full Top 10", href: "/multimeters/best-multimeters" }}
+        primaryCta={{ label: "See the Full Roundup", href: "/multimeters/best-multimeters" }}
         secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
         stats={[
           { value: `${picks.length}`, label: "Compared" },

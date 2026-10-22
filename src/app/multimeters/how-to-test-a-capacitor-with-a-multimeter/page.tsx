@@ -80,7 +80,7 @@ export default function HowToTestACapacitorWithAMultimeterPage() {
               Any auto-ranging multimeter with a resistance (Ω) mode can do the basic pass/fail
               check — see our{" "}
               <Link href="/multimeters/best-multimeters" className="text-accent hover:underline">
-                Top 10 comparison
+                full multimeter roundup
               </Link>
               . A dedicated capacitance (F) mode gives a more precise number.
             </p>
@@ -238,7 +238,7 @@ export default function HowToTestACapacitorWithAMultimeterPage() {
                 href="/multimeters/best-multimeters"
                 className="group rounded-lg border border-border bg-surface p-5 hover:border-accent transition-colors"
               >
-                <p className="font-medium group-hover:text-accent transition-colors">Top 10 Multimeter Comparison →</p>
+                <p className="font-medium group-hover:text-accent transition-colors">Full Multimeter Roundup →</p>
                 <p className="mt-1 text-sm text-muted leading-6">
                   Verified meters capable of this kind of diagnostic work, across every budget.
                 </p>

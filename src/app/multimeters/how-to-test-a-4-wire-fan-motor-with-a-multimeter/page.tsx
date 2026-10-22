@@ -111,7 +111,11 @@ export default function HowToTestA4WireFanMotorWithAMultimeterPage() {
           <li>
             This page covers low-voltage DC fans of the kind used in computers, chargers and electronics. Some
             mains AC fan motors also have four wires (speed taps or capacitor leads); they are tested
-            differently and with the power isolated. Do not open a computer power supply to test its internal
+            differently and with the power isolated (see{" "}
+            <Link href="/multimeters/how-to-test-a-fan-motor-capacitor-with-a-multimeter" className="text-accent hover:underline">
+              how to test a fan motor capacitor
+            </Link>
+            ). Do not open a computer power supply to test its internal
             fan: its capacitors can hold a dangerous charge after unplugging.
           </li>
           <li>

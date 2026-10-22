@@ -44,7 +44,11 @@ export default function HowToTestASolenoidValveCoilResistanceWithAMultimeterPage
           voltage and power rating predicts. A second test, from each terminal to the valve body, catches
           insulation faults. This guide shows how to work out the expected figure, why AC coils read lower
           than the formula suggests, how temperature shifts the result, and what a good coil on a valve that
-          still will not open means.
+          still will not open means. For car starter solenoids and push/pull actuators, see{" "}
+          <Link href="/multimeters/how-to-test-a-solenoid-coil-with-a-multimeter" className={link}>
+            how to test a solenoid coil with a multimeter
+          </Link>
+          .
         </>
       }
       aside={{

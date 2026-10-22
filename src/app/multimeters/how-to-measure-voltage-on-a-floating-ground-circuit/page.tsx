@@ -45,8 +45,8 @@ export default function HowToMeasureVoltageOnAFloatingGroundCircuitPage() {
         alt: "Klein Tools MM400 digital multimeter",
         caption: (
           <>
-            Some electrician-oriented meters include a low-impedance (LoZ) mode specifically for this.
-            See our{" "}
+            Any multimeter&apos;s DC voltage mode works for the load and direct-measurement
+            techniques on this page. See our{" "}
             <Link href="/multimeters/klein-mm400-review" className={link}>
               Klein Tools MM400 review
             </Link>

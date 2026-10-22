@@ -975,7 +975,8 @@
       "keyword": "cold solder joint causes",
       "category": "soldering-irons",
       "type": "educational",
-      "status": "pending"
+      "status": "skip-duplicate",
+      "notes": "covered by /soldering-irons/how-to-fix-a-cold-solder-joint-on-a-circuit-board"
     },
     {
       "keyword": "best solder for electronics",

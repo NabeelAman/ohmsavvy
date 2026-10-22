@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Category } from "@/lib/content";
 import { skipOptimizer } from "@/lib/images";
+import { categoryOfPick, pickByName } from "@/lib/catalog";
 import { ContentLinks } from "./ContentLinks";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
+import { Button } from "./ui/Button";
 import { Eyebrow } from "./ui/Eyebrow";
 
 // Shared building blocks for "how-to" / explainer articles, extracted from the
@@ -284,27 +287,28 @@ export function Figure({ caption, children }: { caption: React.ReactNode; childr
 }
 
 /**
- * Product photo cards linking to our reviews. Pass only products we have a
- * verified photo for; a missing image falls back to a plain name tile.
+ * Product photo cards linking to our reviews, each with the product's Amazon
+ * affiliate button (looked up from the verified pick by name, or passed as
+ * `ctaHref`) and the Associates disclosure beneath the grid.
  */
 export function ProductStrip({
   title,
   items,
 }: {
   title: string;
-  items: { name: string; image?: string; alt: string; href: string; note: string }[];
+  items: { name: string; image?: string; alt: string; href: string; note: string; ctaHref?: string }[];
 }) {
+  const withCta = items.map((p) => ({ ...p, cta: p.ctaHref ?? pickByName(p.name)?.ctaHref }));
   return (
     <div>
       <p className="font-display text-xs uppercase tracking-wide text-accent mb-3">{title}</p>
       <div className={`grid gap-4 ${items.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
-        {items.map((p) => (
-          <Link
+        {withCta.map((p) => (
+          <div
             key={p.href}
-            href={p.href}
-            className="group rounded-lg border border-border bg-surface-raised shadow-sm overflow-hidden hover:border-accent transition-colors"
+            className="group flex flex-col rounded-lg border border-border bg-surface-raised shadow-sm overflow-hidden hover:border-accent transition-colors"
           >
-            <div className="relative h-36 bg-surface">
+            <Link href={p.href} className="relative block h-36 bg-surface">
               {p.image ? (
                 <Image
                   src={p.image}
@@ -315,17 +319,33 @@ export function ProductStrip({
                   className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                 />
               ) : (
-                <div className="flex h-full items-center justify-center font-display text-sm text-muted">{p.name}</div>
+                <PhotoPlaceholder category={categoryOfPick(p.name)} size="sm" />
               )}
+            </Link>
+            <div className="flex flex-1 flex-col p-4 border-t border-border">
+              <Link href={p.href} className="font-medium text-sm hover:text-accent transition-colors">
+                {p.name}
+              </Link>
+              <p className="mt-1 flex-1 text-xs text-muted leading-5">{p.note}</p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+                {p.cta && (
+                  <Button href={p.cta} className="px-3! py-1.5! text-xs!">
+                    Check price on Amazon
+                  </Button>
+                )}
+                <Link href={p.href} className="text-xs font-medium text-accent hover:underline">
+                  Read the review →
+                </Link>
+              </div>
             </div>
-            <div className="p-4 border-t border-border">
-              <p className="font-medium text-sm group-hover:text-accent transition-colors">{p.name}</p>
-              <p className="mt-1 text-xs text-muted leading-5">{p.note}</p>
-              <p className="mt-2 text-xs font-medium text-accent">Read the review →</p>
-            </div>
-          </Link>
+          </div>
         ))}
       </div>
+      {withCta.some((p) => p.cta) && (
+        <p className="mt-3 text-[11px] text-muted leading-5">
+          As an Amazon Associate I earn from qualifying purchases. Prices and availability are shown on Amazon.
+        </p>
+      )}
     </div>
   );
 }

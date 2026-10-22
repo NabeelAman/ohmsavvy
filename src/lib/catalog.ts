@@ -47,3 +47,13 @@ export function categoryOfPick(name: string): Category | undefined {
   const categories: Category[] = ["multimeters", "soldering-irons", "oscilloscopes"];
   return categories.find((c) => getPicks(c).some((p) => p.name === name));
 }
+
+/** A verified pick by exact name, from any category (e.g. to reuse its affiliate link). */
+export function pickByName(name: string): Pick | undefined {
+  const categories: Category[] = ["multimeters", "soldering-irons", "oscilloscopes"];
+  for (const c of categories) {
+    const p = getPicks(c).find((x) => x.name === name);
+    if (p) return p;
+  }
+  return undefined;
+}

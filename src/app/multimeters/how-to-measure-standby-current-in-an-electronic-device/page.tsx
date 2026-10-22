@@ -180,7 +180,12 @@ export default function HowToMeasureStandbyCurrentInAnElectronicDevicePage() {
         />
         <p className="text-muted leading-7 mt-4">
           Not every meter has a µA range; many have only mA and A, which limits how small a current you can
-          read. Your manual lists the ranges and resolution.
+          read. Your manual lists the ranges and resolution. For very small currents and the special care they
+          need, see{" "}
+          <Link href="/multimeters/how-to-measure-microamps-with-a-multimeter" className={link}>
+            how to measure microamps with a multimeter
+          </Link>
+          .
         </p>
       </section>
 

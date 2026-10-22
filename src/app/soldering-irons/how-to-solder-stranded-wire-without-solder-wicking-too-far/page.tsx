@@ -343,8 +343,12 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
         <p className="text-muted leading-7 mb-4">
           Soldering is a good fit for many connections, but the stiff transition it creates is a real
           weakness on wire that moves or vibrates. That is why vehicle, aircraft and machinery wiring
-          commonly relies on crimped terminals made with the correct tool. Requirements vary by
-          industry and manufacturer, so treat this as a general guide:
+          commonly relies on crimped terminals made with the correct tool. For solder cups, pins and strain
+          relief on small connectors, see{" "}
+          <Link href="/soldering-irons/how-to-solder-small-gauge-stranded-wire-to-a-connector" className="text-accent underline underline-offset-2 hover:opacity-80">
+            how to solder small-gauge stranded wire to a connector
+          </Link>
+          . Requirements vary by industry and manufacturer, so treat this as a general guide:
         </p>
         <DataTable
           head={["Situation", "Usually better", "Why"]}

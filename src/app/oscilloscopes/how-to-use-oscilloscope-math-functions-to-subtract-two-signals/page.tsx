@@ -136,7 +136,11 @@ export default function HowToUseOscilloscopeMathToSubtractSignalsPage() {
           the difference. That only works as well as the two channels match: a small gain or timing mismatch
           between them leaves part of the shared voltage in the result. That is why this method is called
           pseudo-differential, and why it suits differences that are a reasonable fraction of the shared
-          voltage.
+          voltage. Probe matching, deskew and common-mode limits are covered in{" "}
+          <Link href="/oscilloscopes/how-to-measure-a-differential-signal-with-a-two-channel-oscilloscope" className={link}>
+            how to measure a differential signal with a two-channel oscilloscope
+          </Link>
+          .
         </KeyIdea>
       </section>
 

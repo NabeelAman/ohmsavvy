@@ -55,7 +55,7 @@ const review: ProductReviewContent = {
     {
       name: "Klein Tools MM400",
       href: "/multimeters/klein-mm400-review",
-      reason: "A step up in durability, with a low-impedance mode."
+      reason: "CAT III 600V and drop-rated to 1 m, with temperature measurement, but not True RMS and now discontinued."
     }
   ],
   faqs: [

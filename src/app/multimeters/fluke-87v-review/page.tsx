@@ -51,7 +51,7 @@ const review: ProductReviewContent = {
     {
       name: "Klein Tools MM400",
       href: "/multimeters/klein-mm400-review",
-      reason: "A mid-range price with CAT III 600V, True RMS, and a low-impedance mode."
+      reason: "A cheaper CAT III 600V meter with temperature and capacitance, but not True RMS and now discontinued."
     }
   ],
   faqs: [

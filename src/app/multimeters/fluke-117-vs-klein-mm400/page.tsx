@@ -5,14 +5,14 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Fluke 117 vs Klein Tools MM400",
-  description: "Fluke 117 vs Klein Tools MM400: both CAT III 600V and True RMS. How built-in NCV, a low-impedance mode and the price gap decide which meter to buy.",
+  description: "Fluke 117 vs Klein Tools MM400: both CAT III 600V, but only the 117 is True RMS with LoZ and NCV. The MM400 adds temperature and is now discontinued.",
   path: "/multimeters/fluke-117-vs-klein-mm400",
 });
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",
   heading: "Fluke 117 vs Klein Tools MM400",
-  intro: "Both are CAT III 600V, True RMS, auto-ranging meters for residential and light commercial electrical work. The difference is in the extras each one brings, and how much you value Fluke's reliability record against a lower price.",
+  intro: "Both are CAT III 600V, auto-ranging meters for residential and light commercial electrical work, but they are not equals: the Fluke 117 is True RMS with a low-impedance mode and built-in NCV, while the Klein MM400 is not True RMS and adds temperature. Klein has also discontinued the MM400.",
   a: {
     pick: picks.find((p) => p.name === "Fluke 117")!,
     reviewHref: "/multimeters/fluke-117-review",
@@ -28,20 +28,22 @@ const comparison: ProductComparisonContent = {
     reviewHref: "/multimeters/klein-mm400-review",
     imageAlt: "Klein Tools MM400 digital multimeter",
     chooseIf: [
-      "You want CAT III 600V and True RMS for less money",
-      "You want a low-impedance mode to rule out ghost-voltage readings",
+      "You find one at a clear discount and mostly measure ordinary sine-wave mains",
+      "You want temperature, capacitance and duty-cycle readings in the same meter",
       "You value field durability built for tradespeople over brand name recognition",
     ]
   },
   differences: [
     "The Fluke 117 has non-contact voltage (NCV) detection built in.",
-    "The Klein MM400 has a low-impedance mode that avoids false readings from ghost voltages.",
+    "The Fluke 117 is True RMS and has a low-impedance (AutoVolt/LoZ) mode; Klein's feature chart shows neither on the MM400.",
+    "The MM400 measures temperature (0°F to 1000°F with the supplied thermocouple); the 117 does not.",
+    "Klein lists the MM400 as no longer in production, replaced by the MM420.",
     "The MM400 sits at a mid-range price; the Fluke 117 carries a premium.",
     "Fluke's reputation rests on well-documented reliability; Klein's on field durability among tradespeople.",
-    "Both share the same core safety and accuracy fundamentals — CAT III 600V and True RMS — so neither gives up measurement capability to the other.",
+    "Both share a CAT III 600V rating, so either is suitable for household panels; the accuracy gap shows on distorted waveforms, not on clean mains.",
     "Neither meter offers Bluetooth or app connectivity — if wireless logging matters to you, you'd need to look outside this pairing entirely."
   ],
-  bottomLine: "On core safety and accuracy, these two are equal. If budget matters, the MM400 gives up little most buyers will miss. If you want built-in NCV and Fluke's reliability record, the 117 is worth the premium.",
+  bottomLine: "The Fluke 117 is the better electrician's meter: True RMS, low-impedance mode and NCV on the same CAT III 600V rating. The MM400 is a capable but discontinued general-purpose meter; buy it only at a clear discount, or if temperature readings matter more to you than True RMS.",
   faqs: [
     {
       question: "Do the Fluke 117 and Klein MM400 have the same safety rating?",
@@ -49,11 +51,11 @@ const comparison: ProductComparisonContent = {
     },
     {
       question: "Which is better for home electrical work?",
-      answer: "Either is suitable. The MM400 costs less, and the Fluke 117 adds built-in NCV detection. If you only need a meter a few times a year, our home-use guide covers cheaper options too."
+      answer: "Either is safe for household panels. The Fluke 117 reads more reliably on modern electronic loads and adds NCV; the MM400 adds temperature. If you only need a meter a few times a year, our home-use guide covers cheaper True RMS options too."
     },
     {
       question: "What is a low-impedance mode and why would I want it?",
-      answer: "It intentionally loads the circuit slightly to drain away \"ghost voltage\" — stray induced voltage on a disconnected wire that a high-impedance meter can falsely read as live. It helps confirm a circuit is genuinely de-energized before you work on it, which is exactly the kind of feature tradespeople value in day-to-day panel work."
+      answer: "It intentionally loads the circuit slightly to drain away \"ghost voltage\" — stray induced voltage on a disconnected wire that a high-impedance meter can falsely read as live. It helps confirm a circuit is genuinely de-energized before you work on it, which is exactly the kind of feature tradespeople value in day-to-day panel work. The Fluke 117 has one; the MM400 does not."
     },
     {
       question: "Should I rely on non-contact voltage detection by itself before touching a wire?",

@@ -86,20 +86,21 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best for Electrical Panels",
+    // Specs per Klein's MM400 product page and multimeter features chart (True RMS and LoZ are MM700-only).
     name: "Klein Tools MM400",
     image: "https://data.kleintools.com/sites/all/product_assets/hires/klein/mm400_photo.jpg",
-    rating: 4.6,
-    bottomLine: "Splits the difference between the Fluke and budget picks, backed by Klein's reputation with tradespeople.",
+    rating: 4.4,
+    bottomLine: "A solid auto-ranging CAT III meter with temperature and capacitance, but not True RMS, and Klein has now discontinued it.",
     verdict:
-      "Klein's MM400 splits the difference between the Fluke and budget options — auto-ranging, True RMS, and a CAT III rating, backed by Klein's reputation among tradespeople.",
+      "Klein's MM400 is an auto-ranging, CAT III 600V meter with a 4,000-count backlit display that also reads temperature, capacitance, frequency and duty cycle. It is not True RMS, and Klein lists it as no longer in production (the MM420 replaces it), so buy it only at a clear discount or look at a True RMS meter for HVAC and variable-speed drive work.",
     specs: [
-      { label: "Accuracy", value: "True RMS" },
+      { label: "Accuracy", value: "Auto-ranging (not True RMS)" },
       { label: "Safety rating", value: "CAT III 600V" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Tradespeople, home electrical work" },
     ],
-    pros: ["Strong reputation for field durability", "Low-impedance mode avoids false readings", "Mid-range price for pro-level features"],
-    cons: ["Bulkier than pocket-sized meters", "No app connectivity"],
+    pros: ["Drop-rated to 1 m (3.3 ft) for job-site use", "Measures temperature, capacitance, frequency and duty cycle", "Backlight, min/max and range hold"],
+    cons: ["Not True RMS, so readings on non-sinusoidal signals are less accurate", "Discontinued by Klein (replaced by the MM420)", "No low-impedance mode or NCV"],
     ctaHref: "https://www.amazon.com/dp/B018EXZO8M?tag=ohmsavvy-20",
   },
   {

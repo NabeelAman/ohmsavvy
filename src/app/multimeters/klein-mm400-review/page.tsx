@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Klein Tools MM400 Review",
-  description: "Klein Tools MM400 review: CAT III 600V, True RMS and a low-impedance mode at a mid-range price. Who it suits, and when the Fluke 117 is still worth it.",
+  description: "Klein Tools MM400 review: an auto-ranging CAT III 600V meter with temperature and capacitance, but not True RMS and now discontinued. Who it still suits.",
   path: "/multimeters/klein-mm400-review",
   image: picks.find((p) => p.name === "Klein Tools MM400")?.image,
 });
@@ -19,29 +19,30 @@ const review: ProductReviewContent = {
   imageAlt: "Klein Tools MM400 auto-ranging digital multimeter",
   considerIf: [
     "You need CAT III 600V for panel and building-wiring work but don't want to pay Fluke prices",
-    "You've had ghost-voltage readings before — the low-impedance mode is designed to avoid them",
+    "You want temperature, capacitance and frequency in one auto-ranging meter",
     "You want a brand with an established reputation among tradespeople"
   ],
   skipIf: [
     "You want a meter that fits in a pocket — the MM400 is bulkier",
-    "You want app connectivity"
+    "You work on variable-speed drives or electronic loads, where True RMS matters",
+    "You want a model that is still in production: Klein has replaced it with the MM420"
   ],
-  tradeOffs: "The MM400 sits between the budget meters and the Fluke 117: the same CAT III 600V rating and True RMS as the Fluke, at a mid-range price, in a larger body — a sensible middle ground if brand premium matters less to you than the core safety rating.",
+  tradeOffs: "The MM400 shares the Fluke 117's CAT III 600V rating but not its True RMS measurement, low-impedance mode or NCV. Klein's own feature chart reserves True RMS and low impedance for the MM700. It is a capable general-purpose meter for sinusoidal mains work, but it is discontinued, so it only makes sense at a clear discount.",
   assessment: [
     {
-      heading: "Low-impedance mode",
-      body: "Low-impedance (LoZ) mode puts a small load on the circuit so that induced ghost voltages from nearby wiring collapse instead of appearing as false readings. That's practical for anyone confirming that a supposedly de-energized wire is actually dead."
+      heading: "Measurement range",
+      body: "Klein rates it to 600V AC/DC, 10A AC/DC and 40 MΩ, with temperature from 0°F to 1000°F, capacitance to 200 µF and frequency/duty cycle from 1 Hz to 50 kHz on a 4,000-count backlit display. That covers most household electrical and appliance checks."
     },
     {
       heading: "Safety and accuracy",
-      body: "CAT III 600V and True RMS put it level with the Fluke 117 for residential and light commercial electrical work, and auto-ranging keeps operation simple."
+      body: "CAT III 600V suits household panels and building wiring. It is not True RMS, so on distorted waveforms from variable-speed drives, LED drivers and other electronic loads its AC readings can be off; on ordinary sinusoidal mains it reads correctly."
     }
   ],
   alternatives: [
     {
       name: "Fluke 117",
       href: "/multimeters/fluke-117-review",
-      reason: "The same CAT III 600V and True RMS, plus built-in non-contact voltage detection and Fluke's reliability record, at a premium."
+      reason: "The same CAT III 600V rating plus True RMS, a low-impedance mode and built-in non-contact voltage detection, at a premium."
     },
     {
       name: "Milwaukee 2235-20",
@@ -56,12 +57,12 @@ const review: ProductReviewContent = {
   ],
   faqs: [
     {
-      question: "What is the low-impedance mode on the Klein MM400 for?",
-      answer: "It loads the circuit slightly so that ghost voltages induced from nearby wiring don't show up as false readings. That makes it more reliable for confirming a circuit is actually dead."
+      question: "Is the Klein MM400 True RMS?",
+      answer: "No. Klein's multimeter feature chart lists True RMS only for the MM700 in that range, not the MM300, MM400 or MM600. The MM400 reads ordinary sine-wave mains correctly but can misread distorted waveforms from drives and electronic loads."
     },
     {
       question: "Klein Tools MM400 or Fluke 117?",
-      answer: "Both are CAT III 600V and True RMS. The Fluke 117 adds built-in non-contact voltage detection and Fluke's reputation for reliability at a premium price. The MM400 delivers the core safety and accuracy for less, so if budget matters more than brand, it's the sensible choice."
+      answer: "Both are CAT III 600V and auto-ranging, but only the Fluke 117 is True RMS, and it adds a low-impedance mode and built-in non-contact voltage detection. The MM400 adds temperature measurement the 117 lacks. For electrical work the 117 is the better meter; the MM400 only makes sense at a clear discount, especially now it is discontinued."
     },
     {
       question: "Why does Klein's reputation matter if it isn't a dedicated test-equipment brand?",

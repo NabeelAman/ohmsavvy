@@ -45,7 +45,7 @@ const review: ProductReviewContent = {
     {
       name: "Klein Tools MM400",
       href: "/multimeters/klein-mm400-review",
-      reason: "A standard meter with CAT III 600V and a low-impedance mode for voltage, resistance, and continuity work."
+      reason: "A standard CAT III 600V meter for voltage, resistance and continuity work, with temperature and capacitance."
     },
     {
       name: "Fluke 117",

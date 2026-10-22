@@ -329,7 +329,7 @@ export default function HowToTestABoilerThermostatPage() {
               image: klein.image,
               alt: "Klein Tools MM400 auto-ranging digital multimeter",
               href: "/multimeters/klein-mm400-review",
-              note: "True RMS, CAT III 600V, auto-ranging, with a low-impedance mode that avoids false readings.",
+              note: "Auto-ranging, CAT III 600V, with temperature and capacitance. Not True RMS; discontinued by Klein.",
             },
             {
               name: "Fluke 115",

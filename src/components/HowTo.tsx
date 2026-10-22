@@ -666,21 +666,58 @@ export function MeterReadout({ value, unit, mode }: { value: string; unit: strin
  * built-in shape; `marks` draws labelled measurement arrows in division units
  * (x 0-10 from the left, y 0-8 from the top).
  */
-export function ScopeScreen({
-  wave = "sine",
-  cycles = 2,
-  amplitude = 3,
-  offset = 0,
-  marks = [],
-  labels,
-  triggerLevel,
-}: {
-  wave?: "sine" | "square" | "square-over" | "square-under" | "pulse" | "flat";
+type ScopeWave = "sine" | "square" | "square-over" | "square-under" | "square-ring" | "pulse" | "flat";
+type ScopeTrace = {
+  wave?: ScopeWave;
   cycles?: number;
   /** Peak amplitude in divisions. */
   amplitude?: number;
   /** Vertical offset of the trace centre, in divisions (positive = up). */
   offset?: number;
+  /** Horizontal delay in divisions (positive = later / to the right). */
+  shift?: number;
+};
+
+function tracePoints({ wave = "sine", cycles = 2, amplitude = 3, offset = 0, shift = 0 }: ScopeTrace, W: number, H: number) {
+  const dy = H / 8;
+  const cy = H / 2 - offset * dy;
+  const pts: string[] = [];
+  const n = 500;
+  for (let i = 0; i <= n; i++) {
+    const t = i / n; // 0..1 across the screen
+    const tt = t - shift / 10;
+    const phase = (((tt * cycles) % 1) + 1) % 1;
+    let v = 0;
+    if (wave === "sine") v = Math.sin(2 * Math.PI * tt * cycles);
+    else if (wave === "flat") v = 0;
+    else if (wave === "pulse") v = phase < 0.2 ? 1 : -1;
+    else {
+      v = phase < 0.5 ? 1 : -1;
+      const since = phase < 0.5 ? phase : phase - 0.5; // time since last edge, in periods
+      const dir = phase < 0.5 ? 1 : -1;
+      if (wave === "square-over") v += dir * 0.35 * Math.exp(-since * 40);
+      if (wave === "square-under") v *= 1 - Math.exp(-since * 18);
+      // Damped oscillation after each edge: overshoot followed by ringing.
+      if (wave === "square-ring") v += dir * 0.3 * Math.exp(-since * 22) * Math.cos(2 * Math.PI * since * 18);
+    }
+    pts.push(`${(t * W).toFixed(1)},${(cy - v * amplitude * dy).toFixed(1)}`);
+  }
+  return pts.join(" ");
+}
+
+export function ScopeScreen({
+  wave = "sine",
+  cycles = 2,
+  amplitude = 3,
+  offset = 0,
+  shift = 0,
+  second,
+  marks = [],
+  labels,
+  triggerLevel,
+}: ScopeTrace & {
+  /** Optional second channel, drawn in blue (CH2), e.g. for delay or math comparisons. */
+  second?: ScopeTrace & { label?: string };
   marks?: { x1: number; y1: number; x2: number; y2: number; text: string }[];
   labels?: { left?: string; right?: string };
   triggerLevel?: number;
@@ -689,24 +726,7 @@ export function ScopeScreen({
   const H = 240;
   const dx = W / 10;
   const dy = H / 8;
-  const cy = H / 2 - offset * dy;
-  const pts: string[] = [];
-  const n = 400;
-  for (let i = 0; i <= n; i++) {
-    const t = i / n; // 0..1 across the screen
-    const phase = (t * cycles) % 1;
-    let v = 0;
-    if (wave === "sine") v = Math.sin(2 * Math.PI * t * cycles);
-    else if (wave === "flat") v = 0;
-    else if (wave === "pulse") v = phase < 0.2 ? 1 : -1;
-    else {
-      v = phase < 0.5 ? 1 : -1;
-      const since = phase < 0.5 ? phase : phase - 0.5; // time since last edge
-      if (wave === "square-over") v += (phase < 0.5 ? 1 : -1) * 0.35 * Math.exp(-since * 40);
-      if (wave === "square-under") v *= 1 - Math.exp(-since * 18);
-    }
-    pts.push(`${(t * W).toFixed(1)},${(cy - v * amplitude * dy).toFixed(1)}`);
-  }
+  const pts = tracePoints({ wave, cycles, amplitude, offset, shift }, W, H);
   return (
     <svg viewBox={`-6 -6 ${W + 12} ${H + 12}`} className="w-full h-auto" role="img" aria-label="Oscilloscope screen diagram">
       <rect x="0" y="0" width={W} height={H} rx="4" className="fill-[#0f1a14]" />
@@ -722,7 +742,15 @@ export function ScopeScreen({
           <text x={W - 4} y={H / 2 - triggerLevel * dy - 4} textAnchor="end" fontSize="10" fill="#f0b429">T</text>
         </>
       )}
-      <polyline points={pts.join(" ")} fill="none" stroke="#7CFC9A" strokeWidth="2" strokeLinejoin="round" />
+      <polyline points={pts} fill="none" stroke="#7CFC9A" strokeWidth="2" strokeLinejoin="round" />
+      {second && (
+        <>
+          <polyline points={tracePoints(second, W, H)} fill="none" stroke="#5BB3E8" strokeWidth="2" strokeLinejoin="round" />
+          {second.label && (
+            <text x="6" y={H / 2 - (second.offset ?? 0) * dy - 6} fontSize="10" fill="#5BB3E8">{second.label}</text>
+          )}
+        </>
+      )}
       {marks.map((m) => (
         <g key={m.text}>
           <line x1={m.x1 * dx} y1={m.y1 * dy} x2={m.x2 * dx} y2={m.y2 * dy} stroke="#ffd56b" strokeWidth="1.4" markerStart="url(#arr)" markerEnd="url(#arr)" />

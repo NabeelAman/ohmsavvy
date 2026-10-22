@@ -407,6 +407,44 @@ export const picks: Pick[] = [
     cons: ["Not a full multimeter: no capacitance, frequency or diode test", "Resistance only to 1,000 Ω", "AC current only; average-responding"],
     ctaHref: "https://www.amazon.com/dp/B0006Z3GZU?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Fluke Clamp Meter",
+    // Specs and photo per fluke.com (Fluke 323 page), cross-checked against the live Amazon listing (ASIN B00AQKIEXY).
+    name: "Fluke 323",
+    image: "https://media.fluke.com/c0eacec0-218d-47a2-9ca4-b108002e0817_original__size.jpg",
+    rating: 4.7,
+    bottomLine: "A True RMS clamp meter for current measurement without breaking a circuit open — a different tool than a standard multimeter, not a replacement for one.",
+    verdict:
+      "The Fluke 323 reads AC current up to 400A by clamping around a conductor, with True RMS accuracy on non-sinusoidal loads. It doesn't measure DC current, capacitance, or frequency, and has no backlight or temperature mode — it's built specifically for clamp current work, not as a general-purpose meter. See our clamp meter buying guide for when this matters over a standard multimeter.",
+    specs: [
+      { label: "Accuracy", value: "True RMS" },
+      { label: "Current range", value: "Up to 400A AC" },
+      { label: "Safety rating", value: "CAT III 600V / CAT IV 300V" },
+      { label: "Best for", value: "Fast current checks without breaking the circuit" },
+    ],
+    pros: ["True RMS accurate on non-sinusoidal AC loads", "CAT IV 300V rating for front-of-panel work", "Compact and light at 265g"],
+    cons: ["AC current only — no DC current measurement", "No backlight, temperature, or frequency mode"],
+    ctaHref: "https://www.amazon.com/dp/B00AQKIEXY?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Combo Kit",
+    // Fluke's official bundle listing (fluke.com: electrical-testing/digital-multimeters/fluke-117-323-kit), cross-checked against Amazon ASIN B00DTSLWRA.
+    name: "Fluke 117/323 Kit",
+    image: "https://media.fluke.com/4e3f20e4-983a-45c1-8200-b31a011cf2c9_product_slideshow_main.jpg",
+    rating: 4.6,
+    bottomLine: "The Fluke 117 and 323 clamp meter bundled together, covering both general multimeter work and clamp current checks in one purchase.",
+    verdict:
+      "This official Fluke bundle pairs the 117 — our Best Overall multimeter pick — with the 323 True RMS clamp meter, covering general electrical troubleshooting and no-disconnect current checks in one kit. It costs more than either tool alone, but less than buying both at full price separately.",
+    specs: [
+      { label: "Includes", value: "Fluke 117 multimeter + Fluke 323 clamp meter" },
+      { label: "Safety rating", value: "CAT III 600V (both tools)" },
+      { label: "Carrying case", value: "Included soft case" },
+      { label: "Best for", value: "Electricians who want both tools in one purchase" },
+    ],
+    pros: ["Covers both general multimeter and clamp current work", "Official Fluke bundle, not a third-party pairing", "Includes a carrying case"],
+    cons: ["Higher upfront cost than either tool alone", "No savings if you only need one of the two tools"],
+    ctaHref: "https://www.amazon.com/dp/B00DTSLWRA?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

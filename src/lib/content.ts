@@ -1666,6 +1666,34 @@ export const content: ContentEntry[] = [
     description: "Input-to-regulation timing on two channels",
     href: "/oscilloscopes/how-to-measure-power-supply-startup-time-with-an-oscilloscope",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DS1054Z vs FNIRSI DSO152",
+    description: "4-channel bench scope vs. 200kHz pocket scope",
+    href: "/oscilloscopes/rigol-ds1054z-vs-fnirsi-dso152",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "FNIRSI DSO152 vs Hantek DSO2D10",
+    description: "Pocket 200kHz vs. 100MHz with a generator",
+    href: "/oscilloscopes/fnirsi-dso152-vs-hantek-dso2d10",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "FNIRSI DSO152 vs Siglent SDS1104X-E",
+    description: "200kHz pocket scope vs. 100MHz 4-channel bench",
+    href: "/oscilloscopes/fnirsi-dso152-vs-siglent-sds1104x-e",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Hantek DSO2D10 vs Siglent SDS1104X-E",
+    description: "Same 100MHz: generator vs. 4 channels",
+    href: "/oscilloscopes/hantek-dso2d10-vs-siglent-sds1104x-e",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

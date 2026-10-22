@@ -280,7 +280,12 @@ export default function HowToTestARotarySwitchWithAMultimeterPage() {
           <Link href="/multimeters/what-does-ol-mean-on-a-multimeter" className={link}>
             OL explainer
           </Link>{" "}
-          describes: an open path, not a broken meter.
+          describes: an open path, not a broken meter. A beep that cuts in and out as you turn the knob is a
+          different symptom; our{" "}
+          <Link href="/multimeters/multimeter-continuity-beep-intermittent" className={link}>
+            intermittent continuity guide
+          </Link>{" "}
+          helps tell a worn contact from a loose probe.
         </p>
       </section>
     </HowToShell>

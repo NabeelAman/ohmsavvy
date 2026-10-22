@@ -213,8 +213,8 @@ export default function HowToTestALimitSwitchWithADigitalMultimeterPage() {
           mounting that lets the target miss the actuator, or a plunger that no longer travels far enough to
           trip. Every contact also bounces for a few milliseconds when it closes. A meter can&apos;t show that,
           but an erratic beep on slow actuation is a sign of worn contacts; our{" "}
-          <Link href="/multimeters/unstable-multimeter-readings" className={link}>
-            unstable readings guide
+          <Link href="/multimeters/multimeter-continuity-beep-intermittent" className={link}>
+            intermittent continuity guide
           </Link>{" "}
           helps separate a bad switch from a bad probe connection.
         </KeyIdea>

@@ -100,9 +100,9 @@ export default function TriggerOnFallingEdgePage() {
           desc: "The full trigger basics: source, level, Auto, Normal and Single modes, and holdoff.",
         },
         {
-          href: "/oscilloscopes/how-to-capture-a-brief-voltage-spike-with-an-oscilloscope",
-          title: "How to Capture a Brief Voltage Spike With an Oscilloscope",
-          desc: "Single-shot triggering applied to an event that may only happen once.",
+          href: "/oscilloscopes/how-to-measure-rise-time-with-oscilloscope-cursors",
+          title: "How to Measure Rise Time With Cursors",
+          desc: "Once a transition is locked in place, time it with cursors; the same method works for fall time.",
         },
       ]}
     >

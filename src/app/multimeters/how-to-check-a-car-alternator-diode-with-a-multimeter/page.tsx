@@ -210,6 +210,10 @@ export default function HowToCheckACarAlternatorDiodeWithAMultimeterPage() {
           <Link href="/multimeters/how-to-test-a-diode-with-a-multimeter" className={link}>
             diode testing guide
           </Link>
+          , and the same probe pattern on a standalone four-diode part is covered in our{" "}
+          <Link href="/multimeters/how-to-test-a-bridge-rectifier-with-a-multimeter" className={link}>
+            bridge rectifier guide
+          </Link>
           .
         </p>
         <DataTable

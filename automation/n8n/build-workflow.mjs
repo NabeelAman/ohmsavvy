@@ -37,7 +37,9 @@ const unposted = items
   .sort((a, b) => (data.firstSeen[b.url] - data.firstSeen[a.url]) || (TYPE_ORDER[a.type] - TYPE_ORDER[b.type]));
 
 let pick = fairest(unposted);
-if (!pick) {
+// recycleAfterDays 0 = never repost: each page is posted once, and a slot with
+// nothing new to post is skipped rather than repeating an old post.
+if (!pick && Number(cfg.recycleAfterDays) > 0) {
   const cutoff = now - Number(cfg.recycleAfterDays) * 86400000;
   const recyclable = items
     .filter((i) => data.posted[i.url] && data.posted[i.url] < cutoff)
@@ -142,12 +144,19 @@ const graph = (edge) => `=https://graph.facebook.com/{{ $('Config').first().json
 const fbCred = { httpQueryAuth: { id: "", name: "Facebook Page token (access_token)" } };
 
 const workflow = {
-  name: "OhmSavvy: Facebook autopost (5/day)",
+  name: "OhmSavvy: Facebook autopost (10/day)",
   nodes: [
     {
-      parameters: { rule: { interval: [{ field: "cronExpression", expression: "0 8,11,14,17,20 * * *" }] } },
+      parameters: {
+        rule: {
+          interval: [
+            { field: "cronExpression", expression: "0 8,11,14,17,20 * * *" },
+            { field: "cronExpression", expression: "30 9,12,15,18,21 * * *" },
+          ],
+        },
+      },
       id: "a1",
-      name: "5x daily (8, 11, 14, 17, 20)",
+      name: "10x daily (every 90 min, 8:00-21:30)",
       type: "n8n-nodes-base.scheduleTrigger",
       typeVersion: 1.2,
       position: [0, 0],
@@ -159,7 +168,7 @@ const workflow = {
             { id: "c1", name: "pageId", value: "108696581096211", type: "string" },
             { id: "c2", name: "graphVersion", value: "v23.0", type: "string" },
             { id: "c3", name: "feedUrl", value: "https://ohmsavvy.com/feed.json", type: "string" },
-            { id: "c4", name: "recycleAfterDays", value: 10, type: "number" },
+            { id: "c4", name: "recycleAfterDays", value: 0, type: "number" },
             { id: "c5", name: "utmCampaign", value: "fb_autopost", type: "string" },
             { id: "c6", name: "dryRun", value: true, type: "boolean" },
           ],
@@ -266,7 +275,7 @@ const workflow = {
     { parameters: { jsCode: markPosted }, id: "a9", name: "Mark as posted", type: "n8n-nodes-base.code", typeVersion: 2, position: [2420, 40] },
   ],
   connections: {
-    "5x daily (8, 11, 14, 17, 20)": { main: [[{ node: "Config", type: "main", index: 0 }]] },
+    "10x daily (every 90 min, 8:00-21:30)": { main: [[{ node: "Config", type: "main", index: 0 }]] },
     Config: { main: [[{ node: "Fetch site feed", type: "main", index: 0 }]] },
     "Fetch site feed": { main: [[{ node: "Pick next post", type: "main", index: 0 }]] },
     "Pick next post": { main: [[{ node: "Fetch article page", type: "main", index: 0 }]] },

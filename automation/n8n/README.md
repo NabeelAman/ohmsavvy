@@ -1,16 +1,16 @@
 # Facebook autopost (n8n)
 
-Posts 5 times a day (8:00, 11:00, 14:00, 17:00 and 20:00 Dubai time) to the OhmSavvy Facebook Page. Each slot is a **photo post**
+Posts 10 times a day, every 90 minutes from 8:00 to 21:30 Dubai time to the OhmSavvy Facebook Page. Each slot is a **photo post**
 (the product image, with the caption and the page URL as its text). Pages without a product image (most how-tos and
 buying guides) go out as a link post, where Facebook draws the page's card. New reviews, comparisons and guides go
 out first, automatically.
 
-Live on the cloud n8n as **"OhmSavvy: Facebook autopost (5/day)"**: https://n8n.nabeelaman.com/workflow/zjheKM1k4yJna134
+Live on the cloud n8n as **"OhmSavvy: Facebook autopost (10/day)"**: https://n8n.nabeelaman.com/workflow/zjheKM1k4yJna134
 
 ## How it works
 
 ```
-Schedule (5x daily) → Config → Fetch https://ohmsavvy.com/feed.json → Pick next post
+Schedule (10x daily) → Config → Fetch https://ohmsavvy.com/feed.json → Pick next post
   → Build caption → Dry run? ──yes──► stop (caption visible in the execution log)
                               └─no──► Has a photo? ──yes──► POST /{page-id}/photos ─► accepted? ──yes──► Mark as posted
                                                    │                                  └─no─┐
@@ -25,7 +25,7 @@ instead of being skipped.
 - **Queue order:** never-posted pages first. Anything that appears after the workflow went live is treated as new
   and posted before the backlog. Categories take turns (multimeters → soldering irons → oscilloscopes).
 - **Recycling:** once everything has been posted, the page posted longest ago is reposted, but never within
-  `recycleAfterDays` (default 10) of its last post.
+  `recycleAfterDays` of its last post. It is `0` (never repost) by default, so nothing is posted twice and a slot with nothing new is skipped.
 - **Captions and images come from the article page itself** (*Fetch article page* → *Build caption*): the page's
   H1 as the title, its opening paragraph (two for reviews), then its section headings (how-to and buying guides) or
   the verified picks it covers. The photo is the page's own product image (og:image, else the first figure in the

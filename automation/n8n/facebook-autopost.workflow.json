@@ -1,5 +1,5 @@
 {
-  "name": "OhmSavvy: Facebook autopost (5/day)",
+  "name": "OhmSavvy: Facebook autopost (10/day)",
   "nodes": [
     {
       "parameters": {
@@ -8,12 +8,16 @@
             {
               "field": "cronExpression",
               "expression": "0 8,11,14,17,20 * * *"
+            },
+            {
+              "field": "cronExpression",
+              "expression": "30 9,12,15,18,21 * * *"
             }
           ]
         }
       },
       "id": "a1",
-      "name": "5x daily (8, 11, 14, 17, 20)",
+      "name": "10x daily (every 90 min, 8:00-21:30)",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
@@ -46,7 +50,7 @@
             {
               "id": "c4",
               "name": "recycleAfterDays",
-              "value": 10,
+              "value": 0,
               "type": "number"
             },
             {
@@ -96,7 +100,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Chooses the next page to post. Never-posted content goes first (content added\n// after the workflow went live is treated as \"new\" and jumps the queue); once\n// everything has been posted, the longest-ago post is recycled after\n// recycleAfterDays. Categories take turns: the category posted least recently\n// goes next, so no category is starved.\n// Static data only persists for active (production) runs, not manual tests.\nconst cfg = $('Config').first().json;\nconst items = $input.first().json.items || [];\nconst data = $getWorkflowStaticData('global');\ndata.firstSeen = data.firstSeen || {};\ndata.posted = data.posted || {};\ndata.categoryLastPosted = data.categoryLastPosted || {};\n\nconst now = Date.now();\nconst firstRun = Object.keys(data.firstSeen).length === 0;\nfor (const it of items) {\n  // On the very first run everything is \"backlog\" (0); afterwards, anything\n  // not seen before is genuinely new and gets the current time.\n  if (data.firstSeen[it.url] === undefined) data.firstSeen[it.url] = firstRun ? 0 : now;\n}\n\nconst TYPE_ORDER = { review: 0, comparison: 1, 'use-case-guide': 2, roundup: 3, 'buying-guide': 4 };\n// Of the candidates, take the first one from the category that has waited longest.\nconst fairest = (list) => {\n  if (!list.length) return undefined;\n  const cats = [...new Set(list.map((i) => i.category))];\n  cats.sort((a, b) => (data.categoryLastPosted[a] || 0) - (data.categoryLastPosted[b] || 0));\n  return list.find((i) => i.category === cats[0]);\n};\n\nconst unposted = items\n  .filter((i) => !data.posted[i.url])\n  .sort((a, b) => (data.firstSeen[b.url] - data.firstSeen[a.url]) || (TYPE_ORDER[a.type] - TYPE_ORDER[b.type]));\n\nlet pick = fairest(unposted);\nif (!pick) {\n  const cutoff = now - Number(cfg.recycleAfterDays) * 86400000;\n  const recyclable = items\n    .filter((i) => data.posted[i.url] && data.posted[i.url] < cutoff)\n    .sort((a, b) => data.posted[a.url] - data.posted[b.url]);\n  pick = fairest(recyclable);\n}\n\nif (!pick) return []; // everything posted recently: skip this slot\nreturn [{ json: { ...pick, isRepost: Boolean(data.posted[pick.url]) } }];"
+        "jsCode": "// Chooses the next page to post. Never-posted content goes first (content added\n// after the workflow went live is treated as \"new\" and jumps the queue); once\n// everything has been posted, the longest-ago post is recycled after\n// recycleAfterDays. Categories take turns: the category posted least recently\n// goes next, so no category is starved.\n// Static data only persists for active (production) runs, not manual tests.\nconst cfg = $('Config').first().json;\nconst items = $input.first().json.items || [];\nconst data = $getWorkflowStaticData('global');\ndata.firstSeen = data.firstSeen || {};\ndata.posted = data.posted || {};\ndata.categoryLastPosted = data.categoryLastPosted || {};\n\nconst now = Date.now();\nconst firstRun = Object.keys(data.firstSeen).length === 0;\nfor (const it of items) {\n  // On the very first run everything is \"backlog\" (0); afterwards, anything\n  // not seen before is genuinely new and gets the current time.\n  if (data.firstSeen[it.url] === undefined) data.firstSeen[it.url] = firstRun ? 0 : now;\n}\n\nconst TYPE_ORDER = { review: 0, comparison: 1, 'use-case-guide': 2, roundup: 3, 'buying-guide': 4 };\n// Of the candidates, take the first one from the category that has waited longest.\nconst fairest = (list) => {\n  if (!list.length) return undefined;\n  const cats = [...new Set(list.map((i) => i.category))];\n  cats.sort((a, b) => (data.categoryLastPosted[a] || 0) - (data.categoryLastPosted[b] || 0));\n  return list.find((i) => i.category === cats[0]);\n};\n\nconst unposted = items\n  .filter((i) => !data.posted[i.url])\n  .sort((a, b) => (data.firstSeen[b.url] - data.firstSeen[a.url]) || (TYPE_ORDER[a.type] - TYPE_ORDER[b.type]));\n\nlet pick = fairest(unposted);\n// recycleAfterDays 0 = never repost: each page is posted once, and a slot with\n// nothing new to post is skipped rather than repeating an old post.\nif (!pick && Number(cfg.recycleAfterDays) > 0) {\n  const cutoff = now - Number(cfg.recycleAfterDays) * 86400000;\n  const recyclable = items\n    .filter((i) => data.posted[i.url] && data.posted[i.url] < cutoff)\n    .sort((a, b) => data.posted[a.url] - data.posted[b.url]);\n  pick = fairest(recyclable);\n}\n\nif (!pick) return []; // everything posted recently: skip this slot\nreturn [{ json: { ...pick, isRepost: Boolean(data.posted[pick.url]) } }];"
       },
       "id": "a4",
       "name": "Pick next post",
@@ -346,7 +350,7 @@
     }
   ],
   "connections": {
-    "5x daily (8, 11, 14, 17, 20)": {
+    "10x daily (every 90 min, 8:00-21:30)": {
       "main": [
         [
           {

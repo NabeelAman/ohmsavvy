@@ -258,9 +258,16 @@ export default function CompareInputAndOutputSignalsPage() {
           <Link href="/oscilloscopes/how-to-measure-phase-difference-oscilloscope" className={link}>
             phase difference guide
           </Link>
-          . For fast logic, the same two-channel setup also shows propagation delay, the time from an
-          input edge to the matching output edge. Many scopes can also plot CH1 minus CH2 as a math
-          trace, which shows the difference between two signals directly.
+          . For fast logic, the same two-channel setup also shows{" "}
+          <Link href="/oscilloscopes/how-to-measure-propagation-delay-using-an-oscilloscope" className={link}>
+            propagation delay
+          </Link>
+          , the time from an input edge to the matching output edge. Many scopes can also plot CH1 minus
+          CH2 as a math trace, which shows the difference between two signals directly; see{" "}
+          <Link href="/oscilloscopes/how-to-use-oscilloscope-math-functions-to-subtract-two-signals" className={link}>
+            how to subtract two signals with scope math
+          </Link>
+          .
         </p>
       </section>
 

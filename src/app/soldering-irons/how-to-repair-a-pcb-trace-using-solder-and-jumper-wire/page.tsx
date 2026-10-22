@@ -107,7 +107,12 @@ export default function HowToRepairAPcbTracePage() {
           Look at the break with a loupe or microscope and follow the trace both ways. Note how long the
           damaged section is, whether the copper is merely cut or actually missing or charred, and what is
           next to it. A burnt trace often means something drew too much current, so find and fix that cause
-          first, and cut away any copper that has blackened or lifted, since it will not take solder.
+          first, and cut away any copper that has blackened or lifted, since it will not take solder. If the
+          damage is a pad that came up during desoldering rather than a broken trace, see{" "}
+          <Link href="/soldering-irons/how-to-repair-lifted-pcb-pads-after-desoldering" className={link}>
+            how to repair lifted PCB pads
+          </Link>
+          .
         </p>
       </section>
 

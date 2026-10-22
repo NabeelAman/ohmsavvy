@@ -336,7 +336,7 @@ export default function HowToTestABoilerThermostatPage() {
               image: fluke115.image,
               alt: "Fluke 115 True RMS digital multimeter",
               href: "/multimeters/fluke-115-review",
-              note: "True RMS, CAT III 600V, compact Fluke field-service meter. Hands-on tested by OhmSavvy.",
+              note: "True RMS, CAT III 600V Fluke field-service meter. Hands-on tested by OhmSavvy.",
             },
           ]}
         />

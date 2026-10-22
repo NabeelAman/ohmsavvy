@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Weller WE1010NA Review",
-  description: "Weller WE1010NA review: a 70W ESD-safe digital soldering station with tight temperature stability. Who it suits, and how it compares with the Hakko FX888D.",
+  description: "Weller WE1010NA review: a 70W ESD-safe digital soldering station that heats in about 28 seconds. Who it suits, and how it compares with the Hakko FX888D.",
   path: "/soldering-irons/weller-we1010na-review",
   image: picks.find((p) => p.name === "Weller WE1010NA")?.image,
 });
@@ -27,7 +27,7 @@ const review: ProductReviewContent = {
     "You need to take your iron on the road — it's a bench-only design",
     "You solder occasionally and want to keep costs down"
   ],
-  tradeOffs: "Its strengths are ESD safety and stability, not speed: heat-up is about 20 seconds, against about 15 for the Hakko FX888D — a fair trade if ESD protection is a genuine requirement for your bench.",
+  tradeOffs: "Weller quotes about 28 seconds to heat from 50 to 350°C, so it isn't the quickest iron to pick up and use. Its case is a current, ESD-safe bench station from a long-established brand, at a higher price than hobby kits.",
   assessment: [
     {
       heading: "ESD safety",
@@ -39,18 +39,18 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Why ESD safety is a build-wide feature, not an add-on part",
-      body: "ESD-safe construction isn't a single component you can bolt onto any iron afterward — it runs through the handle, tip assembly, and grounding path as a design choice from the start. That's why it's a genuine differentiator here rather than a checkbox spec: a non-ESD-safe iron used carelessly around modern ICs can discharge static through the tip with no visible symptom until the component fails later, sometimes well after the repair is finished and hard to trace back to the cause.",
+      body: "ESD-safe construction isn't a single component you can bolt onto any iron afterward — it runs through the handle, tip assembly, and grounding path as a design choice from the start. That's why it's worth checking on any station you buy (both this and the Hakko FX888D are listed as ESD safe): a non-ESD-safe iron used carelessly around modern ICs can discharge static through the tip with no visible symptom until the component fails later, sometimes well after the repair is finished and hard to trace back to the cause.",
     },
     {
-      heading: "What the heat-up gap costs you in practice",
-      body: "Five extra seconds per power-up barely registers if you're setting up once for a long bench session, which is exactly how this station is meant to be used. It matters more for someone who's constantly switching the iron on and off throughout the day — in that pattern, the Hakko FX888D's faster heat-up adds up noticeably, but that's a different use case than the dedicated-bench role the WE1010NA is built for."
+      heading: "What a 28-second heat-up costs you in practice",
+      body: "About half a minute per power-up barely registers if you're setting up once for a long bench session, which is exactly how this station is meant to be used. It matters more for someone who's constantly switching the iron on and off throughout the day; in that pattern a portable iron such as the Pinecil V2 is the better fit."
     }
   ],
   alternatives: [
     {
       name: "Hakko FX888D",
       href: "/soldering-irons/hakko-fx888d-review",
-      reason: "Also 70W and digital, with faster heat-up and widely available genuine tips."
+      reason: "Also 70W, digital and ESD safe, with widely available genuine tips, but discontinued by Hakko."
     },
     {
       name: "Pinecil V2",
@@ -61,7 +61,7 @@ const review: ProductReviewContent = {
   faqs: [
     {
       question: "Weller WE1010NA or Hakko FX888D?",
-      answer: "Both are 70W digital stations. The FX888D heats faster (about 15 seconds vs. about 20) and has widely available genuine tips, while the WE1010NA adds ESD-safe construction."
+      answer: "Both are 70W, digital and ESD safe. The FX888D has widely available genuine T18 tips but Hakko has discontinued it; the WE1010NA is still in production."
     },
     {
       question: "Is the Weller WE1010NA ESD-safe?",

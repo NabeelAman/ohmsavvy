@@ -370,7 +370,7 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
               image: pinecil.image,
               alt: "Pinecil V2 USB-C soldering iron",
               href: "/soldering-irons/pinecil-v2-review",
-              note: "65W over USB-C PD with an OLED temperature display. Pocket-sized for repairs away from a bench.",
+              note: "About 60W from 20V USB-C PD, up to 88W at 24V, with an OLED display. Pocket-sized for repairs away from a bench.",
             },
             {
               name: "Hakko FX888D",

@@ -404,21 +404,21 @@ export default function HowToSolderFinePitchSmdComponentsPage() {
               image: hakko.image,
               alt: "Hakko FX888D soldering station handpiece",
               href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W, ~15 second heat-up and digital, adjustable temperature control; aimed at serious hobbyists and repair work.",
+              note: "70W station, digital adjustable temperature control and ESD safe; aimed at serious hobbyists and repair work.",
             },
             {
               name: "Weller WE1010NA",
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with ESD-safe temperature control and ~20 second heat-up, for dedicated workbenches.",
+              note: "70W digital, ESD-safe station that heats in about 28 seconds, for dedicated workbenches.",
             },
             {
               name: "Pinecil V2",
               image: pinecil.image,
               alt: "Pinecil V2 portable USB-C soldering iron",
               href: "/soldering-irons/pinecil-v2-review",
-              note: "65W over USB-C PD, ~12 second heat-up and an OLED digital display; built for portability and field repairs.",
+              note: "About 60W from 20V USB-C PD (up to 88W at 24V), ~12 second heat-up and an OLED display; built for portability and field repairs.",
             },
           ]}
         />

@@ -42,7 +42,7 @@ const review: ProductReviewContent = {
     {
       name: "AstroAI DM6000AR",
       href: "/multimeters/astroai-dm6000ar-review",
-      reason: "A similar budget tier, but rated CAT III 600V, with 6,000-count resolution and manual ranging."
+      reason: "A similar budget tier with 6,000-count resolution and manual ranging, though AstroAI states no CAT rating."
     },
     {
       name: "UNI-T UT139C",

@@ -329,7 +329,7 @@ export default function HowToUseASolderingIronPage() {
                 image: pinecil.image,
                 alt: "Pinecil V2 portable USB-C powered soldering iron",
                 href: "/soldering-irons/pinecil-v2-review",
-                note: "65W, USB-C PD powered, pocket-sized.",
+                note: "USB-C PD powered (up to 88W at 24V), pocket-sized.",
               },
               {
                 name: "Q-MING 60W Kit",

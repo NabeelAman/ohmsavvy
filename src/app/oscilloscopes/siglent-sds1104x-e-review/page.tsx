@@ -21,13 +21,13 @@ const review: ProductReviewContent = {
     "You need more than 50MHz of bandwidth headroom",
     "You want four channels for multi-signal timing work",
     "You value an intuitive interface",
-    "You'd rather pay once for guaranteed factory-rated bandwidth than rely on a community firmware unlock"
+    "You want 100MHz of factory-rated bandwidth rather than 50MHz"
   ],
   skipIf: [
     "You're a complete beginner — the Rigol DS1054Z covers learning for less",
     "Budget is your deciding factor"
   ],
-  tradeOffs: "It costs more than the Rigol DS1054Z. For that you get double the bandwidth and a better-regarded interface, at the same channel count and sample rate — worth it if either of those two things is a genuine priority for you.",
+  tradeOffs: "It costs more than the Rigol DS1054Z. For that you get double the bandwidth and a better-regarded interface, at the same channel count and maximum sample rate (with a higher per-channel rate when three or four channels are on) — worth it if either of those two things is a genuine priority for you.",
   assessment: [
     {
       heading: "Bandwidth",
@@ -35,7 +35,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Channels, sample rate, and interface",
-      body: "Four channels at 1 GSa/s, the same as the Rigol, plus an interface that's widely regarded as intuitive."
+      body: "Four channels at a 1 GSa/s maximum, the same peak as the Rigol, but 500 MSa/s per channel with all four on versus the Rigol's 250 MSa/s, plus an interface that's widely regarded as intuitive."
     },
     {
       heading: "What the interface actually gets you",
@@ -65,7 +65,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "What am I actually paying the premium for over the Rigol, given the specs look similar otherwise?",
-      answer: "Two things: guaranteed 100MHz bandwidth straight from the factory, with no need to rely on community firmware tricks, and an interface that's consistently rated easier to pick up. Channel count and sample rate don't change between the two, so if neither of those two things matters to your work, the premium buys you comparatively little — that's exactly the calculation worth making before paying more here."
+      answer: "Two things: 100MHz bandwidth rated from the factory, double the Rigol's 50MHz, and an interface that's consistently rated easier to pick up. Channel count and maximum sample rate are the same, so if neither of those two things matters to your work, the premium buys you comparatively little — that's exactly the calculation worth making before paying more here."
     },
     {
       question: "Does 100MHz of bandwidth translate to a specific real-world benefit for hobby projects?",

@@ -31,7 +31,7 @@ const review: ProductReviewContent = {
   assessment: [
     {
       heading: "What's in the box",
-      body: "A 60W iron with a ceramic heating element, five tips, and a stand. Heat-up is about 15 seconds, the same figure as the Hakko FX888D."
+      body: "A 60W iron with a ceramic heating element, five tips, and a stand. The listing quotes a heat-up of about 15 seconds and a 200–450°C range on the handle's dial."
     },
     {
       heading: "Temperature control",

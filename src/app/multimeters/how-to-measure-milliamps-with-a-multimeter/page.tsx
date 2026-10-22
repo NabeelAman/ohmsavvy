@@ -51,7 +51,7 @@ export default function HowToMeasureMilliampsWithAMultimeterPage() {
         alt: "AstroAI DM6000AR digital multimeter with test leads, front view",
         caption: (
           <>
-            The AstroAI DM6000AR (True RMS, 6,000-count, CAT III 600V) is the electronics-hobby pick in our
+            The AstroAI DM6000AR (True RMS, 6,000-count, auto-ranging) is the electronics-hobby pick in our
             roundup. Current ranges and fuse ratings differ between meters, so check the markings beside
             your own meter&apos;s jacks. See our{" "}
             <Link href="/multimeters/astroai-dm6000ar-review" className={link}>
@@ -359,7 +359,7 @@ export default function HowToMeasureMilliampsWithAMultimeterPage() {
               image: astro.image,
               alt: "AstroAI DM6000AR digital multimeter",
               href: "/multimeters/astroai-dm6000ar-review",
-              note: "True RMS, 6,000-count, auto-ranging, CAT III 600V. Our pick for microcontroller and electronics projects.",
+              note: "True RMS, 6,000-count, auto-ranging. Our pick for low-voltage microcontroller and electronics projects.",
             },
             {
               name: "UNI-T UT139C",
@@ -373,7 +373,7 @@ export default function HowToMeasureMilliampsWithAMultimeterPage() {
               image: fluke115.image,
               alt: "Fluke 115 digital multimeter",
               href: "/multimeters/fluke-115-review",
-              note: "True RMS, auto-ranging, CAT III 600V. Fluke reliability in a smaller body, for field and electronics work.",
+              note: "True RMS, auto-ranging, CAT III 600V. The 117's reliability without NCV or LoZ, for field and electronics work.",
             },
           ]}
         />

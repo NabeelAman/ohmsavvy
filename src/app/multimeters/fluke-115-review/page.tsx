@@ -5,7 +5,7 @@ import { picks } from "../best-multimeters/page";
 
 export const metadata = buildMetadata({
   title: "Fluke 115 Review",
-  description: "A detailed look at the Fluke 115's True RMS accuracy, CAT III 600V rating, and compact field-service design, and how it stacks up against the Fluke 117.",
+  description: "A detailed look at the Fluke 115's True RMS accuracy, CAT III 600V rating and field-service focus, and how it stacks up against the Fluke 117.",
   path: "/multimeters/fluke-115-review",
   image: picks.find((p) => p.name === "Fluke 115")?.image,
 });

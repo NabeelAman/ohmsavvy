@@ -306,7 +306,7 @@ export default function HowToTestADoorbellTransformerPage() {
               image: extech.image,
               alt: "Extech EX330 compact auto-ranging multimeter",
               href: "/multimeters/extech-ex330-review",
-              note: "Pocket-sized, auto-ranging (not True RMS), with a built-in non-contact voltage detector.",
+              note: "Pocket-sized and auto-ranging, with a built-in non-contact voltage detector. Extech doesn't list it as True RMS.",
             },
           ]}
         />

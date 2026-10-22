@@ -27,7 +27,7 @@ const review: ProductReviewContent = {
     "You work on RF or need bandwidth well beyond 50MHz",
     "You want the most intuitive menus — navigation has a learning curve"
   ],
-  tradeOffs: "50MHz of bandwidth is modest. It covers most beginner and hobby work, but if your projects are heading toward faster signals, the 100MHz Siglent SDS1104X-E gives more headroom from the factory, no firmware workaround required.",
+  tradeOffs: "50MHz of bandwidth is modest. It covers most beginner and hobby work, but if your projects are heading toward faster signals, the 100MHz Siglent SDS1104X-E gives more headroom from the factory.",
   assessment: [
     {
       heading: "Channels and display",
@@ -35,15 +35,15 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Bandwidth and sample rate",
-      body: "50MHz and 1 GSa/s. By the 3–5× rule of thumb, that's comfortable on signals up to roughly 10–17MHz: enough for most microcontroller and audio-range work, but modest for RF. Higher bandwidth can be unlocked via firmware."
+      body: "50MHz and 1 GSa/s. By the 3–5× rule of thumb, that's comfortable on signals up to roughly 10–17MHz: enough for most microcontroller and audio-range work, but modest for RF. The 1 GSa/s figure is for a single channel; Rigol's datasheet gives 250 MSa/s per channel with three or four channels on."
     },
     {
       heading: "Hands-on in our lab",
       body: "Our testing team bought this unit and tested it in our lab, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published on this page yet; when they are, they'll appear here with the method we used. Until then, the bandwidth, channel count, sample rate and display details on this page are verified against Rigol's own published data, and the verdict rests on what those specs mean for beginner and hobby work.",
     },
     {
-      heading: "About the firmware bandwidth unlock",
-      body: "The DS1054Z is widely known to share hardware with higher-bandwidth models in Rigol's lineup, and the broader hobbyist community has documented unofficial firmware methods to raise it past 50MHz. We haven't tested any of these modifications ourselves, and we don't recommend them — they typically void your warranty, and we can't vouch for their safety or long-term reliability. If you want guaranteed higher bandwidth, buying a model rated for it from the factory, like the Siglent SDS1104X-E, is the more straightforward route."
+      heading: "Buy the bandwidth you need",
+      body: "Rigol sells and specifies the DS1054Z as a 50MHz oscilloscope and documents no bandwidth upgrade for it. If your signals need more than 50MHz, buy a scope rated for it from the factory, like the 100MHz Siglent SDS1104X-E, rather than counting on anything beyond the published spec."
     }
   ],
   alternatives: [

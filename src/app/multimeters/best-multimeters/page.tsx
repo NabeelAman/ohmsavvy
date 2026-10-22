@@ -31,19 +31,20 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best for Field Service",
+    // Specs per fluke.com (Fluke 115 page): same 167 × 84 × 46 mm, 550 g body as the 117.
     name: "Fluke 115",
     image: "https://media.fluke.com/340af005-26f3-41df-9f6a-b108002dd5d7_original__size.jpg",
     rating: 4.8,
-    bottomLine: "The same Fluke reliability as the 117, in a smaller body, without the electrician-specific extras.",
+    bottomLine: "The same Fluke reliability as the 117, in the same body, without the electrician-specific extras (NCV, AutoVolt, LoZ).",
     verdict:
-      "The Fluke 115 is Fluke's compact field-service meter — True RMS, CAT III 600V, and a 6,000-count backlit display, like the 117, but without non-contact voltage detection or the AutoVolt AC/DC auto-selector. A strong pick if you want Fluke's reliability without the electrician-focused extras.",
+      "The Fluke 115 is Fluke's field-service meter — True RMS, CAT III 600V, and a 6,000-count backlit display, like the 117, but without non-contact voltage detection or the AutoVolt AC/DC auto-selector. A strong pick if you want Fluke's reliability without the electrician-focused extras.",
     specs: [
       { label: "Accuracy", value: "True RMS" },
       { label: "Safety rating", value: "CAT III 600V" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Field technicians, general electrical and electronics work" },
     ],
-    pros: ["Same Fluke reliability and accuracy as the 117", "More compact and lighter than the 117", "Includes capacitance and frequency measurement"],
+    pros: ["Same Fluke reliability and accuracy as the 117", "Same size and weight as the 117 at a lower price", "Includes capacitance and frequency measurement"],
     cons: ["No non-contact voltage (NCV) detection", "No AutoVolt AC/DC auto-selector or LoZ mode the 117 has"],
     ctaHref: "https://www.amazon.com/dp/B000OCFFMW?tag=ohmsavvy-20",
     handsOnTested: true,
@@ -68,6 +69,7 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best for Electronics Hobbyists",
+    // Specs per astroai.com (DM6000AR page) and the Amazon listing. Neither states a CAT rating.
     name: "AstroAI DM6000AR",
     image: "https://cdn.astroai.com/astroai-banner/product/02eac7f4-b680-4f9a-e240-b28f21b3eb2b_20250120.webp",
     rating: 4.3,
@@ -76,12 +78,12 @@ export const picks: Pick[] = [
       "This is the meter you'll see recommended most often for Arduino, Raspberry Pi, and general electronics tinkering — True RMS and 6,000-count resolution give it more precision than its price suggests, with both auto and manual ranging on tap.",
     specs: [
       { label: "Accuracy", value: "True RMS, 6,000-count" },
-      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Safety rating", value: "Not stated by AstroAI" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Microcontroller & electronics projects" },
     ],
-    pros: ["Very affordable for True RMS + 6,000-count resolution", "Compact and lightweight", "Both auto and manual ranging available"],
-    cons: ["Build and included leads reflect the budget price point", "Fewer accessories/calibration options than pro-tier brands"],
+    pros: ["Very affordable for True RMS + 6,000-count resolution", "6,000-count display resolves small changes", "Both auto and manual ranging available"],
+    cons: ["Build and included leads reflect the budget price point", "No CAT rating stated by AstroAI, so keep it to low-voltage electronics, not panels"],
     ctaHref: "https://www.amazon.com/dp/B071JL6LLL?tag=ohmsavvy-20",
   },
   {
@@ -117,13 +119,14 @@ export const picks: Pick[] = [
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Industrial technicians, daily professional use" },
     ],
-    pros: ["Highest CAT rating in this list", "19,999-count high-resolution mode", "Analog bar graph tracks fast-changing signals"],
+    pros: ["Joint-highest CAT rating in this list (CAT IV 600V / CAT III 1000V)", "19,999-count high-resolution mode", "Analog bar graph tracks fast-changing signals"],
     cons: ["Among the most expensive picks here", "Overkill for casual home use"],
     ctaHref: "https://www.amazon.com/dp/B0002YFD1K?tag=ohmsavvy-20",
     handsOnTested: true,
   },
   {
     badge: "Best Clamp Meter",
+    // Specs per milwaukeetool.com (2235-20 page) and its manual: 400A AC, 600V AC/DC, True RMS, CAT III 600V, resistance/continuity.
     name: "Milwaukee 2235-20",
     image: "https://www.milwaukeetool.com/--/web-images/sc/95924a2af12d4059acb29134f9a5c6fa?hash=8de461cf918be65701f0851f17c988fd&lang=en",
     rating: 4.6,
@@ -133,28 +136,29 @@ export const picks: Pick[] = [
     specs: [
       { label: "Accuracy", value: "True RMS" },
       { label: "Safety rating", value: "CAT III 600V" },
-      { label: "Auto-ranging", value: "Yes" },
+      { label: "Auto-ranging", value: "Not stated by Milwaukee" },
       { label: "Best for", value: "Quick current checks without disconnecting wiring" },
     ],
     pros: ["No need to break the circuit to measure current", "1-inch jaw fits most residential/commercial wiring", "Backed by Milwaukee's tool ecosystem and reputation"],
-    cons: ["Clamp meters measure current only — still need a standard meter for resistance/continuity-heavy work", "Bulkier than a pocket multimeter"],
+    cons: ["Measures AC current only (400A AC); no DC amps", "Bulkier than a pocket multimeter"],
     ctaHref: "https://www.amazon.com/dp/B004F5KXBM?tag=ohmsavvy-20",
   },
   {
     badge: "Best Waterproof",
+    // Specs per southwire.com (14070T TechnicianPRO page).
     name: "Southwire 14070T",
     image: "https://assets.southwire.com/adaptivemedia/rendition?id=e50ea3478e9024c2f714f3c4b26dae8ae448502e&prid=01200Wx1200H&clid=SAPDAM&prclid=productpictures",
     rating: 4.5,
     bottomLine: "The pick for anyone working outdoors, on job sites, or anywhere a meter might get wet or dropped.",
     verdict:
-      "The TechnicianPRO is IP67-rated — fully dust-tight and able to survive submersion — on top of a CAT IV 600V / CAT III 1000V safety rating and True RMS accuracy. A magnetic hanging strap and built-in work light round it out for job-site use.",
+      "The TechnicianPRO is IP67-rated — fully dust-tight and able to survive submersion — on top of a CAT IV 600V / CAT III 1000V safety rating and True RMS accuracy. A built-in LED work light and a Low Z function that eliminates false readings from ghost voltage round it out for job-site use.",
     specs: [
       { label: "Accuracy", value: "True RMS" },
       { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Outdoor and job-site work, drop/water risk" },
     ],
-    pros: ["IP67 waterproof and dust-tight", "Built-in LED work light", "Magnetic hanging strap frees up both hands"],
+    pros: ["IP67 waterproof and dust-tight", "Built-in LED work light", "Low Z function eliminates false readings from ghost voltage"],
     cons: ["Bulkier than a standard pocket meter", "US availability confirmed; double-check your region's listing"],
     ctaHref: "https://www.amazon.com/dp/B01MCTPTRC?tag=ohmsavvy-20",
   },
@@ -172,26 +176,27 @@ export const picks: Pick[] = [
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Automotive diagnostics" },
     ],
-    pros: ["RPM, dwell, and duty-cycle functions built in", "Familiar, trusted Craftsman brand", "Auto power-off extends battery life"],
+    pros: ["RPM, dwell, and duty-cycle functions built in", "Familiar, trusted Craftsman brand", "Also measures temperature and frequency"],
     cons: ["Automotive functions are wasted if you don't work on cars", "Not rated for CAT IV panel work"],
     ctaHref: "https://www.amazon.com/dp/B0CF46PFLC?tag=ohmsavvy-20",
   },
   {
     badge: "Best Compact",
+    // Specs per extech.com (EX330 page) and the EX300-series datasheet, which never lists True RMS for the EX330.
     name: "Extech EX330",
     image: "https://www.extech.com/netx-assets/ex330_web/?width=1500&quality=80",
     rating: 4.2,
     bottomLine: "A genuinely pocket-sized meter with a non-contact voltage detector built in.",
     verdict:
-      "The EX330 trades True RMS accuracy for size — it's an auto-ranging meter small enough to actually live in a pocket, with a built-in non-contact voltage (NCV) detector for a fast first check before you even connect leads.",
+      "The EX330 is a mini auto-ranging meter (147 × 76 × 42 mm, 260 g) with a built-in non-contact voltage (NCV) detector for a fast first check before you even connect leads, plus Type K temperature, capacitance, frequency and duty cycle. Extech doesn't list it as True RMS, unlike its True RMS models, so treat AC readings on distorted waveforms with caution.",
     specs: [
-      { label: "Accuracy", value: "Auto-ranging (not True RMS)" },
+      { label: "Accuracy", value: "Auto-ranging (True RMS not stated)" },
       { label: "Safety rating", value: "CAT III 600V" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Quick checks, pocket carry" },
     ],
     pros: ["Genuinely pocket-sized", "Built-in non-contact voltage detector", "Low price for a name-brand meter"],
-    cons: ["Not True RMS — less accurate on non-sinusoidal signals", "Smaller display than full-size meters"],
+    cons: ["Extech doesn't list it as True RMS, so don't rely on it for distorted waveforms", "4,000-count display, coarser than 6,000-count meters"],
     ctaHref: "https://www.amazon.com/dp/B000EX0AE4?tag=ohmsavvy-20",
   },
   {

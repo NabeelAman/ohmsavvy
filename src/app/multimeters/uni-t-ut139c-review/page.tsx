@@ -30,7 +30,7 @@ const review: ProductReviewContent = {
   assessment: [
     {
       heading: "Features for the price",
-      body: "True RMS, a 6,000-count display, auto and manual ranging, and non-contact voltage detection, with CAT III 600V protection. On paper, that's a feature set comparable to the AstroAI DM6000AR."
+      body: "True RMS, a 6,000-count display, auto and manual ranging, and non-contact voltage detection, with CAT III 600V protection. On paper, that's a feature set comparable to the AstroAI DM6000AR, which adds no stated CAT rating."
     },
     {
       heading: "Build",
@@ -45,7 +45,7 @@ const review: ProductReviewContent = {
     {
       name: "AstroAI DM6000AR",
       href: "/multimeters/astroai-dm6000ar-review",
-      reason: "Close on paper: True RMS, 6,000-count, auto and manual ranging, CAT III 600V."
+      reason: "Close on paper: True RMS, 6,000-count, auto and manual ranging, but AstroAI states no CAT rating."
     },
     {
       name: "KAIWEETS KM200s",
@@ -65,7 +65,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "UNI-T UT139C or AstroAI DM6000AR?",
-      answer: "On paper they're close: both are True RMS, 6,000-count, auto and manual ranging, and CAT III 600V. The UT139C includes non-contact voltage detection, while the DM6000AR is notably compact and lightweight. Compare current prices and pick the form factor you prefer."
+      answer: "On paper they're close: both are True RMS, 6,000-count, with auto and manual ranging. The UT139C is rated CAT III 600V and includes non-contact voltage detection; AstroAI states no CAT rating for the DM6000AR. For mains work, the UT139C is the safer choice."
     },
     {
       question: "Is it risky to buy a meter from a less internationally known brand like UNI-T?",

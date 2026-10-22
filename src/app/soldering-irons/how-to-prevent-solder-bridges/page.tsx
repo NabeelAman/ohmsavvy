@@ -398,21 +398,21 @@ export default function HowToPreventSolderBridgesPage() {
               image: hakko.image,
               alt: "Hakko FX888D soldering station handpiece",
               href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W, ~15 second heat-up and digital, adjustable temperature control; aimed at serious hobbyists and repair work.",
+              note: "70W station, digital adjustable temperature control and ESD safe; aimed at serious hobbyists and repair work.",
             },
             {
               name: "Weller WE1010NA",
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with ESD-safe temperature control and ~20 second heat-up, for dedicated workbenches.",
+              note: "70W digital, ESD-safe station that heats in about 28 seconds, for dedicated workbenches.",
             },
             {
               name: "YIHUA 862BD+",
               image: yihua.image,
               alt: "YIHUA 862BD+ soldering iron and hot air rework station",
               href: "/soldering-irons/yihua-862bd-plus-review",
-              note: "75W iron / 650W hot air (200–480°C iron, 100–480°C air) for SMD/BGA rework alongside general soldering.",
+              note: "75W iron / 500W hot air (720W total), 200–480°C iron and 100–480°C air, for SMD/BGA rework alongside general soldering.",
             },
           ]}
         />

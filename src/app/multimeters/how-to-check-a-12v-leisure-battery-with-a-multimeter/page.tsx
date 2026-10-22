@@ -53,7 +53,7 @@ export default function HowToCheckA12vLeisureBatteryWithAMultimeterPage() {
         alt: "Southwire 14070T TechnicianPRO waterproof multimeter, front view",
         caption: (
           <>
-            The Southwire 14070T is IP67-rated with a magnetic hanging strap, handy in a damp battery locker or
+            The Southwire 14070T is IP67-rated with a built-in work light, handy in a damp battery locker or
             bilge. Any DC volts range will run these checks. See our{" "}
             <Link href="/multimeters/southwire-14070t-review" className={link}>
               14070T review
@@ -339,14 +339,14 @@ export default function HowToCheckA12vLeisureBatteryWithAMultimeterPage() {
               image: southwire.image,
               alt: "Southwire 14070T waterproof multimeter",
               href: "/multimeters/southwire-14070t-review",
-              note: "IP67 waterproof, CAT IV 600V / CAT III 1000V, with a work light and magnetic strap.",
+              note: "IP67 waterproof, CAT IV 600V / CAT III 1000V, with a work light and a Low Z function.",
             },
             {
               name: "AstroAI DM6000AR",
               image: astro.image,
               alt: "AstroAI DM6000AR True RMS digital multimeter",
               href: "/multimeters/astroai-dm6000ar-review",
-              note: "True RMS, 6,000-count, auto and manual ranging. Compact and lightweight.",
+              note: "True RMS, 6,000-count, auto and manual ranging. AstroAI states no CAT rating, which is fine for 12V work.",
             },
             {
               name: "KAIWEETS KM200s",

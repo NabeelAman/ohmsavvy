@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Pinecil V2 Review",
-  description: "Pinecil V2 review: a 65W USB-C PD soldering iron that heats in ~12 seconds. Who it suits, what's missing from the box, and how it compares with a bench station.",
+  description: "Pinecil V2 review: a USB-C PD soldering iron rated to 88W at 24V that heats in ~12 seconds. Who it suits, what's missing, and how it compares with a station.",
   path: "/soldering-irons/pinecil-v2-review",
   image: picks.find((p) => p.name === "Pinecil V2")?.image,
 });
@@ -27,7 +27,7 @@ const review: ProductReviewContent = {
     "You want a stand and a wide tip range out of the box",
     "You solder for hours at a dedicated bench — a station like the Hakko FX888D suits that better"
   ],
-  tradeOffs: "The Pinecil's portability comes at the cost of extras: there's no stand included by default, and the tip selection is smaller than Hakko's, so factor those add-on costs into the price before comparing it directly against a complete kit.",
+  tradeOffs: "The Pinecil's portability comes at the cost of extras: there's no stand included by default, and full power needs a 24V supply, so factor those add-on costs into the price before comparing it directly against a complete kit.",
   assessment: [
     {
       heading: "Power and heat-up",
@@ -57,7 +57,7 @@ const review: ProductReviewContent = {
   faqs: [
     {
       question: "What power supply does the Pinecil V2 need?",
-      answer: "A USB-C Power Delivery (PD) source, such as a PD charger or power bank. It's rated up to 65W; lower-wattage sources deliver less power."
+      answer: "A USB-C Power Delivery (PD) source, such as a PD charger or power bank, or a DC supply. Pine64 rates the V2 at up to 88W from 24V; a 20V/3A USB-C PD charger gives about 60W, and lower-wattage sources deliver less power."
     },
     {
       question: "Does the Pinecil V2 come with a stand?",

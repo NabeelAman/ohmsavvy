@@ -436,14 +436,14 @@ export default function HowToSolderACoaxialCableConnectorPage() {
                 image: hakko.image,
                 alt: "Hakko FX888D soldering station handpiece",
                 href: "/soldering-irons/hakko-fx888d-review",
-                note: "70W with digital, adjustable temperature control and a heat-up time of about 15 seconds; best for serious hobbyists and repair work.",
+                note: "70W station with digital, adjustable temperature control, ESD safe; best for serious hobbyists and repair work.",
               },
               {
                 name: "Weller WE1010NA",
                 image: weller.image,
                 alt: "Weller WE1010NA digital soldering station",
                 href: "/soldering-irons/weller-we1010na-review",
-                note: "70W digital, ESD-safe station with a heat-up time of about 20 seconds, built for dedicated workbenches and professional use.",
+                note: "70W digital, ESD-safe station with a heat-up time of about 28 seconds, built for dedicated workbenches and professional use.",
               },
             ]}
           />

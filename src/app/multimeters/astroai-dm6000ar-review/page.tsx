@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "AstroAI DM6000AR Review",
-  description: "AstroAI DM6000AR review: True RMS, 6,000-count resolution and CAT III 600V for Arduino, Raspberry Pi and hobby electronics, and where the budget build shows.",
+  description: "AstroAI DM6000AR review: True RMS and 6,000-count resolution for Arduino, Raspberry Pi and hobby electronics, the missing CAT rating, and where the budget shows.",
   path: "/multimeters/astroai-dm6000ar-review",
   image: picks.find((p) => p.name === "AstroAI DM6000AR")?.image,
 });
@@ -20,7 +20,7 @@ const review: ProductReviewContent = {
   considerIf: [
     "You work on Arduino, Raspberry Pi, or other low-voltage projects",
     "You want True RMS and 6,000-count resolution on a small budget",
-    "You want a compact, lightweight meter for the bench"
+    "You want both auto and manual ranging on a budget meter"
   ],
   skipIf: [
     "You want high-quality test leads out of the box",
@@ -34,7 +34,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Safety and accuracy",
-      body: "True RMS and a CAT III 600V rating mean it isn't limited to the bench, though its strengths lie in hobby electronics rather than panel work."
+      body: "True RMS gives correct readings on non-sinusoidal signals, but neither AstroAI's product page nor its Amazon listing states a CAT safety rating, so keep it to low-voltage electronics and battery work, not panels or building wiring."
     },
     {
       heading: "Where the budget price shows",

@@ -326,7 +326,7 @@ export default function HowToSolderAReplacementUsbConnectorPage() {
               image: yihua.image,
               alt: "YIHUA 862BD+ iron and hot air rework station",
               href: "/soldering-irons/yihua-862bd-plus-review",
-              note: "75W iron plus 650W hot air with independent readouts, for SMD rework alongside general soldering.",
+              note: "75W iron plus 500W hot air with independent readouts, for SMD rework alongside general soldering.",
             },
             {
               name: "Hakko FX888D",

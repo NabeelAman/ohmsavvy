@@ -314,7 +314,7 @@ export default function HowToCheckA230vTransformerPage() {
               image: astro.image,
               alt: "AstroAI DM6000AR True RMS digital multimeter",
               href: "/multimeters/astroai-dm6000ar-review",
-              note: "True RMS, 6,000-count, CAT III 600V: a budget meter that still carries a CAT III rating.",
+              note: "True RMS, 6,000-count, auto-ranging. AstroAI states no CAT rating, so use it on the low-voltage side only.",
             },
           ]}
         />

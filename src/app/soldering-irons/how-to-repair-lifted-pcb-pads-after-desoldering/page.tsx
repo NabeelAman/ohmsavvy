@@ -399,21 +399,21 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
               image: hakko.image,
               alt: "Hakko FX888D soldering station with handpiece",
               href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W, ~15 second heat-up, digital adjustable temperature control. Best for serious hobbyists and repair work.",
+              note: "70W station, digital adjustable temperature control, ESD safe. Best for serious hobbyists and repair work.",
             },
             {
               name: "Weller WE1010NA",
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station with ~20 second heat-up, for dedicated workbenches and professional use.",
+              note: "70W digital, ESD-safe station that heats in about 28 seconds, for dedicated workbenches and professional use.",
             },
             {
               name: "YIHUA 862BD+",
               image: yihua.image,
               alt: "YIHUA 862BD+ soldering iron and hot air rework station",
               href: "/soldering-irons/yihua-862bd-plus-review",
-              note: "75W iron plus 650W hot air with independent LED readouts, for SMD and BGA rework alongside general soldering.",
+              note: "75W iron plus 500W hot air with independent LED readouts, for SMD and BGA rework alongside general soldering.",
             },
           ]}
         />

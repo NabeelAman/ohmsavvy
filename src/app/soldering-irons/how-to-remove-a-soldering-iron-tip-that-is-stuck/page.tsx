@@ -406,7 +406,7 @@ export default function HowToRemoveASolderingIronTipThatIsStuckPage() {
                 image: pinecil.image,
                 alt: "Pinecil V2 portable USB-C powered soldering iron",
                 href: "/soldering-irons/pinecil-v2-review",
-                note: "65W over USB-C PD with an OLED digital display; USB-C powered and pocket-sized.",
+                note: "About 60W from 20V USB-C PD (up to 88W at 24V) with an OLED display; pocket-sized.",
               },
             ]}
           />

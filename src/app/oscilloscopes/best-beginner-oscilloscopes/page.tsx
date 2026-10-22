@@ -12,12 +12,13 @@ export const metadata = buildMetadata({
 export const picks: Pick[] = [
   {
     badge: "Best Overall",
+    // Specs per rigolna.com and the DS1000Z datasheet: 50MHz, 4 channels, 1 GSa/s single channel (250 MSa/s with 3–4 on), 7-inch display.
     name: "Rigol DS1054Z",
     image: "https://valuetronics.com/cdn/shop/files/rigol_ds1054z-new_grande.jpg",
     rating: 4.8,
     bottomLine: "The default beginner oscilloscope recommendation for years, and still worth it.",
     verdict:
-      "The DS1054Z has been the default recommendation for beginner oscilloscopes for years, and for good reason — 4 channels and 50MHz of bandwidth (unlockable higher via firmware) at a genuinely approachable price.",
+      "The DS1054Z has been the default recommendation for beginner oscilloscopes for years, and for good reason — 4 channels and 50MHz of bandwidth at a genuinely approachable price.",
     specs: [
       { label: "Bandwidth", value: "50MHz" },
       { label: "Channels", value: "4" },
@@ -49,12 +50,13 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best for Growing Into",
+    // Specs per siglentna.com (SDS1104X-E): 100MHz, 4 channels, 1 GSa/s (500 MSa/s per channel with all on).
     name: "Siglent SDS1104X-E",
     image: "https://valuetronics.com/cdn/shop/files/siglent_sds1104x-e.jpg",
     rating: 4.7,
     bottomLine: "More bandwidth and a better UI than the Rigol, for projects that will get more demanding.",
     verdict:
-      "A step up in bandwidth and sample rate from the Rigol, with a well-regarded user interface. A strong pick for anyone who expects their projects to get more demanding over time.",
+      "Double the Rigol's bandwidth (100MHz vs 50MHz) and twice its per-channel sample rate with three or four channels on (500 MSa/s vs 250 MSa/s), with a well-regarded user interface. A strong pick for anyone who expects their projects to get more demanding over time.",
     specs: [
       { label: "Bandwidth", value: "100MHz" },
       { label: "Channels", value: "4" },
@@ -68,6 +70,7 @@ export const picks: Pick[] = [
   {
     badge: "Best Compact Bench Option",
     name: "Hantek DSO2D10",
+    // Specs per hantek.com (DSO2D10): 100MHz, 2 channels, 1 GSa/s, 7-inch 800×480, 1-channel 25 MHz generator.
     // Main photo of this exact Amazon listing (ASIN in ctaHref), verified by eye.
     image: "https://m.media-amazon.com/images/I/71YBWhiO8sL._SL1200_.jpg",
     rating: 4.3,
@@ -81,7 +84,7 @@ export const picks: Pick[] = [
       { label: "Best for", value: "Space-limited benches, combined testing" },
     ],
     pros: ["Built-in waveform generator saves bench space", "Solid 100MHz bandwidth for the price", "Compact footprint"],
-    cons: ["Only 2 channels vs. 4 on similarly priced scopes", "Smaller display than bench-focused competitors"],
+    cons: ["Only 2 channels, vs. 4 on the Rigol and Siglent", "The built-in generator is single-channel (25 MHz)"],
     ctaHref: "https://www.amazon.com/dp/B0D6B7HRMG?tag=ohmsavvy-20",
   },
 ];

@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Pinecil V2 vs Q-MING 60W Kit",
-  description: "Pinecil V2 vs Q-MING 60W Kit: a portable 65W USB-C iron against a complete budget starter kit. Heat-up, temperature control and what comes in the box.",
+  description: "Pinecil V2 vs Q-MING 60W Kit: a portable USB-C iron against a complete budget starter kit. Power, heat-up, temperature control and what comes in the box.",
   path: "/soldering-irons/pinecil-v2-vs-q-ming-60w-kit",
 });
 
@@ -34,19 +34,19 @@ const comparison: ProductComparisonContent = {
     ]
   },
   differences: [
-    "Power: 65W over USB-C PD for the Pinecil vs. 60W for the Q-MING.",
+    "Power: up to 88W at 24V (about 60W from 20V USB-C PD) for the Pinecil vs. 60W for the Q-MING.",
     "Heat-up: about 12 seconds vs. about 15.",
     "Temperature control: an OLED digital display vs. an adjustable analog dial.",
     "In the box: the Q-MING includes a stand and 5 tips; the Pinecil has no stand by default.",
     "Power source: the Pinecil needs a USB-C PD charger or power bank you likely already own; the Q-MING plugs into a standard outlet with its included cable.",
-    "Tip selection out of the box: the Q-MING ships with 5 tips ready to use; the Pinecil's default selection is smaller, so budget for extra tips if you need a specific shape.",
+    "Tips out of the box: the Q-MING ships with 5 tips ready to use; check what your Pinecil listing includes and budget for extra tips if you need a specific shape.",
     "Build quality is matched to different expectations: the Q-MING is suited for light, occasional use, while the Pinecil is built to travel and be picked up for field repairs regularly."
   ],
   bottomLine: "For a first-time buyer who just wants to start, the Q-MING kit removes every extra purchase. If portability or precise temperature control matter to you, the Pinecil V2 is the more capable tool. Just budget for a stand.",
   faqs: [
     {
       question: "Does the Pinecil V2 need a special power supply?",
-      answer: "It runs from a USB-C Power Delivery source, such as a PD charger or power bank, and is rated up to 65W. Lower-wattage sources deliver less power."
+      answer: "It runs from a USB-C Power Delivery source, such as a PD charger or power bank, or a DC supply. Pine64 rates the V2 at up to 88W from 24V, and about 60W from a 20V/3A USB-C PD charger. Lower-wattage sources deliver less power."
     },
     {
       question: "Which is better for a complete beginner?",
@@ -62,7 +62,7 @@ const comparison: ProductComparisonContent = {
     },
     {
       question: "Will the Pinecil or the Q-MING hold up to daily use over a year or two?",
-      answer: "That depends on how you define daily use. The Q-MING's build quality is described as suited for light, occasional projects — a reasonable choice if you solder a few times a month, but not the one to reach for if you're running a repair bench every day. The Pinecil V2 is built with portability and repeated field use in mind, which generally means a more durable housing and connector, but its tip selection is smaller out of the box, so factor in the cost of extra tips if you'll be using it constantly across different wire gauges and components."
+      answer: "That depends on how you define daily use. The Q-MING's build quality is described as suited for light, occasional projects — a reasonable choice if you solder a few times a month, but not the one to reach for if you're running a repair bench every day. The Pinecil V2 is built with portability and repeated field use in mind, which generally means a more durable housing and connector, but check how many tips your listing includes, and factor in the cost of extra tips if you'll be using it constantly across different wire gauges and components."
     }
   ],
   roundup: {

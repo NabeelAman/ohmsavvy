@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Extech EX330 Review",
-  description: "Extech EX330 review: a pocket-sized auto-ranging meter with built-in NCV and CAT III 600V. Why it isn't True RMS, and when that actually matters.",
+  description: "Extech EX330 review: a pocket-sized auto-ranging meter with built-in NCV and CAT III 600V. Extech doesn't list it as True RMS: when that matters.",
   path: "/multimeters/extech-ex330-review",
   image: picks.find((p) => p.name === "Extech EX330")?.image,
 });
@@ -24,14 +24,14 @@ const review: ProductReviewContent = {
     "You already own a True RMS meter and just want a small backup for quick checks"
   ],
   skipIf: [
-    "You measure AC on motor drives, dimmers, or electronics with switching supplies — it isn't True RMS",
+    "You measure AC on motor drives, dimmers, or electronics with switching supplies — Extech doesn't list it as True RMS",
     "You prefer a large, easy-to-read display"
   ],
-  tradeOffs: "The EX330 trades True RMS for size and price. On clean mains sine waves that rarely matters; on distorted waveforms, readings can be off, so know which category your typical checks fall into before relying on it.",
+  tradeOffs: "Extech labels its True RMS meters as such and doesn't list the EX330 as True RMS. On clean mains sine waves that rarely matters; on distorted waveforms, readings from a meter that isn't True RMS can be off, so know which category your typical checks fall into before relying on it.",
   assessment: [
     {
-      heading: "Not True RMS: what that means",
-      body: "Average-responding meters like the EX330 are calibrated for clean sine waves. On non-sinusoidal waveforms, such as those from motor drives, LED drivers, and switching power supplies, they can read inaccurately. For checking ordinary outlets it's a minor limitation."
+      heading: "True RMS isn't listed: what that means",
+      body: "Meters that aren't True RMS are calibrated for clean sine waves, and Extech's EX330 datasheet doesn't list True RMS. On non-sinusoidal waveforms, such as those from motor drives, LED drivers, and switching power supplies, they can read inaccurately. For checking ordinary outlets it's a minor limitation."
     },
     {
       heading: "Size and NCV",
@@ -39,7 +39,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "What it's realistically good for",
-      body: "This isn't a meter you'd choose as your only tool for serious electrical work — it's the one you keep in a glovebox, junk drawer, or toolbox for the moment you unexpectedly need to check an outlet, test a battery, or confirm a wire is dead before touching it. For that role, the compromises on display size and True RMS accuracy rarely matter, because the jobs it gets used for don't demand either."
+      body: "This isn't a meter you'd choose as your only tool for serious electrical work — it's the one you keep in a glovebox, junk drawer, or toolbox for the moment you unexpectedly need to check an outlet, test a battery, or confirm a wire is dead before touching it. For that role, its 4,000-count display and the lack of a listed True RMS function rarely matter, because the jobs it gets used for don't demand either."
     }
   ],
   alternatives: [
@@ -51,13 +51,13 @@ const review: ProductReviewContent = {
     {
       name: "AstroAI DM6000AR",
       href: "/multimeters/astroai-dm6000ar-review",
-      reason: "Compact and lightweight, with True RMS and 6,000-count resolution."
+      reason: "True RMS and 6,000-count resolution with auto and manual ranging, though AstroAI states no CAT rating."
     }
   ],
   faqs: [
     {
       question: "Is the Extech EX330 True RMS?",
-      answer: "No. It's auto-ranging but not True RMS, so it's less accurate on non-sinusoidal AC signals."
+      answer: "Extech doesn't list it as True RMS. Its datasheet covers autoranging, NCV, Type K temperature, capacitance and frequency, while Extech's True RMS models are labelled as such, so treat its AC readings on non-sinusoidal signals with caution."
     },
     {
       question: "Is the Extech EX330 safe for household electrical panels?",
@@ -65,7 +65,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Why would I choose a meter without True RMS when True RMS meters exist at similar prices?",
-      answer: "Mainly size. The EX330's value proposition is being genuinely pocket-sized, and that compact form factor is the tradeoff for not including True RMS circuitry. If a similarly priced True RMS option like the UNI-T UT139C or AstroAI DM6000AR fits your budget and you don't specifically need something this small, there's little reason to give up True RMS accuracy. The EX330 earns its place specifically for buyers who value carry size above all else."
+      answer: "Mainly size and the built-in NCV. The EX330's value proposition is being genuinely pocket-sized with a voltage detector built in. If a similarly priced True RMS option like the UNI-T UT139C or AstroAI DM6000AR fits your budget and you don't specifically need something this small, there's little reason to give up True RMS accuracy. The EX330 earns its place specifically for buyers who value carry size above all else."
     }
   ],
   roundup: {

@@ -35,11 +35,11 @@ const comparison: ProductComparisonContent = {
   },
   differences: [
     "Safety rating: CAT IV 600V / CAT III 1000V on the Southwire vs. CAT III 600V on the Craftsman.",
-    "The Southwire is IP67-rated and adds a magnetic hanging strap and an LED work light.",
-    "The Craftsman adds RPM, dwell angle, and duty-cycle measurement for automotive diagnostics, plus auto power-off.",
+    "The Southwire is IP67-rated and adds an LED work light and a Low Z function against ghost voltage.",
+    "The Craftsman adds RPM, dwell angle, and duty-cycle measurement for automotive diagnostics, plus temperature and frequency.",
     "Both are True RMS and auto-ranging.",
     "These two are built around genuinely different jobs rather than being tiers of the same product — buying the wrong one for your actual work wastes the features you're paying for either way.",
-    "The Southwire's magnetic hanging strap and built-in LED work light are aimed at hands-free job-site use; the Craftsman's auto power-off is a convenience feature built for its own diagnostic workflow instead.",
+    "The Southwire's built-in LED work light and Low Z function are aimed at job-site electrical work; the Craftsman's extra functions are built for engine diagnostics instead.",
     "If your region's listing differs, double-check availability before buying the Southwire — its listing notes US availability as confirmed, with other regions worth verifying directly."
   ],
   bottomLine: "Pick by the work, not the spec sheet. For vehicles, the Craftsman is the one with dedicated RPM, dwell, and duty-cycle modes. For outdoor electrical work, or anything that needs CAT IV protection, the Southwire is the one built for it. Buying either one for the wrong job means paying for features — IP67 toughness on one side, automotive diagnostics on the other — that you'll never actually use.",
@@ -57,8 +57,8 @@ const comparison: ProductComparisonContent = {
       answer: "The first digit (6) means fully dust-tight — no ingress at all. The second digit (7) means it can survive temporary submersion in up to 1 meter of water for about 30 minutes. For the Southwire 14070T, that translates to surviving a drop in a puddle, a sudden downpour on a job site, or being set down in sawdust or drywall grit without worrying about internal damage. The Craftsman CMMT14171 carries no IP rating, so it's built for a cleaner garage or shop environment rather than exposed outdoor conditions."
     },
     {
-      question: "Is the magnetic strap and work light on the Southwire actually useful, or just a gimmick?",
-      answer: "For the job this meter is built for, it's genuinely practical rather than a marketing add-on. The magnetic hanging strap lets you mount the meter to a metal panel or enclosure so both hands stay free for probing, which matters more on a ladder or in a crawlspace than it sounds. The built-in LED work light solves the common problem of reading a meter's display inside a dim breaker box or under a vehicle hood — without it, you'd need a separate flashlight or headlamp. The Craftsman has neither feature, which fits its indoor, automotive-bay use case."
+      question: "Is the work light on the Southwire actually useful, or just a gimmick?",
+      answer: "For the job this meter is built for, it's genuinely practical rather than a marketing add-on. The built-in LED work light solves the common problem of reading a meter's display inside a dim breaker box or under a vehicle hood — without it, you'd need a separate flashlight or headlamp. The Craftsman doesn't list one, which fits its indoor, automotive-bay use case."
     }
   ],
   roundup: {

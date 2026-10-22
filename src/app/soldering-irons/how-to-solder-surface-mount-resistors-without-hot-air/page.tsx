@@ -407,7 +407,7 @@ export default function HowToSolderSurfaceMountResistorsWithoutHotAirPage() {
                 image: pinecil.image,
                 alt: "Pinecil V2 portable USB-C powered soldering iron",
                 href: "/soldering-irons/pinecil-v2-review",
-                note: "65W over USB-C PD with an OLED digital display and a heat-up time of about 12 seconds; built for portability and field repairs.",
+                note: "About 60W from 20V USB-C PD (up to 88W at 24V) with an OLED display and a heat-up time of about 12 seconds; built for portability and field repairs.",
               },
             ]}
           />

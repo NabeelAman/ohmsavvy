@@ -24,8 +24,8 @@ const review: ProductReviewContent = {
   ],
   skipIf: [
     "You only solder through-hole components and will never touch SMD/BGA rework",
-    "You specifically need ESD-safe construction — this variant doesn't have it",
-    "You're outside a 220V mains region and can't confirm this unit handles your voltage",
+    "You need ESD safety confirmed by the maker: the US listing says ESD safe, but YIHUA's own spec sheet makes no ESD claim",
+    "You're buying outside the US and can't confirm your listing's voltage: YIHUA's spec sheet lists 220V for the model family",
   ],
   tradeOffs: "The 862BD+ isn't competing with dedicated single-function irons like the Weller WE1010NA on precision or build certification — its value is doing two jobs (soldering and hot air rework) in one purchase, for buyers who genuinely need both.",
   assessment: [
@@ -38,8 +38,8 @@ const review: ProductReviewContent = {
       body: "Per the manufacturer's spec sheet, the iron runs 200–480°C and the hot air gun 100–480°C, independently adjustable with their own LED readouts — a wide enough range to cover leaded and lead-free solder plus SMD rework temperatures. As with any budget digital display, it's worth confirming the readout against a separate thermometer on a unit this price before trusting it for a temperature-sensitive job, rather than assuming the display is lab-calibrated out of the box.",
     },
     {
-      heading: "What this unit doesn't have",
-      body: "The manufacturer's own spec sheet makes no ESD-safety claim for this specific variant, and the unit we visually confirmed against the official product photos shows no ESD-safe badge on its panel — unlike the separate 862BD++ variant, which does carry one. If ESD-safe construction is a requirement for your bench, this isn't the unit, and the Weller WE1010NA is the verified ESD-safe option in our lineup.",
+      heading: "ESD and voltage: the listing and the spec sheet disagree",
+      body: "The US Amazon listing we link to says this unit is ESD safe, with a tip-to-ground resistance under 2 ohms, and that it runs on 110–127V with a US plug. YIHUA's own spec sheet for the model family lists AC 220V and makes no ESD-safety claim, and the official product photo shows no ESD-safe badge, unlike the separate 862BD++ variant. Check the listing you actually order; if maker-confirmed ESD safety is a requirement for your bench, the Weller WE1010NA or Hakko FX888D is the safer choice.",
     },
   ],
   alternatives: [
@@ -51,17 +51,17 @@ const review: ProductReviewContent = {
     {
       name: "Hakko FX888D",
       href: "/soldering-irons/hakko-fx888d-review",
-      reason: "Faster heat-up and a wide genuine-tip ecosystem for general soldering work.",
+      reason: "ESD safe with a wide genuine-tip ecosystem for general soldering work, though Hakko has now discontinued it.",
     },
   ],
   faqs: [
     {
       question: "What voltage does the YIHUA 862BD+ run on?",
-      answer: "The manufacturer's official spec sheet lists AC 220V ±10%, 50Hz. If you're buying for a 120V/60Hz region, confirm with the seller that the specific listing you're ordering is converted or rated for your mains voltage before buying — using a 220V-rated unit on the wrong supply can mean it simply doesn't work correctly, or worse.",
+      answer: "The US Amazon listing we link to states it runs on 110–127V with a US-standard plug. YIHUA's own spec sheet for the model family lists AC 220V ±10%, 50Hz, so check the voltage stated on the exact listing you order — especially outside the US. Running a unit on the wrong supply can mean it doesn't work correctly, or worse.",
     },
     {
       question: "Is the YIHUA 862BD+ ESD-safe?",
-      answer: "No — the manufacturer's spec sheet doesn't list ESD-safety for this variant, and the official product photo of this specific model shows no ESD-safe badge. A separate variant in the same family, the 862BD++, does carry that badge, so don't assume ESD-safety carries across every model with a similar name.",
+      answer: "The sources disagree. The US Amazon listing says it is ESD safe, with a tip-to-ground resistance under 2 ohms, but YIHUA's own spec sheet makes no ESD claim for this variant and the official product photo shows no ESD-safe badge, unlike the 862BD++. Treat ESD safety as unconfirmed by the maker.",
     },
     {
       question: "Do I need the hot air side if I only do through-hole soldering?",

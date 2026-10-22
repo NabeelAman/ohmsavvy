@@ -36,7 +36,7 @@ const comparison: ProductComparisonContent = {
   differences: [
     "The 2235-20 reads up to 400A AC by clamping around a conductor, with no need to open the circuit.",
     "The Fluke 117 is a standard meter suited to voltage, resistance, and continuity work, with built-in NCV.",
-    "Both are CAT III 600V, True RMS, and auto-ranging.",
+    "Both are CAT III 600V and True RMS; the Fluke 117 is auto-ranging, while Milwaukee doesn't state whether the 2235-20 is.",
     "The clamp meter is bulkier than a pocket multimeter.",
     "The 2235-20 is rated for AC current only — it's not a combination AC/DC clamp, so DC current measurement still needs a different tool."
   ],

@@ -25,13 +25,13 @@ const review: ProductReviewContent = {
   ],
   skipIf: [
     "You need a portable iron — this is a bulkier bench station",
-    "ESD-safe construction is a stated requirement — the Weller WE1010NA lists it as a core feature"
+    "You want a model that's still in production: Hakko has replaced it with the FX-888DX, which uses the same T18 tips"
   ],
   tradeOffs: "The FX888D's thermal performance depends on buying a genuine unit. Counterfeits exist on third-party marketplaces, so buy from Hakko's authorized sellers or a listing that clearly states it.",
   assessment: [
     {
-      heading: "Power and heat-up",
-      body: "70W with digital, adjustable temperature control and a heat-up time of about 15 seconds, faster than the Weller WE1010NA's roughly 20."
+      heading: "Power and ESD safety",
+      body: "Hakko rates the station at 70W with a 65W iron and digital, adjustable temperature control, and lists it as ESD safe with a tip-to-ground resistance under 2 ohms. Hakko gives no absolute heat-up time, so we don't quote one."
     },
     {
       heading: "Thermal recovery",
@@ -39,7 +39,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "Hands-on in our lab",
-      body: "Our testing team bought this unit and tested it in our lab, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published here yet; when they are, they'll sit in this section with the method we used. Until then, the heat-up time, power and temperature-control details on this page are verified against Hakko's own published data, and the verdict rests on what they mean for regular electronics and repair work.",
+      body: "Our testing team bought this unit and tested it in our lab, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published here yet; when they are, they'll sit in this section with the method we used. Until then, the power, ESD and temperature-control details on this page are verified against Hakko's own published data, and the verdict rests on what they mean for regular electronics and repair work.",
     },
     {
       heading: "The genuine-tip ecosystem",
@@ -50,12 +50,12 @@ const review: ProductReviewContent = {
     {
       name: "Weller WE1010NA",
       href: "/soldering-irons/weller-we1010na-review",
-      reason: "Also 70W and digital, with ESD-safe construction for a professional bench."
+      reason: "Also 70W, digital and ESD safe, and still in production."
     },
     {
       name: "Pinecil V2",
       href: "/soldering-irons/pinecil-v2-review",
-      reason: "A portable 65W USB-C iron for work away from the bench."
+      reason: "A portable USB-C iron (about 60W from a 20V USB-C PD charger, up to 88W at 24V) for work away from the bench."
     },
     {
       name: "Q-MING 60W Kit",
@@ -70,11 +70,11 @@ const review: ProductReviewContent = {
     },
     {
       question: "Hakko FX888D or Weller WE1010NA?",
-      answer: "Both are 70W digital stations. The FX888D heats faster (about 15 seconds vs. about 20) and has widely available genuine tips, while the WE1010NA adds ESD-safe construction."
+      answer: "Both are 70W, digital and ESD safe. The FX888D has widely available genuine T18 tips but is discontinued (replaced by the FX-888DX); the WE1010NA is a current model."
     },
     {
       question: "Is the Hakko FX888D hands-on tested, or based on the spec sheet?",
-      answer: "Hands-on tested. Our testing team bought this unit and tested it in our lab, which is why it carries a \"Hands-on Tested\" badge on this page. We haven't published detailed test results here yet, so the power, heat-up and temperature-control details above come from Hakko's own published specifications. We'll add our results to this review when they're ready.",
+      answer: "Hands-on tested. Our testing team bought this unit and tested it in our lab, which is why it carries a \"Hands-on Tested\" badge on this page. We haven't published detailed test results here yet, so the power, ESD and temperature-control details above come from Hakko's own published specifications. We'll add our results to this review when they're ready.",
     }
   ],
   roundup: {

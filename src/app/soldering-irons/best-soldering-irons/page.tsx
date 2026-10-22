@@ -12,6 +12,7 @@ export const metadata = buildMetadata({
 export const picks: Pick[] = [
   {
     badge: "Best Overall",
+    // Specs per hakkousa.com (FX888D page): 70W/120VAC station, 65W/26VAC iron; status Discontinued, replaced by the FX-888DX.
     name: "Hakko FX888D",
     image: "https://hakkousa.com/media/catalog/product/f/x/fx888d_handpiece.jpg",
     rating: 4.8,
@@ -19,18 +20,19 @@ export const picks: Pick[] = [
     verdict:
       "The FX888D is the bench station most consistently recommended by hobbyist communities and professionals alike. Fast thermal recovery and genuinely stable temperature control make it a reliable long-term tool.",
     specs: [
-      { label: "Power", value: "70W" },
-      { label: "Heat-up time", value: "~15 seconds" },
+      { label: "Power", value: "70W station (65W iron)" },
+      { label: "Heat-up time", value: "Not stated by Hakko" },
       { label: "Temperature control", value: "Digital, adjustable" },
       { label: "Best for", value: "Serious hobbyists, repair work" },
     ],
     pros: ["Excellent thermal recovery under load", "Widely available genuine replacement tips", "Trusted reputation across electronics communities"],
-    cons: ["Counterfeit units exist — buy from authorized sellers", "Bulkier than portable options"],
+    cons: ["Discontinued by Hakko USA, replaced by the FX-888DX (same T18 tips)", "Counterfeit units exist — buy from authorized sellers", "Bulkier than portable options"],
     ctaHref: "https://www.amazon.com/dp/B00ANZRT4M?tag=ohmsavvy-20",
     handsOnTested: true,
   },
   {
     badge: "Best Portable",
+    // Specs per pine64.org (Pinecil specifications): V2 rated 12–24V, 88W at 24V; USB-C PD 12–20V 3A.
     name: "Pinecil V2",
     image: "https://pine64.org/documentation/images/Pinecilv2-1.jpg",
     rating: 4.7,
@@ -38,18 +40,19 @@ export const picks: Pick[] = [
     verdict:
       "USB-C powered, pocket-sized, and genuinely fast to heat up — the Pinecil V2 is the rare budget tool that doesn't feel like a compromise, making it a favorite for on-the-go repairs.",
     specs: [
-      { label: "Power", value: "65W (USB-C PD)" },
-      { label: "Heat-up time", value: "~12 seconds" },
+      { label: "Power", value: "Up to 88W at 24V DC; about 60W from 20V USB-C PD" },
+      { label: "Heat-up time", value: "~12 seconds (with a 20V+ supply)" },
       { label: "Temperature control", value: "OLED digital display" },
       { label: "Best for", value: "Portability, field repairs" },
     ],
     pros: ["Extremely compact and travel-friendly", "Fast heat-up for its size", "Powered by any USB-C PD source, even a power bank"],
-    cons: ["No stand included by default", "Smaller tip selection than Hakko"],
+    cons: ["No stand included by default", "Needs a USB-C PD or DC supply; full power needs 24V"],
     ctaHref: "https://www.amazon.com/dp/B096X6SG13?tag=ohmsavvy-20",
   },
   {
     badge: "Best Budget",
     name: "Q-MING 60W Kit",
+    // Temperature dial with °C markings is visible on the handle in the listing main photo; range 200–450°C per the listing text.
     // Main photo of this exact Amazon listing (ASIN in ctaHref), verified by eye.
     image: "https://m.media-amazon.com/images/I/716mcSHUCjS._AC_SL1500_.jpg",
     rating: 4.3,
@@ -59,15 +62,16 @@ export const picks: Pick[] = [
     specs: [
       { label: "Power", value: "60W" },
       { label: "Heat-up time", value: "~15 seconds" },
-      { label: "Temperature control", value: "Adjustable dial" },
+      { label: "Temperature control", value: "Adjustable dial, 200–450°C" },
       { label: "Best for", value: "Beginners, occasional use" },
     ],
     pros: ["Comes with 5 tips and a stand in one box", "Very low price for a complete kit", "Simple dial control, no learning curve"],
-    cons: ["Analog dial is less precise than digital stations", "Build quality suited for light, occasional use"],
+    cons: ["No digital temperature readout", "Build quality suited for light, occasional use"],
     ctaHref: "https://www.amazon.com/dp/B098JD8HD3?tag=ohmsavvy-20",
   },
   {
     badge: "Best for Professional Benches",
+    // Specs per weller-tools.com (WE1010NA): 70W, ESD safe, ~28 s from 50 to 350°C.
     name: "Weller WE1010NA",
     image: "https://www.weller-tools.com/sites/default/files/products/images/2026-08/WE_1010.jpg",
     rating: 4.6,
@@ -76,7 +80,7 @@ export const picks: Pick[] = [
       "Weller's WE1010NA brings ESD-safe construction and tight temperature stability to a 70W digital station, making it a strong choice for anyone running a dedicated electronics bench.",
     specs: [
       { label: "Power", value: "70W" },
-      { label: "Heat-up time", value: "~20 seconds" },
+      { label: "Heat-up time", value: "~28 seconds (50–350°C)" },
       { label: "Temperature control", value: "Digital, ESD-safe" },
       { label: "Best for", value: "Dedicated workbenches, professional use" },
     ],
@@ -86,20 +90,21 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best 2-in-1 with Hot Air Rework",
+    // Specs per the official Amazon listing (ASIN in ctaHref): 75W iron, 500W hot air, 720W total, 110–127V US plug, ESD safe.
     name: "YIHUA 862BD+",
     image: "https://ueeshop.ly200-cdn.com/u_file/UPAY/UPAY521/2305/15/products/862BD800x8001-0f91.jpg",
     rating: 4.3,
     bottomLine: "A soldering iron and a hot air rework station in one box, for SMD and BGA work a plain iron can't touch.",
     verdict:
-      "The 862BD+ pairs a 75W soldering iron with a separate 650W hot air gun in one station, aimed at SMD and BGA rework rather than general through-hole soldering alone. It's a genuinely different tool category from a standalone iron, not just a cheaper or pricier version of one.",
+      "The 862BD+ pairs a 75W soldering iron with a separate 500W hot air gun in one station, aimed at SMD and BGA rework rather than general through-hole soldering alone. It's a genuinely different tool category from a standalone iron, not just a cheaper or pricier version of one.",
     specs: [
-      { label: "Power", value: "75W iron / 650W hot air" },
+      { label: "Power", value: "75W iron / 500W hot air (720W total)" },
       { label: "Temperature range", value: "200–480°C iron, 100–480°C hot air" },
       { label: "Display", value: "LED, independent iron/air readouts" },
       { label: "Best for", value: "SMD/BGA rework alongside general soldering" },
     ],
     pros: ["Combines a soldering iron and hot air rework station in one unit", "Wide temperature range on both the iron and the hot air gun", "Independently adjustable iron and hot air temperatures with separate LED readouts"],
-    cons: ["Input is rated 220V per the manufacturer's spec sheet — confirm voltage compatibility for your region before buying", "No ESD-safe construction on this specific variant"],
+    cons: ["This US listing is the 110–127V version; buyers elsewhere need their region's variant", "Larger and more complex than a basic iron if you never do SMD rework"],
     ctaHref: "https://www.amazon.com/dp/B07RY5XWVG?tag=ohmsavvy-20",
   },
 ];

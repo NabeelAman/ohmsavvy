@@ -50,7 +50,7 @@ export default function SolderingIronForUsbPortRepairPage() {
         alt: "YIHUA 862BD+ soldering iron and hot air rework station, front view",
         caption: (
           <>
-            The YIHUA 862BD+ pairs a 75W iron with a 650W hot air gun, which suits multi-pin connector
+            The YIHUA 862BD+ pairs a 75W iron with a 500W hot air gun, which suits multi-pin connector
             rework. See our{" "}
             <Link href="/soldering-irons/yihua-862bd-plus-review" className={link}>
               862BD+ review
@@ -230,8 +230,8 @@ export default function SolderingIronForUsbPortRepairPage() {
         <Figure
           caption={
             <>
-              Rated iron power for the picks in our soldering iron roundup: 60W (Q-MING kit), 65W (Pinecil
-              V2), 70W (Hakko FX888D and Weller WE1010NA) and 75W (YIHUA 862BD+ iron). Wattage helps with
+              Rated iron power for the picks in our soldering iron roundup: 60W (Q-MING kit), about 60W (Pinecil
+              V2 on a 20V USB-C PD charger; up to 88W at 24V), 70W (Hakko FX888D and Weller WE1010NA) and 75W (YIHUA 862BD+ iron). Wattage helps with
               recovery on shell tabs, but tip size and temperature control matter as much.
             </>
           }
@@ -239,7 +239,7 @@ export default function SolderingIronForUsbPortRepairPage() {
           <BarChart
             items={[
               { label: "Q-MING 60W Kit", value: 60, display: "60W" },
-              { label: "Pinecil V2", value: 65, display: "65W" },
+              { label: "Pinecil V2 (20V USB-C PD)", value: 60, display: "≈60W" },
               { label: "Hakko FX888D", value: 70, display: "70W", highlight: true },
               { label: "Weller WE1010NA", value: 70, display: "70W" },
               { label: "YIHUA 862BD+ (iron)", value: 75, display: "75W" },
@@ -248,8 +248,8 @@ export default function SolderingIronForUsbPortRepairPage() {
         </Figure>
         <p className="text-muted leading-7 mt-4">
           ESD protection is also worth weighing for phone and laptop boards, which carry static-sensitive
-          parts. The Weller WE1010NA lists ESD-safe construction; the YIHUA 862BD+ variant in our reviews
-          does not. If you&apos;re deciding between a pen-style iron and a station, our{" "}
+          parts. The Weller WE1010NA and Hakko FX888D are both listed as ESD safe by their makers; for the
+          YIHUA 862BD+, the US listing says ESD safe but YIHUA&apos;s own spec sheet makes no ESD claim. If you&apos;re deciding between a pen-style iron and a station, our{" "}
           <Link href="/soldering-irons/soldering-iron-vs-soldering-station" className={link}>
             soldering iron vs soldering station
           </Link>{" "}
@@ -275,7 +275,7 @@ export default function SolderingIronForUsbPortRepairPage() {
           <Link href="/soldering-irons/yihua-862bd-plus-review" className={link}>
             YIHUA 862BD+
           </Link>{" "}
-          combines a 75W iron (200–480°C) with a 650W hot air gun (100–480°C), with independent LED
+          combines a 75W iron (200–480°C) with a 500W hot air gun (100–480°C), with independent LED
           readouts. Its input is rated 220V per the manufacturer&apos;s spec sheet, so confirm voltage
           compatibility for your region. Our{" "}
           <Link href="/soldering-irons/weller-we1010na-vs-yihua-862bd-plus" className={link}>
@@ -294,9 +294,9 @@ export default function SolderingIronForUsbPortRepairPage() {
         <DataTable
           head={["Tool type", "Example pick", "Fits"]}
           rows={[
-            ["Portable USB-C iron", "Pinecil V2: 65W (USB-C PD), OLED display", "Occasional port fixes, field repairs, tight budgets"],
+            ["Portable USB-C iron", "Pinecil V2: about 60W on USB-C PD, up to 88W at 24V, OLED display", "Occasional port fixes, field repairs, tight budgets"],
             ["Digital bench station", "Hakko FX888D or Weller WE1010NA: 70W, digital control", "Regular board work where fine pins and shell tabs both come up"],
-            ["Iron + hot air station", "YIHUA 862BD+: 75W iron, 650W hot air", "Frequent removal of surface-mount ports and other multi-pin parts"],
+            ["Iron + hot air station", "YIHUA 862BD+: 75W iron, 500W hot air", "Frequent removal of surface-mount ports and other multi-pin parts"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">
@@ -367,21 +367,21 @@ export default function SolderingIronForUsbPortRepairPage() {
               image: hakko.image,
               alt: "Hakko FX888D soldering station handpiece",
               href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W, ~15 second heat-up and digital, adjustable temperature control; aimed at serious hobbyists and repair work.",
+              note: "70W station, digital adjustable temperature control and ESD safe; aimed at serious hobbyists and repair work.",
             },
             {
               name: "Weller WE1010NA",
               image: weller.image,
               alt: "Weller WE1010NA ESD-safe digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with ESD-safe temperature control and ~20 second heat-up, for dedicated workbenches.",
+              note: "70W digital, ESD-safe station that heats in about 28 seconds, for dedicated workbenches.",
             },
             {
               name: "YIHUA 862BD+",
               image: yihua.image,
               alt: "YIHUA 862BD+ soldering iron and hot air rework station",
               href: "/soldering-irons/yihua-862bd-plus-review",
-              note: "75W iron / 650W hot air (200–480°C iron, 100–480°C air) for SMD/BGA rework alongside general soldering.",
+              note: "75W iron / 500W hot air (720W total), 200–480°C iron and 100–480°C air, for SMD/BGA rework alongside general soldering.",
             },
           ]}
         />

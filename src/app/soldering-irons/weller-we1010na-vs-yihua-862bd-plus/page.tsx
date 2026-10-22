@@ -31,14 +31,14 @@ const comparison: ProductComparisonContent = {
     chooseIf: [
       "You need to reflow or remove surface-mount components, which a standard iron can't do",
       "You'd rather buy one unit than a separate iron and a separate hot air station",
-      "You can confirm the unit's 220V rating matches your mains supply",
+      "You're in the US: the linked listing is the 110–127V version with a US plug",
     ],
   },
   differences: [
-    "The 862BD+ includes a 650W hot air gun for SMD/BGA rework; the WE1010NA has no hot air function at all.",
-    "The WE1010NA is ESD-safe by design; the 862BD+'s spec sheet makes no ESD-safety claim, and its official photos show no ESD-safe badge on the unit.",
+    "The 862BD+ includes a 500W hot air gun for SMD/BGA rework; the WE1010NA has no hot air function at all.",
+    "Weller lists the WE1010NA as ESD safe. For the 862BD+, the US listing says ESD safe, but YIHUA's own spec sheet makes no ESD claim and its official photo shows no ESD-safe badge.",
     "The WE1010NA's iron is 70W; the 862BD+'s iron is 75W, with a similar overall temperature range on the soldering side.",
-    "The 862BD+ is rated 220V per the manufacturer's own spec sheet — confirm voltage compatibility for your region before buying; the WE1010NA is sold as a US-market unit.",
+    "The linked 862BD+ listing is the 110–127V US version, but YIHUA's spec sheet lists 220V for the model family, so check the voltage on the listing you buy; the WE1010NA is sold as a US-market unit.",
     "The WE1010NA's temperature stability under sustained use is a specifically documented strength; the 862BD+'s spec sheet doesn't make an equivalent accuracy claim for either its iron or hot air readout.",
   ],
   bottomLine:
@@ -50,9 +50,9 @@ const comparison: ProductComparisonContent = {
         "Not hot air rework — it's a contact soldering iron with no hot air function, so reflowing or removing a multi-pin surface-mount part isn't something it can do. You can still hand-solder individual SMD pins with a fine tip on the WE1010NA, but true rework (lifting an entire component without damaging it) needs hot air.",
     },
     {
-      question: "Why does the 862BD+ list a 220V rating when it's sold on Amazon.com?",
+      question: "What voltage does the YIHUA 862BD+ run on?",
       answer:
-        "The manufacturer's own official spec sheet lists AC 220V ±10%, 50Hz for this model family. Some Amazon listings for Chinese-manufactured tools sell a region-converted unit without clearly stating it in the title, so this is worth confirming directly with the specific listing before you buy — don't assume a US Amazon listing is automatically 120V-converted.",
+        "The US Amazon listing we link to states 110–127V with a US-standard plug, while YIHUA's own spec sheet lists AC 220V ±10%, 50Hz for the model family. Regional versions exist, so confirm the voltage on the exact listing before you buy.",
     },
     {
       question: "Is paying more for ESD-safe construction worth it if I'm not sure I need it?",

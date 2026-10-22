@@ -45,7 +45,7 @@ const comparison: ProductComparisonContent = {
   faqs: [
     {
       question: "Is the Extech EX330 True RMS?",
-      answer: "No. It's auto-ranging but not True RMS, so readings on non-sinusoidal AC can be inaccurate. The UNI-T UT139C is True RMS."
+      answer: "Extech doesn't list it as True RMS: its datasheet covers autoranging, NCV, temperature, capacitance and frequency, but not True RMS. Treat its readings on non-sinusoidal AC with caution. The UNI-T UT139C is True RMS."
     },
     {
       question: "Do both meters have non-contact voltage detection?",

@@ -51,7 +51,7 @@ export default function MultimeterAccuracyForElectronicsRepairPage() {
         alt: "AstroAI DM6000AR True RMS digital multimeter with test leads, front view",
         caption: (
           <>
-            The AstroAI DM6000AR (True RMS, 6,000-count, CAT III 600V) is the electronics-hobbyist pick in our
+            The AstroAI DM6000AR (True RMS, 6,000-count, auto-ranging) is the electronics-hobbyist pick in our
             roundup. See our{" "}
             <Link href="/multimeters/astroai-dm6000ar-review" className={link}>
               DM6000AR review
@@ -384,7 +384,7 @@ export default function MultimeterAccuracyForElectronicsRepairPage() {
               image: astro.image,
               alt: "AstroAI DM6000AR True RMS digital multimeter",
               href: "/multimeters/astroai-dm6000ar-review",
-              note: "True RMS, 6,000-count, CAT III 600V, auto-ranging. Aimed at microcontroller and electronics projects.",
+              note: "True RMS, 6,000-count, auto-ranging. Aimed at low-voltage microcontroller and electronics projects.",
             },
             {
               name: "UNI-T UT139C",

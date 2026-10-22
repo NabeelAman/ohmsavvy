@@ -285,7 +285,7 @@ export default function HowToTestAWashingMachineHeatingElementPage() {
               image: astro.image,
               alt: "AstroAI DM6000AR True RMS digital multimeter",
               href: "/multimeters/astroai-dm6000ar-review",
-              note: "True RMS, 6,000-count, CAT III 600V, with both auto and manual ranging.",
+              note: "True RMS, 6,000-count, with both auto and manual ranging. AstroAI states no CAT rating, so test the element unplugged.",
             },
             {
               name: "UNI-T UT139C",

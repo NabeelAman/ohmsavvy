@@ -385,7 +385,7 @@ export default function HowToTestAThermistorWithAMultimeterPage() {
               image: astro.image,
               alt: "AstroAI DM6000AR True RMS digital multimeter",
               href: "/multimeters/astroai-dm6000ar-review",
-              note: "True RMS, 6,000-count, CAT III 600V, auto-ranging. Aimed at microcontroller and electronics projects.",
+              note: "True RMS, 6,000-count, auto-ranging. Aimed at low-voltage microcontroller and electronics projects.",
             },
             {
               name: "UNI-T UT139C",

@@ -49,7 +49,7 @@ export default function HowToCheckACeramicCapacitorWithAMultimeterPage() {
       }
       aside={{
         image: fluke115.image,
-        alt: "Fluke 115 compact digital multimeter, front view",
+        alt: "Fluke 115 True RMS digital multimeter, front view",
         caption: (
           <>
             The Fluke 115 (True RMS, CAT III 600V) includes capacitance measurement, which this guide uses
@@ -355,14 +355,14 @@ export default function HowToCheckACeramicCapacitorWithAMultimeterPage() {
               image: fluke115.image,
               alt: "Fluke 115 digital multimeter",
               href: "/multimeters/fluke-115-review",
-              note: "True RMS, auto-ranging, CAT III 600V. Fluke reliability in a smaller body, for field and electronics work.",
+              note: "True RMS, auto-ranging, CAT III 600V. The 117's reliability without NCV or LoZ, for field and electronics work.",
             },
             {
               name: "AstroAI DM6000AR",
               image: astro.image,
               alt: "AstroAI DM6000AR digital multimeter",
               href: "/multimeters/astroai-dm6000ar-review",
-              note: "True RMS, 6,000-count, auto-ranging, CAT III 600V. Our pick for microcontroller and electronics projects.",
+              note: "True RMS, 6,000-count, auto-ranging. Our pick for low-voltage microcontroller and electronics projects.",
             },
             {
               name: "UNI-T UT139C",

@@ -34,19 +34,19 @@ const comparison: ProductComparisonContent = {
       "You expect your projects to get more demanding over time",
       "You want bandwidth headroom now rather than upgrading later",
       "You prefer Siglent's interface over Rigol's",
-      "You'd rather have 100MHz guaranteed by the manufacturer than rely on a community firmware unlock",
+      "You want 100MHz rated by the manufacturer rather than 50MHz",
     ],
   },
   differences: [
     "The Siglent's bandwidth is double the Rigol's: 100MHz vs 50MHz.",
-    "Channel count and sample rate are identical between the two — 4 channels, 1 GSa/s.",
+    "Both have 4 channels and a 1 GSa/s maximum sample rate, but with three or four channels on the Siglent keeps 500 MSa/s per channel against the Rigol's 250 MSa/s.",
     "The Rigol has a larger installed user base and more third-party documentation and tutorials.",
     "The Siglent carries a price premium for its bandwidth headroom.",
-    "The Rigol's bandwidth is known to be unlockable higher via firmware; the Siglent's 100MHz is fixed as sold.",
+    "Rigol documents no bandwidth upgrade for the DS1054Z, so treat 50MHz as its ceiling; the Siglent is rated at 100MHz as sold.",
     "The Rigol's menu navigation has a learning curve; the Siglent's interface is generally regarded as more intuitive to pick up.",
   ],
   bottomLine:
-    "Channel count and sample rate are identical between these two — the decision really comes down to the 50MHz vs. 100MHz bandwidth gap and whether that headroom is worth the Siglent's higher price for your actual signal work. For pure beginners doing general electronics, the DS1054Z remains the more practical first scope.",
+    "Channel count and maximum sample rate match — the decision really comes down to the 50MHz vs. 100MHz bandwidth gap and whether that headroom is worth the Siglent's higher price for your actual signal work. For pure beginners doing general electronics, the DS1054Z remains the more practical first scope.",
   faqs: [
     {
       question: "Is 50MHz enough bandwidth for a beginner oscilloscope?",
@@ -59,9 +59,9 @@ const comparison: ProductComparisonContent = {
         "If you're confident your projects will get more demanding — moving into faster digital signals or more advanced debugging — the Siglent's headroom is worth paying for now. If you're not sure, the Rigol's 50MHz still covers most beginner and intermediate work comfortably.",
     },
     {
-      question: "Is it true the Rigol DS1054Z's bandwidth can be unlocked past 50MHz?",
+      question: "Can the Rigol DS1054Z's bandwidth be upgraded past 50MHz?",
       answer:
-        "The DS1054Z ships at 50MHz but is widely known to share hardware with Rigol's higher-bandwidth models in the same series, and the broader community has documented firmware-based unlock methods that raise it. OhmSavvy doesn't test or recommend unofficial firmware modifications — they can void your warranty and we haven't verified their safety or reliability ourselves. If you specifically want higher bandwidth with manufacturer support, the Siglent's 100MHz as-sold is the more straightforward route.",
+        "Rigol sells and specifies the DS1054Z as a 50MHz scope and documents no official bandwidth upgrade for it, so plan around 50MHz. If you need more bandwidth with manufacturer support, the Siglent's 100MHz as sold is the straightforward route.",
     },
     {
       question: "How much does the menu and UI design actually matter when choosing a scope?",

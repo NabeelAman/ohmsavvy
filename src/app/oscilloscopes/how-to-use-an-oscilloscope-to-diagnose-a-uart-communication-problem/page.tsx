@@ -121,9 +121,9 @@ export default function DiagnoseUartProblemPage() {
       ]}
       next={[
         {
-          href: "/oscilloscopes/how-to-connect-an-oscilloscope-probe-correctly",
-          title: "How to Connect an Oscilloscope Probe Correctly",
-          desc: "Ground clip placement and probe settings, which decide whether a UART edge looks clean or rings.",
+          href: "/oscilloscopes/how-to-measure-a-logic-signal-with-an-oscilloscope-probe",
+          title: "How to Measure a Logic Signal",
+          desc: "Probe digital lines correctly and judge high and low levels against logic thresholds.",
         },
         {
           href: "/oscilloscopes/how-to-trigger-an-oscilloscope-on-a-falling-edge",

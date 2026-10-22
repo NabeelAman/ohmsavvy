@@ -160,6 +160,9 @@ export default function HowToMeasureParasiticBatteryDrainPage() {
           itself is failing it may be the real problem. Then switch everything off, remove the key or move
           the smart key well away from the car, and close all doors, the trunk and the hood.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          Not sure it is charged? <Link href="/multimeters/how-to-test-a-car-battery-with-a-multimeter" className="text-accent hover:underline">How to test a car battery with a multimeter</Link> covers the resting, cranking and charging checks.
+        </p>
         <p className="text-muted leading-7">
           You will need to reach the fuse box later without waking the car. Open the door or panel you
           need first, then trick its latch closed with a screwdriver so the car thinks it is shut, and do

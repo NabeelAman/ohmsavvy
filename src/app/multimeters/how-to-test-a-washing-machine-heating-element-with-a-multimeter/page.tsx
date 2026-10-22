@@ -160,6 +160,9 @@ export default function HowToTestAWashingMachineHeatingElementPage() {
           Work it out from the wattage printed on the element or in the parts listing, using R = V² ÷ P. At
           the UK&apos;s 230V supply:
         </p>
+        <p className="text-muted leading-7 mt-4">
+          The same calculation works for kettles, immersion heaters and oven elements; see <Link href="/multimeters/how-to-measure-resistance-of-a-heating-element-with-a-multimeter" className="text-accent hover:underline">how to measure the resistance of a heating element</Link>.
+        </p>
         <DataTable
           head={["Element rating", "Calculated resistance at 230V", "Current drawn"]}
           rows={[

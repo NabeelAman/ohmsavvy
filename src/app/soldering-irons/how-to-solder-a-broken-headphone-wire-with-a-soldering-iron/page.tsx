@@ -310,6 +310,9 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
           first, strip and tin the conductors as above, then solder each one to its tag: left to tip, right
           to ring, ground to sleeve.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          If the fault is in the socket on the device rather than the cable, see <Link href="/soldering-irons/how-to-solder-a-replacement-headphone-jack-to-a-circuit-board" className="text-accent hover:underline">how to solder a replacement headphone jack to a circuit board</Link>.
+        </p>
         <Figure caption={<>Contact layout for stereo (TRS) and headset (TRRS) plugs. Match the plug to the cable: a microphone cable needs a four-contact plug.</>}>
           <PlugDiagram />
         </Figure>

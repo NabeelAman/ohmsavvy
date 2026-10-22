@@ -147,6 +147,9 @@ export default function OscilloscopeBandwidthForSwitchingPowerSuppliesPage() {
           </Link>{" "}
           of the same frequency.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For the measurement itself, see <Link href="/oscilloscopes/how-to-measure-a-switching-power-supply-waveform-with-an-oscilloscope" className="text-accent hover:underline">how to measure a switching power supply waveform with an oscilloscope</Link>.
+        </p>
         <Figure
           caption={
             <>

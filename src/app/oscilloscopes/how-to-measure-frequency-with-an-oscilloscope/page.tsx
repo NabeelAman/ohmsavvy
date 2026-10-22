@@ -127,6 +127,9 @@ export default function HowToMeasureFrequencyWithAnOscilloscopePage() {
           </li>
         </ul>
       </Callout>
+        <p className="text-muted leading-7 mt-4">
+          <Link href="/oscilloscopes/how-to-measure-mains-frequency-with-an-oscilloscope" className="text-accent hover:underline">How to measure mains frequency with an oscilloscope</Link> walks through the safe low-voltage adaptor method step by step.
+        </p>
 
       <section>
         <h2 id="period-and-frequency" className="text-xl font-semibold mb-3">Period and frequency: the one formula you need</h2>

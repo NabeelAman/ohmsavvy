@@ -215,6 +215,9 @@ export default function HowToUseAnOscilloscopePage() {
           supplied with a scope have a 1x/10x switch on the body. Set it to 10x: it divides the signal by
           ten, puts much less load on the circuit, and is the position most general measurements use.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For more on the ground clip, the ground spring and matching 1x/10x, see <Link href="/oscilloscopes/how-to-connect-an-oscilloscope-probe-correctly" className="text-accent hover:underline">how to connect an oscilloscope probe correctly</Link>.
+        </p>
         <p className="text-muted leading-7">
           Then open the Channel 1 menu and set the probe ratio (sometimes called attenuation) to 10x as
           well. This is the step beginners most often miss. If the probe is on 10x but the channel is set

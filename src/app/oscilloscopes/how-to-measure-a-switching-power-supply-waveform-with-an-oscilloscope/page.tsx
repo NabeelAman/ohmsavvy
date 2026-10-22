@@ -38,7 +38,7 @@ function BuckDiagram() {
     </g>
   );
   return (
-    <svg viewBox="0 0 340 190" className="w-full h-auto" role="img" aria-label="Simplified buck converter schematic with probe points at the gate, switch node and output">
+    <svg viewBox="0 0 340 198" className="w-full h-auto" role="img" aria-label="Simplified buck converter schematic with probe points at the gate, switch node and output">
       <g className="stroke-foreground" strokeWidth="1.6" fill="none" strokeLinecap="round">
         {/* input */}
         <path d="M20 50 H90" />

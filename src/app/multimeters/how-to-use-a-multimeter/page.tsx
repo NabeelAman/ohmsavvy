@@ -283,6 +283,9 @@ export default function HowToUseAMultimeterPage() {
               reading. For best accuracy, remove the component from the circuit entirely, since
               other parts wired in parallel can skew the number you see.
             </p>
+        <p className="text-muted leading-7 mt-4">
+          Ranges, lead resistance and resistor colour codes are covered in <Link href="/multimeters/how-to-measure-resistance-in-ohms-with-a-digital-multimeter" className="text-accent hover:underline">how to measure resistance in ohms with a digital multimeter</Link>.
+        </p>
           </section>
 
           <section>

@@ -156,6 +156,9 @@ export default function HowToSolderAReplacementUsbConnectorPage() {
           USB connectors that look alike often have different footprints. Before ordering, photograph the old
           port and the board underneath, count the signal pads, and note how the shell is anchored.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          Barrel-style charging sockets use through-hole pins instead; see <Link href="/soldering-irons/how-to-solder-a-replacement-dc-power-jack-on-a-circuit-board" className="text-accent hover:underline">how to solder a replacement DC power jack</Link>.
+        </p>
         <DataTable
           head={["Detail to match", "Why it matters"]}
           rows={[

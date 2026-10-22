@@ -309,6 +309,9 @@ export default function HowToCheckAThermocoupleWithAMultimeterPage() {
           the appliance instructions, and measure between the tip of the connector and the copper tube with
           the meter on mV DC.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          If a boiler fires normally but the heating never comes on, the room thermostat is the next suspect: see <Link href="/multimeters/how-to-test-a-boiler-thermostat-with-a-multimeter" className="text-accent hover:underline">how to test a boiler thermostat with a multimeter</Link>.
+        </p>
         <ul className="space-y-2 list-disc pl-5 text-muted leading-7 mb-4">
           <li>
             <strong className="text-foreground">Open-circuit:</strong> typically 20 to 30 mV once the flame

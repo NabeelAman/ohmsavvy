@@ -135,6 +135,9 @@ export default function HowToCheckVoltageDropOnACarPage() {
           voltage drop. The load at the end, such as a starter motor, headlight or fuel pump, receives the
           battery voltage minus every drop along the way.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          To rule out the battery itself first, see <Link href="/multimeters/how-to-test-a-car-battery-with-a-multimeter" className="text-accent hover:underline">how to test a car battery with a multimeter</Link>.
+        </p>
         <p className="text-muted leading-7">
           A voltage drop test measures that loss directly. Instead of measuring from a point to ground, you
           put the meter&apos;s two probes on the two ends of the path you suspect, so the meter is in

@@ -100,6 +100,9 @@ export default function HowToCheckA12vPowerSupplyUnderLoadPage() {
           a problem once something actually asks it to source current, which is exactly what an
           unloaded reading never tests.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For caravan and motorhome batteries rather than power supplies, see <Link href="/multimeters/how-to-check-a-12v-leisure-battery-with-a-multimeter" className="text-accent hover:underline">how to check a 12V leisure battery with a multimeter</Link>.
+        </p>
         <Figure
           caption={
             <>

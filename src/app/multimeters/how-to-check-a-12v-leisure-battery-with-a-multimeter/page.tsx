@@ -134,6 +134,9 @@ export default function HowToCheckA12vLeisureBatteryWithAMultimeterPage() {
           at a time and is repeatedly run down and recharged. That is why checking its state of charge matters so
           much: the deeper and more often a lead-acid battery is drained, the shorter its life.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For the vehicle&apos;s own starter battery, including the cranking and charging checks, see <Link href="/multimeters/how-to-test-a-car-battery-with-a-multimeter" className="text-accent hover:underline">how to test a car battery with a multimeter</Link>.
+        </p>
         <InfoCards
           items={[
             { label: "Flooded lead-acid", desc: "Cheapest, may need topping up with distilled water. Rests near 12.7 V when full." },

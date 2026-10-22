@@ -189,6 +189,9 @@ export default function HowToCheckA24vTransformerWithAMultimeterPage() {
           stable value; OL on either means that winding is open and the transformer needs replacing. Finally,
           check from each winding to the metal frame: anything other than OL indicates insulation breakdown.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          The same winding checks apply to mains step-down transformers with other outputs; see <Link href="/multimeters/how-to-check-a-230v-transformer-with-a-multimeter" className="text-accent hover:underline">how to check a 230V transformer with a multimeter</Link>.
+        </p>
       </section>
 
       <section>

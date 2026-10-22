@@ -52,9 +52,9 @@ function PlugDiagram() {
       <path d="M160 232 C190 200 210 110 217 96" stroke="#8a5a2b" strokeWidth="4" fill="none" />
       <g fontSize="11" className="fill-foreground">
         <text x="150" y="38" textAnchor="middle">Earth (green/yellow)</text>
-        <text x="83" y="118" textAnchor="middle">Neutral</text>
+        <text x="83" y="115" textAnchor="middle">Neutral</text>
         <text x="83" y="131" textAnchor="middle" className="fill-muted">blue, left</text>
-        <text x="217" y="184" textAnchor="middle">Live</text>
+        <text x="217" y="181" textAnchor="middle">Live</text>
         <text x="217" y="197" textAnchor="middle" className="fill-muted">brown, right</text>
         <text x="250" y="74" textAnchor="end" className="fill-accent">BS 1362 fuse</text>
         <text x="190" y="262" textAnchor="start" className="fill-muted">cable grip</text>

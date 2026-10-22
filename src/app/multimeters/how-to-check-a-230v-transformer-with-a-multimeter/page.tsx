@@ -213,6 +213,9 @@ export default function HowToCheckA230vTransformerPage() {
           the probes together first and subtract that lead resistance. Transformers with several secondaries or
           a centre tap give a reading for each section.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For 24V heating, HVAC and irrigation control transformers, see <Link href="/multimeters/how-to-check-a-24v-transformer-with-a-multimeter" className="text-accent hover:underline">how to check a 24V transformer with a multimeter</Link>.
+        </p>
         <Figure caption={<>Typical readings on a small 230V to 12V transformer. Your exact figures depend on its size: the pattern, primary much higher than secondary, is what to look for.</>}>
           <div className="grid sm:grid-cols-2 gap-4 items-center">
             <MeterReadout value="612" unit="Ω" mode="Ω  primary" />

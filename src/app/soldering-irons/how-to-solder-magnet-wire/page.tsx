@@ -108,6 +108,9 @@ export default function HowToSolderMagnetWirePage() {
           Not all magnet wire enamels behave the same way under heat, which is why there are two
           genuinely different approaches:
         </p>
+        <p className="text-muted leading-7 mt-4">
+          Headphone cables use the same enamel-coated strands; <Link href="/soldering-irons/how-to-solder-a-broken-headphone-wire-with-a-soldering-iron" className="text-accent hover:underline">how to solder a broken headphone wire</Link> applies these methods to a cable repair.
+        </p>
         <DataTable
           head={["Enamel type", "Behaviour under a hot iron", "Common use"]}
           rows={[

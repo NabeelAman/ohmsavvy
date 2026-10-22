@@ -45,10 +45,8 @@ function ResistorProbeDiagram() {
       <path d="M38 70 L24 110" stroke="#d63a2f" strokeWidth="5" strokeLinecap="round" />
       <path d="M302 70 L316 110" className="stroke-foreground" strokeWidth="5" strokeLinecap="round" />
       <g fontSize="10.5" className="fill-muted" textAnchor="middle">
-        <text x="133" y="40">yellow 4</text>
-        <text x="163" y="28">violet 7</text>
-        <text x="173" y="108">red ×100</text>
-        <text x="209" y="40">gold ±5%</text>
+        <text x="170" y="38">band 1, 2, 3 then tolerance band</text>
+        <text x="170" y="110">yellow 4 · violet 7 · red ×100 · gold ±5%</text>
         <text x="30" y="128" className="fill-foreground">red (V/Ω)</text>
         <text x="310" y="128" className="fill-foreground">black (COM)</text>
         <text x="170" y="144" className="fill-accent">47 × 100 = 4,700 Ω = 4.7 kΩ</text>

@@ -145,6 +145,9 @@ export default function HowToMeasureResistanceOfAHeatingElementPage() {
           P = V² ÷ R, so rearranging gives the resistance the element needs to produce its rated power: R =
           V² ÷ P. Square the rated voltage and divide by the rated wattage.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For a step-by-step appliance example, including the earth check that finds RCD-tripping faults, see <Link href="/multimeters/how-to-test-a-washing-machine-heating-element-with-a-multimeter" className="text-accent hover:underline">how to test a washing machine heating element with a multimeter</Link>.
+        </p>
         <DataTable
           head={["Rating on the plate", "Typical example", "Calculation", "Expected resistance"]}
           rows={[

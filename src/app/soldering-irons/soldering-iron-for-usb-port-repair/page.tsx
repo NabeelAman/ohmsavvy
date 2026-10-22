@@ -172,6 +172,9 @@ export default function SolderingIronForUsbPortRepairPage() {
           are in.
         </p>
         <p className="text-muted leading-7 mt-4">
+          For the removal and fitting procedure step by step, see <Link href="/soldering-irons/how-to-solder-a-replacement-usb-connector-onto-a-circuit-board" className="text-accent hover:underline">how to solder a replacement USB connector onto a circuit board</Link>.
+        </p>
+        <p className="text-muted leading-7 mt-4">
           The close contact spacing puts USB-C signal pins firmly in fine-pitch territory, so the techniques in our guide
           to{" "}
           <Link href="/soldering-irons/how-to-solder-fine-pitch-smd-components" className={link}>

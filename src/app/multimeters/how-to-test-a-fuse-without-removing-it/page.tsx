@@ -157,6 +157,9 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
         <p className="text-muted leading-7 mb-4">
           The principle is identical across fuse styles — only the physical probing point changes:
         </p>
+        <p className="text-muted leading-7 mt-4">
+          The fuse inside a UK three-pin plug is a different case: it can only be reached with the plug unplugged and opened. See <Link href="/multimeters/how-to-test-a-13-amp-plug-fuse-with-a-multimeter" className="text-accent hover:underline">how to test a 13 amp plug fuse with a multimeter</Link>.
+        </p>
         <InfoCards
           items={[
             { label: "Blade fuse", desc: "Two flat prongs on the top face are the terminals — easiest style to probe directly." },

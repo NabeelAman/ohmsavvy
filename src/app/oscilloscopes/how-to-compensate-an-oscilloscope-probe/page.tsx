@@ -123,6 +123,9 @@ export default function HowToCompensateAnOscilloscopeProbePage() {
           scope: standard 1x/10x probes are not for mains work unless their rating explicitly
           covers it.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          Ground leads, ground springs and 1x/10x matching are covered in <Link href="/oscilloscopes/how-to-connect-an-oscilloscope-probe-correctly" className="text-accent hover:underline">how to connect an oscilloscope probe correctly</Link>.
+        </p>
       </Callout>
 
       <section>

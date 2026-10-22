@@ -131,6 +131,9 @@ export default function HowToTestAThermistorWithAMultimeterPage() {
           A thermistor is a resistor whose value changes strongly with temperature. Which way it changes
           decides how you interpret the test:
         </p>
+        <p className="text-muted leading-7 mt-4">
+          Washing machines often mount an NTC sensor directly on the heating element; <Link href="/multimeters/how-to-test-a-washing-machine-heating-element-with-a-multimeter" className="text-accent hover:underline">testing a washing machine heating element</Link> covers checking both.
+        </p>
         <DataTable
           head={["Type", "As it warms", "Common uses", "Warming test should show"]}
           rows={[

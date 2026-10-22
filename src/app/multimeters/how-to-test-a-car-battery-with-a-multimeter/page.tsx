@@ -296,6 +296,9 @@ export default function HowToTestACarBatteryWithAMultimeterPage() {
           monitoring sensor on the negative terminal: measure on the battery post itself, not on the sensor, and
           note that many need the new battery registering with a diagnostic tool when you replace it.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          Caravan, motorhome and boat batteries follow slightly different rules; see <Link href="/multimeters/how-to-check-a-12v-leisure-battery-with-a-multimeter" className="text-accent hover:underline">how to check a 12V leisure battery with a multimeter</Link>.
+        </p>
       </section>
 
       <section>

@@ -129,6 +129,9 @@ export default function HowToMeasureRippleVoltageWithAnOscilloscopePage() {
           probe the rail with DC coupling at a range that fits 5 V on screen, the ripple is far too
           small to see:
         </p>
+        <p className="text-muted leading-7 mt-4">
+          To look at the switching waveform that creates this ripple, see <Link href="/oscilloscopes/how-to-measure-a-switching-power-supply-waveform-with-an-oscilloscope" className="text-accent hover:underline">how to measure a switching power supply waveform</Link>.
+        </p>
         <Figure
           caption={
             <>

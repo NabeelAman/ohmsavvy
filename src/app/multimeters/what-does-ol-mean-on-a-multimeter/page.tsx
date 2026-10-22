@@ -102,6 +102,9 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
           &quot;overload&quot; — the only way to tell which one you&apos;re looking at is to check what
           mode the dial is set to.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For a full walk-through of the ohms ranges, see <Link href="/multimeters/how-to-measure-resistance-in-ohms-with-a-digital-multimeter" className="text-accent hover:underline">how to measure resistance in ohms with a digital multimeter</Link>.
+        </p>
         <Figure
           caption={
             <>

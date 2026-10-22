@@ -87,11 +87,11 @@ export default function HowToMeasureContinuityOnALongElectricalWirePage() {
       }
       aside={{
         image: klein.image,
-        alt: "Klein Tools MM400 auto-ranging True RMS multimeter, front view",
+        alt: "Klein Tools MM400 auto-ranging multimeter, front view",
         caption: (
           <>
-            The Klein Tools MM400 (True RMS, CAT III 600V) has a low-impedance mode that avoids false readings,
-            useful for ruling out ghost voltage on a long run before a continuity test. See our{" "}
+            The Klein Tools MM400 (auto-ranging, CAT III 600V, 4,000-count) handles the resistance and
+            continuity readings a long-run test needs. It is not True RMS and has no low-impedance mode. See our{" "}
             <Link href="/multimeters/klein-mm400-review" className={link}>
               MM400 review
             </Link>
@@ -318,7 +318,7 @@ export default function HowToMeasureContinuityOnALongElectricalWirePage() {
               image: klein.image,
               alt: "Klein Tools MM400 auto-ranging multimeter",
               href: "/multimeters/klein-mm400-review",
-              note: "True RMS, CAT III 600V, with a low-impedance mode that avoids false readings.",
+              note: "Auto-ranging, CAT III 600V, with temperature and capacitance. Not True RMS; discontinued by Klein.",
             },
             {
               name: "Southwire 14070T",

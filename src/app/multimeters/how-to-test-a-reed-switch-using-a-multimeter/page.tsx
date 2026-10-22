@@ -319,7 +319,7 @@ export default function HowToTestAReedSwitchUsingAMultimeterPage() {
               image: extech.image,
               alt: "Extech EX330 compact multimeter",
               href: "/multimeters/extech-ex330-review",
-              note: "Pocket-sized and auto-ranging, with a built-in non-contact voltage detector. Not True RMS.",
+              note: "Pocket-sized and auto-ranging, with a built-in non-contact voltage detector. Extech doesn't state True RMS.",
             },
             {
               name: "KAIWEETS KM200s",

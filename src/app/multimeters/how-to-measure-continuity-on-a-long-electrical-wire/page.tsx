@@ -325,7 +325,7 @@ export default function HowToMeasureContinuityOnALongElectricalWirePage() {
               image: southwire.image,
               alt: "Southwire 14070T TechnicianPRO multimeter",
               href: "/multimeters/southwire-14070t-review",
-              note: "IP67, CAT IV 600V / CAT III 1000V, with a magnetic hanging strap and built-in work light.",
+              note: "IP67, CAT IV 600V / CAT III 1000V, with a built-in work light.",
             },
             {
               name: "Fluke 117",

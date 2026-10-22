@@ -90,7 +90,7 @@ export default function HowToSolderAWireToASmallPcbThroughHolePage() {
         alt: "Pinecil V2 portable USB-C soldering iron",
         caption: (
           <>
-            A compact iron such as the Pinecil V2 (65W over USB-C PD, about 12 s heat-up) suits small
+            A compact iron such as the Pinecil V2 (USB-C PD powered, about 12 s heat-up) suits small
             board work. See our{" "}
             <Link href="/soldering-irons/pinecil-v2-review" className={link}>
               Pinecil V2 review
@@ -323,7 +323,7 @@ export default function HowToSolderAWireToASmallPcbThroughHolePage() {
               image: pinecil.image,
               alt: "Pinecil V2 USB-C soldering iron",
               href: "/soldering-irons/pinecil-v2-review",
-              note: "65W over USB-C PD, about 12 s heat-up, OLED display. Compact for small boards and field work.",
+              note: "USB-C PD powered, about 12 s heat-up, OLED display. Compact for small boards and field work.",
             },
             {
               name: "Hakko FX888D",

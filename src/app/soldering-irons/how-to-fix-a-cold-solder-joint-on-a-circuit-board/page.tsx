@@ -309,14 +309,14 @@ export default function HowToFixAColdSolderJointOnACircuitBoardPage() {
               image: hakko.image,
               alt: "Hakko FX888D soldering station handpiece",
               href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W, digital adjustable temperature, about 15 s heat-up. For serious hobbyists and repair work.",
+              note: "70W station with digital adjustable temperature. For serious hobbyists and repair work.",
             },
             {
               name: "Pinecil V2",
               image: pinecil.image,
               alt: "Pinecil V2 USB-C soldering iron",
               href: "/soldering-irons/pinecil-v2-review",
-              note: "65W over USB-C PD, about 12 s heat-up, OLED display. Portable for field repairs.",
+              note: "USB-C PD powered, about 12 s heat-up, OLED display. Portable for field repairs.",
             },
           ]}
         />

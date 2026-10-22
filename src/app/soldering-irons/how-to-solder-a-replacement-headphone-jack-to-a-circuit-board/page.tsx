@@ -312,14 +312,14 @@ export default function HowToSolderAReplacementHeadphoneJackToACircuitBoardPage(
               image: pinecil.image,
               alt: "Pinecil V2 USB-C soldering iron",
               href: "/soldering-irons/pinecil-v2-review",
-              note: "65W over USB-C PD with an OLED display. Compact for small repairs.",
+              note: "USB-C PD powered with an OLED display. Compact for small repairs.",
             },
             {
               name: "YIHUA 862BD+",
               image: yihua.image,
               alt: "YIHUA 862BD+ soldering and hot air rework station",
               href: "/soldering-irons/yihua-862bd-plus-review",
-              note: "75W iron plus 650W hot air for surface-mount jacks. No ESD-safe construction on this variant.",
+              note: "Soldering iron and hot air gun in one station, for surface-mount jacks.",
             },
           ]}
         />

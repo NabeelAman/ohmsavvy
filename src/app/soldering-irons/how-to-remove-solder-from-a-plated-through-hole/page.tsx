@@ -148,7 +148,7 @@ export default function HowToRemoveSolderFromAPlatedThroughHolePage() {
         {
           href: "/soldering-irons/yihua-862bd-plus-review",
           title: "YIHUA 862BD+ Review",
-          desc: "A 75W iron with a separate hot air gun, useful for preheating heavy boards.",
+          desc: "An iron with a separate hot air gun, useful for preheating heavy boards.",
         },
       ]}
     >
@@ -321,14 +321,14 @@ export default function HowToRemoveSolderFromAPlatedThroughHolePage() {
               image: yihua.image,
               alt: "YIHUA 862BD+ soldering iron and hot air rework station",
               href: "/soldering-irons/yihua-862bd-plus-review",
-              note: "75W iron plus 650W hot air (100-480 °C), handy for board preheat. Rated 220V input.",
+              note: "Soldering iron and hot air gun in one station, handy for board preheat.",
             },
             {
               name: "Weller WE1010NA",
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W ESD-safe digital station with strong temperature stability under sustained use.",
+              note: "70W ESD-safe digital station.",
             },
           ]}
         />

@@ -19,11 +19,11 @@ const picks = names.map((n) => allPicks.find((p) => p.name === n)!).filter(Boole
 
 const fitNotes: Record<string, string> = {
   "Fluke 117":
-    "The everyday meter for the service van. True RMS keeps readings honest on the distorted waveforms variable-speed blowers and electronic controls produce, CAT III 600V covers the disconnects and panels feeding residential and light-commercial equipment, and built-in non-contact voltage detection lets you confirm a circuit is live before you open a cabinet.",
+    "The everyday meter for the service van. True RMS keeps readings honest on the distorted waveforms variable-speed blowers and electronic controls produce, CAT III 600V covers the disconnects and panels feeding residential and light-commercial equipment, and built-in non-contact voltage detection lets you confirm a circuit is live before you open a cabinet. Its low-impedance (LoZ) mode also helps rule out ghost voltage on long control and thermostat runs.",
   "Milwaukee 2235-20":
     "The current tool. Clamping a single conductor gives you a compressor or condenser-fan motor's running current without breaking the circuit, so you can compare it with the nameplate on the spot. It reads up to 400A AC through a 1-inch jaw, with the same True RMS and CAT III 600V basics as the meters here.",
-  "Klein Tools MM400":
-    "A strong alternative to the Fluke at a mid-range price. Its low-impedance mode helps rule out ghost voltage, the misleading readings that capacitive coupling in long control and thermostat runs can show on a high-impedance meter. It is True RMS, auto-ranging and CAT III 600V rated.",
+  "Fluke 115":
+    "The Fluke for techs who want capacitance in the same meter. It is True RMS and CAT III 600V like the 117, and its listing includes capacitance and frequency measurement, handy for checking run capacitors (always discharge them first). It lacks the 117's non-contact voltage detection and LoZ mode.",
 };
 
 const advice = [
@@ -37,7 +37,7 @@ const advice = [
   },
   {
     heading: "Check the HVAC-specific functions you'll use",
-    body: "Beyond volts, ohms and amps, HVAC work often calls for capacitance (testing run and start capacitors), temperature (with a thermocouple probe) and microamps DC (checking a furnace flame sensor). These functions vary from model to model, and the product data in this guide does not confirm them for every pick, so check the manufacturer's spec sheet for the exact functions and ranges before you buy if your calls depend on them. A meter that lacks one of these isn't wrong for the job, but you'll need another tool for that test.",
+    body: "Beyond volts, ohms and amps, HVAC work often calls for capacitance (testing run and start capacitors), temperature (with a thermocouple probe) and microamps DC (checking a furnace flame sensor). These functions vary from model to model: the Fluke 115's listing includes capacitance, but the product data here does not confirm every function for every pick, so check the manufacturer's spec sheet for the exact functions and ranges before you buy if your calls depend on them. A meter that lacks one of these isn't wrong for the job, but you'll need another tool for that test.",
   },
   {
     heading: "Work safely on live equipment",
@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "What multimeter do most HVAC technicians use?",
     answer:
-      "Most carry a True RMS, CAT III-rated meter for voltage, resistance and continuity, plus a clamp meter for motor current. From our verified picks, the Fluke 117 is the everyday meter, the Klein Tools MM400 is a mid-priced alternative with low-impedance mode, and the Milwaukee 2235-20 covers current up to 400A AC without breaking the circuit.",
+      "Most carry a True RMS, CAT III-rated meter for voltage, resistance and continuity, plus a clamp meter for motor current. From our verified picks, the Fluke 117 is the everyday meter, the Fluke 115 adds capacitance measurement, and the Milwaukee 2235-20 covers current up to 400A AC without breaking the circuit.",
   },
   {
     question: "Do HVAC technicians need a clamp meter?",

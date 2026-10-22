@@ -353,7 +353,7 @@ export default function HowToMeasureResistanceOfAHeatingElementPage() {
               image: klein.image,
               alt: "Klein Tools MM400 digital multimeter",
               href: "/multimeters/klein-mm400-review",
-              note: "True RMS, auto-ranging, CAT III 600V. Aimed at tradespeople and home electrical work.",
+              note: "Auto-ranging, CAT III 600V, with temperature and capacitance. Not True RMS; discontinued by Klein.",
             },
             {
               name: "Southwire 14070T",

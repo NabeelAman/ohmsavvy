@@ -666,7 +666,7 @@ export function MeterReadout({ value, unit, mode }: { value: string; unit: strin
  * built-in shape; `marks` draws labelled measurement arrows in division units
  * (x 0-10 from the left, y 0-8 from the top).
  */
-type ScopeWave = "sine" | "square" | "square-over" | "square-under" | "square-ring" | "pulse" | "flat";
+type ScopeWave = "sine" | "square" | "square-over" | "square-under" | "square-ring" | "pulse" | "spike" | "flat";
 type ScopeTrace = {
   wave?: ScopeWave;
   cycles?: number;
@@ -691,7 +691,12 @@ function tracePoints({ wave = "sine", cycles = 2, amplitude = 3, offset = 0, shi
     if (wave === "sine") v = Math.sin(2 * Math.PI * tt * cycles);
     else if (wave === "flat") v = 0;
     else if (wave === "pulse") v = phase < 0.2 ? 1 : -1;
-    else {
+    else if (wave === "spike") {
+      // A narrow glitch above a flat baseline (offset), with a small undershoot after it;
+      // `amplitude` is the spike height in divisions, `shift` places it.
+      const w = 0.03;
+      v = phase < w ? Math.sin((Math.PI * phase) / w) : phase < 2 * w ? -0.3 * Math.sin((Math.PI * (phase - w)) / w) : 0;
+    } else {
       v = phase < 0.5 ? 1 : -1;
       const since = phase < 0.5 ? phase : phase - 0.5; // time since last edge, in periods
       const dir = phase < 0.5 ? 1 : -1;

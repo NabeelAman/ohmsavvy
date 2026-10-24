@@ -239,6 +239,119 @@ export const picks: Pick[] = [
     cons: ["Needs a computer to use", "Full bandwidth needs the BNC adapter", "Buffer size not published on the shop page"],
     ctaHref: "https://www.amazon.com/dp/B0C4L59R83?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best 2-Channel 12-bit",
+    // Specs per Rigol's DHO800 datasheet (overview table). Photo: main image of the exact Amazon listing (B0CGHQ2STR, sold by RIGOL Official Store), panel reads "RIGOL DHO802 70MHz ... 1.25GSa/s 12bit". Amazon-buyable (In Stock) 2026-10-24.
+    name: "Rigol DHO802",
+    image: "https://m.media-amazon.com/images/I/71mCK9OyjBL._SL1500_.jpg",
+    rating: 4.6,
+    bottomLine: "The two-channel DHO800: 12-bit resolution, a 7-inch touchscreen and USB-C power for a lower price than the four-channel DHO804.",
+    verdict:
+      "The DHO802 is the two-channel model of Rigol's DHO800 series: 70 MHz, 12-bit vertical resolution, 1.25 GSa/s with one channel on (625 MSa/s with both) and 25 Mpts of memory on one channel (10 Mpts on both). It has a 7-inch 1024 × 600 capacitive touchscreen, HDMI output, LAN and standard decoding of parallel, UART, I2C, SPI and CAN, and it runs from a USB-C 15 V supply. There is no built-in signal generator and no logic channels.",
+    specs: [
+      { label: "Bandwidth", value: "70MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1.25 GSa/s (1 ch); 625 MSa/s (2 ch)" },
+      { label: "Best for", value: "Two-channel work that benefits from 12-bit detail" },
+    ],
+    pros: ["12-bit vertical resolution", "7-inch 1024 × 600 touchscreen with HDMI out", "Standard serial decoding (UART, I2C, SPI, CAN)"],
+    cons: ["Two channels only", "No built-in signal generator or logic channels"],
+    ctaHref: "https://www.amazon.com/dp/B0CGHQ2STR?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Basic 100MHz Bench",
+    // Specs per Hantek's DSO5000P datasheet and product page (record length: datasheet says 24K, product page and launch notice say 40K). Photo: gallery image of the exact Amazon listing (B071P97RLC), panel reads "Hantek DSO5102P" with a 100MHz 1GSa/s badge; the main listing image showed a 70MHz badge and was rejected. Amazon-buyable 2026-10-24 (sold by a third-party seller, fulfilled by Amazon).
+    name: "Hantek DSO5102P",
+    image: "https://m.media-amazon.com/images/I/719BJF8XiCL._SL1500_.jpg",
+    rating: 4.2,
+    bottomLine: "A plain two-channel, 100 MHz mains benchtop with a 7-inch screen, for straightforward bench measurements.",
+    verdict:
+      "The DSO5102P is a conventional two-channel benchtop: 100 MHz, 1 GSa/s real-time, 8-bit, a 7-inch 800 × 480 display and mains power. Hantek lists edge, pulse-width, video, slope and overtime triggers, math and FFT, 32 automatic measurements and pass/fail testing. Hantek's own record-length figures disagree (24K in the datasheet, 40K on the product page), and it lists no serial decoding, generator or logic channels.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s (real-time)" },
+      { label: "Best for", value: "Basic two-channel bench work on mains power" },
+    ],
+    pros: ["100 MHz bandwidth", "7-inch 800 × 480 display", "Math, FFT and 32 automatic measurements"],
+    cons: ["Short record length (24K–40K per Hantek's own sources)", "No serial decoding, generator or logic channels listed"],
+    ctaHref: "https://www.amazon.com/dp/B071P97RLC?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Slim Benchtop",
+    // Specs per OWON's SDS1000 series product page and technical specification. No photo: neither the exact Amazon listing (B0781CXRP5) nor OWON's page shows a unit marked "SDS1102" (the main image is an SDS1022), so no image is used. Amazon-buyable (In Stock) 2026-10-24.
+    name: "OWON SDS1102",
+    rating: 4.2,
+    bottomLine: "A slim, light two-channel 100 MHz benchtop with a 7-inch screen and simple controls.",
+    verdict:
+      "OWON's SDS1102 offers 100 MHz on two channels with 1 GSa/s real-time sampling, 8-bit resolution and a 7-inch 800 × 480 display in a slim body (OWON lists 301 × 152 × 70 mm and about 1.1 kg). Its record length is short at 10K points, triggering is limited to edge and video, and it has no generator, logic channels or serial decoding.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s (real-time)" },
+      { label: "Best for", value: "A compact two-channel bench scope" },
+    ],
+    pros: ["100 MHz on two channels", "Slim, light body (about 1.1 kg)", "7-inch 800 × 480 display"],
+    cons: ["10K-point record length", "Edge and video triggers only; no serial decoding or generator"],
+    ctaHref: "https://www.amazon.com/dp/B0781CXRP5?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Isolated USB Scope",
+    // Specs per OWON's VDS series product page and datasheet (the Amazon bullets quote series-level figures that don't apply to this model; OWON lists 25 MHz, 100 MSa/s and 5K for the VDS1022I). Photo: main image of the exact Amazon listing (B07PRT5WMJ), device reads "VDS1022I". Amazon-buyable 2026-10-24.
+    name: "OWON VDS1022I",
+    image: "https://m.media-amazon.com/images/I/51LzXAylxDL._SL1500_.jpg",
+    rating: 4.1,
+    bottomLine: "A small, USB-powered two-channel PC oscilloscope with an isolated USB connection, for laptop-based work.",
+    verdict:
+      "The VDS1022I is a PC oscilloscope with no screen of its own: two channels at 25 MHz and 100 MSa/s, 8-bit, 5K points of memory, powered from USB with an isolated USB 2.0 link to your computer. OWON lists edge, pulse, video, slope and alternate triggers plus math and FFT, all used through OWON's PC software. It weighs 0.26 kg.",
+    specs: [
+      { label: "Bandwidth", value: "25MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "100 MSa/s" },
+      { label: "Best for", value: "Laptop-based debugging on a small budget" },
+    ],
+    pros: ["USB-powered with an isolated USB connection", "Small and light (0.26 kg)", "Two channels for the price of a handheld"],
+    cons: ["No built-in screen: needs a PC", "25 MHz and a 5K-point record length"],
+    ctaHref: "https://www.amazon.com/dp/B07PRT5WMJ?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 3-in-1 Pocket Tester",
+    // Specs per fnirsi.com (DSO-TC3 page) and the DSO-TC3 manual V1.9. Photo: main image of the exact Amazon listing (B0BV9X733J, sold by FNIRSI's store), panel reads "FNIRSI DSO-TC3". Amazon-buyable (In Stock) 2026-10-24.
+    name: "FNIRSI DSO-TC3",
+    image: "https://m.media-amazon.com/images/I/71uPS5nk2nL._SL1500_.jpg",
+    rating: 4.1,
+    bottomLine: "A battery-powered pocket scope, component tester and signal generator in one small box.",
+    verdict:
+      "The DSO-TC3 combines a 500 kHz, 10 MSa/s single-input oscilloscope with a component tester (transistors, MOSFETs, diodes, capacitance, resistance, inductance) and a 6-waveform generator up to 100 kHz, on a 2.4-inch screen with a built-in rechargeable battery and USB-C charging. FNIRSI does not state its ADC resolution or memory depth. It suits learning and quick checks, not fast digital signals.",
+    specs: [
+      { label: "Bandwidth", value: "500kHz" },
+      { label: "Channels", value: "1" },
+      { label: "Sample rate", value: "10 MSa/s" },
+      { label: "Best for", value: "Beginners who want a scope, component tester and generator in one" },
+    ],
+    pros: ["Scope, component tester and signal generator in one", "Battery-powered with USB-C charging", "Pocket-sized with a fold-out stand"],
+    cons: ["500 kHz bandwidth and a small 2.4-inch screen", "ADC resolution and memory depth not stated"],
+    ctaHref: "https://www.amazon.com/dp/B0BV9X733J?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Budget Scope + Generator",
+    // Specs per fnirsi.com (1014D specification table); FNIRSI's page says both 12 and 14 standard generator signals, the spec table and Amazon say 14. Photo: main image of the exact Amazon listing (B097T5NRTZ, sold by FNIRSI's store), panel label reads "FNIRSI-1014D ... 100MHz 1GSa/s". Amazon-buyable (In Stock) 2026-10-24.
+    name: "FNIRSI 1014D",
+    image: "https://m.media-amazon.com/images/I/71L+POCNTVL._AC_SL1500_.jpg",
+    rating: 4.3,
+    bottomLine: "A two-channel 100 MHz benchtop with a built-in signal generator at an entry-level price.",
+    verdict:
+      "The 1014D pairs a two-channel, 100 MHz, 1 GSa/s, 8-bit oscilloscope with a 7-inch 800 × 480 screen and a built-in single-channel DDS generator (sine up to 10 MHz, other waveforms up to 2 MHz, 2.5 Vpp). FNIRSI lists FFT, X-Y mode, roll mode and USB export, and the Amazon kit includes two 1X/10X probes plus a 100X high-voltage probe. It runs from a 5 V adapter. FNIRSI quotes its memory as \"240Kbit\" and does not state the per-channel sample rate with both channels on.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s" },
+      { label: "Best for", value: "Budget benches that need a scope and a signal source" },
+    ],
+    pros: ["Built-in DDS signal generator", "100 MHz, two channels and a 7-inch screen", "Kit includes a 100X high-voltage probe"],
+    cons: ["Short, loosely specified memory (\"240Kbit\")", "Per-channel sample rate with both channels on not stated"],
+    ctaHref: "https://www.amazon.com/dp/B097T5NRTZ?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

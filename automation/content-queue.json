@@ -47,7 +47,13 @@
       "Hantek 2D72",
       "FNIRSI 2C53T",
       "PicoScope 2204A",
-      "Digilent Analog Discovery 3"
+      "Digilent Analog Discovery 3",
+      "Rigol DHO802",
+      "Hantek DSO5102P",
+      "OWON SDS1102",
+      "OWON VDS1022I",
+      "FNIRSI DSO-TC3",
+      "FNIRSI 1014D"
     ]
   },
   "keywords": [

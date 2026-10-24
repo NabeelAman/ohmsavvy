@@ -2619,6 +2619,20 @@ export const content: ContentEntry[] = [
     description: "Same touchscreen platform, 100MHz vs. 70MHz",
     href: "/oscilloscopes/rigol-dho814-vs-rigol-dho804",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Hantek DSO2C10 vs Hantek DSO2D15",
+    description: "Same platform, no generator vs. 150MHz with one",
+    href: "/oscilloscopes/hantek-dso2c10-vs-hantek-dso2d15",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DS1202Z-E vs Siglent SDS1202X-E",
+    description: "Deeper memory vs. faster capture rate and serial decode",
+    href: "/oscilloscopes/rigol-ds1202z-e-vs-siglent-sds1202x-e",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

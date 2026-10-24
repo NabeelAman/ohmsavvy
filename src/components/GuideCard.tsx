@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { picksForEntry } from "@/lib/catalog";
 import type { Category, ContentEntry } from "@/lib/content";
@@ -56,7 +56,7 @@ export function GuideCard({ entry }: { entry: ContentEntry }) {
                 }`}
               >
                 {p.image ? (
-                  <Image src={p.image} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="96px" loading="lazy" className="object-contain p-2" />
+                  <Image src={productImageSrc(p.image, 96)} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="96px" loading="lazy" className="object-contain p-2" />
                 ) : (
                   <PhotoPlaceholder category={entry.category} size="xs" />
                 )}

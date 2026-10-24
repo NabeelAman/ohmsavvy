@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -47,7 +47,24 @@ function Highlight({ text, terms }: { text: string; terms: string[] }) {
 
 export const OPEN_SEARCH_EVENT = "ohmsavvy:open-search";
 
-export function SearchButton({ items }: { items: SearchItem[] }) {
+// The index is a static JSON route (src/app/search-index.json), fetched on the
+// first open and reused after that, instead of a prop serialised into every
+// page's RSC payload.
+let indexPromise: Promise<SearchItem[]> | null = null;
+function loadSearchIndex(): Promise<SearchItem[]> {
+  indexPromise ??= fetch("/search-index.json")
+    .then((r) => {
+      if (!r.ok) throw new Error(`search index: ${r.status}`);
+      return r.json() as Promise<SearchItem[]>;
+    })
+    .catch((e) => {
+      indexPromise = null; // let the next open retry
+      throw e;
+    });
+  return indexPromise;
+}
+
+export function SearchButton() {
   const [open, setOpen] = useState(false);
   const [isMac, setIsMac] = useState(false);
 
@@ -98,7 +115,7 @@ export function SearchButton({ items }: { items: SearchItem[] }) {
       </button>
       {/* Portal to <body>: the header uses backdrop-filter, which would otherwise
           become the containing block for this fixed overlay and clip it to the header. */}
-      {open && createPortal(<Palette items={items} onClose={() => setOpen(false)} />, document.body)}
+      {open && createPortal(<Palette onClose={() => setOpen(false)} />, document.body)}
     </>
   );
 }
@@ -112,8 +129,22 @@ function SearchIcon() {
   );
 }
 
-function Palette({ items, onClose }: { items: SearchItem[]; onClose: () => void }) {
+const NO_ITEMS: SearchItem[] = [];
+
+function Palette({ onClose }: { onClose: () => void }) {
   const router = useRouter();
+  const [items, setItems] = useState<SearchItem[] | null>(null);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    let live = true;
+    loadSearchIndex().then(
+      (data) => live && setItems(data),
+      () => live && setFailed(true),
+    );
+    return () => {
+      live = false;
+    };
+  }, []);
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState(0);
   const [shown, setShown] = useState(false);
@@ -125,11 +156,12 @@ function Palette({ items, onClose }: { items: SearchItem[]; onClose: () => void 
   );
 
   const results = useMemo(() => {
+    const all = items ?? NO_ITEMS;
     if (!terms.length) {
       // Empty state: category roundups, then each category's top-rated products.
-      return [...items.filter((i) => i.group === "Top picks"), ...items.filter((i) => i.group === "Products" && (i.rating ?? 0) >= 4.7)];
+      return [...all.filter((i) => i.group === "Top picks"), ...all.filter((i) => i.group === "Products" && (i.rating ?? 0) >= 4.7)];
     }
-    return items
+    return all
       .map((i) => ({ i, s: score(i, terms) }))
       .filter((r) => r.s > 0)
       .sort((a, b) => b.s - a.s || GROUP_ORDER.indexOf(a.i.group) - GROUP_ORDER.indexOf(b.i.group))
@@ -227,7 +259,12 @@ function Palette({ items, onClose }: { items: SearchItem[]; onClose: () => void 
         </div>
 
         <ul id="search-results" ref={listRef} role="listbox" className="max-h-[min(60vh,28rem)] overflow-y-auto overscroll-contain p-2">
-          {flat.length === 0 && (
+          {!items && (
+            <li className="px-4 py-10 text-center text-sm text-muted">
+              {failed ? "Search couldn’t load. Check your connection and try again." : "Loading…"}
+            </li>
+          )}
+          {items && flat.length === 0 && (
             <li className="px-4 py-10 text-center text-sm text-muted">
               No matches for &ldquo;{query}&rdquo;. Try a product name like &ldquo;Fluke&rdquo; or a feature like &ldquo;True RMS&rdquo;.
             </li>
@@ -255,7 +292,7 @@ function Palette({ items, onClose }: { items: SearchItem[]; onClose: () => void 
                       {item.group === "Products" ? (
                         <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border/60 bg-white">
                           {item.image ? (
-                            <Image src={item.image} unoptimized={skipOptimizer(item.image)} alt="" fill sizes="44px" className="object-contain p-1" />
+                            <Image src={productImageSrc(item.image, 44)} unoptimized={skipOptimizer(item.image)} alt="" fill sizes="44px" className="object-contain p-1" />
                           ) : (
                             <PhotoPlaceholder size="xs" />
                           )}
@@ -297,7 +334,9 @@ function Palette({ items, onClose }: { items: SearchItem[]; onClose: () => void 
           <span>
             <kbd className="font-display">esc</kbd> close
           </span>
-          <span className="ml-auto">{items.filter((i) => i.group === "Products").length} products · verified specs</span>
+          {items && (
+            <span className="ml-auto">{items.filter((i) => i.group === "Products").length} products · verified specs</span>
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import { getPicks } from "@/lib/catalog";
 import { getContentByCategoryGrouped, type Category } from "@/lib/content";
-import { buildSearchIndex } from "@/lib/search";
 import { Nav, type NavMenu } from "./Nav";
 import { SearchButton } from "./SearchPalette";
 
@@ -72,5 +71,5 @@ export function SiteNav() {
     };
   });
 
-  return <Nav menus={menus} search={<SearchButton items={buildSearchIndex()} />} />;
+  return <Nav menus={menus} search={<SearchButton />} />;
 }

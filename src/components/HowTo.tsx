@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Category } from "@/lib/content";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import { categoryOfPick, pickByName } from "@/lib/catalog";
 import { ContentLinks } from "./ContentLinks";
 import { PhotoPlaceholder } from "./PhotoPlaceholder";
@@ -121,7 +121,7 @@ export function HowToShell({
               {aside.image ? (
                 <div className="relative h-40 bg-surface">
                   <Image
-                    src={aside.image}
+                    src={productImageSrc(aside.image, 260)}
                     unoptimized={skipOptimizer(aside.image)}
                     alt={aside.alt}
                     fill
@@ -315,7 +315,7 @@ export function ProductStrip({
             <Link href={p.href} className="relative block h-36 bg-surface">
               {p.image ? (
                 <Image
-                  src={p.image}
+                  src={productImageSrc(p.image, 260)}
                   unoptimized={skipOptimizer(p.image)}
                   alt={p.alt}
                   fill

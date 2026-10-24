@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Stars } from "@/components/ui/Stars";
 import { content, type Category, type ContentEntry } from "@/lib/content";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import { picks as multimeterPicks } from "./multimeters/best-multimeters/page";
 import { picks as solderingIronPicks } from "./soldering-irons/best-soldering-irons/page";
 import { picks as oscilloscopePicks } from "./oscilloscopes/best-beginner-oscilloscopes/page";
@@ -195,7 +195,7 @@ function SectionHead({
       {links && (
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="text-accent hover:underline">
+            <Link prefetch={false} key={l.href} href={l.href} className="text-accent hover:underline">
               {l.label} →
             </Link>
           ))}
@@ -246,6 +246,7 @@ export default function Home() {
               <span className="text-xs text-muted mr-1">Popular:</span>
               {quickLinks.map((q) => (
                 <Link
+                  prefetch={false}
                   key={q.href}
                   href={q.href}
                   className="rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted hover:border-accent hover:text-accent transition-colors"
@@ -259,17 +260,18 @@ export default function Home() {
           <div className="rounded-2xl border border-border bg-surface shadow-lg overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-surface-raised">
               <p className="font-display text-xs uppercase tracking-wide text-accent">Top picks right now</p>
-              <Link href="/about" className="text-[11px] text-muted hover:text-accent">How we pick →</Link>
+              <Link prefetch={false} href="/about" className="text-[11px] text-muted hover:text-accent">How we pick →</Link>
             </div>
             <ul className="divide-y divide-border">
               {topPicks.map((p) => (
                 <li key={p.name} className="flex gap-4 p-4">
                   <Link
+                    prefetch={false}
                     href={p.reviewHref}
                     className="relative shrink-0 w-20 h-20 rounded-lg border border-border/60 bg-white overflow-hidden"
                   >
                     {p.image ? (
-                      <Image src={p.image} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
+                      <Image src={productImageSrc(p.image, 80)} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
                     ) : (
                       <PhotoPlaceholder category={p.category} size="xs" />
                     )}
@@ -279,7 +281,7 @@ export default function Home() {
                       <span className={`font-display text-[11px] uppercase tracking-wide ${p.tone.text}`}>{p.label}</span>
                       <Stars rating={p.rating} />
                     </div>
-                    <Link href={p.reviewHref} className="mt-0.5 block font-semibold leading-snug hover:text-accent transition-colors">
+                    <Link prefetch={false} href={p.reviewHref} className="mt-0.5 block font-semibold leading-snug hover:text-accent transition-colors">
                       {p.name}
                     </Link>
                     {p.handsOnTested && (
@@ -287,7 +289,7 @@ export default function Home() {
                     )}
                     <div className="mt-2 flex items-center gap-3">
                       <Button href={p.ctaHref} className="px-3! py-1.5! text-xs!">Check price on Amazon</Button>
-                      <Link href={p.reviewHref} className="text-xs font-medium text-muted hover:text-accent">Review</Link>
+                      <Link prefetch={false} href={p.reviewHref} className="text-xs font-medium text-muted hover:text-accent">Review</Link>
                     </div>
                   </div>
                 </li>
@@ -325,11 +327,11 @@ export default function Home() {
             return (
               <Reveal key={c.category} delay={i * 80} className="flex snap-start shrink-0 w-[85%] md:w-auto">
                 <div className="group w-full flex flex-col rounded-2xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-shadow hover:shadow-md">
-                  <Link href={c.roundup.href} className={`relative block h-44 bg-gradient-to-b ${c.tone.soft} to-transparent`}>
+                  <Link prefetch={false} href={c.roundup.href} className={`relative block h-44 bg-gradient-to-b ${c.tone.soft} to-transparent`}>
                     <div className={`absolute top-0 inset-x-0 h-1 ${c.tone.bg}`} />
                     {top.image && (
                       <Image
-                        src={top.image}
+                        src={productImageSrc(top.image, 320)}
                         unoptimized={skipOptimizer(top.image)}
                         alt={`${top.name}, our top ${c.label.toLowerCase()} pick`}
                         fill
@@ -340,7 +342,7 @@ export default function Home() {
                   </Link>
                   <div className="flex flex-1 flex-col p-6">
                     <span className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</span>
-                    <Link href={c.roundup.href} className="mt-2 text-xl font-semibold leading-snug hover:text-accent transition-colors">
+                    <Link prefetch={false} href={c.roundup.href} className="mt-2 text-xl font-semibold leading-snug hover:text-accent transition-colors">
                       {c.roundup.title}
                     </Link>
                     <p className="mt-2 text-sm text-muted leading-6">{c.blurb}</p>
@@ -350,26 +352,26 @@ export default function Home() {
                     </div>
                     <ul className="mt-5 flex-1 space-y-2 text-sm">
                       <li>
-                        <Link href={`/${c.category}/reviews`} className="flex justify-between text-muted hover:text-accent">
+                        <Link prefetch={false} href={`/${c.category}/reviews`} className="flex justify-between text-muted hover:text-accent">
                           <span>Reviews</span>
                           <span className="font-mono text-xs">{reviews}</span>
                         </Link>
                       </li>
                       <li>
-                        <Link href={`/${c.category}/comparisons`} className="flex justify-between text-muted hover:text-accent">
+                        <Link prefetch={false} href={`/${c.category}/comparisons`} className="flex justify-between text-muted hover:text-accent">
                           <span>Comparisons</span>
                           <span className="font-mono text-xs">{comparisons}</span>
                         </Link>
                       </li>
                       <li>
-                        <Link href={`/${c.category}/guides`} className="flex justify-between text-muted hover:text-accent">
+                        <Link prefetch={false} href={`/${c.category}/guides`} className="flex justify-between text-muted hover:text-accent">
                           <span>Guides</span>
                           <span className="font-mono text-xs">{guides}</span>
                         </Link>
                       </li>
                       {buying && (
                         <li>
-                          <Link href={buying.href} className="flex justify-between text-muted hover:text-accent">
+                          <Link prefetch={false} href={buying.href} className="flex justify-between text-muted hover:text-accent">
                             <span>{buying.title}</span>
                             <span aria-hidden="true">→</span>
                           </Link>
@@ -377,6 +379,7 @@ export default function Home() {
                       )}
                     </ul>
                     <Link
+                      prefetch={false}
                       href={c.roundup.href}
                       className={`mt-6 inline-flex items-center justify-between rounded-lg border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} hover:bg-surface transition-colors`}
                     >
@@ -432,6 +435,7 @@ export default function Home() {
             <span className="mr-1 font-display text-[11px] uppercase tracking-wide text-muted">More picks by job:</span>
             {moreUseCases.map((g) => (
               <Link
+                prefetch={false}
                 key={g.href}
                 href={g.href}
                 className={`rounded-full border border-border bg-surface px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors`}
@@ -488,7 +492,7 @@ export default function Home() {
                     <span className="font-mono text-xs text-muted">{total} guides</span>
                   </div>
                   {start && (
-                    <Link href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
+                    <Link prefetch={false} href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
                       <span className="font-display text-[10px] uppercase tracking-wide text-accent">Start here</span>
                       <span className="mt-1 block font-semibold group-hover:text-accent transition-colors">{start.title}</span>
                       <span className="mt-1 block text-xs text-muted leading-5">{start.description}</span>
@@ -497,7 +501,7 @@ export default function Home() {
                   <ul className="mt-3 flex-1 divide-y divide-border px-5">
                     {more.slice(0, 5).map((g) => (
                       <li key={g.href}>
-                        <Link href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                        <Link prefetch={false} href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
                           <span className="group-hover:text-accent transition-colors">{g.title}</span>
                           <span className="text-muted" aria-hidden="true">→</span>
                         </Link>
@@ -505,7 +509,7 @@ export default function Home() {
                     ))}
                     {buying.map((g) => (
                       <li key={g.href}>
-                        <Link href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                        <Link prefetch={false} href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
                           <span className="group-hover:text-accent transition-colors">
                             <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-[10px] uppercase text-signal">Buying</span>
                             {g.title}
@@ -516,6 +520,7 @@ export default function Home() {
                     ))}
                   </ul>
                   <Link
+                    prefetch={false}
                     href={`/${c.category}/guides`}
                     className={`mx-5 mb-5 mt-4 inline-flex items-center justify-between rounded-lg border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} hover:bg-surface-raised transition-colors`}
                   >
@@ -576,20 +581,20 @@ export default function Home() {
               <p className="font-display text-[11px] uppercase tracking-wide text-accent">Want the detail?</p>
               <ul className="mt-3 space-y-2.5 text-sm">
                 <li>
-                  <Link href="/about" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                  <Link prefetch={false} href="/about" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
                     <span>How we test and review</span>
                     <span className="text-muted" aria-hidden="true">→</span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about#how-were-funded" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                  <Link prefetch={false} href="/about#how-were-funded" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
                     <span>How we&apos;re funded</span>
                     <span className="text-muted" aria-hidden="true">→</span>
                   </Link>
                 </li>
                 {featuredHowTos.map((g) => (
                   <li key={g.href}>
-                    <Link href={g.href} className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                    <Link prefetch={false} href={g.href} className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
                       <span>{g.title}</span>
                       <span className="text-muted" aria-hidden="true">→</span>
                     </Link>

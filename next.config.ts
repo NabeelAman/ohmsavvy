@@ -70,8 +70,18 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   images: {
     remotePatterns: PRODUCT_IMAGE_HOSTS.map((hostname) => ({ protocol: "https" as const, hostname })),
+    // Product photos at a given URL never change, so keep optimized copies for
+    // 31 days instead of the 4-hour default: fewer re-transformations (billed)
+    // and a long browser cache lifetime.
+    minimumCacheTTL: 2678400,
+    // Default list minus 2048 and 3840. No image slot on the site is wider than
+    // about 400 CSS px, or the mobile viewport (100vw sizes), so those widths
+    // were only ever used as next/image's fallback `src`, which still cost a
+    // transformation each when a crawler or old browser fetched it.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
   turbopack: {
+    root: "C:/Users/user", // TEMP-PERF-WORKTREE
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],

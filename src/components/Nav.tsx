@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -74,6 +74,7 @@ function FeaturedCard({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
   const f = menu.featured;
   return (
     <Link
+      prefetch={false}
       href={f.href}
       onClick={onNavigate}
       className="group/feat flex flex-col rounded-xl border border-border bg-surface-raised p-3 hover:border-accent hover:shadow-md transition-all duration-200"
@@ -82,7 +83,7 @@ function FeaturedCard({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
       <span className="relative mt-2 h-32 flex items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden">
         {f.image ? (
           <Image
-            src={f.image} unoptimized={skipOptimizer(f.image)}
+            src={productImageSrc(f.image, 200)} unoptimized={skipOptimizer(f.image)}
             alt={f.name}
             fill
             sizes="200px"
@@ -118,6 +119,7 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
               {menu.primary.map((l, i) => (
                 <li key={l.href}>
                   <Link
+                    prefetch={false}
                     href={l.href}
                     onClick={onNavigate}
                     className="group/item flex gap-3 rounded-lg p-2 -mx-2 hover:bg-surface-raised transition-colors"
@@ -145,6 +147,7 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
                 {menu.guides.map((l) => (
                   <li key={l.href}>
                     <Link
+                      prefetch={false}
                       href={l.href}
                       onClick={onNavigate}
                       className="group/item flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 -mx-2 hover:bg-surface-raised transition-colors"
@@ -165,10 +168,20 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
   );
 }
 
+// Menu Links use prefetch={false}: the desktop panels are always in the DOM (and,
+// though invisible, "in the viewport"), so default prefetching fetched every menu
+// route (two RSC requests each with partial prefetching) on every page view.
 export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactNode }) {
   const pathname = usePathname();
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // The mobile menu's contents mount on first use (pointer down / focus on the
+  // toggle, i.e. just before the click opens it) rather than on load: hidden
+  // with visibility:hidden they still cost style and layout on every page, and
+  // every link in them sat "in the viewport", so Next prefetched ~20 routes
+  // (plus their preloaded hero images) on each mobile page load.
+  const [mobileMounted, setMobileMounted] = useState(false);
+  const mountMobile = () => setMobileMounted(true);
   const [expanded, setExpanded] = useState<string | null>(
     () => menus.find((m) => pathname?.startsWith(m.match))?.key ?? menus[0]?.key ?? null,
   );
@@ -253,6 +266,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
               }}
             >
               <Link
+                prefetch={false}
                 href={m.href}
                 onClick={closeAll}
                 onMouseEnter={(e) => movePill(e.currentTarget)}
@@ -305,7 +319,12 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMobileOpen((o) => !o)}
+          onPointerDown={mountMobile}
+          onFocus={mountMobile}
+          onClick={() => {
+            mountMobile();
+            setMobileOpen((o) => !o);
+          }}
           className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface transition-colors hover:border-accent"
         >
           <span className="relative block h-3.5 w-5">
@@ -346,7 +365,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
             ref={panelRef}
             className="relative max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain px-4 py-4 pb-8 space-y-2"
           >
-            {menus.map((m, idx) => {
+            {mobileMounted && menus.map((m, idx) => {
               const tone = TONE[m.tone];
               const isOpen = expanded === m.key;
               return (
@@ -378,13 +397,14 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                     <div className="overflow-hidden">
                       <div className="px-4 pb-4 space-y-4">
                         <Link
+                          prefetch={false}
                           href={m.featured.href}
                           onClick={closeAll}
                           className="flex items-center gap-3 rounded-lg border border-border bg-surface p-2.5"
                         >
                           <span className="relative h-14 w-14 shrink-0 flex items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
                             {m.featured.image ? (
-                              <Image src={m.featured.image} unoptimized={skipOptimizer(m.featured.image)} alt={m.featured.name} fill sizes="56px" className="object-contain p-1" />
+                              <Image src={productImageSrc(m.featured.image, 56)} unoptimized={skipOptimizer(m.featured.image)} alt={m.featured.name} fill sizes="56px" className="object-contain p-1" />
                             ) : (
                               <PhotoPlaceholder size="xs" />
                             )}
@@ -400,6 +420,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                         <div className="grid gap-1">
                           {m.primary.map((l, i) => (
                             <Link
+                              prefetch={false}
                               key={l.href}
                               href={l.href}
                               onClick={closeAll}
@@ -423,6 +444,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                             <div className="flex flex-wrap gap-2">
                               {m.guides.map((l) => (
                                 <Link
+                                  prefetch={false}
                                   key={l.href}
                                   href={l.href}
                                   onClick={closeAll}

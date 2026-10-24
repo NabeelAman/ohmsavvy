@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { content, type Category } from "@/lib/content";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import type { Pick } from "./ReviewArticle";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
@@ -156,7 +156,7 @@ export function RoundupHero({
             <a href={`#${slug(top.name)}`} className="relative block h-52 bg-white">
               {top.image ? (
                 <Image
-                  src={top.image}
+                  src={productImageSrc(top.image, 380)}
                   unoptimized={skipOptimizer(top.image)}
                   alt={`${top.name}, our top ${label.toLowerCase()} pick`}
                   fill

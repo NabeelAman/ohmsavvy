@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import Link from "next/link";
 import { content } from "@/lib/content";
 import { ArticleTocBar, ArticleTocSidebar, type TocItem } from "./ArticleToc";
@@ -85,15 +85,18 @@ function ProductImage({
   className,
   eager,
   sizes = "200px",
+  slotPx = 200,
 }: {
   pick: Pick;
   className: string;
   eager?: boolean;
   sizes?: string;
+  /** Longest side of the photo's box in CSS px; picks the Amazon rendition (see productImageSrc). */
+  slotPx?: number;
 }) {
   return pick.image ? (
     <Image
-      src={pick.image} unoptimized={skipOptimizer(pick.image)}
+      src={productImageSrc(pick.image, slotPx)} unoptimized={skipOptimizer(pick.image)}
       alt={pick.name}
       fill
       sizes={sizes}
@@ -220,6 +223,7 @@ export function ReviewArticle({
                         pick={p}
                         eager
                         sizes="(min-width: 640px) 350px, 100vw"
+                        slotPx={320}
                         className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110 motion-reduce:transition-none"
                       />
                     </div>
@@ -260,7 +264,7 @@ export function ReviewArticle({
                           href={`#${slug(p.name)}`}
                           className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden"
                         >
-                          <ProductImage pick={p} sizes="56px" className="object-contain p-1 transition-transform duration-300 group-hover:scale-110" />
+                          <ProductImage pick={p} sizes="56px" slotPx={56} className="object-contain p-1 transition-transform duration-300 group-hover:scale-110" />
                         </a>
                         <div className="min-w-0 flex-1">
                           <a href={`#${slug(p.name)}`} className="block font-semibold leading-snug hover:text-accent">
@@ -319,7 +323,7 @@ export function ReviewArticle({
                         <td className={`sticky left-0 z-10 py-3 pl-4 pr-4 ${i === 0 ? "bg-[color-mix(in_srgb,var(--accent)_5%,var(--surface))]" : "bg-surface"}`}>
                           <a href={`#${slug(p.name)}`} className="flex items-center gap-3 font-medium hover:text-accent">
                             <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
-                              <ProductImage pick={p} sizes="40px" className="object-contain p-0.5" />
+                              <ProductImage pick={p} sizes="40px" slotPx={40} className="object-contain p-0.5" />
                             </span>
                             <span className="leading-snug">
                               <span className="block text-[11px] font-display text-muted">#{i + 1}</span>
@@ -366,9 +370,15 @@ export function ReviewArticle({
                 const forWho = bestFor(p);
                 return (
                   <Reveal key={p.name}>
+                    {/* content-visibility: off-screen pick cards skip style, layout and paint
+                        until they near the viewport. A roundup renders one per pick (30+), so
+                        laying them all out up front was the bulk of its main-thread time.
+                        The placeholder heights are the measured median card height per
+                        breakpoint; close estimates keep deep links (#pick-name) landing on
+                        the card when the page loads with a hash. */}
                     <section
                       id={slug(p.name)}
-                      className="scroll-mt-36 rounded-2xl border border-border bg-surface p-5 sm:p-6 shadow-sm"
+                      className="scroll-mt-36 rounded-2xl border border-border bg-surface p-5 sm:p-6 shadow-sm [content-visibility:auto] [contain-intrinsic-size:auto_1400px] sm:[contain-intrinsic-size:auto_950px] lg:[contain-intrinsic-size:auto_750px]"
                     >
                       <div className="flex flex-col sm:flex-row gap-6">
                         {p.image && (
@@ -376,7 +386,7 @@ export function ReviewArticle({
                             <div className="relative h-60 flex items-center justify-center overflow-hidden">
                               <ImageLightbox src={p.image} alt={p.name}>
                                 <Image
-                                  src={p.image} unoptimized={skipOptimizer(p.image)}
+                                  src={productImageSrc(p.image, 360)} unoptimized={skipOptimizer(p.image)}
                                   alt={p.name}
                                   fill
                                   sizes="(min-width: 640px) 240px, 100vw"

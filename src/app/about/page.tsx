@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Stars } from "@/components/ui/Stars";
 import { getPicks } from "@/lib/catalog";
 import { content, type Category } from "@/lib/content";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
@@ -383,7 +383,7 @@ export default function AboutPage() {
                       <div className="relative m-3 mb-0 h-36 rounded-xl border border-border/60 bg-white overflow-hidden">
                         {p.image && (
                           <Image
-                            src={p.image}
+                            src={productImageSrc(p.image, 200)}
                             unoptimized={skipOptimizer(p.image)}
                             alt={p.name}
                             fill

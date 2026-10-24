@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Stars } from "@/components/ui/Stars";
 import { content, type Category, type ContentEntry } from "@/lib/content";
-import { skipOptimizer } from "@/lib/images";
+import { productImageSrc, skipOptimizer } from "@/lib/images";
 import { isLocale, LOCALE_LABELS, LOCALES, localeAlternates, type Locale } from "@/lib/i18n";
 import { buildMetadata } from "@/lib/metadata";
 import { picks as multimeterPicks } from "../multimeters/best-multimeters/page";
@@ -434,7 +434,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                 <li key={p.name} className="flex gap-4 p-4">
                   <Link href={p.reviewHref} className="relative shrink-0 w-20 h-20 rounded-lg border border-border/60 bg-white overflow-hidden">
                     {p.image ? (
-                      <Image src={p.image} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
+                      <Image src={productImageSrc(p.image, 80)} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
                     ) : null}
                   </Link>
                   <div className="min-w-0 flex-1">
@@ -488,7 +488,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                   <Link href={ROUNDUPS[category]} className={`relative block h-44 bg-gradient-to-b ${tone.soft} to-transparent`}>
                     <div className={`absolute top-0 inset-x-0 h-1 ${tone.bg}`} />
                     {top.image && (
-                      <Image src={top.image} unoptimized={skipOptimizer(top.image)} alt={top.name} fill sizes="(min-width: 768px) 360px, 100vw" className="object-contain p-6 transition-transform duration-300 group-hover:scale-105" />
+                      <Image src={productImageSrc(top.image, 320)} unoptimized={skipOptimizer(top.image)} alt={top.name} fill sizes="(min-width: 768px) 360px, 100vw" className="object-contain p-6 transition-transform duration-300 group-hover:scale-105" />
                     )}
                   </Link>
                   <div className="flex flex-1 flex-col p-6">

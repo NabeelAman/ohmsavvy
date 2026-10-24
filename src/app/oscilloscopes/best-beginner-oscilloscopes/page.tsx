@@ -616,6 +616,143 @@ export const picks: Pick[] = [
     cons: ["Small 3-inch screen", "Bandwidth stated only on the Amazon listing"],
     ctaHref: "https://www.amazon.com/dp/B09XXBBRPF?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Pocket Scope with Signal Generator",
+    // Specs per fnirsi.com/products/dso-510 (10MHz, 48MS/s, 2.8" 320x240, 1000mAh). Naming caution: Amazon's own
+    // "How to Choose?" comparison graphic on this listing (B0DKK5VB79) labels the matching column "DSO-153", not
+    // "DSO-510", even though the title and fnirsi.com both call it "DSO-510" with identical specs — flagging the
+    // conflict per CLAUDE.md rather than treating the two names as confirmed interchangeable. No physical-casing
+    // photo shows any printed model number, so no image is used either way. Amazon-buyable (In Stock) 2026-10-24.
+    name: "FNIRSI DSO-510",
+    rating: 4.0,
+    bottomLine: "A 1-channel pocket scope with a built-in signal generator, though its own listing disputes its name.",
+    verdict:
+      "The DSO-510 is a single-channel pocket oscilloscope: 10 MHz bandwidth, 48 MS/s sampling, a 2.8-inch 320 × 240 screen and a ±400V (with 10X probe) input range. It doubles as a basic DDS signal generator (0–50 kHz, 13 waveform types, 0.1–3.0V amplitude) and runs about 4 hours on a 1000 mAh battery charged over USB-C. One caution: the seller's own comparison graphic on this listing names the matching spec column \"DSO-153\", not \"DSO-510\", so treat the model name with some skepticism even though FNIRSI's current site and the listing title agree on \"DSO-510\".",
+    specs: [
+      { label: "Bandwidth", value: "10MHz" },
+      { label: "Channels", value: "1" },
+      { label: "Sample rate", value: "48 MS/s" },
+      { label: "Best for", value: "Quick single-channel checks with a built-in generator" },
+    ],
+    pros: ["Built-in DDS signal generator", "Genuinely pocket-sized (99 × 68.3 × 19.5 mm)", "USB-C charging"],
+    cons: ["Single channel only", "Seller's own marketing graphic disputes the model name"],
+    ctaHref: "https://www.amazon.com/dp/B0DKK5VB79?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 3-in-1 Handheld with Carrying Case",
+    // Specs per the official Amazon listing (B0D3LMPQY3; manufacturer FNIRSI, Amazon brand "WESTOBiG", model "WB-2C53P"):
+    // 50MHz/250MS/s 2-channel scope, 4.5-digit 19999-count multimeter, 12-waveform DDS generator to 10MHz, 4.3" 480x272
+    // IPS touchscreen, 4000mAh battery. Photo: main image of this exact ASIN, bezel reads "FNIRSI" and "2C53P" (the
+    // "Plus" in the title refers to the bundled carrying case, matching this listing's included components).
+    // Amazon-buyable (In Stock) 2026-10-24.
+    name: "WESTOBiG 2C53P Plus",
+    image: "https://m.media-amazon.com/images/I/71Dfjwf0NiL._SX425_.jpg",
+    rating: 4.2,
+    bottomLine: "A 3-in-1 scope/multimeter/generator handheld bundled with a carrying case.",
+    verdict:
+      "This FNIRSI-made 2C53P Plus (sold under the Amazon brand WESTOBiG) combines a two-channel, 50 MHz oscilloscope at 250 MS/s with a 4.5-digit, 19999-count true-RMS multimeter and a 12-waveform DDS generator (up to 10 MHz, adjustable frequency/amplitude/duty cycle). It has a 4.3-inch 480 × 272 IPS touchscreen, a built-in high-voltage protection module rated to ±400V, FFT and Lissajous analysis, and a 4000 mAh battery good for about 4 hours. This listing bundles a carrying case.",
+    specs: [
+      { label: "Bandwidth", value: "50MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "250 MS/s" },
+      { label: "Best for", value: "Field work needing a scope, meter and generator together" },
+    ],
+    pros: ["Scope, multimeter and generator in one", "4.5-digit 19999-count multimeter", "Bundled carrying case"],
+    cons: ["50 MHz limits it to slower signals", "Touchscreen-only controls on a small 4.3-inch display"],
+    ctaHref: "https://www.amazon.com/dp/B0D3LMPQY3?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 4-Channel 100MHz Touchscreen",
+    // Specs per rigolna.com/products/digital-oscilloscopes/dho800: 100MHz, 4 channels, 12-bit, 1.25GSa/s, 25Mpts,
+    // 1 Mwfms/s (UltraAcquire), 7" 1024x600 touchscreen. Rigol's page doesn't list dimensions/weight. Photo: main
+    // image of the exact Amazon listing (B0H1HVQRBF, sold by reseller "GuliTech"; page content confirms genuine
+    // RIGOL branding), front panel reads "DHO814 100MHz DIGITAL OSCILLOSCOPE 1.25GSa/s 12bit UltraVision".
+    // Amazon-buyable (in stock) 2026-10-24.
+    name: "Rigol DHO814",
+    image: "https://m.media-amazon.com/images/I/8163kHjbcCL._SX522_.jpg",
+    rating: 4.6,
+    bottomLine: "Four channels, 12-bit resolution and a touchscreen, one step up from the DHO804 in bandwidth.",
+    verdict:
+      "The DHO814 is Rigol's 100 MHz, 4-channel DHO800-series touchscreen scope: 12-bit vertical resolution, 1.25 GSa/s sample rate, 25 Mpts of memory and a waveform capture rate up to 1 Mwfms/s in UltraAcquire mode, on the same 7-inch 1024 × 600 touchscreen as the rest of the series. Rigol's page doesn't state its dimensions or weight.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "4" },
+      { label: "Sample rate", value: "1.25 GSa/s" },
+      { label: "Best for", value: "Four-channel work that wants more bandwidth than the DHO804" },
+    ],
+    pros: ["100 MHz on all four channels", "12-bit vertical resolution", "Up to 1 Mwfms/s waveform capture rate"],
+    cons: ["Pricier than the 70 MHz DHO804", "Dimensions and weight not published by Rigol"],
+    ctaHref: "https://www.amazon.com/dp/B0H1HVQRBF?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 200MHz Two-Channel Rigol",
+    // Specs per the official Amazon listing title and bullets (B0H1J12LDJ; manufacturer RIGOL TECHNOLOGIES CO., LTD.,
+    // sold by reseller "GuliTech"): 200MHz, 2 channels, 1GSa/s, 24Mpts max memory, 30,000 wfms/s capture rate. Photo:
+    // main image of this exact ASIN, front panel reads "DS1202 Z-E OSCILLOSCOPE ... 2 Channel 200MHz 1GSa/s".
+    // Amazon-buyable (in stock) 2026-10-24.
+    name: "Rigol DS1202Z-E",
+    image: "https://m.media-amazon.com/images/I/61zg5mfgK6L._SX522_.jpg",
+    rating: 4.5,
+    bottomLine: "The 200 MHz version of Rigol's DS1000Z-E platform, for two-channel work that outgrows the DS1102Z-E.",
+    verdict:
+      "The DS1202Z-E doubles the DS1102Z-E's bandwidth to 200 MHz while keeping the same two-channel, 1 GSa/s, 24 Mpts DS1000Z-E platform, with up to 30,000 waveforms per second and the series' standard decoding. Choose it over the DS1102Z-E when 100 MHz isn't enough headroom but a third or fourth channel still isn't needed.",
+    specs: [
+      { label: "Bandwidth", value: "200MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s" },
+      { label: "Best for", value: "Two-channel debugging that needs more bandwidth than 100 MHz" },
+    ],
+    pros: ["200 MHz on two channels", "24 Mpts of memory", "Up to 30,000 wfms/s capture rate"],
+    cons: ["Only 2 channels", "Pricier than the 100 MHz DS1102Z-E"],
+    ctaHref: "https://www.amazon.com/dp/B0H1J12LDJ?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 8-Channel Automotive Scope with Diagnostic Software",
+    // Specs per hantek.com's shared 1008-series table (same source as our Hantek 1008B pick) plus the official Amazon
+    // listing for this exact ASIN (B00BSR98KW): 8 channels, 12-bit, 2.4 MSa/s (1 ch), 4K points, 1 MOhm inputs to
+    // 400V peak, 8-channel LVTTL generator to 250kHz, 80+ automotive diagnostic functions. Conflict to flag: Hantek's
+    // shared 1008A/B/C spec table lists an ignition/HV probe as included, but this ASIN's own "Included Components"
+    // (Oscilloscope, Instruction CD, Auto Probe, 4x alligator-clip cables, 4 coaxial connectors) does not mention
+    // one — confirm with the seller before assuming it's in the box. No photo: like the 1008B listing, this case is
+    // printed only "Hantek" with no model number, so no image is used. Amazon-buyable (in stock) 2026-10-24.
+    name: "Hantek 1008C",
+    rating: 4.0,
+    bottomLine: "The top tier of Hantek's shared 1008 automotive USB scope hardware, with more diagnostic software.",
+    verdict:
+      "The 1008C shares its underlying hardware with the 1008A and 1008B: eight 12-bit channels, 2.4 MSa/s with one channel on, 4K points of memory, 1 MΩ DC-coupled inputs to 400V peak and an eight-channel LVTTL generator to 250 kHz for simulating crank/cam signals. Hantek markets the 1008C with a larger automotive diagnostic function library (80+ listed on this ASIN) and, on its shared spec page, an ignition/HV probe — though this exact listing's included-components list doesn't itemize one, so don't assume it's in the box without checking with the seller first.",
+    specs: [
+      { label: "Bandwidth", value: "100kHz (per manual, shared across 1008A/B/C)" },
+      { label: "Channels", value: "8" },
+      { label: "Sample rate", value: "2.4 MSa/s (1 ch)" },
+      { label: "Best for", value: "Automotive diagnostics needing the fuller software/function library" },
+    ],
+    pros: ["Eight channels at 12-bit", "80+ listed automotive diagnostic functions", "USB-powered"],
+    cons: ["Ignition probe inclusion is unclear for this exact listing", "Needs a Windows PC; no screen of its own"],
+    ctaHref: "https://www.amazon.com/dp/B00BSR98KW?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 4-in-1 Oscilloscope/Generator/Spectrum Analyzer",
+    // Specs per the official Amazon listing (B0F6K8H5CT, manufacturer FNIRSI): 350MHz/1GSa/s 2-channel digital
+    // phosphor scope, 50,000 wfm/s refresh, 1ns rise time, 8-16 bit high-res mode; 50MHz/10MHz DDS generator;
+    // 200kHz-350MHz FFT spectrum analyzer; 100Hz-50MHz frequency response analyzer; 7" 1024x600 touchscreen.
+    // Photo: main image of this exact ASIN, bezel reads "FNIRSI DPOS350P ... 350MHz 1GSa/s". Amazon-buyable
+    // (In Stock) 2026-10-24.
+    name: "FNIRSI DPOS350P",
+    image: "https://m.media-amazon.com/images/I/71eXjoCayNL._SX425_.jpg",
+    rating: 4.3,
+    bottomLine: "A four-in-one bench tool: 350MHz scope, generator, spectrum analyzer and frequency response analyzer.",
+    verdict:
+      "The DPOS350P packs four instruments into one 7-inch touchscreen unit: a 350 MHz, 2-channel digital phosphor oscilloscope (1 GSa/s, 50,000 wfm/s refresh, 1 ns rise time, 8- to 16-bit high-res mode), a 50 MHz DDS generator (14 waveforms plus custom, up to 50 MHz sine/10 MHz square), a 350 MHz spectrum analyzer (200 kHz–350 MHz FFT, 32K points, 3D waterfall) and a 50 MHz frequency response analyzer (100 Hz–50 MHz sweep). It's a lot of capability on one touchscreen, but it's a new, unproven entrant without independent testing yet.",
+    specs: [
+      { label: "Bandwidth", value: "350MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s" },
+      { label: "Best for", value: "Benches that want a scope, generator and spectrum analyzer in one box" },
+    ],
+    pros: ["350 MHz scope plus generator, spectrum and frequency-response analyzers", "7-inch 1024 × 600 touchscreen", "1 ns rise time, 50,000 wfm/s refresh"],
+    cons: ["New product with no independent long-term reviews yet", "Complex feature set has a learning curve"],
+    ctaHref: "https://www.amazon.com/dp/B0F6K8H5CT?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

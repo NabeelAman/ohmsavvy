@@ -2191,6 +2191,20 @@ export const content: ContentEntry[] = [
     description: "Mixed-signal pocket scope vs. single channel",
     href: "/oscilloscopes/miniware-ds213-vs-fnirsi-dso152",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DS1102Z-E vs Rigol DS1054Z",
+    description: "Two channels at 100MHz vs. four channels at 50MHz",
+    href: "/oscilloscopes/rigol-ds1102z-e-vs-rigol-ds1054z",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DHO814 vs Rigol DHO804",
+    description: "Same touchscreen platform, 100MHz vs. 70MHz",
+    href: "/oscilloscopes/rigol-dho814-vs-rigol-dho804",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

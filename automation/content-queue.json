@@ -67,7 +67,13 @@
       "OWON HDS272S",
       "HANMATEK DOS1102",
       "Hantek 1008B",
-      "MINIWARE DS213"
+      "MINIWARE DS213",
+      "FNIRSI DSO-510",
+      "WESTOBiG 2C53P Plus",
+      "Rigol DHO814",
+      "Rigol DS1202Z-E",
+      "Hantek 1008C",
+      "FNIRSI DPOS350P"
     ]
   },
   "keywords": [

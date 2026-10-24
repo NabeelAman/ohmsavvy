@@ -352,6 +352,137 @@ export const picks: Pick[] = [
     cons: ["Short, loosely specified memory (\"240Kbit\")", "Per-channel sample rate with both channels on not stated"],
     ctaHref: "https://www.amazon.com/dp/B097T5NRTZ?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best 125 MHz 12-bit",
+    // Specs per Rigol's DHO900 datasheet (linked from rigolna.com/products/digital-oscilloscopes/dho900/). Photo: main image of the exact Amazon listing (B0CGHQC6ZP, sold by RIGOL Official Store), panel reads "RIGOL DHO914 125MHz ... 1.25GSa/s 12bit". Amazon-buyable (In Stock) 2026-10-24.
+    name: "Rigol DHO914",
+    image: "https://m.media-amazon.com/images/I/71PMXGKRYFL._SL1500_.jpg",
+    rating: 4.6,
+    bottomLine: "Four 12-bit channels at 125 MHz with 16 logic inputs built in, in a compact USB-C powered body.",
+    verdict:
+      "The DHO914 is a four-channel, 125 MHz, 12-bit scope: 1.25 GSa/s on one channel (625 MSa/s on two, 312.5 MSa/s on three or four) and 50 Mpts of memory on one channel (25 Mpts on two, 10 Mpts on three or four). Rigol lists a 7-inch 1024 × 600 multi-touch screen, HDMI and LAN, standard parallel, UART, I2C, SPI, CAN and LIN decoding, and 16 digital channels that need the separately sold PLA2216 logic probe. It runs from a USB-C 15 V supply and weighs 1.78 kg. There is no built-in signal generator; that is the DHO914S.",
+    specs: [
+      { label: "Bandwidth", value: "125MHz" },
+      { label: "Channels", value: "4 + 16 digital (probe sold separately)" },
+      { label: "Sample rate", value: "1.25 GSa/s (1 ch); 312.5 MSa/s (4 ch)" },
+      { label: "Best for", value: "Mixed analog and logic debugging on a small bench" },
+    ],
+    pros: ["12-bit resolution and 50 Mpts of memory", "16 digital channels built in", "Standard decoding including CAN and LIN"],
+    cons: ["Logic probe (PLA2216) sold separately", "No built-in signal generator"],
+    ctaHref: "https://www.amazon.com/dp/B0CGHQC6ZP?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 12-bit Scope + Generator",
+    // Specs per Rigol's DHO900 datasheet (generator and Bode plot on S models only, datasheet footnote 7). Photo: main image of the exact Amazon listing (B0CGHRL266, sold by RIGOL Official Store), panel reads "RIGOL DHO914S 125MHz ... 1.25GSa/s 12bit" with the GI generator key. Amazon-buyable (In Stock) 2026-10-24.
+    name: "Rigol DHO914S",
+    image: "https://m.media-amazon.com/images/I/71XnyEAt3lL._SL1500_.jpg",
+    rating: 4.6,
+    bottomLine: "The DHO914 plus a built-in 25 MHz signal generator and Bode plot, for a one-box home lab.",
+    verdict:
+      "The DHO914S has everything in the DHO914 (four 12-bit channels at 125 MHz, 1.25 GSa/s, up to 50 Mpts, 16 digital channels with the separate PLA2216 probe, standard serial decoding, a 7-inch 1024 × 600 touchscreen and USB-C power) and adds a single-channel 25 MHz arbitrary/function generator. Rigol lists sine to 25 MHz, square to 15 MHz, ramp to 150 kHz and arbitrary waveforms to 10 MHz at 156 MSa/s and 14-bit, plus a Bode plot function that uses the generator to sweep a circuit's frequency response.",
+    specs: [
+      { label: "Bandwidth", value: "125MHz" },
+      { label: "Channels", value: "4 + 16 digital (probe sold separately)" },
+      { label: "Sample rate", value: "1.25 GSa/s (1 ch); 312.5 MSa/s (4 ch)" },
+      { label: "Best for", value: "A home lab that wants scope, logic and signal source in one" },
+    ],
+    pros: ["Built-in 25 MHz generator with Bode plot", "12-bit resolution and 50 Mpts of memory", "16 digital channels and standard decoding"],
+    cons: ["Logic probe (PLA2216) sold separately", "Costs more than the DHO914"],
+    ctaHref: "https://www.amazon.com/dp/B0CGHRL266?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 4-Channel Scope + Generator",
+    // Specs per Rigol's MSO1000Z/DS1000Z datasheet and rigolna.com/products/digital-oscilloscopes/1000z/ (memory conflicts: datasheet 24 Mpts standard, series page 12 Mpts standard / 24 Mpts optional; series page lists decoding as optional). Photo: main image of the exact Amazon listing (B08JGZ218X), panel reads "RIGOL DS1104 Z Plus ... 4 Channel 100MHz 1GSa/s"; "-S" isn't printed but the generator "Source" key is visible. Amazon-buyable 2026-10-24 (third-party seller).
+    name: "Rigol DS1104Z-S Plus",
+    image: "https://m.media-amazon.com/images/I/81h2yjJL3KL._SL1500_.jpg",
+    rating: 4.5,
+    bottomLine: "A four-channel 100 MHz classic with a two-channel 25 MHz signal generator built in.",
+    verdict:
+      "The DS1104Z-S Plus is the 100 MHz, generator-equipped member of Rigol's DS1000Z family: four channels, 1 GSa/s on one channel (500 MSa/s on two, 250 MSa/s on three or four), 8-bit, a 7-inch 800 × 480 display and up to 30,000 waveforms per second. Its built-in generator has two 25 MHz channels at 200 MSa/s and 14-bit. Rigol's sources disagree on memory (24 Mpts standard in the datasheet, 12 Mpts standard with 24 Mpts optional on the series page), and the series page lists serial decoding as an option. It can be upgraded to 16 logic channels with the RPL1116 kit, sold separately, and runs on mains power.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "4" },
+      { label: "Sample rate", value: "1 GSa/s (1 ch); 250 MSa/s (4 ch)" },
+      { label: "Best for", value: "Four-channel work that also needs two signal sources" },
+    ],
+    pros: ["Two-channel 25 MHz signal generator built in", "Four channels at 100 MHz", "Upgradable to 16 logic channels"],
+    cons: ["8-bit with a lower-resolution 800 × 480 screen", "Rigol's memory and decoding details conflict between sources"],
+    ctaHref: "https://www.amazon.com/dp/B08JGZ218X?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Budget 2-Channel Decoder",
+    // Specs per hantek.com DSO2000 series page (products/detail/17182): DSO2C10 column shows no generator. Photo: main image of the exact Amazon listing (B09GY871QK), panel reads "Hantek DSO2C10 2 CHANNEL ... 100MHz 1GSa/s"; the shared front panel still carries WAVE GEN/GEN OUT labels. Amazon-buyable (In Stock) 2026-10-24 (third-party seller).
+    name: "Hantek DSO2C10",
+    image: "https://m.media-amazon.com/images/I/71e+o7BkUgS._SL1500_.jpg",
+    rating: 4.3,
+    bottomLine: "The DSO2D10 without the signal generator: two 100 MHz channels with deep memory and serial decoding.",
+    verdict:
+      "Hantek's DSO2C10 is a two-channel, 100 MHz benchtop with 1 GSa/s on one channel (500 MSa/s on both), 8-bit resolution with a high-resolution mode up to 12-bit, 8 Mpts of memory on one channel (4 Mpts on two) and a 7-inch 800 × 480 display. Hantek lists UART, LIN, CAN, SPI and I2C triggering and decoding and 32 automatic measurements. Its spec table shows no signal generator for this model, even though the front panel shares the DSO2D10's WAVE GEN labels. It runs on mains power and weighs 1.9 kg.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s (1 ch); 500 MSa/s (2 ch)" },
+      { label: "Best for", value: "Low-cost serial-bus debugging on two channels" },
+    ],
+    pros: ["UART, I2C, SPI, CAN and LIN decoding", "8 Mpts of memory on one channel", "100 MHz at a budget price"],
+    cons: ["No signal generator (unlike the DSO2D10)", "8-bit converter"],
+    ctaHref: "https://www.amazon.com/dp/B09GY871QK?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 3-in-1 Handheld",
+    // Specs per OWON's HDS200 series page (owon.com.hk/products_owon_hds200_series_digital_oscilloscope), HDS2202S column. Photo: main image of the exact Amazon listing (B0BJVK6RV7), unit reads "OWON HDS2202S 200MHz Handheld oscilloscope". Amazon-buyable (In Stock) 2026-10-24 (third-party seller, shipped by Amazon).
+    name: "OWON HDS2202S",
+    image: "https://m.media-amazon.com/images/I/81oGP+JFe2L._SL1500_.jpg",
+    rating: 4.3,
+    bottomLine: "A battery handheld that combines a 200 MHz two-channel scope, a 20,000-count multimeter and a 25 MHz generator.",
+    verdict:
+      "The HDS2202S is a handheld with three instruments: a two-channel, 200 MHz, 1 GSa/s, 8-bit oscilloscope with an 8K record length and 10,000 waveforms per second; a 20,000-count multimeter (1000 V DC, 750 V AC, 10 A); and a single-channel generator (sine to 25 MHz, square, pulse and arbitrary to 5 MHz). It has a 3.5-inch LCD, runs 3 to 6 hours on an 18650 battery and charges over USB-C. OWON doesn't state the per-channel sample rate with both channels on or the screen resolution.",
+    specs: [
+      { label: "Bandwidth", value: "200MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s" },
+      { label: "Best for", value: "Field work that needs a scope, meter and signal source in one" },
+    ],
+    pros: ["Scope, multimeter and generator in one handheld", "200 MHz on two channels", "Battery-powered with USB-C charging"],
+    cons: ["Small 3.5-inch screen", "8K record length"],
+    ctaHref: "https://www.amazon.com/dp/B0BJVK6RV7?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Deep-Memory USB Scope",
+    // Specs per Pico Technology's PicoScope 2000 Series datasheet (picotech.com). No photo: the exact Amazon listing (B06WLNVPFK, sold by Tequipment) has one image, marked only "PicoScope 2000 Series", so no image is used. Amazon-buyable 2026-10-24 (low stock).
+    name: "PicoScope 2206B",
+    rating: 4.4,
+    bottomLine: "A pocket-sized 50 MHz USB scope with 32 MS of memory and a built-in AWG, run from PicoScope 7 on your PC.",
+    verdict:
+      "The PicoScope 2206B is a two-channel USB oscilloscope with no screen of its own: 50 MHz, 500 MS/s with one channel (250 MS/s with two), 8-bit with resolution enhancement to 12-bit, and a 32 MS buffer. It includes a function generator and AWG (up to 1 MHz, 20 MS/s, 12-bit), is powered over USB, measures 130 × 104 × 18.8 mm and weighs under 0.2 kg. Everything is controlled from Pico's PicoScope 7 software on a PC.",
+    specs: [
+      { label: "Bandwidth", value: "50MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "500 MS/s (1 ch); 250 MS/s (2 ch)" },
+      { label: "Best for", value: "Laptop users who want deep memory and solid PC software" },
+    ],
+    pros: ["32 MS buffer memory", "Built-in function generator and AWG", "USB-powered and very light"],
+    cons: ["No built-in screen: needs a PC", "50 MHz bandwidth"],
+    ctaHref: "https://www.amazon.com/dp/B06WLNVPFK?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Cheapest PC Scope",
+    // Specs per hantek.com/products/detail/31 (6022BE column; the page's memory row doesn't clearly assign a figure to this model). No photo: no image on the exact Amazon listing (B0728HBNDV) shows "6022BE" printed on the unit, so no image is used. Amazon-buyable 2026-10-24 (third-party seller, shipped by Amazon).
+    name: "Hantek 6022BE",
+    rating: 4.0,
+    bottomLine: "A very low-cost two-channel 20 MHz USB oscilloscope for learning on a Windows PC.",
+    verdict:
+      "The 6022BE is a basic PC oscilloscope with no screen: two channels, 20 MHz bandwidth, 48 MS/s maximum sample rate and an 8-bit converter, powered entirely over USB 2.0. Inputs are 1 MΩ / 25 pF with DC coupling only and a 20 mV–5 V/div range, and Hantek lists Windows software. It has no generator or logic channels (the separate 6022BL adds 16 logic inputs). Hantek doesn't clearly state its memory depth or the sample rate with both channels on.",
+    specs: [
+      { label: "Bandwidth", value: "20MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "48 MS/s (max)" },
+      { label: "Best for", value: "Learning scope basics on a Windows laptop for very little money" },
+    ],
+    pros: ["Very low price", "USB-powered, no external supply", "Two channels"],
+    cons: ["20 MHz and 48 MS/s limit it to slow signals", "DC coupling only; memory depth not clearly stated"],
+    ctaHref: "https://www.amazon.com/dp/B0728HBNDV?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

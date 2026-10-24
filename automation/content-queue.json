@@ -53,7 +53,14 @@
       "OWON SDS1102",
       "OWON VDS1022I",
       "FNIRSI DSO-TC3",
-      "FNIRSI 1014D"
+      "FNIRSI 1014D",
+      "Rigol DHO914",
+      "Rigol DHO914S",
+      "Rigol DS1104Z-S Plus",
+      "Hantek DSO2C10",
+      "OWON HDS2202S",
+      "PicoScope 2206B",
+      "Hantek 6022BE"
     ]
   },
   "keywords": [

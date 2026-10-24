@@ -146,8 +146,9 @@ export const picks: Pick[] = [
   {
     badge: "Best Waterproof",
     // Specs per southwire.com (14070T TechnicianPRO page).
+    // Photo (owner-approved 2026-10-25): main image of the exact Amazon listing B01MCTPTRC, meter reads "14070T". Replaces the Southwire CDN photo, which Vercel could not compress (902 KB PNG).
     name: "Southwire 14070T",
-    image: "https://assets.southwire.com/adaptivemedia/rendition?id=e50ea3478e9024c2f714f3c4b26dae8ae448502e&prid=01200Wx1200H&clid=SAPDAM&prclid=productpictures",
+    image: "https://m.media-amazon.com/images/I/613UhkD6IcL._SL1000_.jpg",
     rating: 4.5,
     bottomLine: "The pick for anyone working outdoors, on job sites, or anywhere a meter might get wet or dropped.",
     verdict:

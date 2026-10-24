@@ -1939,6 +1939,55 @@ export const content: ContentEntry[] = [
     description: "No current at all vs AC current to 100A",
     href: "/multimeters/fluke-101-vs-fluke-t5-600",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DHO804 vs Hantek DSO2D10",
+    description: "Four 12-bit channels vs. two with a generator",
+    href: "/oscilloscopes/rigol-dho804-vs-hantek-dso2d10",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DS1054Z vs OWON SDS1102",
+    description: "4 channels at 50MHz vs. 2 at 100MHz",
+    href: "/oscilloscopes/rigol-ds1054z-vs-owon-sds1102",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "FNIRSI DSO-TC3 vs FNIRSI DSO152",
+    description: "3-in-1 pocket tester vs. pocket scope",
+    href: "/oscilloscopes/fnirsi-dso-tc3-vs-fnirsi-dso152",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DHO802 vs Hantek DSO2D10",
+    description: "12-bit touchscreen vs. built-in generator",
+    href: "/oscilloscopes/rigol-dho802-vs-hantek-dso2d10",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "FNIRSI 1014D vs FNIRSI DSO-TC3",
+    description: "100MHz benchtop vs. 500kHz 3-in-1 handheld",
+    href: "/oscilloscopes/fnirsi-1014d-vs-fnirsi-dso-tc3",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DS1054Z vs OWON VDS1022I",
+    description: "Bench scope vs. USB laptop scope",
+    href: "/oscilloscopes/rigol-ds1054z-vs-owon-vds1022i",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Hantek DSO5102P vs Rigol DHO804",
+    description: "100MHz basics vs. 12-bit, 4 channels",
+    href: "/oscilloscopes/hantek-dso5102p-vs-rigol-dho804",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

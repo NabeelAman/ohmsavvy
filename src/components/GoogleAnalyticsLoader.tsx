@@ -24,8 +24,12 @@ function loadGA4() {
 
   const win = window as GtagWindow;
   win.dataLayer = win.dataLayer || [];
-  const gtag = (...args: unknown[]) => {
-    win.dataLayer!.push(args);
+  // Must push the `arguments` object, exactly like Google's snippet: gtag.js
+  // ignores plain arrays, so a rest-args version loads the library but never
+  // sends a single hit (verified 2026-10-24: zero /g/collect requests).
+  const gtag: (...args: unknown[]) => void = function () {
+    // eslint-disable-next-line prefer-rest-params
+    win.dataLayer!.push(arguments);
   };
   win.gtag = gtag;
   gtag("js", new Date());

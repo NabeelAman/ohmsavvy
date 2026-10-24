@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { cacheLife } from "next/cache";
 import { content } from "@/lib/content";
 import { LOCALES } from "@/lib/i18n";
 
@@ -27,7 +28,11 @@ const staticPages = [
   "/oscilloscopes/guides",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Cached so the sitemap is prerendered at build: under cacheComponents, the
+// bare new Date() below made it run a function on every crawler request.
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  "use cache";
+  cacheLife("max");
   const routes = [...staticPages, ...content.map((c) => c.href), ...localeRoutes];
   return routes.map((route) => ({
     url: `https://ohmsavvy.com${route}`,

@@ -31,6 +31,7 @@ export function ContentCard({ entry }: { entry: ContentEntry }) {
   return (
     <Link
       href={entry.href}
+      prefetch={false}
       className="group min-w-0 rounded-lg border border-border bg-surface overflow-hidden shadow-sm hover:shadow-md hover:border-accent transition-all flex flex-col"
     >
       {shown.length > 0 && (

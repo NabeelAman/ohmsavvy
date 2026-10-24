@@ -22,6 +22,7 @@ function GuideRow({ entry, tone }: { entry: ContentEntry; tone: string }) {
   return (
     <Link
       href={entry.href}
+      prefetch={false}
       className="group flex items-start gap-3 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-accent"
     >
       <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${tone}`} />

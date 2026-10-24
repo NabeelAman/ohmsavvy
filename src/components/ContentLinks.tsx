@@ -58,9 +58,12 @@ export function ContentLinks({ category, current }: { category: Category; curren
             <SectionHeader label="Guides" />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {guides.map((g) => (
+                // Not prefetched: this grid holds 100+ links, and viewport prefetch
+                // fired one billed edge request per link on every page view.
                 <Link
                   key={g.href}
                   href={g.href}
+                  prefetch={false}
                   className="group min-w-0 flex items-center justify-between gap-3 rounded-lg border border-border bg-surface px-4 py-3 hover:border-accent transition-colors"
                 >
                   <span className="min-w-0">

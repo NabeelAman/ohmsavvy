@@ -31,6 +31,7 @@ export function GuideCard({ entry }: { entry: ContentEntry }) {
   return (
     <Link
       href={entry.href}
+      prefetch={false}
       className="group w-full min-w-0 flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-accent/60 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
     >
       <div className={`relative h-44 bg-gradient-to-br ${tone.soft} via-surface-raised to-surface overflow-hidden`}>

@@ -58,7 +58,7 @@ const comparison: ProductComparisonContent = {
     "With all four channels running, the DHO804 samples at 312.5 MSa/s per channel against 250 MSa/s.",
     "Serial decoding is standard on the DHO804 and optional on the DS1000Z series.",
     "The DHO804 adds a capacitive touchscreen, HDMI output and USB-C power; the DS1054Z is a conventional mains-powered benchtop.",
-    "The DS1054Z is hands-on tested by OhmSavvy; the DHO804 assessment is desk research.",
+    "Both scopes carry our Hands-on Tested badge.",
   ],
   sections: (
     <>

@@ -59,7 +59,7 @@ const comparison: ProductComparisonContent = {
     "Only the 1014D has a built-in generator: one DDS channel, sine to 10 MHz and other waveforms to 2 MHz at 2.5 Vpp. Rigol lists no generator for the DHO804.",
     "Memory: Rigol publishes 25 Mpts with one channel and 5 Mpts with four; FNIRSI quotes only \"240Kbit\" and doesn't state the per-channel sample rate with both channels on.",
     "The DHO804 adds a 1024 × 600 touchscreen, HDMI output, standard serial decoding and USB-C power. FNIRSI lists FFT, X-Y and roll modes and USB export for the 1014D.",
-    "Neither carries our Hands-on Tested badge; both are assessed from maker specifications and the official Amazon listings.",
+    "The DHO804 carries our Hands-on Tested badge; the FNIRSI 1014D is assessed from FNIRSI's specifications and the official Amazon listing.",
   ],
   sections: (
     <>

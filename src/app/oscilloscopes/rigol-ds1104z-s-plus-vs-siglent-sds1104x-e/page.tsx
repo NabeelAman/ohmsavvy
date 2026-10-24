@@ -237,11 +237,11 @@ const comparison: ProductComparisonContent = {
       <section>
         <h2 className="text-2xl font-semibold mb-4">Where they sit among our other picks</h2>
         <p className="text-muted leading-7">
-          The Siglent rates 4.7 in our{" "}
+          The Siglent rates 4.8 in our{" "}
           <Link href="/oscilloscopes/best-beginner-oscilloscopes" className={link}>
             beginner oscilloscope roundup
           </Link>{" "}
-          and the Rigol 4.5; neither carries our Hands-on Tested badge. If you want the Siglent&apos;s strengths
+          and the Rigol 4.5; the Siglent carries our Hands-on Tested badge and the Rigol does not. If you want the Siglent&apos;s strengths
           explained in more depth, read our{" "}
           <Link href="/oscilloscopes/siglent-sds1104x-e-review" className={link}>
             Siglent SDS1104X-E review

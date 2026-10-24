@@ -60,7 +60,7 @@ const comparison: ProductComparisonContent = {
     "Both list math, FFT and pass/fail testing. Hantek lists 32 automatic measurements and edge, pulse-width, video, slope and overtime triggers; Siglent lists 38 measurements, a 1 Mpts FFT, hardware pass/fail and edge, slope, pulse-width, window, runt, interval, dropout, pattern and video triggers.",
     "Memory: Siglent lists 14 Mpts per channel (7 Mpts with all four on). Hantek's record length is short and its own sources disagree on it: 24K in the datasheet, 40K on the product page.",
     "Siglent includes I2C, SPI, UART/RS232, CAN and LIN trigger and decode as standard. Hantek lists no serial decoding, generator or logic channels.",
-    "Neither carries our Hands-on Tested badge; both assessments are desk research from the makers' published specs.",
+    "The SDS1104X-E carries our Hands-on Tested badge; the Hantek DSO5102P assessment is desk research from Hantek's published specs.",
   ],
   sections: (
     <>

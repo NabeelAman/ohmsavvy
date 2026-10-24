@@ -12,7 +12,7 @@ Read `PROJECT-STATUS.md`, `AGENTS.md` and `automation/CONTENT_STANDARDS.md` firs
 
 ## Ratings
 - `rating` is OhmSavvy's editorial score, not Amazon's star average.
-- **4.8 is reserved for products the owner has bought and hands-on tested** (`handsOnTested: true`). Tested as of 2026-10-22: Fluke 117, Fluke 115, Fluke 87V, Hakko FX888D, Rigol DS1054Z. Rate everything else 4.7 or lower until the owner confirms testing. Never invent test results.
+- **4.8 is reserved for products the owner has bought and hands-on tested** (`handsOnTested: true`). Tested as of 2026-10-24: Fluke 117, Fluke 115, Fluke 87V, Hakko FX888D, Rigol DS1054Z, Siglent SDS1104X-E, Rigol DHO804. Rate everything else 4.7 or lower until the owner confirms testing. Never invent test results.
 
 ## Pages and SEO
 - URL slug, H1 and metadata title follow the target keyword. The title field is at most 49 characters and the description 120–160 characters.

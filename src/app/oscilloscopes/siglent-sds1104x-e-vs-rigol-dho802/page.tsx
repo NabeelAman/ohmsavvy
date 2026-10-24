@@ -61,7 +61,7 @@ const comparison: ProductComparisonContent = {
     "Decoding is standard on both: Siglent includes I2C, SPI, UART/RS232, CAN and LIN; Rigol includes UART, I2C, SPI, CAN and parallel.",
     "Resolution and memory: the DHO802 is 12-bit and holds 25 Mpts with one channel on (10 Mpts with two). Siglent lists the SDS1104X-E as 8-bit with 14 Mpts per channel (7 Mpts with all four on).",
     "The Rigol adds a 1024 × 600 touchscreen, HDMI output and USB-C 15 V power; the Siglent has a 7-inch 800 × 480 screen, runs from 100–240 V AC and also has LAN.",
-    "Neither carries our Hands-on Tested badge; both assessments are desk research against maker specifications.",
+    "The SDS1104X-E carries our Hands-on Tested badge; the Rigol DHO802 assessment is desk research against maker specifications.",
   ],
   sections: (
     <>

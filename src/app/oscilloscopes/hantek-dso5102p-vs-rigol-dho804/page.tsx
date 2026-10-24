@@ -59,7 +59,7 @@ const comparison: ProductComparisonContent = {
     "Serial decoding of UART, I2C, SPI, CAN and parallel buses is standard on the DHO804; Hantek lists no serial decoding for the DSO5102P.",
     "The Hantek lists math, FFT, 32 automatic measurements and pass/fail testing; our verified DHO804 data doesn't cover those functions, so we don't compare them here.",
     "The Rigol has a 1024 × 600 capacitive touchscreen, HDMI output and USB-C power; the Hantek has an 800 × 480 display and runs from mains.",
-    "Neither is hands-on tested by OhmSavvy; both assessments are desk research from the makers' published specs.",
+    "The DHO804 carries our Hands-on Tested badge; the Hantek DSO5102P assessment is desk research from Hantek's published specs.",
   ],
   sections: (
     <>
@@ -159,7 +159,7 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mb-4">
           On paper, then, the DHO804 delivers more capability per unit of spend unless the Hantek is offered at a
           clear discount to it. Our roundup describes the DHO804 as bringing 12-bit resolution to a beginner
-          budget, and it carries the higher OhmSavvy rating (4.7 against 4.2). The DSO5102P is better value only
+          budget, and it carries the higher OhmSavvy rating (4.8 against 4.2). The DSO5102P is better value only
           for a narrow buyer: someone who needs the extra bandwidth on two channels, doesn&apos;t need decoding or
           deep memory, and finds it noticeably cheaper on the day.
         </p>

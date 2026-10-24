@@ -65,7 +65,7 @@ const comparison: ProductComparisonContent = {
     "Memory: 25 Mpts on the Rigol with one channel against 14 Mpts on the Siglent, but with all four on the Siglent keeps 7 Mpts each against the Rigol's 5 Mpts.",
     "Both decode serial buses as standard: Rigol lists UART, I2C, SPI, CAN and parallel; Siglent lists I2C, SPI, UART/RS232, CAN and LIN.",
     "The Rigol has a 7-inch 1024 × 600 capacitive touchscreen, HDMI output and USB-C power; the Siglent has a 7-inch 800 × 480 screen, no HDMI in its I/O list, and runs from 100–240 V AC.",
-    "The Siglent's interface is widely regarded as intuitive. Neither scope carries our Hands-on Tested badge, and both score 4.7 in our roundup.",
+    "The Siglent's interface is widely regarded as intuitive. Both scopes carry our Hands-on Tested badge, and both score 4.8 in our roundup.",
   ],
   sections: (
     <>

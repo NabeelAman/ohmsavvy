@@ -14,7 +14,7 @@ by hand) must follow. It exists because this site's only real differentiator is
   site owner, and only those may be described as tested.
 - **4.8-rated picks are hands-on tested (owner's standing rule, 2026-10-19).** The
   owner buys and tests every product rated 4.8. Currently tested: Fluke 117, Fluke 115,
-  Fluke 87V, Hakko FX888D, Rigol DS1054Z. When a new 4.8-rated pick is added,
+  Fluke 87V, Hakko FX888D, Rigol DS1054Z, Siglent SDS1104X-E, Rigol DHO804. When a new 4.8-rated pick is added,
   confirm with the owner that its testing is complete, then set
   `handsOnTested: true` on its Pick (the badge, review status and research notes
   update automatically). Don't set it before testing is done. Even for tested

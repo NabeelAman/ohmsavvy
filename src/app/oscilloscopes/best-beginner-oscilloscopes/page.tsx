@@ -53,7 +53,7 @@ export const picks: Pick[] = [
     // Specs per siglentna.com (SDS1104X-E): 100MHz, 4 channels, 1 GSa/s (500 MSa/s per channel with all on).
     name: "Siglent SDS1104X-E",
     image: "https://valuetronics.com/cdn/shop/files/siglent_sds1104x-e.jpg",
-    rating: 4.7,
+    rating: 4.8,
     bottomLine: "More bandwidth and a better UI than the Rigol, for projects that will get more demanding.",
     verdict:
       "Double the Rigol's bandwidth (100MHz vs 50MHz) and twice its per-channel sample rate with three or four channels on (500 MSa/s vs 250 MSa/s), with a well-regarded user interface. A strong pick for anyone who expects their projects to get more demanding over time.",
@@ -66,6 +66,7 @@ export const picks: Pick[] = [
     pros: ["Higher bandwidth headroom than entry-level scopes", "Well-regarded, intuitive UI", "Strong value at the 100MHz tier"],
     cons: ["Pricier than the Rigol DS1054Z", "Overkill for pure beginners"],
     ctaHref: "https://www.amazon.com/dp/B0771N1ZF9?tag=ohmsavvy-20",
+    handsOnTested: true,
   },
   {
     badge: "Best Compact Bench Option",
@@ -92,7 +93,7 @@ export const picks: Pick[] = [
     // Specs per rigolna.com (DHO800 series page and datasheet). Photo: main image of the exact Amazon listing (B0CGHQHQN7), panel reads "DHO804".
     name: "Rigol DHO804",
     image: "https://m.media-amazon.com/images/I/71FtRIGVfLL._SL1500_.jpg",
-    rating: 4.7,
+    rating: 4.8,
     bottomLine: "Four channels, 12-bit resolution and a 7-inch touchscreen in a compact body that runs from USB-C power.",
     verdict:
       "The DHO804 brings 12-bit vertical resolution to a beginner budget: 70 MHz, four channels, up to 1.25 GSa/s and 25 Mpts with one channel on, a 7-inch 1024 × 600 capacitive touchscreen, HDMI output and serial decoding of UART, I2C, SPI, CAN and parallel buses. It is powered over USB-C, so it can run from a portable power source. There is no built-in signal generator or logic channels, and sample rate and memory fall as you enable more channels (312.5 MSa/s and 5 Mpts with all four on).",
@@ -105,6 +106,7 @@ export const picks: Pick[] = [
     pros: ["12-bit vertical resolution", "7-inch 1024 × 600 touchscreen and HDMI out", "USB-C powered, compact body"],
     cons: ["No built-in signal generator or logic channels", "Per-channel sample rate drops to 312.5 MSa/s with four channels on"],
     ctaHref: "https://www.amazon.com/dp/B0CGHQHQN7?tag=ohmsavvy-20",
+    handsOnTested: true,
   },
   {
     badge: "Best 2-Channel Rigol",

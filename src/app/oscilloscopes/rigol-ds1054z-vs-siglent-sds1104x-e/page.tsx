@@ -23,7 +23,6 @@ const comparison: ProductComparisonContent = {
       "You want the lower-cost entry point into 4-channel scopes",
       "50MHz covers your actual signal work — general electronics, microcontrollers, audio-range",
       "You value a large community and documentation base for troubleshooting",
-      "You'd rather buy the hands-on tested pick in this pairing",
     ],
   },
   b: {

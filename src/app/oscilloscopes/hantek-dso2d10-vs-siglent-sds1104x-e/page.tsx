@@ -48,8 +48,8 @@ const comparison: ProductComparisonContent = {
     "Both peak at 1 GSa/s. The Siglent keeps 500 MSa/s per channel with three or four channels on.",
     "Channels: 2 on the Hantek against 4 on the Siglent, the biggest practical difference between them.",
     "The Hantek has a built-in waveform generator (one channel, to 25 MHz); the Siglent is a scope only, with no generator built in.",
-    "The Siglent is rated 4.7 in our roundup against the Hantek's 4.3, reflecting its well-regarded interface and Siglent's longer track record with beginner scopes.",
-    "Neither carries our Hands-on Tested badge; both assessments are desk research against maker specifications.",
+    "The Siglent is rated 4.8 in our roundup against the Hantek's 4.3, reflecting its well-regarded interface and Siglent's longer track record with beginner scopes.",
+    "The SDS1104X-E carries our Hands-on Tested badge; the Hantek DSO2D10 assessment is desk research against maker specifications.",
   ],
   sections: (
     <>
@@ -120,7 +120,7 @@ const comparison: ProductComparisonContent = {
             ["Small bench, no separate signal source", "Hantek DSO2D10", "Scope and 25 MHz generator in one compact unit"],
             ["SPI or parallel-bus timing (clock plus several lines)", "Siglent SDS1104X-E", "Four channels show the clock and up to three other lines together"],
             ["Multi-rail power-up sequencing", "Siglent SDS1104X-E", "Four channels capture four rails in one acquisition"],
-            ["First scope, learning the controls", "Siglent SDS1104X-E", "Well-regarded, intuitive interface and the higher rating (4.7 vs 4.3)"],
+            ["First scope, learning the controls", "Siglent SDS1104X-E", "Well-regarded, intuitive interface and the higher rating (4.8 vs 4.3)"],
             ["Single-signal checks under about 20MHz", "Either", "Same 100MHz bandwidth and 1 GSa/s peak sample rate"],
           ]}
         />

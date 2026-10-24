@@ -59,7 +59,7 @@ const comparison: ProductComparisonContent = {
     "With every channel on, the Siglent keeps 500 MSa/s on each of two, while the Rigol shares its budget to 312.5 MSa/s across four. With one channel on, the Rigol's 1.25 GSa/s is the higher figure.",
     "The DHO804 is 12-bit with a 1024 × 600 touchscreen, HDMI output and USB-C power; our data doesn't state the Siglent's resolution, and its 7-inch screen is 800 × 480.",
     "The Siglent lists a 100,000 wfm/s update rate and serial trigger and decode including LIN; our data gives no update rate for the Rigol, which decodes parallel buses as well as UART, I2C, SPI and CAN.",
-    "Neither has a built-in signal generator or logic channels, and neither carries our Hands-on Tested badge.",
+    "Neither has a built-in signal generator or logic channels. The DHO804 carries our Hands-on Tested badge; the SDS1202X-E assessment is desk research from Siglent's published specs.",
   ],
   sections: (
     <>

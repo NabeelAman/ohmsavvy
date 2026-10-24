@@ -69,7 +69,7 @@ const comparison: ProductComparisonContent = {
     "The DHO914 has 16 digital channels; they need Rigol's PLA2216 logic probe, which is sold separately. The DHO804 has none.",
     "Both decode parallel, UART, I2C, SPI and CAN as standard; only the DHO914 adds LIN.",
     "Same 12-bit resolution, 7-inch 1024 × 600 touchscreen, HDMI and LAN, USB-C power and published 1.78 kg weight and body size.",
-    "Neither has a built-in signal generator. In Rigol's line-up that is the DHO914S. Our roundup scores the DHO804 4.7 and the DHO914 4.6.",
+    "Neither has a built-in signal generator. In Rigol's line-up that is the DHO914S. Our roundup scores the DHO804 4.8 and the DHO914 4.6.",
   ],
   sections: (
     <>
@@ -256,8 +256,8 @@ const comparison: ProductComparisonContent = {
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          Neither scope has a Hands-on Tested badge from us; this comparison is desk research from Rigol&apos;s
-          published data. For the DHO804 against other four-channel scopes, see{" "}
+          The DHO804 carries our Hands-on Tested badge; the DHO914 does not, and the figures in this comparison
+          come from Rigol&apos;s published data. For the DHO804 against other four-channel scopes, see{" "}
           <Link href="/oscilloscopes/rigol-dho804-vs-siglent-sds1104x-e" className={link}>
             Rigol DHO804 vs Siglent SDS1104X-E
           </Link>{" "}

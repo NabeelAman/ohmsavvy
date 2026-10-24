@@ -56,7 +56,7 @@ const comparison: ProductComparisonContent = {
     "The DHO804 is a 12-bit scope; our data for the Hantek doesn't state its vertical resolution.",
     "Only the Hantek has a built-in waveform generator (one channel, up to 25 MHz). Rigol lists no generator and no logic channels for the DHO804.",
     "The DHO804 adds a 1024 × 600 capacitive touchscreen, HDMI output, standard serial decoding and USB-C power; the Hantek's 7-inch screen is 800 × 480.",
-    "Neither carries our Hands-on Tested badge; both assessments are desk research against maker specifications.",
+    "The DHO804 carries our Hands-on Tested badge; the Hantek DSO2D10 assessment is desk research against maker specifications.",
   ],
   sections: (
     <>
@@ -237,7 +237,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Is the Rigol DHO804 better than the Hantek DSO2D10?",
       answer:
-        "For multi-signal work, yes. The DHO804 has four channels, 12-bit resolution, standard serial decoding and a 1024 × 600 touchscreen, and rates 4.7 in our roundup against 4.3. The Hantek is better if you need a built-in generator or the extra headroom of 100 MHz on two channels.",
+        "For multi-signal work, yes. The DHO804 has four channels, 12-bit resolution, standard serial decoding and a 1024 × 600 touchscreen, and rates 4.8 in our roundup against 4.3. The Hantek is better if you need a built-in generator or the extra headroom of 100 MHz on two channels.",
     },
     {
       question: "Does the Rigol DHO804 have a built-in signal generator?",

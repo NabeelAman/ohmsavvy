@@ -71,7 +71,7 @@ const comparison: ProductComparisonContent = {
     "Memory: up to 50 Mpts on the Rigol against 14 Mpts, and 10 Mpts against 7 Mpts per channel with four on.",
     "Both decode UART, I2C, SPI, CAN and LIN as standard; the Rigol also lists parallel.",
     "Siglent quotes a faster normal update rate (100,000 against 30,000 wfm/s); Rigol's UltraAcquire mode reaches 1,000,000.",
-    "Rigol gives you a 1024 × 600 touchscreen and USB-C power; the Siglent is an 800 × 480 mains-powered bench scope. Our roundup scores the SDS1104X-E 4.7 and the DHO914S 4.6.",
+    "Rigol gives you a 1024 × 600 touchscreen and USB-C power; the Siglent is an 800 × 480 mains-powered bench scope. Our roundup scores the SDS1104X-E 4.8 and the DHO914S 4.6. The SDS1104X-E carries our Hands-on Tested badge; the DHO914S does not.",
   ],
   sections: (
     <>

@@ -105,7 +105,7 @@ export function RoundupHero({
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 font-display text-xs text-accent">OS</span>
                 <span>
                   By{" "}
-                  <Link href="/about" className="font-medium hover:text-accent">
+                  <Link prefetch={false} href="/about" className="font-medium hover:text-accent">
                     OhmSavvy Research Team
                   </Link>
                 </span>
@@ -183,7 +183,7 @@ export function RoundupHero({
               <div className="mt-3 flex justify-center gap-4 text-xs font-medium">
                 <a href={`#${slug(top.name)}`} className="text-accent hover:underline">Why we picked it ↓</a>
                 {topReview && (
-                  <Link href={topReview} className="text-muted hover:text-accent">Full review →</Link>
+                  <Link prefetch={false} href={topReview} className="text-muted hover:text-accent">Full review →</Link>
                 )}
               </div>
             </div>
@@ -196,7 +196,7 @@ export function RoundupHero({
           <span className="shrink-0 self-center font-display text-[11px] uppercase tracking-wide text-muted mr-1">Shop by job:</span>
           {useCases.map((g) => (
             <Link
-              key={g.href}
+              prefetch={false} key={g.href}
               href={g.href}
               className={`shrink-0 rounded-full border ${tone.chip} px-3 py-1 text-xs ${tone.text} hover:bg-surface-raised transition-colors`}
             >
@@ -204,20 +204,20 @@ export function RoundupHero({
             </Link>
           ))}
           {buying.map((g) => (
-            <Link key={g.href} href={g.href} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
+            <Link prefetch={false} key={g.href} href={g.href} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
               {g.title}
             </Link>
           ))}
           {howTo && (
-            <Link href={howTo.href} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
+            <Link prefetch={false} href={howTo.href} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
               {howTo.title}
             </Link>
           )}
-          <Link href={`/${category}/reviews`} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
+          <Link prefetch={false} href={`/${category}/reviews`} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
             All reviews ({reviews})
           </Link>
           {comparisons > 0 && (
-            <Link href={`/${category}/comparisons`} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
+            <Link prefetch={false} href={`/${category}/comparisons`} className="shrink-0 rounded-full border border-border px-3 py-1 text-xs text-muted hover:text-accent hover:border-accent transition-colors">
               Comparisons ({comparisons})
             </Link>
           )}

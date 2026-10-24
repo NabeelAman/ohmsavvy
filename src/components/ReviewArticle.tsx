@@ -197,7 +197,7 @@ export function ReviewArticle({
           <p className="mt-3 text-xs text-muted leading-5">
             Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through the links below, at no
             extra cost to you.{" "}
-            <Link href="/about#how-were-funded" className="text-accent hover:underline">
+            <Link prefetch={false} href="/about#how-were-funded" className="text-accent hover:underline">
               How we&apos;re funded
             </Link>
             .
@@ -430,7 +430,7 @@ export function ReviewArticle({
                       <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
                         <Button href={p.ctaHref}>Check price on Amazon →</Button>
                         {reviewHref && (
-                          <Link href={reviewHref} className="text-sm font-medium text-accent hover:underline">
+                          <Link prefetch={false} href={reviewHref} className="text-sm font-medium text-accent hover:underline">
                             Read the full {p.name} review →
                           </Link>
                         )}
@@ -498,7 +498,7 @@ export function ReviewArticle({
               <p className="mt-4 text-sm text-muted leading-6">
                 Picks marked &quot;Hands-on Tested&quot; have been bought and tested by us; the rest are desk research. A
                 pick only carries that badge once we have actually bought and tested that unit.{" "}
-                <Link href="/about" className="text-accent hover:underline">
+                <Link prefetch={false} href="/about" className="text-accent hover:underline">
                   More on how we research
                 </Link>
                 .

@@ -11,6 +11,7 @@ const CATEGORY_FILES = [
   "src/app/multimeters/best-multimeters/page.tsx",
   "src/app/soldering-irons/best-soldering-irons/page.tsx",
   "src/app/oscilloscopes/best-beginner-oscilloscopes/page.tsx",
+  "src/lib/multimeter-catalog.ts",
 ];
 
 const queue = JSON.parse(readFileSync("automation/content-queue.json", "utf8"));

@@ -2,6 +2,7 @@ import type { Pick } from "@/components/ReviewArticle";
 import { picks as multimeterPicks } from "@/app/multimeters/best-multimeters/page";
 import { picks as oscilloscopePicks } from "@/app/oscilloscopes/best-beginner-oscilloscopes/page";
 import { picks as solderingIronPicks } from "@/app/soldering-irons/best-soldering-irons/page";
+import { multimeterCatalogPicks } from "./multimeter-catalog";
 import type { Category, ContentEntry } from "./content";
 
 // The category pages import components that import this module, so the picks
@@ -18,6 +19,14 @@ export function getPicks(category: Category): Pick[] {
   }
 }
 
+/**
+ * Every verified pick in a category: the curated roundup first, then picks that
+ * only appear in use-case guides (not shown on the roundup page itself).
+ */
+export function getAllPicks(category: Category): Pick[] {
+  return category === "multimeters" ? [...multimeterPicks, ...multimeterCatalogPicks] : getPicks(category);
+}
+
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
 /**
@@ -27,7 +36,7 @@ const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
  * already-verified images are reused, never sourced.
  */
 export function picksForEntry(entry: ContentEntry): Pick[] {
-  const all = getPicks(entry.category);
+  const all = getAllPicks(entry.category);
   if (entry.picks) {
     return entry.picks.map((n) => all.find((p) => p.name === n)).filter((p): p is Pick => Boolean(p));
   }
@@ -45,14 +54,14 @@ export function picksForEntry(entry: ContentEntry): Pick[] {
 /** The category a verified pick belongs to, by exact name (for category-specific placeholders). */
 export function categoryOfPick(name: string): Category | undefined {
   const categories: Category[] = ["multimeters", "soldering-irons", "oscilloscopes"];
-  return categories.find((c) => getPicks(c).some((p) => p.name === name));
+  return categories.find((c) => getAllPicks(c).some((p) => p.name === name));
 }
 
 /** A verified pick by exact name, from any category (e.g. to reuse its affiliate link). */
 export function pickByName(name: string): Pick | undefined {
   const categories: Category[] = ["multimeters", "soldering-irons", "oscilloscopes"];
   for (const c of categories) {
-    const p = getPicks(c).find((x) => x.name === name);
+    const p = getAllPicks(c).find((x) => x.name === name);
     if (p) return p;
   }
   return undefined;

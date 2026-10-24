@@ -767,6 +767,25 @@ export const picks: Pick[] = [
     cons: ["New product with no independent long-term reviews yet", "Complex feature set has a learning curve"],
     ctaHref: "https://www.amazon.com/dp/B0F6K8H5CT?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Name-Brand Trainer Scope",
+    // Specs per Keysight's InfiniiVision 1000 X-Series data sheet 5992-3484EN (Nov 2024) and keysight.com (two N2142A probes, 3-year warranty). Photo: main image of the exact Amazon listing (B08F6DYVHB), panel reads "KEYSIGHT EDUX1052G ... 50 MHz 1 GSa/s" (Amazon serves it at 500 x 375 only). Amazon-buyable 2026-10-24 from third-party sellers only; the listing's bullet points describe a different instrument and were not used.
+    name: "Keysight EDUX1052G",
+    image: "https://m.media-amazon.com/images/I/41zCYgt7qCL._SL1500_.jpg",
+    rating: 4.5,
+    bottomLine: "Keysight's education scope: two 50 MHz channels, a 100,000 wfm/s update rate, a built-in 20 MHz generator, Bode plot and training signals.",
+    verdict:
+      "The EDUX1052G is the education model of Keysight's InfiniiVision 1000 X-Series: two channels at 50 MHz, 1 GSa/s on all channels, 8-bit (up to 12-bit in High Resolution mode), 200 kpts of memory and a 100,000 waveforms-per-second update rate on a 7-inch WVGA display. The G in the name is its built-in 20 MHz WaveGen function generator, which also drives a Bode plot / frequency-response analyzer, and Keysight adds built-in training signals, I2C and UART decoding, a digital voltmeter and a frequency counter. It runs on mains power, ships with two N2142A probes and carries a 3-year warranty. Memory is shallow next to similarly priced scopes, and there is no segmented memory on this model.",
+    specs: [
+      { label: "Bandwidth", value: "50MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s (all channels)" },
+      { label: "Best for", value: "Students and classrooms that want built-in training signals and a generator" },
+    ],
+    pros: ["100,000 wfm/s update rate", "Built-in 20 MHz generator with Bode plot", "Built-in training signals and I2C/UART decoding"],
+    cons: ["200 kpts memory is shallow", "Two channels at 50 MHz"],
+    ctaHref: "https://www.amazon.com/dp/B08F6DYVHB?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

@@ -2633,6 +2633,13 @@ export const content: ContentEntry[] = [
     description: "Deeper memory vs. faster capture rate and serial decode",
     href: "/oscilloscopes/rigol-ds1202z-e-vs-siglent-sds1202x-e",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Keysight EDUX1052G vs Rigol DS1054Z for Beginners",
+    description: "Training signals and a generator vs. four channels",
+    href: "/oscilloscopes/keysight-edux1052g-vs-rigol-ds1054z",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

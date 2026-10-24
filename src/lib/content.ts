@@ -2654,6 +2654,27 @@ export const content: ContentEntry[] = [
     description: "Identical scope core, touchscreen and generator differ",
     href: "/oscilloscopes/fnirsi-2c53t-vs-westobig-2c53p-plus",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "OWON HDS272S vs FNIRSI 2C53T",
+    description: "25MHz generator and deeper memory vs. the basics",
+    href: "/oscilloscopes/owon-hds272s-vs-fnirsi-2c53t",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Hantek 1008C vs Hantek DSO2C10",
+    description: "Automotive 8-channel DAQ vs. a 100MHz bench scope",
+    href: "/oscilloscopes/hantek-1008c-vs-hantek-dso2c10",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "FNIRSI DPOS350P vs FNIRSI 1014D",
+    description: "4-in-1 with spectrum analyzer vs. a simpler scope",
+    href: "/oscilloscopes/fnirsi-dpos350p-vs-fnirsi-1014d",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

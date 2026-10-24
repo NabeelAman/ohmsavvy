@@ -11,7 +11,7 @@ import { Eyebrow } from "./ui/Eyebrow";
 import { SpecValue } from "./ui/SpecValue";
 import { Stars } from "./ui/Stars";
 import { PhotoPlaceholder } from "./PhotoPlaceholder";
-import { categoryOfPick } from "@/lib/catalog";
+import { categoryOfPick, pickByName } from "@/lib/catalog";
 
 export type ComparisonSide = {
   /** Verified Pick from the category's main article — the only source of product facts. */
@@ -63,8 +63,16 @@ const CATEGORY_LABELS: Record<Category, string> = {
   oscilloscopes: "Oscilloscopes",
 };
 
+/** Buy link for a side: the pick's own listing, or its alternative's if Amazon no longer sells it. */
+function buyLink(pick: Pick): { href?: string; label: string } {
+  if (!pick.unavailable) return { href: pick.ctaHref, label: `${pick.name} on Amazon →` };
+  const alt = pick.unavailable.alternative ? pickByName(pick.unavailable.alternative) : undefined;
+  return { href: alt?.ctaHref, label: alt ? `${alt.name} on Amazon →` : "" };
+}
+
 function ProductCard({ side }: { side: ComparisonSide }) {
   const { pick } = side;
+  const buy = buyLink(pick);
   return (
     <div className="rounded-lg border border-border bg-surface shadow-sm overflow-hidden flex flex-col">
       <div className="h-1.5 bg-accent" />
@@ -92,8 +100,13 @@ function ProductCard({ side }: { side: ComparisonSide }) {
         <p className="text-lg font-semibold">{pick.name}</p>
         <Stars rating={pick.rating} />
         <p className="text-sm text-muted leading-6 flex-1">{pick.bottomLine}</p>
+        {pick.unavailable && (
+          <p className="text-xs text-foreground leading-5">
+            <span className="font-semibold">No longer sold on Amazon.</span> {pick.unavailable.note}
+          </p>
+        )}
         <div className="flex flex-wrap items-center gap-3">
-          <Button href={pick.ctaHref}>Check price →</Button>
+          {buy.href && <Button href={buy.href}>{pick.unavailable ? buy.label : "Check price →"}</Button>}
           {side.reviewHref && (
             <Link href={side.reviewHref} className="text-sm font-medium text-accent hover:underline">
               Full review
@@ -289,8 +302,14 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
           <h2 className="text-xl font-semibold mb-3">The bottom line</h2>
           <p className="text-muted leading-7">{comparison.bottomLine}</p>
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <Button href={a.pick.ctaHref}>{a.pick.name} on Amazon →</Button>
-            <Button href={b.pick.ctaHref}>{b.pick.name} on Amazon →</Button>
+            {[a, b].map((side) => {
+              const buy = buyLink(side.pick);
+              return buy.href ? (
+                <Button key={side.pick.name} href={buy.href}>
+                  {buy.label}
+                </Button>
+              ) : null;
+            })}
           </div>
         </Card>
 

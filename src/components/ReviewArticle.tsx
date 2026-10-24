@@ -36,6 +36,12 @@ export type Pick = {
    * explicitly discloses the distinction (see /about), so this must stay honest.
    */
   handsOnTested?: boolean;
+  /**
+   * Set when Amazon no longer sells this exact product. The Pick stays (pages
+   * look Picks up by name) but rankings skip it and buy buttons point at the
+   * alternative's listing instead.
+   */
+  unavailable?: { note: string; alternative?: string };
 };
 
 export type Faq = { question: string; answer: string };
@@ -101,7 +107,7 @@ function ProductImage({
 }
 
 export function ReviewArticle({
-  picks,
+  picks: allPicks,
   faqs,
   howWeChose,
   fitNotes,
@@ -119,6 +125,10 @@ export function ReviewArticle({
   /** Optional buying-advice sections for this page's use case. */
   advice?: { heading: string; body: string }[];
 }) {
+  // Products Amazon no longer sells are left out of the ranking and listed separately.
+  const picks = allPicks.filter((p) => !p.unavailable);
+  const retired = allPicks.filter((p) => p.unavailable);
+
   // A Review per pick, not an AggregateRating — this is a single editorial rating,
   // not an aggregate of multiple independent reviews, and claiming otherwise would
   // misrepresent the data to search engines (and readers).
@@ -442,6 +452,19 @@ export function ReviewArticle({
           )}
 
           {/* 4. How we chose */}
+          {retired.length > 0 && (
+            <section className="mt-16 rounded-lg border border-border bg-surface p-5">
+              <h2 className="text-lg font-semibold">No longer sold on Amazon</h2>
+              <ul className="mt-3 space-y-2 text-sm text-muted leading-6">
+                {retired.map((p) => (
+                  <li key={p.name}>
+                    <span className="font-medium text-foreground">{p.name}:</span> {p.unavailable!.note}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
           <section id="how-we-chose" className="mt-16 scroll-mt-36">
             <Reveal>
               <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">Methodology</p>

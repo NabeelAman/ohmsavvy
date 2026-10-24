@@ -298,7 +298,11 @@ export function ProductStrip({
   title: string;
   items: { name: string; image?: string; alt: string; href: string; note: string; ctaHref?: string }[];
 }) {
-  const withCta = items.map((p) => ({ ...p, cta: p.ctaHref ?? pickByName(p.name)?.ctaHref }));
+  // No buy button for a product Amazon no longer sells; the disclosure below follows the same condition.
+  const withCta = items.map((p) => {
+    const pick = pickByName(p.name);
+    return { ...p, cta: pick?.unavailable ? undefined : (p.ctaHref ?? pick?.ctaHref), retired: Boolean(pick?.unavailable) };
+  });
   return (
     <div>
       <p className="font-display text-xs uppercase tracking-wide text-accent mb-3">{title}</p>
@@ -333,6 +337,7 @@ export function ProductStrip({
                     Check price on Amazon
                   </Button>
                 )}
+                {p.retired && <span className="text-xs text-muted">No longer sold on Amazon</span>}
                 <Link href={p.href} className="text-xs font-medium text-accent hover:underline">
                   Read the review →
                 </Link>

@@ -12,7 +12,7 @@ import { SpecList } from "./ui/SpecList";
 import { SpecValue } from "./ui/SpecValue";
 import { Stars } from "./ui/Stars";
 import { PhotoPlaceholder } from "./PhotoPlaceholder";
-import { categoryOfPick } from "@/lib/catalog";
+import { categoryOfPick, pickByName } from "@/lib/catalog";
 
 export type ReviewLink = { label: string; href: string };
 export type ReviewAlternative = { name: string; href: string; reason: string };
@@ -44,6 +44,10 @@ const CATEGORY_LABELS: Record<Category, string> = {
 
 export function ProductReview({ review }: { review: ProductReviewContent }) {
   const { pick } = review;
+  // If Amazon no longer sells this product, buy buttons go to the named alternative (or are hidden).
+  const alternative = pick.unavailable?.alternative ? pickByName(pick.unavailable.alternative) : undefined;
+  const buyHref = pick.unavailable ? alternative?.ctaHref : pick.ctaHref;
+  const buyLabel = pick.unavailable && alternative ? `Check the ${alternative.name} on Amazon →` : "Check price on Amazon →";
 
   // A single editorial Review, never an AggregateRating — same rule as ReviewArticle.
   const jsonLd = {
@@ -134,9 +138,16 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
           </table>
 
           <div className="flex flex-col justify-center gap-3 p-5 border-t md:border-t-0 md:border-l border-border bg-surface-raised">
-            <Button href={pick.ctaHref} className="w-full py-3 text-base whitespace-nowrap shadow-sm">
-              Check price on Amazon →
-            </Button>
+            {pick.unavailable && (
+              <p className="text-sm text-foreground leading-6">
+                <span className="font-semibold">No longer sold on Amazon.</span> {pick.unavailable.note}
+              </p>
+            )}
+            {buyHref && (
+              <Button href={buyHref} className="w-full py-3 text-base shadow-sm">
+                {buyLabel}
+              </Button>
+            )}
             <p className="text-xs text-muted text-center leading-5">Current price and availability shown on Amazon</p>
             <a href="#verdict" className="text-sm font-medium text-accent text-center hover:underline">
               Read our verdict ↓
@@ -248,9 +259,12 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
             We link to the official Amazon listing. Prices change often, so check the current price at
             the retailer before you buy.
           </p>
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            <Button href={pick.ctaHref}>Check price on Amazon →</Button>
-          </div>
+          {pick.unavailable && <p className="mt-2 text-sm text-muted leading-6">{pick.unavailable.note}</p>}
+          {buyHref && (
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <Button href={buyHref}>{buyLabel}</Button>
+            </div>
+          )}
         </Card>
 
         <section>
@@ -288,9 +302,11 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
           <p className="text-sm font-semibold truncate">{pick.name}</p>
           <Stars rating={pick.rating} />
         </div>
-        <Button href={pick.ctaHref} className="shrink-0">
-          Check price →
-        </Button>
+        {buyHref && (
+          <Button href={buyHref} className="shrink-0">
+            {pick.unavailable ? "See alternative →" : "Check price →"}
+          </Button>
+        )}
       </div>
     </article>
   );

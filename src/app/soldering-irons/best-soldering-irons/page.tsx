@@ -12,6 +12,25 @@ export const metadata = buildMetadata({
 export const picks: Pick[] = [
   {
     badge: "Best Overall",
+    // Specs per hakkousa.com (FX-888DX page): 100W/120VAC station, FX-8801 65W iron with T18 tips, 50–480°C, ±1°C idle, ESD safe, 5 presets.
+    name: "Hakko FX-888DX",
+    image: "https://hakkousa.com/media/catalog/product/cache/df61d37d6011304edba9471c8a539a49/d/x/dx_001.jpg",
+    rating: 4.7,
+    bottomLine: "The FX-888D's replacement: the same T18 tips and handpiece, with a 100W station, a proper dial and five presets.",
+    verdict:
+      "Hakko replaced the FX-888D with the FX-888DX. It keeps the FX-8801 handpiece and T18 tips, the 50–480°C range and ±1°C idle stability, but the station rises from 70W to 100W, swaps the old button interface for a push-button rotary dial with a digital °F/°C display, stores five presets and adds a parameter lock against accidental calibration. It is ESD safe and also drives Hakko's tweezers, solder gun and larger irons.",
+    specs: [
+      { label: "Power", value: "100W station (65W iron)" },
+      { label: "Heat-up time", value: "Not stated by Hakko" },
+      { label: "Temperature control", value: "Digital, closed-loop, 50–480°C" },
+      { label: "Best for", value: "Serious hobbyists, repair benches" },
+    ],
+    pros: ["Same T18 tips as the FX-888D", "Rotary dial and five temperature presets", "ESD safe; drives other Hakko handpieces"],
+    cons: ["Larger than a portable iron: the station weighs 1.2 kg", "Counterfeits exist: buy from authorized sellers", "No stated sleep or standby mode"],
+    ctaHref: "https://www.amazon.com/dp/B0D4DJW54S?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Discontinued",
     // Specs per hakkousa.com (FX888D page): 70W/120VAC station, 65W/26VAC iron; status Discontinued, replaced by the FX-888DX.
     name: "Hakko FX888D",
     image: "https://hakkousa.com/media/catalog/product/f/x/fx888d_handpiece.jpg",
@@ -29,6 +48,10 @@ export const picks: Pick[] = [
     cons: ["Discontinued by Hakko USA, replaced by the FX-888DX (same T18 tips)", "Counterfeit units exist — buy from authorized sellers", "Bulkier than portable options"],
     ctaHref: "https://www.amazon.com/dp/B00ANZRT4M?tag=ohmsavvy-20",
     handsOnTested: true,
+    unavailable: {
+      note: "Hakko has discontinued the FX888D and Amazon lists it as currently unavailable. The FX-888DX replaces it and takes the same T18 tips.",
+      alternative: "Hakko FX-888DX",
+    },
   },
   {
     badge: "Best Portable",
@@ -46,7 +69,7 @@ export const picks: Pick[] = [
       { label: "Best for", value: "Portability, field repairs" },
     ],
     pros: ["Extremely compact and travel-friendly", "Fast heat-up for its size", "Powered by any USB-C PD source, even a power bank"],
-    cons: ["No stand included by default", "Needs a USB-C PD or DC supply; full power needs 24V"],
+    cons: ["No stand included by default", "Needs a USB-C PD or DC supply; full power needs 24V", "Pine64's Amazon listing still describes the original Pinecil (65W, 12–21V barrel jack): check the version shown before you buy"],
     ctaHref: "https://www.amazon.com/dp/B096X6SG13?tag=ohmsavvy-20",
   },
   {
@@ -106,25 +129,6 @@ export const picks: Pick[] = [
     pros: ["Combines a soldering iron and hot air rework station in one unit", "Wide temperature range on both the iron and the hot air gun", "Independently adjustable iron and hot air temperatures with separate LED readouts"],
     cons: ["This US listing is the 110–127V version; buyers elsewhere need their region's variant", "Larger and more complex than a basic iron if you never do SMD rework"],
     ctaHref: "https://www.amazon.com/dp/B07RY5XWVG?tag=ohmsavvy-20",
-  },
-  {
-    badge: "Best Current Hakko Station",
-    // Specs per hakkousa.com (FX-888DX page): 100W/120VAC station, FX-8801 65W iron with T18 tips, 50–480°C, ±1°C idle, ESD safe, 5 presets.
-    name: "Hakko FX-888DX",
-    image: "https://hakkousa.com/media/catalog/product/cache/df61d37d6011304edba9471c8a539a49/d/x/dx_001.jpg",
-    rating: 4.7,
-    bottomLine: "The FX-888D's replacement: the same T18 tips and handpiece, with a 100W station, a proper dial and five presets.",
-    verdict:
-      "Hakko replaced the FX-888D with the FX-888DX. It keeps the FX-8801 handpiece and T18 tips, the 50–480°C range and ±1°C idle stability, but the station rises from 70W to 100W, swaps the old button interface for a push-button rotary dial with a digital °F/°C display, stores five presets and adds a parameter lock against accidental calibration. It is ESD safe and also drives Hakko's tweezers, solder gun and larger irons.",
-    specs: [
-      { label: "Power", value: "100W station (65W iron)" },
-      { label: "Heat-up time", value: "Not stated by Hakko" },
-      { label: "Temperature control", value: "Digital, closed-loop, 50–480°C" },
-      { label: "Best for", value: "Serious hobbyists, repair benches" },
-    ],
-    pros: ["Same T18 tips as the FX-888D", "Rotary dial and five temperature presets", "ESD safe; drives other Hakko handpieces"],
-    cons: ["Some colours often show as unavailable", "Counterfeits exist: buy from authorized sellers", "No stated sleep or standby mode"],
-    ctaHref: "https://www.amazon.com/dp/B0D4DJW54S?tag=ohmsavvy-20",
   },
   {
     badge: "Best Stationless Iron",

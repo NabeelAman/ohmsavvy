@@ -161,6 +161,10 @@ export const picks: Pick[] = [
     pros: ["IP67 waterproof and dust-tight", "Built-in LED work light", "Low Z function eliminates false readings from ghost voltage"],
     cons: ["Bulkier than a standard pocket meter", "US availability confirmed; double-check your region's listing"],
     ctaHref: "https://www.amazon.com/dp/B01MCTPTRC?tag=ohmsavvy-20",
+    unavailable: {
+      note: "Amazon lists the Southwire 14070T as currently unavailable. The Fluke 179 is the closest in-stock alternative here with CAT IV 600V and True RMS.",
+      alternative: "Fluke 179",
+    },
   },
   {
     badge: "Best for Automotive",

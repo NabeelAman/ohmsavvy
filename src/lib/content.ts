@@ -2640,6 +2640,13 @@ export const content: ContentEntry[] = [
     description: "Training signals and a generator vs. four channels",
     href: "/oscilloscopes/keysight-edux1052g-vs-rigol-ds1054z",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "FNIRSI DSO-510 vs FNIRSI DSO152",
+    description: "10MHz with a generator vs. the cheapest pocket scope",
+    href: "/oscilloscopes/fnirsi-dso-510-vs-fnirsi-dso152",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

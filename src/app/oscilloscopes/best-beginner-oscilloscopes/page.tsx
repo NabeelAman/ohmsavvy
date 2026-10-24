@@ -483,6 +483,137 @@ export const picks: Pick[] = [
     cons: ["20 MHz and 48 MS/s limit it to slow signals", "DC coupling only; memory depth not clearly stated"],
     ctaHref: "https://www.amazon.com/dp/B0728HBNDV?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Touchscreen Tablet Scope",
+    // Specs per fnirsi.com/products/1013d ("1013D Plus" is FNIRSI's style option for the 1013D sold with a P4100 100X probe; FNIRSI doesn't state ADC bits or the two-channel sample rate, and quotes memory as "240 Kbit"). No photo: the exact Amazon listing (B0BHHYMVKV, sold by FNIRSI's store) shows no model number on the unit, so no image is used. Amazon-buyable (In Stock) 2026-10-24.
+    name: "FNIRSI 1013D Plus",
+    rating: 4.1,
+    bottomLine: "A battery-powered tablet oscilloscope with a 7-inch touchscreen, sold with a 100X high-voltage probe.",
+    verdict:
+      "The 1013D Plus is FNIRSI's 1013D tablet scope bundled with a P4100 100X probe: two channels, 100 MHz (FNIRSI notes 5 MHz with a 1X probe), 1 GSa/s and a 7-inch 800 × 480 capacitive touchscreen. It runs about 4 hours from a 6000 mAh battery, charges over USB-C and can be used while charging. FNIRSI lists FFT, Lissajous and roll modes and 1 GB of storage for screenshots and waveforms. It has no signal generator, and FNIRSI doesn't state its ADC resolution, its sample rate with both channels on, or what its \"240 Kbit\" memory figure means in points.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s" },
+      { label: "Best for", value: "Portable two-channel work with a large touchscreen" },
+    ],
+    pros: ["7-inch touchscreen in a battery-powered tablet", "Includes a 100X high-voltage probe", "Usable while charging over USB-C"],
+    cons: ["No signal generator", "ADC resolution and memory depth not clearly stated"],
+    ctaHref: "https://www.amazon.com/dp/B0BHHYMVKV?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 150 MHz Budget Bench",
+    // Specs per hantek.com DSO2000 series page (products/detail/17182), DSO2D15 column. Photo: main image of the exact Amazon listing (B08Y6KVMSV, DSO2D15 with an extra P4100 probe), panel reads "Hantek DSO2D15 ... 150MHz/1GSa/s 25MHz/200MSa/s". Amazon-buyable (In Stock) 2026-10-24 (third-party seller, shipped by Amazon).
+    name: "Hantek DSO2D15",
+    image: "https://m.media-amazon.com/images/I/81hiRS9DwNL._SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "The 150 MHz version of Hantek's DSO2000 bench scope, with a 25 MHz generator and serial decoding.",
+    verdict:
+      "The DSO2D15 is a two-channel, 150 MHz benchtop (2.4 ns rise time) with 1 GSa/s on one channel and 500 MSa/s on two, 8-bit resolution with a 12-bit high-resolution mode, 8 Mpts of memory on one channel (4 Mpts on two) and a 7-inch 800 × 480 display. Its built-in generator reaches 25 MHz sine and 10 MHz square or arbitrary at 200 MSa/s and 12-bit. Hantek lists UART, I2C, SPI, CAN and LIN triggering and decoding and 32 automatic measurements. It runs on mains power. This listing bundles a P4100 100X probe.",
+    specs: [
+      { label: "Bandwidth", value: "150MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "1 GSa/s (1 ch); 500 MSa/s (2 ch)" },
+      { label: "Best for", value: "A budget bench that wants extra bandwidth and a signal source" },
+    ],
+    pros: ["150 MHz bandwidth", "Built-in 25 MHz signal generator", "UART, I2C, SPI, CAN and LIN decoding"],
+    cons: ["8-bit converter", "Two channels only"],
+    ctaHref: "https://www.amazon.com/dp/B08Y6KVMSV?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Budget Handheld + Meter",
+    // Specs per HANMATEK's HO dual-channel series user manual V1.0.1 (linked from hanmatek.com/pages/manuals-center); HANMATEK doesn't state ADC bits. Photo: main image of the exact Amazon listing (B08VRDG94N, HANMATEK store byline), panel reads "HANMATEK HO52 Handheld oscilloscope". Amazon-buyable (In Stock) 2026-10-24.
+    name: "HANMATEK HO52",
+    image: "https://m.media-amazon.com/images/I/71NKZspZ+uL._AC_SL1500_.jpg",
+    rating: 4.1,
+    bottomLine: "A low-cost two-channel 50 MHz handheld scope with a built-in 20,000-count multimeter.",
+    verdict:
+      "The HO52 is a battery handheld with a two-channel, 50 MHz oscilloscope (250 MSa/s with one channel, 125 MSa/s with two; 8K points of memory on one channel, 4K on two) and a 20,000-count true-RMS multimeter rated to 1000 V DC, 750 V AC and 10 A. It has a 3.5-inch 320 × 240 screen, runs about 4 hours on two 2200 mAh cells and charges from 5 V over USB. It has no signal generator (that is the HO52S), and HANMATEK doesn't state its ADC resolution.",
+    specs: [
+      { label: "Bandwidth", value: "50MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "250 MSa/s (1 ch); 125 MSa/s (2 ch)" },
+      { label: "Best for", value: "Field checks that need a scope and a meter on a budget" },
+    ],
+    pros: ["Scope and 20,000-count multimeter in one", "Two channels in a handheld", "Battery-powered with USB charging"],
+    cons: ["No signal generator", "Short 8K record length and a small screen"],
+    ctaHref: "https://www.amazon.com/dp/B08VRDG94N?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 70 MHz 3-in-1 Handheld",
+    // Specs per OWON's HDS200 spec sheet (files.owon.com.cn/specifications/HDS200.pdf) and owon.com.hk HDS200 series page (the web table's column alignment is unclear; the PDF and Amazon both give 250 MSa/s). Photo: main image of the exact Amazon listing (B094FR78JB, sold by SmartTek, OWON Store byline), unit reads "OWON HDS272S Handheld oscilloscope". Amazon-buyable 2026-10-24.
+    name: "OWON HDS272S",
+    image: "https://m.media-amazon.com/images/I/71glhlGTTiL._SL1500_.jpg",
+    rating: 4.2,
+    bottomLine: "A two-channel 70 MHz handheld with a 20,000-count meter and a 25 MHz signal generator.",
+    verdict:
+      "OWON's HDS272S combines a two-channel, 70 MHz, 8-bit oscilloscope (250 MSa/s with one channel, 125 MSa/s with two, 8K record length) with a 20,000-count true-RMS multimeter and a single-channel generator (sine to 25 MHz, square and pulse to 5 MHz, 14-bit, up to 2.5 Vpp into 50 Ω). It has a 3.5-inch 320 × 240 screen, runs 3 to 6 hours on two 18650 cells and charges over USB-C, including from a power bank.",
+    specs: [
+      { label: "Bandwidth", value: "70MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "250 MSa/s (1 ch); 125 MSa/s (2 ch)" },
+      { label: "Best for", value: "Portable work that needs a scope, meter and signal source" },
+    ],
+    pros: ["Scope, multimeter and generator in one", "USB-C charging, works from a power bank", "Fold-out stand"],
+    cons: ["Small 3.5-inch screen", "8K record length"],
+    ctaHref: "https://www.amazon.com/dp/B094FR78JB?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Budget 110 MHz Bench",
+    // Specs per the HANMATEK DOS1102 user manual, section 5 (linked from hanmatek.com/pages/manuals-center); Amazon says "500 MS/s x2", the panel and maker page say 1GSa/s (the manual: 500 MS/s per channel); ADC bits not stated. Photo: main image of the exact Amazon listing (B0833YFNKP, HANMATEK store byline), panel reads "HANMATEK DOS1102 110MHz 1GSa/s". Amazon-buyable (In Stock) 2026-10-24.
+    name: "HANMATEK DOS1102",
+    image: "https://m.media-amazon.com/images/I/7183T+Sk7+L._SL1500_.jpg",
+    rating: 4.1,
+    bottomLine: "A slim, low-cost two-channel 110 MHz benchtop with a 7-inch screen and simple controls.",
+    verdict:
+      "The DOS1102 is a two-channel, 110 MHz benchtop (rise time 3 ns or less) with 500 MS/s per channel (1 GS/s combined, per its manual), a 10K record length and a 7-inch 800 × 480 display. HANMATEK lists math (+, −, ×, ÷) and FFT, edge and video triggers, 30 automatic measurements and saving to a USB stick. It runs from a 5 V 2 A adapter and weighs about 1.1 kg. It has no signal generator (that is the DOS1102S), no serial decoding is listed, and HANMATEK doesn't state its ADC resolution.",
+    specs: [
+      { label: "Bandwidth", value: "110MHz" },
+      { label: "Channels", value: "2" },
+      { label: "Sample rate", value: "500 MS/s per channel (1 GS/s combined)" },
+      { label: "Best for", value: "A first two-channel bench scope on a tight budget" },
+    ],
+    pros: ["110 MHz on two channels", "7-inch 800 × 480 display", "Light 1.1 kg body on a 5 V adapter"],
+    cons: ["10K record length", "Edge and video triggers only; no decoding listed"],
+    ctaHref: "https://www.amazon.com/dp/B0833YFNKP?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 8-Channel Automotive USB Scope",
+    // Specs per hantek.com/products/detail/13169 and the Hantek1008 manual Appendix A (100 kHz bandwidth is stated in the manual only; Hantek's 1008A/B/C pages share one spec table, including an ignition probe the Amazon kit photo doesn't show). No photo: the exact Amazon listing (B01EZWJRGG, Hantek Store byline) shows a case printed only "Hantek", so no image is used. Amazon-buyable 2026-10-24.
+    name: "Hantek 1008B",
+    rating: 3.9,
+    bottomLine: "An eight-channel, 12-bit USB scope for slow automotive and sensor signals, run from a Windows PC.",
+    verdict:
+      "The 1008B is a USB-powered PC oscilloscope with eight analog channels and 12-bit resolution, made for automotive diagnostics. Hantek lists 2.4 MSa/s with one channel on, 4K points of memory, 1 MΩ DC-coupled inputs rated to 400 V peak and, in its manual, 100 kHz bandwidth. It also has an eight-channel LVTTL square-wave generator up to 250 kHz that can simulate crankshaft and camshaft signals, plus FFT, math and over 80 automotive test functions in its Windows software. It has no screen of its own, and Hantek doesn't state the per-channel rate with all eight channels on.",
+    specs: [
+      { label: "Bandwidth", value: "100kHz (per manual)" },
+      { label: "Channels", value: "8" },
+      { label: "Sample rate", value: "2.4 MSa/s (1 ch)" },
+      { label: "Best for", value: "Automotive sensor and actuator diagnostics on a laptop" },
+    ],
+    pros: ["Eight channels at 12-bit", "Built-in automotive test functions and signal simulator", "USB-powered"],
+    cons: ["Very low bandwidth and sample rate for electronics work", "Needs a Windows PC; no screen of its own"],
+    ctaHref: "https://www.amazon.com/dp/B01EZWJRGG?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Pocket Mixed-Signal Scope",
+    // Specs per Miniware's DS213 product page (miniware.com.cn, via the Wayback Machine capture of 2023-05-28; the live site is down) plus the exact Amazon listing (B09XXBBRPF) for bandwidth and display, which Miniware's page omits. Photo: main image of that listing, bezel reads "MINIWARE" and "DS213". Amazon-buyable (In Stock) 2026-10-24 (third-party seller, shipped by Amazon).
+    name: "MINIWARE DS213",
+    image: "https://m.media-amazon.com/images/I/51NO8mufcrL._SL1500_.jpg",
+    rating: 4.0,
+    bottomLine: "A 129 g pocket scope with two analog and two digital channels plus a built-in signal generator.",
+    verdict:
+      "The DS213 packs two analog channels and two digital channels into a 99.5 × 58.5 × 13.5 mm, 129 g case with a 1000 mAh battery. Miniware lists 100 MSa/s real-time sampling, an 8-bit converter, 4K points per channel, an 8 MB built-in USB disk for saved waveforms, and a generator with square waves to 8 MHz and sine, triangle and sawtooth to 20 MHz at 3 Vpp. The Amazon listing gives 15 MHz bandwidth and a 3-inch 320 × 240 screen. Miniware doesn't state the per-channel sample rate with several channels on.",
+    specs: [
+      { label: "Bandwidth", value: "15MHz (per Amazon listing)" },
+      { label: "Channels", value: "2 analog + 2 digital" },
+      { label: "Sample rate", value: "100 MSa/s" },
+      { label: "Best for", value: "A pocket scope with logic inputs and a signal source" },
+    ],
+    pros: ["Two analog plus two digital channels", "Built-in signal generator", "Very small and light (129 g)"],
+    cons: ["Small 3-inch screen", "Bandwidth stated only on the Amazon listing"],
+    ctaHref: "https://www.amazon.com/dp/B09XXBBRPF?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

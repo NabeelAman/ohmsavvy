@@ -2647,6 +2647,13 @@ export const content: ContentEntry[] = [
     description: "10MHz with a generator vs. the cheapest pocket scope",
     href: "/oscilloscopes/fnirsi-dso-510-vs-fnirsi-dso152",
   },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "FNIRSI 2C53T vs WESTOBiG 2C53P Plus",
+    description: "Identical scope core, touchscreen and generator differ",
+    href: "/oscilloscopes/fnirsi-2c53t-vs-westobig-2c53p-plus",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

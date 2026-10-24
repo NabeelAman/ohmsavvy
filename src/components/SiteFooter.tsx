@@ -88,6 +88,7 @@ export function SiteFooter() {
                 <Link
                   key={s.href}
                   href={s.href}
+                  prefetch={false}
                   className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-muted hover:border-accent hover:text-accent transition-colors"
                 >
                   {s.label} →
@@ -106,7 +107,7 @@ export function SiteFooter() {
             <ul className="space-y-2.5 text-sm">
               {c.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className={linkClass}>
+                  <Link href={l.href} prefetch={false} className={linkClass}>
                     {l.label}
                   </Link>
                 </li>
@@ -120,7 +121,7 @@ export function SiteFooter() {
           <ul className="space-y-2.5 text-sm">
             {COMPANY.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className={linkClass}>
+                <Link href={l.href} prefetch={false} className={linkClass}>
                   {l.label}
                 </Link>
               </li>

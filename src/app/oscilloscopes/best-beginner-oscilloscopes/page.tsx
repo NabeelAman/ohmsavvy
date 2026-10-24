@@ -282,7 +282,9 @@ export const picks: Pick[] = [
   {
     badge: "Best Slim Benchtop",
     // Specs per OWON's SDS1000 series product page and technical specification. No photo: neither the exact Amazon listing (B0781CXRP5) nor OWON's page shows a unit marked "SDS1102" (the main image is an SDS1022), so no image is used. Amazon-buyable (In Stock) 2026-10-24.
+    // Photo (owner rule 2026-10-24: buyable on Amazon → use the listing photo): gallery image of the exact listing B0781CXRP5: an SDS1000-series front panel with a blank model badge (no model printed). The main image and other gallery shots show an SDS1022, so they are not used.
     name: "OWON SDS1102",
+    image: "https://m.media-amazon.com/images/I/71YwuIjb8CL._AC_SL1500_.jpg",
     rating: 4.2,
     bottomLine: "A slim, light two-channel 100 MHz benchtop with a 7-inch screen and simple controls.",
     verdict:
@@ -452,7 +454,9 @@ export const picks: Pick[] = [
   {
     badge: "Best Deep-Memory USB Scope",
     // Specs per Pico Technology's PicoScope 2000 Series datasheet (picotech.com). No photo: the exact Amazon listing (B06WLNVPFK, sold by Tequipment) has one image, marked only "PicoScope 2000 Series", so no image is used. Amazon-buyable 2026-10-24 (low stock).
+    // Photo (owner rule 2026-10-24: buyable on Amazon → use the listing photo): main image of the exact listing B06WLNVPFK, case marked "PicoScope 2000 Series".
     name: "PicoScope 2206B",
+    image: "https://m.media-amazon.com/images/I/61CNc5QvSrL._SL1024_.jpg",
     rating: 4.4,
     bottomLine: "A pocket-sized 50 MHz USB scope with 32 MS of memory and a built-in AWG, run from PicoScope 7 on your PC.",
     verdict:
@@ -470,7 +474,9 @@ export const picks: Pick[] = [
   {
     badge: "Cheapest PC Scope",
     // Specs per hantek.com/products/detail/31 (6022BE column; the page's memory row doesn't clearly assign a figure to this model). No photo: no image on the exact Amazon listing (B0728HBNDV) shows "6022BE" printed on the unit, so no image is used. Amazon-buyable 2026-10-24 (third-party seller, shipped by Amazon).
+    // Photo (owner rule 2026-10-24: buyable on Amazon → use the listing photo): main image of the exact listing B0728HBNDV (Hantek-branded unit and kit; largest size Amazon serves).
     name: "Hantek 6022BE",
+    image: "https://m.media-amazon.com/images/I/41rNXlk06yS._SL500_.jpg",
     rating: 4.0,
     bottomLine: "A very low-cost two-channel 20 MHz USB oscilloscope for learning on a Windows PC.",
     verdict:
@@ -488,7 +494,9 @@ export const picks: Pick[] = [
   {
     badge: "Best Touchscreen Tablet Scope",
     // Specs per fnirsi.com/products/1013d ("1013D Plus" is FNIRSI's style option for the 1013D sold with a P4100 100X probe; FNIRSI doesn't state ADC bits or the two-channel sample rate, and quotes memory as "240 Kbit"). No photo: the exact Amazon listing (B0BHHYMVKV, sold by FNIRSI's store) shows no model number on the unit, so no image is used. Amazon-buyable (In Stock) 2026-10-24.
+    // Photo (owner rule 2026-10-24: buyable on Amazon → use the listing photo): main image of the exact listing B0BHHYMVKV, FNIRSI tablet with the P4100 probe.
     name: "FNIRSI 1013D Plus",
+    image: "https://m.media-amazon.com/images/I/71BTGjz4+vL._SL1500_.jpg",
     rating: 4.1,
     bottomLine: "A battery-powered tablet oscilloscope with a 7-inch touchscreen, sold with a 100X high-voltage probe.",
     verdict:
@@ -582,7 +590,9 @@ export const picks: Pick[] = [
   {
     badge: "Best 8-Channel Automotive USB Scope",
     // Specs per hantek.com/products/detail/13169 and the Hantek1008 manual Appendix A (100 kHz bandwidth is stated in the manual only; Hantek's 1008A/B/C pages share one spec table, including an ignition probe the Amazon kit photo doesn't show). No photo: the exact Amazon listing (B01EZWJRGG, Hantek Store byline) shows a case printed only "Hantek", so no image is used. Amazon-buyable 2026-10-24.
+    // Photo (owner rule 2026-10-24: buyable on Amazon → use the listing photo): main image of the exact listing B01EZWJRGG, Hantek case and 8-lead kit.
     name: "Hantek 1008B",
+    image: "https://m.media-amazon.com/images/I/81kCq2iP-ML._SL1500_.jpg",
     rating: 3.9,
     bottomLine: "An eight-channel, 12-bit USB scope for slow automotive and sensor signals, run from a Windows PC.",
     verdict:
@@ -623,7 +633,9 @@ export const picks: Pick[] = [
     // "DSO-510", even though the title and fnirsi.com both call it "DSO-510" with identical specs — flagging the
     // conflict per CLAUDE.md rather than treating the two names as confirmed interchangeable. No physical-casing
     // photo shows any printed model number, so no image is used either way. Amazon-buyable (In Stock) 2026-10-24.
+    // Photo (owner rule 2026-10-24: buyable on Amazon → use the listing photo): main image of the exact listing B0DKK5VB79 (no model printed on the unit; note the listing's own "How to Choose" graphic labels this column "DSO-153", a naming conflict in the seller's material).
     name: "FNIRSI DSO-510",
+    image: "https://m.media-amazon.com/images/I/71YG8qoWwDL._SL1500_.jpg",
     rating: 4.0,
     bottomLine: "A 1-channel pocket scope with a built-in signal generator, though its own listing disputes its name.",
     verdict:
@@ -715,7 +727,9 @@ export const picks: Pick[] = [
     // (Oscilloscope, Instruction CD, Auto Probe, 4x alligator-clip cables, 4 coaxial connectors) does not mention
     // one — confirm with the seller before assuming it's in the box. No photo: like the 1008B listing, this case is
     // printed only "Hantek" with no model number, so no image is used. Amazon-buyable (in stock) 2026-10-24.
+    // Photo (owner rule 2026-10-24: buyable on Amazon → use the listing photo): main image of the exact listing B00BSR98KW, Hantek case and kit.
     name: "Hantek 1008C",
+    image: "https://m.media-amazon.com/images/I/71WqrOzevjL._SL1500_.jpg",
     rating: 4.0,
     bottomLine: "The top tier of Hantek's shared 1008 automotive USB scope hardware, with more diagnostic software.",
     verdict:

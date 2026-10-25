@@ -64,6 +64,12 @@ const PRODUCT_IMAGE_HOSTS = [
   "www.weller-tools.com",
 ];
 
+// Paths only vulnerability scanners request (WordPress, PHP, leaked env/git
+// files). Unmatched URLs render the 404 page in a Vercel Function, so every
+// probe cost an invocation. Rewriting them to a static file answers from the
+// CDN instead; X-Robots-Tag keeps those URLs out of search indexes.
+const SCANNER_PROBES = ["/:path(wp-.*)", "/:path(.*\\.php)", "/:path(\\.env.*)", "/:path(\\.git/.*)"];
+
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
@@ -94,7 +100,16 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      ...SCANNER_PROBES.map((source) => ({
+        source,
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      })),
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: SCANNER_PROBES.map((source) => ({ source, destination: "/blocked.txt" })),
+    };
   },
   async redirects() {
     return [

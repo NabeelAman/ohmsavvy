@@ -786,6 +786,76 @@ export const picks: Pick[] = [
     cons: ["200 kpts memory is shallow", "Two channels at 50 MHz"],
     ctaHref: "https://www.amazon.com/dp/B08F6DYVHB?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best 250MHz 4-Channel with Logic Analysis",
+    // Specs per rigolna.com/products/digital-oscilloscopes/dho900: 250MHz, 4 channels, 12-bit, 1.25GSa/s, 50Mpts,
+    // 1 Mwfms/s (UltraAcquire). 16 digital channels require the separate PLA2216 logic probe (not confirmed bundled
+    // with this listing). Rigol's page doesn't mention a built-in AWG for this model, though the Amazon title adds
+    // "with AWG" for this specific ASIN -- noting the discrepancy rather than assuming one claim is wrong. Photo:
+    // main image of the exact Amazon listing (B0H1HPY519, sold by reseller "GuliTech"), front panel reads "DHO924S
+    // 250MHz DIGITAL OSCILLOSCOPE 1.25GSa/s 12bit UltraVision". Amazon-buyable (in stock) 2026-10-25.
+    name: "Rigol DHO924S",
+    image: "https://m.media-amazon.com/images/I/71rzu8hh4rL._SX522_.jpg",
+    rating: 4.6,
+    bottomLine: "250MHz and four channels with optional logic analysis, Rigol's step up from the DHO800 series.",
+    verdict:
+      "The DHO924S brings 250 MHz to Rigol's touchscreen DHO-series lineup: 4 channels, 12-bit vertical resolution, 1.25 GSa/s sample rate, 50 Mpts of memory and up to 1 Mwfms/s waveform capture rate in UltraAcquire mode. The DHO900 series supports 16 digital channels with the separate PLA2216 logic probe. This Amazon listing's title adds \"with AWG\" though Rigol's own page doesn't confirm a built-in generator for this exact model -- verify before assuming one is included.",
+    specs: [
+      { label: "Bandwidth", value: "250MHz" },
+      { label: "Channels", value: "4" },
+      { label: "Sample rate", value: "1.25 GSa/s" },
+      { label: "Best for", value: "Four-channel work that wants more bandwidth than the DHO800 series" },
+    ],
+    pros: ["250 MHz on four channels", "50 Mpts of memory", "Optional 16-channel logic analysis with the PLA2216 probe"],
+    cons: ["Built-in generator unconfirmed by Rigol's own page", "Pricier than the DHO800 series"],
+    ctaHref: "https://www.amazon.com/dp/B0H1HPY519?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 100MHz with Fast Capture Rate",
+    // Specs per siglentna.com/digital-oscilloscopes/sds1000x-u: 100MHz, 4 channels, 1 GSa/s, up to 14 Mpts memory,
+    // 100,000 wfm/s (400,000 in sequence mode), 7" 800x480 display, I2C/SPI/UART/CAN/LIN decode. Photo: main image
+    // of the exact Amazon listing (B08PD3WKCZ, Siglent Store), front panel reads "SIGLENT SDS1104X-U ... 100 MHz
+    // 1GSa/s". Amazon-buyable (in stock) 2026-10-25.
+    name: "Siglent SDS1104X-U",
+    image: "https://m.media-amazon.com/images/I/61O2t0a-EPS._SX425_.jpg",
+    rating: 4.5,
+    bottomLine: "A 100MHz four-channel scope with a very fast waveform capture rate for catching rare glitches.",
+    verdict:
+      "The SDS1104X-U is a 100 MHz, 4-channel member of Siglent's X-U line: 1 GSa/s sample rate, up to 14 Mpts of memory, and a waveform capture rate up to 100,000 wfm/s in normal mode (400,000 in sequence mode) on a 7-inch 800 × 480 display. It includes standard I2C, SPI, UART, CAN and LIN trigger and decode.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "4" },
+      { label: "Sample rate", value: "1 GSa/s" },
+      { label: "Best for", value: "Four-channel work that needs a fast capture rate and serial decode" },
+    ],
+    pros: ["100,000-400,000 wfm/s capture rate", "Standard serial trigger and decode", "Four channels at 100 MHz"],
+    cons: ["14 Mpts memory is modest for this tier", "No touchscreen"],
+    ctaHref: "https://www.amazon.com/dp/B08PD3WKCZ?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best 100MHz 12-bit High-Definition",
+    // Specs per siglentna.com/digital-oscilloscopes/sds800x-hd-digital-storage-oscilloscope: 100MHz, 4 channels,
+    // 12-bit, 2 GSa/s, 50 Mpts per channel, 7" 1024x600 capacitive touchscreen. 16 digital channels available with
+    // the optional SLA1016 logic probe. I2C/SPI/UART/CAN/LIN decode listed for the SDS800X HD series overall.
+    // Photo: main image of the exact Amazon listing (B0CZJSPQCB, Siglent Store); the unit's case shows no printed
+    // model number (owner-approved: unlabeled-but-buyable units may use the exact-ASIN photo). Amazon-buyable (16
+    // in stock) 2026-10-25.
+    name: "Siglent SDS814X HD",
+    image: "https://m.media-amazon.com/images/I/71eXcOMiFML._SX425_.jpg",
+    rating: 4.6,
+    bottomLine: "A 12-bit, 100MHz scope with 2 GSa/s sampling and a 1024x600 touchscreen.",
+    verdict:
+      "The SDS814X HD is Siglent's 12-bit \"HD\" oscilloscope: 100 MHz across 4 channels, 2 GSa/s real-time sample rate, 50 Mpts of memory per channel and a 7-inch 1024 × 600 capacitive touchscreen. It supports 16 digital channels with the optional SLA1016 logic probe, and Siglent lists I2C, SPI, UART, CAN and LIN decode for the SDS800X HD series.",
+    specs: [
+      { label: "Bandwidth", value: "100MHz" },
+      { label: "Channels", value: "4" },
+      { label: "Sample rate", value: "2 GSa/s" },
+      { label: "Best for", value: "Extra vertical detail (12-bit) on a touchscreen at a mid-range price" },
+    ],
+    pros: ["12-bit vertical resolution", "2 GSa/s sample rate and 50 Mpts per channel", "7-inch 1024 × 600 touchscreen"],
+    cons: ["Decode features listed at the series level, not confirmed per-model", "No printed model number on this listing's photo"],
+    ctaHref: "https://www.amazon.com/dp/B0CZJSPQCB?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

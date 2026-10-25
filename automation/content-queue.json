@@ -111,7 +111,10 @@
       "Rigol DS1202Z-E",
       "Hantek 1008C",
       "FNIRSI DPOS350P",
-      "Keysight EDUX1052G"
+      "Keysight EDUX1052G",
+      "Rigol DHO924S",
+      "Siglent SDS1104X-U",
+      "Siglent SDS814X HD"
     ]
   },
   "keywords": [

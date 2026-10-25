@@ -518,6 +518,34 @@ export const content: ContentEntry[] = [
   {
     category: "multimeters",
     type: "how-to-guide",
+    title: "Multimeter Won't Turn On? 7 Common Causes and Fixes",
+    description: "Battery, contacts, auto power-off and internal faults, checked in order",
+    href: "/multimeters/multimeter-wont-turn-on",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Tell If Multimeter Test Leads Are Bad",
+    description: "The probes-together test, end-to-end checks and the flex test",
+    href: "/multimeters/how-to-tell-if-multimeter-test-leads-are-bad",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does My Multimeter Read 0 Volts on a Working Circuit?",
+    description: "Same-node probing, no reference point, open leads and real dead sections",
+    href: "/multimeters/why-does-my-multimeter-read-0-volts-on-a-working-circuit",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does a Multimeter Fuse Blow When Measuring Current?",
+    description: "Parallel connections, wrong jacks, inrush and the right replacement fuse",
+    href: "/multimeters/why-does-a-multimeter-fuse-blow-when-measuring-current",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
     title: "Multimeter Symbols Explained",
     description: "Every dial, jack, display and safety marking decoded",
     href: "/multimeters/multimeter-symbols-explained",
@@ -716,6 +744,13 @@ export const content: ContentEntry[] = [
     title: "Why Won't Solder Stick to the Soldering Iron Tip?",
     description: "An oxidised tip, how to re-tin it, and when to replace it",
     href: "/soldering-irons/why-wont-solder-stick-to-soldering-iron-tip",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Why Does My Soldering Iron Keep Switching Off?",
+    description: "Sleep timers, motion sleep, USB-C power resets and real faults",
+    href: "/soldering-irons/why-does-my-soldering-iron-keep-switching-off",
   },
   {
     category: "soldering-irons",
@@ -995,6 +1030,13 @@ export const content: ContentEntry[] = [
     title: "Do You Need an Oscilloscope for Electronics Repair?",
     description: "Which repair faults a meter finds, and which only a scope shows",
     href: "/oscilloscopes/do-you-need-an-oscilloscope-for-electronics-repair",
+  },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "Why Does My Oscilloscope Show a Flat Line When a Signal Is Present?",
+    description: "Channel, probe, scale, coupling, timebase and trigger settings checked",
+    href: "/oscilloscopes/why-does-my-oscilloscope-show-a-flat-line",
   },
   {
     category: "multimeters",

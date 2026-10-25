@@ -659,8 +659,10 @@ export function CircuitDiagram({
         <text x="60" y="140" textAnchor="middle" className="fill-foreground">{source}</text>
         <text x="40" y="86" textAnchor="middle">+</text>
         <text x="280" y="64" textAnchor="middle" className="fill-foreground">{load}</text>
-        <text x={series ? 170 : 300} y={series ? 72 : 168} textAnchor="middle" className="fill-accent">
-          {series ? "Meter in series: all current flows through it" : "Meter in parallel, across the load"}
+        {/* Two short lines kept inside the viewBox and clear of the battery and load labels */}
+        <text x={series ? 170 : 334} y={series ? 68 : 174} fontSize="9.5" textAnchor={series ? "middle" : "end"} className="fill-accent">
+          <tspan x={series ? 170 : 334}>{series ? "Meter in series:" : "Meter in parallel,"}</tspan>
+          <tspan x={series ? 170 : 334} dy="12">{series ? "all current flows through it" : "across the load"}</tspan>
         </text>
       </g>
       {note && (

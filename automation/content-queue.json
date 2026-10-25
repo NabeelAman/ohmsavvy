@@ -598,7 +598,8 @@
       "keyword": "multimeter fuse keeps blowing",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "already live at /multimeters/why-does-a-multimeter-fuse-blow-when-measuring-current"
     },
     {
       "keyword": "what cat rating do I need for home wiring",

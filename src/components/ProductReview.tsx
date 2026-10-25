@@ -158,7 +158,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
       <p className="mt-3 text-xs text-muted leading-5">
         Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through these links,
         at no extra cost to you.{" "}
-        <Link href="/about#how-were-funded" className="text-accent hover:underline">
+        <Link prefetch={false} href="/about#how-were-funded" className="text-accent hover:underline">
           How we&apos;re funded
         </Link>
         .
@@ -221,7 +221,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
             <p className="mb-6 text-xs text-muted leading-5">
               We haven&apos;t bench-tested this unit. This assessment is based on its published
               specifications and on what those specifications mean in practice.{" "}
-              <Link href="/about" className="text-accent hover:underline">
+              <Link prefetch={false} href="/about" className="text-accent hover:underline">
                 How we research
               </Link>
               .
@@ -242,6 +242,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
           <div className="grid sm:grid-cols-2 gap-4">
             {review.alternatives.map((alt) => (
               <Link
+                prefetch={false}
                 key={alt.href}
                 href={alt.href}
                 className="rounded-lg border border-border bg-surface p-5 hover:border-accent transition-colors"
@@ -285,11 +286,11 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
         <section className="pt-8 border-t border-border">
           <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Related</p>
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <Link href={review.roundup.href} className="font-medium text-accent hover:underline">
+            <Link prefetch={false} href={review.roundup.href} className="font-medium text-accent hover:underline">
               {review.roundup.label}
             </Link>
             {review.related.map((r) => (
-              <Link key={r.href} href={r.href} className="text-accent hover:underline">
+              <Link prefetch={false} key={r.href} href={r.href} className="text-accent hover:underline">
                 {r.label}
               </Link>
             ))}

@@ -98,7 +98,7 @@ export function HowToShell({
             </li>
             <li aria-hidden="true">›</li>
             <li>
-              <Link href={hub.href} className="hover:text-accent transition-colors">{hub.label}</Link>
+              <Link prefetch={false} href={hub.href} className="hover:text-accent transition-colors">{hub.label}</Link>
             </li>
             <li aria-hidden="true">›</li>
             <li aria-current="page" className="text-foreground">{title}</li>
@@ -110,7 +110,7 @@ export function HowToShell({
             <h1 className="text-3xl sm:text-4xl leading-tight">{title}</h1>
             <div className="mt-5 text-lg text-muted leading-7">{intro}</div>
             <p className="mt-4 text-xs text-muted">
-              By the <Link href="/about" className="underline underline-offset-2 hover:text-accent">OhmSavvy Research Team</Link>
+              By the <Link prefetch={false} href="/about" className="underline underline-offset-2 hover:text-accent">OhmSavvy Research Team</Link>
               {" · "}
               <time dateTime={updated ?? published}>Updated {formatDate(updated ?? published)}</time>
             </p>
@@ -171,6 +171,7 @@ export function HowToShell({
           <div className="grid sm:grid-cols-2 gap-4">
             {next.map((n) => (
               <Link
+                prefetch={false}
                 key={n.href}
                 href={n.href}
                 className="group rounded-lg border border-border bg-surface p-5 hover:border-accent transition-colors"
@@ -312,7 +313,7 @@ export function ProductStrip({
             key={p.href}
             className="group flex flex-col rounded-lg border border-border bg-surface-raised shadow-sm overflow-hidden hover:border-accent transition-colors"
           >
-            <Link href={p.href} className="relative block h-36 bg-surface">
+            <Link prefetch={false} href={p.href} className="relative block h-36 bg-surface">
               {p.image ? (
                 <Image
                   src={productImageSrc(p.image, 260)}
@@ -327,7 +328,7 @@ export function ProductStrip({
               )}
             </Link>
             <div className="flex flex-1 flex-col p-4 border-t border-border">
-              <Link href={p.href} className="font-medium text-sm hover:text-accent transition-colors">
+              <Link prefetch={false} href={p.href} className="font-medium text-sm hover:text-accent transition-colors">
                 {p.name}
               </Link>
               <p className="mt-1 flex-1 text-xs text-muted leading-5">{p.note}</p>
@@ -338,7 +339,7 @@ export function ProductStrip({
                   </Button>
                 )}
                 {p.retired && <span className="text-xs text-muted">No longer sold on Amazon</span>}
-                <Link href={p.href} className="text-xs font-medium text-accent hover:underline">
+                <Link prefetch={false} href={p.href} className="text-xs font-medium text-accent hover:underline">
                   Read the review →
                 </Link>
               </div>

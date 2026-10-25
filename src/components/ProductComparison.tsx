@@ -108,7 +108,7 @@ function ProductCard({ side }: { side: ComparisonSide }) {
         <div className="flex flex-wrap items-center gap-3">
           {buy.href && <Button href={buy.href}>{pick.unavailable ? buy.label : "Check price →"}</Button>}
           {side.reviewHref && (
-            <Link href={side.reviewHref} className="text-sm font-medium text-accent hover:underline">
+            <Link prefetch={false} href={side.reviewHref} className="text-sm font-medium text-accent hover:underline">
               Full review
             </Link>
           )}
@@ -188,7 +188,7 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
             </li>
             <li aria-hidden="true">›</li>
             <li>
-              <Link href={hub} className="hover:text-accent transition-colors">{CATEGORY_LABELS[comparison.category]}</Link>
+              <Link prefetch={false} href={hub} className="hover:text-accent transition-colors">{CATEGORY_LABELS[comparison.category]}</Link>
             </li>
             <li aria-hidden="true">›</li>
             <li aria-current="page" className="text-foreground">{comparison.heading}</li>
@@ -200,7 +200,7 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
       <p className="mt-5 text-lg text-muted leading-7 max-w-3xl">{comparison.intro}</p>
       {comparison.published && (
         <p className="mt-4 text-xs text-muted">
-          By the <Link href="/about" className="underline underline-offset-2 hover:text-accent">OhmSavvy Research Team</Link>
+          By the <Link prefetch={false} href="/about" className="underline underline-offset-2 hover:text-accent">OhmSavvy Research Team</Link>
           {" · "}
           <time dateTime={comparison.updated ?? comparison.published}>Updated {formatDate(comparison.updated ?? comparison.published)}</time>
         </p>
@@ -208,7 +208,7 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
       <p className="mt-4 text-xs text-muted leading-5">
         Disclosure: OhmSavvy earns a commission from qualifying Amazon purchases made through these links,
         at no extra cost to you.{" "}
-        <Link href="/about#how-were-funded" className="text-accent hover:underline">
+        <Link prefetch={false} href="/about#how-were-funded" className="text-accent hover:underline">
           How we&apos;re funded
         </Link>
         .
@@ -261,7 +261,7 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
               : a.pick.handsOnTested || b.pick.handsOnTested
                 ? `${(a.pick.handsOnTested ? a : b).pick.name} is hands-on tested by OhmSavvy; the ${(a.pick.handsOnTested ? b : a).pick.name} assessment is desk research.`
                 : "Desk research, not bench testing."}{" "}
-            <Link href="/about" className="text-accent hover:underline">
+            <Link prefetch={false} href="/about" className="text-accent hover:underline">
               How we research
             </Link>
             .
@@ -331,11 +331,11 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
         <section className="pt-8 border-t border-border">
           <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Related</p>
           <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <Link href={comparison.roundup.href} className="font-medium text-accent hover:underline">
+            <Link prefetch={false} href={comparison.roundup.href} className="font-medium text-accent hover:underline">
               {comparison.roundup.label}
             </Link>
             {comparison.related.map((r) => (
-              <Link key={r.href} href={r.href} className="text-accent hover:underline">
+              <Link prefetch={false} key={r.href} href={r.href} className="text-accent hover:underline">
                 {r.label}
               </Link>
             ))}

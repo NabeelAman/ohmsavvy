@@ -196,7 +196,8 @@ export function RoundupHero({
           <span className="shrink-0 self-center font-display text-[11px] uppercase tracking-wide text-muted mr-1">Shop by job:</span>
           {useCases.map((g) => (
             <Link
-              prefetch={false} key={g.href}
+              key={g.href}
+              prefetch={false}
               href={g.href}
               className={`shrink-0 rounded-full border ${tone.chip} px-3 py-1 text-xs ${tone.text} hover:bg-surface-raised transition-colors`}
             >

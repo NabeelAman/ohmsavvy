@@ -92,6 +92,10 @@ export default function WhyWontSolderStickToSolderingIronTipPage() {
           q: "Is this the same problem as solder sticking to the tip and not flowing onto the joint?",
           a: "No, that is the opposite situation: the tip wets fine but solder clings to it instead of transferring. It is usually caused by dross build-up or a joint that is not being heated, and it is covered in our separate guide on why solder sticks to the tip.",
         },
+        {
+          q: "Why does a brand-new soldering iron tip need tinning before first use?",
+          a: "A new tip ships with a thin protective oxide or factory coating on its plating, specifically so it does not get damaged in transit, and that coating is not something solder will wet either. Heat the new tip to working temperature and apply solder to the whole working end before first use, the same re-tinning process used to recover an oxidised tip. It is a normal, one-time step, not a sign the tip is faulty.",
+        },
       ]}
       next={[
         {

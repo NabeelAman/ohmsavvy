@@ -2,8 +2,11 @@ import Link from "next/link";
 import {
   Callout,
   DataTable,
+  Figure,
   HowToShell,
   InfoCards,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -20,8 +23,38 @@ export const metadata = buildMetadata({
 
 const allMultimeterPicks = getAllPicks("multimeters");
 const fluke116 = allMultimeterPicks.find((p) => p.name === "Fluke 116")!;
+const fluke902fc = allMultimeterPicks.find((p) => p.name === "Fluke 902 FC")!;
 
 const link = "text-accent hover:underline";
+
+/** Correct series insertion vs. the mistake that blows the current fuse: meter dropped across the source instead of inline with the load. */
+function SeriesVsParallelDiagram() {
+  return (
+    <svg viewBox="0 0 360 170" className="w-full h-auto" role="img" aria-label="Correct: multimeter inserted in series with the load. Wrong: multimeter connected directly across the battery, which draws near-short-circuit current through the meter.">
+      <g strokeLinecap="round">
+        <rect x="14" y="30" width="22" height="46" rx="3" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+        <text x="25" y="58" fontSize="9" textAnchor="middle" className="fill-foreground">+ −</text>
+        <path d="M36 38 L95 38" className="stroke-foreground" strokeWidth="1.5" fill="none" />
+        <rect x="95" y="28" width="30" height="20" className="fill-surface stroke-accent" strokeWidth="1.5" />
+        <text x="110" y="42" fontSize="9" textAnchor="middle" className="fill-accent font-semibold">µA</text>
+        <path d="M125 38 L160 38 L160 68 L36 68" className="stroke-foreground" strokeWidth="1.5" fill="none" />
+        <rect x="70" y="60" width="30" height="16" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+        <text x="85" y="72" fontSize="8" textAnchor="middle" className="fill-foreground">Load</text>
+        <text x="90" y="95" fontSize="11" textAnchor="middle" className="fill-foreground font-semibold">Correct: in series</text>
+      </g>
+      <g strokeLinecap="round">
+        <rect x="204" y="30" width="22" height="46" rx="3" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+        <text x="215" y="58" fontSize="9" textAnchor="middle" className="fill-foreground">+ −</text>
+        <path d="M226 38 L310 38 L310 68 L226 68" className="stroke-foreground" strokeWidth="1.5" fill="none" />
+        <rect x="255" y="46" width="30" height="20" className="fill-surface" stroke="#c0392b" strokeWidth="1.5" />
+        <text x="270" y="60" fontSize="9" textAnchor="middle" fill="#c0392b" fontWeight="600">µA</text>
+        <path d="M270 46 L270 38" stroke="#c0392b" strokeWidth="1.5" fill="none" strokeDasharray="2 2" />
+        <text x="265" y="95" fontSize="11" textAnchor="middle" fill="#c0392b" fontWeight="600">Wrong: across the source</text>
+        <text x="265" y="110" fontSize="9" textAnchor="middle" className="fill-muted">blows the current fuse</text>
+      </g>
+    </svg>
+  );
+}
 
 export default function HowToMeasureMicroampsWithAMultimeterPage() {
   return (
@@ -79,6 +112,10 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
           q: "Does this range have the same fuse-protection concern as milliamps?",
           a: "Yes, the same principle applies: current mode is a near-zero-resistance path, so connecting it across a voltage source by mistake, rather than in series within the circuit, risks blowing the meter's internal fuse just as it would on the mA range. See our how-to-measure-milliamps guide for the full explanation of how the fuse protects the meter.",
         },
+        {
+          q: "How do I know if my multimeter actually has a µA range?",
+          a: "Check the model's own published spec sheet rather than assuming — it is not universal even within one maker's lineup. Fluke's own datasheet for its 114/115/116/117 family lists a µA range only on the 116, for example; the 117 has none at all despite looking like a similar general-purpose meter. Look for 'µA' printed on the dial or in the manufacturer's current-range table before relying on a meter for this measurement.",
+        },
       ]}
       next={[
         {
@@ -114,6 +151,15 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
             { label: "Sleep-mode microcontroller draw", desc: "Modern low-power MCUs can idle at single-digit µA in deep sleep." },
           ]}
         />
+        <p className="text-muted leading-7 mt-4">
+          Worked example: a CR2032 rated 230 mAh losing roughly 2% of its capacity a year to
+          self-discharge is losing about 4.6 mAh annually (230 mAh × 0.02). Spread that loss evenly
+          across the 8,760 hours in a year, 4.6 mAh ÷ 8,760 h, and the average continuous current is
+          about 0.53 µA — comfortably inside a dedicated µA range, and far too small for the mA range
+          to resolve at all. Manufacturer self-discharge figures vary (roughly 1–3% per year depending
+          on the cell and datasheet), so treat 0.53 µA as an illustrative midpoint, not a spec for any
+          specific battery.
+        </p>
       </section>
 
       <section>
@@ -124,6 +170,9 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
           the µA range on the dial (not mA or A), power the circuit back up, and read the display once
           it settles.
         </p>
+        <Figure caption="Current measurement always goes in series, inside the loop the current already flows through. Connecting the meter directly across the source instead puts it in parallel with almost no resistance in the way, which draws a current spike through the meter's fuse.">
+          <SeriesVsParallelDiagram />
+        </Figure>
       </section>
 
       <section>
@@ -163,6 +212,35 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
           for the base technique this builds on.
         </p>
       </section>
+
+      <section>
+        <KeyIdea title="In short">
+          Measuring microamps uses the same series-connection technique as any current measurement, but
+          confirm the meter actually has a µA range first — it is not universal, even on otherwise
+          similar models from the same maker. Keep leads short, the circuit clean, and give the reading
+          a few seconds to settle before recording it.
+        </KeyIdea>
+      </section>
+
+      <ProductStrip
+        title="Meters with a dedicated µA range"
+        items={[
+          {
+            name: fluke116.name,
+            image: fluke116.image,
+            alt: "Fluke 116 digital multimeter",
+            href: "/multimeters/best-multimeter-for-hvac-technicians#fluke-116",
+            note: "600.0 µA AC/DC range at 0.1 µA resolution, built for flame-sensor checks.",
+          },
+          {
+            name: fluke902fc.name,
+            image: fluke902fc.image,
+            alt: "Fluke 902 FC clamp meter",
+            href: "/multimeters/best-multimeter-for-hvac-technicians#fluke-902-fc",
+            note: "A clamp meter with its own 200 µA DC range (0.1 µA resolution) through the test leads.",
+          },
+        ]}
+      />
     </HowToShell>
   );
 }

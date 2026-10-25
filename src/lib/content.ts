@@ -483,6 +483,13 @@ export const content: ContentEntry[] = [
   {
     category: "multimeters",
     type: "how-to-guide",
+    title: "How to Test a Relay With a Multimeter",
+    description: "Coil ohms, contacts before and after energizing, latching and SSR types",
+    href: "/multimeters/how-to-test-a-relay-with-a-multimeter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
     title: "How to Measure AC Current With a Clamp Meter",
     description: "The single-conductor rule, and why clamping a whole cable reads zero",
     href: "/multimeters/how-to-measure-ac-current-with-a-clamp-meter",

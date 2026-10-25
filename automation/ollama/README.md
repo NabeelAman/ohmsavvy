@@ -5,9 +5,25 @@ product data. Every draft goes through 5 QA checkpoints, then you review a previ
 
 ## Daily automatic article (no review)
 
-Windows Task Scheduler runs **"OhmSavvy daily article"** at 6:00 every morning (it wakes the laptop; a missed run
-starts when the laptop is next on). It runs `automation/ollama/daily-article.ps1`, which starts Ollama if needed and
-runs `node automation/ollama/article.mjs --next --auto`:
+Windows Task Scheduler runs **"OhmSavvy daily article"** at 6:00, then every hour until midnight, and at logon, so a
+laptop that was asleep or off at 6:00 still gets that day's article. It runs `automation/ollama/daily-article.ps1`,
+which publishes at most one article a day (later runs that day exit at once), tries at most 3 times a day, and uses a
+lock so two runs never overlap (state in `.tmp-daily-state.json`). Each attempt starts Ollama if needed, refills the
+queue, then runs `node automation/ollama/article.mjs --next --auto`.
+
+**Queue refill (never runs dry).** `node automation/refill-queue.mjs` (add `--dry-run` to preview) runs before every
+attempt:
+
+- Cleans the queue: pending keywords an existing page now covers become `skip-duplicate`; retired (unavailable)
+  products are removed from `targetPicks`.
+- If fewer than 10 keywords are ready, it pulls what people are searching right now (Google and DuckDuckGo
+  autocomplete for "best multimeter/clamp meter/soldering iron/soldering station/oscilloscope for …"), drops anything
+  the site or queue already covers, and asks Ollama whether 2–4 verified in-stock products genuinely suit each use.
+  Fits are queued as `pending` with those `targetPicks`; misfits are recorded as `skip-no-fit` so they aren't
+  re-checked. Up to 5 new keywords a run; price-tier keywords ("under $50") are never auto-picked.
+- Commits and pushes only `content-queue.json`, and does nothing when another session has it uncommitted.
+
+What the daily writer does with each keyword:
 
 - Every checkpoint passes → published straight away (git push, live in ~2 minutes), before the 9:00 Facebook slot.
 - Any checkpoint fails → the draft is discarded and nothing is published. A keyword that fails twice is skipped

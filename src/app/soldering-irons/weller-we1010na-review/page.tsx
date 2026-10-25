@@ -48,9 +48,9 @@ const review: ProductReviewContent = {
   ],
   alternatives: [
     {
-      name: "Hakko FX888D",
-      href: "/soldering-irons/hakko-fx888d-review",
-      reason: "Also 70W, digital and ESD safe, with widely available genuine tips, but discontinued by Hakko."
+      name: "Hakko FX-888DX",
+      href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+      reason: "Hakko's replacement for the discontinued FX888D: a 100W ESD-safe station on the same T18 tips, with five presets."
     },
     {
       name: "Pinecil V2",
@@ -61,7 +61,7 @@ const review: ProductReviewContent = {
   faqs: [
     {
       question: "Weller WE1010NA or Hakko FX888D?",
-      answer: "Both are 70W, digital and ESD safe. The FX888D has widely available genuine T18 tips but Hakko has discontinued it; the WE1010NA is still in production."
+      answer: "Both are 70W, digital and ESD safe. The FX888D has widely available genuine T18 tips but Hakko has discontinued it; the WE1010NA is still in production. Hakko's replacement, the FX-888DX, takes the same T18 tips."
     },
     {
       question: "Is the Weller WE1010NA ESD-safe?",

@@ -24,7 +24,7 @@ export const metadata = buildMetadata({
 });
 
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
@@ -411,11 +411,11 @@ export default function HowToSolderARibbonCableConnectorOntoAPcbPage() {
                 note: "70W digital, ESD-safe station built for dedicated workbenches and professional use.",
               },
               {
-                name: "Hakko FX888D",
+                name: "Hakko FX-888DX",
                 image: hakko.image,
-                alt: "Hakko FX888D soldering station handpiece",
-                href: "/soldering-irons/hakko-fx888d-review",
-                note: "70W with digital, adjustable temperature control; best for serious hobbyists and repair work.",
+                alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+                href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+                note: "ESD safe with ±1°C idle stability and five presets; a 100W station for rows of identical header joints.",
               },
               {
                 name: "Pinecil V2",

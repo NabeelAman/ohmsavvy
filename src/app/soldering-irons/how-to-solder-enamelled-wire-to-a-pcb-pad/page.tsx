@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-enamelled-wire-to-a-pcb-pad",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
@@ -81,13 +81,13 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX digital soldering station",
         caption: (
           <>
-            Solder-stripping enamel needs a hot, stable tip. The Hakko FX888D is a 70W digital station noted
-            for thermal recovery under load. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              Hakko FX888D review
+            Solder-stripping enamel needs a hot, stable tip. The Hakko FX-888DX is a 100W digital station
+            that reaches 480°C and holds ±1°C at idle. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -311,11 +311,11 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
           title="Stations from our soldering reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital, adjustable station with strong thermal recovery under load.",
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W digital station with a 50–480°C range and ±1°C idle stability, leaving headroom for solder-stripping enamel.",
             },
             {
               name: "Weller WE1010NA",

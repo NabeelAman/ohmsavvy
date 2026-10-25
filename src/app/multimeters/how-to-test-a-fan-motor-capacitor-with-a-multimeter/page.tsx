@@ -25,7 +25,7 @@ export const metadata = buildMetadata({
 
 const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
 const klein = picks.find((p) => p.name === "Klein Tools MM400")!;
-const southwire = picks.find((p) => p.name === "Southwire 14070T")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 
 const link = "text-accent hover:underline";
 
@@ -371,11 +371,11 @@ export default function HowToTestAFanMotorCapacitorWithAMultimeterPage() {
               note: "Auto-ranging, CAT III 600V, and measures capacitance and temperature. Not True RMS; discontinued by Klein.",
             },
             {
-              name: "Southwire 14070T",
-              image: southwire.image,
-              alt: "Southwire 14070T TechnicianPRO digital multimeter",
-              href: "/multimeters/southwire-14070t-review",
-              note: "True RMS, CAT IV 600V / CAT III 1000V, IP67 waterproof. Suited to outdoor condenser work.",
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 True RMS digital multimeter",
+              href: "/multimeters/fluke-87v-vs-fluke-179",
+              note: "Capacitance to 10,000 µF, True RMS and CAT IV 600V. Covers run capacitors and condenser fan motors.",
             },
           ]}
         />

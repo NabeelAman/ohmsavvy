@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-remove-solder-from-a-plated-through-hole",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
@@ -94,13 +94,13 @@ export default function HowToRemoveSolderFromAPlatedThroughHolePage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            Thermal recovery matters on heat-sinking holes. The Hakko FX888D is a 70W digital station
-            noted for recovering well under load. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            Heat-sinking holes need a station with power in reserve. The Hakko FX-888DX pairs a 100W station
+            with a 65W iron. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -310,11 +310,11 @@ export default function HowToRemoveSolderFromAPlatedThroughHolePage() {
           title="Stations from our soldering reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital station with excellent thermal recovery under load.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station with a 65W FX-8801 iron, digital 50–480°C control and ±1°C idle stability for heat-sinking barrels.",
             },
             {
               name: "YIHUA 862BD+",

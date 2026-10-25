@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-use-a-soldering-iron",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
 
@@ -47,13 +47,13 @@ export default function HowToUseASolderingIronPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station with iron and stand",
+        alt: "Hakko FX-888DX soldering station",
         caption: (
           <>
             The steps below apply to any iron, wand-style or station, including our Best Overall pick,
-            the Hakko FX888D. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              full review
+            the Hakko FX-888DX. See how it{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              compares with the Weller WE1010
             </Link>
             .
           </>
@@ -303,8 +303,8 @@ export default function HowToUseASolderingIronPage() {
         <h2 id="which-iron" className="text-xl font-semibold mb-3">Which iron should you practise on?</h2>
         <p className="text-muted leading-7">
           Any iron with decent thermal recovery will work for the steps above. A station such as the{" "}
-          <Link href="/soldering-irons/hakko-fx888d-review" className={link}>Hakko FX888D</Link>{" "}
-          gives precise, repeatable temperature control for regular use. A portable, USB-C powered iron
+          <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>Hakko FX-888DX</Link>{" "}
+          gives closed-loop temperature control and five presets for regular use. A portable, USB-C powered iron
           like the{" "}
           <Link href="/soldering-irons/pinecil-v2-review" className={link}>Pinecil V2</Link>{" "}
           follows the exact same steps with no bench setup. A complete starter kit like the{" "}
@@ -318,11 +318,11 @@ export default function HowToUseASolderingIronPage() {
             title="Good irons to learn on"
             items={[
               {
-                name: "Hakko FX888D",
+                name: "Hakko FX-888DX",
                 image: hakko.image,
-                alt: "Hakko FX888D soldering station with iron and stand",
-                href: "/soldering-irons/hakko-fx888d-review",
-                note: "70W digital station with fast thermal recovery.",
+                alt: "Hakko FX-888DX soldering station",
+                href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+                note: "Hakko's 100W replacement for the FX-888D, set with a simple rotary dial.",
               },
               {
                 name: "Pinecil V2",

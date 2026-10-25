@@ -19,7 +19,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/soldering-iron-tip-types",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -42,13 +42,13 @@ export default function SolderingIronTipTypesPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station with iron and stand",
+        alt: "Hakko FX-888DX soldering station",
         caption: (
           <>
-            A station with a wide genuine tip ecosystem, like the Hakko FX888D, makes it easy to add
-            shapes as your work changes. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              full review
+            A station with a wide genuine tip ecosystem, like the Hakko FX-888DX on Hakko&apos;s T18 tips,
+            makes it easy to add shapes as your work changes. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              FX-888DX comparison
             </Link>
             .
           </>

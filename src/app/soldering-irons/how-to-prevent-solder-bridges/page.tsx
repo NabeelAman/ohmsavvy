@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-prevent-solder-bridges",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 
@@ -394,11 +394,11 @@ export default function HowToPreventSolderBridgesPage() {
           title="Picks from our soldering iron reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W station, digital adjustable temperature control and ESD safe; aimed at serious hobbyists and repair work.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "Rated for ±1°C idle stability, takes T18 tips and is ESD safe, which suits fine-pitch drag soldering.",
             },
             {
               name: "Weller WE1010NA",

@@ -20,7 +20,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-a-replacement-speaker-terminal-on-a-pcb",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -44,13 +44,13 @@ export default function HowToSolderAReplacementSpeakerTerminalOnAPcbPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            Terminal pins tied to wide output and ground copper reward an iron with strong thermal
-            recovery. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              Hakko FX888D review
+            Terminal pins tied to wide output and ground copper reward a station with power in reserve, like
+            the 100W Hakko FX-888DX. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>

@@ -32,7 +32,7 @@ export const content: ContentEntry[] = [
     title: "For Electricians",
     description: "CAT III/IV picks for panel work",
     href: "/multimeters/best-multimeter-for-electricians",
-    picks: ["Fluke 117", "Fluke 87V", "Southwire 14070T", "Klein Tools MM400", "Milwaukee 2235-20"],
+    picks: ["Fluke 117", "Fluke 87V", "Fluke 179", "Klein Tools MM400", "Milwaukee 2235-20"],
   },
   {
     category: "multimeters",
@@ -418,7 +418,7 @@ export const content: ContentEntry[] = [
     title: "For Circuit Board Repair",
     description: "Precise temperature control, fast thermal recovery",
     href: "/soldering-irons/best-soldering-iron-for-circuit-board-repair",
-    picks: ["Hakko FX888D", "Pinecil V2"],
+    picks: ["Hakko FX-888DX", "Pinecil V2"],
   },
   {
     category: "soldering-irons",
@@ -442,7 +442,7 @@ export const content: ContentEntry[] = [
     title: "For DIY Electronics Projects",
     description: "Versatile picks for general hobby and project work",
     href: "/soldering-irons/best-soldering-iron-for-diy-electronics",
-    picks: ["Hakko FX888D", "Pinecil V2", "Q-MING 60W Kit"],
+    picks: ["Hakko FX-888DX", "Pinecil V2", "Q-MING 60W Kit"],
   },
   {
     category: "soldering-irons",

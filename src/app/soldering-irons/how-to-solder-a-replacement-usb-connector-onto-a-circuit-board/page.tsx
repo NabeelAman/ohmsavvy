@@ -25,7 +25,7 @@ export const metadata = buildMetadata({
 });
 
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
@@ -329,11 +329,11 @@ export default function HowToSolderAReplacementUsbConnectorPage() {
               note: "75W iron plus 500W hot air with independent readouts, for SMD rework alongside general soldering.",
             },
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital station with fast thermal recovery, useful on heavy shell tabs.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station with a 65W iron and a parameter lock; ESD safe for work right next to a USB controller.",
             },
             {
               name: "Weller WE1010NA",

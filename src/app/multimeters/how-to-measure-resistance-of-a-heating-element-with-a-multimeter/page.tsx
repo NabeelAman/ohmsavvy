@@ -24,7 +24,7 @@ export const metadata = buildMetadata({
 
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
 const klein = picks.find((p) => p.name === "Klein Tools MM400")!;
-const southwire = picks.find((p) => p.name === "Southwire 14070T")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 
 const link = "text-accent hover:underline";
 
@@ -356,11 +356,11 @@ export default function HowToMeasureResistanceOfAHeatingElementPage() {
               note: "Auto-ranging, CAT III 600V, with temperature and capacitance. Not True RMS; discontinued by Klein.",
             },
             {
-              name: "Southwire 14070T",
-              image: southwire.image,
-              alt: "Southwire 14070T TechnicianPRO digital multimeter",
-              href: "/multimeters/southwire-14070t-review",
-              note: "True RMS, auto-ranging, CAT III 1000V / CAT IV 600V. Built for outdoor and job-site work.",
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 True RMS digital multimeter",
+              href: "/multimeters/fluke-87v-vs-fluke-179",
+              note: "6,000-count resolution for element ohms, plus temperature with the supplied thermocouple to check the element heats.",
             },
           ]}
         />

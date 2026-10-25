@@ -25,7 +25,7 @@ export const metadata = buildMetadata({
 
 const craftsman = picks.find((p) => p.name === "Craftsman CMMT14171")!;
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
-const southwire = picks.find((p) => p.name === "Southwire 14070T")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 
 const link = "text-accent hover:underline";
 
@@ -383,11 +383,11 @@ export default function HowToCheckVoltageDropOnACarPage() {
               note: "True RMS, auto-ranging, CAT III 600V. The meter working electricians buy with their own money.",
             },
             {
-              name: "Southwire 14070T",
-              image: southwire.image,
-              alt: "Southwire 14070T TechnicianPRO digital multimeter",
-              href: "/multimeters/southwire-14070t-review",
-              note: "True RMS, CAT III 1000V / CAT IV 600V. Suited to outdoor and job-site work where it might get wet or dropped.",
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 True RMS digital multimeter",
+              href: "/multimeters/fluke-87v-vs-fluke-179",
+              note: "6,000-count resolution and manual ranging for small drop readings, plus Min/Max-Average to capture the worst drop during cranking.",
             },
           ]}
         />

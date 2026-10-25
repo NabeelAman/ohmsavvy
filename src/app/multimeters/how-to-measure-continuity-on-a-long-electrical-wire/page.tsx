@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
 });
 
 const klein = picks.find((p) => p.name === "Klein Tools MM400")!;
-const southwire = picks.find((p) => p.name === "Southwire 14070T")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
 
 const link = "text-accent hover:underline";
@@ -321,11 +321,11 @@ export default function HowToMeasureContinuityOnALongElectricalWirePage() {
               note: "Auto-ranging, CAT III 600V, with temperature and capacitance. Not True RMS; discontinued by Klein.",
             },
             {
-              name: "Southwire 14070T",
-              image: southwire.image,
-              alt: "Southwire 14070T TechnicianPRO multimeter",
-              href: "/multimeters/southwire-14070t-review",
-              note: "IP67, CAT IV 600V / CAT III 1000V, with a built-in work light.",
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 digital multimeter",
+              href: "/multimeters/fluke-87v-vs-fluke-179",
+              note: "CAT IV 600V / CAT III 1000V for runs back to the service entrance, with a 6,000-count display for low-ohm readings.",
             },
             {
               name: "Fluke 117",

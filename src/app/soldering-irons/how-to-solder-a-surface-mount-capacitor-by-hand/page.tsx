@@ -20,7 +20,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-a-surface-mount-capacitor-by-hand",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -108,13 +108,13 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            A station with digital, adjustable temperature control, like the 70W Hakko FX888D, lets you set
+            A station with digital, adjustable temperature control, like the 100W Hakko FX-888DX, lets you set
             a moderate tip temperature for ceramic chips. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>

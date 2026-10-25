@@ -20,7 +20,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-test-a-soldering-iron",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -42,13 +42,13 @@ export default function HowToTestASolderingIronPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station with iron and stand",
+        alt: "Hakko FX-888DX soldering station",
         caption: (
           <>
             The cold continuity check applies to a wand iron or a station handpiece like the Hakko
-            FX888D alike. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              full review
+            FX-888DX&apos;s FX-8801 alike. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              FX-888DX comparison
             </Link>
             .
           </>

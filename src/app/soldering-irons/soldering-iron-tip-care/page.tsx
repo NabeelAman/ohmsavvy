@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/soldering-iron-tip-care",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
@@ -265,10 +265,10 @@ export default function SolderingIronTipCarePage() {
         <p className="text-muted leading-7">
           Stations with a dedicated stand and sponge or brass wool built in make this routine
           effortless. The{" "}
-          <Link href="/soldering-irons/hakko-fx888d-review" className={link}>Hakko FX888D</Link>{" "}
-          and{" "}
           <Link href="/soldering-irons/weller-we1010na-review" className={link}>Weller WE1010NA</Link>{" "}
-          both ship with proper stands and widely available genuine replacement tips. A portable iron
+          ships with a proper stand and widely available genuine replacement tips, and the{" "}
+          <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>Hakko FX-888DX</Link>{" "}
+          takes the same genuine T18 tips as the FX888D. A portable iron
           like the{" "}
           <Link href="/soldering-irons/pinecil-v2-review" className={link}>Pinecil V2</Link>{" "}
           needs a separate stand and cleaning tool, since it&apos;s designed to travel light rather than
@@ -279,11 +279,11 @@ export default function SolderingIronTipCarePage() {
             title="Stations with proper tip-care accessories"
             items={[
               {
-                name: "Hakko FX888D",
+                name: "Hakko FX-888DX",
                 image: hakko.image,
-                alt: "Hakko FX888D soldering station with iron and stand",
-                href: "/soldering-irons/hakko-fx888d-review",
-                note: "Ships with a stand and sponge; wide genuine tip selection.",
+                alt: "Hakko FX-888DX soldering station",
+                href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+                note: "Keeps the FX-8801 handpiece and T18 tips of the FX-888D, so the genuine tip range carries over.",
               },
               {
                 name: "Weller WE1010NA",

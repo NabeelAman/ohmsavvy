@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-repair-lifted-pcb-pads-after-desoldering",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 
@@ -395,11 +395,11 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
           title="Rework-friendly irons in our reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station with handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W station, digital adjustable temperature control, ESD safe. Best for serious hobbyists and repair work.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "ESD-safe 100W station with a rotary dial and a parameter lock, so the low temperature you choose for fragile pads stays put.",
             },
             {
               name: "Weller WE1010NA",

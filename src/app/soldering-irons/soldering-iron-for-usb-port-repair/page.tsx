@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/soldering-iron-for-usb-port-repair",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 
@@ -225,13 +225,13 @@ export default function SolderingIronForUsbPortRepairPage() {
         </p>
         <p className="text-muted leading-7 mb-4">
           Power is about recovery: how quickly the tip regains temperature after a heavy joint draws heat
-          from it. The irons in our reviews all sit between 60W and 75W:
+          from it. The irons in our reviews all sit between 60W and 100W:
         </p>
         <Figure
           caption={
             <>
               Rated iron power for the picks in our soldering iron roundup: 60W (Q-MING kit), about 60W (Pinecil
-              V2 on a 20V USB-C PD charger; up to 88W at 24V), 70W (Hakko FX888D and Weller WE1010NA) and 75W (YIHUA 862BD+ iron). Wattage helps with
+              V2 on a 20V USB-C PD charger; up to 88W at 24V), 70W (Weller WE1010NA), 75W (YIHUA 862BD+ iron) and 100W (Hakko FX-888DX station, 65W iron). Wattage helps with
               recovery on shell tabs, but tip size and temperature control matter as much.
             </>
           }
@@ -240,15 +240,15 @@ export default function SolderingIronForUsbPortRepairPage() {
             items={[
               { label: "Q-MING 60W Kit", value: 60, display: "60W" },
               { label: "Pinecil V2 (20V USB-C PD)", value: 60, display: "≈60W" },
-              { label: "Hakko FX888D", value: 70, display: "70W", highlight: true },
               { label: "Weller WE1010NA", value: 70, display: "70W" },
               { label: "YIHUA 862BD+ (iron)", value: 75, display: "75W" },
+              { label: "Hakko FX-888DX (station)", value: 100, display: "100W", highlight: true },
             ]}
           />
         </Figure>
         <p className="text-muted leading-7 mt-4">
           ESD protection is also worth weighing for phone and laptop boards, which carry static-sensitive
-          parts. The Weller WE1010NA and Hakko FX888D are both listed as ESD safe by their makers; for the
+          parts. The Weller WE1010NA and Hakko FX-888DX are both listed as ESD safe by their makers; for the
           YIHUA 862BD+, the US listing says ESD safe but YIHUA&apos;s own spec sheet makes no ESD claim. If you&apos;re deciding between a pen-style iron and a station, our{" "}
           <Link href="/soldering-irons/soldering-iron-vs-soldering-station" className={link}>
             soldering iron vs soldering station
@@ -295,7 +295,7 @@ export default function SolderingIronForUsbPortRepairPage() {
           head={["Tool type", "Example pick", "Fits"]}
           rows={[
             ["Portable USB-C iron", "Pinecil V2: about 60W on USB-C PD, up to 88W at 24V, OLED display", "Occasional port fixes, field repairs, tight budgets"],
-            ["Digital bench station", "Hakko FX888D or Weller WE1010NA: 70W, digital control", "Regular board work where fine pins and shell tabs both come up"],
+            ["Digital bench station", "Hakko FX-888DX (100W) or Weller WE1010NA (70W), both with digital control", "Regular board work where fine pins and shell tabs both come up"],
             ["Iron + hot air station", "YIHUA 862BD+: 75W iron, 500W hot air", "Frequent removal of surface-mount ports and other multi-pin parts"],
           ]}
         />
@@ -363,11 +363,11 @@ export default function SolderingIronForUsbPortRepairPage() {
           title="Suitable picks for port repair"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W station, digital adjustable temperature control and ESD safe; aimed at serious hobbyists and repair work.",
+              alt: "Hakko FX-888DX ESD-safe soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W ESD-safe station with closed-loop control from 50 to 480°C, for benches that see both fine port pins and shell tabs.",
             },
             {
               name: "Weller WE1010NA",

@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-a-replacement-potentiometer-onto-a-pcb",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
@@ -48,13 +48,13 @@ export default function HowToSolderAReplacementPotentiometerOntoAPcbPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
             Pot mounting tabs often sit on ground copper, so a station with heat in reserve helps. The Hakko
-            FX888D is a 70W digital station. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            FX-888DX is a 100W digital station. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -358,11 +358,11 @@ export default function HowToSolderAReplacementPotentiometerOntoAPcbPage() {
           title="Irons from our soldering reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital, adjustable station; aimed at serious hobbyists and repair work.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W digital station with a push-button rotary dial; store one preset for pot pins and another for ground-tied mounting tabs.",
             },
             {
               name: "Weller WE1010NA",

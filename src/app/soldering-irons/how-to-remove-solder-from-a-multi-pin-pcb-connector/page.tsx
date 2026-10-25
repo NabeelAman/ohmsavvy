@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-remove-solder-from-a-multi-pin-pcb-connector",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
@@ -367,11 +367,11 @@ export default function HowToRemoveSolderFromAMultiPinPcbConnectorPage() {
               note: "75W iron plus 500W hot air, 100-480 °C on the air side, for SMD and rework alongside general soldering.",
             },
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital, adjustable station; aimed at serious hobbyists and repair work.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station with a 65W iron and digital control from 50 to 480°C for clearing a connector pin by pin.",
             },
             {
               name: "Weller WE1010NA",

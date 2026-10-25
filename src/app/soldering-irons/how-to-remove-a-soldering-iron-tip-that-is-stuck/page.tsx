@@ -24,7 +24,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-remove-a-soldering-iron-tip-that-is-stuck",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
@@ -50,13 +50,13 @@ export default function HowToRemoveASolderingIronTipThatIsStuckPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece with its tip fitted",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            A temperature-controlled station like the Hakko FX888D (70W, digital adjustable control)
+            A temperature-controlled station like the Hakko FX-888DX (100W, rotary dial, five presets)
             makes a sensible setpoint easy, which slows the oxidation that seizes tips. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -388,11 +388,11 @@ export default function HowToRemoveASolderingIronTipThatIsStuckPage() {
             title="Temperature-controlled irons in our reviews"
             items={[
               {
-                name: "Hakko FX888D",
+                name: "Hakko FX-888DX",
                 image: hakko.image,
-                alt: "Hakko FX888D soldering station handpiece",
-                href: "/soldering-irons/hakko-fx888d-review",
-                note: "70W with digital, adjustable temperature control; the bench station hobbyist and pro communities keep recommending.",
+                alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+                href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+                note: "Same FX-8801 handpiece and T18 tips as the FX-888D; a rotary dial and five presets make a moderate setpoint easy to keep.",
               },
               {
                 name: "Weller WE1010NA",

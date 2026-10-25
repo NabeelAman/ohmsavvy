@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -341,11 +341,11 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
               note: "USB-C PD powered, OLED display, runs from a power bank. Suited to field repairs.",
             },
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital bench station with widely available genuine replacement tips.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "Bench station with a 100W supply, a 65W FX-8801 handpiece and T18 tips, set by rotary dial for in-place board repairs.",
             },
           ]}
         />

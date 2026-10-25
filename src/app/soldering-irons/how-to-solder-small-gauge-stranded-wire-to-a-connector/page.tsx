@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-small-gauge-stranded-wire-to-a-connector",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
 
 const link = "text-accent hover:underline";
@@ -80,13 +80,13 @@ export default function HowToSolderSmallGaugeStrandedWireToAConnectorPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX soldering station",
         caption: (
           <>
-            Connector cups sit on a lump of brass. The Hakko FX888D is a 70W digital station with strong
-            thermal recovery under load. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            Connector cups sit on a lump of brass. The Hakko FX-888DX pairs a 100W station with the 65W
+            FX-8801 iron and T18 tips. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs FX-888DX comparison
             </Link>
             .
           </>
@@ -294,11 +294,11 @@ export default function HowToSolderSmallGaugeStrandedWireToAConnectorPage() {
           title="Irons from our soldering reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital station with widely available genuine replacement tips.",
+              alt: "Hakko FX-888DX digital soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station driving a 65W FX-8801 iron; one of its five temperature presets can hold a hotter setting for brass connector cups.",
             },
             {
               name: "Q-MING 60W Kit",

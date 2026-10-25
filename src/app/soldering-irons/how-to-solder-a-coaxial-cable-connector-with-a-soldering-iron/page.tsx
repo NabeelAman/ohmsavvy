@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-a-coaxial-cable-connector-with-a-soldering-iron",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
@@ -49,13 +49,13 @@ export default function HowToSolderACoaxialCableConnectorPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece, a 70W temperature-controlled iron",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            Connector bodies soak up heat, so a station with power in reserve, like the 70W Hakko FX888D,
+            Connector bodies soak up heat, so a station with power in reserve, like the 100W Hakko FX-888DX,
             makes the shield joint quicker. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -432,11 +432,11 @@ export default function HowToSolderACoaxialCableConnectorPage() {
             title="Bench stations in our reviews"
             items={[
               {
-                name: "Hakko FX888D",
+                name: "Hakko FX-888DX",
                 image: hakko.image,
-                alt: "Hakko FX888D soldering station handpiece",
-                href: "/soldering-irons/hakko-fx888d-review",
-                note: "70W station with digital, adjustable temperature control, ESD safe; best for serious hobbyists and repair work.",
+                alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+                href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+                note: "100W station with ±1°C idle stability and five presets; ESD safe, and it also drives Hakko's larger irons for big connector bodies.",
               },
               {
                 name: "Weller WE1010NA",

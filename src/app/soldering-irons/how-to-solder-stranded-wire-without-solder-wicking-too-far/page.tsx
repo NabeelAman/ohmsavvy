@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-stranded-wire-without-solder-wicking-too-far",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
@@ -49,13 +49,13 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece with its digital temperature controller",
+        alt: "Hakko FX-888DX soldering station with its digital temperature display",
         caption: (
           <>
-            A temperature-controlled station like the Hakko FX888D (70W, digital adjustable control)
+            A temperature-controlled station like the Hakko FX-888DX (100W, closed-loop digital control)
             lets you make each joint quickly instead of holding the tip on the wire. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              FX-888DX comparison
             </Link>
             .
           </>
@@ -401,11 +401,11 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
           title="Soldering irons in our reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station with handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W station, digital adjustable temperature control, ESD safe. Best for serious hobbyists and repair work.",
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station, closed-loop control from 50 to 480°C, ESD safe. Hakko's replacement for the FX-888D, for serious hobbyists and repair benches.",
             },
             {
               name: "Pinecil V2",

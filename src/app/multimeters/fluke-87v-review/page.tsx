@@ -30,7 +30,7 @@ const review: ProductReviewContent = {
   assessment: [
     {
       heading: "Safety rating",
-      body: "The 87V's dual rating — CAT III 1000V and CAT IV 600V — is the highest in our multimeter guide, matched only by the Southwire 14070T. CAT IV covers the origin of an installation, such as the service entrance and utility connection, which is where the Fluke 117's CAT III 600V rating stops being enough."
+      body: "The 87V's dual rating — CAT III 1000V and CAT IV 600V — is the highest in our multimeter guide, matched only by the Fluke 179. CAT IV covers the origin of an installation, such as the service entrance and utility connection, which is where the Fluke 117's CAT III 600V rating stops being enough."
     },
     {
       heading: "Resolution and display",
@@ -44,9 +44,9 @@ const review: ProductReviewContent = {
       reason: "CAT III 600V and True RMS for less, plus built-in non-contact voltage detection. Enough for most residential electrical work."
     },
     {
-      name: "Southwire 14070T",
-      href: "/multimeters/southwire-14070t-review",
-      reason: "Matches the 87V's CAT III 1000V / CAT IV 600V rating and adds IP67 water and dust protection."
+      name: "Fluke 179",
+      href: "/multimeters/fluke-87v-vs-fluke-179",
+      reason: "Matches the 87V's CAT III 1000V / CAT IV 600V rating with True RMS, temperature and a 6,000-count display with bar graph, for less."
     },
     {
       name: "Klein Tools MM400",

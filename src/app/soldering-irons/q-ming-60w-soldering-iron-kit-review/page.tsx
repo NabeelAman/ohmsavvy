@@ -53,9 +53,9 @@ const review: ProductReviewContent = {
       reason: "A portable USB-C iron with a digital OLED display, without a stand in the box."
     },
     {
-      name: "Hakko FX888D",
-      href: "/soldering-irons/hakko-fx888d-review",
-      reason: "The digital bench station to upgrade to once you solder regularly."
+      name: "Hakko FX-888DX",
+      href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+      reason: "The digital bench station to upgrade to once you solder regularly, with five temperature presets."
     }
   ],
   faqs: [
@@ -69,7 +69,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "When should I upgrade from this kit to a digital station?",
-      answer: "The usual signal is frequency and precision: once you're soldering often enough that the dial's lack of exact, repeatable temperature starts costing you time — reworking joints, guessing at heat for a sensitive component, or noticing inconsistent results between sessions — that's when a digital station like the Hakko FX888D earns its higher price. For occasional repairs and first projects, this kit's simplicity is a feature, not a limitation to work around."
+      answer: "The usual signal is frequency and precision: once you're soldering often enough that the dial's lack of exact, repeatable temperature starts costing you time — reworking joints, guessing at heat for a sensitive component, or noticing inconsistent results between sessions — that's when a digital station like the Hakko FX-888DX earns its higher price. For occasional repairs and first projects, this kit's simplicity is a feature, not a limitation to work around."
     }
   ],
   roundup: {

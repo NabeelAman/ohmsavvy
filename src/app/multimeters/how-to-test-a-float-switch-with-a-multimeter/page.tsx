@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
   path: "/multimeters/how-to-test-a-float-switch-with-a-multimeter",
 });
 
-const southwire = picks.find((p) => p.name === "Southwire 14070T")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 
 const link = "text-accent hover:underline";
 
@@ -87,14 +87,14 @@ export default function HowToTestAFloatSwitchWithAMultimeterPage() {
         </>
       }
       aside={{
-        image: southwire.image,
-        alt: "Southwire 14070T TechnicianPRO IP67 waterproof digital multimeter",
+        image: fluke179.image,
+        alt: "Fluke 179 True RMS digital multimeter",
         caption: (
           <>
-            Working around sumps and tanks, a meter that tolerates water helps. The Southwire 14070T is IP67
-            rated, with CAT IV 600V / CAT III 1000V and True RMS. See our{" "}
-            <Link href="/multimeters/southwire-14070t-review" className={link}>
-              14070T review
+            The Fluke 179 has continuity, an analog bar graph that shows a flickering contact, and CAT IV 600V /
+            CAT III 1000V with True RMS for the pump circuit. See our{" "}
+            <Link href="/multimeters/fluke-87v-vs-fluke-179" className={link}>
+              Fluke 87V vs Fluke 179 comparison
             </Link>
             .
           </>

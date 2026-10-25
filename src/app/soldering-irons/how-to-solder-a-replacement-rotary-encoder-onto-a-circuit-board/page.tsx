@@ -24,7 +24,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-solder-a-replacement-rotary-encoder-onto-a-circuit-board",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 
@@ -50,13 +50,13 @@ export default function HowToSolderAReplacementRotaryEncoderOntoACircuitBoardPag
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece, a 70W temperature-controlled iron",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            Encoder mounting tabs are often tied into large copper areas, so a 70W station with digital
-            temperature control like the Hakko FX888D helps. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            Encoder mounting tabs are often tied into large copper areas, so a 100W station with digital
+            temperature control like the Hakko FX-888DX helps. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -393,11 +393,11 @@ export default function HowToSolderAReplacementRotaryEncoderOntoACircuitBoardPag
             title="Stations in our reviews"
             items={[
               {
-                name: "Hakko FX888D",
+                name: "Hakko FX-888DX",
                 image: hakko.image,
-                alt: "Hakko FX888D soldering station handpiece",
-                href: "/soldering-irons/hakko-fx888d-review",
-                note: "70W with digital, adjustable temperature control; best for serious hobbyists and repair work.",
+                alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+                href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+                note: "Five presets and digital 50–480°C control on a 100W station, for encoder tabs tied into large copper areas.",
               },
               {
                 name: "Weller WE1010NA",

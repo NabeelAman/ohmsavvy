@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-remove-solder-from-a-small-pcb-via",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
@@ -88,13 +88,13 @@ export default function HowToRemoveSolderFromASmallPcbViaPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            Vias tied into ground planes soak up heat. The Hakko FX888D is a 70W digital station noted for
-            thermal recovery under load. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              Hakko FX888D review
+            Vias tied into ground planes soak up heat. The Hakko FX-888DX is a 100W digital station with a
+            65W iron and T18 tips. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -297,11 +297,11 @@ export default function HowToRemoveSolderFromASmallPcbViaPage() {
           title="Irons from our soldering reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital station with strong thermal recovery and widely available genuine tips.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "Five presets let you jump between a via setting and a cooler one for nearby parts; 100W station, T18 tips.",
             },
             {
               name: "Pinecil V2",

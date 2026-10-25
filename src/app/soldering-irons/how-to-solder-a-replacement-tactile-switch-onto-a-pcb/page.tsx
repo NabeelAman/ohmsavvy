@@ -23,7 +23,7 @@ export const metadata = buildMetadata({
 });
 
 const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -304,11 +304,11 @@ export default function HowToSolderAReplacementTactileSwitchOntoAPcbPage() {
               note: "60W with an adjustable dial, five tips and a stand. Aimed at beginners and occasional use.",
             },
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital, adjustable station with widely available genuine replacement tips.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W digital station that takes the same T18 tips as the FX-888D it replaces, with a 65W iron for small switch legs.",
             },
           ]}
         />

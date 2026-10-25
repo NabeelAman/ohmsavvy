@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -326,11 +326,11 @@ export default function HowToSolderAWireToASmallPcbThroughHolePage() {
               note: "USB-C PD powered, about 12 s heat-up, OLED display. Compact for small boards and field work.",
             },
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital bench station with widely available genuine replacement tips.",
+              alt: "Hakko FX-888DX soldering station with rotary dial",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station on the same T18 tips as the FX-888D; a rotary dial and five presets let you save a setting for larger pads.",
             },
           ]}
         />

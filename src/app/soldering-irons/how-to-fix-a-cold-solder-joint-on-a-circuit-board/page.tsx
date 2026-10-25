@@ -22,7 +22,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/how-to-fix-a-cold-solder-joint-on-a-circuit-board",
 });
 
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
@@ -92,13 +92,13 @@ export default function HowToFixAColdSolderJointOnACircuitBoardPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station handpiece",
+        alt: "Hakko FX-888DX soldering station, a 100W temperature-controlled iron",
         caption: (
           <>
-            Reflowing needs a tip that holds temperature on contact. The Hakko FX888D is a 70W digital station
-            known for fast thermal recovery. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              FX888D review
+            Reflowing goes better with a tip that stays at its setpoint. The Hakko FX-888DX is a 100W digital
+            station rated for ±1°C idle stability. See our{" "}
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              Weller WE1010 vs Hakko FX-888DX comparison
             </Link>
             .
           </>
@@ -305,11 +305,11 @@ export default function HowToFixAColdSolderJointOnACircuitBoardPage() {
           title="Irons from our soldering reviews"
           items={[
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W station with digital adjustable temperature. For serious hobbyists and repair work.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station driving the FX-8801 handpiece, with digital 50–480°C control and five presets for repeatable reflow temperatures.",
             },
             {
               name: "Pinecil V2",

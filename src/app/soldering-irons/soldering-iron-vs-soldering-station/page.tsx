@@ -20,7 +20,7 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
@@ -44,13 +44,13 @@ export default function SolderingIronVsSolderingStationPage() {
       }
       aside={{
         image: hakko.image,
-        alt: "Hakko FX888D soldering station with iron and stand",
+        alt: "Hakko FX-888DX soldering station",
         caption: (
           <>
-            A base-unit station like the Hakko FX888D is the classic closed-loop design this page
+            A base-unit station like the Hakko FX-888DX is the classic closed-loop design this page
             compares against a simple iron. See our{" "}
-            <Link href="/soldering-irons/hakko-fx888d-review" className={link}>
-              full review
+            <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>
+              FX-888DX vs WE1010 comparison
             </Link>
             .
           </>
@@ -248,7 +248,7 @@ export default function SolderingIronVsSolderingStationPage() {
         <p className="text-muted leading-7">
           If you solder often, work on ESD-sensitive boards, or regularly hit large joints, a station
           like the{" "}
-          <Link href="/soldering-irons/hakko-fx888d-review" className={link}>Hakko FX888D</Link>{" "}
+          <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>Hakko FX-888DX</Link>{" "}
           or{" "}
           <Link href="/soldering-irons/weller-we1010na-review" className={link}>Weller WE1010NA</Link>{" "}
           earns its price through more consistent joints over time. For occasional use or field repairs,
@@ -263,11 +263,11 @@ export default function SolderingIronVsSolderingStationPage() {
             title="Stations and irons compared here"
             items={[
               {
-                name: "Hakko FX888D",
+                name: "Hakko FX-888DX",
                 image: hakko.image,
-                alt: "Hakko FX888D soldering station with iron and stand",
-                href: "/soldering-irons/hakko-fx888d-review",
-                note: "Closed-loop base-unit station, 70W.",
+                alt: "Hakko FX-888DX soldering station",
+                href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+                note: "Closed-loop base-unit station, 100W (65W iron).",
               },
               {
                 name: "Weller WE1010NA",

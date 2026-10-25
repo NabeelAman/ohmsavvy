@@ -25,7 +25,7 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
-const hakko = picks.find((p) => p.name === "Hakko FX888D")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
 
 const link = "text-accent hover:underline";
@@ -373,11 +373,11 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
               note: "About 60W from 20V USB-C PD, up to 88W at 24V, with an OLED display. Pocket-sized for repairs away from a bench.",
             },
             {
-              name: "Hakko FX888D",
+              name: "Hakko FX-888DX",
               image: hakko.image,
-              alt: "Hakko FX888D soldering station handpiece",
-              href: "/soldering-irons/hakko-fx888d-review",
-              note: "70W digital station with fast thermal recovery and widely available replacement tips.",
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "Digital control from 50 to 480°C lets you pick a lower setpoint for thin headphone conductors; T18 tips and five presets.",
             },
             {
               name: "Q-MING 60W Kit",

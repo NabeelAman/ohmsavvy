@@ -25,7 +25,7 @@ const review: ProductReviewContent = {
   ],
   skipIf: [
     "You want a stand and a wide tip range out of the box",
-    "You solder for hours at a dedicated bench — a station like the Hakko FX888D suits that better"
+    "You solder for hours at a dedicated bench — a station like the Hakko FX-888DX suits that better"
   ],
   tradeOffs: "The Pinecil's portability comes at the cost of extras: there's no stand included by default, and full power needs a 24V supply, so factor those add-on costs into the price before comparing it directly against a complete kit.",
   assessment: [
@@ -44,9 +44,9 @@ const review: ProductReviewContent = {
   ],
   alternatives: [
     {
-      name: "Hakko FX888D",
-      href: "/soldering-irons/hakko-fx888d-review",
-      reason: "The bench station to pair it with, offering fast thermal recovery and widely available tips."
+      name: "Hakko FX-888DX",
+      href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+      reason: "The bench station to pair it with: 100W, closed-loop control and Hakko's T18 tips."
     },
     {
       name: "Q-MING 60W Kit",

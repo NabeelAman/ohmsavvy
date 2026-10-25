@@ -12,7 +12,7 @@ export const metadata = buildMetadata({
   path: "/soldering-irons/soldering-iron-buying-guide",
 });
 
-const featured = ["Hakko FX888D", "Pinecil V2", "Weller WE1010NA"].map(
+const featured = ["Hakko FX-888DX", "Pinecil V2", "Weller WE1010NA"].map(
   (name) => picks.find((p) => p.name === name)!
 );
 

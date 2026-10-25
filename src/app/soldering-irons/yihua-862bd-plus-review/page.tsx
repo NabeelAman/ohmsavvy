@@ -39,7 +39,7 @@ const review: ProductReviewContent = {
     },
     {
       heading: "ESD and voltage: the listing and the spec sheet disagree",
-      body: "The US Amazon listing we link to says this unit is ESD safe, with a tip-to-ground resistance under 2 ohms, and that it runs on 110–127V with a US plug. YIHUA's own spec sheet for the model family lists AC 220V and makes no ESD-safety claim, and the official product photo shows no ESD-safe badge, unlike the separate 862BD++ variant. Check the listing you actually order; if maker-confirmed ESD safety is a requirement for your bench, the Weller WE1010NA or Hakko FX888D is the safer choice.",
+      body: "The US Amazon listing we link to says this unit is ESD safe, with a tip-to-ground resistance under 2 ohms, and that it runs on 110–127V with a US plug. YIHUA's own spec sheet for the model family lists AC 220V and makes no ESD-safety claim, and the official product photo shows no ESD-safe badge, unlike the separate 862BD++ variant. Check the listing you actually order; if maker-confirmed ESD safety is a requirement for your bench, the Weller WE1010NA or Hakko FX-888DX is the safer choice.",
     },
   ],
   alternatives: [
@@ -49,9 +49,9 @@ const review: ProductReviewContent = {
       reason: "A dedicated, ESD-safe soldering station if you don't need hot air rework.",
     },
     {
-      name: "Hakko FX888D",
-      href: "/soldering-irons/hakko-fx888d-review",
-      reason: "ESD safe with a wide genuine-tip ecosystem for general soldering work, though Hakko has now discontinued it.",
+      name: "Hakko FX-888DX",
+      href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+      reason: "ESD safe, 100W and built on Hakko's T18 tip range for general soldering work; it replaces the discontinued FX888D.",
     },
   ],
   faqs: [
@@ -65,7 +65,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Do I need the hot air side if I only do through-hole soldering?",
-      answer: "No, and if that's genuinely all you do, a dedicated iron like the Hakko FX888D or Weller WE1010NA is the simpler, more focused purchase. The 862BD+'s value is specifically for buyers who need SMD/BGA rework capability in addition to standard soldering.",
+      answer: "No, and if that's genuinely all you do, a dedicated iron like the Hakko FX-888DX or Weller WE1010NA is the simpler, more focused purchase. The 862BD+'s value is specifically for buyers who need SMD/BGA rework capability in addition to standard soldering.",
     },
   ],
   roundup: {

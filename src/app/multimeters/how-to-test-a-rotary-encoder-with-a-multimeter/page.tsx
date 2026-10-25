@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
   path: "/multimeters/how-to-test-a-rotary-encoder-with-a-multimeter",
 });
 
-const southwire = picks.find((p) => p.name === "Southwire 14070T")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 
 const link = "text-accent hover:underline";
 
@@ -43,13 +43,13 @@ export default function HowToTestARotaryEncoderWithAMultimeterPage() {
         </>
       }
       aside={{
-        image: southwire.image,
-        alt: "Southwire 14070T digital multimeter",
+        image: fluke179.image,
+        alt: "Fluke 179 digital multimeter",
         caption: (
           <>
             Continuity and resistance are the only ranges a static encoder test needs. See our{" "}
-            <Link href="/multimeters/southwire-14070t-review" className={link}>
-              Southwire 14070T review
+            <Link href="/multimeters/fluke-87v-vs-fluke-179" className={link}>
+              Fluke 87V vs Fluke 179 comparison
             </Link>
             .
           </>

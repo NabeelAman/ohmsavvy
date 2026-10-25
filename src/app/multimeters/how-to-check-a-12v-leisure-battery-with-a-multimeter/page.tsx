@@ -24,7 +24,7 @@ export const metadata = buildMetadata({
   path: "/multimeters/how-to-check-a-12v-leisure-battery-with-a-multimeter",
 });
 
-const southwire = picks.find((p) => p.name === "Southwire 14070T")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
 
@@ -49,14 +49,14 @@ export default function HowToCheckA12vLeisureBatteryWithAMultimeterPage() {
         </>
       }
       aside={{
-        image: southwire.image,
-        alt: "Southwire 14070T TechnicianPRO waterproof multimeter, front view",
+        image: fluke179.image,
+        alt: "Fluke 179 True RMS digital multimeter, front view",
         caption: (
           <>
-            The Southwire 14070T is IP67-rated with a built-in work light, handy in a damp battery locker or
-            bilge. Any DC volts range will run these checks. See our{" "}
-            <Link href="/multimeters/southwire-14070t-review" className={link}>
-              14070T review
+            The Fluke 179 adds Min/Max-Average recording, handy for catching the lowest voltage while a
+            load runs. Any DC volts range will run these checks. See our{" "}
+            <Link href="/multimeters/fluke-87v-vs-fluke-179" className={link}>
+              Fluke 87V vs Fluke 179 comparison
             </Link>
             .
           </>
@@ -335,11 +335,11 @@ export default function HowToCheckA12vLeisureBatteryWithAMultimeterPage() {
           title="Meters from our reviews"
           items={[
             {
-              name: "Southwire 14070T",
-              image: southwire.image,
-              alt: "Southwire 14070T waterproof multimeter",
-              href: "/multimeters/southwire-14070t-review",
-              note: "IP67 waterproof, CAT IV 600V / CAT III 1000V, with a work light and a Low Z function.",
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 True RMS digital multimeter",
+              href: "/multimeters/fluke-87v-vs-fluke-179",
+              note: "6,000-count display and Min/Max-Average recording to catch voltage sag while a load runs. CAT IV 600V / CAT III 1000V.",
             },
             {
               name: "AstroAI DM6000AR",

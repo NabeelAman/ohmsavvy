@@ -20,21 +20,21 @@ const review: ProductReviewContent = {
   considerIf: [
     "You want Fluke's reliability record without paying for electrician-specific extras",
     "You work across general electrical and electronics tasks, not exclusively panel work",
-    "You'd rather have capacitance and frequency measurement than non-contact voltage detection",
+    "You don't need non-contact voltage detection or a low-impedance mode and would rather not pay for them",
   ],
   skipIf: [
     "You specifically want non-contact voltage (NCV) detection built in — that's the Fluke 117",
     "You want the AutoVolt AC/DC auto-selector or a low-impedance (LoZ) mode",
   ],
-  tradeOffs: "The 115 and 117 share the same core True RMS accuracy, CAT III 600V rating, and 6,000-count display. The 117 adds NCV detection and AutoVolt/LoZ for electrician-specific work; the 115 is the more general-purpose field meter at a similar price.",
+  tradeOffs: "The 115 and 117 share the same core True RMS accuracy, CAT III 600V rating, and 6,000-count display. The 117 adds NCV detection and AutoVolt/LoZ for electrician-specific work; the 115 is the more general-purpose field meter and typically costs less.",
   assessment: [
     {
       heading: "Safety and accuracy",
       body: "CAT III 600V and True RMS put the 115 on equal footing with the 117 for household panels, fixed building wiring, and general electrical troubleshooting. Auto-ranging and a 6,000-count backlit display keep operation quick and readable.",
     },
     {
-      heading: "What it adds over the 117: capacitance and frequency",
-      body: "Both meters measure resistance, continuity, and diode test, but the 115's spec sheet explicitly lists capacitance (up to 9,999 µF) and frequency (up to 50 kHz) measurement — useful for electronics and motor/drive diagnostic work beyond pure electrical panels, where the 117's electrician-focused feature set doesn't add as much.",
+      heading: "The same core measurements, without the electrician extras",
+      body: "The 115 measures everything the 117 does apart from NCV and AutoVolt: resistance, continuity, diode test, capacitance from 1 nF to 9,999 µF, frequency from 99.99 Hz to 50.00 kHz, 6 A and 10 A current ranges, and Min/Max/Avg with display hold, all on a 6,000-count display with a 33-segment bar graph. What it leaves out is the 117's VoltAlert non-contact detection and AutoVolt with its low-impedance (LoZ) input. If you work on electronics, motors and drives more than live panels, you give up little and typically pay less. Neither meter measures temperature (that's the Fluke 116) or has µA/mA ranges.",
     },
     {
       heading: "Hands-on in our lab",
@@ -45,7 +45,7 @@ const review: ProductReviewContent = {
     {
       name: "Fluke 117",
       href: "/multimeters/fluke-117-review",
-      reason: "Adds non-contact voltage detection and AutoVolt/LoZ — worth the same price if you specifically do electrician-focused panel work.",
+      reason: "Adds non-contact voltage detection and AutoVolt/LoZ — worth the extra cost if you specifically do electrician-focused panel work.",
     },
     {
       name: "Klein Tools MM400",
@@ -69,7 +69,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Does the Fluke 115 measure capacitance?",
-      answer: "Yes — up to 9,999 µF, along with frequency up to 50 kHz and a diode test. This is one area where the 115's spec sheet is actually more explicit than the 117's about electronics-oriented measurement, even though both share the same core voltage/current/resistance accuracy.",
+      answer: "Yes — from 1 nF to 9,999 µF, along with frequency from 99.99 Hz to 50.00 kHz and a diode test. The Fluke 117 has exactly the same capacitance and frequency ranges, so this isn't a reason to pick one over the other; the 115's case is getting those measurements without paying for the 117's NCV and AutoVolt/LoZ.",
     },
   ],
   roundup: {

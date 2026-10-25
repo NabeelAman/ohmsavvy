@@ -167,9 +167,11 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best 3-in-1 Handheld",
-    // Specs per hantek.com (Hantek2000 series page). Photo: hantek.com, bezel reads "Hantek2D72".
+    // Specs per hantek.com (Hantek2000 series page). Photo: hantek.com's own product image
+    // times out in a real browser (hotlink/referrer protection on their CDN, confirmed
+    // 2026-10-25 — a bare curl succeeds but every in-browser load hits the 8s timeout), so
+    // no image is used rather than ship a broken one.
     name: "Hantek 2D72",
-    image: "https://www.hantek.com/uploadpic/hantek/image/20200530/20200530083942_1184605554.jpg",
     rating: 4.3,
     bottomLine: "A handheld oscilloscope, multimeter and signal generator in one: 70 MHz, two channels, battery powered.",
     verdict:

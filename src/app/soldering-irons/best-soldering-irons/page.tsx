@@ -168,6 +168,107 @@ export const picks: Pick[] = [
     cons: ["400°C ceiling is lower than bench stations", "Maximum wattage not clearly stated by Miniware", "Amazon listing is a kit sold by a third-party seller"],
     ctaHref: "https://www.amazon.com/dp/B0BF63H4ZC?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Budget Station",
+    // Specs per the official Amazon listing (B082F1WKP9) and yihua-soldering.com (926LED-III page): 90–480°C, PID, LED display, °C/°F, calibration, sleep 5/10/30 min, 900M-series tips. Listing says 60W; YIHUA's page says 130W max / 18W rated, so we quote the listing's 60W.
+    // Photo: main image of this exact ASIN, "YIHUA 926 LED III" printed on the station, verified by eye. Amazon-buyable 2026-10-24.
+    // Named "YIHUA 926 III" after Amazon's part number; the unit itself is printed "926 LED III".
+    name: "YIHUA 926 III",
+    image: "https://m.media-amazon.com/images/I/71yimJ+NaFL._AC_SL1500_.jpg",
+    rating: 4.3,
+    bottomLine: "A compact PID station with sleep and calibration, sold as a full kit with helping hands and six tips.",
+    verdict:
+      "The 926 LED III is a small digital station with the iron holder built into the body and tip slots in the rear guard. It covers 90–480°C with PID control, switches between °C and °F, supports digital calibration and sleeps after 5, 10 or 30 minutes idle. The Amazon kit adds two helping hands, six 900M-series tips, lead-free solder, a solder sucker and ESD-safe tweezers. Power figures conflict: the listing says 60W, while YIHUA's own page lists 130W maximum and 18W rated.",
+    specs: [
+      { label: "Power", value: "60W per listing (YIHUA site: 130W max, 18W rated)" },
+      { label: "Heat-up time", value: "Not stated by YIHUA" },
+      { label: "Temperature control", value: "PID, LED display, 90–480°C" },
+      { label: "Best for", value: "First station for hobby electronics" },
+    ],
+    pros: ["Adjustable sleep timer and digital calibration", "Six 900M-series tips and helping hands in the kit", "Holder built into the station saves bench space"],
+    cons: ["Wattage figures conflict between the listing and YIHUA's site", "Station ESD safety isn't stated (only the tweezers are ESD safe)"],
+    ctaHref: "https://www.amazon.com/dp/B082F1WKP9?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Budget Kit with Long Warranty",
+    // Specs per xtronicusa.com (3020-XTS page) and the official Amazon listing (B079VVHPPS): 75W station (60W iron + 15W iron control board), 200–480°C, PID, ±2°C static, ESD safe, 10-min sleep with auto cool-down, 110V only, 3-year warranty.
+    // Photo: main image of this exact ASIN, "X-TRONIC 3000 SERIES MODEL#3020-XTS" printed on the station, verified by eye. Amazon-buyable 2026-10-24.
+    name: "X-Tronic 3020-XTS",
+    image: "https://m.media-amazon.com/images/I/71-yGGkqc1L._AC_SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "An ESD-safe PID station from a US-based brand, with a 3-year warranty and a 10-minute sleep timer.",
+    verdict:
+      "X-Tronic's 3020-XTS is a 75W station (60W to the iron, 15W to the iron's control board) with PID control, a 200–480°C range, ±2°C static stability and a blue LED readout with a C/F switch. It's ESD safe, sleeps and cools down after 10 minutes, and runs on 110V only. The Amazon kit includes two helping hands, a silicone mat, five spare tips, a 50 g lead-free roll and a brass tip cleaner. X-Tronic, based in Lincoln, Nebraska, backs it with a 3-year warranty. Its own page also quotes 90–480°C for the iron, so the low end of the range is inconsistent.",
+    specs: [
+      { label: "Power", value: "75W station (60W iron)" },
+      { label: "Heat-up time", value: "Under 30 s, 200 to 480°C (X-Tronic's listing)" },
+      { label: "Temperature control", value: "PID, LED display, 200–480°C, ±2°C" },
+      { label: "Best for", value: "Hobby benches that want a long warranty" },
+    ],
+    pros: ["ESD safe with a 10-minute sleep and auto cool-down", "3-year warranty and US-based support", "Kit includes helping hands, silicone mat and five tips"],
+    cons: ["110V only, no 220V version", "X-Tronic's pages give two different minimum temperatures"],
+    ctaHref: "https://www.amazon.com/dp/B079VVHPPS?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Value ESD-Safe Station",
+    // Specs per the official Amazon listing (B08RBPHJNQ): "75W equivalent", 200–480°C, PID, ESD safe, °C/°F, calibration, built-in transformer, 907E iron, 900M tips, 110–127V. Listing Wattage row says 120W (conflict). yihua-soldering.com 939D+ page (220V model): ±1°C static, 200–450°C.
+    // Photo: main image of this exact ASIN, "YIHUA 939D+" and "ESD SAFE" printed on the station, "907E" on the iron, verified by eye. Amazon-buyable 2026-10-24.
+    name: "YIHUA 939D+",
+    image: "https://m.media-amazon.com/images/I/714BoB7wVqL._AC_SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "A transformer-based, ESD-safe station with a metal front panel and a detachable iron, at a hobby price.",
+    verdict:
+      "The 939D+ is a transformer-based station with PID temperature control, a 200–480°C range, °C/°F display, temperature calibration and error detection. The station and its 907E detachable iron are ESD safe, the front panel is brushed aluminum and the iron stand is a separate metal unit. It takes YIHUA's 900M tips. The listing calls it \"75W equivalent\" but its spec table says 120W, and YIHUA's own page (for a 220V model) quotes a 450°C maximum, so treat the headline numbers with care.",
+    specs: [
+      { label: "Power", value: "\"75W equivalent\" (listing; spec table says 120W)" },
+      { label: "Heat-up time", value: "Not stated by YIHUA" },
+      { label: "Temperature control", value: "PID, LED display, 200–480°C" },
+      { label: "Best for", value: "ESD-sensitive hobby and repair work" },
+    ],
+    pros: ["ESD-safe station and iron", "Built-in transformer and metal front panel", "Uses common 900M-series tips"],
+    cons: ["Power and maximum temperature figures conflict between sources", "Sleep mode isn't stated for this US version"],
+    ctaHref: "https://www.amazon.com/dp/B08RBPHJNQ?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Cheapest Digital Kit",
+    // Specs per the official Amazon listing (B08PZBPXLZ; no maker site found): 80W, 110–120V, 180–480°C, LCD, °C/°F, temperature memory, calibration, 5-min auto sleep, ceramic core, 24-month replacement. "Heats up in 10 seconds" is the listing's own claim.
+    // Photo: main image of this exact ASIN; no brand or model printed on the iron, used under the exact-ASIN rule; verified by eye. Amazon-buyable 2026-10-24.
+    name: "Liouhoum 80W Soldering Iron Kit",
+    image: "https://m.media-amazon.com/images/I/71NB0ncAkvL._AC_SL1500_.jpg",
+    rating: 4.2,
+    bottomLine: "A digital-readout pen iron with auto sleep for about the price of a spool of solder.",
+    verdict:
+      "Liouhoum's 80W kit is a plug-in pen iron with an LCD, so you set and read 180–480°C directly instead of guessing from a dial. Per the listing, it drops its temperature after 5 minutes on the stand, remembers the last setting, supports calibration and switches between °C and °F. The kit includes five tips, rosin-core solder, flux, a sponge and a basic stand. There's no station, no ESD rating and no stated tip series, so it suits starter and occasional repair work rather than a daily bench.",
+    specs: [
+      { label: "Power", value: "80W, 110–120V" },
+      { label: "Heat-up time", value: "10 s (listing's claim)" },
+      { label: "Temperature control", value: "LCD, buttons, 180–480°C" },
+      { label: "Best for", value: "Beginners on a tight budget" },
+    ],
+    pros: ["Digital temperature readout at a very low price", "Auto sleep after 5 minutes on the stand", "24-month replacement offered by the seller"],
+    cons: ["No ESD rating or named tip series", "Light stand and basic accessories"],
+    ctaHref: "https://www.amazon.com/dp/B08PZBPXLZ?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best High-Power Smart Iron",
+    // Specs per fnirsi.com (HS-02 page, covers HS-02A/B) and the official Amazon listing (B0DBLMH1HS): 100W max, 9–20V USB-C PD/QC, 100–450°C, 0.96" IPS, 3 presets, calibration, sleep/auto-off/child lock, 6 tips (K, KU, JS, I, C2, B), 100W adapter in kit, 61 g. Tinning time: FNIRSI site 2 s, listing 3 s.
+    // Photo: main image of this exact ASIN, "HS-02A" on the iron's screen and FNIRSI on iron and adapter, verified by eye. Amazon-buyable 2026-10-24.
+    name: "FNIRSI HS-02A",
+    image: "https://m.media-amazon.com/images/I/71hG7yeK8mL._AC_SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "A 100W USB-C smart iron with a color screen, three presets and a 100W charger in the box.",
+    verdict:
+      "The HS-02A is a pen-sized smart iron that draws up to 100W from USB-C PD or QC (9–20V), covers 100–450°C and shows settings on a 0.96-inch color screen. It stores three temperature presets, supports calibration and has sleep, auto power-off and a child lock. This kit includes six tips (K, KU, JS, I, C2, B), a 100W charger and a mini stand, and the iron weighs 61 g. It has no battery, so it always needs a supply, and FNIRSI lists a different tip set for the HS-02B, so buy HS-02A tips.",
+    specs: [
+      { label: "Power", value: "Up to 100W, USB-C PD/QC 9–20V" },
+      { label: "Heat-up time", value: "2–3 s tinning (FNIRSI's figures differ)" },
+      { label: "Temperature control", value: "Digital, color screen, 100–450°C, 3 presets" },
+      { label: "Best for", value: "Portable kits that need real power" },
+    ],
+    pros: ["100W charger and six tips included", "Three presets plus calibration", "Only 61 g"],
+    cons: ["No built-in battery: needs a PD/QC supply", "FNIRSI's 2-year warranty applies to direct orders, per its site"],
+    ctaHref: "https://www.amazon.com/dp/B0DBLMH1HS?tag=ohmsavvy-20",
+  },
 ];
 
 const faqs = [

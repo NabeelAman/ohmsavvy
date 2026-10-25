@@ -3025,6 +3025,25 @@ export const content: ContentEntry[] = [
     description: "Reserve, modes, TOU schedules and export limits",
     href: "/multimeters/why-does-my-home-energy-storage-system-stop-discharging-during-peak-electricity-prices",
   },
+  {
+    category: "soldering-irons",
+    type: "use-case-guide",
+    title: "For Electronics (Top 10, 2026)",
+    description: "Top 10 irons and stations ranked for electronics work",
+    href: "/soldering-irons/best-soldering-irons-for-electronics",
+    picks: [
+      "Hakko FX-888DX",
+      "Weller WE1010NA",
+      "YIHUA 862BD+",
+      "YIHUA 939D+",
+      "X-Tronic 3020-XTS",
+      "Pinecil V2",
+      "FNIRSI HS-02A",
+      "Miniware TS101",
+      "YIHUA 926 III",
+      "Liouhoum 80W Soldering Iron Kit",
+    ],
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

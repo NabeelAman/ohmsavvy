@@ -976,6 +976,13 @@ export const content: ContentEntry[] = [
     href: "/oscilloscopes/oscilloscope-vs-multimeter",
   },
   {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "Do You Need an Oscilloscope for Electronics Repair?",
+    description: "Which repair faults a meter finds, and which only a scope shows",
+    href: "/oscilloscopes/do-you-need-an-oscilloscope-for-electronics-repair",
+  },
+  {
     category: "multimeters",
     type: "use-case-guide",
     title: "For HVAC Technicians",
@@ -3071,6 +3078,48 @@ export const content: ContentEntry[] = [
       "YIHUA 926 III",
       "Liouhoum 80W Soldering Iron Kit",
     ],
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does My Multimeter Show the Wrong Voltage?",
+    description: "Settings, jacks, battery, True RMS and circuit loading",
+    href: "/multimeters/why-does-my-multimeter-show-the-wrong-voltage",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does My Multimeter Show Voltage When Measuring a Disconnected Circuit?",
+    description: "Ghost voltage, coupling and confirming with LoZ",
+    href: "/multimeters/why-does-my-multimeter-show-voltage-when-measuring-a-disconnected-circuit",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does My Multimeter Show Different Resistance Values on a Circuit Board?",
+    description: "Parallel paths, junctions and charging capacitors",
+    href: "/multimeters/why-does-my-multimeter-show-different-resistance-values-on-a-circuit-board",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does My Multimeter Continuity Tester Keep Beeping?",
+    description: "Real shorts, windings, thresholds and meter faults",
+    href: "/multimeters/why-does-my-multimeter-continuity-tester-keep-beeping",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does My Multimeter Show the Wrong Diode Voltage?",
+    description: "Forward voltage by diode type, in-circuit paths and LEDs",
+    href: "/multimeters/why-does-my-multimeter-show-the-wrong-diode-voltage",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Can You Measure Current Without Breaking the Circuit With a Multimeter?",
+    description: "Clamps, line splitters and the shunt method",
+    href: "/multimeters/can-you-measure-current-without-breaking-the-circuit-with-a-multimeter",
   },
 ];
 

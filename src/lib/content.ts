@@ -664,6 +664,20 @@ export const content: ContentEntry[] = [
   {
     category: "soldering-irons",
     type: "how-to-guide",
+    title: "Why Does My Soldering Iron Temperature Keep Dropping?",
+    description: "Tip, power, supply and sleep-mode causes of a sagging temperature",
+    href: "/soldering-irons/why-does-my-soldering-iron-temperature-keep-dropping",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Why Does My Soldering Iron Take Too Long to Heat Up?",
+    description: "Compare with the maker's figure, then supply, tip, element and settings",
+    href: "/soldering-irons/why-does-my-soldering-iron-take-too-long-to-heat-up",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
     title: "Soldering Iron vs. Soldering Station",
     description: "What a closed-loop station actually buys you over a wand iron",
     href: "/soldering-irons/soldering-iron-vs-soldering-station",

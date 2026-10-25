@@ -529,7 +529,8 @@
       "keyword": "how to test a fuse with a multimeter",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "already live at /multimeters/how-to-test-a-fuse-with-a-multimeter"
     },
     {
       "keyword": "how to test amperage with a multimeter",
@@ -1057,13 +1058,15 @@
       "keyword": "soldering iron tip not tinning",
       "category": "soldering-irons",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "already live at /soldering-irons/why-wont-solder-stick-to-soldering-iron-tip"
     },
     {
       "keyword": "why does my solder not stick",
       "category": "soldering-irons",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "already live at /soldering-irons/why-wont-solder-stick-to-soldering-iron-tip"
     },
     {
       "keyword": "cold solder joint causes",

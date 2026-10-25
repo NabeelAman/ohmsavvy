@@ -511,6 +511,27 @@ export const content: ContentEntry[] = [
   {
     category: "multimeters",
     type: "how-to-guide",
+    title: "How to Test a Fuse With a Multimeter",
+    description: "Continuity or ohms across a removed fuse, and reading the result",
+    href: "/multimeters/how-to-test-a-fuse-with-a-multimeter",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Multimeter Symbols Explained",
+    description: "Every dial, jack, display and safety marking decoded",
+    href: "/multimeters/multimeter-symbols-explained",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "AC vs. DC Voltage: What's the Difference?",
+    description: "How each behaves, where it is used, and RMS vs. peak",
+    href: "/multimeters/ac-vs-dc-voltage",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
     title: "How to Measure Voltage Across a Resistor",
     description: "No isolation needed, plus using the reading to calculate current",
     href: "/multimeters/how-to-measure-voltage-across-a-resistor",
@@ -674,6 +695,13 @@ export const content: ContentEntry[] = [
     title: "Why Does Solder Stick to the Tip?",
     description: "Dross, excess solder, and oxidation build-up explained",
     href: "/soldering-irons/why-solder-sticks-to-tip",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Why Won't Solder Stick to the Soldering Iron Tip?",
+    description: "An oxidised tip, how to re-tin it, and when to replace it",
+    href: "/soldering-irons/why-wont-solder-stick-to-soldering-iron-tip",
   },
   {
     category: "soldering-irons",

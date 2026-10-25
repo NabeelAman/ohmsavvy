@@ -78,7 +78,7 @@ export default function WhyWontSolderStickToSolderingIronTipPage() {
       faq={[
         {
           q: "Can I sand or file a soldering iron tip to make solder stick?",
-          a: "Not on a standard plated tip. Modern tips have a thin iron plating over a copper core, and filing or sanding removes it. Solder will stick to the bare copper for a while, but copper dissolves into solder quickly, so the tip pits and fails much sooner. Use brass wool and tip tinner instead.",
+          a: "Not on a standard plated tip. Per Hakko's own tip-care guide, a modern tip is a copper core (for heat transfer) electroplated with iron — the iron is the actual working surface, and a chromium flash protects the non-wetting areas from corrosion. Filing or sanding cuts through that plating to bare copper. Copper dissolves into molten solder fast: one materials study measured a copper sample losing roughly a third of its mass in 10 minutes at 280°C, with the dissolution rate climbing further at higher temperatures and running faster in lead-free alloys than in leaded ones. A filed tip pits and fails in a similar timeframe. Use brass wool and tip tinner instead.",
         },
         {
           q: "Is a black soldering iron tip ruined?",
@@ -86,7 +86,7 @@ export default function WhyWontSolderStickToSolderingIronTipPage() {
         },
         {
           q: "Why does lead-free solder stick to the tip less well than leaded?",
-          a: "Lead-free alloys melt at a higher temperature and wet more slowly, and the higher working temperature also speeds up tip oxidation. Keep the tip freshly tinned, use enough flux, and avoid running hotter than the joint needs.",
+          a: "Mostly the melting point. Leaded Sn63Pb37 is a true eutectic alloy that melts at a single point, 183°C (361°F), per Kester's solder wire datasheet. The common lead-free alloy SAC305 doesn't melt until roughly 217–221°C depending on the manufacturer's figures (Kester and MG Chemicals both publish numbers in that range) — about 35°C hotter. Irons running lead-free are set correspondingly higher, and that extra heat both wets more slowly and oxidises the tip faster. Keep the tip freshly tinned, use enough flux, and avoid running hotter than the joint needs.",
         },
         {
           q: "Is this the same problem as solder sticking to the tip and not flowing onto the joint?",
@@ -176,9 +176,12 @@ export default function WhyWontSolderStickToSolderingIronTipPage() {
           For a tip that is still dark, use a tip tinner (sometimes sold as a tip activator or refresher): a
           small tin of solder powder mixed with an aggressive flux. Roll the hot tip in it until the working
           end turns bright and silver, then wipe once on the brass wool and immediately add fresh solder. A
-          generous dab of rosin flux followed by solder works on milder cases. You may need two or three
-          rounds. Tip tinner is more aggressive than ordinary flux, so use it for recovery rather than as a
-          routine cleaner.
+          generous dab of rosin flux followed by solder works on milder cases — the oxide-stripping power in
+          a mildly-activated rosin flux like Kester 182 comes from an amine salt (per Kester&apos;s own
+          datasheet, diethylamine hydrochloride at a small fraction of the formula) dissolved in the rosin,
+          not the rosin itself, which is why a plain, non-activated rosin does much less work on an already-
+          oxidised tip. You may need two or three rounds. Tip tinner is more aggressive than ordinary flux,
+          so use it for recovery rather than as a routine cleaner.
         </p>
       </section>
 

@@ -7,7 +7,7 @@ import {
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
-import { picks } from "../best-multimeters/page";
+import { getAllPicks } from "@/lib/catalog";
 
 const description =
   "How to measure microamps with a digital multimeter: use the dedicated µA range, connect in series, and why this range matters for leakage, bias, and sensor currents.";
@@ -18,7 +18,8 @@ export const metadata = buildMetadata({
   path: "/multimeters/how-to-measure-microamps-with-a-multimeter",
 });
 
-const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const allMultimeterPicks = getAllPicks("multimeters");
+const fluke116 = allMultimeterPicks.find((p) => p.name === "Fluke 116")!;
 
 const link = "text-accent hover:underline";
 
@@ -40,13 +41,15 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
         </>
       }
       aside={{
-        image: fluke117.image,
-        alt: "Fluke 117 digital multimeter",
+        image: fluke116.image,
+        alt: "Fluke 116 digital multimeter",
         caption: (
           <>
-            Most general-purpose multimeters include a dedicated µA range. See our{" "}
-            <Link href="/multimeters/fluke-117-review" className={link}>
-              Fluke 117 review
+            Not every general-purpose meter has a µA range — Fluke&apos;s own spec sheet for the 114/115/116/117
+            family lists it as 116-only. The Fluke 116 covers 600.0 µA AC/DC with 0.1 µA resolution,
+            originally built for HVAC flame-sensor checks. See it in our{" "}
+            <Link href="/multimeters/best-multimeter-for-hvac-technicians" className={link}>
+              best multimeter for HVAC technicians guide
             </Link>
             .
           </>
@@ -105,8 +108,8 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
         <h2 id="where-microamps-matter" className="text-xl font-semibold mb-3">Where microamp currents actually show up</h2>
         <InfoCards
           items={[
-            { label: "Coin-cell self-discharge", desc: "RTC and memory-backup batteries often draw only single-digit µA when idle." },
-            { label: "Op-amp input bias current", desc: "Many op-amps specify input bias current in the nA to low-µA range." },
+            { label: "Coin-cell self-discharge", desc: "A CR2032's own datasheet puts self-discharge at roughly 1–3% of capacity per year, which works out to hundreds of nanoamps to a few microamps of continuous draw." },
+            { label: "Op-amp input bias current", desc: "Usually nanoamps or even picoamps, not microamps — TI's datasheet for the bipolar-input LM358 gives a typical -20 nA, and Diodes Inc.'s datasheet for the JFET-input TL072 gives a typical 65 pA. µA-level bias current only shows up on older or unusually leaky parts." },
             { label: "Photodiode dark current", desc: "Current flowing with no light present, typically a few µA or less." },
             { label: "Sleep-mode microcontroller draw", desc: "Modern low-power MCUs can idle at single-digit µA in deep sleep." },
           ]}
@@ -145,6 +148,13 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
       <section>
         <h2 id="quick-reference" className="text-xl font-semibold mb-3">Quick reference</h2>
         <p className="text-muted leading-7">
+          A µA range on a real meter looks like this: the Fluke 116&apos;s own spec sheet lists 600.0 µA
+          AC/DC with 0.1 µA resolution, so a meter in this class can resolve a change as small as a tenth
+          of a microamp. Not every multimeter has this range at all — check the model&apos;s own spec sheet
+          rather than assuming, since it is a feature some otherwise-similar meters in the same product
+          family leave out.
+        </p>
+        <p className="text-muted leading-7 mt-4">
           Same core technique as milliamps — series connection, correct range, fuse-protected current
           jack — with extra attention paid to settling time, lead length, and board cleanliness. See our{" "}
           <Link href="/multimeters/how-to-measure-milliamps-with-a-multimeter" className={link}>

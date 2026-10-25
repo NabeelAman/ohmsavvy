@@ -184,23 +184,25 @@
       "keyword": "best multimeter for solar panels",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Fluke 117",
         "KAIWEETS KM200s",
         "AstroAI DM6000AR"
-      ]
+      ],
+      "notes": "covered by /multimeters/how-to-test-a-solar-panel-with-a-multimeter (refill 2026-10-25)"
     },
     {
       "keyword": "best multimeter for car battery",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Craftsman CMMT14171",
         "AstroAI DM6000AR",
         "KAIWEETS KM200s"
-      ]
+      ],
+      "notes": "covered by /multimeters/best-multimeter-for-automotive (refill 2026-10-25)"
     },
     {
       "keyword": "best multimeter for HVAC technicians",
@@ -218,11 +220,12 @@
       "keyword": "best multimeter for motorcycle",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Craftsman CMMT14171",
         "AstroAI DM6000AR"
-      ]
+      ],
+      "notes": "covered by /multimeters/how-to-test-a-motorcycle-stator-with-a-multimeter (refill 2026-10-25)"
     },
     {
       "keyword": "best multimeter for RV",
@@ -307,22 +310,27 @@
       "keyword": "best multimeter under $100",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
-      "notes": "same price-fluctuation caveat"
+      "status": "skip-duplicate",
+      "notes": "covered by /multimeters/best-multimeter-under-100 (refill 2026-10-25)"
     },
     {
       "keyword": "best auto ranging multimeter",
       "category": "multimeters",
       "type": "remix",
       "status": "pending",
-      "notes": "all 10 current picks are auto-ranging"
+      "notes": "picks chosen by refill 2026-10-25: These three products offer auto-ranging functionality, True RMS accuracy, and are suitable for a range of users from beginners to professionals, making them genuinely suitable for someone searching for the best auto-ranging multimeter.",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 115",
+        "KAIWEETS KM200s"
+      ]
     },
     {
       "keyword": "best true rms multimeter",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
-      "notes": "exclude Extech EX330 — confirmed NOT true RMS on-device"
+      "status": "skip-duplicate",
+      "notes": "covered by /multimeters/best-true-rms-multimeters-under-100 (refill 2026-10-25)"
     },
     {
       "keyword": "best digital multimeter 2026",
@@ -362,10 +370,8 @@
       "keyword": "best waterproof multimeter",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
-      "targetPicks": [
-        "Southwire 14070T"
-      ]
+      "status": "skip-no-fit",
+      "notes": "refill 2026-10-25: None of the products listed explicitly state waterproofing capabilities, which is a critical feature for a 'best waterproof multimeter'. Therefore, none of the products are genuinely suitable for the specific use of waterproofing."
     },
     {
       "keyword": "best pocket multimeter",
@@ -402,10 +408,11 @@
       "keyword": "best clamp meter under $100",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Milwaukee 2235-20"
-      ]
+      ],
+      "notes": "covered by /multimeters/best-multimeter-under-100 (refill 2026-10-25)"
     },
     {
       "keyword": "best multimeter with clamp attachment",
@@ -434,11 +441,12 @@
       "keyword": "fluke 117 vs fluke 87v",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Fluke 117",
         "Fluke 87V"
-      ]
+      ],
+      "notes": "covered by /multimeters/fluke-117-review (refill 2026-10-25)"
     },
     {
       "keyword": "kaiweets vs klein multimeter",
@@ -633,19 +641,26 @@
       "keyword": "best multimeter for AC voltage",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending"
+      "status": "skip-duplicate",
+      "notes": "covered by /multimeters/ac-vs-dc-voltage (refill 2026-10-25)"
     },
     {
       "keyword": "best multimeter for DC voltage",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending"
+      "status": "skip-duplicate",
+      "notes": "covered by /multimeters/ac-vs-dc-voltage (refill 2026-10-25)"
     },
     {
       "keyword": "best multimeter for low voltage",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending"
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 115",
+        "KAIWEETS KM200s"
+      ],
+      "notes": "picks chosen by refill 2026-10-25: Both the Fluke 115 and KAIWEETS KM200s offer True RMS accuracy and CAT III 600V safety rating, making them suitable for low voltage applications while providing reliable and safe measurements."
     },
     {
       "keyword": "best multimeter for high voltage",
@@ -662,11 +677,12 @@
       "keyword": "best soldering iron for beginners",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Pinecil V2",
         "Q-MING 60W Kit"
-      ]
+      ],
+      "notes": "covered by /soldering-irons/best-soldering-iron-for-beginners (refill 2026-10-25)"
     },
     {
       "keyword": "best soldering iron for electronics",
@@ -683,11 +699,12 @@
       "keyword": "best soldering iron for SMD",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Hakko FX888D",
         "Pinecil V2"
-      ]
+      ],
+      "notes": "covered by /soldering-irons/how-to-solder-fine-pitch-smd-components (refill 2026-10-25)"
     },
     {
       "keyword": "best soldering iron for jewelry",
@@ -828,10 +845,7 @@
       "keyword": "best soldering iron for rework",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
-      "targetPicks": [
-        "Hakko FX888D"
-      ]
+      "status": "pending"
     },
     {
       "keyword": "best soldering iron under $50",
@@ -868,10 +882,11 @@
       "keyword": "best soldering iron kit",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Q-MING 60W Kit"
-      ]
+      ],
+      "notes": "covered by /soldering-irons/q-ming-60w-soldering-iron-kit-review (refill 2026-10-25)"
     },
     {
       "keyword": "best temperature controlled soldering iron",
@@ -879,7 +894,6 @@
       "type": "remix",
       "status": "pending",
       "targetPicks": [
-        "Hakko FX888D",
         "Pinecil V2",
         "Weller WE1010NA"
       ]
@@ -888,11 +902,7 @@
       "keyword": "best soldering iron station",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
-      "targetPicks": [
-        "Hakko FX888D",
-        "Weller WE1010NA"
-      ]
+      "status": "pending"
     },
     {
       "keyword": "best digital soldering station",
@@ -1523,10 +1533,11 @@
       "keyword": "best 2 channel oscilloscope",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Hantek DSO2D10"
-      ]
+      ],
+      "notes": "covered by /oscilloscopes/how-to-measure-a-differential-signal-with-a-two-channel-oscilloscope (refill 2026-10-25)"
     },
     {
       "keyword": "best oscilloscope with function generator",
@@ -1621,10 +1632,11 @@
       "keyword": "siglent sds1104x-e review",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Siglent SDS1104X-E"
-      ]
+      ],
+      "notes": "covered by /oscilloscopes/rigol-ds1054z-vs-siglent-sds1104x-e (refill 2026-10-25)"
     },
     {
       "keyword": "hantek vs rigol oscilloscope",
@@ -1641,10 +1653,11 @@
       "keyword": "fnirsi dso152 review",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "FNIRSI DSO152"
-      ]
+      ],
+      "notes": "covered by /oscilloscopes/fnirsi-dso152-review (refill 2026-10-25)"
     },
     {
       "keyword": "oscilloscope vs multimeter",

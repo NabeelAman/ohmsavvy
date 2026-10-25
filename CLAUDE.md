@@ -21,6 +21,17 @@ Read `PROJECT-STATUS.md`, `AGENTS.md` and `automation/CONTENT_STANDARDS.md` firs
 - Comparison pages use `ProductComparison` with `path`, `published`, `extraSpecs` and `sections` (charts from `@/components/HowTo`); model page: `src/app/multimeters/fluke-115-vs-klein-mm400/page.tsx`.
 - Before pushing: `npm run lint` on changed files, `check-roster`, `check-seo`, `check-uniqueness`, `check-internal-links`, an isolated `next build` (a `zz-*` copy) plus `check-h1`, and screenshots at 390px and 1280px with no horizontal overflow.
 
+## Informational content (how-to, "why", explainer, troubleshooting) — owner's standard, 2026-10-25
+Every informational article must fully solve the reader's problem, not just describe it:
+- **Answer first.** The first two sentences answer the title's question directly.
+- **Pain points → solutions.** Name the reader's actual problem(s) and give a concrete fix for each: a causes table (symptom / likely cause / how to check / fix or who to call) plus numbered step-by-step instructions (`StepHeading`).
+- **Facts and figures.** Use real numbers wherever they help: typical values, ranges, thresholds, worked examples with the arithmetic shown. Standard engineering values must be standard and hedged; product numbers only from Picks or the maker; label illustrative readings as illustrative. Never invent data or test results.
+- **Charts.** At least one chart (`BarChart`, `DataTable`, comparison table) built on the numbers in the article.
+- **Diagrams.** At least one inline-SVG diagram in a `Figure` (circuit, flow, signal, wiring, timeline) that explains the mechanism, plus `MeterReadout`/`ScopeScreen`/`FlowDiagram` where they fit.
+- **Images.** Product photos only from verified Picks (exact-ASIN Amazon photo or maker photo); everything else is an SVG diagram. Every image and diagram gets descriptive alt text / `aria-label`.
+- **Everything else on every page:** `KeyIdea`, a safety `Callout` where mains, high voltage, batteries or heat are involved (escalate to an electrician/installer/911 as appropriate), 5+ FAQs (40–80 words, real search questions), links to related pages on disk, and a `ProductStrip` of suitable Picks with Amazon links (`tag=ohmsavvy-20`).
+- **Depth and uniqueness.** At least 1,100 words of page-specific prose; check neighbors on disk and give the page a distinct angle (link, don't repeat); `check-uniqueness` must pass. US spelling.
+
 ## Working alongside other sessions
 - Several sessions edit this repo at once. Announce edits to shared files (`src/lib/content.ts`, `automation/content-queue.json`, the three `best-*` roundup pages, `src/components/*`) before making them.
 - Commit only your own files: `git commit -- <paths>`, or a temporary index built from HEAD. A temp-index commit leaves the shared working tree and index behind HEAD, so afterwards sync your touched files (`git add`, or `git checkout HEAD -- <file>` if it has no uncommitted work) so nobody's next commit silently reverts yours.

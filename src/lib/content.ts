@@ -3063,13 +3063,6 @@ export const content: ContentEntry[] = [
   {
     category: "oscilloscopes",
     type: "comparison",
-    title: "Analog Discovery 3 vs PicoScope 2204A",
-    description: "A full lab-in-a-box vs. a simpler USB scope",
-    href: "/oscilloscopes/digilent-analog-discovery-3-vs-picoscope-2204a",
-  },
-  {
-    category: "oscilloscopes",
-    type: "comparison",
     title: "OWON HDS2202S vs HANMATEK HO52",
     description: "200MHz with a generator vs. 50MHz, no generator",
     href: "/oscilloscopes/owon-hds2202s-vs-hanmatek-ho52",

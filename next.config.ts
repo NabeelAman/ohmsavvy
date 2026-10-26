@@ -134,6 +134,12 @@ const nextConfig: NextConfig = {
         destination: "https://ohmsavvy.com/:path*",
         permanent: true,
       },
+      // Duplicate comparison (same pair, reversed) consolidated into the older, better-linked URL.
+      {
+        source: "/oscilloscopes/digilent-analog-discovery-3-vs-picoscope-2204a",
+        destination: "/oscilloscopes/picoscope-2204a-vs-digilent-analog-discovery-3",
+        permanent: true,
+      },
       // Temporary stopgaps until real category hub pages exist — not
       // permanent, since these will be replaced by actual pages, not
       // redirects, once the Reviews/Comparisons/Guides structure ships.

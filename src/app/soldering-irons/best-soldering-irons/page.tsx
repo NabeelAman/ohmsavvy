@@ -8,8 +8,8 @@ import { buildMetadata } from "@/lib/metadata";
 const linkClass = "text-accent hover:underline";
 
 export const metadata = buildMetadata({
-  title: "Best Soldering Irons for Electronics in 2026",
-  description: "From pocket-sized portables to full bench stations — an honest comparison of the best soldering irons by heat-up time, temperature stability, and price.",
+  title: "Best Soldering Irons & Stations (2026)",
+  description: "The best soldering irons and stations of 2026, ranked on maker-published specs: digital bench stations, USB-C portables and hot-air rework units.",
   path: "/soldering-irons/best-soldering-irons",
 });
 
@@ -333,8 +333,8 @@ export default function BestSolderingIronsPage() {
         category="soldering-irons"
         label="Soldering Irons"
         path="/soldering-irons/best-soldering-irons"
-        heading="Best Soldering Irons: Find the Right One for Your Bench"
-        description="From the pocket-sized Pinecil to full bench stations like the Hakko FX-888DX, we compared heat-up time, temperature stability, and real owner feedback."
+        heading="Best Soldering Irons and Stations of 2026"
+        description="From the pocket-sized Pinecil V2 to bench stations like the Hakko FX-888DX, ranked on published power, temperature range, control and ESD safety."
         updated="2026-10-21"
         picks={picks}
       />
@@ -358,7 +358,11 @@ export default function BestSolderingIronsPage() {
               <Link href="/soldering-irons/best-soldering-iron-for-beginners" className={linkClass}>
                 best soldering iron for beginners
               </Link>
-              .
+              , and if your work is mostly circuit boards and fine-pitch parts, our{" "}
+              <Link href="/soldering-irons/best-soldering-irons-for-electronics" className={linkClass}>
+                ranked Top 10 for electronics work
+              </Link>{" "}
+              narrows the field further.
             </p>
             <p className="text-muted leading-7">
               For a closer look at individual tools, read the{" "}

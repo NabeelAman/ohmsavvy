@@ -706,6 +706,13 @@ export const content: ContentEntry[] = [
   {
     category: "soldering-irons",
     type: "how-to-guide",
+    title: "Why Does My Soldering Iron Damage Components Even at a Low Temperature?",
+    description: "Low heat, long contact: why parts still get cooked, and how to fix it",
+    href: "/soldering-irons/why-does-my-soldering-iron-damage-components-at-low-temperature",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
     title: "Soldering Iron vs. Soldering Station",
     description: "What a closed-loop station actually buys you over a wand iron",
     href: "/soldering-irons/soldering-iron-vs-soldering-station",
@@ -3141,6 +3148,13 @@ export const content: ContentEntry[] = [
     title: "Why Does My Multimeter Show the Wrong Voltage?",
     description: "Settings, jacks, battery, True RMS and circuit loading",
     href: "/multimeters/why-does-my-multimeter-show-the-wrong-voltage",
+  },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Does My Multimeter Show a Normal Voltage but My Circuit Still Doesn't Work?",
+    description: "Loaded vs open-circuit readings, bad joints, grounds, sag and ripple",
+    href: "/multimeters/why-does-my-multimeter-show-normal-voltage-but-circuit-doesnt-work",
   },
   {
     category: "multimeters",

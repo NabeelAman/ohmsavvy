@@ -32,6 +32,9 @@ Every informational article must fully solve the reader's problem, not just desc
 - **Everything else on every page:** `KeyIdea`, a safety `Callout` where mains, high voltage, batteries or heat are involved (escalate to an electrician/installer/911 as appropriate), 5+ FAQs (40–80 words, real search questions), links to related pages on disk, and a `ProductStrip` of suitable Picks with Amazon links (`tag=ohmsavvy-20`).
 - **Depth and uniqueness.** At least 1,100 words of page-specific prose; check neighbors on disk and give the page a distinct angle (link, don't repeat); `check-uniqueness` must pass. US spelling.
 
+## SEO checklist
+- Before publishing ANY article (review, comparison, buying guide, use-case guide, informational), go through `automation/SEO_CHECKLIST.md` and tick every applicable item. It is the owner's on-page SEO standard (2026); where it and this file differ, this file wins.
+
 ## Working alongside other sessions
 - Several sessions edit this repo at once. Announce edits to shared files (`src/lib/content.ts`, `automation/content-queue.json`, the three `best-*` roundup pages, `src/components/*`) before making them.
 - Commit only your own files: `git commit -- <paths>`, or a temporary index built from HEAD. A temp-index commit leaves the shared working tree and index behind HEAD, so afterwards sync your touched files (`git add`, or `git checkout HEAD -- <file>` if it has no uncommitted work) so nobody's next commit silently reverts yours.

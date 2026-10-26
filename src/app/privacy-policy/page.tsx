@@ -69,8 +69,8 @@ export default function PrivacyPolicyPage() {
             <a href="https://policies.google.com/technologies/partner-sites" className={linkClass}>
               how Google uses information from sites that use its services
             </a>{" "}
-            for more detail. Visitors in the European Economic Area, the UK and Switzerland are asked for consent
-            before personalized ads are shown, through a Google-certified consent message.
+            for more detail. Where ads run, visitors in the European Economic Area, the UK and Switzerland are asked
+            for consent through a Google-certified consent message before personalized ads are shown.
           </p>
           <p className="mt-4 text-muted leading-7">
             Advertisers have no say in what we review or how we rate it, and ads are never placed inside our rankings.

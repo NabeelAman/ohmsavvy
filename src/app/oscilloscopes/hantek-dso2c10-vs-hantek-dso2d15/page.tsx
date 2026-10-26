@@ -27,6 +27,53 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Test setups: the DSO2D15 drives the circuit from its own GEN OUT; the DSO2C10 needs a separate generator. */
+function GeneratorLoopDiagram() {
+  const box = "fill-surface stroke-border";
+  return (
+    <svg
+      viewBox="0 0 340 220"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Two test setups for measuring a circuit's input and output. Top: the Hantek DSO2D15's built-in generator output feeds the circuit under test, with channel 1 on the circuit input and channel 2 on its output, all from one instrument. Bottom: the Hantek DSO2C10 needs a separate bench generator to feed the circuit, with the same two-channel connection"
+    >
+      <defs>
+        <marker id="gl-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0L10 5L0 10z" className="fill-foreground" />
+        </marker>
+      </defs>
+      <text x="6" y="14" fontSize="10" fontWeight="700" className="fill-accent">DSO2D15: one box</text>
+      <rect x="6" y="22" width="110" height="74" rx="6" className={box} strokeWidth="1.2" />
+      <text x="61" y="40" fontSize="10" textAnchor="middle" className="fill-foreground">DSO2D15</text>
+      <text x="14" y="60" fontSize="9" className="fill-accent">GEN OUT</text>
+      <text x="14" y="76" fontSize="9" className="fill-muted">CH1</text>
+      <text x="14" y="90" fontSize="9" className="fill-muted">CH2</text>
+      <rect x="196" y="40" width="96" height="40" rx="6" className={box} strokeWidth="1.2" />
+      <text x="244" y="58" fontSize="9.5" textAnchor="middle" className="fill-foreground">Circuit under</text>
+      <text x="244" y="71" fontSize="9.5" textAnchor="middle" className="fill-foreground">test</text>
+      <path d="M116 57 H196" className="stroke-accent fill-none" strokeWidth="1.6" markerEnd="url(#gl-arr)" />
+      <path d="M160 57 V73 H116" className="stroke-foreground fill-none" strokeWidth="1.2" markerEnd="url(#gl-arr)" />
+      <path d="M292 66 H318 V88 H116" className="stroke-foreground fill-none" strokeWidth="1.2" markerEnd="url(#gl-arr)" />
+      <text x="164" y="52" fontSize="8.5" className="fill-muted">stimulus</text>
+      <text x="300" y="58" fontSize="8.5" className="fill-muted">out</text>
+
+      <text x="6" y="122" fontSize="10" fontWeight="700" className="fill-muted">DSO2C10: add a generator</text>
+      <rect x="196" y="132" width="96" height="30" rx="6" className={box} strokeWidth="1.2" strokeDasharray="4 3" />
+      <text x="244" y="151" fontSize="9.5" textAnchor="middle" className="fill-foreground">Bench generator</text>
+      <rect x="6" y="140" width="110" height="64" rx="6" className={box} strokeWidth="1.2" />
+      <text x="61" y="158" fontSize="10" textAnchor="middle" className="fill-foreground">DSO2C10</text>
+      <text x="14" y="178" fontSize="9" className="fill-muted">CH1</text>
+      <text x="14" y="194" fontSize="9" className="fill-muted">CH2</text>
+      <rect x="196" y="174" width="96" height="40" rx="6" className={box} strokeWidth="1.2" />
+      <text x="244" y="192" fontSize="9.5" textAnchor="middle" className="fill-foreground">Circuit under</text>
+      <text x="244" y="205" fontSize="9.5" textAnchor="middle" className="fill-foreground">test</text>
+      <path d="M244 162 V174" className="stroke-accent fill-none" strokeWidth="1.6" markerEnd="url(#gl-arr)" />
+      <path d="M244 168 H160 V175 H116" className="stroke-foreground fill-none" strokeWidth="1.2" markerEnd="url(#gl-arr)" />
+      <path d="M292 200 H318 V217 H150 V194 H116" className="stroke-foreground fill-none" strokeWidth="1.2" markerEnd="url(#gl-arr)" />
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Hantek DSO2C10 vs DSO2D15: Which Should You Buy?",
@@ -101,6 +148,44 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mt-4">
           Sample rate, memory depth and resolution are a wash — both scopes hit 1 GSa/s on one channel, 500 MSa/s on
           two, and the same 8/4 Mpts memory split. Neither number should factor into your decision here.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">How the built-in generator changes a test setup</h2>
+        <p className="text-muted leading-7 mb-4">
+          The classic two-channel job is a stimulus-and-response test: feed a known signal into an amplifier, filter
+          or sensor interface, put channel 1 on the input and channel 2 on the output, and read gain, phase shift or
+          distortion straight off the screen. Both Hantek scopes have the two channels for that. What differs is
+          where the stimulus comes from.
+        </p>
+        <Figure
+          caption={
+            <>
+              Stimulus-and-response wiring. The DSO2D15 sources the test signal from its own GEN OUT; the DSO2C10 needs
+              a separate bench generator for the same measurement.
+            </>
+          }
+        >
+          <GeneratorLoopDiagram />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          With the DSO2D15 the whole loop lives in one instrument: one menu sets the frequency and amplitude, and the
+          scope already knows what it is sending. On the DSO2C10 the same test works fine, but you need a second
+          instrument, a second power outlet and a second set of controls, and the generator&apos;s own limits become
+          part of the measurement. If you already own a function generator, the DSO2C10 plus that generator covers
+          everything the DSO2D15 does here. If you don&apos;t, the gap is real, and it&apos;s worth reading our walkthrough
+          on{" "}
+          <Link href="/oscilloscopes/how-to-compare-input-and-output-signals-on-an-oscilloscope" className={link}>
+            comparing input and output signals
+          </Link>{" "}
+          to see how often this kind of test comes up.
+        </p>
+        <p className="text-muted leading-7">
+          Keep the DSO2D15 generator&apos;s ceiling in mind: 25 MHz for sine and 10 MHz for square or arbitrary
+          waveforms, at 200 MSa/s and 12-bit. That is plenty for audio, sensor and most analog-filter work, but it
+          won&apos;t stand in for a fast clock source: at 200 MSa/s a 10 MHz square wave gets only 20 output samples per
+          period, so expect softer edges than a dedicated pulse generator would give.
         </p>
       </section>
 
@@ -193,6 +278,11 @@ const comparison: ProductComparisonContent = {
       question: "How much more bandwidth does the DSO2D15 actually give you?",
       answer:
         "By the usual three-to-five-times usable-bandwidth rule, the DSO2C10's 100 MHz rating displays signals accurately up to roughly 20-33 MHz, while the DSO2D15's 150 MHz extends that to about 30-50 MHz. It's a real but moderate increase — smaller in practice than the 50% headline number suggests.",
+    },
+    {
+      question: "Can I use the DSO2D15's generator to test a filter or amplifier?",
+      answer:
+        "Yes, that is its main job. Connect GEN OUT to the circuit input, put channel 1 on that input and channel 2 on the output, then step the generator frequency and compare amplitudes. The sine output reaches 25 MHz, so audio stages, sensor front ends and most hobby-level analog filters are well within range. On the DSO2C10 you'd need a separate generator for the same test.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

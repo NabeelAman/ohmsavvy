@@ -11,6 +11,9 @@ import { buildMetadata } from "@/lib/metadata";
 // Rigol DHO804: 70MHz, 4 channels, 12-bit, 1.25 GSa/s (1 ch), 312.5 MSa/s (4 ch), 25 Mpts (1 ch), 5 Mpts (4 ch),
 // 7" 1024x600 touchscreen, HDMI out, UART/I2C/SPI/CAN/parallel decode, USB-C powered. Matching this site's existing
 // DHO804 Pick (checked 2026-10-24).
+// DHO800 series-level, per rigolna.com/products/digital-oscilloscopes/dho800 (checked 2026-10-26): 1.25 GSa/s, 25 Mpts,
+// up to 1,000,000 wfms/s in UltraAcquire mode, USB/LAN/HDMI standard and a USB Type-C power input on every model.
+// That page doesn't list serial decode protocols, so the DHO814's decode set is left as not separately confirmed.
 
 const path = "/oscilloscopes/rigol-dho814-vs-rigol-dho804";
 
@@ -27,6 +30,57 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Single-pole model response (illustrative) for 70 MHz and 100 MHz front ends, 0-150 MHz. */
+function BandwidthCurveDiagram() {
+  const W = 340;
+  const H = 200;
+  const L = 40;
+  const T = 14;
+  const pw = W - L - 12;
+  const ph = H - T - 40;
+  const fMax = 150;
+  const yMin = 50;
+  const X = (f: number) => L + (f / fMax) * pw;
+  const Y = (pct: number) => T + ((100 - pct) / (100 - yMin)) * ph;
+  const resp = (f: number, bw: number) => 100 / Math.sqrt(1 + (f / bw) ** 2);
+  const curve = (bw: number) =>
+    Array.from({ length: 151 }, (_, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${Y(resp(i, bw)).toFixed(1)}`).join(" ");
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      className="w-full h-auto"
+      role="img"
+      aria-label="Illustrative single-pole frequency response from 0 to 150 MHz. The 70 MHz curve for the DHO804 falls to 70.7 percent at 70 MHz and the 100 MHz curve for the DHO814 falls to 70.7 percent at 100 MHz; at 25 MHz they read about 94 and 97 percent"
+    >
+      {[100, 90, 80, 70.7, 60, 50].map((p) => (
+        <g key={p}>
+          <line x1={L} x2={L + pw} y1={Y(p)} y2={Y(p)} className="stroke-border" strokeWidth={p === 70.7 ? 1 : 0.6} strokeDasharray={p === 70.7 ? "4 3" : "2 3"} />
+          <text x={L - 5} y={Y(p) + 3} fontSize="9" textAnchor="end" className="fill-muted">{p}%</text>
+        </g>
+      ))}
+      {[0, 25, 50, 70, 100, 150].map((f) => (
+        <g key={f}>
+          <line x1={X(f)} x2={X(f)} y1={T} y2={T + ph} className="stroke-border" strokeWidth="0.5" strokeDasharray="2 3" />
+          <text x={X(f)} y={T + ph + 13} fontSize="9" textAnchor="middle" className="fill-muted">{f}</text>
+        </g>
+      ))}
+      <text x={L + pw / 2} y={T + ph + 28} fontSize="9" textAnchor="middle" className="fill-muted">Signal frequency (MHz), single-pole model</text>
+      <path d={curve(70)} fill="none" className="stroke-foreground" strokeWidth="1.6" strokeDasharray="5 3" />
+      <path d={curve(100)} fill="none" className="stroke-accent" strokeWidth="2" />
+      <circle cx={X(70)} cy={Y(70.7)} r="3" className="fill-foreground" />
+      <circle cx={X(100)} cy={Y(70.7)} r="3" className="fill-accent" />
+      <circle cx={X(25)} cy={Y(resp(25, 70))} r="2.5" className="fill-foreground" />
+      <circle cx={X(25)} cy={Y(resp(25, 100))} r="2.5" className="fill-accent" />
+      <g fontSize="9">
+        <line x1={L + 150} x2={L + 166} y1={T + 8} y2={T + 8} className="stroke-accent" strokeWidth="2" />
+        <text x={L + 170} y={T + 11} className="fill-foreground">DHO814, 100 MHz</text>
+        <line x1={L + 150} x2={L + 166} y1={T + 22} y2={T + 22} className="stroke-foreground" strokeWidth="1.6" strokeDasharray="5 3" />
+        <text x={L + 170} y={T + 25} className="fill-foreground">DHO804, 70 MHz</text>
+      </g>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Rigol DHO814 vs DHO804: Compare Channels and Features",
@@ -39,7 +93,7 @@ const comparison: ProductComparisonContent = {
     imageAlt: "Rigol DHO814 four-channel 100 MHz touchscreen oscilloscope, front panel",
     chooseIf: [
       "Your signals run up into the tens of megahertz and you want real headroom",
-      "You want the fastest waveform capture rate the DHO800 series offers",
+      "You measure fast edges, where a higher bandwidth keeps displayed rise times closer to the truth",
       "You're buying once and want to avoid outgrowing the bandwidth later",
       "Budget allows the step up from the DHO804",
     ],
@@ -61,17 +115,18 @@ const comparison: ProductComparisonContent = {
     { label: "Sample rate, 1 channel", a: "1.25 GSa/s", b: "1.25 GSa/s" },
     { label: "Sample rate, 4 channels", a: "Not stated by Rigol at this tier", b: "312.5 MSa/s" },
     { label: "Memory depth", a: "25 Mpts", b: "25 Mpts (1 ch); 5 Mpts (4 ch)" },
-    { label: "Waveform capture rate", a: "Up to 1 Mwfms/s (UltraAcquire)", b: "Not stated in this Pick's sourcing" },
+    { label: "Waveform capture rate", a: "Up to 1 Mwfms/s (UltraAcquire)", b: "Up to 1 Mwfms/s (UltraAcquire, series figure)" },
     { label: "Display", a: "7-inch touchscreen, 1024 × 600", b: "7-inch touchscreen, 1024 × 600" },
     { label: "Serial decode", a: "Not called out in this Pick's sourcing", b: "UART, I2C, SPI, CAN, parallel" },
-    { label: "Power", a: "Not stated in this Pick's sourcing", b: "USB-C" },
+    { label: "Interfaces", a: "USB, LAN, HDMI (series standard)", b: "USB, LAN, HDMI (series standard)" },
+    { label: "Power", a: "USB-C (series-level, per Rigol)", b: "USB-C" },
     { label: "Hands-on tested by OhmSavvy", a: "No", b: "Yes" },
   ],
   differences: [
     "Bandwidth is the headline difference: 100 MHz on the DHO814 against 70 MHz on the DHO804 — about 43% more headroom.",
     "Both share the identical four-channel, 12-bit, 7-inch 1024 × 600 touchscreen DHO800 platform and the same 1.25 GSa/s single-channel peak sample rate.",
     "The DHO804's four-channel sample rate (312.5 MSa/s) and memory-depth-with-all-channels-on figure (5 Mpts) are documented; the DHO814's equivalent figures aren't stated at the same level of detail in this Pick's sourcing.",
-    "The DHO804 is confirmed USB-C powered and lists UART/I2C/SPI/CAN/parallel decoding; this Pick's DHO814 sourcing doesn't carry those same specific details, so don't assume they differ — only that they aren't separately confirmed here.",
+    "Rigol's DHO800 series page gives both models the same USB-C power input, USB/LAN/HDMI outputs and up to 1 Mwfms/s capture rate. The DHO804 also lists UART/I2C/SPI/CAN/parallel decoding; Rigol's page doesn't itemize decoding for the DHO814, so that isn't separately confirmed here.",
     "The DHO804 carries OhmSavvy's Hands-on Tested badge; the DHO814 hasn't been bought and tested in-house yet.",
   ],
   sections: (
@@ -108,6 +163,34 @@ const comparison: ProductComparisonContent = {
             bandwidth explainer
           </Link>{" "}
           for why the rated figure isn&apos;t the same as the usable one.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">What 30 MHz of extra bandwidth looks like</h2>
+        <p className="text-muted leading-7 mb-4">
+          A bandwidth rating is the frequency where a scope already shows a sine wave at about 70.7% of its true
+          amplitude. Below that point the displayed amplitude falls off gradually, so the useful question is how
+          much each model shaves off the signals you actually measure. The curves below use the textbook single-pole
+          model to compare the two tiers; real front ends are often flatter in the passband, so treat it as an
+          illustration of the trend rather than a measured response.
+        </p>
+        <Figure
+          caption={
+            <>
+              Illustrative single-pole response for a 70 MHz and a 100 MHz front end. At 25 MHz the model shows about
+              94% on the DHO804 and about 97% on the DHO814; each curve crosses 70.7% at its rated bandwidth.
+            </>
+          }
+        >
+          <BandwidthCurveDiagram />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          The other way to read the same difference is rise time. A common approximation is rise time ≈ 0.35 ÷
+          bandwidth, which gives about 5 ns for a 70 MHz front end and about 3.5 ns for 100 MHz. A scope can&apos;t
+          show an edge faster than its own rise time, so if you measure a logic edge of a few nanoseconds the DHO804
+          will stretch it more than the DHO814 does. For audio, sensors and slow buses, both curves sit near 100%
+          and the difference disappears.
         </p>
       </section>
 

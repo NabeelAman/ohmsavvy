@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { DataTable } from "@/components/HowTo";
 
 export const metadata = buildMetadata({
   title: "Clamp Meter Buying Guide",
@@ -114,11 +115,51 @@ export default function ClampMeterBuyingGuidePage() {
           <h2 className="text-xl font-semibold mb-3">Does a clamp meter replace a standard multimeter?</h2>
           <p className="text-muted leading-7">
             No — a clamp meter is a complement, not a replacement. Clamp meters are built for
-            current measurement; they&apos;re typically far less practical (or entirely unable)
-            for resistance, continuity, capacitance, or low-voltage diode testing, the kind of
-            work a standard multimeter handles well. Most working electricians carry both: a
+            current measurement. Many add basic resistance and continuity (the Fluke 323 reads
+            resistance only up to 4,000 Ω, for example), but they usually skip or limit
+            capacitance, diode testing and fine low-voltage resolution, the kind of work a
+            standard multimeter handles well. Most working electricians carry both: a
             standard multimeter for general diagnostics, and a clamp meter specifically for fast,
             no-disconnect current checks.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-3">Clamp-style tools we cover, side by side</h2>
+          <p className="text-muted leading-7 mb-4">
+            Three current-clamping tools in our roundup show how far the specs can differ even
+            when all three say &quot;AC clamp&quot; on the box. Read across the rows for the
+            features covered above: maximum current, DC capability, RMS type and how much
+            conductor the jaw accepts.
+          </p>
+          {/* Fluke 323 max wire diameter 30 mm (600 MCM), resistance 400 / 4,000 Ω, continuity ≤ 70 Ω per https://www.fluke.com/en-us/product/electrical-testing/clamp-meters/fluke-323 */}
+          <DataTable
+            head={["Spec", "Milwaukee 2235-20", "Fluke 323", "Fluke T5-600"]}
+            rows={[
+              ["Max AC current", "400A", "400A", "100A"],
+              ["DC current", "No", "No", "No"],
+              ["AC response", "True RMS", "True RMS", "Average-responding"],
+              ["Jaw / conductor size", "1-inch jaw", "30 mm (600 MCM) max wire", "OpenJaw fork"],
+              ["Voltage", "600V AC/DC", "600V AC/DC", "600V AC/DC"],
+              ["Resistance", "Yes", "To 4,000 Ω", "To 1,000 Ω"],
+              ["Safety rating", "CAT III 600V", "CAT III 600V / CAT IV 300V", "CAT III 600V"],
+            ]}
+          />
+          <p className="mt-4 text-muted leading-7">
+            Two things stand out. None of the three reads DC current, so for solar, battery or
+            automotive work you need a separate AC/DC (Hall-effect) clamp. And the T5-600 tops out
+            at 100A with an averaging response, which makes it a quick check tool for branch
+            circuits rather than a meter for service entrances or variable-speed drives. The 323
+            adds a CAT IV 300V rating, useful at the origin of a residential installation. To weigh a clamp
+            against a standard meter, see{" "}
+            <Link href="/multimeters/fluke-117-vs-fluke-323" className="text-accent hover:underline">
+              Fluke 117 vs Fluke 323
+            </Link>
+            , and for the measurement itself,{" "}
+            <Link href="/multimeters/how-to-measure-ac-current-with-a-clamp-meter" className="text-accent hover:underline">
+              how to measure AC current with a clamp meter
+            </Link>
+            .
           </p>
         </section>
 

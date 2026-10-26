@@ -2,6 +2,7 @@ import { ContentLinks } from "@/components/ContentLinks";
 import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/metadata";
+import { BarChart, Figure } from "@/components/HowTo";
 
 export const metadata = buildMetadata({
   title: "How to Use an Analog Multimeter",
@@ -154,6 +155,78 @@ export default function HowToUseAnAnalogMultimeterPage() {
               have lower input impedance than a modern digital meter, meaning the meter itself draws
               more current from the circuit it&apos;s measuring — on sensitive, high-impedance
               circuits, that can noticeably skew the reading simply by being connected.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-3">How much does meter loading change a reading?</h2>
+            <p className="text-muted leading-7 mb-4">
+              Analog meters state their sensitivity in ohms per volt; 20,000 Ω/V is a common figure
+              on general-purpose meters, so check the label on the face of yours. Multiply it by the
+              full-scale value of the range you&apos;ve selected to get the meter&apos;s input
+              resistance: 20,000 × 10 V = 200 kΩ on the 10 V range, and 20,000 × 50 V = 1 MΩ on the
+              50 V range. Many digital meters present around 10 MΩ on every DC voltage range. The
+              worked example below shows what that difference does to a real measurement.
+            </p>
+            <Figure caption="A 10 V supply feeding two 100 kΩ resistors. The meter's input resistance sits in parallel with the bottom resistor and drags the midpoint down.">
+              <svg
+                viewBox="0 0 320 170"
+                className="w-full h-auto"
+                role="img"
+                aria-label="Circuit diagram of a voltage divider: a 10 volt supply feeds two 100 kilohm resistors in series; a meter connected across the lower resistor has its own input resistance, shown as a third resistor in parallel with it, which lowers the measured midpoint voltage below the expected 5 volts"
+              >
+                <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+                  <line x1="40" y1="20" x2="160" y2="20" />
+                  <line x1="40" y1="20" x2="40" y2="70" />
+                  <line x1="28" y1="70" x2="52" y2="70" />
+                  <line x1="33" y1="78" x2="47" y2="78" />
+                  <line x1="40" y1="78" x2="40" y2="150" />
+                  <line x1="40" y1="150" x2="260" y2="150" />
+                  <line x1="160" y1="20" x2="160" y2="30" />
+                  <rect x="152" y="30" width="16" height="36" />
+                  <line x1="160" y1="66" x2="160" y2="90" />
+                  <rect x="152" y="90" width="16" height="36" />
+                  <line x1="160" y1="126" x2="160" y2="150" />
+                  <line x1="160" y1="78" x2="260" y2="78" />
+                </g>
+                <g className="stroke-accent" strokeWidth="1.6" fill="none">
+                  <line x1="260" y1="78" x2="260" y2="90" />
+                  <rect x="252" y="90" width="16" height="36" />
+                  <line x1="260" y1="126" x2="260" y2="150" />
+                </g>
+                <text x="18" y="60" fontSize="10" className="fill-foreground">10 V</text>
+                <text x="176" y="52" fontSize="10" className="fill-foreground">100 kΩ</text>
+                <text x="176" y="112" fontSize="10" className="fill-foreground">100 kΩ</text>
+                <text x="276" y="104" fontSize="10" className="fill-accent">meter</text>
+                <text x="276" y="118" fontSize="10" className="fill-accent">R in</text>
+                <text x="200" y="72" fontSize="9" className="fill-muted">midpoint</text>
+              </svg>
+            </Figure>
+            <p className="text-muted leading-7 mt-4 mb-4">
+              Unloaded, the midpoint sits at exactly 5 V. Seen from the meter, the circuit looks like
+              5 V behind 50 kΩ (the two 100 kΩ resistors in parallel). The reading is therefore
+              5 V × R<sub>in</sub> ÷ (R<sub>in</sub> + 50 kΩ). On the 10 V range, 5 × 200 ÷ 250 =
+              4.0 V, a 20% error. Switch the same analog meter up to the 50 V range and the reading
+              becomes 5 × 1,000 ÷ 1,050 ≈ 4.76 V, closer to the truth even though the needle now
+              moves only a tenth of the scale. A 10 MΩ digital meter reads about 4.98 V.
+            </p>
+            <Figure caption="Worked example from the divider above (calculated, not measured): what each meter setting would display for a true 5.00 V.">
+              <BarChart
+                items={[
+                  { label: "True midpoint voltage", value: 5, display: "5.00 V" },
+                  { label: "Digital meter, 10 MΩ", value: 4.975, display: "4.98 V" },
+                  { label: "Analog 20 kΩ/V, 50 V range", value: 4.76, display: "4.76 V" },
+                  { label: "Analog 20 kΩ/V, 10 V range", value: 4.0, display: "4.00 V", highlight: true },
+                ]}
+              />
+            </Figure>
+            <p className="text-muted leading-7 mt-4">
+              The lesson is practical: on low-impedance circuits such as a battery, a car electrical
+              system or a power supply output, an analog meter&apos;s loading is negligible and you
+              can trust it. On high-resistance points, like a sensor signal, a bias network or a
+              divider made of large resistors, either use a digital meter or move to a higher range
+              and accept the coarser scale. If two ranges give noticeably different answers, loading
+              is the reason, and the higher range is the more honest one.
             </p>
           </section>
 

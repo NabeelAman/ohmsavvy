@@ -27,6 +27,44 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/**
+ * Acquisition windows versus dead time (not to scale): a faster capture rate leaves shorter gaps, so a rare
+ * glitch is more likely to land inside a capture.
+ */
+function DeadTimeDiagram() {
+  const fast = Array.from({ length: 13 }, (_, i) => 20 + 24 * i);
+  const slow = Array.from({ length: 7 }, (_, i) => 20 + 48 * i);
+  const glitchX = 147;
+  return (
+    <svg
+      viewBox="0 0 340 168"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Illustrative timeline: the SDS1104X-U captures waveforms with short dead-time gaps between them and catches a brief glitch, while the DS1104Z-S Plus leaves longer gaps and the same glitch falls into dead time and is missed"
+    >
+      <text x="20" y="18" fontSize="9.5" className="fill-accent">SDS1104X-U: up to 100,000 captures per second</text>
+      {fast.map((x) => (
+        <rect key={x} x={x} y="26" width="14" height="22" rx="2" className="fill-accent" />
+      ))}
+      <line x1="20" y1="48" x2="320" y2="48" className="stroke-border" strokeWidth="1" />
+      <text x="20" y="80" fontSize="9.5" className="fill-foreground">DS1104Z-S Plus: up to 30,000 captures per second</text>
+      {slow.map((x) => (
+        <rect key={x} x={x} y="88" width="14" height="22" rx="2" className="fill-muted" />
+      ))}
+      <line x1="20" y1="110" x2="320" y2="110" className="stroke-border" strokeWidth="1" />
+      <line x1={glitchX} y1="22" x2={glitchX} y2="118" stroke="#e5484d" strokeWidth="2" strokeDasharray="3 2" />
+      <text x={glitchX + 6} y="60" fontSize="8.5" fill="#e5484d">caught</text>
+      <text x={glitchX + 6} y="122" fontSize="8.5" fill="#e5484d">missed: fell in dead time</text>
+      <rect x="20" y="138" width="10" height="10" rx="2" className="fill-accent" />
+      <text x="35" y="147" fontSize="8.5" className="fill-muted">capture window</text>
+      <rect x="120" y="138" width="10" height="10" rx="2" className="fill-none stroke-border" />
+      <text x="135" y="147" fontSize="8.5" className="fill-muted">gap = dead time</text>
+      <line x1="230" y1="138" x2="230" y2="150" stroke="#e5484d" strokeWidth="2" strokeDasharray="3 2" />
+      <text x="236" y="147" fontSize="8.5" className="fill-muted">one-off glitch</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Siglent SDS1104X-U vs Rigol DS1104Z-S Plus: Key Differences",
@@ -106,6 +144,20 @@ const comparison: ProductComparisonContent = {
           SDS1104X-U&apos;s faster, clearly documented capture rate and standard serial decode are real advantages of
           their own, especially for digital-bus debugging.
         </p>
+        <div className="mt-6">
+          <Figure caption={<>Illustrative, not to scale: capture windows and the dead time between them. Fewer captures per second means longer blind gaps.</>}>
+            <DeadTimeDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Why does a capture-rate number matter? After each acquisition a digital scope spends time processing and
+          drawing before it can trigger again, and anything that happens during that gap never reaches the screen. A
+          glitch that appears once every few seconds can sit in a gap many times before it finally lands inside a
+          window. With up to 100,000 waveforms per second the Siglent re-arms more than three times as often as the
+          Rigol&apos;s 30,000, so on the same time-base setting the blind gaps are shorter and an intermittent fault
+          tends to show up sooner. The exact share of time each scope sees depends on the time base and the features
+          switched on, so treat the published figures as maxima rather than everyday numbers.
+        </p>
       </section>
 
       <section>
@@ -146,7 +198,7 @@ const comparison: ProductComparisonContent = {
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          Want to see the DS1104Z-S Plus against a Siglent four-channel alternative? See{" "}
+          Want to see two of Rigol&apos;s other Z-series scopes side by side? See{" "}
           <Link href="/oscilloscopes/rigol-ds1102z-e-vs-rigol-ds1054z" className={link}>
             Rigol DS1102Z-E vs DS1054Z
           </Link>
@@ -189,6 +241,11 @@ const comparison: ProductComparisonContent = {
       question: "Can the DS1104Z-S Plus be upgraded with a logic analyzer?",
       answer:
         "Yes — Rigol offers the separately sold RPL1116 kit to add 16 logic channels. The SDS1104X-U has no equivalent logic-analyzer upgrade path in this site's sourcing.",
+    },
+    {
+      question: "What does waveform capture rate mean on an oscilloscope?",
+      answer:
+        "It's how many separate acquisitions the scope can trigger, process and display each second. Between acquisitions there is dead time in which the scope is blind. A higher rate, such as the SDS1104X-U's 100,000 wfm/s against 30,000 on the DS1104Z-S Plus, shortens those blind gaps, which raises the odds of catching a rare glitch or runt pulse.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

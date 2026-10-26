@@ -32,6 +32,58 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** What plugs into each unit: the DS213 can drive and watch a circuit; the DSO152 watches one signal. */
+function HookupDiagram() {
+  const ports = [
+    { y: 52, tag: "GEN", note: "generator out" },
+    { y: 74, tag: "A", note: "analog, filter input" },
+    { y: 96, tag: "B", note: "analog, filter output" },
+    { y: 128, tag: "C", note: "digital" },
+    { y: 146, tag: "D", note: "digital" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 400 205"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Hookup diagram: the MINIWARE DS213's generator output drives a filter under test while analog channel A probes the filter input, analog channel B probes its output, and digital channels C and D watch two logic lines. The FNIRSI DSO152 has one analog input and no output, so it can watch only one signal."
+    >
+      <rect x="10" y="30" width="110" height="135" rx="10" className="fill-surface stroke-foreground" strokeWidth="1.4" />
+      <text x="65" y="22" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">MINIWARE DS213</text>
+      <rect x="18" y="40" width="64" height="44" rx="3" className="fill-accent/10 stroke-border" strokeWidth="1" />
+      <path d="M22 70 q8 -18 16 0 t16 0 t16 0" className="fill-none stroke-accent" strokeWidth="1.4" />
+      <path d="M22 64 q8 -8 16 0 t16 0 t16 0" className="fill-none stroke-muted" strokeWidth="1.2" />
+      {ports.map((p) => (
+        <g key={p.tag}>
+          <text x="114" y={p.y + 3} fontSize="8.5" fontWeight="700" textAnchor="end" className="fill-foreground">
+            {p.tag}
+          </text>
+          <circle cx="120" cy={p.y} r="2.6" className="fill-accent" />
+        </g>
+      ))}
+      <rect x="185" y="38" width="70" height="66" rx="6" className="fill-surface stroke-accent" strokeWidth="1.4" />
+      <text x="220" y="66" fontSize="9" textAnchor="middle" className="fill-foreground">Filter or</text>
+      <text x="220" y="78" fontSize="9" textAnchor="middle" className="fill-foreground">amp under test</text>
+      <path d="M120 52 H185" className="stroke-accent fill-none" strokeWidth="1.6" />
+      <path d="M120 74 H160 V52" className="stroke-foreground fill-none" strokeWidth="1.3" />
+      <circle cx="160" cy="52" r="2.6" className="fill-foreground" />
+      <path d="M120 96 H150 V116 H268 V71 H255" className="stroke-foreground fill-none" strokeWidth="1.3" />
+      <circle cx="255" cy="71" r="2.6" className="fill-foreground" />
+      <path d="M120 128 H180 M120 146 H180" className="stroke-muted fill-none" strokeWidth="1.3" strokeDasharray="4 3" />
+      <text x="184" y="134" fontSize="8" className="fill-muted">two logic lines,</text>
+      <text x="184" y="146" fontSize="8" className="fill-muted">e.g. chip select + data</text>
+      <text x="65" y="182" fontSize="8.5" textAnchor="middle" className="fill-muted">2 analog + 2 digital + output</text>
+      <rect x="295" y="30" width="95" height="135" rx="10" className="fill-surface stroke-foreground" strokeWidth="1.4" />
+      <text x="342" y="22" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">FNIRSI DSO152</text>
+      <rect x="305" y="42" width="75" height="48" rx="3" className="fill-accent/10 stroke-border" strokeWidth="1" />
+      <path d="M310 72 q8 -16 16 0 t16 0 t16 0 t16 0" className="fill-none stroke-accent" strokeWidth="1.4" />
+      <circle cx="342" cy="165" r="2.6" className="fill-accent" />
+      <path d="M342 165 V178" className="stroke-foreground" strokeWidth="1.3" />
+      <text x="342" y="192" fontSize="8.5" textAnchor="middle" className="fill-muted">1 analog input, no output</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "MINIWARE DS213 vs FNIRSI DSO152",
@@ -182,6 +234,22 @@ const comparison: ProductComparisonContent = {
           on screen at a glance, and its slowest timebase of 50s/div lets a drifting sensor crawl across the display. It
           can&apos;t compare two signals, has no logic inputs or output, and a 100kHz I2C clock is already past its
           comfortable range.
+        </p>
+        <Figure
+          caption={
+            <>
+              A self-contained filter check on the DS213: its own output drives the circuit, channels A and B compare
+              input and output, and C and D stay free for logic. The DSO152 can watch one point at a time.
+            </>
+          }
+        >
+          <HookupDiagram />
+        </Figure>
+        <p className="text-muted leading-7 my-4">
+          That hookup is the clearest way to see the gap between the two. With the DS213, set the generator to one of
+          its fixed sine steps, read the amplitude on A and B, then step to the next frequency; the ratio of the two
+          traces is the filter&apos;s gain at that point. The DSO152 can only show one of those nodes, and it needs an
+          outside source to drive the circuit in the first place.
         </p>
         <div className="mt-4">
           <KeyIdea title="A generator faster than its own scope">

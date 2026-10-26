@@ -27,6 +27,61 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/**
+ * Ground path from the probe's ground clip to mains earth. Without USB isolation the clip is tied through the
+ * USB shield to the computer and, via an earthed charger or desktop PSU, to earth. An isolation barrier breaks it.
+ */
+function GroundPathDiagram() {
+  const box = "fill-surface stroke-border";
+  const rows = [
+    { y: 18, title: "Hantek 6022BE: no isolation listed", isolated: false },
+    { y: 102, title: "OWON VDS1022I: isolated USB 2.0 link", isolated: true },
+  ];
+  return (
+    <svg
+      viewBox="0 0 340 186"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: on the Hantek 6022BE the probe ground clip connects through the scope and USB cable to the computer and on to mains earth; on the OWON VDS1022I an isolation barrier inside the scope breaks that path"
+    >
+      {rows.map((r) => (
+        <g key={r.title}>
+          <text x="6" y={r.y} fontSize="10" fontWeight="600" className={r.isolated ? "fill-accent" : "fill-foreground"}>
+            {r.title}
+          </text>
+          <rect x="6" y={r.y + 12} width="62" height="34" rx="6" className={box} strokeWidth="1.2" />
+          <text x="37" y={r.y + 27} fontSize="9" textAnchor="middle" className="fill-foreground">Probe</text>
+          <text x="37" y={r.y + 39} fontSize="8.5" textAnchor="middle" className="fill-muted">ground clip</text>
+          <rect x="92" y={r.y + 12} width="70" height="34" rx="6" className={box} strokeWidth="1.2" />
+          <text x="127" y={r.y + 33} fontSize="9" textAnchor="middle" className="fill-foreground">USB scope</text>
+          <rect x="186" y={r.y + 12} width="66" height="34" rx="6" className={box} strokeWidth="1.2" />
+          <text x="219" y={r.y + 27} fontSize="9" textAnchor="middle" className="fill-foreground">Laptop / PC</text>
+          <text x="219" y={r.y + 39} fontSize="8.5" textAnchor="middle" className="fill-muted">USB shield</text>
+          <rect x="274" y={r.y + 12} width="60" height="34" rx="6" className={box} strokeWidth="1.2" />
+          <text x="304" y={r.y + 27} fontSize="9" textAnchor="middle" className="fill-foreground">Mains earth</text>
+          <text x="304" y={r.y + 39} fontSize="8.5" textAnchor="middle" className="fill-muted">via PSU</text>
+          <line x1="68" x2="92" y1={r.y + 29} y2={r.y + 29} className="stroke-foreground" strokeWidth="2" />
+          {r.isolated ? (
+            <>
+              <line x1="162" x2="171" y1={r.y + 29} y2={r.y + 29} className="stroke-foreground" strokeWidth="2" />
+              <line x1="175" x2="175" y1={r.y + 16} y2={r.y + 42} className="stroke-accent" strokeWidth="2.5" />
+              <line x1="180" x2="180" y1={r.y + 16} y2={r.y + 42} className="stroke-accent" strokeWidth="2.5" />
+              <line x1="184" x2="186" y1={r.y + 29} y2={r.y + 29} className="stroke-foreground" strokeWidth="2" />
+              <text x="177" y={r.y + 58} fontSize="8.5" textAnchor="middle" className="fill-accent">isolation barrier: path broken</text>
+            </>
+          ) : (
+            <>
+              <line x1="162" x2="186" y1={r.y + 29} y2={r.y + 29} className="stroke-foreground" strokeWidth="2" />
+              <text x="170" y={r.y + 58} fontSize="8.5" textAnchor="middle" className="fill-muted">continuous ground path to earth</text>
+            </>
+          )}
+          <line x1="252" x2="274" y1={r.y + 29} y2={r.y + 29} className="stroke-foreground" strokeWidth="2" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "OWON VDS1022I vs Hantek 6022BE",
@@ -179,6 +234,26 @@ const comparison: ProductComparisonContent = {
             ringing or edge timing on SPI or fast GPIO, a 50 MHz or faster scope is the better tool.
           </KeyIdea>
         </div>
+        <h3 className="text-lg font-semibold mt-6 mb-2">Where the ground clip really connects</h3>
+        <p className="text-muted leading-7 mb-4">
+          The isolation line on OWON&apos;s spec sheet is easy to skip, but it changes what the ground clip is tied
+          to. On a non-isolated USB scope the clip, the BNC shells, the USB cable shield and the computer&apos;s
+          chassis are one conductor. If the circuit under test is also referenced to earth, through a bench supply
+          or a mains-powered device, clipping ground to anything other than that circuit&apos;s own 0 V creates a
+          short through the scope and the USB cable. A smaller version of the same loop shows up as hum and noise
+          on low-level signals, which is where the OWON&apos;s 5 mV/div range and its isolated link work together.
+        </p>
+        <Figure
+          caption={
+            <>
+              The ground path on each scope. Schematic, not to scale: Hantek lists no isolation, so its clip shares
+              the computer&apos;s ground; OWON specifies an isolated USB link but we haven&apos;t verified its voltage
+              rating.
+            </>
+          }
+        >
+          <GroundPathDiagram />
+        </Figure>
         <div className="mt-4">
           <Callout title="USB scopes, grounds and mains">
             A USB scope&apos;s probe ground connects to the computer unless the link is isolated. Hantek lists no

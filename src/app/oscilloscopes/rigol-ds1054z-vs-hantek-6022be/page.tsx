@@ -27,6 +27,57 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+// A 7 MHz sine (the 6022BE's ≈7MHz comfortable limit) over two periods, sampled at each scope's rate.
+const SIG_HZ = 7e6;
+const SPAN_S = 2 / SIG_HZ;
+
+function SamplePanel({ y0, rate, label, perCycle }: { y0: number; rate: number; label: string; perCycle: string }) {
+  const x0 = 12;
+  const w = 316;
+  const amp = 26;
+  const mid = y0 + 44;
+  const px = (t: number) => x0 + (t / SPAN_S) * w;
+  const py = (t: number) => mid - amp * Math.sin(2 * Math.PI * SIG_HZ * t);
+  const curve = Array.from({ length: 121 }, (_, i) => {
+    const t = (SPAN_S * i) / 120;
+    return `${px(t).toFixed(1)},${py(t).toFixed(1)}`;
+  }).join(" ");
+  const n = Math.floor(SPAN_S * rate);
+  const samples = Array.from({ length: n + 1 }, (_, i) => i / rate);
+  const joined = samples.map((t) => `${px(t).toFixed(1)},${py(t).toFixed(1)}`).join(" ");
+  return (
+    <g>
+      <text x={x0} y={y0 + 10} fontSize="9.5" fontWeight="700" className="fill-foreground">
+        {label}
+      </text>
+      <text x={x0 + w} y={y0 + 10} fontSize="9" textAnchor="end" className="fill-accent">
+        {perCycle}
+      </text>
+      <line x1={x0} x2={x0 + w} y1={mid} y2={mid} className="stroke-border" strokeWidth="0.6" />
+      <polyline points={curve} className="stroke-muted" strokeWidth="1" strokeDasharray="3 2" fill="none" />
+      <polyline points={joined} className="stroke-accent" strokeWidth="1.4" fill="none" />
+      {samples.map((t) => (
+        <circle key={t} cx={px(t)} cy={py(t)} r="2" className="fill-accent" />
+      ))}
+    </g>
+  );
+}
+
+/** Same 7 MHz sine, sampled at 48 MS/s (Hantek maximum) and 250 MSa/s (Rigol with all four channels on). */
+function SamplingDiagram() {
+  return (
+    <svg
+      viewBox="0 0 340 200"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: two cycles of a 7 MHz sine wave. Sampled at the Hantek 6022BE's 48 MS/s, only about 7 points land on each cycle and joining them gives a jagged outline. Sampled at the Rigol DS1054Z's 250 MSa/s with four channels on, about 36 points per cycle trace the sine closely."
+    >
+      <SamplePanel y0={2} rate={48e6} label="Hantek 6022BE, 48 MS/s" perCycle="≈6.9 samples per cycle" />
+      <SamplePanel y0={102} rate={250e6} label="Rigol DS1054Z, 250 MSa/s (4 ch on)" perCycle="≈36 samples per cycle" />
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Rigol DS1054Z vs Hantek 6022BE for Beginners",
@@ -130,6 +181,25 @@ const comparison: ProductComparisonContent = {
             sample rate in GSa/s
           </Link>{" "}
           walk through why both numbers matter.
+        </p>
+        <div className="mt-4">
+          <Figure
+            caption={
+              <>
+                Two cycles of a 7 MHz sine (dashed) and the points each scope actually captures. The solid line joins the
+                samples; real scope software interpolates more smoothly, but it can only work with the points it has.
+              </>
+            }
+          >
+            <SamplingDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The arithmetic behind the diagram: one cycle of 7 MHz lasts about 143 ns. At 48 MS/s the Hantek takes a sample
+          every 20.8 ns, so roughly 6.9 samples fall on each cycle, and they land at different points of the wave on each
+          cycle. At 250 MSa/s the Rigol samples every 4 ns, about 36 times per cycle, and that is its worst case with all
+          four channels running. Sine interpolation can rebuild a clean sine from a handful of points, but a square wave
+          or a ringing edge has detail between those points that no software can recover.
         </p>
       </section>
 

@@ -27,6 +27,65 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/**
+ * The same 20 MHz sine (two cycles, 100 ns) sampled at the Hantek's 48 MS/s and at the PicoScope's two-channel
+ * 250 MS/s. Sample spacing is 1 / rate: about 20.8 ns against 4 ns. The joined dots are what the software draws.
+ */
+function SampleSpacingDiagram() {
+  const W = 320;
+  const rowH = 74;
+  const x0 = 14;
+  const span = 290; // px for 100 ns
+  const amp = 22;
+  const rows = [
+    { label: "Hantek 6022BE, 48 MS/s: a sample every ≈20.8 ns", stepNs: 1000 / 48, accent: false },
+    { label: "PicoScope 2206B, 250 MS/s (2 ch): a sample every 4 ns", stepNs: 4, accent: true },
+  ];
+  const sig = (tNs: number) => Math.sin((2 * Math.PI * tNs) / 50); // 20 MHz = 50 ns period
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${rowH * 2 + 24}`}
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: a 20 MHz sine sampled at 48 MS/s gets about five points across two cycles and the joined points form a jagged shape, while at 250 MS/s it gets 25 points and the drawn trace follows the real sine"
+    >
+      {rows.map((r, i) => {
+        const cy = 40 + i * rowH;
+        const truePts = Array.from({ length: 201 }, (_, k) => {
+          const t = (k / 200) * 100;
+          return `${(x0 + (t / 100) * span).toFixed(1)},${(cy - amp * sig(t)).toFixed(1)}`;
+        }).join(" ");
+        const n = Math.floor(100 / r.stepNs);
+        const dots = Array.from({ length: n + 1 }, (_, k) => {
+          const t = k * r.stepNs;
+          return { x: x0 + (t / 100) * span, y: cy - amp * sig(t) };
+        });
+        return (
+          <g key={r.label}>
+            <text x={x0} y={cy - amp - 8} fontSize="9.5" className={r.accent ? "fill-accent" : "fill-foreground"}>
+              {r.label}
+            </text>
+            <line x1={x0} x2={x0 + span} y1={cy} y2={cy} className="stroke-border" strokeWidth="0.8" />
+            <polyline points={truePts} fill="none" className="stroke-muted" strokeOpacity="0.45" strokeWidth="1.2" />
+            <polyline
+              points={dots.map((d) => `${d.x.toFixed(1)},${d.y.toFixed(1)}`).join(" ")}
+              fill="none"
+              className={r.accent ? "stroke-accent" : "stroke-foreground"}
+              strokeWidth="1.5"
+            />
+            {dots.map((d, k) => (
+              <circle key={k} cx={d.x} cy={d.y} r="2.4" className={r.accent ? "fill-accent" : "fill-foreground"} />
+            ))}
+          </g>
+        );
+      })}
+      <text x={x0} y={rowH * 2 + 18} fontSize="9" className="fill-muted">
+        Faint line: the real 20 MHz signal over 100 ns. Dots and solid line: what each scope can draw.
+      </text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "PicoScope 2206B vs Hantek 6022BE",
@@ -136,6 +195,26 @@ const comparison: ProductComparisonContent = {
             what GSa/s means
           </Link>
           .
+        </p>
+        <div className="mt-4">
+          <Figure
+            caption={
+              <>
+                One 20 MHz signal, two sample clocks. At 48 MS/s the Hantek takes roughly five samples across two
+                cycles, so the trace it draws is a jagged outline; at 250 MS/s the PicoScope takes 25 and the drawn
+                line follows the real sine.
+              </>
+            }
+          >
+            <SampleSpacingDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The spacing between dots is simply one divided by the sample rate: about 20.8 ns on the Hantek and 4 ns on
+          the PicoScope with both channels running (2 ns with one). A 20 MHz sine completes a cycle every 50 ns, so the
+          Hantek lands only two or three points on each cycle and the software has to guess the rest. That is why
+          the 6022BE can confirm a 20 MHz signal exists but can&apos;t tell you whether it is clean, clipped or
+          ringing, while the 2206B still draws a usable shape at the same frequency.
         </p>
       </section>
 

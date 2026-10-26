@@ -32,6 +32,76 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+// Edge-sampling diagram: Hantek edge ≈17.5 ns (10–90%, 0.35 ÷ 20 MHz) sampled every ≈20.8 ns (48 MS/s); Pico edge
+// 35 ns (Pico, calculated) sampled every 10 ns (100 MS/s, one channel). Edge drawn 0–100% as rise ÷ 0.8; timing illustrative.
+const EDGE_SPAN_NS = 120;
+const EDGE_PX_PER_NS = 300 / EDGE_SPAN_NS;
+const EDGE_X0 = 40;
+
+function edgeX(t: number) {
+  return EDGE_X0 + t * EDGE_PX_PER_NS;
+}
+
+function EdgePanel({
+  y,
+  rampStart,
+  rampEnd,
+  firstSample,
+  step,
+  title,
+}: {
+  y: number;
+  rampStart: number;
+  rampEnd: number;
+  firstSample: number;
+  step: number;
+  title: string;
+}) {
+  const low = y + 64;
+  const high = y + 22;
+  const level = (t: number) => (t <= rampStart ? 0 : t >= rampEnd ? 1 : (t - rampStart) / (rampEnd - rampStart));
+  const yAt = (t: number) => low - (low - high) * level(t);
+  const samples: { x: number; y: number }[] = [];
+  for (let t = firstSample; t <= EDGE_SPAN_NS; t += step) samples.push({ x: edgeX(t), y: yAt(t) });
+  const joined = samples.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
+  return (
+    <g>
+      <text x={EDGE_X0} y={y + 10} fontSize="9.5" fontWeight="700" className="fill-foreground">
+        {title}
+      </text>
+      <path
+        d={`M${edgeX(0)} ${low} H${edgeX(rampStart).toFixed(1)} L${edgeX(rampEnd).toFixed(1)} ${high} H${edgeX(EDGE_SPAN_NS)}`}
+        className="fill-none stroke-muted"
+        strokeWidth="2"
+      />
+      <path d={joined} className="fill-none stroke-accent" strokeWidth="1.4" strokeDasharray="4 3" />
+      {samples.map((p) => (
+        <circle key={p.x} cx={p.x} cy={p.y} r="3.4" className="fill-accent" />
+      ))}
+    </g>
+  );
+}
+
+function EdgeSamplingDiagram() {
+  return (
+    <svg
+      viewBox="0 0 360 200"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram of one rising edge on each scope. The Hantek 6022BE passes a faster edge of about 17.5 nanoseconds but samples only every 20.8 nanoseconds, so a single sample lands on the edge and the joined dots miss its shape. The PicoScope 2204A passes a slower 35 nanosecond edge but samples every 10 nanoseconds with one channel on, placing four samples along it."
+    >
+      <EdgePanel y={0} rampStart={50} rampEnd={50 + 17.5 / 0.8} firstSample={4} step={1000 / 48} title="Hantek 6022BE: ≈17.5 ns edge, sample every ≈20.8 ns" />
+      <EdgePanel y={88} rampStart={45} rampEnd={45 + 35 / 0.8} firstSample={5} step={10} title="PicoScope 2204A: 35 ns edge, sample every 10 ns" />
+      <line x1={EDGE_X0} x2={edgeX(EDGE_SPAN_NS)} y1="178" y2="178" className="stroke-foreground" strokeWidth="1" />
+      {[0, 20, 40, 60, 80, 100, 120].map((t) => (
+        <text key={t} x={edgeX(t)} y="191" fontSize="8" textAnchor="middle" className="fill-muted">
+          {t} ns
+        </text>
+      ))}
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "PicoScope 2204A vs Hantek 6022BE for PC-Based Testing",
@@ -142,6 +212,17 @@ const comparison: ProductComparisonContent = {
           </Link>{" "}
           cover both ideas in more depth.
         </p>
+        <Figure
+          caption={
+            <>
+              One rising edge on each scope, illustrative timing. Gray = the edge as each front end passes it, dots =
+              samples, dashed = the dots joined. The Hantek&apos;s quicker edge gets one sample; the Pico&apos;s slower
+              edge gets four.
+            </>
+          }
+        >
+          <EdgeSamplingDiagram />
+        </Figure>
       </section>
 
       <section>

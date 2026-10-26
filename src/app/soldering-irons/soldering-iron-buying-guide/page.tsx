@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-soldering-irons/page";
 import { buildMetadata } from "@/lib/metadata";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { BarChart, DataTable, Figure } from "@/components/HowTo";
 
 export const metadata = buildMetadata({
   title: "Soldering Iron Buying Guide",
@@ -118,6 +119,45 @@ export default function SolderingIronBuyingGuidePage() {
               </tbody>
             </table>
           </div>
+          <p className="mt-4 text-muted leading-7 mb-4">
+            Why so far above the melting point? Eutectic 63/37 tin-lead melts at 183°C and the
+            common lead-free alloy SAC305 at about 217–220°C, yet the recommended tip settings sit
+            roughly 130–180°C higher. The tip loses heat the instant it touches a cold pad and
+            component lead, and the joint itself has to rise above the melting point quickly
+            enough that the flux is still active when the solder flows. The diagram shows that
+            gap for both alloys.
+          </p>
+          <Figure caption="Melting point versus typical tip setting for leaded and lead-free solder. Melting points are standard alloy values; tip ranges are the typical settings from the table above.">
+            <svg
+              viewBox="0 0 360 150"
+              className="w-full h-auto"
+              role="img"
+              aria-label="Temperature scale from 150 to 450 degrees Celsius. For 63/37 leaded solder, a marker at the 183 degree melting point and a shaded working band from 315 to 370 degrees. For SAC305 lead-free solder, a marker at about 218 degrees and a shaded band from 350 to 400 degrees. The gap between each melting point and its band is the headroom the tip needs to recover heat lost to the joint."
+            >
+              <line x1="20" y1="120" x2="340" y2="120" className="stroke-foreground" strokeWidth="1.4" />
+              {[150, 200, 250, 300, 350, 400, 450].map((t) => {
+                const x = 20 + ((t - 150) / 300) * 320;
+                return (
+                  <g key={t}>
+                    <line x1={x} y1="116" x2={x} y2="124" className="stroke-foreground" strokeWidth="1" />
+                    <text x={x} y="138" fontSize="9" textAnchor="middle" className="fill-muted">
+                      {t}°C
+                    </text>
+                  </g>
+                );
+              })}
+              <text x="20" y="28" fontSize="10" className="fill-foreground">63/37 leaded</text>
+              <rect x="196" y="36" width="58.7" height="16" rx="3" className="fill-accent" opacity="0.35" />
+              <line x1="55.2" y1="34" x2="55.2" y2="54" className="stroke-accent" strokeWidth="2" />
+              <text x="59" y="64" fontSize="9" className="fill-accent">melts 183°C</text>
+              <text x="196" y="64" fontSize="9" className="fill-muted">tip 315–370°C</text>
+              <text x="20" y="80" fontSize="10" className="fill-foreground">SAC305 lead-free</text>
+              <rect x="233.3" y="86" width="53.3" height="16" rx="3" className="fill-accent" opacity="0.35" />
+              <line x1="92.5" y1="84" x2="92.5" y2="104" className="stroke-accent" strokeWidth="2" />
+              <text x="96" y="112" fontSize="9" className="fill-accent">melts ~218°C</text>
+              <text x="233" y="112" fontSize="9" className="fill-muted">tip 350–400°C</text>
+            </svg>
+          </Figure>
         </section>
 
         <section>
@@ -159,6 +199,53 @@ export default function SolderingIronBuyingGuidePage() {
             on a damp sponge or brass wool between joints rather than scraping it bare, and never
             leaving an iron at full temperature unused for long stretches all meaningfully extend
             a tip&apos;s working life.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-3">How the irons we cover compare on paper</h2>
+          <p className="text-muted leading-7 mb-4">
+            The table pulls the power, temperature control and heat-up figures for five irons in
+            our roundup, as each maker or official listing states them. &quot;Not stated&quot;
+            means the maker doesn&apos;t publish the number, not that the iron is slow.
+          </p>
+          <DataTable
+            head={["Iron", "Type", "Iron power", "Temperature control", "Heat-up"]}
+            rows={[
+              ["Hakko FX-888DX", "Station", "65W iron (100W station)", "Digital, closed-loop, 50–480°C", "Not stated"],
+              ["Weller WE1010NA", "Station", "70W", "Digital, ESD-safe", "~28 s (50–350°C)"],
+              ["X-Tronic 3020-XTS", "Station", "60W iron (75W station)", "PID, 200–480°C", "Under 30 s (listing)"],
+              ["Pinecil V2", "Portable USB-C", "Up to 88W at 24V; ~60W on 20V PD", "OLED digital", "~12 s (20V+ supply)"],
+              ["Q-MING 60W Kit", "Plug-in pen iron", "60W", "Dial, 200–450°C", "~15 s"],
+            ]}
+          />
+          <div className="mt-5">
+            <Figure caption="Rated iron power for the same five irons. The Pinecil V2 bar is its 24V maximum; on a 20V USB-C PD charger it is closer to 60W.">
+              <BarChart
+                items={[
+                  { label: "Pinecil V2 (24V)", value: 88, display: "88W" },
+                  { label: "Weller WE1010NA", value: 70, display: "70W" },
+                  { label: "Hakko FX-888DX iron", value: 65, display: "65W", highlight: true },
+                  { label: "X-Tronic 3020-XTS iron", value: 60, display: "60W" },
+                  { label: "Q-MING 60W Kit", value: 60, display: "60W" },
+                ]}
+              />
+            </Figure>
+          </div>
+          <p className="mt-4 text-muted leading-7">
+            Read the chart with the wattage section above in mind: all five clear the 15–40W that
+            small PCB work needs, so for most benches the deciding factors are temperature control
+            and tip choice rather than the last few watts. Where the numbers do separate them is
+            the portable option. The Pinecil&apos;s rating depends on its power source, so a weak
+            USB-C charger turns an 88W iron into a much smaller one. See the details in our{" "}
+            <Link href="/soldering-irons/weller-we1010na-review" className="text-accent hover:underline">
+              Weller WE1010NA review
+            </Link>{" "}
+            and{" "}
+            <Link href="/soldering-irons/pinecil-v2-review" className="text-accent hover:underline">
+              Pinecil V2 review
+            </Link>
+            .
           </p>
         </section>
 

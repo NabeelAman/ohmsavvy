@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { BarChart, DataTable, Figure } from "@/components/HowTo";
 
 export const metadata = buildMetadata({
   title: "Multimeter Buying Guide",
@@ -171,6 +172,43 @@ export default function MultimeterBuyingGuidePage() {
             display, but it doesn&apos;t automatically mean a more accurate measurement — check
             both numbers, not just the one that&apos;s easier to market.
           </p>
+          <p className="mt-4 text-muted leading-7 mb-4">
+            The count decides the finest step the display can show on each range. Meters usually
+            step their ranges by factors of ten from the top count, so a 4,000-count meter has
+            4 V, 40 V and 400 V ranges and a 6,000-count meter has 6 V, 60 V and 600 V. That
+            seemingly small difference matters at some voltages and not at others, as the table
+            shows. Range layouts vary, so check the manual for any meter you&apos;re considering.
+          </p>
+          <DataTable
+            head={["Display", "USB 5 V", "Car battery 12.6 V", "US outlet 120 V"]}
+            mono={[1, 2, 3]}
+            rows={[
+              ["4,000-count", "5.00 V (40 V range)", "12.60 V (40 V range)", "120.0 V (400 V range)"],
+              ["6,000-count", "5.000 V (6 V range)", "12.60 V (60 V range)", "120.0 V (600 V range)"],
+              ["20,000-count", "5.000 V (20 V range)", "12.600 V (20 V range)", "120.00 V (200 V range)"],
+            ]}
+          />
+          <p className="mt-4 text-muted leading-7 mb-4">
+            So a 6,000-count meter shows a USB rail to the millivolt where a 4,000-count meter
+            stops at 10 mV, while on a car battery or an outlet the two read identically. Accuracy
+            then sets how far you can trust that last digit. With an example spec of ±(0.5% + 2
+            digits), a 12.60 V reading on the 0.01 V step is good to 0.5% × 12.60 = 0.063 V plus
+            2 × 0.01 = 0.02 V, or ±0.083 V. The true voltage lies somewhere between about 12.52 V
+            and 12.68 V, which is the difference between a battery that&apos;s nearly full and one
+            that&apos;s noticeably discharged. That worked example is illustrative; use the real
+            figures from your meter&apos;s datasheet.
+          </p>
+          <Figure caption="Display counts of meters in our roundup, per each maker. The Fluke 87V reaches 19,999 counts only in its high-resolution mode; its normal display is 6,000 counts.">
+            <BarChart
+              items={[
+                { label: "Klein Tools MM450", value: 4000, display: "4,000" },
+                { label: "Fluke 17B+", value: 4000, display: "4,000" },
+                { label: "Fluke 115", value: 6000, display: "6,000" },
+                { label: "UNI-T UT139C", value: 6000, display: "6,000" },
+                { label: "Fluke 87V (hi-res mode)", value: 19999, display: "19,999", highlight: true },
+              ]}
+            />
+          </Figure>
         </section>
 
         <section>

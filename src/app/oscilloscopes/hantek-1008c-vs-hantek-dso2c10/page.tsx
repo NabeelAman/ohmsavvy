@@ -28,6 +28,57 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Signal chains: 1008C = 8 inputs into a screenless USB box that needs a Windows PC; DSO2C10 = 2 inputs into a standalone scope. */
+function SignalChainDiagram() {
+  const box = "fill-surface stroke-border";
+  return (
+    <svg
+      viewBox="0 0 340 214"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Two signal chains. Top: eight vehicle signals enter the Hantek 1008C, a screenless USB acquisition box, which sends data over USB to a Windows PC that provides the display, power and automotive software. Bottom: two signals enter the Hantek DSO2C10, a standalone mains-powered scope with its own 7-inch screen and serial decoding"
+    >
+      <defs>
+        <marker id="sc-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0L10 5L0 10z" className="fill-foreground" />
+        </marker>
+      </defs>
+      <text x="6" y="14" fontSize="10" fontWeight="700" className="fill-accent">Hantek 1008C</text>
+      {Array.from({ length: 8 }, (_, i) => (
+        <line key={i} x1="10" x2="74" y1={26 + i * 9} y2={26 + i * 9} className="stroke-accent" strokeWidth="1.3" />
+      ))}
+      <text x="10" y="106" fontSize="8.5" className="fill-muted">8 sensor inputs</text>
+      <rect x="76" y="20" width="84" height="74" rx="6" className={box} strokeWidth="1.2" />
+      <text x="118" y="48" fontSize="9.5" textAnchor="middle" className="fill-foreground">USB box</text>
+      <text x="118" y="62" fontSize="8.5" textAnchor="middle" className="fill-muted">no screen</text>
+      <text x="118" y="75" fontSize="8.5" textAnchor="middle" className="fill-muted">2.4 MSa/s</text>
+      <path d="M160 57 H208" className="stroke-foreground fill-none" strokeWidth="1.4" markerEnd="url(#sc-arr)" />
+      <text x="184" y="51" fontSize="8.5" textAnchor="middle" className="fill-muted">USB</text>
+      <text x="184" y="72" fontSize="8" textAnchor="middle" className="fill-muted">(power too)</text>
+      <rect x="210" y="24" width="124" height="66" rx="6" className={box} strokeWidth="1.2" />
+      <text x="272" y="44" fontSize="9.5" textAnchor="middle" className="fill-foreground">Windows PC</text>
+      <text x="272" y="60" fontSize="8.5" textAnchor="middle" className="fill-muted">display + controls</text>
+      <text x="272" y="74" fontSize="8.5" textAnchor="middle" className="fill-muted">automotive library</text>
+
+      <line x1="6" x2="334" y1="122" y2="122" className="stroke-border" strokeWidth="0.8" strokeDasharray="4 3" />
+
+      <text x="6" y="142" fontSize="10" fontWeight="700" className="fill-foreground">Hantek DSO2C10</text>
+      {[0, 1].map((i) => (
+        <line key={i} x1="10" x2="74" y1={164 + i * 16} y2={164 + i * 16} className="stroke-accent" strokeWidth="1.3" />
+      ))}
+      <text x="10" y="204" fontSize="8.5" className="fill-muted">2 probe inputs</text>
+      <rect x="76" y="150" width="190" height="56" rx="6" className={box} strokeWidth="1.2" />
+      <rect x="160" y="158" width="96" height="40" rx="3" className="fill-accent/10 stroke-accent" strokeWidth="1" />
+      <text x="208" y="176" fontSize="8.5" textAnchor="middle" className="fill-foreground">7-inch screen</text>
+      <text x="208" y="189" fontSize="8" textAnchor="middle" className="fill-muted">+ serial decode</text>
+      <text x="84" y="172" fontSize="9.5" className="fill-foreground">Standalone</text>
+      <text x="84" y="186" fontSize="8.5" className="fill-muted">1 GSa/s</text>
+      <path d="M318 178 H268" className="stroke-foreground fill-none" strokeWidth="1.4" markerEnd="url(#sc-arr)" />
+      <text x="300" y="170" fontSize="8.5" textAnchor="middle" className="fill-muted">mains</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Hantek 1008C vs DSO2C10: Automotive vs Bench Testing",
@@ -71,7 +122,7 @@ const comparison: ProductComparisonContent = {
     "Channel count: 8 on the 1008C against 2 on the DSO2C10 — useful for comparing multiple automotive sensors at once, but at far lower bandwidth and sample rate.",
     "Bandwidth and speed: the DSO2C10's 100 MHz and 1 GSa/s dwarf the 1008C's 100 kHz and 2.4 MSa/s — the 1008C is built for slow automotive signals, not general electronics.",
     "Generator: the 1008C's 8-channel LVTTL generator exists specifically to simulate crank/cam sensor signals; the DSO2C10 has none at all.",
-    "Decoding: only the DSO2C10 lists serial bus trigger/decode (UART, I2C, SPI, CAN, LIN) — a digital-electronics feature with no automotive-diagnostic equivalent on the 1008C.",
+    "Decoding: only the DSO2C10 lists serial bus trigger/decode (UART, I2C, SPI, CAN, LIN), including the CAN and LIN vehicle-network buses; the 1008C offers its automotive function library instead.",
   ],
   sections: (
     <>
@@ -104,8 +155,50 @@ const comparison: ProductComparisonContent = {
           The 1008C&apos;s low bandwidth isn&apos;t a weakness for its intended job — automotive sensor, actuator and
           ignition signals are mostly slow by electronics standards, and its real value is the eight simultaneous
           channels, built-in automotive diagnostic library and crank/cam signal simulator. Using it as a general
-          electronics scope, or using the DSO2C10 for automotive diagnostics, would be the wrong tool either way.
+          electronics scope, or using the DSO2C10 for multi-sensor engine diagnostics, would usually be the wrong
+          tool either way.
         </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Where the screen, power and software live</h2>
+        <p className="text-muted leading-7 mb-4">
+          The spec gap is easier to understand once you follow a signal from the probe tip to your eyes. The two
+          Hantek products split that job very differently, and the split decides where you can use them.
+        </p>
+        <Figure
+          caption={
+            <>
+              The 1008C digitizes eight inputs and hands everything else to a Windows PC over USB; the DSO2C10 does
+              acquisition, display and decoding in one mains-powered box.
+            </>
+          }
+        >
+          <SignalChainDiagram />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          The 1008C is really the front half of an instrument. It draws its power from the USB port and depends on
+          the laptop for the display, the controls and Hantek&apos;s automotive function library, so in a workshop
+          the laptop on the fender is part of the kit. The upside is eight simultaneous 12-bit channels, each with a 1 MΩ
+          input rated to 400V peak, viewed on a laptop screen that is usually larger than any handheld display.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          The DSO2C10 is the whole instrument. Plug it into the wall, clip on two probes and it runs on its own
+          7-inch screen, with 8 Mpts of memory and serial decoding built in. It is also worth knowing that two of
+          its decoders, CAN and LIN, are vehicle-network protocols, so it can read bus traffic on a car&apos;s
+          network even though it lacks the 1008C&apos;s eight channels and ready-made engine tests. For a broader
+          look at scopes chosen for car work, see our{" "}
+          <Link href="/oscilloscopes/best-oscilloscopes-for-automotive-diagnostics" className={link}>
+            automotive oscilloscope picks
+          </Link>
+          .
+        </p>
+        <Callout title="Ignition and mains voltages need the right probe">
+          The 1008C&apos;s inputs are rated to 400V peak, and secondary ignition voltages run far higher, so ignition
+          work needs a proper inductive or high-voltage probe, never a direct connection. The DSO2C10&apos;s probes
+          are likewise not for direct contact with mains wiring. If you aren&apos;t sure of a circuit&apos;s voltage,
+          measure it with a rated multimeter first or leave it to a qualified technician.
+        </Callout>
       </section>
 
       <section>
@@ -191,6 +284,11 @@ const comparison: ProductComparisonContent = {
       question: "Why would someone buy both of these?",
       answer:
         "Because they serve genuinely different purposes — the 1008C for automotive diagnostic work across multiple channels, and the DSO2C10 for general electronics bench work with serial decoding. A shop doing both kinds of work might reasonably own both rather than choosing one.",
+    },
+    {
+      question: "Can the Hantek DSO2C10 read a car's CAN bus?",
+      answer:
+        "It can decode it. Hantek lists CAN and LIN among the DSO2C10's trigger and decode protocols, alongside UART, I2C and SPI, so you can trigger on CAN frames and read their contents on screen. What it can't do is watch eight sensors at once or run guided engine tests; that is the job the 1008C's channel count and automotive function library are built for.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

@@ -34,6 +34,52 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Bode plot hookup: WaveGen sweeps the circuit while CH1 and CH2 measure input and output. */
+function BodeSetupDiagram() {
+  return (
+    <svg
+      viewBox="0 0 360 190"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Bode plot setup on the Keysight EDUX1052G: the built-in WaveGen output sweeps a filter or amplifier, channel 1 probes the circuit's input, channel 2 probes its output, and the scope plots gain against frequency. The Rigol DS1054Z has no generator, so the same test needs a separate source and manual frequency steps."
+    >
+      <rect x="10" y="20" width="130" height="125" rx="10" className="fill-surface stroke-foreground" strokeWidth="1.4" />
+      <text x="75" y="14" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">Keysight EDUX1052G</text>
+      <rect x="18" y="30" width="78" height="56" rx="3" className="fill-accent/10 stroke-border" strokeWidth="1" />
+      <line x1="24" y1="80" x2="92" y2="80" className="stroke-border" strokeWidth="0.8" />
+      <line x1="24" y1="36" x2="24" y2="80" className="stroke-border" strokeWidth="0.8" />
+      <path d="M24 46 H54 C66 46 72 54 78 64 S88 78 92 79" className="fill-none stroke-accent" strokeWidth="1.6" />
+      <text x="58" y="42" fontSize="7.5" textAnchor="middle" className="fill-muted">gain vs frequency</text>
+      {[
+        { y: 56, tag: "WaveGen" },
+        { y: 100, tag: "CH1" },
+        { y: 126, tag: "CH2" },
+      ].map((p) => (
+        <g key={p.tag}>
+          <text x="134" y={p.y + 3} fontSize="8.5" fontWeight="700" textAnchor="end" className="fill-foreground">
+            {p.tag}
+          </text>
+          <circle cx="140" cy={p.y} r="2.6" className="fill-accent" />
+        </g>
+      ))}
+      <rect x="210" y="40" width="90" height="56" rx="6" className="fill-surface stroke-accent" strokeWidth="1.4" />
+      <text x="255" y="64" fontSize="9" textAnchor="middle" className="fill-foreground">RC filter or</text>
+      <text x="255" y="77" fontSize="9" textAnchor="middle" className="fill-foreground">audio amplifier</text>
+      <path d="M140 56 H210" className="stroke-accent fill-none" strokeWidth="1.6" />
+      <text x="172" y="50" fontSize="8" textAnchor="middle" className="fill-accent">swept sine</text>
+      <path d="M140 100 H180 V56" className="stroke-foreground fill-none" strokeWidth="1.3" />
+      <circle cx="180" cy="56" r="2.6" className="fill-foreground" />
+      <path d="M140 126 H320 V68 H300" className="stroke-foreground fill-none" strokeWidth="1.3" />
+      <circle cx="300" cy="68" r="2.6" className="fill-foreground" />
+      <text x="188" y="96" fontSize="8" className="fill-muted">input</text>
+      <text x="324" y="100" fontSize="8" className="fill-muted">output</text>
+      <text x="180" y="172" fontSize="8.5" textAnchor="middle" className="fill-muted">
+        DS1054Z: no WaveGen; add a separate generator and step it by hand
+      </text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Keysight EDUX1052G vs Rigol DS1054Z for Beginners",
@@ -177,6 +223,22 @@ const comparison: ProductComparisonContent = {
           to involve more than two lines at once, the Rigol is the one you will not outgrow on channel count. Neither
           has digital channels, and neither offers more than 50MHz, so a jump to faster logic or RF work means a
           different scope whichever you pick.
+        </p>
+        <Figure
+          caption={
+            <>
+              The frequency-response lab the EDUX1052G can run on its own: WaveGen sweeps the circuit, CH1 and CH2
+              read input and output, and Bode mode draws the curve. The response shape shown is illustrative.
+            </>
+          }
+        >
+          <BodeSetupDiagram />
+        </Figure>
+        <p className="text-muted leading-7 my-4">
+          The wiring is the whole lesson in one picture. Three leads leave the Keysight and one circuit sits in the
+          middle, so the ratio of output to input at each frequency becomes a curve without any arithmetic on your
+          part. Rebuild the same test on the DS1054Z and a second instrument joins the bench: an external generator,
+          whose dial you turn and whose readings you note down step by step before plotting them yourself.
         </p>
         <KeyIdea title="Why update rate matters when you are learning">
           A digital scope captures a waveform, processes it, draws it and only then captures again; anything that

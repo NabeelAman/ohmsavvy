@@ -26,6 +26,48 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/**
+ * Sample spacing on a 4 ns slice of signal, then the longest full-rate record each scope can hold
+ * (memory depth divided by sample rate, using each Pick's headline maxima).
+ */
+function SampleWindowDiagram() {
+  const sdsDots = Array.from({ length: 9 }, (_, i) => 40 + 30 * i);
+  const dhoDots = Array.from({ length: 6 }, (_, i) => 40 + 48 * i);
+  return (
+    <svg
+      viewBox="0 0 340 200"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: over 4 nanoseconds the SDS814X HD takes a sample every 0.5 ns and the DHO814 every 0.8 ns; dividing memory by sample rate gives a 25 ms full-rate record for the SDS814X HD and 20 ms for the DHO814"
+    >
+      <text x="40" y="22" fontSize="9.5" className="fill-accent">SDS814X HD: one sample every 0.5 ns (2 GSa/s)</text>
+      <line x1="40" y1="38" x2="280" y2="38" className="stroke-border" strokeWidth="1" />
+      {sdsDots.map((x) => (
+        <circle key={x} cx={x} cy="38" r="4" className="fill-accent" />
+      ))}
+      <text x="40" y="62" fontSize="9.5" className="fill-foreground">DHO814: one sample every 0.8 ns (1.25 GSa/s)</text>
+      <line x1="40" y1="78" x2="280" y2="78" className="stroke-border" strokeWidth="1" />
+      {dhoDots.map((x) => (
+        <circle key={x} cx={x} cy="78" r="4" className="fill-foreground" />
+      ))}
+      <line x1="40" y1="94" x2="280" y2="94" className="stroke-muted" strokeWidth="1" />
+      {[0, 1, 2, 3, 4].map((ns) => (
+        <g key={ns}>
+          <line x1={40 + 60 * ns} y1="91" x2={40 + 60 * ns} y2="97" className="stroke-muted" strokeWidth="1" />
+          <text x={40 + 60 * ns} y="108" fontSize="8.5" textAnchor="middle" className="fill-muted">
+            {ns === 4 ? "4 ns" : ns}
+          </text>
+        </g>
+      ))}
+      <text x="40" y="132" fontSize="9.5" fontWeight="700" className="fill-foreground">Longest full-rate record = memory ÷ sample rate</text>
+      <text x="40" y="150" fontSize="9" className="fill-accent">50 Mpts ÷ 2 GSa/s = 25 ms</text>
+      <rect x="40" y="155" width="240" height="10" rx="3" className="fill-accent" />
+      <text x="40" y="181" fontSize="9" className="fill-foreground">25 Mpts ÷ 1.25 GSa/s = 20 ms</text>
+      <rect x="40" y="186" width="192" height="10" rx="3" className="fill-muted" />
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Siglent SDS814X HD vs Rigol DHO814 for Electronics Labs",
@@ -101,6 +143,27 @@ const comparison: ProductComparisonContent = {
           A higher sample rate and deeper memory together mean the SDS814X HD can hold a longer capture window at
           full resolution before it has to slow down — useful when you don&apos;t know in advance how long an event
           will take to appear.
+        </p>
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                Top: sample points across a 4 ns slice. Bottom: memory divided by sample rate, using each scope&apos;s
+                headline maxima. Arithmetic only, not a measurement.
+              </>
+            }
+          >
+            <SampleWindowDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The diagram turns the two headline numbers into something you can picture. At 2 GSa/s the Siglent places a
+          point every half nanosecond, so a fast edge gets more dots drawn along its slope; at 1.25 GSa/s the Rigol
+          leaves 0.8 ns between points. Divide each memory figure by its sample rate and you get the time span either
+          scope can fill before it must drop to a slower rate: about 25 ms for the SDS814X HD and about 20 ms for the
+          DHO814. The gap in record length is smaller than the 2:1 memory ratio suggests, because the Siglent also
+          fills its memory faster. Treat both results as best cases: with more channels switched on, makers commonly
+          share sample rate and memory between channels, so check each datasheet for the multi-channel figures.
         </p>
       </section>
 
@@ -185,6 +248,11 @@ const comparison: ProductComparisonContent = {
       question: "Does the SDS814X HD's photo show the model number printed on the unit?",
       answer:
         "No — the exact-ASIN listing photo used for this Pick doesn't show a printed model number on the case. It's used anyway because it also doesn't show a conflicting model number, consistent with this site's photo rule for buyable-but-unlabeled units.",
+    },
+    {
+      question: "How long can each scope record before it has to lower its sample rate?",
+      answer:
+        "Dividing memory by sample rate gives roughly 25 ms for the SDS814X HD (50 Mpts at 2 GSa/s) and about 20 ms for the DHO814 (25 Mpts at 1.25 GSa/s). Those are best-case figures from the headline maxima; longer time-base settings make either scope reduce its sample rate, and multi-channel operation can lower both numbers.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

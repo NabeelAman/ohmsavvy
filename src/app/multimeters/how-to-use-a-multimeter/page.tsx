@@ -1,6 +1,7 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { BarChart, Figure } from "@/components/HowTo";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -195,6 +196,29 @@ export default function HowToUseAMultimeterPage() {
                 </tbody>
               </table>
             </div>
+            <div className="mt-5">
+              <Figure caption="The typical readings from the table above on a logarithmic scale: a US outlet is 80 times the voltage of an AA cell (120 ÷ 1.5), far more than the bar lengths suggest.">
+                <BarChart
+                  log
+                  items={[
+                    { label: "AA / AAA cell", value: 1.5, display: "1.5 V DC" },
+                    { label: "USB port", value: 5, display: "5 V DC" },
+                    { label: "9V battery", value: 9, display: "9 V DC" },
+                    { label: "Car battery at rest", value: 12.6, display: "12.6 V DC" },
+                    { label: "US wall outlet", value: 120, display: "120 V AC", highlight: true },
+                    { label: "US 240V appliance circuit", value: 240, display: "240 V AC", highlight: true },
+                  ]}
+                />
+              </Figure>
+            </div>
+            <p className="mt-4 text-muted leading-7">
+              The spread is the reason range and safety rating matter. Everything below about 13 V
+              in this chart is low-energy DC you can probe on a bench without much risk; the two
+              highlighted bars are mains circuits where a wrong dial setting, a probe in the amps
+              jack or a meter without a CAT III rating can cause an arc flash. If you&apos;re
+              manually ranging, pick the first range above the value you expect, such as 20 V for a
+              car battery or 600 V for an outlet, then step down only if the reading is tiny.
+            </p>
           </section>
 
           <section>

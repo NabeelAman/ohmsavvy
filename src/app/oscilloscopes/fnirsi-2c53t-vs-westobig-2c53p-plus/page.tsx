@@ -28,6 +28,49 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Log-frequency map: each generator's stated upper limit against common signal bands and the shared 50 MHz scope bandwidth. */
+function GeneratorReachDiagram() {
+  // 10 Hz at x=30 to 100 MHz at x=320: seven decades.
+  const fx = (hz: number) => 30 + (290 / 7) * Math.log10(hz / 10);
+  const decades = [
+    { hz: 10, label: "10 Hz" },
+    { hz: 1e3, label: "1 kHz" },
+    { hz: 1e5, label: "100 kHz" },
+    { hz: 1e7, label: "10 MHz" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 340 176"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Log-scale frequency map: the FNIRSI 2C53T generator reaches 50 kHz, which covers the 20 Hz to 20 kHz audio band, while the 2C53P Plus generator reaches 10 MHz, past a 400 kHz I2C clock; both scopes share a 50 MHz bandwidth"
+    >
+      <rect x={fx(20)} y="16" width={fx(20_000) - fx(20)} height="12" rx="3" className="fill-surface stroke-border" strokeWidth="1" />
+      <text x={(fx(20) + fx(20_000)) / 2} y="25" fontSize="8.5" textAnchor="middle" className="fill-muted">audio band 20 Hz-20 kHz</text>
+      <line x1={fx(400_000)} y1="12" x2={fx(400_000)} y2="106" className="stroke-muted" strokeWidth="1" strokeDasharray="2 3" />
+      <text x={fx(400_000)} y="10" fontSize="8.5" textAnchor="middle" className="fill-muted">I2C 400 kHz</text>
+      <text x="30" y="50" fontSize="9" className="fill-foreground">2C53T generator: up to 50 kHz</text>
+      <rect x="30" y="55" width={fx(50_000) - 30} height="12" rx="3" className="fill-muted" />
+      <text x="30" y="86" fontSize="9" className="fill-accent">2C53P Plus generator: up to 10 MHz</text>
+      <rect x="30" y="91" width={fx(1e7) - 30} height="12" rx="3" className="fill-accent" />
+      <line x1={fx(5e7)} y1="40" x2={fx(5e7)} y2="118" className="stroke-foreground" strokeWidth="1.4" />
+      <text x={fx(5e7) - 4} y="114" fontSize="8.5" textAnchor="end" className="fill-foreground">50 MHz scope (both)</text>
+      <line x1="30" y1="126" x2="320" y2="126" className="stroke-muted" strokeWidth="1" />
+      {Array.from({ length: 8 }, (_, i) => (
+        <line key={i} x1={30 + (290 / 7) * i} y1="122" x2={30 + (290 / 7) * i} y2="130" className="stroke-muted" strokeWidth="1" />
+      ))}
+      {decades.map((d) => (
+        <text key={d.hz} x={fx(d.hz)} y="142" fontSize="8.5" textAnchor="middle" className="fill-muted">
+          {d.label}
+        </text>
+      ))}
+      <text x="170" y="166" fontSize="8.5" textAnchor="middle" className="fill-muted">
+        Bars show stated upper limits; lower limits not stated.
+      </text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "FNIRSI 2C53T vs 2C53P Plus: Features and Differences",
@@ -104,9 +147,25 @@ const comparison: ProductComparisonContent = {
           </Figure>
         </div>
         <p className="text-muted leading-7 mt-4">
-          A 50 kHz generator is fine for simple continuity-style test signals, but it can&apos;t meaningfully drive audio
-          circuits or higher-speed digital test points. The 2C53P Plus&apos;s 10 MHz generator opens up a much wider
-          range of real test and diagnostic signals from the same handheld.
+          A 50 kHz ceiling still clears the audio band, so the 2C53T can feed a test tone into an amplifier or a
+          speaker crossover, but it stops well short of clock-rate signals and higher-speed digital test points. The
+          2C53P Plus&apos;s 10 MHz generator opens up a much wider range of real test and diagnostic signals from the
+          same handheld.
+        </p>
+        <div className="mt-6">
+          <Figure caption={<>Log frequency scale. Common signal bands are standard reference values, not product specs.</>}>
+            <GeneratorReachDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Plotted on a log axis, the gap is easier to judge than a raw 200x ratio. Both generators cover audio work:
+          checking an amplifier&apos;s frequency response, a tone-control stage or a passive filter tuned to a few
+          kilohertz. Past 50 kHz only the 2C53P Plus continues, through ultrasonic sensor frequencies, the 100 kHz
+          and 400 kHz clock rates used by standard and fast-mode I2C, and on to 10 MHz, where you can inject a stand-in
+          clock or test a switching stage&apos;s input. Neither generator gets close to the 50 MHz bandwidth both scopes
+          share, which is normal for handhelds in this class: the scope can see faster signals than the built-in
+          source can create. Also keep in mind that a generator&apos;s rated top frequency usually applies to sine
+          output, and square edges near the limit look rounder than the label implies.
         </p>
       </section>
 
@@ -149,7 +208,7 @@ const comparison: ProductComparisonContent = {
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          Want to see the 2C53T against a benchtop scope instead? See{" "}
+          Want a small benchtop alternative to these handhelds? See{" "}
           <Link href="/oscilloscopes/hantek-dso2c10-vs-fnirsi-1014d" className={link}>
             Hantek DSO2C10 vs FNIRSI 1014D
           </Link>
@@ -193,6 +252,11 @@ const comparison: ProductComparisonContent = {
       question: "Which is lighter and more portable?",
       answer:
         "The FNIRSI 2C53T is documented at 300 g with a smaller 2.8-inch screen and physical buttons, making it the more compact of the two. The 2C53P Plus's weight isn't stated in this Pick's sourcing, but its larger 4.3-inch touchscreen suggests a bigger device overall.",
+    },
+    {
+      question: "Can the FNIRSI 2C53T's 50 kHz generator test audio circuits?",
+      answer:
+        "Yes. Its stated 50 kHz upper limit sits above the 20 Hz to 20 kHz audio band, so it can supply test tones for amplifiers, filters and crossovers. It runs out for anything faster, such as I2C-rate clocks or switching stages. This site's sourcing doesn't list its lowest frequency or amplitude range, so check those on the device before planning precise response measurements.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

@@ -26,6 +26,57 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Log-frequency map: each scope's rated bandwidth, the rule-of-thumb accurate zone, and the DSO-510's generator span. */
+function PocketRangeDiagram() {
+  const W = 340;
+  const L = 78;
+  const pw = W - L - 14;
+  const x = (f: number) => L + ((Math.log10(f) - 3) / 5) * pw;
+  const ticks = [
+    { f: 1e3, t: "1 kHz" },
+    { f: 1e4, t: "10 kHz" },
+    { f: 1e5, t: "100 kHz" },
+    { f: 1e6, t: "1 MHz" },
+    { f: 1e7, t: "10 MHz" },
+    { f: 1e8, t: "100 MHz" },
+  ];
+  const rows = [
+    { label: "DSO152 input", y: 50, accurate: 200_000 / 5, rated: 200_000, note: "200 kHz" },
+    { label: "DSO-510 input", y: 86, accurate: 10_000_000 / 5, rated: 10_000_000, note: "10 MHz" },
+  ];
+  return (
+    <svg
+      viewBox={`0 0 ${W} 176`}
+      className="w-full h-auto"
+      role="img"
+      aria-label="Log-scale frequency map from 1 kHz to 100 MHz: the DSO152's input is rated to 200 kHz and reads accurately to roughly 40 kHz, the DSO-510's input is rated to 10 MHz and reads accurately to roughly 2 MHz, and the DSO-510's generator covers up to 50 kHz"
+    >
+      <rect x={x(1e3)} y="26" width={x(2e4) - x(1e3)} height="118" className="fill-accent/10" />
+      <text x={x(1e3) + 3} y="20" fontSize="9" className="fill-muted">audio band (to 20 kHz)</text>
+      {ticks.map((t, i) => (
+        <g key={t.f}>
+          <line x1={x(t.f)} x2={x(t.f)} y1="26" y2="144" className="stroke-border" strokeWidth="0.6" strokeDasharray="2 3" />
+          <text x={x(t.f)} y="158" fontSize="8.5" textAnchor={i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"} className="fill-muted">
+            {t.t}
+          </text>
+        </g>
+      ))}
+      {rows.map((r) => (
+        <g key={r.label}>
+          <text x="4" y={r.y + 4} fontSize="10" className="fill-foreground">{r.label}</text>
+          <rect x={x(1e3)} y={r.y - 6} width={x(r.accurate) - x(1e3)} height="12" rx="2" className="fill-accent" />
+          <rect x={x(r.accurate)} y={r.y - 6} width={x(r.rated) - x(r.accurate)} height="12" rx="2" className="fill-accent/30" />
+          <text x={x(r.rated) + 4} y={r.y + 4} fontSize="9.5" className="fill-foreground">{r.note}</text>
+        </g>
+      ))}
+      <text x="4" y="126" fontSize="10" className="fill-foreground">DSO-510 gen.</text>
+      <rect x={x(1e3)} y="116" width={x(5e4) - x(1e3)} height="12" rx="2" className="fill-muted/60" />
+      <text x={x(5e4) + 4} y="126" fontSize="9.5" className="fill-foreground">50 kHz</text>
+      <text x="4" y="172" fontSize="8.5" className="fill-muted">Dark: about 1/5 of rated bandwidth (rule of thumb) · pale: up to the rated figure</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "FNIRSI DSO-510 vs DSO152: Portable Oscilloscopes Compared",
@@ -102,6 +153,44 @@ const comparison: ProductComparisonContent = {
           At 200 kHz, the DSO152 is really only suited to audio-range and basic low-speed logic signals. The
           DSO-510&apos;s 10 MHz opens up a much wider range of general electronics and automotive diagnostic work,
           and its built-in generator adds a capability the DSO152 simply doesn&apos;t have at any frequency.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Where each pocket scope runs out of road</h2>
+        <p className="text-muted leading-7 mb-4">
+          A rated bandwidth is the frequency where a sine wave already displays about 30% short of its true height
+          (the −3 dB point), so it marks the edge of the usable range rather than its middle. A common rule of thumb
+          is to keep your signal at or below roughly a fifth to a third of that figure if you want amplitudes to read
+          within a few percent. The map below plots both inputs on one log-frequency axis with that rule applied.
+        </p>
+        <Figure
+          caption={
+            <>
+              Rule-of-thumb accurate zone (dark) and rated bandwidth (pale) for each FNIRSI, plus the DSO-510&apos;s
+              0–50 kHz generator. Log scale; the zones are a guideline, not a measured response.
+            </>
+          }
+        >
+          <PocketRangeDiagram />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          Read that way, the DSO152 is comfortable up to roughly 40–67 kHz: fine for the audio band, slow PWM and
+          sensor outputs, but square waves lose their sharp corners well before that, because a clean edge needs
+          several odd harmonics above the fundamental. The DSO-510&apos;s comfortable zone reaches roughly 2–3 MHz,
+          enough to show the edges of a few-hundred-kilohertz PWM drive or a slow serial line with recognizable
+          shape. The sample rates follow the same pattern: at 2.5 MSa/s the DSO152 gets about 25 points across one
+          cycle of a 100 kHz signal, while the DSO-510&apos;s 48 MS/s gets 480.
+        </p>
+        <p className="text-muted leading-7">
+          Notice too where the DSO-510&apos;s generator sits: it covers the audio band and a little beyond, which is
+          the right range for injecting a test tone into an amplifier stage or a filter and watching the result on
+          the same screen. It isn&apos;t meant for clock or RF work. For more on how bandwidth and sample rate relate,
+          see{" "}
+          <Link href="/oscilloscopes/what-does-gsa-s-mean" className={link}>
+            what GSa/s means
+          </Link>
+          .
         </p>
       </section>
 
@@ -183,6 +272,11 @@ const comparison: ProductComparisonContent = {
       question: "Can either of these replace a benchtop oscilloscope?",
       answer:
         "No — both are single-channel pocket tools meant for quick checks, not a substitute for a multi-channel benchtop scope with deep memory and serial decoding, such as the Rigol DS1054Z.",
+    },
+    {
+      question: "Is 200 kHz of bandwidth enough to see a square wave?",
+      answer:
+        "Only a slow one. A square wave's sharp edges are built from odd harmonics well above its fundamental, so a 200 kHz scope like the DSO152 visibly rounds the corners once the fundamental climbs into the tens of kilohertz. The DSO-510's 10 MHz keeps edges recognizable into the hundreds of kilohertz, which is why it suits PWM and slow serial lines better.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

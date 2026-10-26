@@ -5,6 +5,14 @@ import { ProductComparison, type ProductComparisonContent } from "@/components/P
 import { picks } from "../best-beginner-oscilloscopes/page";
 import { buildMetadata } from "@/lib/metadata";
 
+// OWON VDS1022I per https://www.owon.com.hk/products_owon_vds_series_pc_oscilloscope and the VDS datasheet
+// http://files.owon.com.cn/specifications/OWON_VDS_Series_PC_Oscilloscope.pdf (checked 2026-10-24): 25 MHz, 2 channels,
+// 100 MSa/s, 8-bit, 5K record length, rise time 14 ns, input 1 MOhm +/-2% || 10 pF, 5 mV/div-5 V/div, USB 2.0 with
+// isolation, USB bus powered (<= 2.5 W), 170 x 120 x 18 mm, 0.26 kg. Isolation voltage rating not recorded.
+// Rigol DS1054Z per the DS1000Z datasheet DSA20100-2020-09: 1 GSa/s (1 ch) / 500 MSa/s (2 ch) / 250 MSa/s (3-4 ch),
+// 8-bit, 7-inch 800x480, up to 30,000 wfm/s, 100-240 V AC 50 W max; memory 24 Mpts per the datasheet, 12M standard /
+// 24M optional per Rigol's product page (conflict stated on the page).
+
 const path = "/oscilloscopes/rigol-ds1054z-vs-owon-vds1022i";
 
 export const metadata = buildMetadata({
@@ -15,6 +23,52 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+/** Where each scope's probe ground ends up: mains earth through the Rigol's cord, or across OWON's USB isolation barrier. */
+function GroundPathDiagram() {
+  return (
+    <svg
+      viewBox="0 0 340 230"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram of probe ground paths. Top: the Rigol DS1054Z's probe ground clip connects through the scope chassis and power cord to mains earth. Bottom: the OWON VDS1022I's probe ground connects to the scope's own circuit, which reaches the laptop through an isolation barrier in its USB link, so the probe ground is not tied to the laptop's ground."
+    >
+      <text x="6" y="14" fontSize="10" fontWeight="700" className="fill-foreground">Rigol DS1054Z (mains-powered bench scope)</text>
+      <rect x="10" y="26" width="70" height="40" rx="5" className="fill-surface stroke-foreground" strokeWidth="1.2" />
+      <text x="45" y="50" fontSize="9" textAnchor="middle" className="fill-foreground">Circuit</text>
+      <rect x="130" y="22" width="90" height="48" rx="6" className="fill-surface stroke-accent" strokeWidth="1.4" />
+      <text x="175" y="44" fontSize="9" textAnchor="middle" className="fill-foreground">DS1054Z</text>
+      <text x="175" y="57" fontSize="8" textAnchor="middle" className="fill-muted">chassis = earth</text>
+      <path d="M80 40 H130" className="stroke-foreground" strokeWidth="1.4" fill="none" />
+      <text x="105" y="35" fontSize="8" textAnchor="middle" className="fill-muted">tip</text>
+      <path d="M80 56 H130" className="stroke-accent" strokeWidth="2" fill="none" />
+      <text x="105" y="67" fontSize="8" textAnchor="middle" className="fill-accent">ground clip</text>
+      <path d="M220 46 H280 V82" className="stroke-accent" strokeWidth="2" fill="none" />
+      <text x="250" y="40" fontSize="8" textAnchor="middle" className="fill-muted">power cord</text>
+      <path d="M268 82 H292 M272 88 H288 M277 94 H283" className="stroke-accent" strokeWidth="1.6" />
+      <text x="262" y="92" fontSize="8.5" textAnchor="end" className="fill-accent">mains earth</text>
+
+      <line x1="6" y1="112" x2="334" y2="112" className="stroke-border" strokeWidth="0.8" />
+
+      <text x="6" y="130" fontSize="10" fontWeight="700" className="fill-foreground">OWON VDS1022I (USB PC scope)</text>
+      <rect x="10" y="144" width="70" height="40" rx="5" className="fill-surface stroke-foreground" strokeWidth="1.2" />
+      <text x="45" y="168" fontSize="9" textAnchor="middle" className="fill-foreground">Circuit</text>
+      <rect x="120" y="140" width="80" height="48" rx="6" className="fill-surface stroke-accent" strokeWidth="1.4" />
+      <text x="160" y="162" fontSize="9" textAnchor="middle" className="fill-foreground">VDS1022I</text>
+      <text x="160" y="175" fontSize="8" textAnchor="middle" className="fill-muted">front end</text>
+      <path d="M80 158 H120" className="stroke-foreground" strokeWidth="1.4" fill="none" />
+      <path d="M80 174 H120" className="stroke-accent" strokeWidth="2" fill="none" />
+      <text x="100" y="196" fontSize="8" textAnchor="middle" className="fill-accent">ground clip</text>
+      <line x1="216" y1="134" x2="216" y2="194" className="stroke-accent" strokeWidth="2" strokeDasharray="4 3" />
+      <line x1="222" y1="134" x2="222" y2="194" className="stroke-accent" strokeWidth="2" strokeDasharray="4 3" />
+      <text x="219" y="208" fontSize="8" textAnchor="middle" className="fill-accent">USB isolation</text>
+      <path d="M200 164 H216 M222 164 H252" className="stroke-foreground" strokeWidth="1.4" fill="none" />
+      <rect x="252" y="146" width="78" height="36" rx="5" className="fill-surface stroke-foreground" strokeWidth="1.2" />
+      <text x="291" y="168" fontSize="9" textAnchor="middle" className="fill-foreground">Laptop</text>
+      <text x="291" y="200" fontSize="8" textAnchor="middle" className="fill-muted">may be earthed via charger</text>
+    </svg>
+  );
+}
 
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
@@ -47,6 +101,13 @@ const comparison: ProductComparisonContent = {
     { label: "Display", a: "Built-in 7-inch", b: "None: uses your computer's screen via OWON's PC software" },
     { label: "Form factor", a: "Benchtop", b: "USB PC oscilloscope, 0.26 kg" },
     { label: "Comfortable signal range (3–5× rule)", a: "Up to roughly 10–17MHz", b: "Up to roughly 5–8MHz" },
+    { label: "Sample rate by channels on", a: "1 GSa/s (1 ch), 500 MSa/s (2 ch), 250 MSa/s (3–4 ch)", b: "100 MSa/s (2-channel split not stated)" },
+    { label: "Record length", a: "24 Mpts (datasheet); 12M standard, 24M optional (product page)", b: "5K points" },
+    { label: "Vertical resolution", a: "8-bit (12-bit high-res mode)", b: "8-bit" },
+    { label: "Waveform update rate", a: "Up to 30,000 wfm/s", b: "Not stated" },
+    { label: "Rise time", a: "≈7 ns (0.35 ÷ 50MHz estimate)", b: "14 ns (OWON figure)" },
+    { label: "Power", a: "100–240 V AC, 50 W max", b: "USB bus power, 2.5 W max" },
+    { label: "Computer link", a: "USB host/device and LAN (not needed to operate)", b: "Isolated USB 2.0 (required)" },
   ],
   differences: [
     "Form factor: the Rigol is a complete benchtop instrument with a 7-inch display; the VDS1022I has no screen and needs a computer running OWON's software.",
@@ -149,11 +210,44 @@ const comparison: ProductComparisonContent = {
         <div className="mt-4">
           <KeyIdea title="Rise time sets the fastest edge you can trust">
             A common approximation puts a scope&apos;s own fastest displayable rise time at about 0.35 divided by
-            its bandwidth: roughly 7 ns for the 50MHz Rigol and 14 ns for the 25MHz OWON. If the edge you are
-            measuring is faster than a few times that figure, the screen shows the scope&apos;s rise time, not
-            your circuit&apos;s. The exact value depends on each front end, but the twofold gap holds.
+            its bandwidth: roughly 7 ns for the 50MHz Rigol and 14 ns for the 25MHz OWON, which matches the 14 ns
+            OWON lists for the VDS1022I. If the edge you are measuring isn&apos;t several times slower than that
+            figure, the screen shows the scope&apos;s rise time, not your circuit&apos;s. The twofold gap holds.
           </KeyIdea>
         </div>
+        <h3 className="text-lg font-semibold mt-6 mb-2">Record length: 50 µs against 24 ms</h3>
+        <p className="text-muted leading-7 mb-4">
+          Memory decides how much time one capture holds at full speed. The VDS1022I&apos;s 5K points at 100 MSa/s cover
+          5,000 ÷ 100,000,000 = 50 µs. That is enough for a few cycles of a 100kHz signal, but a single 115,200-baud UART
+          byte lasts about 87 µs (10 bits × 8.7 µs), so catching a whole byte means slowing the timebase and the sample
+          rate with it. Rigol&apos;s datasheet gives the DS1054Z 24 Mpts, which at 1 GSa/s spans 24 ms; its product page
+          lists 12M as standard, which halves that. Either figure holds an entire burst of serial traffic at a rate that
+          still resolves every edge.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Where the probe ground goes</h3>
+        <p className="text-muted leading-7 mb-4">
+          The two designs also differ in a way the spec sheet barely mentions: what the probe&apos;s ground clip is
+          connected to. On the Rigol it is the scope chassis, and through the power cord, mains earth. On the OWON it
+          is the scope&apos;s own front end, which talks to your laptop across an isolation barrier in the USB link.
+        </p>
+        <Figure
+          caption={
+            <>
+              Probe ground paths. The Rigol&apos;s clip is earthed through its cord; the OWON&apos;s clip stops at an isolated
+              USB link, so it isn&apos;t tied to the laptop&apos;s ground.
+            </>
+          }
+        >
+          <GroundPathDiagram />
+        </Figure>
+        <p className="text-muted leading-7 mt-4 mb-4">
+          In practice the isolation helps most on battery and bench-supply circuits whose ground isn&apos;t at earth
+          potential, such as a USB-powered gadget plugged into a different computer: with a non-isolated scope, the
+          two grounds meet through the probe and can cause a ground loop or worse. With the Rigol, that same situation
+          is handled by making sure the circuit&apos;s ground is the point you clip to, or by floating the circuit from a
+          battery.
+        </p>
         <div className="mt-4">
           <Callout title="Grounds, isolation and mains">
             On a mains-powered bench scope like the Rigol, the probe ground clip is normally tied to mains earth
@@ -236,6 +330,11 @@ const comparison: ProductComparisonContent = {
       question: "Which is better for a beginner, the Rigol DS1054Z or the OWON VDS1022I?",
       answer:
         "A beginner with a desk to dedicate to electronics will get more from the Rigol DS1054Z: a real front panel to learn on, four channels and 50MHz. The VDS1022I is the better fit if you don't have bench space, always work at a laptop, or want a light second scope to carry between places.",
+    },
+    {
+      question: "How much does the OWON VDS1022I record in one capture?",
+      answer:
+        "OWON lists a 5K-point record length. At the full 100 MSa/s that is 50 µs of signal, a few cycles of a 100kHz waveform. Slower timebases stretch the window by lowering the sample rate. The Rigol DS1054Z's 24 Mpts per its datasheet, or 12M standard per its product page, holds milliseconds at full speed.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

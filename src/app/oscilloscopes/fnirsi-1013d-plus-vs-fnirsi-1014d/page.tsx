@@ -29,6 +29,42 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** One shared measuring core, two different bodies wrapped around it. */
+function SharedCoreDiagram() {
+  return (
+    <svg
+      viewBox="0 0 380 200"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Block diagram: the FNIRSI 1013D Plus and 1014D share a two-channel, 100 MHz, 1 GSa/s core with a 7-inch 800 by 480 screen. Only the 1013D Plus adds a 6000 mAh battery, USB-C charging and touch control; only the 1014D adds a DDS signal generator, an external trigger input, a 5 V adapter and physical controls."
+    >
+      <rect x="135" y="55" width="110" height="90" rx="10" className="fill-accent/10 stroke-accent" strokeWidth="1.6" />
+      <text x="190" y="75" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-accent">Shared scope core</text>
+      <text x="190" y="93" fontSize="8.5" textAnchor="middle" className="fill-foreground">2 channels, 100 MHz</text>
+      <text x="190" y="107" fontSize="8.5" textAnchor="middle" className="fill-foreground">1 GSa/s, rise under 3 ns</text>
+      <text x="190" y="121" fontSize="8.5" textAnchor="middle" className="fill-foreground">7-inch 800 × 480</text>
+      <text x="190" y="135" fontSize="8.5" textAnchor="middle" className="fill-foreground">FFT, X-Y, roll mode</text>
+      <rect x="8" y="40" width="110" height="120" rx="10" className="fill-surface stroke-border" strokeWidth="1.2" />
+      <text x="63" y="58" fontSize="9.5" fontWeight="700" textAnchor="middle" className="fill-foreground">1013D Plus only</text>
+      {["6000 mAh battery", "about 4 h unplugged", "USB-C, works on charge", "Touch and gestures", "Lighter: 2.33 lb"].map((t, i) => (
+        <text key={t} x="16" y={78 + i * 17} fontSize="8" className="fill-muted">
+          {t}
+        </text>
+      ))}
+      <rect x="262" y="40" width="110" height="120" rx="10" className="fill-surface stroke-border" strokeWidth="1.2" />
+      <text x="317" y="58" fontSize="9.5" fontWeight="700" textAnchor="middle" className="fill-foreground">1014D only</text>
+      {["DDS generator out", "2.5 Vpp, sine to 10 MHz", "Ext. trigger, 0–40 V", "5 V adapter power", "Buttons and knobs"].map((t, i) => (
+        <text key={t} x="270" y={78 + i * 17} fontSize="8" className="fill-muted">
+          {t}
+        </text>
+      ))}
+      <path d="M118 100 H135 M245 100 H262" className="stroke-accent" strokeWidth="2" />
+      <text x="190" y="30" fontSize="9.5" textAnchor="middle" className="fill-muted">Same measuring hardware rating</text>
+      <text x="190" y="188" fontSize="9" textAnchor="middle" className="fill-muted">Both Amazon kits add a P4100 100X probe</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "FNIRSI 1013D Plus vs FNIRSI 1014D",
@@ -143,6 +179,21 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mb-4">
           Since the measuring hardware is rated the same, the honest way to choose is to picture where the scope
           will be when you need it, and what else you will have in your hands.
+        </p>
+        <Figure
+          caption={
+            <>
+              FNIRSI&apos;s ratings put the same measuring core inside both products. Everything that separates them
+              sits in the outer boxes: power, controls and the 1014D&apos;s signal output.
+            </>
+          }
+        >
+          <SharedCoreDiagram />
+        </Figure>
+        <p className="text-muted leading-7 my-4">
+          Read the diagram from the middle outward. The center box is what you measure with, and FNIRSI rates it
+          identically, so no trace will look sharper on one than the other. The left box decides whether you can
+          leave the socket behind; the right box decides whether the scope can feed the circuit as well as watch it.
         </p>
         <h3 className="text-lg font-semibold mb-2">Away from the bench: the 1013D Plus</h3>
         <p className="text-muted leading-7 mb-4">

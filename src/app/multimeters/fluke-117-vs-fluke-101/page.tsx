@@ -1,5 +1,14 @@
+// Specs per Fluke, checked 2026-10-26:
+// - Fluke 117 product page and spec tab: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-117
+// - Fluke 114/115/116/117 datasheet: https://media.fluke.com/ce54d963-3be9-4e70-8a3e-b1060070fdfd_original%20file.pdf
+// - Fluke 101 product page (India; not listed on fluke.com US): https://www.fluke.com/en-in/product/electrical-testing/digital-multimeters/fluke-101
+//   (130 × 65 × 27 mm, 160 g, CAT III 600 V, two AAA, 1-year warranty, 1 m drop, frequency 10 Hz to 100 kHz,
+//   duty cycle 0.1% to 99.9%, DC volts 0.5% + 3, no current function, no True RMS claim)
+// Fluke's 101 documents disagree on top capacitance (100 µF vs 1,000 µF); the 117's top frequency is 50 kHz on the
+// datasheet but 99.99 kHz in the 2020 manual. Both conflicts are stated on the page.
+import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
-import { BarChart, DataTable, Figure, FlowDiagram } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
@@ -13,13 +22,54 @@ export const metadata = buildMetadata({
   path: "/multimeters/fluke-117-vs-fluke-101",
 });
 
+const link = "text-accent hover:underline";
+
+/** Why True RMS matters: a sine and a square wave with the same RMS value, and how an averaging meter misreads the square. */
+function RmsDiagram() {
+  const mid = 70;
+  const amp = 40;
+  const x0 = 24;
+  const w = 130;
+  let sine = "";
+  for (let i = 0; i <= 60; i++) {
+    const x = x0 + (w * i) / 60;
+    const y = mid - amp * Math.sin((2 * Math.PI * i) / 60);
+    sine += `${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)} `;
+  }
+  const sx = 186;
+  const sq = `M${sx} ${mid} V${mid - amp} H${sx + w / 2} V${mid + amp} H${sx + w} V${mid}`;
+  return (
+    <svg
+      viewBox="0 0 340 170"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: on a clean sine wave a True RMS meter and an average-responding meter agree, but on a square wave of 10 volts RMS the average-responding meter reads about 11.1 volts, roughly 11 percent high"
+    >
+      <line x1={x0} x2={x0 + w} y1={mid} y2={mid} className="stroke-border" strokeWidth="1" />
+      <line x1={sx} x2={sx + w} y1={mid} y2={mid} className="stroke-border" strokeWidth="1" />
+      <path d={sine} className="stroke-accent fill-none" strokeWidth="2" />
+      <path d={sq} className="stroke-accent fill-none" strokeWidth="2" strokeLinejoin="round" />
+      <text x={x0 + w / 2} y="16" fontSize="10" textAnchor="middle" className="fill-foreground">Clean sine, 10 V RMS</text>
+      <text x={sx + w / 2} y="16" fontSize="10" textAnchor="middle" className="fill-foreground">Square wave, 10 V RMS</text>
+      <g fontSize="9" textAnchor="middle">
+        <text x={x0 + w / 2} y="132" className="fill-accent">True RMS: 10.0 V</text>
+        <text x={x0 + w / 2} y="146" className="fill-muted">Averaging: 10.0 V</text>
+        <text x={sx + w / 2} y="132" className="fill-accent">True RMS: 10.0 V</text>
+        <text x={sx + w / 2} y="146" className="fill-muted">Averaging: about 11.1 V</text>
+      </g>
+      <text x="170" y="164" fontSize="8.5" textAnchor="middle" className="fill-muted">Averaging meters scale the rectified average by 1.11, which is only right for a pure sine</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "multimeters",
   heading: "Fluke 117 vs Fluke 101",
   path,
   published: "2026-10-22",
+  updated: "2026-10-26",
   intro:
-    "Fluke 117 vs Fluke 101 comes down to two questions: do you need to measure current, and do you need True RMS? The 117 answers yes to both and adds NCV, AutoVolt and LoZ for building wiring. The 101 is Fluke's most basic meter, with no current function at all, but it reads frequency to 100 kHz in a 160 g body.",
+    "Fluke 117 vs Fluke 101 comes down to two questions: do you need to measure current, and do you need True RMS? The 117 answers yes to both and adds NCV, AutoVolt and LoZ for building wiring. The 101 is Fluke's most basic meter, with no current function at all, but it reads frequency to 100 kHz and adds duty cycle and a diode test in a 160 g body.",
   a: {
     pick: picks.find((p) => p.name === "Fluke 117")!,
     reviewHref: "/multimeters/fluke-117-review",
@@ -45,9 +95,12 @@ const comparison: ProductComparisonContent = {
     { label: "VoltAlert NCV / AutoVolt / LoZ", a: "Yes / Yes / Yes", b: "No / No / No" },
     { label: "Display", a: "6,000 counts + 33-segment bar graph", b: "6,000 counts" },
     { label: "Max voltage", a: "600V AC/DC", b: "600V AC/DC" },
-    { label: "Frequency", a: "Up to 50 kHz", b: "Up to 100 kHz, plus duty cycle" },
-    { label: "Capacitance", a: "Up to 9,999 µF", b: "Fluke sources conflict: 100 µF or 1,000 µF" },
+    { label: "DC volts accuracy", a: "±(0.5% + 2)", b: "±(0.5% + 3)" },
+    { label: "Frequency", a: "To 50 kHz (2020 manual: 99.99 kHz)", b: "10 Hz to 100 kHz, plus duty cycle" },
+    { label: "Diode test", a: "Yes, 2.000 V", b: "Yes" },
+    { label: "Capacitance", a: "1 nF to 9,999 µF", b: "Fluke sources conflict: 100 µF or 1,000 µF" },
     { label: "Size / weight", a: "167 × 84 × 46 mm, 550 g", b: "130 × 65 × 27 mm, 160 g" },
+    { label: "Battery", a: "One 9V, 400 h typical", b: "Two AAA (life not stated)" },
     { label: "Drop rating", a: "Not stated", b: "1 m" },
     { label: "Warranty / availability", a: "3 years; sold by Fluke US", b: "1 year; US listing is a third-party import" },
   ],
@@ -55,7 +108,7 @@ const comparison: ProductComparisonContent = {
     "The 117 measures AC and DC current to 10A; the 101 has no current function and only two input jacks.",
     "The 117 is True RMS; Fluke makes no True RMS claim for the 101.",
     "VoltAlert non-contact detection, AutoVolt and the low-impedance mode are on the 117 only.",
-    "The 101 reads frequency to 100 kHz, twice the 117's 50 kHz, and adds duty cycle.",
+    "The 101 reads frequency to 100 kHz on Fluke's spec, twice the 117's datasheet figure of 50 kHz, and adds duty cycle.",
     "At 160 g the 101 weighs less than a third of the 117's 550 g.",
     "The 117 has a 3-year warranty and is sold by Fluke US; the 101 has 1 year and is imported.",
   ],
@@ -63,7 +116,12 @@ const comparison: ProductComparisonContent = {
     <>
       <section>
         <h2 className="text-2xl font-semibold mb-4">Start with one question: do you measure current?</h2>
-        <Figure caption={<>A two-step check. Answer yes to either question and the 101 is the wrong meter.</>}>
+        <p className="text-muted leading-7 mb-4">
+          Most people comparing these two are really asking whether a cheap, tiny Fluke can stand in for a full
+          electrician&apos;s meter. For voltage and continuity it can. The moment a job needs amps, or a trustworthy
+          AC reading on an electronic load, the answer flips, and no setting on the 101&apos;s dial changes that.
+        </p>
+        <Figure caption={<>A short check. Answer yes to any of the first three and the 101 is the wrong meter.</>}>
           <FlowDiagram
             steps={[
               { label: "Measure amps?", sub: "Yes: you need the 117" },
@@ -74,22 +132,41 @@ const comparison: ProductComparisonContent = {
           />
         </Figure>
       </section>
+
       <section>
-        <h2 className="text-2xl font-semibold mb-4">Frequency range and weight</h2>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 117 vs 101 spec by spec</h2>
         <p className="text-muted leading-7 mb-4">
-          The 101 isn&apos;t outclassed everywhere. Its frequency range goes higher than the 117&apos;s, and it is far
-          lighter, which is the whole point of a minimal meter.
+          On the measurements both meters share, Fluke&apos;s figures sit close together: basic DC accuracy is 0.5% on
+          each, and both read 600 V on a 6,000-count display. The real gaps are the functions one has and the other
+          lacks, plus size, warranty and where you can buy them.
         </p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          <Figure caption={<>Maximum frequency, in kHz.</>}>
+        <DataTable
+          head={["Spec", "Fluke 117", "Fluke 101", "Edge"]}
+          rows={[
+            ["DC volts", "600.0 mV to 600.0 V, ±(0.5% + 2)", "6.000 to 600.0 V, ±(0.5% + 3)", "Near equal"],
+            ["AC volts", "To 600.0 V, ±(1.0% + 3), True RMS", "To 600.0 V, 1.0% + 3, no True RMS claim", "117"],
+            ["AC/DC current", "6.000 A and 10.00 A, 20 A for 30 s", "None", "117"],
+            ["Resistance", "To 40.00 MΩ, ±(0.9% + 1)", "To 40.00 MΩ, 0.5% + 2 on middle ranges", "101 on paper"],
+            ["Capacitance", "1 nF to 9,999 µF", "To 100 µF or 1,000 µF (sources conflict)", "117"],
+            ["Frequency", "To 50 kHz (manual: 99.99 kHz)", "10 Hz to 100 kHz", "101"],
+            ["Duty cycle", "No", "0.1% to 99.9%", "101"],
+            ["Non-contact voltage", "VoltAlert, Lo/Hi sensitivity", "No", "117"],
+            ["Ghost-voltage check", "AutoVolt LoZ, about 3 kΩ", "No", "117"],
+            ["Size", "167 × 84 × 46 mm", "130 × 65 × 27 mm", "101"],
+            ["Weight", "550 g", "160 g", "101"],
+            ["Warranty", "3 years", "1 year", "117"],
+          ]}
+        />
+        <div className="mt-6 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Maximum frequency per Fluke&apos;s spec sheets, in kHz. Fluke&apos;s 2020 manual lists a 99.99 kHz range for the 117 that its datasheet omits.</>}>
             <BarChart
               items={[
-                { label: "Fluke 117", value: 50, display: "50 kHz" },
+                { label: "Fluke 117 (datasheet)", value: 50, display: "50 kHz" },
                 { label: "Fluke 101", value: 100, display: "100 kHz", highlight: true },
               ]}
             />
           </Figure>
-          <Figure caption={<>Weight, in grams.</>}>
+          <Figure caption={<>Weight, in grams. The 101 is about 29% of the 117&apos;s mass.</>}>
             <BarChart
               items={[
                 { label: "Fluke 117", value: 550, display: "550 g" },
@@ -97,54 +174,152 @@ const comparison: ProductComparisonContent = {
               ]}
             />
           </Figure>
-        </div>
-        <div className="mt-4">
-          <DataTable
-            head={["Everyday check", "117", "101"]}
-            rows={[
-              ["Is this outlet live?", "Yes, with VoltAlert or leads", "Yes, with leads"],
-              ["How many amps is this heater drawing?", "Yes", "No"],
-              ["Is this fuse blown?", "Yes", "Yes"],
-              ["What frequency is this signal?", "To 50 kHz", "To 100 kHz"],
-            ]}
-          />
+          <Figure caption={<>Warranty in years, per Fluke.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 117", value: 3, display: "3 years", highlight: true },
+                { label: "Fluke 101", value: 1, display: "1 year" },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Largest dimension of each case, in millimeters, per Fluke.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 117", value: 167, display: "167 mm" },
+                { label: "Fluke 101", value: 130, display: "130 mm", highlight: true },
+              ]}
+            />
+          </Figure>
         </div>
       </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Why True RMS changes the AC reading</h2>
+        <p className="text-muted leading-7 mb-4">
+          An average-responding meter rectifies the AC signal, takes the average and multiplies by 1.11, the ratio that
+          converts average to RMS for a perfect sine. Feed it anything else and that factor is wrong. A True RMS meter
+          like the 117 computes the heating value directly, so the shape of the wave doesn&apos;t matter within its
+          rated crest factor. Fluke doesn&apos;t claim True RMS for the 101, so treat its AC readings on non-sine
+          loads with caution.
+        </p>
+        <Figure caption={<>Standard textbook arithmetic, not a measurement: a square wave has equal RMS and average values, so a ×1.11 meter reads 11% high.</>}>
+          <RmsDiagram />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          Real loads are messier than a square wave. The current drawn by a switch-mode power supply or an LED driver
+          comes in short, tall pulses, and an averaging meter tends to read those low rather than high. Either way, the
+          error grows with distortion, which is why electricians who work around variable-speed drives and modern
+          lighting insist on True RMS. On a plain incandescent or resistive heater circuit the two approaches agree.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Who each meter really suits</h2>
+        <p className="text-muted leading-7 mb-4">
+          The 117 is a working electrician&apos;s tool. VoltAlert gives a quick no-contact hint that a cord or outlet
+          is energized, AutoVolt picks AC or DC on its own, and the low-impedance input collapses the phantom voltages
+          that capacitive coupling leaves on dead conductors in shared conduit. Add True RMS and 10 A current and it
+          covers panel, branch-circuit and appliance work without a second meter.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          The 101 makes sense in a narrower spot: a glovebox or drawer meter for someone who checks batteries, fuses,
+          outlets and the odd signal. Its 100 kHz frequency range, duty cycle and diode test give it surprising reach
+          on small electronics, and at 130 × 65 × 27 mm it fits a shirt pocket. What it won&apos;t do is tell you how
+          much current a heater, motor or parasitic drain is pulling.
+        </p>
+        <DataTable
+          head={["Everyday check", "117", "101"]}
+          rows={[
+            ["Is this outlet live?", "Yes, with VoltAlert or leads", "Yes, with leads"],
+            ["How many amps is this heater drawing?", "Yes, up to 10 A", "No"],
+            ["Is this fuse blown?", "Yes", "Yes"],
+            ["Is that 40 V on a dead wire real?", "Yes, AutoVolt LoZ", "No way to tell"],
+            ["What frequency is this signal?", "Yes (see range note)", "To 100 kHz"],
+            ["What is this PWM duty cycle?", "No", "Yes"],
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 117 or 101: which should you buy?</h2>
+        <DataTable
+          head={["You are…", "Better fit", "Why"]}
+          rows={[
+            ["Electrician or apprentice", "Fluke 117", "Current, True RMS, NCV and LoZ are daily needs on building wiring"],
+            ["Homeowner doing your own wiring", "Fluke 117", "LoZ and VoltAlert help confirm a circuit is really dead"],
+            ["Car owner checking fuses and battery voltage", "Fluke 101", "Volts, continuity and diode test cover it; add a clamp for current"],
+            ["Electronics hobbyist on a tight budget", "Fluke 101", "Frequency, duty cycle and diode test in a pocket size"],
+            ["HVAC or appliance technician", "Fluke 117", "Running current and capacitance up to 9,999 µF"],
+            ["Buyer who wants US warranty support", "Fluke 117", "Sold by Fluke US with 3 years; the 101 is an import with 1 year"],
+          ]}
+        />
+        <div className="mt-4">
+          <KeyIdea title="A middle ground if you want current in a small body">
+            The Fluke 106 and 107 keep a palm-sized 200 g case but add 4A and 10A current ranges. Compare them in{" "}
+            <Link href="/multimeters/fluke-117-vs-fluke-106" className={link}>
+              Fluke 117 vs Fluke 106
+            </Link>{" "}
+            and{" "}
+            <Link href="/multimeters/fluke-117-vs-fluke-107" className={link}>
+              Fluke 117 vs Fluke 107
+            </Link>
+            , or see why a two-jack meter can&apos;t read amps in{" "}
+            <Link href="/multimeters/fluke-106-vs-fluke-101" className={link}>
+              Fluke 106 vs Fluke 101
+            </Link>
+            .
+          </KeyIdea>
+        </div>
+      </section>
+
+      <Callout title="Safety: confirm dead with leads, not just a beep">
+        Both meters are rated CAT III 600V, suitable for panels and branch circuits but not the service drop or meter
+        base. VoltAlert on the 117 is a first check only; it can miss shielded or DC conductors. On either meter, test a
+        known live source, then the circuit, then the known source again before touching conductors. If readings
+        don&apos;t make sense on house wiring, stop and call a licensed electrician. Our guide to{" "}
+        <Link href="/multimeters/why-does-my-multimeter-show-voltage-when-measuring-a-disconnected-circuit" className={link}>
+          voltage on a disconnected circuit
+        </Link>{" "}
+        explains the most common surprise.
+      </Callout>
     </>
   ),
   bottomLine:
-    "The Fluke 117 is the meter to buy for electrical work: current, True RMS and its NCV, AutoVolt and LoZ features matter on real circuits. The Fluke 101 is only worth considering as an ultra-light voltage and continuity checker, and its US availability as an import with a one-year warranty counts against it.",
+    "The Fluke 117 is the meter to buy for electrical work: current, True RMS and its NCV, AutoVolt and LoZ features matter on real circuits. The Fluke 101 is only worth considering as an ultra-light voltage, continuity and signal checker, and its US availability as an import with a one-year warranty counts against it.",
   faqs: [
     {
       question: "Why can't the Fluke 101 measure current?",
       answer:
-        "Fluke designed it with only two input jacks, COM and one shared input, and its datasheet lists no current function. Measuring current needs a separate fused input, which the 117 has.",
+        "Fluke built it with only two input jacks, COM and one shared input for volts, ohms, capacitance and frequency, and its specifications list no current function. Measuring current in series needs a separate fused input that the meter can route amps through, which the 117 has on its A jack. For current on a 101 owner's bench, a clamp meter is the usual add-on.",
     },
     {
       question: "Is the Fluke 101 True RMS?",
       answer:
-        "Fluke makes no True RMS claim for the 101 in its datasheet, manual or product pages. The 117 is True RMS.",
+        "Fluke makes no True RMS claim for the 101 on its product page, datasheet or manual, so assume it is not. That's fine on clean mains and batteries. On variable-speed drives, dimmers and switch-mode supplies, an averaging reading can be off by several percent or more, while the True RMS Fluke 117 stays accurate.",
     },
     {
-      question: "Which reads higher frequencies?",
+      question: "Which reads higher frequencies, the Fluke 117 or 101?",
       answer:
-        "The 101, up to 100 kHz with duty cycle, against the 117's 50 kHz.",
+        "On Fluke's spec sheets, the 101: it measures 10 Hz to 100 kHz and adds duty cycle, while the 117's datasheet stops at 50 kHz. Fluke's 2020 users manual for the 117 lists a 99.99 kHz range, so the gap may be smaller than it looks. Neither is a substitute for an oscilloscope on fast digital signals.",
     },
     {
       question: "Can I buy the Fluke 101 from Fluke in the US?",
       answer:
-        "Fluke's US site doesn't list it; it appears on Fluke's India and Malaysia sites. On Amazon it is sold by a third-party importer, with Fluke's one-year warranty.",
+        "Fluke's US site doesn't list it; it appears on Fluke's India and Malaysia sites. On Amazon it is sold by a third-party importer, and Fluke's one-year warranty applies rather than the longer cover on US models. If local warranty support matters, the Fluke 106 or 107 are the palm-sized models Fluke sells in the US.",
     },
     {
       question: "Is the Fluke 117 overkill for home use?",
       answer:
-        "Not if you work on your own wiring: NCV and LoZ help you confirm circuits are dead. For battery and fuse checks alone, a smaller meter such as the 101 or 107 is enough.",
+        "Not if you work on your own wiring. VoltAlert gives a fast first check, LoZ exposes phantom voltage on dead conductors, and True RMS keeps readings honest on LED lighting circuits. For battery, fuse and continuity checks alone, a smaller meter such as the 101 or 107 is enough, and our best multimeter for home use guide covers the middle ground.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },
   related: [
+    { label: "Fluke 117 review", href: "/multimeters/fluke-117-review" },
     { label: "Fluke 117 vs Fluke 106", href: "/multimeters/fluke-117-vs-fluke-106" },
+    { label: "Fluke 107 vs Fluke 101", href: "/multimeters/fluke-107-vs-fluke-101" },
     { label: "Fluke 17B+ vs Fluke 101", href: "/multimeters/fluke-17b-plus-vs-fluke-101" },
+    { label: "Fluke 101 vs Fluke T5-600", href: "/multimeters/fluke-101-vs-fluke-t5-600" },
     { label: "Best multimeter for home use", href: "/multimeters/best-multimeter-for-home-use" },
   ],
 };

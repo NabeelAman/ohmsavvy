@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
+import { BarChart, Figure } from "@/components/HowTo";
 
 export const metadata = buildMetadata({
   title: "How to Test Electrical Wires With a Multimeter",
@@ -126,6 +127,65 @@ export default function HowToTestElectricalWiresWithAMultimeterPage() {
               meter reads it as near-zero; a break shows up as near-infinite resistance (no current
               can complete the loop at all).
             </p>
+            <p className="mt-4 text-muted leading-7 mb-4">
+              How low is &quot;near zero&quot;? Copper wire resistance is well documented. Using
+              standard AWG table values at 20 °C, 100 ft of 14 AWG branch-circuit wire is about
+              0.25 Ω, and even 100 ft of thin 22 AWG hookup wire is only about 1.6 Ω. Most
+              meters&apos; own test leads add a few tenths of an ohm, so on a household or
+              automotive run a sound wire reads within a fraction of an ohm of the shorted-leads
+              value. Touch the probe tips together first and subtract that figure.
+            </p>
+            <Figure caption="Approximate resistance of 100 ft of solid copper wire at 20 °C, from standard AWG tables. Real wire varies slightly with temperature and stranding.">
+              <BarChart
+                items={[
+                  { label: "22 AWG (hookup wire)", value: 1.614, display: "≈ 1.61 Ω" },
+                  { label: "18 AWG (lamp cord)", value: 0.6385, display: "≈ 0.64 Ω" },
+                  { label: "14 AWG (15A circuit)", value: 0.2525, display: "≈ 0.25 Ω", highlight: true },
+                  { label: "12 AWG (20A circuit)", value: 0.1588, display: "≈ 0.16 Ω" },
+                  { label: "10 AWG (30A circuit)", value: 0.0999, display: "≈ 0.10 Ω" },
+                ]}
+              />
+            </Figure>
+            <p className="mt-4 text-muted leading-7">
+              Use the chart as a sanity check. Scale the value by the length you&apos;re testing: a
+              25 ft run of 12 AWG should be about 0.16 × 0.25 = 0.04 Ω, which no handheld meter can
+              tell apart from zero. So if that run reads 3 Ω or 40 Ω, the wire is not the copper you
+              think it is: a loose terminal, a corroded splice or a few surviving strands is adding
+              resistance. That reading can still beep in continuity mode, because many meters beep
+              below a threshold of some tens of ohms, which is why the number on the display matters
+              more than the beep on a suspect run.
+            </p>
+            <div className="mt-4">
+              <Figure caption="Left: testing for an open, probes on both ends of the same conductor. Right: testing for a short, one probe on the suspect wire and one on ground or a neighboring wire. Readings are illustrative.">
+                <svg
+                  viewBox="0 0 360 150"
+                  className="w-full h-auto"
+                  role="img"
+                  aria-label="Two-panel diagram. In the open test, the multimeter probes touch both ends of one wire, which has a break in the middle, so the meter reads OL. In the short test, one probe touches a wire and the other touches the chassis ground, and damaged insulation lets the wire touch the chassis, so the meter beeps and reads near zero ohms."
+                >
+                  <g className="stroke-foreground" strokeWidth="2" fill="none">
+                    <line x1="20" y1="50" x2="80" y2="50" />
+                    <line x1="96" y1="50" x2="160" y2="50" />
+                    <line x1="210" y1="50" x2="340" y2="50" />
+                    <line x1="200" y1="110" x2="350" y2="110" strokeWidth="4" />
+                  </g>
+                  <line x1="280" y1="50" x2="280" y2="110" className="stroke-accent" strokeWidth="2" strokeDasharray="3 3" />
+                  <text x="88" y="40" fontSize="9" textAnchor="middle" className="fill-accent">break</text>
+                  <text x="290" y="84" fontSize="9" className="fill-accent">insulation fault</text>
+                  <text x="275" y="128" fontSize="9" textAnchor="middle" className="fill-muted">chassis / ground</text>
+                  <circle cx="20" cy="50" r="3" className="fill-accent" />
+                  <circle cx="160" cy="50" r="3" className="fill-foreground" />
+                  <circle cx="210" cy="50" r="3" className="fill-accent" />
+                  <circle cx="215" cy="110" r="3" className="fill-foreground" />
+                  <rect x="55" y="85" width="60" height="22" rx="3" className="fill-surface stroke-accent" strokeWidth="1.2" />
+                  <text x="85" y="100" fontSize="11" textAnchor="middle" className="fill-accent">OL</text>
+                  <text x="90" y="135" fontSize="10" textAnchor="middle" className="fill-foreground">Open test</text>
+                  <rect x="215" y="10" width="70" height="22" rx="3" className="fill-surface stroke-accent" strokeWidth="1.2" />
+                  <text x="250" y="25" fontSize="11" textAnchor="middle" className="fill-accent">0.3 Ω beep</text>
+                  <text x="320" y="145" fontSize="10" textAnchor="middle" className="fill-foreground">Short test</text>
+                </svg>
+              </Figure>
+            </div>
           </section>
 
           <section>

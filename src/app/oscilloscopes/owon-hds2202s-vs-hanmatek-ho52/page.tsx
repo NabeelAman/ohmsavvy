@@ -27,6 +27,47 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Stimulus-and-response test loop: the HDS2202S closes it alone, the HO52 needs a second instrument. */
+function TestLoopDiagram() {
+  return (
+    <svg
+      viewBox="0 0 340 214"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: the OWON HDS2202S sends a test signal from its own generator into a circuit and reads the response on its scope input, while the HANMATEK HO52 can only read the response and needs a separate generator to supply the test signal"
+    >
+      <defs>
+        <marker id="loop-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0 L10 5 L0 10 z" className="fill-muted" />
+        </marker>
+      </defs>
+      <text x="10" y="16" fontSize="10" fontWeight="700" className="fill-accent">HDS2202S: the whole loop in one handheld</text>
+      <rect x="10" y="28" width="120" height="62" rx="8" className="fill-surface stroke-accent" strokeWidth="2" />
+      <text x="70" y="47" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">HDS2202S</text>
+      <text x="70" y="63" fontSize="9" textAnchor="middle" className="fill-muted">generator out</text>
+      <text x="70" y="79" fontSize="9" textAnchor="middle" className="fill-muted">scope CH1 in</text>
+      <rect x="220" y="36" width="110" height="46" rx="8" className="fill-surface stroke-border" strokeWidth="1.4" />
+      <text x="275" y="56" fontSize="9.5" textAnchor="middle" className="fill-foreground">Circuit</text>
+      <text x="275" y="70" fontSize="9.5" textAnchor="middle" className="fill-foreground">under test</text>
+      <line x1="130" y1="52" x2="218" y2="52" className="stroke-accent" strokeWidth="1.6" markerEnd="url(#loop-arrow)" />
+      <text x="174" y="46" fontSize="8.5" textAnchor="middle" className="fill-accent">sine up to 25 MHz</text>
+      <line x1="220" y1="70" x2="132" y2="70" className="stroke-muted" strokeWidth="1.6" markerEnd="url(#loop-arrow)" />
+      <text x="174" y="84" fontSize="8.5" textAnchor="middle" className="fill-muted">response</text>
+
+      <text x="10" y="120" fontSize="10" fontWeight="700" className="fill-foreground">HO52: measures only, stimulus comes from elsewhere</text>
+      <rect x="10" y="132" width="150" height="26" rx="6" className="fill-none stroke-muted" strokeWidth="1.2" strokeDasharray="5 3" />
+      <text x="85" y="149" fontSize="9" textAnchor="middle" className="fill-muted">separate generator (extra buy)</text>
+      <rect x="10" y="170" width="150" height="34" rx="8" className="fill-surface stroke-border" strokeWidth="1.4" />
+      <text x="85" y="191" fontSize="9.5" textAnchor="middle" className="fill-foreground">HO52: scope + meter</text>
+      <rect x="220" y="150" width="110" height="46" rx="8" className="fill-surface stroke-border" strokeWidth="1.4" />
+      <text x="275" y="170" fontSize="9.5" textAnchor="middle" className="fill-foreground">Circuit</text>
+      <text x="275" y="184" fontSize="9.5" textAnchor="middle" className="fill-foreground">under test</text>
+      <line x1="160" y1="145" x2="218" y2="160" className="stroke-muted" strokeWidth="1.4" strokeDasharray="4 3" markerEnd="url(#loop-arrow)" />
+      <line x1="220" y1="186" x2="162" y2="187" className="stroke-muted" strokeWidth="1.6" markerEnd="url(#loop-arrow)" />
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "OWON HDS2202S vs HANMATEK HO52: Handheld Oscilloscopes",
@@ -102,6 +143,20 @@ const comparison: ProductComparisonContent = {
           For field diagnostics where you need to both measure and generate a test signal, the HO52 simply
           can&apos;t do the generator half of that job — you&apos;d need a separate instrument. The HDS2202S does
           both from one handheld, at meaningfully higher bandwidth too.
+        </p>
+        <div className="mt-6">
+          <Figure caption={<>A stimulus-and-response test: the HDS2202S supplies and reads the signal itself; the HO52 needs a second box.</>}>
+            <TestLoopDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          That loop is how most functional checks work away from a bench: inject a known waveform, then look at what
+          comes out. With the OWON you clip the generator lead to an amplifier input or a filter, put channel 1 on the
+          output, and compare shape and amplitude on the same screen. With the HANMATEK you can still see the output,
+          but only if something else is creating the input, whether that&apos;s the circuit&apos;s own oscillator or a
+          separate generator you carry along. The sample-rate split matters too: with both channels on, the HO52 drops
+          to 125 MSa/s, which is only 2.5 samples per cycle at its 50 MHz bandwidth limit, while the HDS2202S keeps its
+          1 GSa/s figure.
         </p>
       </section>
 
@@ -185,6 +240,11 @@ const comparison: ProductComparisonContent = {
       question: "Can either of these charge from a power bank?",
       answer:
         "The OWON HDS2202S explicitly supports charging over USB-C from a power bank. The HANMATEK HO52 charges from a 5V USB source, but this site's sourcing doesn't specifically confirm power-bank compatibility for it.",
+    },
+    {
+      question: "Is 125 MSa/s enough sample rate for a 50 MHz handheld like the HO52?",
+      answer:
+        "Only for slower signals. A common rule of thumb asks for at least four to five samples per cycle to see a waveform's real shape, so 125 MSa/s with both channels on shows clean detail up to roughly 25-30 MHz. Near 50 MHz you get about 2.5 samples per cycle, enough to detect a signal but not to judge its shape. Use one channel for 250 MSa/s.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-beginner-oscilloscopes/page";
 import { buildMetadata } from "@/lib/metadata";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { BarChart, DataTable, Figure } from "@/components/HowTo";
 
 export const metadata = buildMetadata({
   title: "Oscilloscope Buying Guide",
@@ -188,6 +189,72 @@ export default function OscilloscopeBuyingGuidePage() {
             analog work this rarely matters, but for seeing small amplitude variations riding on
             top of a larger signal — ripple on a power supply rail, for instance — higher vertical
             resolution reveals detail an 8-bit scope would simply flatten out.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-3">Putting the numbers side by side</h2>
+          <p className="text-muted leading-7 mb-4">
+            Here is how those specs look on five scopes from our roundup, taken from each
+            maker&apos;s datasheet. Note the two sample-rate figures where a maker publishes them:
+            the headline number usually applies with one channel on, and it is shared out when you
+            switch on more channels.
+          </p>
+          <DataTable
+            head={["Scope", "Bandwidth", "Channels", "Sample rate"]}
+            rows={[
+              ["FNIRSI DSO152", "200 kHz", "1", "2.5 MSa/s"],
+              ["Rigol DS1054Z", "50 MHz", "4", "1 GSa/s (250 MSa/s with 3–4 ch on)"],
+              ["Rigol DHO804", "70 MHz", "4", "1.25 GSa/s (312.5 MSa/s with 4 ch)"],
+              ["Siglent SDS1104X-E", "100 MHz", "4", "1 GSa/s (500 MSa/s per ch, all on)"],
+              ["Siglent SDS1202X-E", "200 MHz", "2", "1 GSa/s (500 MSa/s with 2 ch)"],
+            ]}
+          />
+          <p className="mt-4 text-muted leading-7 mb-4">
+            Bandwidth translates into the fastest edge a scope can show. A widely used
+            approximation for a single-pole front end is rise time ≈ 0.35 ÷ bandwidth, so 50 MHz
+            gives about 0.35 ÷ 50,000,000 = 7 ns and 200 MHz about 1.75 ns. If the edge you&apos;re
+            measuring is faster than the scope&apos;s own rise time, the screen shows the
+            scope&apos;s limit rather than the signal. The chart puts the five scopes on one
+            scale.
+          </p>
+          <Figure caption="Rated bandwidth on a log scale, with the approximate fastest rise time each can display (0.35 ÷ bandwidth). Bandwidths per maker datasheets; rise times calculated.">
+            <BarChart
+              log
+              items={[
+                { label: "FNIRSI DSO152", value: 0.2, display: "0.2 MHz · ~1.75 µs" },
+                { label: "Rigol DS1054Z", value: 50, display: "50 MHz · ~7 ns" },
+                { label: "Rigol DHO804", value: 70, display: "70 MHz · ~5 ns" },
+                { label: "Siglent SDS1104X-E", value: 100, display: "100 MHz · ~3.5 ns", highlight: true },
+                { label: "Siglent SDS1202X-E", value: 200, display: "200 MHz · ~1.75 ns" },
+              ]}
+            />
+          </Figure>
+          <p className="mt-4 text-muted leading-7 mb-4">
+            The per-channel sample rate matters as much. With all four channels on, the DS1054Z
+            drops to 250 MSa/s, which is five samples per cycle of a 50 MHz sine: right at the
+            bottom of the 5–10x oversampling range mentioned above. The SDS1104X-E keeps 500 MSa/s
+            per channel with all four on, so it holds more margin on its 100 MHz bandwidth when
+            you&apos;re watching a whole bus at once.
+          </p>
+          <p className="text-muted leading-7 mb-4">
+            Vertical resolution is easiest to judge as the size of one step. Spread across a screen
+            of eight vertical divisions at 1 V per division (8 V full scale), the arithmetic is:
+          </p>
+          {/* Rigol DS1054Z 8-bit per the DS1000Z datasheet (https://www.rigol.com/dam/global/downloads/brochures/en/data-sheet/oscilloscopes/DS1000Z_DataSheet_EN.pdf); DHO804 12-bit per rigolna.com DHO800 datasheet. */}
+          <DataTable
+            head={["ADC", "Levels", "Step at 8 V full scale", "Example scope"]}
+            mono={[1, 2]}
+            rows={[
+              ["8-bit", "256", "8 ÷ 256 ≈ 31 mV", "Rigol DS1054Z"],
+              ["12-bit", "4,096", "8 ÷ 4,096 ≈ 2 mV", "Rigol DHO804"],
+            ]}
+          />
+          <p className="mt-4 text-muted leading-7">
+            A 20 mV ripple on a 5 V rail viewed at that setting is smaller than one 8-bit step, so
+            it barely registers; the 12-bit scope draws it with about ten levels. You can narrow
+            the gap on an 8-bit scope by AC-coupling and zooming in on the ripple, which is the
+            usual workaround, but a 12-bit front end makes that kind of measurement easier.
           </p>
         </section>
 

@@ -1,6 +1,12 @@
+// Specs per Fluke, checked 2026-10-26:
+// - Fluke 87V product page and spec tab: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-87v
+//   (DC ±(0.05% + 1); AC ±(0.7% + 2) True RMS; low-pass filter, 3 dB at 1 kHz; peak capture 250 µs; 19,999-count mode;
+//   frequency to 200 kHz at ±(0.005% + 1); 32-segment bar graph updating 40 times/s; 10 A, 0.01 µA DC resolution)
+// - Fluke 179 product page and spec tab: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-179
+//   (DC ±(0.09% + 2); AC ±(1.0% + 3); frequency to 100 kHz at ±(0.1% + 1); 10 A, 0.01 mA resolution; one 9 V, about 200 h)
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
-import { BarChart, DataTable, Figure, InfoCards } from "@/components/HowTo";
+import { BarChart, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
@@ -15,6 +21,49 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+/** Illustrative: a drive's PWM output passes through the 87V's low-pass filter, leaving the fundamental the motor responds to. */
+function LowPassDiagram() {
+  // PWM-style pulse train whose duty follows a sine: wide pulses near the peaks, narrow near the zero crossings.
+  const pulses: { x: number; w: number; up: boolean }[] = [];
+  const n = 24;
+  for (let i = 0; i < n; i++) {
+    const ph = ((i + 0.5) / n) * 2 * Math.PI;
+    const s = Math.sin(ph);
+    pulses.push({ x: 14 + i * (130 / n), w: Math.max(1, Math.abs(s) * (130 / n) * 0.9), up: s >= 0 });
+  }
+  const sine = Array.from({ length: 41 }, (_, i) => {
+    const px = 216 + i * 3.1;
+    const py = 70 - Math.sin((i / 40) * 2 * Math.PI) * 26;
+    return `${i === 0 ? "M" : "L"}${px.toFixed(1)} ${py.toFixed(1)}`;
+  }).join(" ");
+  return (
+    <svg
+      viewBox="0 0 350 150"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Illustrative diagram: a variable-frequency drive output is a train of fast voltage pulses at the carrier frequency. The Fluke 87V's low-pass filter, 3 dB down at 1 kHz, removes the carrier and leaves the low-frequency sine wave that sets motor speed, which the meter then reads."
+    >
+      <line x1="10" x2="150" y1="70" y2="70" className="stroke-border" strokeWidth="1" />
+      {pulses.map((p, i) => (
+        <rect key={i} x={p.x} y={p.up ? 40 : 70} width={p.w} height="30" className="fill-foreground" opacity="0.8" />
+      ))}
+      <text x="80" y="24" fontSize="9.5" textAnchor="middle" className="fill-foreground">Drive output (PWM)</text>
+      <text x="80" y="118" fontSize="8.5" textAnchor="middle" className="fill-muted">kHz carrier pulses</text>
+      <rect x="160" y="48" width="44" height="44" rx="6" className="fill-surface stroke-accent" strokeWidth="2" />
+      <text x="182" y="67" fontSize="9" fontWeight="700" textAnchor="middle" className="fill-accent">LPF</text>
+      <text x="182" y="80" fontSize="7.5" textAnchor="middle" className="fill-muted">−3 dB 1 kHz</text>
+      <path d="M150 70 H160 M204 70 H214" className="stroke-muted" strokeWidth="1.5" />
+      <line x1="214" x2="342" y1="70" y2="70" className="stroke-border" strokeWidth="1" />
+      <path d={sine} className="fill-none stroke-accent" strokeWidth="2.5" />
+      <text x="278" y="24" fontSize="9.5" textAnchor="middle" className="fill-foreground">What the 87V reads</text>
+      <text x="278" y="118" fontSize="8.5" textAnchor="middle" className="fill-muted">fundamental, e.g. 0 to 60 Hz</text>
+      <text x="175" y="142" fontSize="8.5" textAnchor="middle" className="fill-muted">
+        Illustrative shapes. Fluke lists no low-pass filter for the 179.
+      </text>
+    </svg>
+  );
+}
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",
@@ -44,6 +93,10 @@ const comparison: ProductComparisonContent = {
   },
   extraSpecs: [
     { label: "Basic DC accuracy", a: "±(0.05% + 1)", b: "±(0.09% + 2)" },
+    { label: "Basic AC volts accuracy", a: "±(0.7% + 2), True RMS", b: "±(1.0% + 3), True RMS" },
+    { label: "Low-pass filter for drives", a: "Yes, 3 dB at 1 kHz", b: "Not listed by Fluke" },
+    { label: "Finest current resolution", a: "0.01 µA DC, 0.1 µA AC", b: "0.01 mA" },
+    { label: "Frequency accuracy", a: "±(0.005% + 1)", b: "±(0.1% + 1)" },
     { label: "Display", a: "6,000 counts; 19,999 high-res mode", b: "6,000 counts + bar graph" },
     { label: "Max voltage", a: "1000V AC/DC", b: "1000V AC/DC" },
     { label: "Resistance", a: "Up to 50 MΩ", b: "Up to 50 MΩ" },
@@ -92,6 +145,81 @@ const comparison: ProductComparisonContent = {
         </div>
       </section>
       <section>
+        <h2 className="text-2xl font-semibold mb-4">What the accuracy gap means at real voltages</h2>
+        <p className="text-muted leading-7 mb-4">
+          A percentage on a spec sheet is easier to judge once it becomes volts. The table applies each
+          meter&apos;s published basic accuracy to four everyday readings, using the resolution of the range the
+          reading lands on (0.01 V on the 60 V range, 0.1 V on the 600 V range, 0.01 Hz for frequency). This is
+          worst-case arithmetic from Fluke&apos;s figures, not a test result; a meter in calibration is usually well
+          inside its limits.
+        </p>
+        <DataTable
+          head={["Reading", "Fluke 87V allowance", "Fluke 179 allowance"]}
+          rows={[
+            ["24.00 V DC control circuit", "±(0.012 + 0.01) = ±0.022 V", "±(0.022 + 0.02) = ±0.042 V"],
+            ["120.0 V AC branch circuit", "±(0.84 + 0.2) = ±1.04 V", "±(1.2 + 0.3) = ±1.5 V"],
+            ["480.0 V AC three-phase", "±(3.36 + 0.2) = ±3.56 V", "±(4.8 + 0.3) = ±5.1 V"],
+            ["60.00 Hz line frequency", "±(0.003 + 0.01) = ±0.013 Hz", "±(0.06 + 0.01) = ±0.07 Hz"],
+          ]}
+        />
+        <div className="mt-4">
+          <Figure caption={<>Worst-case allowance on a 480 V AC reading, from the arithmetic above. Lower is better.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 87V", value: 3.56, display: "±3.56 V", highlight: true },
+                { label: "Fluke 179", value: 5.1, display: "±5.1 V" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          For checking that a 480 V feeder is within a typical ±5% utilization band (456 V to 504 V), a ±5 V window
+          is perfectly usable, so the 179 does the job. The 87V&apos;s edge pays off when you&apos;re trending a
+          small change, calibrating a 4-20 mA transmitter loop, or reading a DC sensor where 20 mV matters.
+        </p>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Why drive work favors the 87V</h2>
+        <p className="text-muted leading-7 mb-4">
+          A variable-frequency drive doesn&apos;t output a clean sine wave. It switches the DC bus on and off
+          thousands of times a second, varying the pulse width so the motor sees an average that rises and falls
+          at the output frequency. A True RMS meter without filtering reads the energy of those fast edges too,
+          which can push the displayed voltage well away from what the motor responds to. Fluke equips the 87V
+          with a selectable low-pass filter, 3 dB down at 1 kHz, that strips the carrier so the reading tracks the
+          fundamental. Fluke&apos;s 179 page lists no such filter.
+        </p>
+        <Figure caption={<>How the 87V&apos;s low-pass filter turns a PWM drive output into a readable fundamental.</>}>
+          <LowPassDiagram />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          The 87V&apos;s 200 kHz frequency limit and 250 µs peak capture belong to the same toolkit: one reads the
+          carrier itself when you need it, the other catches the brief spikes that trip drives or reset
+          controllers. On a fixed-speed motor or a resistive heater, none of this applies and the 179 reads the
+          circuit just as well.
+        </p>
+        <div className="mt-4">
+          <KeyIdea title="Same safety rating, different jobs">
+            The CAT III 1000V / CAT IV 600V rating is identical, so neither meter is &quot;safer&quot; at a service
+            entrance. The choice is about measurement features, not protection. Before probing a drive, isolate and
+            verify per your site&apos;s lockout procedure; DC bus capacitors can stay charged after power is removed.
+          </KeyIdea>
+        </div>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Which should you buy?</h2>
+        <DataTable
+          head={["Scenario", "Better fit", "Deciding spec"]}
+          rows={[
+            ["Commissioning or repairing VFDs", "Fluke 87V", "Low-pass filter and 200 kHz frequency"],
+            ["Chasing nuisance trips and resets", "Fluke 87V", "250 µs peak capture"],
+            ["Calibrating 4-20 mA loops and sensors", "Fluke 87V", "±(0.05% + 1) DC and µA resolution"],
+            ["HVAC service calls", "Fluke 179", "Thermocouple included, Min/Max-Average"],
+            ["Facilities maintenance on mixed loads", "Fluke 179", "Same CAT IV 600V, fewer modes to learn"],
+            ["Cryogenic or high-heat process temperatures", "Fluke 87V", "−200 °C to 1090 °C with a suitable probe"],
+          ]}
+        />
+      </section>
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Who each meter is built for</h2>
         <InfoCards
           items={[
@@ -109,7 +237,7 @@ const comparison: ProductComparisonContent = {
             rows={[
               ["True RMS", "AC volts and amps"],
               ["Safety", "CAT III 1000V / CAT IV 600V"],
-              ["Current", "10A AC/DC with microamp resolution"],
+              ["Current", "10A AC/DC maximum"],
               ["Warranty", "Lifetime"],
             ]}
           />

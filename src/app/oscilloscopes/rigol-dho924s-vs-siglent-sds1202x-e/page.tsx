@@ -25,6 +25,56 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Staircase path approximating a straight ramp with n equal steps inside a w × h box. */
+function stairPath(x0: number, y0: number, w: number, h: number, n: number) {
+  const dx = w / n;
+  const dy = h / n;
+  let d = `M${x0} ${y0 + h}`;
+  for (let i = 0; i < n; i++) {
+    d += ` H${x0 + dx * (i + 1)} V${y0 + h - dy * (i + 1)}`;
+  }
+  return d;
+}
+
+/**
+ * Quantization: the same slow ramp digitized coarsely (8-bit) and finely (12-bit). Step counts are scaled
+ * down to stay visible; the real ratio of levels is 256 to 4,096 (16 to 1).
+ */
+function ResolutionDiagram() {
+  const panels = [
+    { x: 14, label: "SDS1202X-E: 8-bit", sub: "256 levels", steps: 6, cls: "stroke-muted" },
+    { x: 182, label: "DHO924S: 12-bit", sub: "4,096 levels (16x finer)", steps: 24, cls: "stroke-accent" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 340 180"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: the same ramp signal digitized by an 8-bit scope shows coarse visible steps, while a 12-bit scope follows the ramp in steps 16 times finer; on a 1 V per division setting across 8 divisions that is about 31 mV per step versus about 2 mV"
+    >
+      {panels.map((p) => (
+        <g key={p.label}>
+          <text x={p.x} y="16" fontSize="9.5" fontWeight="700" className={p.steps > 6 ? "fill-accent" : "fill-foreground"}>
+            {p.label}
+          </text>
+          <text x={p.x} y="29" fontSize="8.5" className="fill-muted">
+            {p.sub}
+          </text>
+          <rect x={p.x} y="36" width="144" height="96" rx="4" className="fill-surface stroke-border" strokeWidth="1" />
+          <line x1={p.x + 8} y1="124" x2={p.x + 136} y2="44" className="stroke-foreground" strokeWidth="1" strokeDasharray="3 3" />
+          <path d={stairPath(p.x + 8, 44, 128, 80, p.steps)} className={`fill-none ${p.cls}`} strokeWidth="2" />
+        </g>
+      ))}
+      <text x="170" y="152" fontSize="8.5" textAnchor="middle" className="fill-foreground">
+        Dashed: real signal. Solid: recorded steps (scaled for visibility).
+      </text>
+      <text x="170" y="168" fontSize="8.5" textAnchor="middle" className="fill-muted">
+        At 1 V/div, 8 divisions: ≈31 mV steps (8-bit) vs ≈2 mV (12-bit)
+      </text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Rigol DHO924S vs Siglent SDS1202X-E: Which Is Better?",
@@ -104,6 +154,22 @@ const comparison: ProductComparisonContent = {
           you&apos;re chasing an intermittent digital-bus fault. Which matters more depends on the shape of your typical
           debugging session.
         </p>
+        <div className="mt-6">
+          <Figure caption={<>Ideal quantization only: real-world noise blurs the smallest steps on any scope.</>}>
+            <ResolutionDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The 8-bit versus 12-bit line in the spec table is easy to skim past, so here is the arithmetic behind it.
+          An 8-bit converter splits the vertical span into 2⁸ = 256 levels; a 12-bit one splits it into 2¹² = 4,096.
+          If the screen spans eight vertical divisions at 1 V/div, that 8 V range gives steps of about 31 mV on the
+          SDS1202X-E and roughly 2 mV on the DHO924S, assuming the converter covers exactly the visible screen. You
+          notice the difference when you zoom into a small detail riding on a bigger signal: power-supply ripple on a
+          12 V rail, a sensor output that moves by a few millivolts, or the tail of a slow settling waveform. In
+          those cases the coarser scope often forces you to change the volts-per-division setting just to see the
+          detail; the finer one can keep the whole signal on screen and still resolve it. Analog noise and the
+          front-end amplifier set the practical floor, so 12 bits does not guarantee a 16x cleaner trace.
+        </p>
       </section>
 
       <section>
@@ -145,7 +211,7 @@ const comparison: ProductComparisonContent = {
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          Want to see the DHO924S against a different Siglent model? See{" "}
+          Want to see the SDS1202X-E against a two-channel Rigol rival instead? See{" "}
           <Link href="/oscilloscopes/rigol-ds1202z-e-vs-siglent-sds1202x-e" className={link}>
             Rigol DS1202Z-E vs Siglent SDS1202X-E
           </Link>
@@ -189,6 +255,11 @@ const comparison: ProductComparisonContent = {
       question: "Which has the faster waveform capture rate?",
       answer:
         "The Siglent SDS1202X-E documents a clear figure: up to 100,000 wfm/s in normal mode and 400,000 in sequence mode. The DHO924S's 1 Mwfms/s figure applies specifically to its UltraAcquire mode, which works differently from a standard capture rate.",
+    },
+    {
+      question: "Does 12-bit resolution matter for a beginner oscilloscope?",
+      answer:
+        "It matters most when the detail you care about is small compared with the whole signal, such as millivolt ripple on a supply rail or a slowly drifting sensor. With 4,096 levels instead of 256, the DHO924S can resolve that detail without zooming in. For logic signals and general waveform checks, the SDS1202X-E's 8 bits are usually enough.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

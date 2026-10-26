@@ -27,6 +27,77 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** What each USB instrument can connect to a circuit under test, from the Picks' listed functions. */
+function BenchWiringDiagram() {
+  const rows = [
+    {
+      name: "Analog Discovery 3",
+      y: 24,
+      lines: [
+        { label: "±5 V programmable supply", solid: true },
+        { label: "2-ch generator, 14-bit", solid: true },
+        { label: "2 analog inputs, 14-bit", solid: true },
+        { label: "16 logic / digital I/O", solid: true },
+      ],
+    },
+    {
+      name: "PicoScope 2204A",
+      y: 136,
+      lines: [
+        { label: "power: separate supply", solid: false },
+        { label: "1-ch generator, ≤100 kHz", solid: true },
+        { label: "2 analog inputs, 8-bit", solid: true },
+        { label: "no logic channels", solid: false },
+      ],
+    },
+  ];
+  return (
+    <svg
+      viewBox="0 0 340 236"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: the Analog Discovery 3 connects four kinds of lines to a circuit under test (a ±5 V supply, two generator channels, two 14-bit analog inputs and 16 logic lines), while the PicoScope 2204A connects a single generator channel up to 100 kHz and two 8-bit analog inputs and needs a separate power supply"
+    >
+      {rows.map((r, ri) => (
+        <g key={r.name}>
+          <rect x="6" y={r.y} width="92" height="84" rx="8" className={`fill-surface ${ri === 0 ? "stroke-accent" : "stroke-border"}`} strokeWidth={ri === 0 ? 2 : 1.4} />
+          <text x="52" y={r.y + 38} fontSize="9" fontWeight="700" textAnchor="middle" className="fill-foreground">
+            {r.name.split(" ").slice(0, -1).join(" ")}
+          </text>
+          <text x="52" y={r.y + 51} fontSize="9" fontWeight="700" textAnchor="middle" className="fill-foreground">
+            {r.name.split(" ").slice(-1)[0]}
+          </text>
+          <text x="52" y={r.y + 72} fontSize="8" textAnchor="middle" className="fill-muted">
+            USB to computer
+          </text>
+          <rect x="250" y={r.y} width="84" height="84" rx="8" className="fill-surface stroke-border" strokeWidth="1.4" />
+          <text x="292" y={r.y + 40} fontSize="9.5" textAnchor="middle" className="fill-foreground">Circuit</text>
+          <text x="292" y={r.y + 54} fontSize="9.5" textAnchor="middle" className="fill-foreground">under test</text>
+          {r.lines.map((l, i) => {
+            const y = r.y + 14 + i * 19;
+            return (
+              <g key={l.label}>
+                <line
+                  x1="98"
+                  y1={y}
+                  x2="250"
+                  y2={y}
+                  className={l.solid ? (ri === 0 ? "stroke-accent" : "stroke-foreground") : "stroke-border"}
+                  strokeWidth={l.solid ? 1.6 : 1.2}
+                  strokeDasharray={l.solid ? undefined : "4 3"}
+                />
+                <text x="174" y={y - 3} fontSize="8" textAnchor="middle" className={l.solid ? "fill-foreground" : "fill-muted"}>
+                  {l.label}
+                </text>
+              </g>
+            );
+          })}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Analog Discovery 3 vs PicoScope 2204A: USB Test Equipment Compared",
@@ -103,6 +174,21 @@ const comparison: ProductComparisonContent = {
           The PicoScope 2204A isn&apos;t outclassed everywhere — its 8 kS of capture memory streams up to 100 MS
           over USB, and PicoScope 7&apos;s software is well-regarded for its spectrum analysis and mask testing. But as a
           complete instrument, the Analog Discovery 3 does considerably more.
+        </p>
+        <div className="mt-6">
+          <Figure caption={<>What each device can wire into a project. Dashed lines are jobs you&apos;d need another instrument for.</>}>
+            <BenchWiringDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Picture a typical student project: a microcontroller talking to a sensor over I2C, with an analog filter
+          stage on one pin. With the Analog Discovery 3 a single USB cable feeds everything: the ±5 V supply powers the
+          board, one generator channel drives the filter, the two analog inputs watch its input and output, and the
+          logic lines decode the I2C traffic. With the PicoScope 2204A the two analog
+          channels and the built-in generator cover the filter test, provided your test tone stays at or below 100
+          kHz, but the board needs its own power source and the bus traffic needs either a separate logic analyzer
+          or decoding from the analog channels. Neither approach is wrong. The question is how many boxes you want on
+          the desk.
         </p>
       </section>
 
@@ -183,6 +269,11 @@ const comparison: ProductComparisonContent = {
       question: "What does the Analog Discovery 3's bandwidth depend on?",
       answer:
         "Its 30+ MHz rating applies when used with Digilent's BNC adapter. Without it, bandwidth may be lower, so check what's included with your specific purchase.",
+    },
+    {
+      question: "Can the Analog Discovery 3 power my circuit directly?",
+      answer:
+        "Yes, within limits. It has programmable ±5V supplies, so a small breadboard project or sensor board can run from the same USB device that measures it. Check Digilent's reference manual for the current each rail can deliver before you rely on it for motors, LED strips or anything power-hungry. The PicoScope 2204A has no supply, so your circuit needs its own source.",
     },
   ],
   roundup: { label: "See all beginner oscilloscope picks", href: "/oscilloscopes/best-beginner-oscilloscopes" },

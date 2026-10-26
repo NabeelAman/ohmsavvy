@@ -32,6 +32,48 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+/** Staircase a converter draws for a slow ramp that spans `steps` of its levels. */
+function staircase(x0: number, y0: number, w: number, h: number, steps: number) {
+  let d = `M${x0} ${y0 + h}`;
+  for (let k = 1; k <= steps; k++) {
+    d += ` H${(x0 + (k / steps) * w).toFixed(2)} V${(y0 + h - (k / steps) * h).toFixed(2)}`;
+  }
+  return d;
+}
+
+/** The same slow drift as seen by an 8-bit and a 12-bit converter at one volts-per-division setting. */
+function ResolutionDiagram() {
+  const panels = [
+    { x: 20, steps: 3, title: "6022BE, 8-bit", note: "256 levels: 3 coarse steps" },
+    { x: 195, steps: 48, title: "1008B, 12-bit", note: "4,096 levels: 48 fine steps" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 360 185"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: a slow voltage drift that spans three steps of an 8-bit converter appears as a coarse three-step staircase on the Hantek 6022BE, while the 12-bit Hantek 1008B, with steps one sixteenth as tall, draws it as 48 fine steps that follow the true drift closely."
+    >
+      {panels.map((p) => (
+        <g key={p.title}>
+          <text x={p.x + 72} y="18" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">
+            {p.title}
+          </text>
+          <rect x={p.x} y="28" width="145" height="110" rx="4" className="fill-surface stroke-border" strokeWidth="1" />
+          <line x1={p.x + 8} y1="128" x2={p.x + 137} y2="38" className="stroke-muted" strokeWidth="1.2" strokeDasharray="4 3" />
+          <path d={staircase(p.x + 8, 38, 129, 90, p.steps)} className="fill-none stroke-accent" strokeWidth="1.8" />
+          <text x={p.x + 72} y="154" fontSize="8.5" textAnchor="middle" className="fill-muted">
+            {p.note}
+          </text>
+        </g>
+      ))}
+      <text x="180" y="176" fontSize="8.5" textAnchor="middle" className="fill-muted">
+        Dashed = true slow drift; solid = what each converter can record
+      </text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Hantek 1008B vs Hantek 6022BE",
@@ -184,6 +226,22 @@ const comparison: ProductComparisonContent = {
           car, though. Two channels can&apos;t show a crank, a cam and an injector together, it has no automotive test
           library, and Hantek doesn&apos;t give a maximum input voltage for it, only diode-clamp protection. Its 8-bit
           converter also makes small changes on a large signal harder to see than on the 1008B.
+        </p>
+        <Figure
+          caption={
+            <>
+              Same volts-per-division setting on both, illustrative drift. A 12-bit step is 1/16 the height of an 8-bit
+              step, so a change that moves the 6022BE&apos;s trace by three jumps moves the 1008B&apos;s by 48.
+            </>
+          }
+        >
+          <ResolutionDiagram />
+        </Figure>
+        <p className="text-muted leading-7 my-4">
+          This is why resolution matters more in a car than its speed figure suggests. An oxygen sensor or throttle
+          position signal that wanders by a few tens of millivolts can be the fault itself, and on an 8-bit trace that
+          wander may show as a single jump or not at all. The 1008B records it as a gradual slope you can measure with
+          cursors.
         </p>
         <div className="mt-4">
           <KeyIdea title="Why the generator outputs matter on the 1008B">

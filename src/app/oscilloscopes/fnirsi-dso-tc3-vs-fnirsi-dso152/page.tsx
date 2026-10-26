@@ -5,6 +5,15 @@ import { ProductComparison, type ProductComparisonContent } from "@/components/P
 import { picks } from "../best-beginner-oscilloscopes/page";
 import { buildMetadata } from "@/lib/metadata";
 
+// FNIRSI DSO-TC3 per https://www.fnirsi.com/products/dso-tc3 and the DSO-TC3 manual V1.9
+// (https://cdn.shopify.com/s/files/1/0694/8310/2426/files/DSO-TC3_Manual-V1.9-2023.03.29.pdf, checked 2026-10-24):
+// 500 kHz, 10 MSa/s, 1 input, 2.4-inch screen, built-in 3.7 V lithium battery with USB-C charging, 400 V max test
+// voltage, 1 MOhm input, generator sine/square/pulse/triangle/ramp 1-100 kHz at 0-3.3 V plus DC; component tester
+// capacitance 25 pF-100 mF, resistance 0.01 Ohm-50 MOhm, inductance 10 uH-1000 mH; size 79x103x31 mm; ADC bits and
+// memory not stated. Weight 250 g per the Amazon listing B0BV9X733J.
+// FNIRSI DSO152: 200 kHz, 1 channel, 2.5 MSa/s per this site's Pick. Edge-rounding diagram uses the standard
+// single-pole approximation (rise time ~ 0.35 / bandwidth, tau = rise time / 2.2) and is labeled illustrative.
+
 const path = "/oscilloscopes/fnirsi-dso-tc3-vs-fnirsi-dso152";
 
 export const metadata = buildMetadata({
@@ -15,6 +24,66 @@ export const metadata = buildMetadata({
 });
 
 const link = "text-accent hover:underline";
+
+/** One period of a 100 kHz square wave as each scope's bandwidth would round it (single-pole model, illustrative). */
+function EdgeRoundingDiagram() {
+  const x0 = 34;
+  const w = 296;
+  const top = 26;
+  const h = 110;
+  const T = 11; // µs shown
+  const px = (t: number) => x0 + (t / T) * w;
+  const py = (v: number) => top + h - v * h;
+  const trace = (riseUs: number) => {
+    const tau = riseUs / 2.2;
+    const v6 = 1 - Math.exp(-5 / tau);
+    return Array.from({ length: 221 }, (_, i) => {
+      const t = (T * i) / 220;
+      const v = t < 1 ? 0 : t < 6 ? 1 - Math.exp(-(t - 1) / tau) : v6 * Math.exp(-(t - 6) / tau);
+      return `${px(t).toFixed(1)},${py(v).toFixed(1)}`;
+    }).join(" ");
+  };
+  const ideal = [
+    [0, 0],
+    [1, 0],
+    [1, 1],
+    [6, 1],
+    [6, 0],
+    [11, 0],
+  ]
+    .map(([t, v]) => `${px(t).toFixed(1)},${py(v).toFixed(1)}`)
+    .join(" ");
+  return (
+    <svg
+      viewBox="0 0 340 178"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Illustrative diagram: one period of a 100 kHz square wave. The ideal edges are vertical. The DSO-TC3, with an estimated 0.7 microsecond rise time, rounds each edge slightly; the DSO152, with an estimated 1.75 microsecond rise time, rounds them much more, using a large part of each 5 microsecond half-cycle."
+    >
+      <line x1={x0} x2={x0 + w} y1={py(0)} y2={py(0)} className="stroke-border" strokeWidth="0.6" />
+      <line x1={x0} x2={x0 + w} y1={py(1)} y2={py(1)} className="stroke-border" strokeWidth="0.6" strokeDasharray="2 3" />
+      <text x={x0 - 4} y={py(1) + 3} fontSize="8" textAnchor="end" className="fill-muted">high</text>
+      <text x={x0 - 4} y={py(0) + 3} fontSize="8" textAnchor="end" className="fill-muted">low</text>
+      <polyline points={ideal} className="stroke-foreground" strokeWidth="1" strokeDasharray="4 3" fill="none" />
+      <polyline points={trace(0.7)} className="stroke-accent" strokeWidth="2" fill="none" />
+      <polyline points={trace(1.75)} className="stroke-muted" strokeWidth="2" fill="none" />
+      {[0, 2, 4, 6, 8, 10].map((t) => (
+        <text key={t} x={px(t)} y={top + h + 14} fontSize="8" textAnchor="middle" className="fill-muted">
+          {t} µs
+        </text>
+      ))}
+      <line x1="40" x2="56" y1="10" y2="10" className="stroke-foreground" strokeWidth="1" strokeDasharray="4 3" />
+      <text x="60" y="13" fontSize="8.5" className="fill-foreground">ideal</text>
+      <line x1="96" x2="112" y1="10" y2="10" className="stroke-accent" strokeWidth="2" />
+      <text x="116" y="13" fontSize="8.5" className="fill-foreground">DSO-TC3 (≈0.7 µs)</text>
+      <line x1="210" x2="226" y1="10" y2="10" className="stroke-muted" strokeWidth="2" />
+      <text x="230" y="13" fontSize="8.5" className="fill-foreground">DSO152 (≈1.75 µs)</text>
+      <text x={px(3.5)} y={top + h + 30} fontSize="8.5" textAnchor="middle" className="fill-muted">
+        Each half-cycle lasts 5 µs at 100 kHz
+      </text>
+    </svg>
+  );
+}
 
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
@@ -46,6 +115,10 @@ const comparison: ProductComparisonContent = {
   extraSpecs: [
     { label: "Form factor", a: "Pocket-sized, fold-out stand", b: "Pocket-sized" },
     { label: "Comfortable signal range (3–5× rule)", a: "Up to roughly 100–170kHz", b: "Up to roughly 40–65kHz" },
+    { label: "Signal generator", a: "Sine, square, pulse, triangle, ramp 1–100 kHz at 0–3.3 V, plus DC", b: "Not in our verified data" },
+    { label: "Component tester ranges", a: "C 25 pF–100 mF, R 0.01 Ω–50 MΩ, L 10 µH–1,000 mH", b: "Not in our verified data" },
+    { label: "Max test voltage", a: "400 V (per FNIRSI)", b: "Not in our verified data" },
+    { label: "Size / weight", a: "79 × 103 × 31 mm, 250 g", b: "Not in our verified data" },
   ],
   differences: [
     "Bandwidth: 500kHz on the DSO-TC3 against 200kHz on the DSO152, 2.5 times more. By the 3–5× rule that moves the comfortable ceiling from roughly 40–65kHz to roughly 100–170kHz.",
@@ -139,8 +212,9 @@ const comparison: ProductComparisonContent = {
           The component tester is the second beginner advantage. Sorting out which leg of a transistor is which,
           checking whether a salvaged capacitor is still within its value, or confirming a diode&apos;s direction
           are everyday jobs when you start building circuits, and the DSO-TC3 covers them in the same box. FNIRSI
-          does not state the tester&apos;s ranges or accuracy in the data we verified, so treat it as a sorting
-          and sanity-check tool rather than a precision instrument.
+          lists wide ranges, capacitance from 25 pF to 100 mF, resistance from 0.01 Ω to 50 MΩ and inductance from
+          10 µH to 1,000 mH, but doesn&apos;t state the tester&apos;s accuracy, so treat it as a sorting and
+          sanity-check tool rather than a precision instrument.
         </p>
         <p className="text-muted leading-7 mb-4">
           The DSO152 makes more sense when you want the simplest possible scope and nothing else. Its data calls
@@ -211,9 +285,30 @@ const comparison: ProductComparisonContent = {
           look noticeably sharper on the same signal.
         </KeyIdea>
         <div className="mt-4">
+          <Figure
+            caption={
+              <>
+                Illustrative, not a measurement: a 100 kHz square wave as a simple single-pole model of each scope&apos;s
+                bandwidth would draw it, using the 0.35 ÷ bandwidth rise-time estimate.
+              </>
+            }
+          >
+            <EdgeRoundingDiagram />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The model makes the 3–5× rule visible. At 100 kHz the DSO-TC3&apos;s trace reaches the top within about a
+          seventh of each half-cycle and then sits flat, so the waveform still reads as a square wave. The DSO152 spends
+          about a third of each half-cycle climbing, which turns the same signal into something closer to a shark fin.
+          Drop the signal to 20 kHz, inside the DSO152&apos;s comfortable range, and each half-cycle stretches to 25 µs;
+          its 1.75 µs edge then takes only 7% of that, and both scopes draw a convincing square wave.
+        </p>
+        <div className="mt-4">
           <Callout title="Mains and high voltage">
-            Neither scope&apos;s input voltage rating is in our verified data, so don&apos;t connect either one to
-            mains wiring or high-voltage circuits. Low-voltage hobby circuits are what these pocket tools are for.
+            FNIRSI lists a 400 V maximum test voltage for the DSO-TC3, and the DSO152&apos;s rating isn&apos;t in our
+            verified data. A maximum input figure is not a safety category, so don&apos;t connect either one to mains
+            wiring or high-voltage circuits; leave those to a licensed electrician. Low-voltage hobby circuits are what
+            these pocket tools are for.
           </Callout>
         </div>
       </section>

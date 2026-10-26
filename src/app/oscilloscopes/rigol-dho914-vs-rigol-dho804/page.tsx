@@ -26,6 +26,73 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
+// Sample spacing: 312.5 MSa/s per channel with four channels on = one sample every 3.2 ns (Rigol data sheets above).
+const SAMPLE_NS = 3.2;
+const SPAN_NS = 16;
+const PX_PER_NS = 300 / SPAN_NS;
+
+function pathPoint(i: number, x: number, y: number) {
+  return `${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+}
+
+function sineAt(t: number, periodNs: number) {
+  return Math.sin((2 * Math.PI * t) / periodNs + 0.5);
+}
+
+/** A sine at each scope's rated bandwidth, with the dots where a 4-channel capture takes its samples. */
+function SamplePanel({ y, periodNs, title }: { y: number; periodNs: number; title: string }) {
+  const amp = 26;
+  const mid = y + 42;
+  const x0 = 45;
+  const curve = Array.from({ length: 161 }, (_, i) => {
+    const t = (SPAN_NS * i) / 160;
+    return pathPoint(i, x0 + t * PX_PER_NS, mid - amp * sineAt(t, periodNs));
+  }).join(" ");
+  const samples = Array.from({ length: Math.floor(SPAN_NS / SAMPLE_NS) + 1 }, (_, k) => {
+    const t = k * SAMPLE_NS;
+    return { x: x0 + t * PX_PER_NS, y: mid - amp * sineAt(t, periodNs) };
+  });
+  return (
+    <g>
+      <text x={x0} y={y + 8} fontSize="9.5" fontWeight="700" className="fill-foreground">
+        {title}
+      </text>
+      <line x1={x0} x2={x0 + 300} y1={mid} y2={mid} className="stroke-border" strokeWidth="0.8" />
+      <path d={curve} className="fill-none stroke-muted" strokeWidth="1.6" />
+      <path
+        d={samples.map((p, i) => pathPoint(i, p.x, p.y)).join(" ")}
+        className="fill-none stroke-accent"
+        strokeWidth="1.4"
+        strokeDasharray="4 3"
+      />
+      {samples.map((p) => (
+        <circle key={p.x} cx={p.x} cy={p.y} r="3.6" className="fill-accent" />
+      ))}
+    </g>
+  );
+}
+
+function SampleSpacingDiagram() {
+  return (
+    <svg
+      viewBox="0 0 360 230"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Diagram: with all four channels on, both Rigol scopes sample every 3.2 nanoseconds. A 70 MHz sine on the DHO804 gets about four and a half samples per cycle and the joined dots resemble the sine; a 125 MHz sine on the DHO914 gets two and a half samples per cycle and the joined dots form a jagged zigzag."
+    >
+      <SamplePanel y={6} periodNs={1000 / 70} title="DHO804 at its 70 MHz limit: about 4.5 samples per cycle" />
+      <SamplePanel y={104} periodNs={1000 / 125} title="DHO914 at its 125 MHz limit: 2.5 samples per cycle" />
+      <line x1="45" x2="345" y1="208" y2="208" className="stroke-foreground" strokeWidth="1" />
+      {Array.from({ length: 6 }, (_, k) => (
+        <text key={k} x={45 + k * SAMPLE_NS * PX_PER_NS} y="220" fontSize="8" textAnchor="middle" className="fill-muted">
+          {(k * SAMPLE_NS).toFixed(1)} ns
+        </text>
+      ))}
+      <text x="8" y="212" fontSize="8" className="fill-muted">time</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "oscilloscopes",
   heading: "Rigol DHO914 vs Rigol DHO804",
@@ -202,6 +269,22 @@ const comparison: ProductComparisonContent = {
               { label: "DHO914, 4 ch (312.5 ÷ 125)", value: 2.5, display: "2.5", highlight: true },
             ]}
           />
+        </Figure>
+        <p className="text-muted leading-7 my-4">
+          The picture below makes those ratios visible. Grey is the real sine, the dots are where a four-channel
+          capture actually samples it, and the dashed line is what you would see if the scope simply joined the dots.
+          Interpolation can redraw a smooth sine from sparse points, but it only has the samples to work with, so
+          anything that happens between two dots, such as a short glitch, never reaches the screen.
+        </p>
+        <Figure
+          caption={
+            <>
+              Both scopes, all four channels on: one sample every 3.2 ns (312.5 MSa/s). Gray line = input signal,
+              dots = samples, dashed = dots joined with straight lines. Sample timing is illustrative.
+            </>
+          }
+        >
+          <SampleSpacingDiagram />
         </Figure>
       </section>
 

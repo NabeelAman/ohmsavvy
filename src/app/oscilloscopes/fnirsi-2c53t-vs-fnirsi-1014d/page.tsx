@@ -165,6 +165,62 @@ const comparison: ProductComparisonContent = {
           frequency you already know. FNIRSI also lists 1 GB of internal storage for 1,000 screenshots and 1,000
           waveforms, which helps when you are comparing a board before and after a repair.
         </p>
+        <Figure
+          caption={
+            <>
+              What sits inside each case, from FNIRSI&apos;s spec pages. The handheld splits one battery-powered box
+              between three instruments; the benchtop spends its case on a faster scope and a faster generator, and
+              its power (and with it the probe ground) arrives through an external 5 V adapter.
+            </>
+          }
+        >
+          <svg
+            viewBox="0 0 320 210"
+            className="w-full h-auto"
+            role="img"
+            aria-label="Block diagram: the FNIRSI 2C53T holds a scope, a multimeter, a 50 kHz generator and a battery in one case; the FNIRSI 1014D holds a faster scope and a 10 MHz DDS generator and is powered by an external 5 V adapter"
+          >
+            <rect x="4" y="18" width="150" height="150" rx="6" className="fill-surface stroke-foreground" strokeWidth="1.2" />
+            <text x="79" y="12" fontSize="9" textAnchor="middle" className="fill-foreground">FNIRSI 2C53T (handheld)</text>
+            <rect x="14" y="28" width="130" height="28" rx="3" className="fill-surface stroke-accent" strokeWidth="1" />
+            <text x="79" y="40" fontSize="8" textAnchor="middle" className="fill-foreground">Scope, 2 ch</text>
+            <text x="79" y="51" fontSize="7" textAnchor="middle" className="fill-muted">50 MHz · 250 MSa/s · 1 Kpts</text>
+            <rect x="14" y="62" width="130" height="28" rx="3" className="fill-surface stroke-accent" strokeWidth="1" />
+            <text x="79" y="74" fontSize="8" textAnchor="middle" className="fill-foreground">True RMS multimeter</text>
+            <text x="79" y="85" fontSize="7" textAnchor="middle" className="fill-muted">19,999 counts · 1000 V DC · 9.999 A</text>
+            <rect x="14" y="96" width="130" height="28" rx="3" className="fill-surface stroke-accent" strokeWidth="1" />
+            <text x="79" y="108" fontSize="8" textAnchor="middle" className="fill-foreground">Generator</text>
+            <text x="79" y="119" fontSize="7" textAnchor="middle" className="fill-muted">13 waveforms · up to 50 kHz · 0–3 V</text>
+            <rect x="14" y="130" width="130" height="28" rx="3" className="fill-accent/15 stroke-accent" strokeWidth="1" />
+            <text x="79" y="142" fontSize="8" textAnchor="middle" className="fill-foreground">Internal battery</text>
+            <text x="79" y="153" fontSize="7" textAnchor="middle" className="fill-muted">3,000 mAh · USB-C charging</text>
+            <text x="79" y="184" fontSize="7.5" textAnchor="middle" className="fill-foreground">Self-contained: runs with</text>
+            <text x="79" y="194" fontSize="7.5" textAnchor="middle" className="fill-foreground">nothing plugged in</text>
+
+            <rect x="166" y="18" width="150" height="116" rx="6" className="fill-surface stroke-foreground" strokeWidth="1.2" />
+            <text x="241" y="12" fontSize="9" textAnchor="middle" className="fill-foreground">FNIRSI 1014D (benchtop)</text>
+            <rect x="176" y="28" width="130" height="28" rx="3" className="fill-surface stroke-accent" strokeWidth="1" />
+            <text x="241" y="40" fontSize="8" textAnchor="middle" className="fill-foreground">Scope, 2 ch, 7-inch screen</text>
+            <text x="241" y="51" fontSize="7" textAnchor="middle" className="fill-muted">100 MHz · 1 GSa/s · 8-bit</text>
+            <rect x="176" y="62" width="130" height="28" rx="3" className="fill-surface stroke-accent" strokeWidth="1" />
+            <text x="241" y="74" fontSize="8" textAnchor="middle" className="fill-foreground">DDS generator, 1 ch</text>
+            <text x="241" y="85" fontSize="7" textAnchor="middle" className="fill-muted">sine to 10 MHz · others to 2 MHz</text>
+            <rect x="176" y="96" width="130" height="28" rx="3" className="fill-none stroke-border" strokeWidth="1" strokeDasharray="3 2" />
+            <text x="241" y="113" fontSize="8" textAnchor="middle" className="fill-muted">No multimeter, no battery stated</text>
+            <line x1="241" y1="134" x2="241" y2="158" className="stroke-foreground" strokeWidth="1.2" />
+            <rect x="196" y="158" width="90" height="22" rx="3" className="fill-surface stroke-foreground" strokeWidth="1" />
+            <text x="241" y="172" fontSize="8" textAnchor="middle" className="fill-foreground">External 5 V adapter</text>
+            <text x="241" y="194" fontSize="7.5" textAnchor="middle" className="fill-foreground">Tethered: ground follows the</text>
+            <text x="241" y="204" fontSize="7.5" textAnchor="middle" className="fill-foreground">adapter and any USB lead</text>
+          </svg>
+        </Figure>
+        <p className="text-muted leading-7 mb-4">
+          The diagram is the practical difference in one view. Everything the 2C53T does comes out of a single
+          sealed box, so there is no cable to trail across a workshop floor and nothing to plug in before a quick
+          check. The 1014D stays tethered: the adapter has to reach a socket, and any USB lead you add for saving
+          captures to a computer joins the same ground. That tether is harmless on a hobby bench and simply part of
+          how a benchtop works, but it is why the Callout below matters more for the desk model.
+        </p>
         <KeyIdea title="Why 1 Kpts limits a handheld on slow timebases">
           A scope fills its record across the screen, so its real sample rate falls as you slow the timebase. If
           1 Kpts spans a 10-division screen, then at 1 ms/div (10 ms across the screen) the 2C53T samples at about

@@ -10,3 +10,6 @@ node_modules
 *storybook.log
 storybook-static
 .github/workflows/content-qa.yml
+
+.vercel
+.env*

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node automation/submit-indexnow.mjs",
+    "postbuild": "node automation/submit-indexnow.mjs && node automation/submit-gsc-sitemap.mjs",
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",

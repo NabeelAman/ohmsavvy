@@ -2,7 +2,8 @@
 # The task fires at 06:00, then hourly until midnight, and at logon, so a laptop that
 # was asleep at 06:00 still gets its article. This script makes those runs safe:
 #   - one published article per day: after a success, later runs that day exit at once
-#   - at most 3 attempts per day, so a bad day doesn't burn the CPU every hour
+#   - at most 6 attempts per day, so a bad day doesn't burn the CPU every hour but a
+#     few runs killed partway (sleep, shutdown, a closed console) don't end the day
 #   - a lock, so two triggers never run the writer side by side
 # Each attempt refills the keyword queue with trending topics (automation/refill-queue.mjs),
 # then drafts the next queued buying guide with Ollama and publishes it only if every
@@ -14,7 +15,7 @@ $logFile = Join-Path $PSScriptRoot ".tmp-daily.log"
 $stateFile = Join-Path $PSScriptRoot ".tmp-daily-state.json"
 $lockFile = Join-Path $PSScriptRoot ".tmp-daily.lock"
 $today = Get-Date -Format "yyyy-MM-dd"
-$maxAttempts = 3
+$maxAttempts = 6
 
 $state = @{ date = $today; attempts = 0; published = $false }
 if (Test-Path $stateFile) {

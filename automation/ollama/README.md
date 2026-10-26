@@ -7,7 +7,7 @@ product data. Every draft goes through 5 QA checkpoints, then you review a previ
 
 Windows Task Scheduler runs **"OhmSavvy daily article"** at 6:00, then every hour until midnight, and at logon, so a
 laptop that was asleep or off at 6:00 still gets that day's article. It runs `automation/ollama/daily-article.ps1`,
-which publishes at most one article a day (later runs that day exit at once), tries at most 3 times a day, and uses a
+which publishes at most one article a day (later runs that day exit at once), tries at most 6 times a day, and uses a
 lock so two runs never overlap (state in `.tmp-daily-state.json`). Each attempt starts Ollama if needed, refills the
 queue, then runs `node automation/ollama/article.mjs --next --auto`.
 

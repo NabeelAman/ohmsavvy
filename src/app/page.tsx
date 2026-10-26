@@ -25,6 +25,13 @@ const CATEGORIES: {
   roundup: { href: string; title: string };
   blurb: string;
   picks: typeof multimeterPicks;
+  /**
+   * Pick shown as "Most popular" on the category card: the one with the most
+   * "bought in past month" on its Amazon listing, then most reviews (owner's
+   * request, 2026-10-26). Amazon's numbers aren't displayed: Associates rules
+   * only allow live API data. Re-check monthly.
+   */
+  bestSeller: string;
   tone: Tone;
 }[] = [
   {
@@ -34,6 +41,8 @@ const CATEGORIES: {
     roundup: { href: "/multimeters/best-multimeters", title: "Best Multimeters" },
     blurb: "CAT safety ratings, True RMS and accuracy, from first meters to panel-rated electrician tools.",
     picks: multimeterPicks,
+    // Amazon listing B071JL6LLL, 2026-10-26: 5K+ bought in past month, 20,275 ratings, #1 in Multimeters & Analyzers
+    bestSeller: "AstroAI DM6000AR",
     tone: { text: "text-cat-multimeters", bg: "bg-cat-multimeters", border: "border-cat-multimeters", soft: "from-cat-multimeters/15" },
   },
   {
@@ -43,6 +52,8 @@ const CATEGORIES: {
     roundup: { href: "/soldering-irons/best-soldering-irons", title: "Best Soldering Irons" },
     blurb: "Heat-up time, temperature stability and tips, from portable pens to full bench stations.",
     picks: solderingIronPicks,
+    // Amazon listing B08PZBPXLZ, 2026-10-26: 9K+ bought in past month, 5,320 ratings, #3 in Soldering Irons
+    bestSeller: "Liouhoum 80W Soldering Iron Kit",
     tone: { text: "text-cat-soldering", bg: "bg-cat-soldering", border: "border-cat-soldering", soft: "from-cat-soldering/15" },
   },
   {
@@ -52,6 +63,8 @@ const CATEGORIES: {
     roundup: { href: "/oscilloscopes/best-beginner-oscilloscopes", title: "Best Beginner Oscilloscopes" },
     blurb: "Bandwidth, sample rate and channels explained simply, from pocket scopes to four-channel benches.",
     picks: oscilloscopePicks,
+    // Amazon listing B0D6VX6BFL, 2026-10-26: 1K+ bought in past month, 927 ratings, #1 in Lab Oscilloscopes
+    bestSeller: "FNIRSI 2C53T",
     tone: { text: "text-cat-oscilloscopes", bg: "bg-cat-oscilloscopes", border: "border-cat-oscilloscopes", soft: "from-cat-oscilloscopes/15" },
   },
 ];
@@ -320,6 +333,8 @@ export default function Home() {
         <div className="-mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0">
           {CATEGORIES.map((c, i) => {
             const top = c.picks[0];
+            // Fall back to the editorial pick if the best seller is renamed or retired
+            const popular = c.picks.find((p) => p.name === c.bestSeller && !p.unavailable) ?? top;
             const reviews = ofType(c.category, "review").length;
             const comparisons = ofType(c.category, "comparison").length;
             const guides = content.filter((e) => e.category === c.category && e.type !== "review" && e.type !== "comparison").length;
@@ -329,11 +344,11 @@ export default function Home() {
                 <div className="group w-full flex flex-col rounded-2xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-shadow hover:shadow-md">
                   <Link prefetch={false} href={c.roundup.href} className={`relative block h-44 bg-gradient-to-b ${c.tone.soft} to-transparent`}>
                     <div className={`absolute top-0 inset-x-0 h-1 ${c.tone.bg}`} />
-                    {top.image && (
+                    {popular.image && (
                       <Image
-                        src={productImageSrc(top.image, 320)}
-                        unoptimized={skipOptimizer(top.image)}
-                        alt={`${top.name}, our top ${c.label.toLowerCase()} pick`}
+                        src={productImageSrc(popular.image, 320)}
+                        unoptimized={skipOptimizer(popular.image)}
+                        alt={`${popular.name}, the most popular ${c.noun} in our picks`}
                         fill
                         sizes="(min-width: 768px) 360px, 100vw"
                         className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
@@ -347,9 +362,14 @@ export default function Home() {
                     </Link>
                     <p className="mt-2 text-sm text-muted leading-6">{c.blurb}</p>
                     <div className="mt-4 rounded-md bg-signal-bg px-3 py-2 text-xs">
-                      <span className="text-signal font-medium">Top pick: </span>
-                      <span className="text-foreground">{top.name}</span>
+                      <span className="text-signal font-medium">Most popular pick: </span>
+                      <span className="text-foreground">{popular.name}</span>
                     </div>
+                    {popular.name !== top.name && (
+                      <p className="mt-2 px-3 text-xs text-muted">
+                        Editor&apos;s pick: <span className="text-foreground">{top.name}</span>
+                      </p>
+                    )}
                     <ul className="mt-5 flex-1 space-y-2 text-sm">
                       <li>
                         <Link prefetch={false} href={`/${c.category}/reviews`} className="flex justify-between text-muted hover:text-accent">

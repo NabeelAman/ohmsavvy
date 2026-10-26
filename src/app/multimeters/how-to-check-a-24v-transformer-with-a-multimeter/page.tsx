@@ -112,7 +112,7 @@ export default function HowToCheckA24vTransformerWithAMultimeterPage() {
       <section>
         <h2 id="terminals" className="text-xl font-semibold mb-3">Primary, secondary and the R/C terminals</h2>
         <p className="text-muted leading-7 mb-4">
-          The primary leads are usually colour-coded wires, with a separate lead per voltage tap on multi-tap
+          The primary leads are usually color-coded wires, with a separate lead per voltage tap on multi-tap
           units (for example 120, 208 and 240V plus a common). The secondary normally ends in two screw
           terminals or two thinner leads. In HVAC equipment those two secondary connections become the R
           (24V hot) and C (common) terminals that run to the control board and thermostat.
@@ -126,7 +126,7 @@ export default function HowToCheckA24vTransformerWithAMultimeterPage() {
             </>
           }
         >
-          <svg viewBox="0 0 320 160" className="w-full h-auto" role="img" aria-label="Schematic of a 24 volt control transformer with a line-voltage primary and a 24 volt secondary labelled R and C">
+          <svg viewBox="0 0 320 160" className="w-full h-auto" role="img" aria-label="Schematic of a 24 volt control transformer with a line-voltage primary and a 24 volt secondary labeled R and C">
             <g className="stroke-foreground" strokeWidth="1.6" fill="none">
               <path d="M120 35 a10 10 0 0 1 0 20 a10 10 0 0 1 0 20 a10 10 0 0 1 0 20 a10 10 0 0 1 0 20" />
               <path d="M200 45 a10 10 0 0 0 0 20 a10 10 0 0 0 0 20 a10 10 0 0 0 0 20" />

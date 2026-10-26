@@ -71,7 +71,7 @@ export default function SolderingIronNotMeltingSolderPage() {
         },
         {
           q: "Is it normal for solder to take a few seconds to start melting?",
-          a: "A brief delay while the tip and joint come up to temperature is normal, generally under two seconds on a properly heated, clean tip touching a typical through-hole joint. If you're routinely waiting five or more seconds, something on this page's list is the cause rather than normal behaviour.",
+          a: "A brief delay while the tip and joint come up to temperature is normal, generally under two seconds on a properly heated, clean tip touching a typical through-hole joint. If you're routinely waiting five or more seconds, something on this page's list is the cause rather than normal behavior.",
         },
         {
           q: "Can old solder itself be the problem, not the iron?",

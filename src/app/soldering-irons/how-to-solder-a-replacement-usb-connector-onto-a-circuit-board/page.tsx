@@ -174,11 +174,11 @@ export default function HowToSolderAReplacementUsbConnectorPage() {
       <section>
         <h2 id="pin-sizes" className="text-xl font-semibold mb-3">How small the pins are</h2>
         <p className="text-muted leading-7 mb-4">
-          Pin pitch, the distance between neighbouring contacts, is what makes this job harder than replacing
+          Pin pitch, the distance between neighboring contacts, is what makes this job harder than replacing
           a full-size USB-A socket. The smaller the pitch, the finer the tip and the more magnification you
           need.
         </p>
-        <Figure caption={<>Nominal contact pitch for common USB receptacles. USB-C and Micro-USB pins sit closer together than the lines on a millimetre ruler.</>}>
+        <Figure caption={<>Nominal contact pitch for common USB receptacles. USB-C and Micro-USB pins sit closer together than the lines on a millimeter ruler.</>}>
           <BarChart
             items={[
               { label: "USB-A (2.0)", value: 2.5, display: "2.5 mm" },
@@ -279,7 +279,7 @@ export default function HowToSolderAReplacementUsbConnectorPage() {
         <h2 id="inspect-and-test" className="text-xl font-semibold mb-3">Inspect and test before you reassemble</h2>
         <p className="text-muted leading-7 mb-4">
           Clean away flux and look along the pins under a magnifier or microscope. Each joint should be a
-          small, smooth fillet with a clear gap to its neighbours. Then set a multimeter to continuity and
+          small, smooth fillet with a clear gap to its neighbors. Then set a multimeter to continuity and
           probe between VBUS and GND: it must not beep. Also check VBUS and GND each reach the circuit they
           feed. Bridges are covered in{" "}
           <Link href="/soldering-irons/how-to-prevent-solder-bridges" className={link}>
@@ -298,7 +298,7 @@ export default function HowToSolderAReplacementUsbConnectorPage() {
         <DataTable
           head={["Symptom", "Likely cause"]}
           rows={[
-            ["Charges but no data", "D+ or D− pin not wetted, or bridged to its neighbour"],
+            ["Charges but no data", "D+ or D− pin not wetted, or bridged to its neighbor"],
             ["Nothing at all, charger cuts out", "VBUS bridged to GND"],
             ["Works only at an angle", "Connector not seated flat, or a cracked pin joint"],
             ["Plug will not go in fully", "Mid-mount part swapped for top-mount, or body sitting proud of the case"],

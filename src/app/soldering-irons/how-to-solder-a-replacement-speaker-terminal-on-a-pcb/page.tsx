@@ -221,7 +221,7 @@ export default function HowToSolderAReplacementSpeakerTerminalOnAPcbPage() {
       <section>
         <StepHeading n={4} id="fit-new-terminal">Seat the new part flush</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          Check the new terminal against your photos for orientation and colour, then push it in until the
+          Check the new terminal against your photos for orientation and color, then push it in until the
           housing sits flat on the board with no gap. Offer the board up to the rear panel to confirm the
           clips line up with the cut-out before soldering anything. A part that sits proud of the board, or
           has to be pushed sideways to meet the panel, will put the joints under load from day one.

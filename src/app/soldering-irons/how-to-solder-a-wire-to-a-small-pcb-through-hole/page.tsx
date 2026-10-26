@@ -184,7 +184,7 @@ export default function HowToSolderAWireToASmallPcbThroughHolePage() {
         <p className="text-muted leading-7">
           The bare length should equal the board thickness plus about 1 mm to 2 mm of protrusion. On a standard
           1.6 mm board that means stripping about 3 mm. Too much and bare copper above the board can touch a
-          neighbouring pad; too little and the strands never reach the solder side. Use the stripper notch for
+          neighboring pad; too little and the strands never reach the solder side. Use the stripper notch for
           your gauge so no strands are cut, and leave roughly 0.5 mm to 1 mm between insulation and board.
         </p>
       </section>
@@ -235,7 +235,7 @@ export default function HowToSolderAWireToASmallPcbThroughHolePage() {
       <section>
         <StepHeading n={5} id="how-much-solder">How much solder to feed</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          Less than most beginners expect: on a 0.8 mm hole with a 1.5 mm pad, a few millimetres of 0.6 mm or
+          Less than most beginners expect: on a 0.8 mm hole with a 1.5 mm pad, a few millimeters of 0.6 mm or
           0.8 mm solder is usually enough. Stop once the fillet covers the pad while the wire outline still
           shows. Withdraw the solder, then the iron, and hold the wire still while the joint freezes.
         </p>

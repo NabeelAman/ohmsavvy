@@ -173,7 +173,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
         <Figure
           caption={
             <>
-              A sine wave at 1 V/div. The trace runs from 3 divisions above centre to 3 below: 6 divisions
+              A sine wave at 1 V/div. The trace runs from 3 divisions above center to 3 below: 6 divisions
               × 1 V/div = 6 V peak-to-peak, so the peak is 3 V and the RMS is about 2.12 V.
             </>
           }
@@ -275,7 +275,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
         <Figure
           caption={
             <>
-              A 0–5 V square wave at 2 V/div, with the ground marker on the centre line. The low level sits
+              A 0–5 V square wave at 2 V/div, with the ground marker on the center line. The low level sits
               on ground (0 V); the high level is 2.5 divisions above it: 2.5 × 2 V/div = 5 V.
             </>
           }
@@ -292,8 +292,8 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
         <p className="text-muted leading-7 mt-4">
           Here Vmax = 5 V, Vmin = 0 V and Vpp = 5 V. A steady DC voltage, such as a battery or regulator
           output, shows up as a flat line, and you read it the same way: a line 1.5 divisions above ground
-          at 2 V/div is 3 V. If the ground marker has been moved off the centre line, always count from
-          the marker, not from the centre of the screen.
+          at 2 V/div is 3 V. If the ground marker has been moved off the center line, always count from
+          the marker, not from the center of the screen.
         </p>
       </section>
 
@@ -345,7 +345,7 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
         <StepHeading n={6} id="cursors-and-measurements">Use cursors and automatic measurements</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Counting divisions is the skill to learn, but a digital scope can do it more precisely.
-          Horizontal voltage cursors (often labelled Y or amplitude cursors) are two lines you place on
+          Horizontal voltage cursors (often labeled Y or amplitude cursors) are two lines you place on
           the levels you care about; the scope displays each level and the difference between them, ΔV.
           Cursors are ideal when you want a specific feature, such as the height of one step or a single
           spike.

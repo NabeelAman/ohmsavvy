@@ -14,7 +14,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
 
 const description =
-  "How to use a soldering iron, step by step: tin the tip, prep the joint, heat the metal rather than the solder, and recognise a good joint from a cold one.";
+  "How to use a soldering iron, step by step: tin the tip, prep the joint, heat the metal rather than the solder, and recognize a good joint from a cold one.";
 
 export const metadata = buildMetadata({
   title: "How to Use a Soldering Iron: Step-by-Step Guide",
@@ -41,7 +41,7 @@ export default function HowToUseASolderingIronPage() {
           Soldering an electronic joint well comes down to one idea: heat the metal parts until they
           are hot enough to melt solder on their own, then feed solder into that heat — never melt
           solder directly on the tip and drip it onto a cold joint. This guide walks through a complete
-          first repair or build session, from tinning a brand-new tip to recognising a joint that needs
+          first repair or build session, from tinning a brand-new tip to recognizing a joint that needs
           redoing.
         </>
       }
@@ -71,7 +71,7 @@ export default function HowToUseASolderingIronPage() {
         { id: "wetting-angle", label: "What the fillet shape actually tells you" },
         { id: "common-mistakes", label: "Common first-timer mistakes" },
         { id: "blowing-on-joints", label: "Myth: blowing on a joint to cool it" },
-        { id: "which-iron", label: "Which iron to practise on" },
+        { id: "which-iron", label: "Which iron to practice on" },
       ]}
       faq={[
         {
@@ -222,7 +222,7 @@ export default function HowToUseASolderingIronPage() {
         </p>
         <KeyIdea title="Why 'don't move it' matters so much">
           Solder needs to cool through its melting range undisturbed to form one continuous crystal
-          structure. Jostle it mid-cool and you get a fractured, dull-grey joint with poor
+          structure. Jostle it mid-cool and you get a fractured, dull-gray joint with poor
           conductivity and weak mechanical strength, even though it may look fine from a glance.
         </KeyIdea>
       </section>
@@ -300,7 +300,7 @@ export default function HowToUseASolderingIronPage() {
       </section>
 
       <section>
-        <h2 id="which-iron" className="text-xl font-semibold mb-3">Which iron should you practise on?</h2>
+        <h2 id="which-iron" className="text-xl font-semibold mb-3">Which iron should you practice on?</h2>
         <p className="text-muted leading-7">
           Any iron with decent thermal recovery will work for the steps above. A station such as the{" "}
           <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={link}>Hakko FX-888DX</Link>{" "}

@@ -29,10 +29,10 @@ const hantek = picks.find((p) => p.name === "Hantek DSO2D10")!;
 
 const link = "text-accent hover:underline";
 
-/** Labelled passive probe: BNC end, cable, body with 1x/10x switch, hook tip and ground lead, plus the ground spring alternative. */
+/** Labeled passive probe: BNC end, cable, body with 1x/10x switch, hook tip and ground lead, plus the ground spring alternative. */
 function ProbeAnatomy() {
   return (
-    <svg viewBox="0 0 340 170" className="w-full h-auto" role="img" aria-label="Labelled diagram of a passive oscilloscope probe">
+    <svg viewBox="0 0 340 170" className="w-full h-auto" role="img" aria-label="Labeled diagram of a passive oscilloscope probe">
       <g className="stroke-foreground" strokeWidth="1.5" fill="none">
         {/* BNC */}
         <rect x="10" y="62" width="34" height="22" rx="4" className="fill-surface-raised" />
@@ -175,7 +175,7 @@ export default function HowToConnectAnOscilloscopeProbeCorrectlyPage() {
         <p className="text-muted leading-7">
           Line up the two slots on the probe&apos;s BNC with the pins on the channel input, push it home and
           turn it clockwise until it clicks. A half-seated BNC gives intermittent traces that come and go as
-          the cable moves. If you have a four-channel scope, note which channel each probe is on; the coloured
+          the cable moves. If you have a four-channel scope, note which channel each probe is on; the colored
           rings that come with most probes help.
         </p>
       </section>
@@ -184,7 +184,7 @@ export default function HowToConnectAnOscilloscopeProbeCorrectlyPage() {
         <StepHeading n={2} id="match-attenuation">Match 1x/10x on the probe and the scope</StepHeading>
         <p className="text-muted leading-7 mb-4">
           A 10x probe divides the signal by ten before it reaches the scope. The scope cannot see the switch,
-          so you tell it in the channel menu (often labelled Probe or Attenuation). If the two disagree, every
+          so you tell it in the channel menu (often labeled Probe or Attenuation). If the two disagree, every
           voltage reading is out by a factor of ten.
         </p>
         <DataTable

@@ -115,7 +115,7 @@ export default function HowToTestA3WireProximitySensorWithAMultimeterPage() {
       }}
       toc={[
         { id: "inductive-vs-capacitive", label: "Inductive vs capacitive sensors" },
-        { id: "wire-colours", label: "Brown, blue and black wires" },
+        { id: "wire-colors", label: "Brown, blue and black wires" },
         { id: "pnp-vs-npn", label: "PNP (sourcing) vs NPN (sinking)" },
         { id: "power-the-sensor", label: "Power the sensor" },
         { id: "measure-the-output", label: "Measure the output with a target" },
@@ -141,8 +141,8 @@ export default function HowToTestA3WireProximitySensorWithAMultimeterPage() {
           a: "For a normally open PNP sensor with a load resistor, close to 0 V between black and blue. For a normally open NPN sensor with a pull-up, close to the supply voltage. Normally closed versions read the opposite. With no resistor at all, the reading may float somewhere in between, which is not a fault on its own.",
         },
         {
-          q: "Does a stainless steel or aluminium target change the sensing distance?",
-          a: "Yes, for inductive sensors. Rated sensing distance is quoted for mild steel. Stainless steel, brass, aluminium and copper usually trigger at a noticeably shorter distance, often well under the rated figure; the datasheet gives correction factors. If a sensor fails only on a non-steel part, test it again with a steel target before replacing it.",
+          q: "Does a stainless steel or aluminum target change the sensing distance?",
+          a: "Yes, for inductive sensors. Rated sensing distance is quoted for mild steel. Stainless steel, brass, aluminum and copper usually trigger at a noticeably shorter distance, often well under the rated figure; the datasheet gives correction factors. If a sensor fails only on a non-steel part, test it again with a steel target before replacing it.",
         },
       ]}
       next={[
@@ -186,7 +186,7 @@ export default function HowToTestA3WireProximitySensorWithAMultimeterPage() {
         </p>
         <InfoCards
           items={[
-            { label: "Inductive", desc: "Senses metal only, using an oscillating magnetic field. Range is a few millimetres to a few tens of millimetres, rated for mild steel." },
+            { label: "Inductive", desc: "Senses metal only, using an oscillating magnetic field. Range is a few millimeters to a few tens of millimeters, rated for mild steel." },
             { label: "Capacitive", desc: "Senses metal, plastic, wood, liquids and granules through changes in capacitance. Usually has a sensitivity adjuster screw." },
             { label: "Flush vs non-flush", desc: "Flush (shielded) heads mount level with metal and sense a shorter distance. Non-flush heads reach further but need clear space around the face." },
           ]}
@@ -194,9 +194,9 @@ export default function HowToTestA3WireProximitySensorWithAMultimeterPage() {
       </section>
 
       <section>
-        <h2 id="wire-colours" className="text-xl font-semibold mb-3">Brown, blue and black: the 3 wire proximity sensor colours</h2>
+        <h2 id="wire-colors" className="text-xl font-semibold mb-3">Brown, blue and black: the 3 wire proximity sensor colors</h2>
         <p className="text-muted leading-7 mb-4">
-          Most DC sensors follow the IEC colour convention. Treat it as typical, not guaranteed: check the label
+          Most DC sensors follow the IEC color convention. Treat it as typical, not guaranteed: check the label
           or datasheet, especially on older or non-European parts.
         </p>
         <DataTable

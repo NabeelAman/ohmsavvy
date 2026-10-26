@@ -93,7 +93,7 @@ export default function WhatDoesGsaSMeanPage() {
         },
         {
           q: "How many samples per cycle do you need to see a waveform?",
-          a: "More than two samples per cycle is the theoretical minimum to identify a frequency, but that is not enough to see its shape. At 2.5 samples per cycle peaks are often missed, while 10 or more samples per cycle give a recognisable sine even with straight-line interpolation. Sin(x)/x interpolation can rebuild smooth curves from fewer points, which is why it is offered on many scopes.",
+          a: "More than two samples per cycle is the theoretical minimum to identify a frequency, but that is not enough to see its shape. At 2.5 samples per cycle peaks are often missed, while 10 or more samples per cycle give a recognizable sine even with straight-line interpolation. Sin(x)/x interpolation can rebuild smooth curves from fewer points, which is why it is offered on many scopes.",
         },
         {
           q: "Does turning off channels increase the sample rate?",
@@ -390,7 +390,7 @@ export default function WhatDoesGsaSMeanPage() {
           ]}
         />
         <p className="mt-4 text-muted leading-7">
-          Exact behaviour varies: some scopes capture more than the visible window, step the rate
+          Exact behavior varies: some scopes capture more than the visible window, step the rate
           in fixed increments, or let you choose the memory depth manually. Many show the actual
           sample rate in use on screen, which is worth glancing at. The practical lesson is that
           deeper memory is what lets a scope keep a high sample rate on long captures, such as

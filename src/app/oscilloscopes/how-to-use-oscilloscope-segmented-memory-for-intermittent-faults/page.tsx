@@ -191,7 +191,7 @@ export default function HowToUseOscilloscopeSegmentedMemoryForIntermittentFaults
         </Figure>
         <p className="text-muted leading-7 mt-4">
           That makes it a good fit for intermittent faults: problems that appear in short bursts separated by
-          long stretches of normal behaviour.
+          long stretches of normal behavior.
         </p>
       </section>
 
@@ -228,7 +228,7 @@ export default function HowToUseOscilloscopeSegmentedMemoryForIntermittentFaults
             ["Short segments (fast timebase)", "Many segments, high sample rate per event", "Little context before and after the trigger"],
             ["Long segments (slow timebase)", "Context around each event", "Fewer segments, or a lower sample rate"],
             ["Trigger near the left of the screen", "More time after the event", "Less view of what led up to it"],
-            ["Trigger near the centre", "Balanced pre- and post-trigger view", "Nothing extra, a sensible default"],
+            ["Trigger near the center", "Balanced pre- and post-trigger view", "Nothing extra, a sensible default"],
           ]}
         />
         <KeyIdea title="Worked example">

@@ -188,7 +188,7 @@ export default function HowToUseOscilloscopeMathToSubtractSignalsPage() {
         <p className="text-muted leading-7">
           Press the MATH button (some scopes put it inside a menu), choose subtraction as the operator
           (shown as A − B or a minus sign), set source A to CH1 and source B to CH2. The math trace appears in
-          its own colour. Swapping the sources flips the sign of the result, which is useful when you want a
+          its own color. Swapping the sources flips the sign of the result, which is useful when you want a
           positive answer. Trigger on whichever channel carries the cleaner edge, as described in{" "}
           <Link href="/oscilloscopes/how-to-trigger-an-oscilloscope" className={link}>
             how to trigger an oscilloscope
@@ -223,7 +223,7 @@ export default function HowToUseOscilloscopeMathToSubtractSignalsPage() {
           caption={
             <>
               Left, at 2 V/div: CH1 (green) swings 0 to 6 V (3 divisions) and CH2 (blue) 0 to 4 V (2 divisions),
-              both above the centre ground line. Right, the math trace CH1 − CH2 at 1 V/div: 2 divisions, so 0 to
+              both above the center ground line. Right, the math trace CH1 − CH2 at 1 V/div: 2 divisions, so 0 to
               2 V, which is 6 − 4 = 2 V peak-to-peak across R1.
             </>
           }
@@ -265,7 +265,7 @@ export default function HowToUseOscilloscopeMathToSubtractSignalsPage() {
           <Figure
             caption={
               <>
-                Both tips on the same point, MATH at 0.2 V/div: a flat line on the centre ground line, 0 V
+                Both tips on the same point, MATH at 0.2 V/div: a flat line on the center ground line, 0 V
                 difference. This is what a matched setup looks like.
               </>
             }

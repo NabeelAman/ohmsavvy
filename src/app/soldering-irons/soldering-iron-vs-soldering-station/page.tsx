@@ -238,7 +238,7 @@ export default function SolderingIronVsSolderingStationPage() {
         The{" "}
         <Link href="/soldering-irons/pinecil-v2-review" className={link}>Pinecil V2</Link>{" "}
         packs an onboard temperature sensor and active firmware control into a single USB-C powered
-        handpiece — functionally a station&apos;s closed-loop behaviour, just without a separate base
+        handpiece — functionally a station&apos;s closed-loop behavior, just without a separate base
         unit. &quot;Station-grade control&quot; and &quot;two-part hardware&quot; are related trends,
         not the same requirement.
       </KeyIdea>

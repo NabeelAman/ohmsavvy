@@ -59,7 +59,7 @@ const faqs = [
   {
     question: "What is burden voltage and why does it matter on a 3.3 V board?",
     answer:
-      "Burden voltage is the drop across the meter's internal shunt when it measures current. Brymen publishes 0.2 mV per µA for the BM786, so a 500 µA reading costs 100 mV of the board's supply. On a 3.3 V rail with little headroom that can change behaviour or trigger a brown-out reset, so a lower-burden meter or a higher range helps.",
+      "Burden voltage is the drop across the meter's internal shunt when it measures current. Brymen publishes 0.2 mV per µA for the BM786, so a 500 µA reading costs 100 mV of the board's supply. On a 3.3 V rail with little headroom that can change behavior or trigger a brown-out reset, so a lower-burden meter or a higher range helps.",
   },
   {
     question: "Is a cheap multimeter good enough for Arduino work?",

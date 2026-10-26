@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "How to measure AC current with a clamp meter: clamp around a single conductor only, centre the jaw, and avoid the classic mistake of clamping a whole cable.";
+  "How to measure AC current with a clamp meter: clamp around a single conductor only, center the jaw, and avoid the classic mistake of clamping a whole cable.";
 
 export const metadata = buildMetadata({
   title: "How to Measure AC Current With a Clamp Meter",
@@ -71,7 +71,7 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
         },
         {
           q: "Does jaw position around the conductor affect accuracy?",
-          a: "Yes — centre the conductor in the jaw opening rather than letting it sit off to one side or near the jaw's hinge point, where the magnetic field sensing is generally less uniform. Most clamp meters are most accurate with the conductor centred and the jaw fully closed.",
+          a: "Yes — center the conductor in the jaw opening rather than letting it sit off to one side or near the jaw's hinge point, where the magnetic field sensing is generally less uniform. Most clamp meters are most accurate with the conductor centred and the jaw fully closed.",
         },
         {
           q: "Can a clamp meter measure current through a very thick cable or bus bar?",
@@ -140,7 +140,7 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
         <p className="text-muted leading-7">
           Turn the dial to the AC current function (usually marked A~ or with a sine-wave symbol).
           Squeeze the trigger to open the jaw, position it around a single, isolated conductor, and
-          release the trigger to let the jaw close fully around it. Centre the conductor in the jaw
+          release the trigger to let the jaw close fully around it. Center the conductor in the jaw
           opening and read the display.
         </p>
       </section>
@@ -151,7 +151,7 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
           head={["Practice", "Why it matters"]}
           rows={[
             ["Clamp exactly one conductor", "Multiple conductors with opposing current cancel the field the jaw reads"],
-            ["Centre the conductor in the jaw", "Sensing is generally most accurate away from the jaw's hinge and edges"],
+            ["Center the conductor in the jaw", "Sensing is generally most accurate away from the jaw's hinge and edges"],
             ["Ensure the jaw closes fully", "A gap at the jaw's closing point can affect the magnetic circuit and accuracy"],
             ["Use a True RMS meter for non-sinusoidal loads", "Variable-speed drives, dimmers, and switching supplies distort the waveform"],
           ]}

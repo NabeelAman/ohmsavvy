@@ -148,7 +148,7 @@ export default function AcVsDcVoltagePage() {
       <section id="rms-and-peak">
         <h2 className="text-xl font-semibold mb-3">RMS and peak: what an AC reading means</h2>
         <p className="text-muted leading-7 mb-4">
-          Because AC is always changing, a single number has to summarise it. The standard is RMS (root
+          Because AC is always changing, a single number has to summarize it. The standard is RMS (root
           mean square): the DC voltage that would deliver the same heating power to a resistor. When an
           outlet is described as 120V or 230V, that is the RMS value, and it is what a multimeter shows. The
           wave actually peaks higher. For a pure sine wave, peak = RMS × 1.414.

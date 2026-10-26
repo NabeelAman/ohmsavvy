@@ -13,7 +13,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "How to test a rotary switch with a multimeter: find poles and throws, map every position with continuity, and check contact resistance and shorting behaviour.";
+  "How to test a rotary switch with a multimeter: find poles and throws, map every position with continuity, and check contact resistance and shorting behavior.";
 
 export const metadata = buildMetadata({
   title: "How to Test a Rotary Switch With a Multimeter",
@@ -104,7 +104,7 @@ export default function HowToTestARotarySwitchWithAMultimeterPage() {
           A rotary switch is described by how many separate circuits it switches (poles) and how many
           positions each circuit can select (throws). The wiper of each pole is wired to one terminal, the
           common, and the shaft carries every wiper around together. Ratings are written like 1P12T, 2P6T,
-          3P4T or 4P3T; on many wafer switches the commons are labelled A, B, C, D or sit closer to the shaft
+          3P4T or 4P3T; on many wafer switches the commons are labeled A, B, C, D or sit closer to the shaft
           than the throw terminals.
         </p>
         <InfoCards
@@ -224,7 +224,7 @@ export default function HowToTestARotarySwitchWithAMultimeterPage() {
         <p className="text-muted leading-7 mb-4">
           A non-shorting, or break-before-make, switch lifts the wiper off one contact before it touches the
           next, so there is a brief moment with nothing connected. A shorting, or make-before-break, switch
-          uses a wider wiper that bridges two neighbouring contacts during the turn, which avoids an open
+          uses a wider wiper that bridges two neighboring contacts during the turn, which avoids an open
           circuit in things like meter range selectors and audio attenuators. To tell which you have, put the
           probes on two adjacent throw terminals (not the common) and turn the knob very slowly between them:
           a shorting switch chirps once mid-turn, a non-shorting one stays silent.

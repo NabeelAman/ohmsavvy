@@ -279,7 +279,7 @@ export default function HowToTestAMosfetWithADigitalMultimeterPage() {
           Power MOSFETs most often fail short, usually between drain and source, after overheating or a
           voltage spike. Gate damage comes next, frequently from static or from a gate driven past its
           rated voltage. The table assumes an N-channel part with the gate discharged before each check;
-          swap the probe colours for P-channel.
+          swap the probe colors for P-channel.
         </p>
         <DataTable
           head={["What you see", "Likely condition", "Next step"]}
@@ -320,7 +320,7 @@ export default function HowToTestAMosfetWithADigitalMultimeterPage() {
             <Link href="/multimeters/how-to-measure-resistance-in-a-parallel-circuit" className={link}>
               measuring resistance in a parallel circuit
             </Link>
-            . A near-zero reading on one MOSFET in a bridge may be its neighbour.
+            . A near-zero reading on one MOSFET in a bridge may be its neighbor.
           </li>
           <li>
             <strong className="text-foreground">Gate pull-down resistors.</strong> Most circuits fit a

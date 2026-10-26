@@ -87,7 +87,7 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
         },
         {
           q: "How do I remove solder mask to expose a PCB trace?",
-          a: "Scrape it gently with a sharp hobby knife held almost flat, or use a fibreglass scratch pen, working along the trace rather than across it. Stop as soon as bright copper shows, because the copper layer is thin and easy to cut through. Clean the dust away with isopropyl alcohol, then tin the exposed copper straight away so it doesn't oxidise.",
+          a: "Scrape it gently with a sharp hobby knife held almost flat, or use a fiberglass scratch pen, working along the trace rather than across it. Stop as soon as bright copper shows, because the copper layer is thin and easy to cut through. Clean the dust away with isopropyl alcohol, then tin the exposed copper straight away so it doesn't oxidise.",
         },
         {
           q: "Is a repaired PCB pad as strong as the original?",
@@ -128,7 +128,7 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
       <section>
         <h2 id="why-pads-lift" className="text-xl font-semibold mb-3">Why pads lift during desoldering</h2>
         <p className="text-muted leading-7 mb-4">
-          A pad is a thin layer of copper foil bonded to the fibreglass laminate of the board. That bond
+          A pad is a thin layer of copper foil bonded to the fiberglass laminate of the board. That bond
           is strong at room temperature but weakens as it gets hot. Pads lift when heat and force meet:
         </p>
         <ul className="space-y-2 list-disc pl-5 text-muted leading-7">
@@ -260,8 +260,8 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
         <StepHeading n={3} id="replace-a-missing-pad">Replace a pad that tore off</StepHeading>
         <p className="text-muted leading-7 mb-4">
           When the pad is gone or no longer connected, you rebuild the connection from the trace.
-          Scrape the solder mask off a few millimetres of the trace nearest the pad site with a sharp
-          hobby knife held almost flat, or a fibreglass scratch pen. Work along the trace and stop as
+          Scrape the solder mask off a few millimeters of the trace nearest the pad site with a sharp
+          hobby knife held almost flat, or a fiberglass scratch pen. Work along the trace and stop as
           soon as bright copper shows; the copper is thin and easy to cut through. Clean the dust away
           and tin the exposed copper immediately.
         </p>
@@ -297,7 +297,7 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
           Solder the component with a clean tip, a little fresh flux and as short a dwell time as
           practical, so you don&apos;t soften the new adhesive. Don&apos;t lever on the part while it
           cools. Then measure continuity again, this time from the component lead to the next point on
-          the trace, and check the repaired pad isn&apos;t shorted to its neighbours. Tight surface-mount
+          the trace, and check the repaired pad isn&apos;t shorted to its neighbors. Tight surface-mount
           areas need the same care as any fine-pitch work; see{" "}
           <Link href="/soldering-irons/how-to-prevent-solder-bridges" className={link}>
             how to prevent solder bridges
@@ -307,7 +307,7 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
         <p className="text-muted leading-7 mb-4">
           Before calling it done, look at the repair under magnification once more. The solder should
           wet both the lead and the pad or trace smoothly, with no epoxy showing through the joint and
-          no copper slivers left from scraping that could bridge to a neighbouring pad. If the board
+          no copper slivers left from scraping that could bridge to a neighboring pad. If the board
           will be handled, flexed or vibrated, a dot of epoxy over the joint area, kept clear of anything
           that may need rework later, adds a little extra support. Power the board up only after these
           checks pass.

@@ -79,7 +79,7 @@ export default function HowToSolderARibbonCableConnectorOntoAPcbPage() {
         },
         {
           q: "Which side of the ribbon cable is pin 1?",
-          a: "By convention the conductor with the coloured stripe, often red, is pin 1. IDC sockets usually carry a small triangle beside pin 1 as well. When you press the socket onto the cable, line the striped conductor up with that triangle so the cable, socket and header all agree.",
+          a: "By convention the conductor with the colored stripe, often red, is pin 1. IDC sockets usually carry a small triangle beside pin 1 as well. When you press the socket onto the cable, line the striped conductor up with that triangle so the cable, socket and header all agree.",
         },
         {
           q: "What temperature should I use to solder header pins?",
@@ -158,7 +158,7 @@ export default function HowToSolderARibbonCableConnectorOntoAPcbPage() {
       <section>
         <h2 id="pitch-and-size" className="text-xl font-semibold mb-3">Pitch and header sizes</h2>
         <p className="text-muted leading-7 mb-4">
-          Pitch is the centre-to-centre spacing between neighbouring pins. The most common ribbon headers use
+          Pitch is the center-to-center spacing between neighboring pins. The most common ribbon headers use
           2.54 mm (0.1 in) pitch, paired with ribbon whose conductors sit 1.27 mm apart because the socket
           interleaves the two rows. Finer 2.0 mm and 1.27 mm pitch headers exist too; 1.27 mm parts are often
           surface-mount, especially on compact debug connectors. Read the pitch from the part&apos;s datasheet
@@ -226,7 +226,7 @@ export default function HowToSolderARibbonCableConnectorOntoAPcbPage() {
         <p className="text-muted leading-7 mb-4">
           Most boards mark pin 1 in at least one way: a square pad where the others are round, a small
           triangle or &quot;1&quot; in the silkscreen, or a header outline with a notch drawn in one long side
-          to show where the box header&apos;s key slot belongs. On the header itself, look for a triangle moulded
+          to show where the box header&apos;s key slot belongs. On the header itself, look for a triangle molded
           into the plastic beside pin 1. On most dual-row ribbon headers, odd-numbered pins run along one row
           and even-numbered pins along the other, so pin 2 sits directly beside pin 1, but confirm this on the
           board&apos;s schematic or the header datasheet.
@@ -345,7 +345,7 @@ export default function HowToSolderARibbonCableConnectorOntoAPcbPage() {
           head={["Check", "Probe between", "Good result", "Bad result means"]}
           rows={[
             ["Joint", "Top of the header pin and its trace or nearest via", "Low ohms, near lead resistance", "OL: cold or open joint"],
-            ["Neighbour", "Each pin and the pins beside it", "OL, or a reading the circuit explains", "Low ohms: possible bridge"],
+            ["Neighbor", "Each pin and the pins beside it", "OL, or a reading the circuit explains", "Low ohms: possible bridge"],
             ["Through the cable", "Header pin and matching pin at the far end", "Low ohms, near lead resistance", "OL: bad IDC press or wrong orientation"],
           ]}
         />
@@ -368,11 +368,11 @@ export default function HowToSolderARibbonCableConnectorOntoAPcbPage() {
               </>
             }
           >
-            <MeterReadout value="OL" unit="Ω" mode="Ω neighbour check" />
+            <MeterReadout value="OL" unit="Ω" mode="Ω neighbor check" />
           </Figure>
         </div>
         <p className="text-muted leading-7 mt-4">
-          Not every low neighbour reading is a fault. Several ground pins are often tied together on purpose,
+          Not every low neighbor reading is a fault. Several ground pins are often tied together on purpose,
           and pins linked through the board&apos;s circuit may read a few hundred ohms or more. Compare against
           the schematic before you start reworking joints. If the beeper chirps on and off as you hold the
           probes still, the problem may be the meter or its leads; see{" "}

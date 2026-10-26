@@ -95,7 +95,7 @@ const fitNotes: Record<string, string> = {
   "Power Probe DM300AUTO":
     "Guided cranking-voltage and alternator tests with on-screen pass or fail, plus current estimated across a fuse up to 80 A, speed up no-start and charging diagnosis. Voltage accuracy of ±(2% + 3) and the absence of temperature, RPM and Min/Max keep it out of the top five for wider diagnostic work.",
   "KAIWEETS HT118A":
-    "For under $40 it offers True RMS, duty cycle, temperature, Min/Max/Average and current from 600 µA up to 10 A, enough for most sensor, relay and parasitic-draw jobs. It has no RPM, dwell or pulse width, and KAIWEETS's product page disagrees with its own manual on maximum voltage.",
+    "At a budget price it offers True RMS, duty cycle, temperature, Min/Max/Average and current from 600 µA up to 10 A, enough for most sensor, relay and parasitic-draw jobs. It has no RPM, dwell or pulse width, and KAIWEETS's product page disagrees with its own manual on maximum voltage.",
   "Fluke 179":
     "True RMS, a CAT IV 600V rating, Min/Max-Average and a supplied thermocouple make it a dependable meter for vehicle wiring and the shop's mains circuits alike. With no automotive-specific modes and no µA range, it is a general tool that happens to be good on cars.",
   "ANENG SZ26":

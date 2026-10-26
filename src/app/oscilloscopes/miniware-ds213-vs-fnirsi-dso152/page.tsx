@@ -87,7 +87,7 @@ const comparison: ProductComparisonContent = {
         <h2 className="text-2xl font-semibold mb-4">Spec by spec</h2>
         <p className="text-muted leading-7 mb-4">
           On paper the DS213 is the more capable instrument by a wide margin, so the speed charts use a log scale. The
-          physical charts are closer, and they don&apos;t all favour the same unit: the DS213 is slimmer, the DSO152 is
+          physical charts are closer, and they don&apos;t all favor the same unit: the DS213 is slimmer, the DSO152 is
           lighter.
         </p>
         <div className="grid sm:grid-cols-2 gap-4">

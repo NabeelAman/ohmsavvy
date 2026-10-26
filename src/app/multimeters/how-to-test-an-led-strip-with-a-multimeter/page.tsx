@@ -67,7 +67,7 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
       faq={[
         {
           q: "Why does my LED strip get dimmer toward the end?",
-          a: "The thin copper rails have resistance, so voltage falls along the run as current flows. The far end receives less than the input and the last segments run dimmer, often with a colour shift on white or RGB strips. Feeding power into both ends, or into the middle, shortens the path the current has to travel and evens out the brightness.",
+          a: "The thin copper rails have resistance, so voltage falls along the run as current flows. The far end receives less than the input and the last segments run dimmer, often with a color shift on white or RGB strips. Feeding power into both ends, or into the middle, shortens the path the current has to travel and evens out the brightness.",
         },
         {
           q: "Why won't my multimeter light up a white LED on the strip?",
@@ -114,7 +114,7 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
             <>
               Three segments of a typical 12V strip. Each segment is three LEDs and a resistor in series,
               connected straight across the rails, so a fault inside one segment does not affect its
-              neighbours. The dashed lines are the cut points.
+              neighbors. The dashed lines are the cut points.
             </>
           }
         >
@@ -164,7 +164,7 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
         <p className="text-muted leading-7 mb-4">
           Repeat the measurement on the last pair of pads at the far end with the whole strip lit. The
           difference between the two readings is the drop along the rails. A small difference is normal;
-          a large one shows up as dimming and colour shift toward the end. The bars below are an illustrative
+          a large one shows up as dimming and color shift toward the end. The bars below are an illustrative
           example of a long 12V run fed from one end, not a spec for any particular strip.
         </p>
         <Figure
@@ -225,8 +225,8 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
         <KeyIdea title="Common-anode RGB strips">
           Four-pad RGB strips usually share one positive pad (+12V or +24V) and switch the R, G and B pads to
           negative through the controller. To test a strip without the controller, connect the supply&apos;s
-          positive to the shared pad and touch the supply&apos;s negative lead to one colour pad at a time.
-          Each colour should light along the whole run. If a colour works this way but not from the
+          positive to the shared pad and touch the supply&apos;s negative lead to one color pad at a time.
+          Each color should light along the whole run. If a color works this way but not from the
           controller, the controller channel has failed, not the strip.
         </KeyIdea>
       </section>
@@ -241,7 +241,7 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
             ["Voltage on both sides of one dark segment", "Open LED or resistor inside that segment"],
             ["Voltage vanishes past one cut point", "Broken rail, cracked trace or failed splice joint"],
             ["One LED reads OL both ways in diode mode", "That LED is open; replace it or bridge in a new segment"],
-            ["One colour dead on RGB, lights when driven directly", "Controller output channel has failed"],
+            ["One color dead on RGB, lights when driven directly", "Controller output channel has failed"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">

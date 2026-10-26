@@ -132,7 +132,7 @@ export default function HowToTriggerAnOscilloscopeOnARuntPulsePage() {
         <Figure
           caption={
             <>
-              Illustration at 1 V/div and 1 µs/div, ground 2.5 divisions below centre, with an upper
+              Illustration at 1 V/div and 1 µs/div, ground 2.5 divisions below center, with an upper
               threshold of 3.5 V and a lower one of 1.5 V. Left: a normal 0–5 V pulse, 2 µs wide, crosses
               both. Right: a runt that peaks at 2.5 V crosses 1.5 V but never reaches 3.5 V.
             </>
@@ -236,11 +236,11 @@ export default function HowToTriggerAnOscilloscopeOnARuntPulsePage() {
         <p className="text-muted leading-7 mb-4">
           In Auto mode the scope sweeps on its own when no trigger arrives, which would overwrite the rare
           runt within moments. Use Normal mode to see every runt as it happens, or Single to freeze the first
-          one. Place the trigger point near the centre of the screen so you can see what led up to the runt
+          one. Place the trigger point near the center of the screen so you can see what led up to the runt
           as well as what followed it, then run the circuit through whatever conditions bring the fault on.
         </p>
         <p className="text-muted leading-7">
-          When it fires, measure the runt&apos;s peak, width and timing relative to neighbouring edges with
+          When it fires, measure the runt&apos;s peak, width and timing relative to neighboring edges with
           cursors. If you have a spare channel, put the clock, the supply rail or the driving signal on it,
           because the relationship between the runt and those signals is usually what reveals the cause.
         </p>
@@ -362,7 +362,7 @@ export default function HowToTriggerAnOscilloscopeOnARuntPulsePage() {
             ["Bus contention", "Runt when two drivers are enabled at once", "Enable timing, direction control"],
             ["Weak driver or heavy load", "Slow edges that sometimes do not finish", "Load capacitance, pull-up value"],
             ["Supply droop or ground bounce", "Runts coincide with dips on the rail (CH2)", "Decoupling, ground path"],
-            ["Crosstalk", "Runt aligns with edges on a neighbouring line", "Routing, spacing, edge rates"],
+            ["Crosstalk", "Runt aligns with edges on a neighboring line", "Routing, spacing, edge rates"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">

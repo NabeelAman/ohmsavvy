@@ -313,7 +313,7 @@ export default function SolderingIronForUsbPortRepairPage() {
         <p className="text-muted leading-7 mb-4">
           No iron makes up for missing flux. Use a gel or tacky flux on every joint, for removal as well as
           for soldering the new part, and use thin solder so you can control the amount on the signal pins.
-          Before working on a device you care about, practise on a scrap board: remove a connector, clean
+          Before working on a device you care about, practice on a scrap board: remove a connector, clean
           the pads with wick, and solder it back. It shows you how your iron behaves on large and small
           joints before the stakes are real.
         </p>

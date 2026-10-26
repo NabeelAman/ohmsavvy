@@ -52,7 +52,7 @@ export default function WhySolderSticksToTipPage() {
       faq={[
         {
           q: "Is dross the same thing as flux residue?",
-          a: "No, they're different byproducts. Flux residue is the spent, usually brown or amber film left after flux does its job cleaning the joint — generally harmless and often left in place. Dross is the solder alloy itself after its tin has oxidised out through repeated heating, leaving a dull, grey, grainy mass that no longer wets properly and should be wiped away.",
+          a: "No, they're different byproducts. Flux residue is the spent, usually brown or amber film left after flux does its job cleaning the joint — generally harmless and often left in place. Dross is the solder alloy itself after its tin has oxidised out through repeated heating, leaving a dull, gray, grainy mass that no longer wets properly and should be wiped away.",
         },
         {
           q: "Why does solder stick to the tip only on some joints, not others?",
@@ -146,7 +146,7 @@ export default function WhySolderSticksToTipPage() {
             steps={[
               { label: "Fresh solder", sub: "Shiny, fluid, wets readily" },
               { label: "1 reheat", sub: "Slightly duller, still usable" },
-              { label: "Several reheats", sub: "Visibly grey, sluggish" },
+              { label: "Several reheats", sub: "Visibly gray, sluggish" },
               { label: "Dross", sub: "Won't wet at all — wipe off" },
             ]}
           />
@@ -215,7 +215,7 @@ export default function WhySolderSticksToTipPage() {
         <DataTable
           head={["Symptom", "Likely cause", "Fix"]}
           rows={[
-            ["Dull, grey residue won't release from tip", "Dross from repeatedly reheated solder", "Clean, wipe off, re-tin with fresh solder"],
+            ["Dull, gray residue won't release from tip", "Dross from repeatedly reheated solder", "Clean, wipe off, re-tin with fresh solder"],
             ["Solder balls up rather than flowing to the joint", "Too much solder fed at once", "Feed less solder per joint; let the joint draw it in"],
             ["Solder sticks on one specific joint only", "That joint's surface is dirty or oxidised", "Clean the joint itself, add flux if needed"],
             ["Tip stays coated even right after cleaning", "Tip genuinely worn, plating compromised", "See the tip care guide's replacement signs"],

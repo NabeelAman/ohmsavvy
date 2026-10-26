@@ -74,11 +74,11 @@ export default function HowToPreventSolderBridgesPage() {
       faq={[
         {
           q: "Are solder bridges always bad?",
-          a: "Only when they join pins that should be separate. Some boards deliberately use a solder blob to close a jumper pad, and some ICs have neighbouring pins that are connected internally or on the board anyway. Check the schematic or datasheet before assuming a joined pair is a fault, but on a fine-pitch IC most bridges are unintended shorts.",
+          a: "Only when they join pins that should be separate. Some boards deliberately use a solder blob to close a jumper pad, and some ICs have neighboring pins that are connected internally or on the board anyway. Check the schematic or datasheet before assuming a joined pair is a fault, but on a fine-pitch IC most bridges are unintended shorts.",
         },
         {
           q: "Can a solder bridge damage a component?",
-          a: "It can. A bridge between a supply pin and ground, or between two outputs driving opposite levels, can draw excessive current when the board is powered and damage the part or the supply. That is why it pays to inspect and run a continuity check between neighbouring pins before applying power for the first time.",
+          a: "It can. A bridge between a supply pin and ground, or between two outputs driving opposite levels, can draw excessive current when the board is powered and damage the part or the supply. That is why it pays to inspect and run a continuity check between neighboring pins before applying power for the first time.",
         },
         {
           q: "Does no-clean flux work for removing bridges?",
@@ -126,7 +126,7 @@ export default function HowToPreventSolderBridgesPage() {
           caption={
             <>
               Pin positions along 10 mm of package edge, calculated as 10 ÷ pitch: about 3.9 at 2.54 mm, 7.9
-              at 1.27 mm, 15.4 at 0.65 mm and 20 at 0.5 mm. Each gap between neighbours is a place a bridge
+              at 1.27 mm, 15.4 at 0.65 mm and 20 at 0.5 mm. Each gap between neighbors is a place a bridge
               can form.
             </>
           }
@@ -365,11 +365,11 @@ export default function HowToPreventSolderBridgesPage() {
             ["Top-down look", "Magnifier or microscope, straight above", "Obvious blobs between pins"],
             ["Low-angle look", "Light behind you, view along the row", "Thin bridges hidden at the pin heel"],
             ["Backlight the gaps", "Light from the far side of the row", "Any gap that does not show light"],
-            ["Continuity check", "Multimeter between neighbouring pins, power off", "Bridges you cannot see"],
+            ["Continuity check", "Multimeter between neighboring pins, power off", "Bridges you cannot see"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          A continuity beep between neighbours doesn&apos;t always mean a bridge, since some pins are joined
+          A continuity beep between neighbors doesn&apos;t always mean a bridge, since some pins are joined
           by the circuit itself, so compare against the schematic. If you&apos;re new to continuity mode,
           see{" "}
           <Link href="/multimeters/how-to-use-a-multimeter" className={link}>

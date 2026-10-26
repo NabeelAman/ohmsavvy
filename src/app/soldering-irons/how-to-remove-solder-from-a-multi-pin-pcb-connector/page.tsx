@@ -87,7 +87,7 @@ export default function HowToRemoveSolderFromAMultiPinPcbConnectorPage() {
         },
         {
           q: "What width of solder wick is best for connector pins?",
-          a: "Pick a braid about as wide as one pad, often 1.5 mm to 2 mm for 2.54 mm pitch headers. Wider braid soaks up heat and touches neighbouring pins; narrower braid saturates quickly. Use fresh, fluxed braid for each pin and cut off the used part as you go.",
+          a: "Pick a braid about as wide as one pad, often 1.5 mm to 2 mm for 2.54 mm pitch headers. Wider braid soaks up heat and touches neighboring pins; narrower braid saturates quickly. Use fresh, fluxed braid for each pin and cut off the used part as you go.",
         },
       ]}
       next={[
@@ -152,7 +152,7 @@ export default function HowToRemoveSolderFromAMultiPinPcbConnectorPage() {
         <Figure
           caption={
             <>
-              Length of a single row of pins at 2.54 mm pitch, from the first pin centre to the last: (pins − 1)
+              Length of a single row of pins at 2.54 mm pitch, from the first pin center to the last: (pins − 1)
               × 2.54 mm. A wide tip can bridge a short row, but no tip spans a 20-pin row.
             </>
           }
@@ -296,13 +296,13 @@ export default function HowToRemoveSolderFromAMultiPinPcbConnectorPage() {
           <li>Inspect each pad for lifting; repair lifted pads before fitting the new connector.</li>
         </ul>
         <p className="text-muted leading-7 mb-4">
-          Before fitting a new connector, set your meter to continuity or resistance and check neighbouring pads
+          Before fitting a new connector, set your meter to continuity or resistance and check neighboring pads
           for bridges. Adjacent pads that are not meant to connect should read open.
         </p>
         <Figure
           caption={
             <>
-              Two neighbouring pads that should not connect: the meter shows OL (open), so no solder bridge or
+              Two neighboring pads that should not connect: the meter shows OL (open), so no solder bridge or
               stray strand of braid links them.
             </>
           }

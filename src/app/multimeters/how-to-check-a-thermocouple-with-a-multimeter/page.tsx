@@ -121,7 +121,7 @@ export default function HowToCheckAThermocoupleWithAMultimeterPage() {
         },
         {
           q: "Which wire is positive on a Type K thermocouple?",
-          a: "In the North American colour code the yellow lead is positive and the red lead is negative; red is the negative lead on every ANSI thermocouple type. Other regions use different colour codes. On bare Type K wire, the negative alumel leg is slightly magnetic, which helps identify it if the insulation colours are unclear.",
+          a: "In the North American color code the yellow lead is positive and the red lead is negative; red is the negative lead on every ANSI thermocouple type. Other regions use different color codes. On bare Type K wire, the negative alumel leg is slightly magnetic, which helps identify it if the insulation colors are unclear.",
         },
         {
           q: "Is a furnace flame sensor the same as a thermocouple?",

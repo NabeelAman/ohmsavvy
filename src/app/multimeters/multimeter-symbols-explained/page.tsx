@@ -83,7 +83,7 @@ export default function MultimeterSymbolsExplainedPage() {
           on the display, and once you can read them, any meter from any brand becomes familiar. This page
           decodes each group of markings in turn: the measurement functions, the units and their prefixes,
           the jack labels, the display annunciators and the safety markings on the case. The function
-          symbols are largely standardised; the button names vary more between brands, so check your own
+          symbols are largely standardized; the button names vary more between brands, so check your own
           manual for those.
         </>
       }
@@ -209,7 +209,7 @@ export default function MultimeterSymbolsExplainedPage() {
       <section id="jack-labels">
         <h2 className="text-xl font-semibold mb-3">Input jack labels</h2>
         <p className="text-muted leading-7 mb-4">
-          The sockets at the bottom of the meter are labelled too, and plugging the red lead into the
+          The sockets at the bottom of the meter are labeled too, and plugging the red lead into the
           wrong one is how meters blow fuses. The black lead almost always stays in COM.
         </p>
         <DataTable
@@ -273,7 +273,7 @@ export default function MultimeterSymbolsExplainedPage() {
         <KeyIdea title="A quick way to learn your own meter">
           Turn the dial through each position with the leads unplugged and note what the display shows.
           Then measure one known thing per function, such as a fresh AA battery on DC volts or a resistor whose
-          colour code you have read on Ω. Ten minutes of this teaches the symbols faster than any chart.
+          color code you have read on Ω. Ten minutes of this teaches the symbols faster than any chart.
         </KeyIdea>
       </section>
 

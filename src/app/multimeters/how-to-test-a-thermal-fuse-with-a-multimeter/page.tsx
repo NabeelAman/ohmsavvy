@@ -217,7 +217,7 @@ export default function HowToTestAThermalFuseWithAMultimeterPage() {
           one blows too, or worse, the appliance overheats. In dryers, check the whole exhaust vent run for
           lint and crushed ducting, and test the thermostats and the element&apos;s resistance to the cabinet.
           Never bridge a thermal fuse with a wire, even briefly, to see whether the appliance works: it is the
-          last line of defence against a fire.
+          last line of defense against a fire.
         </KeyIdea>
         <p className="text-muted leading-7 mt-4">
           If you&apos;re new to reading an open circuit, our{" "}

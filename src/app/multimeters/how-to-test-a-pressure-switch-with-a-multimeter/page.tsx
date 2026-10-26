@@ -287,7 +287,7 @@ export default function HowToTestAPressureSwitchWithAMultimeterPage() {
       <section>
         <h2 id="appliance-examples" className="text-xl font-semibold mb-3">Well pump, furnace and compressor switches</h2>
         <p className="text-muted leading-7 mb-4">
-          The behaviour below is typical, not universal. The wiring diagram on the equipment, or the switch
+          The behavior below is typical, not universal. The wiring diagram on the equipment, or the switch
           maker&apos;s data, is the authority for your unit. On a boiler, the same continuity method also
           checks the control stat; see{" "}
           <Link href="/multimeters/how-to-test-a-boiler-thermostat-with-a-multimeter" className="text-accent hover:underline">

@@ -41,7 +41,7 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
         <>
           To solder stranded wire without solder wicking too far, you limit three things: how long the
           iron stays on, how much solder you feed, and where the flux goes. Molten solder runs along the
-          gaps between strands by capillary action, and it keeps travelling as long as the copper ahead
+          gaps between strands by capillary action, and it keeps traveling as long as the copper ahead
           of it is hot enough. Stop it early and the wire stays flexible right up to the joint. This
           guide covers why runaway wicking matters, the step-by-step method, and when a crimp is the
           better choice.
@@ -108,7 +108,7 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
       <Callout title="Safety: hot tips, hot strands and fumes">
         <ul className="space-y-2 list-disc pl-5">
           <li>
-            Copper conducts heat well, so the wire can be too hot to touch several centimetres from the
+            Copper conducts heat well, so the wire can be too hot to touch several centimeters from the
             joint. Hold it in a clamp, helping hands or pliers, never in your fingers.
           </li>
           <li>
@@ -278,7 +278,7 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
           />
         </Figure>
         <p className="text-muted leading-7 mt-4">
-          If the wire feels stiff where it enters the insulation, the solder has travelled under it. The
+          If the wire feels stiff where it enters the insulation, the solder has traveled under it. The
           dependable fix is to cut back and redo the joint. To check a finished cable electrically, a
           continuity test end to end while you flex it near the joint will reveal an intermittent
           break; our guide to{" "}

@@ -67,7 +67,7 @@ const comparison: ProductComparisonContent = {
         <h2 className="text-2xl font-semibold mb-4">Spec by spec</h2>
         <p className="text-muted leading-7 mb-4">
           On a spec sheet&apos;s front line these two look close: about the same peak sample rate, and bandwidth
-          that favours the Hantek. The gaps open up further down, in channel count, memory and vertical
+          that favors the Hantek. The gaps open up further down, in channel count, memory and vertical
           resolution. Every number below comes from each maker&apos;s published specs; the memory chart uses a log
           scale because the difference runs to three orders of magnitude.
         </p>

@@ -46,7 +46,7 @@ export default function CompareClockJitterPage() {
         <>
           Swapped a crystal, changed a PLL setting or added filtering to a clock&apos;s supply, and want
           to know whether it helped? You can compare clock jitter using an oscilloscope without a
-          dedicated timing analyser, as long as you measure both cases the same way and know where the
+          dedicated timing analyzer, as long as you measure both cases the same way and know where the
           scope&apos;s own limits begin. Jitter is the small, restless variation in when each edge
           arrives. This guide explains the three common ways to describe it, then shows a persistence
           method and a statistics method for side-by-side comparisons.
@@ -82,7 +82,7 @@ export default function CompareClockJitterPage() {
         },
         {
           q: "Is the standard deviation of the period the same as RMS jitter?",
-          a: "It is the RMS period jitter: the spread of individual period measurements around their mean. It is not the same as RMS time interval error or phase jitter, which are measured against an ideal reference clock and usually need a jitter analysis option or a phase noise analyser.",
+          a: "It is the RMS period jitter: the spread of individual period measurements around their mean. It is not the same as RMS time interval error or phase jitter, which are measured against an ideal reference clock and usually need a jitter analysis option or a phase noise analyzer.",
         },
         {
           q: "Can a 50 MHz or 100 MHz scope measure jitter on a 25 MHz clock?",
@@ -113,7 +113,7 @@ export default function CompareClockJitterPage() {
           individual period differs from the average period. Cycle-to-cycle jitter is the change from one
           period to the very next. Time interval error (TIE) compares each edge with where a perfect clock
           at the same average frequency would have put it, so slow drifts accumulate in TIE even when
-          neighbouring periods look almost identical. A basic scope measures period jitter directly; TIE
+          neighboring periods look almost identical. A basic scope measures period jitter directly; TIE
           usually needs a jitter analysis feature.
         </p>
         <Figure
@@ -125,7 +125,7 @@ export default function CompareClockJitterPage() {
             </>
           }
         >
-          <svg viewBox="0 0 300 150" className="w-full h-auto" role="img" aria-label="Timeline comparing ideal clock edges with real jittered edges, labelling period, cycle-to-cycle difference and time interval error">
+          <svg viewBox="0 0 300 150" className="w-full h-auto" role="img" aria-label="Timeline comparing ideal clock edges with real jittered edges, labeling period, cycle-to-cycle difference and time interval error">
             <rect x="0" y="0" width="300" height="150" rx="4" className="fill-[#0f1a14]" />
             {IDEAL.map((x) => (
               <line key={`i${x}`} x1={x} y1="20" x2={x} y2="120" stroke="#5BB3E8" strokeWidth="1" strokeDasharray="4 3" />
@@ -287,7 +287,7 @@ export default function CompareClockJitterPage() {
             ["Trigger level and edge", "Rising and falling edges can carry different jitter"],
             ["Timebase and sample rate", "Coarser sampling and interpolation change the timing resolution"],
             ["Number of measurements", "Peak-to-peak grows with count; standard deviation settles"],
-            ["Board temperature and supply load", "Both shift oscillator behaviour during a test"],
+            ["Board temperature and supply load", "Both shift oscillator behavior during a test"],
           ]}
         />
         <p className="mt-4 text-muted leading-7">

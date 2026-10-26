@@ -100,7 +100,7 @@ const fitNotes: Record<string, string> = {
   "Klein Tools MM460S":
     "Smart mode picks AC or DC voltage, resistance or continuity for you, and Lead-Alert warns both visually and audibly when a lead is in the wrong jack, so it removes the two commonest beginner errors. It is CAT III 600V True RMS with µA-to-10 A ranges; it lacks NCV and Klein rates it for indoor use.",
   "KAIWEETS KM602":
-    "A Smart mode, a colour screen and a built-in rechargeable battery make it the easiest meter to live with day to day, and NCV is included. It ranks second because current starts at a 600 mA range and the manual rates it CAT III 600V, lower than the listing suggests.",
+    "A Smart mode, a color screen and a built-in rechargeable battery make it the easiest meter to live with day to day, and NCV is included. It ranks second because current starts at a 600 mA range and the manual rates it CAT III 600V, lower than the listing suggests.",
   "Klein Tools MM420":
     "Lead-Alert jack lights, True RMS and current from 400.0 µA to 10 A make it a first meter you won't outgrow quickly, with temperature for HVAC curiosity. There is no Smart mode, so you still choose the function, which places it behind the top two.",
   "KAIWEETS HT118A":
@@ -295,7 +295,7 @@ export default function BestMultimeterForBeginnersPage() {
           <KeyIdea title="Auto-ranging still needs the right function">
             Auto-ranging picks the scale, not the quantity. You still have to set the dial to volts, ohms or amps, and
             measuring resistance on a powered circuit or putting the meter in series on the amps setting across a
-            battery will give a wrong reading or blow a fuse. Practise with{" "}
+            battery will give a wrong reading or blow a fuse. Practice with{" "}
             <Link href="/multimeters/how-to-measure-resistance-in-ohms-with-a-digital-multimeter" className={linkClass}>
               measuring resistance in ohms
             </Link>{" "}

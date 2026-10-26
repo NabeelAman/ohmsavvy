@@ -68,7 +68,7 @@ export default function HowToSolderWiresToAToggleSwitchTerminalPage() {
       faq={[
         {
           q: "Which lug on an SPDT toggle switch is the common?",
-          a: "On most SPDT toggles the common is the centre lug, and the bat handle connects it to the lug on the opposite side from where the handle points. That convention is common but not universal, so confirm it with a continuity check before soldering rather than trusting the layout alone.",
+          a: "On most SPDT toggles the common is the center lug, and the bat handle connects it to the lug on the opposite side from where the handle points. That convention is common but not universal, so confirm it with a continuity check before soldering rather than trusting the layout alone.",
         },
         {
           q: "Should I wrap the wire around the lug or just pass it through?",
@@ -105,7 +105,7 @@ export default function HowToSolderWiresToAToggleSwitchTerminalPage() {
         <p className="text-muted leading-7 mb-4">
           &quot;Poles&quot; are the number of separate circuits a switch controls and &quot;throws&quot;
           are the number of positions each pole can connect to. An SPST switch has two lugs and is a plain
-          on/off. An SPDT has three in a row, with the centre normally being the common. A DPDT is simply
+          on/off. An SPDT has three in a row, with the center normally being the common. A DPDT is simply
           two SPDTs side by side, six lugs in two rows, with both poles moving together.
         </p>
         <Figure
@@ -160,7 +160,7 @@ export default function HowToSolderWiresToAToggleSwitchTerminalPage() {
         <StepHeading n={1} id="heat-shrink-first">Slide the heat-shrink on before anything else</StepHeading>
         <p className="text-muted leading-7">
           It sounds obvious, but forgetting this is the most common reason to desolder a switch lug. Cut a
-          piece long enough to cover the lug and a few millimetres of insulation, slide it well up the wire,
+          piece long enough to cover the lug and a few millimeters of insulation, slide it well up the wire,
           away from where heat will be, so it does not shrink early from radiant heat while you work.
         </p>
       </section>
@@ -231,7 +231,7 @@ export default function HowToSolderWiresToAToggleSwitchTerminalPage() {
         <p className="text-muted leading-7">
           With power disconnected, set a meter to continuity and flip the switch each way, checking that the
           common connects only to the throw you expect and that nothing is shorted to the bushing or
-          neighbouring lugs. Our{" "}
+          neighboring lugs. Our{" "}
           <Link href="/multimeters/how-to-use-a-multimeter" className={link}>
             multimeter guide
           </Link>{" "}

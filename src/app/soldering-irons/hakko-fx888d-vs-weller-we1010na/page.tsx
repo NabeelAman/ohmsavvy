@@ -16,7 +16,7 @@ const comparison: ProductComparisonContent = {
   category: "soldering-irons",
   heading: "Hakko FX888D vs Weller WE1010NA",
   intro:
-    "Both are digital, ESD-safe soldering stations of about 70W with strong reputations on electronics benches, so the old \"speed versus ESD\" framing doesn't hold. The practical differences now are availability, since Hakko has discontinued the FX888D in favour of the FX-888DX, and which tip range you want to live with.",
+    "Both are digital, ESD-safe soldering stations of about 70W with strong reputations on electronics benches, so the old \"speed versus ESD\" framing doesn't hold. The practical differences now are availability, since Hakko has discontinued the FX888D in favor of the FX-888DX, and which tip range you want to live with.",
   a: {
     pick: picks.find((p) => p.name === "Hakko FX888D")!,
     reviewHref: "/soldering-irons/hakko-fx888d-review",

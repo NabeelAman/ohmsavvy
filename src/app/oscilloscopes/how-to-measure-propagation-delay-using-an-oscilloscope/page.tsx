@@ -92,7 +92,7 @@ export default function HowToMeasurePropagationDelayPage() {
         },
         {
           q: "Do longer probe cables change the delay measurement?",
-          a: "Yes, if the two probes differ. A signal takes time to travel along a cable, roughly 5 ns per metre in typical coax, so two probes with different cable lengths or designs show a fixed timing offset. Use matched probes and measure the skew by probing one edge with both, then correct for it.",
+          a: "Yes, if the two probes differ. A signal takes time to travel along a cable, roughly 5 ns per meter in typical coax, so two probes with different cable lengths or designs show a fixed timing offset. Use matched probes and measure the skew by probing one edge with both, then correct for it.",
         },
       ]}
       next={[
@@ -250,7 +250,7 @@ export default function HowToMeasurePropagationDelayPage() {
         <StepHeading n={5} id="cursors-and-auto-delay">Use cursors or an automatic delay measurement</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Counting divisions is the method to understand, but cursors are more precise. Turn on the time
-          (vertical, often labelled X) cursors, put the first on the input&apos;s 50% crossing and the second
+          (vertical, often labeled X) cursors, put the first on the input&apos;s 50% crossing and the second
           on the output&apos;s 50% crossing, and read Δt. Zoom in horizontally first so each edge is spread
           across the screen.
         </p>
@@ -285,7 +285,7 @@ export default function HowToMeasurePropagationDelayPage() {
         </Figure>
         <p className="text-muted leading-7 mt-4">
           Averaging helps with jittery edges: many scopes can show the mean and spread of a measurement
-          over many captures. Repeat the measurement on the other edge, and if you are characterising a
+          over many captures. Repeat the measurement on the other edge, and if you are characterizing a
           part, at the supply voltage and load the datasheet specifies.
         </p>
       </section>
@@ -294,7 +294,7 @@ export default function HowToMeasurePropagationDelayPage() {
         <h2 id="probe-skew-and-deskew" className="text-xl font-semibold mb-3">Probe skew and deskew</h2>
         <p className="text-muted leading-7 mb-4">
           Each probe and cable adds its own delay, and signals travel along typical coax at roughly 5 ns per
-          metre. Two identical probes mostly cancel out, but different models or cable lengths can show a
+          meter. Two identical probes mostly cancel out, but different models or cable lengths can show a
           fixed offset between channels that looks like circuit delay. When you are measuring nanoseconds,
           check for it:
         </p>

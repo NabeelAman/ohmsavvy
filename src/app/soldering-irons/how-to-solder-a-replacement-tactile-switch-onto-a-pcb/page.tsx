@@ -34,7 +34,7 @@ function TactSwitchPinoutDiagram() {
       viewBox="0 0 340 210"
       className="w-full h-auto"
       role="img"
-      aria-label="Top view of a 6 by 6 millimetre four-pin tactile switch: pins at the corners of a 6.5 by 4.5 millimetre rectangle, pins 1 and 2 joined internally on one side and pins 3 and 4 on the other, with the switch contact closing between the two pairs when the button is pressed"
+      aria-label="Top view of a 6 by 6 millimeter four-pin tactile switch: pins at the corners of a 6.5 by 4.5 millimeter rectangle, pins 1 and 2 joined internally on one side and pins 3 and 4 on the other, with the switch contact closing between the two pairs when the button is pressed"
     >
       {/* body */}
       <rect x="110" y="40" width="120" height="120" rx="6" className="fill-surface stroke-foreground" strokeWidth="1.5" />

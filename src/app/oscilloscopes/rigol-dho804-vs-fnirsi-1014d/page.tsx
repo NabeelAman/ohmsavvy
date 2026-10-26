@@ -38,7 +38,7 @@ const comparison: ProductComparisonContent = {
     pick: picks.find((p) => p.name === "FNIRSI 1014D")!,
     imageAlt: "FNIRSI 1014D two-channel benchtop oscilloscope with built-in signal generator",
     chooseIf: [
-      "You have no signal generator and want known test signals to practise on",
+      "You have no signal generator and want known test signals to practice on",
       "Two channels cover what you need to see at once",
       "You want a kit that already includes a 100X high-voltage probe alongside two 1X/10X probes",
       "You value 100 MHz of rated bandwidth over channel count and vertical resolution",
@@ -139,7 +139,7 @@ const comparison: ProductComparisonContent = {
           The fastest way to learn triggering, timebase and volts-per-division is to feed the scope a signal whose
           shape and frequency you already know. The 1014D makes its own: connect the generator output to channel 1,
           pick a sine, square or one of FNIRSI&apos;s standard waveforms (its spec table and Amazon listing say 14;
-          another part of FNIRSI&apos;s page says 12), and practise measuring it. Run the same signal through a
+          another part of FNIRSI&apos;s page says 12), and practice measuring it. Run the same signal through a
           simple RC filter to channel 2 and you can see phase shift and attenuation on one screen. A DHO804 owner
           has to borrow those signals from a microcontroller pin or buy a separate generator.
         </p>
@@ -270,7 +270,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Is the Rigol DHO804 or the FNIRSI 1014D better for a complete beginner?",
       answer:
-        "It depends on what else you own. With no signal source at all, the 1014D's built-in generator gives you known waveforms to practise triggering and measurement on. If you already have a microcontroller or generator to supply signals, the DHO804's four channels, 12-bit resolution and serial decoding will serve you longer.",
+        "It depends on what else you own. With no signal source at all, the 1014D's built-in generator gives you known waveforms to practice triggering and measurement on. If you already have a microcontroller or generator to supply signals, the DHO804's four channels, 12-bit resolution and serial decoding will serve you longer.",
     },
     {
       question: "Does the FNIRSI 1014D's 100 MHz make it faster than the Rigol DHO804?",

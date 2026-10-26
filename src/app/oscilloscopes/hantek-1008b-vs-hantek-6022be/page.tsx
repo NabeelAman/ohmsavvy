@@ -129,7 +129,7 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mt-4">
           One more ratio is worth working out. Dividing each sample rate by its bandwidth gives 24 samples per cycle for
           the 1008B at 100kHz and 2.4 for the 6022BE at 20 MHz. The 1008B is slow, but it is sampled generously for its
-          bandwidth, so a waveform near its limit still comes out with a recognisable shape. The 6022BE sits barely above
+          bandwidth, so a waveform near its limit still comes out with a recognizable shape. The 6022BE sits barely above
           the Nyquist floor at its rated bandwidth, so its practical ceiling for faithful waveform shape is a few MHz. See{" "}
           <Link href="/oscilloscopes/what-does-gsa-s-mean" className={link}>
             what GSa/s means

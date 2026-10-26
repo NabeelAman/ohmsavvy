@@ -82,7 +82,7 @@ const comparison: ProductComparisonContent = {
       </section>
       <section>
         <h2 className="text-2xl font-semibold mb-4">How much bigger is the 17B+?</h2>
-        <Figure caption={<>Body length and thickness in millimetres, from Fluke&apos;s specifications.</>}>
+        <Figure caption={<>Body length and thickness in millimeters, from Fluke&apos;s specifications.</>}>
           <BarChart
             items={[
               { label: "17B+ length", value: 183, display: "183 mm" },

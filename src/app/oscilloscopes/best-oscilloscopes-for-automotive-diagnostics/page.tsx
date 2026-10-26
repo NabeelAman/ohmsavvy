@@ -155,7 +155,7 @@ export default function BestOscilloscopesForAutomotiveDiagnosticsPage() {
             may be enough.
           </p>
           <p className="text-muted leading-7">
-            That is why this ranking favours battery handhelds with a built-in meter, USB scopes that borrow a
+            That is why this ranking favors battery handhelds with a built-in meter, USB scopes that borrow a
             laptop&apos;s screen, and long records over raw speed. We ranked these ten on channel count, portability,
             memory depth, input limits and whether the scope decodes vehicle buses, using only the makers&apos;
             published specifications. For side-by-side detail, see{" "}

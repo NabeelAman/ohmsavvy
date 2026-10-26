@@ -254,7 +254,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Is the Hantek 6022BE good enough for a complete beginner?",
       answer:
-        "For learning the basics, yes. It shows two channels at up to 20MHz and lets you practise timebase, volts per division and edge triggering on Arduino PWM, servo pulses and UART. Its limits appear as soon as projects involve MHz signals, more than two lines at once, or small ripple on a DC rail.",
+        "For learning the basics, yes. It shows two channels at up to 20MHz and lets you practice timebase, volts per division and edge triggering on Arduino PWM, servo pulses and UART. Its limits appear as soon as projects involve MHz signals, more than two lines at once, or small ripple on a DC rail.",
     },
     {
       question: "Does the Rigol DS1054Z need a computer to work?",

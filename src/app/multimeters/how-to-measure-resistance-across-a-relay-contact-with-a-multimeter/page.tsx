@@ -255,7 +255,7 @@ export default function HowToMeasureResistanceAcrossARelayContactWithAMultimeter
           socket pins right beside them; every connector and length of wire you include adds its own drop.
           Let the load run for a minute or two, because a poor contact warms up and its drop often climbs.
           On a multi-pole relay, measure every pole that carries current and compare them. Keep the probe
-          tips from bridging neighbouring pins, which on a car relay could short a powered circuit.
+          tips from bridging neighboring pins, which on a car relay could short a powered circuit.
         </p>
         <Figure
           caption={

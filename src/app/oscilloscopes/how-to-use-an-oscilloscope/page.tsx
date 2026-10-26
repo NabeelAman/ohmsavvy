@@ -43,7 +43,7 @@ export default function HowToUseAnOscilloscopePage() {
           Learning how to use an oscilloscope is mostly about four controls: vertical scale, horizontal
           scale, trigger, and measurements. This guide walks through a complete first session, from
           plugging in the probe to reading a stable waveform, using the test signal built into almost
-          every scope so you can practise without touching a real circuit.
+          every scope so you can practice without touching a real circuit.
         </>
       }
       aside={{
@@ -73,7 +73,7 @@ export default function HowToUseAnOscilloscopePage() {
         { id: "first-measurements", label: "Take your first measurements" },
         { id: "real-circuit", label: "Move to a real circuit" },
         { id: "starting-settings", label: "Quick reference: starting settings" },
-        { id: "which-scope", label: "Which scope to practise on" },
+        { id: "which-scope", label: "Which scope to practice on" },
       ]}
       faq={[
         {
@@ -425,7 +425,7 @@ export default function HowToUseAnOscilloscopePage() {
       </KeyIdea>
 
       <section>
-        <h2 id="which-scope" className="text-xl font-semibold mb-3">Which scope should you practise on?</h2>
+        <h2 id="which-scope" className="text-xl font-semibold mb-3">Which scope should you practice on?</h2>
         <p className="text-muted leading-7">
           Any digital scope with a probe compensation output will do. If you&apos;re still choosing, a
           bench model such as the{" "}

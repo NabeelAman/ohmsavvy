@@ -109,7 +109,7 @@ export default function HowToTestACrystalResonatorWithAMultimeterPage() {
             qualified to work on live equipment.
           </li>
           <li>
-            Oscillator pins are small and close together. A probe that slips can short a pin to its neighbour,
+            Oscillator pins are small and close together. A probe that slips can short a pin to its neighbor,
             so use fine tips or clips and keep the meter steady.
           </li>
         </ul>
@@ -257,10 +257,10 @@ export default function HowToTestACrystalResonatorWithAMultimeterPage() {
         <StepHeading n={4} id="in-circuit-voltages">Check the oscillator pin voltages, with care</StepHeading>
         <p className="text-muted leading-7 mb-4">
           With the crystal in circuit and the board powered, a DC voltage check on the two oscillator pins,
-          usually labelled XTAL_IN and XTAL_OUT or OSC1 and OSC2, tells you whether the chip is biasing its
+          usually labeled XTAL_IN and XTAL_OUT or OSC1 and OSC2, tells you whether the chip is biasing its
           oscillator amplifier. Black probe on a ground near the chip, red probe on each pin in turn. Use clip
           leads or a steady hand: the pins are close together, and a slip can short the oscillator or a
-          neighbouring pin.
+          neighboring pin.
         </p>
         <p className="text-muted leading-7 mb-4">
           In many microcontroller oscillators, both pins sit at a DC level somewhere between ground and the

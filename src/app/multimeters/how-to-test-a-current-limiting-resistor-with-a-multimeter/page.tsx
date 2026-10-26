@@ -103,7 +103,7 @@ export default function HowToTestACurrentLimitingResistorWithAMultimeterPage() {
           A measurement is only useful if you know what to compare it with. For a resistor feeding an LED, the
           designer subtracts the LED&apos;s forward voltage from the supply and divides what is left by the
           current they wanted: R = (V<sub>supply</sub> − V<sub>f</sub>) / I. Forward voltage depends on the
-          colour and the exact part, so take it from the LED datasheet; red indicators are typically around 2V
+          color and the exact part, so take it from the LED datasheet; red indicators are typically around 2V
           and white or blue ones around 3V. The result is then rounded up to the next standard value.
         </p>
         <DataTable
@@ -150,7 +150,7 @@ export default function HowToTestACurrentLimitingResistorWithAMultimeterPage() {
       </section>
 
       <section>
-        <StepHeading n={2} id="read-the-marking">Read the colour bands or SMD code</StepHeading>
+        <StepHeading n={2} id="read-the-marking">Read the color bands or SMD code</StepHeading>
         <p className="text-muted leading-7 mb-4">
           If you can&apos;t trace the design, the part tells you its intended value. On a four-band through-hole
           resistor the first two bands are digits, the third is the multiplier and the fourth is tolerance, so

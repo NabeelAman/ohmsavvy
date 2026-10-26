@@ -119,10 +119,10 @@ export default function HowToRepairAPcbTracePage() {
       <section>
         <StepHeading n={2} id="scrape-the-mask">Scrape back the solder mask</StepHeading>
         <p className="text-muted leading-7">
-          The green (or other colour) solder mask over the trace must come off before solder will stick. Use
-          a fibreglass pen, a sharp hobby blade held almost flat, or a small scraper to remove it for a few
-          millimetres on each side of the break, stopping as soon as bright copper shows. Work along the
-          trace, not across it, so you do not cut into the copper or the neighbouring lines.
+          The green (or other color) solder mask over the trace must come off before solder will stick. Use
+          a fiberglass pen, a sharp hobby blade held almost flat, or a small scraper to remove it for a few
+          millimeters on each side of the break, stopping as soon as bright copper shows. Work along the
+          trace, not across it, so you do not cut into the copper or the neighboring lines.
         </p>
       </section>
 
@@ -139,7 +139,7 @@ export default function HowToRepairAPcbTracePage() {
       <section>
         <h2 id="two-methods" className="text-xl font-semibold mb-3">Short gap vs long run</h2>
         <p className="text-muted leading-7 mb-4">
-          Which method to use depends on how much copper is left. A clean cut of a millimetre or two with
+          Which method to use depends on how much copper is left. A clean cut of a millimeter or two with
           sound copper on both sides suits a bare wire laid along the trace. A long scorched section, missing
           copper, or a break under a component calls for insulated wire routed between the nearest solid
           points.
@@ -220,9 +220,9 @@ export default function HowToRepairAPcbTracePage() {
         <p className="text-muted leading-7 mb-4">
           With the board unpowered, measure from one end of the original trace to the other on continuity or
           low ohms; a good repair reads essentially the same as the probe leads shorted together. Then probe
-          from the repair to each neighbouring trace to confirm there is no short. Once both checks pass,
+          from the repair to each neighboring trace to confirm there is no short. Once both checks pass,
           clean off flux and cover bare copper with UV-cure solder mask, and tack long jumpers down with
-          epoxy or UV glue every centimetre or so.
+          epoxy or UV glue every centimeter or so.
         </p>
         <KeyIdea title="Test before you seal">
           Sealant makes rework much harder, so do every electrical check first. If you have a wiring diagram,

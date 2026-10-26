@@ -255,8 +255,8 @@ export default function HowToSolderSmallGaugeStrandedWireToAConnectorPage() {
         <h2 id="strain-relief" className="text-xl font-semibold mb-3">Heat-shrink and strain relief</h2>
         <p className="text-muted leading-7 mb-4">
           Once every joint has cooled, slide each heat-shrink sleeve down over its cup until it just covers the
-          joint and a few millimetres of insulation, and shrink it with a heat gun. On D-sub and XLR connectors this
-          also insulates neighbouring cups from each other. Finally, tighten the connector&apos;s cable clamp on
+          joint and a few millimeters of insulation, and shrink it with a heat gun. On D-sub and XLR connectors this
+          also insulates neighboring cups from each other. Finally, tighten the connector&apos;s cable clamp on
           the outer jacket, not on the individual wires.
         </p>
         <Figure caption={<>The order that avoids rework. The first step is the one most often forgotten.</>}>

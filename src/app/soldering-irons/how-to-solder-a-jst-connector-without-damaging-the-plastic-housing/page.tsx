@@ -72,7 +72,7 @@ export default function HowToSolderAJstConnectorPage() {
         },
         {
           q: "Why did the pins of my JST header lean after soldering?",
-          a: "The plastic around each pin softened while it was hot, and something pushed on the pin before the plastic cooled: the iron tip, the weight of the board, or a neighbouring pin being reheated. Plugging in a mating connector before soldering holds every pin at the correct spacing and angle until the housing has set again.",
+          a: "The plastic around each pin softened while it was hot, and something pushed on the pin before the plastic cooled: the iron tip, the weight of the board, or a neighboring pin being reheated. Plugging in a mating connector before soldering holds every pin at the correct spacing and angle until the housing has set again.",
         },
         {
           q: "What temperature should I use for a JST PH header?",
@@ -96,7 +96,7 @@ export default function HowToSolderAJstConnectorPage() {
         {
           href: "/soldering-irons/how-to-prevent-solder-bridges",
           title: "How to Prevent Solder Bridges",
-          desc: "Keeping neighbouring header pins separate on 1.0-2.0mm pitch parts.",
+          desc: "Keeping neighboring header pins separate on 1.0-2.0mm pitch parts.",
         },
       ]}
     >
@@ -106,7 +106,7 @@ export default function HowToSolderAJstConnectorPage() {
           &quot;JST&quot; is used loosely for a whole family of small wire-to-board connectors, and the
           series matters because pitch decides how close your iron sits to the plastic. PH is 2.0mm pitch
           and very common on LiPo balance leads and small boards, XH is 2.5mm and shows up on battery packs
-          and 3D printer electronics, and SH is a tiny 1.0mm surface-mount part. Measure the centre-to-centre
+          and 3D printer electronics, and SH is a tiny 1.0mm surface-mount part. Measure the center-to-center
           distance across several pins with calipers to confirm which one you have.
         </p>
         <Figure
@@ -215,7 +215,7 @@ export default function HowToSolderAJstConnectorPage() {
         <p className="text-muted leading-7">
           Touch the tip to pad and pin together, feed solder into the joint on the far side, and lift away
           as soon as a concave fillet forms, ideally inside two seconds. Then move to a pin at the other end
-          rather than the neighbour you just heated, so the plastic between adjacent pins never receives two
+          rather than the neighbor you just heated, so the plastic between adjacent pins never receives two
           heat doses back to back. Do outer pins first, then fill in the middle.
         </p>
       </section>
@@ -232,7 +232,7 @@ export default function HowToSolderAJstConnectorPage() {
             <>
               Typical outcome for one pin as contact time grows (illustrative risk scale): the plastic around
               the pin softens first, then the pin can push or tilt, and finally the housing deforms or
-              discolours. Aim to finish each joint in the first band; reheat later rather than holding on.
+              discolors. Aim to finish each joint in the first band; reheat later rather than holding on.
             </>
           }
         >
@@ -252,7 +252,7 @@ export default function HowToSolderAJstConnectorPage() {
         <DataTable
           head={["What you see", "Likely cause", "What to do"]}
           rows={[
-            ["Pin sits lower than its neighbours", "Pin pushed back while plastic was soft", "Reheat briefly with the mating plug fitted to re-seat it"],
+            ["Pin sits lower than its neighbors", "Pin pushed back while plastic was soft", "Reheat briefly with the mating plug fitted to re-seat it"],
             ["Pins lean or splay at the top", "No jig, or the tip levered the pin", "Fit a plug before reheating; replace if plastic is cracked"],
             ["Plug needs force or won't latch", "Housing walls distorted", "Replace the header; it will loosen in service"],
             ["Glossy, rippled or brown plastic", "Long dwell or tip contact on the shell", "Cosmetic if fit is fine; otherwise replace"],

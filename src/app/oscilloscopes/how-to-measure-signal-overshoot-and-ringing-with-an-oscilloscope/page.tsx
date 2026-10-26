@@ -203,7 +203,7 @@ export default function HowToMeasureSignalOvershootAndRingingPage() {
         <Figure
           caption={
             <>
-              A 0–5 V rising edge at 1 V/div and 50 ns/div, ground marker 2.5 divisions below centre. The
+              A 0–5 V rising edge at 1 V/div and 50 ns/div, ground marker 2.5 divisions below center. The
               step is 5 divisions (5 V) and the first peak rises 0.75 division (0.75 V) above the final
               level: 0.75 ÷ 5 × 100 = 15% overshoot.
             </>

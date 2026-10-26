@@ -28,7 +28,7 @@ const fitNotes: Record<string, string> = {
   "Rigol DHO914S":
     "Top of the list because one box covers almost every home-lab job: four 12-bit channels at 125 MHz, up to 50 Mpts, 16 digital inputs once you add the PLA2216 probe, and a 25 MHz generator with Bode plot for checking filters and amplifiers. Its limits are that the logic probe is sold separately and that it costs more than the otherwise identical DHO914.",
   "Rigol DHO804":
-    "The sensible centre of a hobby bench: four channels, 12-bit resolution, a 7-inch touchscreen and USB-C power in a compact body, and it carries our Hands-on Tested badge. It drops to second because it stops at 70 MHz and has neither a generator nor logic inputs.",
+    "The sensible center of a hobby bench: four channels, 12-bit resolution, a 7-inch touchscreen and USB-C power in a compact body, and it carries our Hands-on Tested badge. It drops to second because it stops at 70 MHz and has neither a generator nor logic inputs.",
   "Siglent SDS1104X-E":
     "Four 100 MHz channels, a 100,000 wfm/s update rate and free serial decoding make it a strong all-rounder that also carries our Hands-on Tested badge. It is 8-bit, and its MSO and AWG upgrades are paid options, which places it just behind the two 12-bit Rigols.",
   "Rigol DHO914":
@@ -271,7 +271,7 @@ export default function BestOscilloscopeForHomeElectronicsLabPage() {
         faqs={faqs}
         fitNotes={fitNotes}
         advice={advice}
-        howWeChose="We ranked these ten for a general-purpose hobby bench: four channels, vertical resolution, memory depth, built-in generators and logic upgrade paths, with bandwidth judged against typical home-lab circuits rather than maximised. This is desk research against each maker's specifications and the official Amazon listings; only the Rigol DHO804, Siglent SDS1104X-E and Rigol DS1054Z carry our Hands-on Tested badge."
+        howWeChose="We ranked these ten for a general-purpose hobby bench: four channels, vertical resolution, memory depth, built-in generators and logic upgrade paths, with bandwidth judged against typical home-lab circuits rather than maximized. This is desk research against each maker's specifications and the official Amazon listings; only the Rigol DHO804, Siglent SDS1104X-E and Rigol DS1054Z carry our Hands-on Tested badge."
       />
       <ContentLinks category="oscilloscopes" current="/oscilloscopes/best-oscilloscope-for-home-electronics-lab" />
     </>

@@ -85,7 +85,7 @@ export default function HowToSolderSurfaceMountResistorsWithoutHotAirPage() {
         },
         {
           q: "Do SMD resistors have a polarity or orientation?",
-          a: "No. A chip resistor works either way round, so you only need to centre it on its pads. Printing the value face up makes it easier to check later, but it does not affect the circuit. Polarity matters for parts such as diodes, LEDs, tantalum capacitors and ICs, which carry a marking for pin 1 or the cathode.",
+          a: "No. A chip resistor works either way round, so you only need to center it on its pads. Printing the value face up makes it easier to check later, but it does not affect the circuit. Polarity matters for parts such as diodes, LEDs, tantalum capacitors and ICs, which carry a marking for pin 1 or the cathode.",
         },
         {
           q: "How long can I hold the iron on an SMD resistor?",
@@ -165,7 +165,7 @@ export default function HowToSolderSurfaceMountResistorsWithoutHotAirPage() {
           Larger parts are marked with a value code: three digits such as 103 mean 10 followed by three
           zeros, so 10 kΩ; four digits such as 1002 add one more significant figure, also 10 kΩ. Many
           precision parts use the EIA-96 code (for example 01C = 10 kΩ), and 0402 parts are usually
-          unmarked, so keep them in labelled packaging until they are on the board.
+          unmarked, so keep them in labeled packaging until they are on the board.
         </p>
       </section>
 
@@ -265,7 +265,7 @@ export default function HowToSolderSurfaceMountResistorsWithoutHotAirPage() {
         <p className="text-muted leading-7 mt-4">
           Working a row of resistors? Batch the steps: tin one pad on every footprint first, then place and
           reflow each part, then go back along the row soldering all the second ends. You change tools less
-          often, and each part gets a moment to cool before you return to it. Keep the reels or labelled
+          often, and each part gets a moment to cool before you return to it. Keep the reels or labeled
           strips in the order you will use them, because loose chips of different values look identical
           once they are out of their tape. Hot air is still the better tool for parts with hidden pads,
           such as QFN chips, but for two-terminal resistors and capacitors an iron does the job well.

@@ -100,7 +100,7 @@ const fitNotes: Record<string, string> = {
 
 const advice = [
   {
-    heading: "Prioritise resolution if you design low-voltage rails",
+    heading: "Prioritize resolution if you design low-voltage rails",
     body:
       "Point-of-load converters for 3.3 V, 1.8 V and lower rails often have ripple budgets of a few tens of millivolts. A 12-bit scope such as the DHO914S, DHO914, DHO804 or DHO802 shows that ripple at fine vertical steps without relying on averaging. If you mostly work on 12 V and 24 V supplies with looser limits, an 8-bit scope with a high-resolution mode is a reasonable saving.",
   },

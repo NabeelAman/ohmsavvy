@@ -36,7 +36,7 @@ export default function HowToMeasureResistanceOfAHeatingCartridgeWithAMultimeter
       intro={
         <>
           A heating cartridge is the small metal cylinder that heats a 3D printer hot end, and similar parts
-          sit in soldering stations, glue guns and industrial moulds. When a printer throws a heating error or
+          sit in soldering stations, glue guns and industrial molds. When a printer throws a heating error or
           the nozzle won&apos;t reach temperature, the first job is to measure resistance of a heating cartridge
           with a multimeter. The catch is that low-voltage cartridges are only a few ohms, so the way you
           measure matters as much as the number: a few tenths of an ohm in your test leads can make a good
@@ -257,7 +257,7 @@ export default function HowToMeasureResistanceOfAHeatingCartridgeWithAMultimeter
           </svg>
         </Figure>
         <Callout title="Check before you fit">
-          Measure every replacement cartridge before installing it, even when it came from a kit labelled for
+          Measure every replacement cartridge before installing it, even when it came from a kit labeled for
           your printer. Confirm the printer&apos;s supply voltage, make sure thermal runaway protection is
           enabled in the firmware, and never leave a printer heating unattended after changing a heater.
         </Callout>

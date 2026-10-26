@@ -30,7 +30,7 @@ const extech = meterPicks.find((p) => p.name === "Extech EX330")!;
 
 const link = "text-accent hover:underline";
 
-/** One sine wave labelled with the three numbers people compare: peak, peak-to-peak and RMS. */
+/** One sine wave labeled with the three numbers people compare: peak, peak-to-peak and RMS. */
 function SineLevels() {
   const pts: string[] = [];
   for (let i = 0; i <= 220; i += 2) {

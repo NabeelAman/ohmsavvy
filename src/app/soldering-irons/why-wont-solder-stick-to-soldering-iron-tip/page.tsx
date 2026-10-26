@@ -82,7 +82,7 @@ export default function WhyWontSolderStickToSolderingIronTipPage() {
         },
         {
           q: "Is a black soldering iron tip ruined?",
-          a: "Not necessarily. A black tip is oxidised, and if the plating underneath is intact, cleaning on brass wool and re-tinning brings it back. It is only finished when the plating is worn through, which shows as a pit, a hole or a reddish copper colour at the working end.",
+          a: "Not necessarily. A black tip is oxidised, and if the plating underneath is intact, cleaning on brass wool and re-tinning brings it back. It is only finished when the plating is worn through, which shows as a pit, a hole or a reddish copper color at the working end.",
         },
         {
           q: "Why does lead-free solder stick to the tip less well than leaded?",
@@ -115,7 +115,7 @@ export default function WhyWontSolderStickToSolderingIronTipPage() {
         <p className="text-muted leading-7 mb-4">
           Solder doesn&apos;t glue itself to a surface; it wets it, forming a metallic bond with clean metal.
           Oxide is not clean metal. Once a layer of it covers the tip, molten solder has nothing to bond
-          to, so surface tension pulls it into a ball. The tip may look dull grey, brown or black, and heat
+          to, so surface tension pulls it into a ball. The tip may look dull gray, brown or black, and heat
           also stops transferring well, because the thin film of solder that normally carries heat from tip
           to joint is missing.
         </p>

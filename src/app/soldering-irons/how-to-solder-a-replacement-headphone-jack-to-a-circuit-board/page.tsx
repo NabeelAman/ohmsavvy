@@ -28,7 +28,7 @@ const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
 
 const link = "text-accent hover:underline";
 
-/** A 3.5 mm TRRS plug with each contact labelled, CTIA wiring shown underneath. */
+/** A 3.5 mm TRRS plug with each contact labeled, CTIA wiring shown underneath. */
 function TrrsPlugDiagram() {
   const segs = [
     { x: 40, w: 46, label: "Tip", sig: "Left" },
@@ -41,7 +41,7 @@ function TrrsPlugDiagram() {
       viewBox="0 0 320 170"
       className="w-full h-auto"
       role="img"
-      aria-label="Side view of a 3.5 mm TRRS headphone plug showing the tip, ring 1, ring 2 and sleeve contacts separated by insulating bands, with left, right, ground and microphone signals labelled for the CTIA standard"
+      aria-label="Side view of a 3.5 mm TRRS headphone plug showing the tip, ring 1, ring 2 and sleeve contacts separated by insulating bands, with left, right, ground and microphone signals labeled for the CTIA standard"
     >
       {/* plug body */}
       <path d="M40 60 Q24 72 40 84 Z" className="fill-muted stroke-foreground" strokeWidth="1" />
@@ -121,7 +121,7 @@ export default function HowToSolderAReplacementHeadphoneJackToACircuitBoardPage(
         },
         {
           q: "Can I replace a headphone jack with a different model?",
-          a: "Yes, if it matches electrically and physically: the same contact count and switch arrangement, the same pin spacing, and the same height and opening position so the plug lines up with the case. A jack that sits a millimetre too high can stop the case closing.",
+          a: "Yes, if it matches electrically and physically: the same contact count and switch arrangement, the same pin spacing, and the same height and opening position so the plug lines up with the case. A jack that sits a millimeter too high can stop the case closing.",
         },
         {
           q: "Why do I only hear audio in one ear after replacing the jack?",
@@ -256,7 +256,7 @@ export default function HowToSolderAReplacementHeadphoneJackToACircuitBoardPage(
         <h2 id="inspect-the-joints" className="text-xl font-semibold mb-3">Inspect the headphone jack joints</h2>
         <p className="text-muted leading-7">
           Under magnification, every joint should be smooth and concave, wetting both pin and pad. Look hardest
-          between neighbouring signal pins, where a thin bridge is easy to miss. If you find one, fresh flux and a
+          between neighboring signal pins, where a thin bridge is easy to miss. If you find one, fresh flux and a
           clean tip drawn away from the gap usually clear it; our guide to{" "}
           <Link href="/soldering-irons/how-to-prevent-solder-bridges" className={link}>
             preventing solder bridges

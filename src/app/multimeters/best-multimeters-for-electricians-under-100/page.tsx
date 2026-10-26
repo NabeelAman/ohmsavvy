@@ -100,7 +100,7 @@ const fitNotes: Record<string, string> = {
   "Klein Tools MM720":
     "First place goes to the one meter here that combines CAT IV 600V, 1000 V AC and DC, LoZ and True RMS with an IP42 case and a 2 m drop rating. Its only gap for electrical work is the missing NCV, and at the time we checked its listing sat a few cents under the $100 cut-off.",
   "KAIWEETS HT118A":
-    "It ranks second because it brings CAT IV 600V, NCV with a Live-wire test and fused µA-to-10 A ranges at a fraction of the price of the leader, and the display changes colour above 80 V as a reminder. It has no LoZ, and KAIWEETS's product page lists a lower maximum voltage than its manual, so check the face of the unit you receive.",
+    "It ranks second because it brings CAT IV 600V, NCV with a Live-wire test and fused µA-to-10 A ranges at a fraction of the price of the leader, and the display changes color above 80 V as a reminder. It has no LoZ, and KAIWEETS's product page lists a lower maximum voltage than its manual, so check the face of the unit you receive.",
   "KAIWEETS HT208D":
     "As a clamp, it reads AC or DC current to 1000 A without breaking a circuit, and it adds LoZ, NCV, a VFD filter and AC inrush, all under CAT IV 600V. It sits third because its current accuracy is a fairly loose ±(2.5% + 5) and it has no milliamp ranges for small loads.",
   "Southwire 16030A":
@@ -131,7 +131,7 @@ const advice = [
       "Putting a meter in series on a branch circuit means opening the circuit, and a 10 A jack is the ceiling. For motor loads, feeders and tripping breakers a clamp is faster and keeps you out of the circuit. That is why two clamps rank in this top 10. If you already own a clamp, put the money into a CAT IV handheld with LoZ instead.",
   },
   {
-    heading: "Prioritise LoZ if you troubleshoot more than you install",
+    heading: "Prioritize LoZ if you troubleshoot more than you install",
     body:
       "Ghost voltage shows up most on long runs, shared conduit and abandoned conductors, which is daily life on service calls. A meter without LoZ forces you to add a load or second-guess readings. The MM720 is the handheld with LoZ in this price range; the HT208D clamp also has it.",
   },

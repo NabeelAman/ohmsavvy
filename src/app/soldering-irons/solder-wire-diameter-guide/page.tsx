@@ -73,7 +73,7 @@ export default function SolderWireDiameterGuidePage() {
         },
         {
           q: "Does solder diameter affect how hot I need to run my iron?",
-          a: "Not directly — it's the joint's thermal mass and the solder alloy's melting point that set the required temperature, covered in our temperature guide. Diameter mainly affects feed rate and control, not the melting behaviour of the solder itself.",
+          a: "Not directly — it's the joint's thermal mass and the solder alloy's melting point that set the required temperature, covered in our temperature guide. Diameter mainly affects feed rate and control, not the melting behavior of the solder itself.",
         },
         {
           q: "Can I use thick solder wire on fine SMD work if that's all I have?",
@@ -135,7 +135,7 @@ export default function SolderWireDiameterGuidePage() {
         <p className="text-muted leading-7 mb-4">
           On a small, closely-spaced SMD pad, a thin wire lets you place just enough solder to wet
           that one pad; a thick wire feeds more than the pad can hold per touch, and the excess has
-          nowhere to go but sideways — onto the neighbouring pad.
+          nowhere to go but sideways — onto the neighboring pad.
         </p>
         <Figure
           caption={

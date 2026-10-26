@@ -83,7 +83,7 @@ export default function HowToMeasureAVoltageRegulatorOutputWithAMultimeterPage()
         },
         {
           q: "Can I test a voltage regulator out of circuit?",
-          a: "Yes, by building a minimal circuit: the input and output capacitors the datasheet recommends, an input voltage comfortably above the output plus dropout, and a load resistor sized for a modest current. Resistance or diode tests on a bare regulator are not meaningful, because it only shows its behaviour when powered.",
+          a: "Yes, by building a minimal circuit: the input and output capacitors the datasheet recommends, an input voltage comfortably above the output plus dropout, and a load resistor sized for a modest current. Resistance or diode tests on a bare regulator are not meaningful, because it only shows its behavior when powered.",
         },
         {
           q: "Why does my LM317 output the wrong voltage?",

@@ -77,7 +77,7 @@ export default function HowToMeasureASquareWaveWithAnOscilloscopePage() {
         },
         {
           q: "Should I use AC or DC coupling for a square wave?",
-          a: "Use DC coupling. AC coupling passes the signal through a high-pass filter, so a low-frequency square wave shows sloping tops that droop towards the centre, and the whole trace moves when the duty cycle changes. DC coupling shows the true high and low levels relative to ground, which is what you want to measure.",
+          a: "Use DC coupling. AC coupling passes the signal through a high-pass filter, so a low-frequency square wave shows sloping tops that droop towards the center, and the whole trace moves when the duty cycle changes. DC coupling shows the true high and low levels relative to ground, which is what you want to measure.",
         },
         {
           q: "What frequency square wave can a 50MHz oscilloscope display?",
@@ -194,14 +194,14 @@ export default function HowToMeasureASquareWaveWithAnOscilloscopePage() {
         <p className="text-muted leading-7 mb-4">
           With DC coupling, every level is read from the channel&apos;s ground marker, the small arrow at
           the left edge of the screen. In the example below the ground marker has been moved 2 divisions
-          below the centre line so the whole 5 V swing fits at 1 V/div. Count divisions from the marker
+          below the center line so the whole 5 V swing fits at 1 V/div. Count divisions from the marker
           to the flat bottom (the low level) and to the flat top (the high level), then multiply by
           V/div.
         </p>
         <Figure
           caption={
             <>
-              A 0–5 V square wave at 1 V/div and 0.2 ms/div, ground marker 2 divisions below centre. The
+              A 0–5 V square wave at 1 V/div and 0.2 ms/div, ground marker 2 divisions below center. The
               low level sits on ground (0 V); the top is 5 divisions higher: 5 × 1 V = 5 V. Rising edges
               are 5 divisions apart: 5 × 0.2 ms = 1 ms. The dashed line is the trigger level at 2.5 V.
             </>

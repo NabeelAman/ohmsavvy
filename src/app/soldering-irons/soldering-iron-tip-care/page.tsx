@@ -71,7 +71,7 @@ export default function SolderingIronTipCarePage() {
       faq={[
         {
           q: "Can I file or sand a soldering iron tip to clean it?",
-          a: "Not on a modern plated tip. Nearly all tips sold today have an iron-plated working surface a fraction of a millimetre thick, designed to resist the solder's dissolving effect on copper. Filing or sanding cuts straight through that plating to the base metal, which then wears away quickly. Filing is only appropriate on old-style solid, unplated copper tips, which are rare on current irons.",
+          a: "Not on a modern plated tip. Nearly all tips sold today have an iron-plated working surface a fraction of a millimeter thick, designed to resist the solder's dissolving effect on copper. Filing or sanding cuts straight through that plating to the base metal, which then wears away quickly. Filing is only appropriate on old-style solid, unplated copper tips, which are rare on current irons.",
         },
         {
           q: "How often should I clean the tip while soldering?",
@@ -109,7 +109,7 @@ export default function SolderingIronTipCarePage() {
         <h2 id="why-tips-fail" className="text-xl font-semibold mb-3">Why a tip looks &quot;dead&quot; long before it actually is</h2>
         <p className="text-muted leading-7">
           At soldering temperatures, a bare metal tip oxidises within seconds of exposure to air. That
-          oxide layer is what turns the tip black or grey and stops solder from wetting it — the metal
+          oxide layer is what turns the tip black or gray and stops solder from wetting it — the metal
           underneath is usually still fine. This is why a tip that refuses to melt solder one minute can
           work perfectly again a minute later, right after a proper clean and re-tin. Genuine
           end-of-life wear (the plating eroded through) looks different and is covered further down.

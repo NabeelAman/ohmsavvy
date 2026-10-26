@@ -116,7 +116,7 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
       faq={[
         {
           q: "Can I solder a wire back onto a PCB while it is still in the case?",
-          a: "Yes, as long as the device is fully unpowered and you can reach the pad with the tip at a reasonable angle. Mask any plastic within a few millimetres, keep the iron's barrel clear of cables, and make the joint quickly. If you cannot see the pad clearly, removing a few screws to tilt the board is safer than soldering blind.",
+          a: "Yes, as long as the device is fully unpowered and you can reach the pad with the tip at a reasonable angle. Mask any plastic within a few millimeters, keep the iron's barrel clear of cables, and make the joint quickly. If you cannot see the pad clearly, removing a few screws to tilt the board is safer than soldering blind.",
         },
         {
           q: "Is a lap joint strong enough for a wire on a PCB pad?",
@@ -128,7 +128,7 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
         },
         {
           q: "How do I stop solder dripping when soldering upside down?",
-          a: "Use very little solder. Tin the wire and the pad first, so the final joint needs only a touch of the iron and perhaps a millimetre of fresh solder. Wipe the tip so it carries no loose bead, and use thin 0.5 mm or 0.6 mm solder. Keep your face out from under the work and wear safety glasses.",
+          a: "Use very little solder. Tin the wire and the pad first, so the final joint needs only a touch of the iron and perhaps a millimeter of fresh solder. Wipe the tip so it carries no loose bead, and use thin 0.5 mm or 0.6 mm solder. Keep your face out from under the work and wear safety glasses.",
         },
         {
           q: "What if the pad came off with the broken wire?",
@@ -210,7 +210,7 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
             temperatures, so a strip over a connector or cable gives the tip somewhere harmless to land.
           </li>
           <li>
-            <strong className="text-foreground">A heat shield:</strong> a folded piece of aluminium foil or a
+            <strong className="text-foreground">A heat shield:</strong> a folded piece of aluminum foil or a
             thin metal ruler slipped between the pad and a plastic wall reflects heat and blocks a slip.
           </li>
           <li>
@@ -229,7 +229,7 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
           head={["Situation", "Tip that usually works", "Why"]}
           rows={[
             ["Open pad, nothing close", "1.2-1.6 mm chisel", "Flat face heats pad and wire together quickly"],
-            ["Pad between tall parts", "Fine conical or bent conical", "Reaches down without touching neighbours"],
+            ["Pad between tall parts", "Fine conical or bent conical", "Reaches down without touching neighbors"],
             ["Pad near a case wall", "Long, slim chisel or knife", "Keeps the barrel away from plastic"],
             ["Pad on a wide copper area", "Larger chisel, higher setpoint", "Needs more heat delivered at once"],
           ]}
@@ -282,7 +282,7 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
         <StepHeading n={6} id="slack-and-strain-relief">Add slack and strain relief</StepHeading>
         <p className="text-muted leading-7">
           Whatever bent the wire before will bend it again. Route it with a small loop of slack so opening the
-          case does not stretch it, then fix the insulation to the board a few millimetres from the pad with
+          case does not stretch it, then fix the insulation to the board a few millimeters from the pad with
           hot glue, neutral-cure silicone or a cable tie. The anchor, not the solder, takes the movement.
         </p>
       </section>
@@ -292,7 +292,7 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
         <p className="text-muted leading-7">
           Heat-shrink only works if it went on before the joint. In a cramped case, shrink it with brief
           passes of the iron&apos;s barrel (not the tip) or low hot air. Where no sleeve fits, a wrap of Kapton
-          tape or a coat of glue keeps the bare copper off neighbouring pads.
+          tape or a coat of glue keeps the bare copper off neighboring pads.
         </p>
       </section>
 
@@ -327,7 +327,7 @@ export default function HowToSolderABrokenWireOnAPcbWithoutRemovingTheBoardPage(
           <Link href="/soldering-irons/how-to-fix-a-cold-solder-joint-on-a-circuit-board" className={link}>
             fixing a cold solder joint
           </Link>
-          . On continuity, check from the wire&apos;s far end to the pad, and from the pad to its neighbours
+          . On continuity, check from the wire&apos;s far end to the pad, and from the pad to its neighbors
           for a bridge. Close the case slowly so the slack loop folds where you intended.
         </p>
         <ProductStrip

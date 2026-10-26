@@ -277,7 +277,7 @@ export default function MeasureSettlingTimePage() {
         <p className="text-muted leading-7 mb-4">
           At a scale that fits the whole step, a ±0.1% band is thinner than the trace. You have to
           magnify the region around the final value. Set CH1 to DC coupling, then use the channel offset
-          (vertical position in volts) to bring the final value to the centre line, and increase the
+          (vertical position in volts) to bring the final value to the center line, and increase the
           sensitivity until the error band spans a few divisions. The step itself now goes off the top or
           bottom of the screen, and only the tail is visible.
         </p>

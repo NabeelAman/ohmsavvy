@@ -30,12 +30,12 @@ const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
 
 const link = "text-accent hover:underline";
 
-/** Cross-section of a typical thin headphone cable: outer jacket, enamelled conductors bundled with textile fibre. */
+/** Cross-section of a typical thin headphone cable: outer jacket, enamelled conductors bundled with textile fiber. */
 function CableSection() {
   const cores = [
     { cx: 110, cy: 82, fill: "#d64545", label: "Right (often red)", lx: 196, ly: 40 },
     { cx: 150, cy: 82, fill: "#3f8f4f", label: "Left (often green or blue)", lx: 196, ly: 70 },
-    { cx: 130, cy: 112, fill: "#b87333", label: "Ground (bare copper colour)", lx: 196, ly: 100 },
+    { cx: 130, cy: 112, fill: "#b87333", label: "Ground (bare copper color)", lx: 196, ly: 100 },
   ];
   return (
     <svg viewBox="0 0 340 190" className="w-full h-auto" role="img" aria-label="Cross-section of a headphone cable showing three enamelled conductors inside the outer jacket">
@@ -59,7 +59,7 @@ function CableSection() {
         </g>
       ))}
       <text x="196" y="130" fontSize="10" className="fill-muted">Each strand is coated in</text>
-      <text x="196" y="143" fontSize="10" className="fill-muted">coloured enamel, not plastic</text>
+      <text x="196" y="143" fontSize="10" className="fill-muted">colored enamel, not plastic</text>
       <text x="130" y="178" fontSize="10" textAnchor="middle" className="fill-muted">Outer jacket, with textile filler between cores</text>
     </svg>
   );
@@ -114,7 +114,7 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
         <>
           To solder a broken headphone wire with a soldering iron, find exactly where the signal drops out,
           cut the cable cleanly either side of the break, strip the enamel off each fine conductor, then
-          join matching colours with solder and seal every joint with heat-shrink. If the fault sits right
+          join matching colors with solder and seal every joint with heat-shrink. If the fault sits right
           at the plug, fitting a new 3.5 mm plug is usually quicker and neater than a splice. This guide
           covers both repairs, including the enamel coating that defeats most first attempts.
         </>
@@ -147,7 +147,7 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
       faq={[
         {
           q: "Why won't solder stick to my headphone wire?",
-          a: "Almost always because the strands still carry their enamel coating. It looks like bare copper or coloured wire, but it is an insulating varnish that solder will not wet. Raise the iron temperature and hold the strands in a blob of molten solder until the coating bubbles away, or scrape it off, then try again.",
+          a: "Almost always because the strands still carry their enamel coating. It looks like bare copper or colored wire, but it is an insulating varnish that solder will not wet. Raise the iron temperature and hold the strands in a blob of molten solder until the coating bubbles away, or scrape it off, then try again.",
         },
         {
           q: "Can I just twist the headphone wires together and tape them?",
@@ -155,7 +155,7 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
         },
         {
           q: "Which wire is ground in headphones?",
-          a: "On many earbud and headset cables the ground is the uncoloured, copper-looking strand, with red for the right channel and green or blue for the left. Colours are not standardised, so confirm with a multimeter: continuity from each strand to the plug's sleeve or ring tells you exactly which is which.",
+          a: "On many earbud and headset cables the ground is the uncolored, copper-looking strand, with red for the right channel and green or blue for the left. Colors are not standardized, so confirm with a multimeter: continuity from each strand to the plug's sleeve or ring tells you exactly which is which.",
         },
         {
           q: "Will a soldered repair affect sound quality?",
@@ -196,7 +196,7 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
       <section>
         <StepHeading n={1} id="find-the-break">Find the break</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          Most headphone cables fail where they flex hardest: within a few centimetres of the plug, at the
+          Most headphone cables fail where they flex hardest: within a few centimeters of the plug, at the
           Y-split, or where the cable enters an earpiece. Play audio at low volume and slowly bend the cable
           along its length. The point where sound cuts in and out marks the break, and it tells you which
           side is affected.
@@ -213,24 +213,24 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
         <h2 id="inside-the-cable" className="text-xl font-semibold mb-3">What&apos;s inside a headphone cable</h2>
         <p className="text-muted leading-7 mb-4">
           Thin headphone and earbud cables rarely contain ordinary PVC-insulated wire. Each conductor is a
-          bundle of extremely fine copper strands, each strand lacquered in coloured enamel and often wound
-          round a textile fibre for flexibility. That enamel is the insulation, which is why the wires look
+          bundle of extremely fine copper strands, each strand lacquered in colored enamel and often wound
+          round a textile fiber for flexibility. That enamel is the insulation, which is why the wires look
           bare but refuse to take solder.
         </p>
-        <Figure caption={<>A typical three-conductor earbud cable in cross-section. Colours vary by maker; a headset cable adds a fourth conductor for the microphone.</>}>
+        <Figure caption={<>A typical three-conductor earbud cable in cross-section. Colors vary by maker; a headset cable adds a fourth conductor for the microphone.</>}>
           <CableSection />
         </Figure>
         <DataTable
-          head={["Conductor", "Common colours", "Goes to plug contact"]}
+          head={["Conductor", "Common colors", "Goes to plug contact"]}
           rows={[
             ["Left channel", "Green, blue or white", "Tip"],
             ["Right channel", "Red", "Ring (Ring 1 on TRRS)"],
-            ["Ground (common)", "Uncoloured copper, sometimes gold", "Sleeve (TRS) or Ring 2 (CTIA TRRS)"],
-            ["Microphone", "Varies; often a separate coloured strand", "Sleeve (CTIA TRRS)"],
+            ["Ground (common)", "Uncolored copper, sometimes gold", "Sleeve (TRS) or Ring 2 (CTIA TRRS)"],
+            ["Microphone", "Varies; often a separate colored strand", "Sleeve (CTIA TRRS)"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          Some cables use a separate ground for each earpiece, giving you two copper-coloured strands. They
+          Some cables use a separate ground for each earpiece, giving you two copper-colored strands. They
           both join the same plug contact, so treat them as a pair.
         </p>
       </section>
@@ -239,13 +239,13 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
         <StepHeading n={2} id="cut-and-strip">Cut back and strip</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Cut straight through the cable 1 to 2 cm either side of the break so you are working on undamaged
-          copper. Stagger the cut lengths of the inner conductors by a few millimetres on each side: when the
+          copper. Stagger the cut lengths of the inner conductors by a few millimeters on each side: when the
           joints sit side by side they stack up into a lump, but staggered joints keep the repair slim and
           stop them touching.
         </p>
         <p className="text-muted leading-7">
           Slit the outer jacket lengthways with a sharp blade for about 2 cm and peel it back. Pull out and
-          trim any textile filler, then separate the coloured conductors. Slide two lengths of heat-shrink
+          trim any textile filler, then separate the colored conductors. Slide two lengths of heat-shrink
           onto one side now: a thin piece for each conductor and one larger piece to cover the whole repair.
         </p>
       </section>
@@ -272,14 +272,14 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
         </p>
         <KeyIdea title="How to tell it worked">
           A properly stripped and tinned end is uniformly shiny and holds a thin coat of solder. Patches of
-          the original colour mean enamel remains there, and those strands will not conduct.
+          the original color mean enamel remains there, and those strands will not conduct.
         </KeyIdea>
       </section>
 
       <section>
         <StepHeading n={4} id="splice-the-wires">Splice and insulate</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          Lay each tinned pair side by side or hook them together, matching colour to colour. Touch the iron
+          Lay each tinned pair side by side or hook them together, matching color to color. Touch the iron
           to the joint for a second or two so the existing solder flows into one, adding only a tiny amount
           more. Slide the small heat-shrink over the joint and shrink it with a hot-air tool or the side of the
           iron. Repeat for each conductor, then cover the whole repair with the larger sleeve.
@@ -290,14 +290,14 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
               { label: "Locate", sub: "Flex test or continuity" },
               { label: "Cut & stagger", sub: "Healthy copper both sides" },
               { label: "Strip enamel", sub: "Until strands go silver" },
-              { label: "Join", sub: "Colour to colour" },
+              { label: "Join", sub: "Color to color" },
               { label: "Sleeve", sub: "Each joint, then the whole" },
             ]}
           />
         </Figure>
         <p className="text-muted leading-7 mt-4">
           Strain relief matters as much as the solder. A short length of thicker heat-shrink over the whole
-          repair, extending a centimetre onto the jacket either side, stops the cable bending sharply at the
+          repair, extending a centimeter onto the jacket either side, stops the cable bending sharply at the
           joint, which is exactly where it would otherwise break again.
         </p>
       </section>
@@ -305,7 +305,7 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
       <section>
         <h2 id="fit-a-new-plug" className="text-xl font-semibold mb-3">Or fit a new 3.5 mm plug</h2>
         <p className="text-muted leading-7 mb-4">
-          When the break is within a few centimetres of a moulded plug, cut the plug off and solder on a
+          When the break is within a few centimeters of a molded plug, cut the plug off and solder on a
           replacement with a screw-on metal or plastic shell. Thread the shell and its spring onto the cable
           first, strip and tin the conductors as above, then solder each one to its tag: left to tip, right
           to ring, ground to sleeve.
@@ -317,7 +317,7 @@ export default function HowToSolderABrokenHeadphoneWirePage() {
           <PlugDiagram />
         </Figure>
         <p className="text-muted leading-7 mt-4">
-          Before screwing the shell on, check with a meter that no tag is shorted to its neighbour. Most
+          Before screwing the shell on, check with a meter that no tag is shorted to its neighbor. Most
           replacement plugs include a clamp that grips the jacket; crimp it firmly so pulling on the cable
           loads the jacket, not your solder joints.
         </p>

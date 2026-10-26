@@ -150,11 +150,11 @@ const comparison: ProductComparisonContent = {
         </p>
         <p className="text-muted leading-7 mb-4">
           The generator earns its place when the circuit can&apos;t test itself. A filter, an amplifier, a comparator
-          or an analog sensor input only reveals its behaviour when you feed it a known signal. With the DSO2D10 you
+          or an analog sensor input only reveals its behavior when you feed it a known signal. With the DSO2D10 you
           set a sine at, say, 1 kHz, connect the output to the circuit&apos;s input and channel 1, put channel 2 on the
           output, then step the frequency up and watch the ratio change. Swap to a square wave to see how a stage handles
           edges, or load one of the four arbitrary slots to mimic a sensor pulse your firmware has
-          to recognise. Note that this uses both scope channels: the generator adds a source, not an input.
+          to recognize. Note that this uses both scope channels: the generator adds a source, not an input.
         </p>
         <div className="grid sm:grid-cols-2 gap-4 items-start mb-4">
           <Figure

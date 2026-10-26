@@ -162,7 +162,7 @@ export default function HowToMeasureRippleVoltageWithAnOscilloscopePage() {
         <StepHeading n={1} id="probe-and-ground">Set up the probe and use a short ground spring</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Ripple measurements fail at the probe more often than at the scope. The long ground lead
-          with its crocodile clip forms a loop several centimetres across, and that loop picks up
+          with its crocodile clip forms a loop several centimeters across, and that loop picks up
           magnetic fields from switching currents, inductors and transformers nearby. On a switching
           supply the pickup can be as large as the ripple itself.
         </p>
@@ -200,7 +200,7 @@ export default function HowToMeasureRippleVoltageWithAnOscilloscopePage() {
         <p className="text-muted leading-7 mb-4">
           AC coupling puts a capacitor in series with the channel input, blocking the DC part of the
           signal so only the variation reaches the screen, centred on the ground line. Open the
-          channel menu, change coupling from DC to AC, and the 5 V trace drops to the centre line. Now
+          channel menu, change coupling from DC to AC, and the 5 V trace drops to the center line. Now
           you can turn the sensitivity right up:
         </p>
         <Figure
@@ -284,7 +284,7 @@ export default function HowToMeasureRippleVoltageWithAnOscilloscopePage() {
       <section>
         <StepHeading n={5} id="measure-peak-to-peak">Trigger and measure ripple peak-to-peak</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          Set an edge trigger on the ripple channel with the level near the centre line, so the
+          Set an edge trigger on the ripple channel with the level near the center line, so the
           waveform stops drifting; see{" "}
           <Link href="/oscilloscopes/how-to-trigger-an-oscilloscope" className={link}>
             how to trigger an oscilloscope

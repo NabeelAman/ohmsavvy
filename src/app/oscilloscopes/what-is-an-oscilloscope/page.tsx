@@ -91,7 +91,7 @@ export default function WhatIsAnOscilloscopePage() {
         },
         {
           q: "Is an oscilloscope hard to learn for a beginner?",
-          a: "The basics are quicker to learn than the number of buttons suggests. Most of the work comes down to four things: volts per division, time per division, the trigger and the measurement menu. Practising on the scope's built-in probe compensation output, a safe low-voltage square wave, is the easiest way to learn what each control does.",
+          a: "The basics are quicker to learn than the number of buttons suggests. Most of the work comes down to four things: volts per division, time per division, the trigger and the measurement menu. Practicing on the scope's built-in probe compensation output, a safe low-voltage square wave, is the easiest way to learn what each control does.",
         },
       ]}
       next={[
@@ -154,7 +154,7 @@ export default function WhatIsAnOscilloscopePage() {
           vertical knob sets V/div for each channel, the horizontal knob sets time/div, and the
           trigger level knob decides which point on the signal each capture lines up on. Buttons
           such as Auto, Run/Stop and Single set up the display or freeze a capture, and the probe
-          compensation terminals give you a safe square wave to practise on.
+          compensation terminals give you a safe square wave to practice on.
         </p>
         <Figure
           caption={
@@ -181,7 +181,7 @@ export default function WhatIsAnOscilloscopePage() {
       <section>
         <h2 id="scope-vs-meter" className="text-xl font-semibold mb-3">What a scope can reveal that a meter cannot</h2>
         <p className="text-muted leading-7 mb-5">
-          A multimeter averages or summarises a signal into one number. That is ideal for steady
+          A multimeter averages or summarizes a signal into one number. That is ideal for steady
           values, but it hides anything that changes quickly. A scope shows the changes themselves:
         </p>
         <InfoCards

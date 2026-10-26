@@ -19,7 +19,7 @@ const comparison: ProductComparisonContent = {
   path,
   published: "2026-10-22",
   intro:
-    "Brymen BM235 vs Fluke 117 is the enthusiast's favourite against the electrician's standard. On the core electrician features they match: True RMS, 6,000 counts, a low-impedance voltage mode and non-contact voltage detection. The BM235 piles on a VFD mode, Type-K temperature, relative zero and µA/mA ranges; the 117 answers with a bar graph, a three-year warranty and Fluke's US support network.",
+    "Brymen BM235 vs Fluke 117 is the enthusiast's favorite against the electrician's standard. On the core electrician features they match: True RMS, 6,000 counts, a low-impedance voltage mode and non-contact voltage detection. The BM235 piles on a VFD mode, Type-K temperature, relative zero and µA/mA ranges; the 117 answers with a bar graph, a three-year warranty and Fluke's US support network.",
   a: {
     pick: picks.find((p) => p.name === "Brymen BM235")!,
     imageAlt: "Brymen BM235 True RMS digital multimeter, front view",

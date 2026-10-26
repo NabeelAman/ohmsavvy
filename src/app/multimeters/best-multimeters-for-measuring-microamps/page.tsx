@@ -27,7 +27,7 @@ const comparisonRows: string[][] = [
   ["2", "Fluke 289", "500.00 µA", "0.01 µA", "102 µV/µA", "One meter for µA work and milliohm checks"],
   ["3", "Fluke 87V", "600.0 µA", "0.1 µA (0.01 µA in HiRes)", "100 µV/µA", "Field and bench work that also hits mains"],
   ["4", "EEVblog Brymen BM786", "600.00 µA", "0.01 µA", "0.2 mV/µA", "60,000-count bench readings without logging"],
-  ["5", "UNI-T UT181A", "600 µA", "0.01 µA (implied by counts)", "Not published", "Recording drain on a colour trend screen"],
+  ["5", "UNI-T UT181A", "600 µA", "0.01 µA (implied by counts)", "Not published", "Recording drain on a color trend screen"],
   ["6", "UNI-T UT61E+", "220.00 µA", "0.01 µA", "Not published", "Hobby sleep-current checks with a PC link"],
   ["7", "OWON B41T+", "220.00 µA", "0.01 µA", "Not published", "Unattended logging to the meter's own memory"],
   ["8", "Brymen BM235", "600.0 µA", "0.1 µA", "0.1 mV/µA", "Electricians who sometimes check standby draw"],
@@ -48,7 +48,7 @@ const faqs = [
   {
     question: "Can any multimeter measure microamps?",
     answer:
-      "No. Many electrician's meters, such as the Fluke 117, start their current measurement at amps, and others begin at tens of milliamps. To read microamps you need a meter with a dedicated µA range, usually a few hundred microamps full scale. Check the spec table for a range labelled in µA, not just a µA symbol on the dial of a sibling model.",
+      "No. Many electrician's meters, such as the Fluke 117, start their current measurement at amps, and others begin at tens of milliamps. To read microamps you need a meter with a dedicated µA range, usually a few hundred microamps full scale. Check the spec table for a range labeled in µA, not just a µA symbol on the dial of a sibling model.",
   },
   {
     question: "What is burden voltage and why does it matter for microamps?",

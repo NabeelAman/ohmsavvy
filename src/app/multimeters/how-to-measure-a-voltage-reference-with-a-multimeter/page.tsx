@@ -191,7 +191,7 @@ export default function HowToMeasureAVoltageReferenceWithAMultimeterPage() {
           The meter goes across the reference, in parallel, exactly like any voltage measurement.
         </p>
         <p className="text-muted leading-7 mb-4">
-          Make the contact steady. Small SMD references have pins only a fraction of a millimetre apart, so
+          Make the contact steady. Small SMD references have pins only a fraction of a millimeter apart, so
           a slipping probe can short the output to ground or to the supply pin next to it. Fine-tip probes,
           sprung hook clips or short wires soldered to test pads let you take your hands away and watch the
           reading settle. Lead resistance does not matter here, because the meter draws almost no current

@@ -232,7 +232,7 @@ const comparison: ProductComparisonContent = {
           <Link href="/oscilloscopes/rigol-dho802-vs-hantek-dso2d10" className={link}>
             Rigol DHO802 vs Hantek DSO2D10
           </Link>
-          . For the DHO802 against older bench favourites, see{" "}
+          . For the DHO802 against older bench favorites, see{" "}
           <Link href="/oscilloscopes/rigol-dho802-vs-rigol-ds1054z" className={link}>
             Rigol DHO802 vs Rigol DS1054Z
           </Link>{" "}

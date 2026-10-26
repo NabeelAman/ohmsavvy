@@ -274,7 +274,7 @@ export default function BestMultimetersForSolarPanelTestingPage() {
           <InfoCards items={lookFor} />
           <KeyIdea title="Why the meter's limit must beat cold-weather Voc">
             Crystalline silicon modules gain voltage as they cool, typically a few tenths of a percent per degree
-            Celsius below the 25 °C test condition. A string labelled at 900 V Voc can therefore read above 1000 V
+            Celsius below the 25 °C test condition. A string labeled at 900 V Voc can therefore read above 1000 V
             on a freezing morning, beyond every 1000 V meter here. Check the module&apos;s temperature coefficient
             and the lowest site temperature before you choose a meter, and see{" "}
             <Link href="/multimeters/unstable-multimeter-readings" className={linkClass}>

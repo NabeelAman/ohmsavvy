@@ -128,7 +128,7 @@ export default function HowToTestAShuntResistorWithAMultimeterPage() {
         },
         {
           q: "Can a shunt resistor go bad?",
-          a: "Yes, though the alloy element itself is robust. The usual faults are loose or corroded bolted joints, cracked solder on PCB shunts, and overheating that discolours or warps the element and shifts its value. A drop that rises over time at steady current, or a hot terminal, points to a connection problem before a failed element.",
+          a: "Yes, though the alloy element itself is robust. The usual faults are loose or corroded bolted joints, cracked solder on PCB shunts, and overheating that discolors or warps the element and shifts its value. A drop that rises over time at steady current, or a hot terminal, points to a connection problem before a failed element.",
         },
         {
           q: "Why does my battery monitor read a different current from my clamp meter?",
@@ -247,7 +247,7 @@ export default function HowToTestAShuntResistorWithAMultimeterPage() {
       <section>
         <h2 id="shunt-ratings" className="text-xl font-semibold mb-3">Reading shunt ratings such as 75 mV at a given amperage</h2>
         <p className="text-muted leading-7 mb-4">
-          Bolted shunts are labelled with two numbers: rated current and the drop at that current. 50 mV, 75 mV
+          Bolted shunts are labeled with two numbers: rated current and the drop at that current. 50 mV, 75 mV
           and 100 mV are common drops. Divide the drop by the current to get resistance, and use the ratio to
           turn any later millivolt reading into amps.
         </p>

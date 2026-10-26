@@ -74,7 +74,7 @@ export default function HowToSolderAReplacementPotentiometerOntoAPcbPage() {
       faq={[
         {
           q: "Can I replace a 10K potentiometer with a 20K one?",
-          a: "Sometimes, but it changes the circuit. In a simple voltage divider the range of the control stays similar, though the load on the source and the wiper output impedance change. Where the pot sets gain, timing or a bias current, a different value shifts the behaviour. Match the original unless a schematic or the maker confirms the alternative is fine.",
+          a: "Sometimes, but it changes the circuit. In a simple voltage divider the range of the control stays similar, though the load on the source and the wiper output impedance change. Where the pot sets gain, timing or a bias current, a different value shifts the behavior. Match the original unless a schematic or the maker confirms the alternative is fine.",
         },
         {
           q: "Does it matter which way round a potentiometer goes in?",
@@ -236,7 +236,7 @@ export default function HowToSolderAReplacementPotentiometerOntoAPcbPage() {
         <p className="text-muted leading-7">
           Solder the tabs last, with the larger tip again. They need enough solder to fill around the tab, but
           leave the plastic body alone: holding a tab at high heat for a long time can soften the pot&apos;s
-          housing or disturb the wiper inside. If a joint looks grey and lumpy, reflow it with fresh flux, as
+          housing or disturb the wiper inside. If a joint looks gray and lumpy, reflow it with fresh flux, as
           described in{" "}
           <Link href="/soldering-irons/how-to-fix-a-cold-solder-joint-on-a-circuit-board" className={link}>
             how to fix a cold solder joint on a circuit board

@@ -73,8 +73,8 @@ const comparison: ProductComparisonContent = {
     { label: "Size", a: "142 × 92 × 18.8 mm", b: "205 × 120 × 35 mm" },
   ],
   differences: [
-    "Rated bandwidth favours the Hantek: 20 MHz against the PicoScope's 10 MHz.",
-    "Sample rate favours the PicoScope: 100 MS/s on one channel and 50 MS/s on two, against a 48 MS/s maximum that Hantek doesn't split by channel count.",
+    "Rated bandwidth favors the Hantek: 20 MHz against the PicoScope's 10 MHz.",
+    "Sample rate favors the PicoScope: 100 MS/s on one channel and 50 MS/s on two, against a 48 MS/s maximum that Hantek doesn't split by channel count.",
     "PicoScope 7 runs on Windows, macOS and Linux; Hantek lists only Windows versions for the 6022BE.",
     "The 2204A has a function generator and AWG to 100 kHz with frequency sweeps; the 6022BE has no signal output.",
     "Pico lists serial decoding, mask testing and pulse, window, dropout and logic triggers; Hantek lists an edge trigger, FFT, four-function math and X-Y.",

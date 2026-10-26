@@ -109,7 +109,7 @@ export default function HowToTriggerAnOscilloscopePage() {
     >
       <Callout title="Safety before you clip on">
         <p>
-          Triggering is a front-panel task, but you can only practise it on a live signal, so set
+          Triggering is a front-panel task, but you can only practice it on a live signal, so set
           up safely first. On a bench scope the probe&apos;s ground clip is normally tied to mains
           earth through the power cord. Clipping it to a point that isn&apos;t at earth potential,
           such as anywhere on a mains-connected, non-isolated circuit, creates a short through the
@@ -146,9 +146,9 @@ export default function HowToTriggerAnOscilloscopePage() {
       <Figure
         caption={
           <>
-            A triggered sine wave. The dashed T line is the trigger level (here at 0 V, the centre
+            A triggered sine wave. The dashed T line is the trigger level (here at 0 V, the center
             line). The scope aligns each capture on a rising crossing of that line, which on many
-            digital scopes is placed at the horizontal centre of the screen by default.
+            digital scopes is placed at the horizontal center of the screen by default.
           </>
         }
       >
@@ -222,7 +222,7 @@ export default function HowToTriggerAnOscilloscopePage() {
           The level must sit somewhere the signal actually crosses. A good starting point is
           roughly halfway between the waveform&apos;s lowest and highest points, where the edges
           are steepest and least affected by noise. Many scopes have a button or knob-press that
-          sets the level to the middle of the signal automatically (often labelled 50% or similar;
+          sets the level to the middle of the signal automatically (often labeled 50% or similar;
           check your manual). If the level is above the top of the signal or below the bottom,
           there is no crossing to find and the trigger cannot lock.
         </p>
@@ -230,7 +230,7 @@ export default function HowToTriggerAnOscilloscopePage() {
           caption={
             <>
               A square wave triggered on its rising edge with the level (T) set 1 division above
-              centre. Each cycle is 5 divisions long, and the rising edge at the centre graticule
+              center. Each cycle is 5 divisions long, and the rising edge at the center graticule
               line is the trigger point.
             </>
           }
@@ -269,7 +269,7 @@ export default function HowToTriggerAnOscilloscopePage() {
             [
               "Single",
               "Arms, waits for one trigger, captures it, then stops.",
-              "One-off events: power-up behaviour, a switch or button bouncing, an occasional glitch.",
+              "One-off events: power-up behavior, a switch or button bouncing, an occasional glitch.",
             ],
           ]}
         />

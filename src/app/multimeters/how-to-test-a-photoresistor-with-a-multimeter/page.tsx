@@ -240,7 +240,7 @@ export default function HowToTestAPhotoresistorWithAMultimeterPage() {
             Cover the sensing face completely with a fingertip, black tape or an upturned bottle cap. Wait
             about 10 seconds for the slow dark recovery, then note the reading.
           </li>
-          <li>Uncover it and shine a phone torch or desk lamp straight at it from a few centimetres away.</li>
+          <li>Uncover it and shine a phone torch or desk lamp straight at it from a few centimeters away.</li>
           <li>Repeat two or three times. The readings should repeat closely each cycle.</li>
         </ol>
         <Figure

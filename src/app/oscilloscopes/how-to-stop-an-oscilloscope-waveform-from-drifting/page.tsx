@@ -338,7 +338,7 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
           <DataTable
             head={["What you see", "Likely cause", "Fix"]}
             rows={[
-              ["Trace slides steadily sideways", "Source on another channel, or level outside the signal", "Set source and centre the level"],
+              ["Trace slides steadily sideways", "Source on another channel, or level outside the signal", "Set source and center the level"],
               
               
               ["Jumps between a few positions", "Complex signal, several crossings per repeat", "Increase holdoff"],

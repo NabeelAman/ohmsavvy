@@ -22,7 +22,7 @@ const comparison: ProductComparisonContent = {
   path,
   published: "2026-10-22",
   intro:
-    "Rigol DHO804 vs Rigol DS1054Z is old favourite against new generation. Both are four-channel Rigol scopes for hobbyists and students. The DHO804 moves to 12-bit vertical resolution, 70 MHz, a 1024 × 600 touchscreen and USB-C power; the DS1054Z keeps the familiar 50 MHz platform with optional serial decoding and a large community behind it.",
+    "Rigol DHO804 vs Rigol DS1054Z is old favorite against new generation. Both are four-channel Rigol scopes for hobbyists and students. The DHO804 moves to 12-bit vertical resolution, 70 MHz, a 1024 × 600 touchscreen and USB-C power; the DS1054Z keeps the familiar 50 MHz platform with optional serial decoding and a large community behind it.",
   a: {
     pick: picks.find((p) => p.name === "Rigol DHO804")!,
     imageAlt: "Rigol DHO804 12-bit four-channel oscilloscope, front panel",

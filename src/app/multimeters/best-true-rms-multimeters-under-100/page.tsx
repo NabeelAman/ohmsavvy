@@ -168,7 +168,7 @@ export default function BestTrueRmsMultimetersUnder100Page() {
             the waveform is clipped, peaky or chopped. That is the norm today: LED drivers, phone chargers, dimmers,
             inverters and variable-speed drives all distort voltage or current. An average-responding meter assumes a
             clean sine wave and can be badly off on those loads. True RMS doesn&apos;t make a meter accurate at any
-            frequency, though; it only holds within the bandwidth the maker specifies, which is why we favoured meters
+            frequency, though; it only holds within the bandwidth the maker specifies, which is why we favored meters
             that publish one.
           </p>
           <p className="text-muted leading-7">

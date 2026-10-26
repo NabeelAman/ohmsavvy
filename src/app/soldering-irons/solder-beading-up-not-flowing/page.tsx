@@ -34,7 +34,7 @@ export default function SolderBeadingUpNotFlowingPage() {
         <>
           This is a different problem from solder sticking to the tip — here the solder melts and
           leaves the tip just fine, but instead of spreading into a thin, bonded layer on the wire or
-          pad, it draws itself into a round ball that just sits on the surface. That beading behaviour
+          pad, it draws itself into a round ball that just sits on the surface. That beading behavior
           is the visible sign of a surface that solder isn&apos;t wetting, and it has a short, specific
           list of causes.
         </>

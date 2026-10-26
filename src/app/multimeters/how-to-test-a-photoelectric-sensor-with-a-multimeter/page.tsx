@@ -197,7 +197,7 @@ export default function HowToTestAPhotoelectricSensorWithAMultimeterPage() {
           items={[
             { label: "Through-beam", desc: "Separate emitter and receiver facing each other. Longest range; the emitter usually has only power wires, so test the output at the receiver." },
             { label: "Retro-reflective", desc: "Emitter and receiver share one housing and bounce light off a reflector. Polarised versions resist false triggering from shiny objects." },
-            { label: "Diffuse", desc: "The target reflects light straight back. Range depends on the object's colour and finish; background-suppression types ignore things behind it." },
+            { label: "Diffuse", desc: "The target reflects light straight back. Range depends on the object's color and finish; background-suppression types ignore things behind it." },
           ]}
         />
       </section>

@@ -116,7 +116,7 @@ export default function HowToTestALimitSwitchWithADigitalMultimeterPage() {
           Most small limit switches and microswitches are single-pole, double-throw changeover types with three
           terminals. Industrial limit switches often instead carry two separate contacts, one normally open and
           one normally closed, each with its own pair of terminals. Either way, the markings are usually
-          moulded next to the terminals.
+          molded next to the terminals.
         </p>
         <InfoCards
           items={[
@@ -242,7 +242,7 @@ export default function HowToTestALimitSwitchWithADigitalMultimeterPage() {
           head={["What you find", "Likely cause"]}
           rows={[
             ["Contacts swap cleanly, near 0 Ω when closed", "Healthy switch; check wiring, mounting and the target"],
-            ["COM–NO never closes when pressed", "Contact worn or burnt, or actuator not travelling far enough"],
+            ["COM–NO never closes when pressed", "Contact worn or burnt, or actuator not traveling far enough"],
             ["COM–NC stays closed when pressed", "Welded contact or jammed mechanism"],
             ["Closed contact reads several ohms or drifts", "Dirty, oxidised or arcing-damaged contacts"],
             ["Trip point varies from press to press", "Worn spring, loose lever or failing mechanism"],

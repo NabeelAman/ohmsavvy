@@ -219,7 +219,7 @@ export default function WhyDoesMyMultimeterRead0VoltsPage() {
         <p className="text-muted leading-7 mb-4">
           The other group of zeros comes from the meter side. The signal never reaches the display because a
           lead is broken inside its insulation, the red lead is in a current jack, the display is frozen by
-          HOLD, a REL offset is cancelling the reading, or the function is set to the wrong kind of voltage.
+          HOLD, a REL offset is canceling the reading, or the function is set to the wrong kind of voltage.
           These are worth ruling out first because they take seconds and they are invisible: a broken lead
           looks exactly like a good one.
         </p>

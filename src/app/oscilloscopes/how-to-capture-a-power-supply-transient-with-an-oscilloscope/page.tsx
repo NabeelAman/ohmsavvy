@@ -128,7 +128,7 @@ export default function CapturePowerSupplyTransientPage() {
           rail back, sometimes with a little ringing. When the load drops away, the opposite happens:
           the rail briefly rises above nominal. Two numbers describe the result: the undershoot (or
           overshoot) amplitude and the recovery time back to within a tolerance band. Start-up
-          behaviour is a separate test, covered in its own guide.
+          behavior is a separate test, covered in its own guide.
         </p>
         <Figure
           caption={
@@ -268,7 +268,7 @@ export default function CapturePowerSupplyTransientPage() {
           caption={
             <>
               Waiting for an uncontrolled sag: the rail, DC coupled and offset so nominal sits on the
-              centre line, with a falling-edge trigger level (T) half a division below it.
+              center line, with a falling-edge trigger level (T) half a division below it.
             </>
           }
         >
@@ -302,7 +302,7 @@ export default function CapturePowerSupplyTransientPage() {
             <Link href="/oscilloscopes/how-to-measure-a-switching-power-supply-waveform-with-an-oscilloscope" className={link}>
               switching supply waveforms
             </Link>{" "}
-            shows how to check the switching behaviour at the same time.
+            shows how to check the switching behavior at the same time.
           </KeyIdea>
         </div>
       </section>

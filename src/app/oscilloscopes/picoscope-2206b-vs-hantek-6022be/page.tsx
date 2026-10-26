@@ -123,7 +123,7 @@ const comparison: ProductComparisonContent = {
         </div>
         <p className="text-muted leading-7 mt-4">
           Sample rate and bandwidth work together. With one channel on, the PicoScope takes ten samples per cycle
-          at its 50 MHz limit, enough to draw a recognisable sine; with both channels on, five. The Hantek&apos;s
+          at its 50 MHz limit, enough to draw a recognizable sine; with both channels on, five. The Hantek&apos;s
           48 MS/s gives 2.4 samples per cycle at 20 MHz, barely above the Nyquist minimum of two, so the
           6022BE&apos;s usable range ends well before its rated bandwidth. For repetitive signals Pico also lists
           equivalent-time sampling (ETS) at 5 GS/s, which builds a waveform from many triggers. More on these

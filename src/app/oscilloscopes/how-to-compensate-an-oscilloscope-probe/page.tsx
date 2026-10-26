@@ -283,7 +283,7 @@ export default function HowToCompensateAnOscilloscopeProbePage() {
         <StepHeading n={2} id="connect-calibration-output">Connect to the calibration output</StepHeading>
         <p className="text-muted leading-7">
           Find the probe-compensation terminal on the front panel. It&apos;s often a small metal tab
-          or hook labelled with a square-wave symbol, with a separate ground terminal next to it.
+          or hook labeled with a square-wave symbol, with a separate ground terminal next to it.
           Hook the probe tip to the signal terminal and the ground clip to the ground terminal.
           Many scopes output a square wave of around 1 kHz here, but the exact frequency and
           voltage vary by model, so check your manual or datasheet for the values to expect.

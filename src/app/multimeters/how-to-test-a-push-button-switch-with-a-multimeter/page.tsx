@@ -200,7 +200,7 @@ export default function HowToTestAPushButtonSwitchWithAMultimeterPage() {
         <h2 id="no-vs-nc" className="text-xl font-semibold mb-3">NO vs NC push button switches</h2>
         <p className="text-muted leading-7 mb-4">
           The contact type decides what a good reading looks like. Panel buttons often have the terminals
-          marked NO and NC, or carry contact blocks labelled 3-4 for NO and 1-2 for NC in common industrial
+          marked NO and NC, or carry contact blocks labeled 3-4 for NO and 1-2 for NC in common industrial
           conventions. Check the markings or datasheet for your part.
         </p>
         <DataTable
@@ -304,7 +304,7 @@ export default function HowToTestAPushButtonSwitchWithAMultimeterPage() {
         <p className="text-muted leading-7 mb-4">
           Every mechanical contact bounces: the metal parts touch, separate and touch again several times
           before settling. On a microcontroller input that can register one press as many. This is normal
-          behaviour that firmware or an RC filter handles, not a faulty switch.
+          behavior that firmware or an RC filter handles, not a faulty switch.
         </p>
         <Figure
           caption={

@@ -28,7 +28,7 @@ const comparison: ProductComparisonContent = {
   path,
   published: "2026-10-24",
   intro:
-    "Rigol DHO802 vs Rigol DS1054Z sets two Rigol generations against each other, and they pull in opposite directions. The DHO802 is the newer design: 70 MHz, 12-bit resolution, a 1024 × 600 touchscreen and standard serial decoding including CAN, but only two channels. The DS1054Z is the long-running beginner favourite at 50 MHz, and it has twice the inputs: four channels, which matters more than any other spec if you watch several signals at once.",
+    "Rigol DHO802 vs Rigol DS1054Z sets two Rigol generations against each other, and they pull in opposite directions. The DHO802 is the newer design: 70 MHz, 12-bit resolution, a 1024 × 600 touchscreen and standard serial decoding including CAN, but only two channels. The DS1054Z is the long-running beginner favorite at 50 MHz, and it has twice the inputs: four channels, which matters more than any other spec if you watch several signals at once.",
   a: {
     pick: dho802,
     imageAlt: "Rigol DHO802 two-channel 12-bit oscilloscope, front panel",
@@ -134,7 +134,7 @@ const comparison: ProductComparisonContent = {
         <h2 className="text-2xl font-semibold mb-4">Which should you buy?</h2>
         <p className="text-muted leading-7 mb-4">
           Start from the number of signals you need to see together, because that is the one thing you can&apos;t
-          work around later. If two is always enough, almost every other line favours the DHO802. If you regularly
+          work around later. If two is always enough, almost every other line favors the DHO802. If you regularly
           need three or four, the DS1054Z is the only one of the pair that can do it.
         </p>
         <DataTable

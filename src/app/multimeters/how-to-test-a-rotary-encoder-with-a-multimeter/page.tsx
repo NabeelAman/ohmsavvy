@@ -76,7 +76,7 @@ export default function HowToTestARotaryEncoderWithAMultimeterPage() {
         },
         {
           q: "Can a multimeter test an optical or magnetic encoder?",
-          a: "Not with continuity. Optical and magnetic encoders contain electronics and need a supply voltage before they produce any output. You can power one at its rated voltage and read the A and B outputs as DC levels while turning the shaft slowly, but the fast pulse train needs an oscilloscope or logic analyser.",
+          a: "Not with continuity. Optical and magnetic encoders contain electronics and need a supply voltage before they produce any output. You can power one at its rated voltage and read the A and B outputs as DC levels while turning the shaft slowly, but the fast pulse train needs an oscilloscope or logic analyzer.",
         },
         {
           q: "My volume knob jumps or goes the wrong way. Is the encoder bad?",
@@ -211,7 +211,7 @@ export default function HowToTestARotaryEncoderWithAMultimeterPage() {
             </>
           }
         >
-          <svg viewBox="0 0 320 150" className="w-full h-auto" role="img" aria-label="Timing diagram of quadrature signals A and B offset by a quarter cycle, labelled with the Gray code states 00, 01, 11 and 10">
+          <svg viewBox="0 0 320 150" className="w-full h-auto" role="img" aria-label="Timing diagram of quadrature signals A and B offset by a quarter cycle, labeled with the Gray code states 00, 01, 11 and 10">
             <g strokeWidth="2" fill="none">
               <path d="M40 50 H100 V30 H180 V50 H260 V30 H300" className="stroke-accent" />
               <path d="M40 95 H60 V75 H140 V95 H220 V75 H300" className="stroke-foreground" />
@@ -279,7 +279,7 @@ export default function HowToTestARotaryEncoderWithAMultimeterPage() {
           A meter updates a few times a second, while a knob turned at normal speed produces edges a few
           milliseconds apart, and bounce lasts less than that. The slow detent test proves the contacts and
           sequence are right; to see bounce and timing at real speed, add pull-up resistors and watch A and B
-          on an oscilloscope or logic analyser. As a halfway check, wire 10 kΩ pull-ups from A and B to 5V, ground
+          on an oscilloscope or logic analyzer. As a halfway check, wire 10 kΩ pull-ups from A and B to 5V, ground
           C, and read each channel on DC volts: about 5V means open, near 0V means closed.
         </KeyIdea>
       </section>

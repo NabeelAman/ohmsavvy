@@ -179,7 +179,7 @@ export default function HowToTestAThermistorWithAMultimeterPage() {
         </p>
         <p className="text-muted leading-7 mb-4">
           Remember that room temperature is rarely exactly 25 °C. A 10k NTC in a 22 °C room will read
-          higher than 10 kΩ, about 11.4 kΩ for a typical B3950 part. That is correct behaviour, not a fault.
+          higher than 10 kΩ, about 11.4 kΩ for a typical B3950 part. That is correct behavior, not a fault.
         </p>
         <p className="text-muted leading-7 mb-4">
           Also allow for tolerance. A 5% 10k part may read anywhere from 9.5 kΩ to 10.5 kΩ at exactly 25 °C,

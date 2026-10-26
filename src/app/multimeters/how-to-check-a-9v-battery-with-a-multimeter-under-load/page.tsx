@@ -282,7 +282,7 @@ export default function HowToCheckA9vBatteryWithAMultimeterUnderLoadPage() {
           Battery voltage also falls as temperature drops, which is one reason alarms often start chirping in
           the early hours when the heating has been off. A loaded reading gives a far better verdict than an
           open-circuit one. If a fresh, loaded-tested battery does not stop the chirp, the alarm itself may be
-          signalling end of life: check its manual.
+          signaling end of life: check its manual.
         </p>
       </section>
 

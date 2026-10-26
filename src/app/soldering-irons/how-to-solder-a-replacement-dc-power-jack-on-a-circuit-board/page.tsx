@@ -65,12 +65,12 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
       ]}
       faq={[
         {
-          q: "How can I tell whether my device is centre-positive or centre-negative?",
-          a: "Look for the polarity symbol near the power input or on the original adapter: a circle with a dot, where the line from the dot marked + means centre-positive. Centre-positive is far more common on electronics, but some devices, including many guitar effects pedals, are centre-negative. When there is no marking, trace the centre pin to the board and measure which rail it feeds.",
+          q: "How can I tell whether my device is center-positive or center-negative?",
+          a: "Look for the polarity symbol near the power input or on the original adapter: a circle with a dot, where the line from the dot marked + means center-positive. Center-positive is far more common on electronics, but some devices, including many guitar effects pedals, are center-negative. When there is no marking, trace the center pin to the board and measure which rail it feeds.",
         },
         {
           q: "Will a 5.5x2.1mm plug fit a 5.5x2.5mm jack?",
-          a: "It will usually go in, because the outer sleeve size is the same, but the 2.1mm hole fits loosely on the larger 2.5mm centre pin and contact is intermittent. The reverse, a 2.5mm plug onto a 2.1mm pin, often will not seat at all. Measure the old jack's centre pin with calipers and buy the matching size.",
+          a: "It will usually go in, because the outer sleeve size is the same, but the 2.1mm hole fits loosely on the larger 2.5mm center pin and contact is intermittent. The reverse, a 2.5mm plug onto a 2.1mm pin, often will not seat at all. Measure the old jack's center pin with calipers and buy the matching size.",
         },
         {
           q: "Why won't the solder on the old jack melt?",
@@ -101,7 +101,7 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
       <section>
         <h2 id="jack-anatomy" className="text-xl font-semibold mb-3">Barrel jack anatomy and polarity</h2>
         <p className="text-muted leading-7 mb-4">
-          A barrel jack has a centre pin and a sprung outer contact that grips the plug sleeve. Most
+          A barrel jack has a center pin and a sprung outer contact that grips the plug sleeve. Most
           board-mount versions add a third terminal, a switch that opens when a plug is inserted. Polarity
           describes which of the two power contacts is positive. Unlike USB ports, which are fine-pitch and
           fixed in their pin assignment, barrel jacks are big, simple, and easy to wire backwards.
@@ -109,19 +109,19 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
         <Figure
           caption={
             <>
-              Cross-section of a plug in a jack. In a centre-positive device the pin carries +V and the sleeve
-              is ground; centre-negative devices swap them. The polarity symbol (right) shows which.
+              Cross-section of a plug in a jack. In a center-positive device the pin carries +V and the sleeve
+              is ground; center-negative devices swap them. The polarity symbol (right) shows which.
             </>
           }
         >
-          <svg viewBox="0 0 320 140" className="w-full h-auto" role="img" aria-label="Cross-section of a DC barrel plug inside a jack showing centre pin and sleeve contacts, with the centre-positive polarity symbol">
+          <svg viewBox="0 0 320 140" className="w-full h-auto" role="img" aria-label="Cross-section of a DC barrel plug inside a jack showing center pin and sleeve contacts, with the center-positive polarity symbol">
             <rect x="20" y="30" width="160" height="70" rx="4" className="fill-surface stroke-foreground" strokeWidth="1.4" />
             <rect x="60" y="48" width="120" height="34" className="fill-muted/40 stroke-foreground" strokeWidth="1.2" />
             <rect x="60" y="58" width="120" height="14" className="fill-surface" />
             <rect x="30" y="61" width="120" height="8" className="fill-accent" />
             <text x="48" y="22" fontSize="9" className="fill-foreground">jack body</text>
             <text x="120" y="96" fontSize="9" textAnchor="middle" className="fill-foreground">plug sleeve</text>
-            <text x="90" y="56" fontSize="8" textAnchor="middle" className="fill-accent">centre pin</text>
+            <text x="90" y="56" fontSize="8" textAnchor="middle" className="fill-accent">center pin</text>
             <path d="M60 48 L50 40 M60 82 L50 90" className="stroke-foreground" strokeWidth="1.5" />
             <text x="30" y="118" fontSize="8" className="fill-muted">sprung sleeve contact</text>
             <circle cx="262" cy="65" r="16" className="fill-none stroke-foreground" strokeWidth="1.6" />
@@ -130,7 +130,7 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
             <line x1="246" y1="65" x2="226" y2="65" className="stroke-foreground" strokeWidth="1.4" />
             <text x="306" y="69" fontSize="12" className="fill-accent">+</text>
             <text x="214" y="69" fontSize="12" className="fill-foreground">−</text>
-            <text x="262" y="108" fontSize="9" textAnchor="middle" className="fill-foreground">centre-positive</text>
+            <text x="262" y="108" fontSize="9" textAnchor="middle" className="fill-foreground">center-positive</text>
           </svg>
         </Figure>
       </section>
@@ -139,7 +139,7 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
         <StepHeading n={1} id="match-the-jack">Match the replacement jack</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Three things have to match: the barrel size, the footprint, and the mounting style. Barrel sizes
-          are given as outer diameter by centre-pin diameter. Footprints vary widely even within one size, so
+          are given as outer diameter by center-pin diameter. Footprints vary widely even within one size, so
           compare pin spacing and lug shape with the old part, or order by the original manufacturer part
           number if it is printed on the jack or listed in a service manual.
         </p>
@@ -205,9 +205,9 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
         <StepHeading n={5} id="verify-polarity">Verify polarity before applying power</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Start with the adapter on its own, not plugged into anything: red probe inside the plug on the
-          centre contact, black on the outer barrel. A positive reading means centre-positive. Then, with the
+          center contact, black on the outer barrel. A positive reading means center-positive. Then, with the
           board unpowered and still out of its case, use continuity mode to confirm that the
-          jack&apos;s centre pin connects to the trace it should, and that pin and sleeve are not shorted.
+          jack&apos;s center pin connects to the trace it should, and that pin and sleeve are not shorted.
           The{" "}
           <Link href="/multimeters/how-to-use-a-multimeter" className={link}>
             multimeter guide

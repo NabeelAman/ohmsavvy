@@ -16,7 +16,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "How to measure resistance in ohms with a digital multimeter: setting the dial, Ω, kΩ and MΩ, lead resistance, colour codes, tolerance and OL readings.";
+  "How to measure resistance in ohms with a digital multimeter: setting the dial, Ω, kΩ and MΩ, lead resistance, color codes, tolerance and OL readings.";
 
 export const metadata = buildMetadata({
   title: "Measure Resistance in Ohms With a Multimeter",
@@ -30,7 +30,7 @@ const fluke87 = picks.find((p) => p.name === "Fluke 87V")!;
 
 const link = "text-accent hover:underline";
 
-/** A resistor with its colour bands and the two meter probes on its leads. */
+/** A resistor with its color bands and the two meter probes on its leads. */
 function ResistorProbeDiagram() {
   return (
     <svg viewBox="0 0 340 150" className="w-full h-auto" role="img" aria-label="A 4.7 kilohm resistor with yellow, violet, red and gold bands, probed at each lead by a multimeter">
@@ -94,7 +94,7 @@ export default function HowToMeasureResistanceInOhmsPage() {
         { id: "null-the-leads", label: "Null the lead resistance" },
         { id: "take-the-reading", label: "Take the reading" },
         { id: "manual-ranges", label: "Choosing a manual range" },
-        { id: "colour-code", label: "Check against the colour code" },
+        { id: "color-code", label: "Check against the color code" },
         { id: "tolerance", label: "Is it within tolerance?" },
         { id: "in-circuit", label: "Why in-circuit readings mislead" },
         { id: "which-meter", label: "Which meter to use" },
@@ -258,9 +258,9 @@ export default function HowToMeasureResistanceInOhmsPage() {
       </section>
 
       <section>
-        <h2 id="colour-code" className="text-xl font-semibold mb-3">Check against the resistor colour code</h2>
+        <h2 id="color-code" className="text-xl font-semibold mb-3">Check against the resistor color code</h2>
         <DataTable
-          head={["Colour", "Digit", "Multiplier", "Tolerance"]}
+          head={["Color", "Digit", "Multiplier", "Tolerance"]}
           rows={[
             ["Black", "0", "×1", "—"],
             ["Brown", "1", "×10", "±1%"],
@@ -270,14 +270,14 @@ export default function HowToMeasureResistanceInOhmsPage() {
             ["Green", "5", "×100k", "±0.5%"],
             ["Blue", "6", "×1M", "±0.25%"],
             ["Violet", "7", "×10M", "±0.1%"],
-            ["Grey", "8", "—", "—"],
+            ["Gray", "8", "—", "—"],
             ["White", "9", "—", "—"],
             ["Gold", "—", "×0.1", "±5%"],
             ["Silver", "—", "×0.01", "±10%"],
           ]}
         />
         <KeyIdea title="Brown and red bands confuse everyone">
-          Under poor light, brown, red and orange are easily mistaken for each other. When the colours are in doubt,
+          Under poor light, brown, red and orange are easily mistaken for each other. When the colors are in doubt,
           the meter reading settles it: it is the quickest way to sort a mixed bag of resistors.
         </KeyIdea>
       </section>

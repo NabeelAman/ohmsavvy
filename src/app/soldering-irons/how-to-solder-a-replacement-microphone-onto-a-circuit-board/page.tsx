@@ -268,10 +268,10 @@ export default function HowToSolderAReplacementMicrophoneOntoACircuitBoardPage()
       <section>
         <h2 id="shielded-cable" className="text-xl font-semibold mb-3">Lead length and shielded cable</h2>
         <p className="text-muted leading-7">
-          A microphone signal is only millivolts, so every centimetre of unshielded wire acts as an aerial
+          A microphone signal is only millivolts, so every centimeter of unshielded wire acts as an aerial
           for mains hum and digital noise. Mount the capsule as close to the board as the enclosure allows.
           Where it has to sit remotely, as in a headset boom, a camera housing or a dashboard, use thin
-          shielded audio cable: centre conductor to the output pad, braid or drain wire to the ground pad.
+          shielded audio cable: center conductor to the output pad, braid or drain wire to the ground pad.
           Ground the shield at the board end, keep the exposed pigtail short, and slide heat-shrink over the
           capsule joints so the shield cannot short the output.
         </p>
@@ -281,7 +281,7 @@ export default function HowToSolderAReplacementMicrophoneOntoACircuitBoardPage()
         <h2 id="mems-microphones" className="text-xl font-semibold mb-3">MEMS microphones in phones and laptops</h2>
         <p className="text-muted leading-7 mb-4">
           Phones, laptops, earbuds and smart speakers mostly use MEMS microphones: tiny rectangular SMD
-          packages, typically a few millimetres across, with land pads underneath and a sound port that
+          packages, typically a few millimeters across, with land pads underneath and a sound port that
           lines up with a hole drilled through the board (bottom-port) or sits on the lid (top-port). A hand
           iron is not suitable when the pads are hidden under the body, which is nearly always. Hot air, with
           the board preheated and the area around shielded with Kapton tape, is the usual method.

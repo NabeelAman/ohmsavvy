@@ -18,7 +18,7 @@ const review: ProductReviewContent = {
   intendedBuyer: "Makers who need a portable iron for field repairs",
   imageAlt: "Pinecil V2 portable USB-C soldering iron",
   considerIf: [
-    "You solder away from a bench: at a desk, on site, or while travelling",
+    "You solder away from a bench: at a desk, on site, or while traveling",
     "You already own a USB-C PD charger or power bank",
     "You want fast heat-up in a small tool",
     "You're fine budgeting separately for a stand and a few extra tips to get the portability you want"

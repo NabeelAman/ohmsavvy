@@ -57,7 +57,7 @@ const review: ProductReviewContent = {
   faqs: [
     {
       question: "Is the Extech EX330 True RMS?",
-      answer: "Extech doesn't list it as True RMS. Its datasheet covers autoranging, NCV, Type K temperature, capacitance and frequency, while Extech's True RMS models are labelled as such, so treat its AC readings on non-sinusoidal signals with caution."
+      answer: "Extech doesn't list it as True RMS. Its datasheet covers autoranging, NCV, Type K temperature, capacitance and frequency, while Extech's True RMS models are labeled as such, so treat its AC readings on non-sinusoidal signals with caution."
     },
     {
       question: "Is the Extech EX330 safe for household electrical panels?",

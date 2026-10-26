@@ -64,7 +64,7 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
         { id: "short-answer", label: "The short answer" },
         { id: "vertical-position", label: "1. Vertical position and offset" },
         { id: "dc-coupling", label: "2. DC coupling shows the DC level" },
-        { id: "ac-coupling-settling", label: "3. AC coupling re-centres the trace" },
+        { id: "ac-coupling-settling", label: "3. AC coupling re-centers the trace" },
         { id: "probe-attenuation", label: "4. Probe attenuation set wrong" },
         { id: "ground-reference", label: "5. Ground reference problems" },
         { id: "autoset", label: "6. Auto/AutoSet moved things" },
@@ -79,7 +79,7 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
         },
         {
           q: "How do I reset the vertical position to zero?",
-          a: "On many digital scopes, pressing the vertical position knob returns that channel's ground marker to the centre line. Others have a menu option to zero the offset. A full default setup also resets it, but that clears every other setting too. The exact method varies by model, so check your scope's manual.",
+          a: "On many digital scopes, pressing the vertical position knob returns that channel's ground marker to the center line. Others have a menu option to zero the offset. A full default setup also resets it, but that clears every other setting too. The exact method varies by model, so check your scope's manual.",
         },
         {
           q: "Why does my waveform jump when I change volts per division?",
@@ -128,8 +128,8 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
         <InfoCards
           items={[
             { label: "Vertical position", desc: "Someone turned the position knob, or the offset moved with a V/div change." },
-            { label: "DC coupling", desc: "The signal has a DC component, so it sits above or below ground. Correct behaviour." },
-            { label: "AC coupling", desc: "DC is removed and the trace drifts back to centre after any level change." },
+            { label: "DC coupling", desc: "The signal has a DC component, so it sits above or below ground. Correct behavior." },
+            { label: "AC coupling", desc: "DC is removed and the trace drifts back to center after any level change." },
             { label: "Probe ratio", desc: "Channel set to 1x with a 10x probe, or the reverse, scales every level." },
             { label: "Ground reference", desc: "Ground clip loose, missing, or on a point that isn't the circuit's 0 V." },
             { label: "Real drift", desc: "The signal's own DC level is changing: supply sag, warm-up, coupling capacitors." },
@@ -142,13 +142,13 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
         <p className="text-muted leading-7 mb-4">
           Each channel has a vertical position knob that slides the trace and its ground marker (the
           small arrow at the left edge) up or down together. It doesn&apos;t change the signal or the
-          reading, because levels are measured from the marker, not from the centre line. Moving it is
+          reading, because levels are measured from the marker, not from the center line. Moving it is
           useful: dropping the ground marker 2 divisions lets a 0–5 V logic signal fill the screen at 1
           V/div. But if someone else used the scope last, or you nudged the knob, the trace can appear
           to have jumped.
         </p>
         <p className="text-muted leading-7">
-          On many scopes, pressing the position knob returns the marker to the centre line. Some models
+          On many scopes, pressing the position knob returns the marker to the center line. Some models
           also hold the offset in volts rather than divisions, so the trace moves when you change V/div.
           Always read levels from the marker, as explained in{" "}
           <Link href="/oscilloscopes/how-to-read-an-oscilloscope" className={link}>
@@ -164,12 +164,12 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
           With DC coupling, the scope shows everything, including any steady voltage the signal sits on.
           An audio stage biased at half its supply, a sensor output with a 2.5 V midpoint, or ripple on a
           5 V rail all appear lifted off the ground line. That isn&apos;t a shift; it is the true
-          voltage. Switching to AC coupling removes the DC part and centres the waveform.
+          voltage. Switching to AC coupling removes the DC part and centers the waveform.
         </p>
         <Figure
           caption={
             <>
-              A 1 V peak-to-peak sine riding on 2.5 V DC, both at 1 V/div with ground on the centre line.
+              A 1 V peak-to-peak sine riding on 2.5 V DC, both at 1 V/div with ground on the center line.
               Left, DC coupled: the trace is centred 2.5 divisions up (2.5 × 1 V = 2.5 V). Right, AC
               coupled: the 2.5 V is blocked and the 1-division (1 V p-p) swing is centred on ground.
             </>
@@ -203,17 +203,17 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
       </section>
 
       <section>
-        <h2 id="ac-coupling-settling" className="text-xl font-semibold mb-3">3. AC coupling re-centres the trace, slowly</h2>
+        <h2 id="ac-coupling-settling" className="text-xl font-semibold mb-3">3. AC coupling re-centers the trace, slowly</h2>
         <p className="text-muted leading-7 mb-4">
           AC coupling works by putting a capacitor in series with the input, which forms a high-pass
           filter with the input resistance. It doesn&apos;t remove DC instantly. When the signal&apos;s DC
           level steps, for example when a circuit powers up or a load switches on, the trace jumps by the
-          size of the step and then drifts back towards the centre line as the capacitor charges. The
+          size of the step and then drifts back towards the center line as the capacitor charges. The
           cutoff frequency, and so the speed of that drift, varies by model; your scope&apos;s datasheet
           lists it.
         </p>
         <p className="text-muted leading-7 mb-4">
-          AC coupling also centres a waveform on its average, not on its low level. A 0–5 V square wave
+          AC coupling also centers a waveform on its average, not on its low level. A 0–5 V square wave
           at 50% duty averages 2.5 V, so it shows as ±2.5 V. Change the duty to 20% and the average drops
           to 1 V, so the same signal now shows as +4 V and −1 V: the whole trace moves up even though the
           real levels never changed.
@@ -387,8 +387,8 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
             rows={[
               ["Trace offset but readings from the marker are right", "Vertical position moved", "Re-zero the position; read from the ground marker"],
               ["DC level missing, trace centred on ground", "AC coupling", "Switch to DC coupling"],
-              ["Trace jumps then creeps back to centre", "AC coupling settling after a level change", "Use DC coupling"],
-              ["Trace moves when duty cycle changes", "AC coupling centres on the average", "Use DC coupling"],
+              ["Trace jumps then creeps back to center", "AC coupling settling after a level change", "Use DC coupling"],
+              ["Trace moves when duty cycle changes", "AC coupling centers on the average", "Use DC coupling"],
               ["Levels 10 times too small or too large", "Probe ratio mismatch", "Match the channel setting to the probe"],
               ["Baseline wanders and hums", "Ground clip loose, missing or on a busy return", "Clip to ground next to the signal"],
               ["Shift appears after pressing Auto", "AutoSet reset the position", "Re-check the channel menu"],

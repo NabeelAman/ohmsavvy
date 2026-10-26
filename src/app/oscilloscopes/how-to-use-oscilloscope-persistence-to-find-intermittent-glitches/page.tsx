@@ -15,7 +15,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-beginner-oscilloscopes/page";
 
 const description =
-  "How to use oscilloscope persistence to find intermittent glitches: infinite vs variable modes, colour grading, and glitch or runt triggers to isolate them.";
+  "How to use oscilloscope persistence to find intermittent glitches: infinite vs variable modes, color grading, and glitch or runt triggers to isolate them.";
 
 export const metadata = buildMetadata({
   title: "How to Use Oscilloscope Persistence for Glitches",
@@ -35,7 +35,7 @@ function squarePath(j: number) {
   return `M0 150 H${40 + j} V50 H${90 + j} V150 H${140 + j} V50 H${190 + j} V150 H${240 + j} V50 H${290 + j} V150 H300`;
 }
 
-/** Infinite persistence with colour grading: many normal sweeps pile into a bright band; one runt stands out. */
+/** Infinite persistence with color grading: many normal sweeps pile into a bright band; one runt stands out. */
 function PersistenceScreen() {
   return (
     <svg
@@ -59,7 +59,7 @@ function PersistenceScreen() {
       {Array.from({ length: 9 }, (_, i) => (
         <line key={`h${i}`} x1="0" y1={i * 25} x2="300" y2={i * 25} stroke="#2c4a3a" strokeWidth="0.6" strokeDasharray="2 3" />
       ))}
-      {/* the frequent, normal sweeps: hot colour where they pile up */}
+      {/* the frequent, normal sweeps: hot color where they pile up */}
       {JITTER.map((j) => (
         <path key={j} d={squarePath(j)} fill="none" stroke="#ffd56b" strokeOpacity="0.28" strokeWidth="2" />
       ))}
@@ -74,11 +74,11 @@ function PersistenceScreen() {
       <circle cx="213" cy="104" r="13" fill="none" stroke="#5BB3E8" strokeWidth="1" strokeDasharray="3 2" />
       <text x="213" y="84" fontSize="10" textAnchor="middle" fill="#5BB3E8">rare runt</text>
       <text x="65" y="44" fontSize="10" textAnchor="middle" fill="#ffd56b">normal sweeps</text>
-      {/* colour-grade legend */}
+      {/* color-grade legend */}
       <rect x="60" y="214" width="180" height="8" rx="2" fill="url(#persist-grade)" />
       <text x="54" y="221" fontSize="9" textAnchor="end" fill="#9fe3b4">rare</text>
       <text x="246" y="221" fontSize="9" fill="#9fe3b4">frequent</text>
-      <text x="150" y="236" fontSize="9" textAnchor="middle" fill="#9fe3b4">infinite persistence, colour graded</text>
+      <text x="150" y="236" fontSize="9" textAnchor="middle" fill="#9fe3b4">infinite persistence, color graded</text>
     </svg>
   );
 }
@@ -116,7 +116,7 @@ export default function HowToUseOscilloscopePersistenceToFindIntermittentGlitche
       }}
       toc={[
         { id: "what-persistence-is", label: "What persistence is" },
-        { id: "colour-grading", label: "Colour grading and intensity" },
+        { id: "color-grading", label: "Color grading and intensity" },
         { id: "trigger-on-the-normal-edge", label: "Trigger on the normal edge" },
         { id: "turn-on-infinite-persistence", label: "Turn on infinite persistence" },
         { id: "leave-it-running", label: "Leave it running" },
@@ -129,7 +129,7 @@ export default function HowToUseOscilloscopePersistenceToFindIntermittentGlitche
       faq={[
         {
           q: "What is the difference between variable and infinite persistence?",
-          a: "Variable persistence keeps each sweep on screen for a set time, such as one second, then lets it fade, so the display shows recent behaviour. Infinite persistence never fades: every sweep since you last cleared the display stays visible. Use variable persistence to watch jitter or drift in real time, and infinite persistence to hunt for a rare event over a long run.",
+          a: "Variable persistence keeps each sweep on screen for a set time, such as one second, then lets it fade, so the display shows recent behavior. Infinite persistence never fades: every sweep since you last cleared the display stays visible. Use variable persistence to watch jitter or drift in real time, and infinite persistence to hunt for a rare event over a long run.",
         },
         {
           q: "How long should I leave persistence running to find a glitch?",
@@ -141,7 +141,7 @@ export default function HowToUseOscilloscopePersistenceToFindIntermittentGlitche
         },
         {
           q: "Is persistence the same as a digital phosphor display?",
-          a: "They aim at the same thing. Digital phosphor is a marketing term some manufacturers use for a display that stacks many captures and shows how often each pixel was hit, mimicking the glow of an analogue tube. Persistence with colour grading or intensity grading on other digital scopes works on the same principle, though update rates differ between models.",
+          a: "They aim at the same thing. Digital phosphor is a marketing term some manufacturers use for a display that stacks many captures and shows how often each pixel was hit, mimicking the glow of an analogue tube. Persistence with color grading or intensity grading on other digital scopes works on the same principle, though update rates differ between models.",
         },
         {
           q: "Can persistence find a glitch on a slow timebase?",
@@ -165,7 +165,7 @@ export default function HowToUseOscilloscopePersistenceToFindIntermittentGlitche
         <ul className="space-y-2 list-disc pl-5">
           <li>
             Long glitch hunts mean leaving probes attached for a long time. Clip the ground lead only to
-            circuit ground and secure the probe so it cannot slip and short neighbouring pins.
+            circuit ground and secure the probe so it cannot slip and short neighboring pins.
           </li>
           <li>
             Glitches on mains-powered equipment are often caused by switching on the primary side. Do not
@@ -188,7 +188,7 @@ export default function HowToUseOscilloscopePersistenceToFindIntermittentGlitche
             { label: "Off", desc: "Each sweep replaces the last. Best for normal measurements." },
             { label: "Variable", desc: "Sweeps fade after a time you set. Shows jitter and recent drift." },
             { label: "Infinite", desc: "Nothing fades until you clear it. The tool for rare events." },
-            { label: "Colour grading", desc: "Colour shows how often a pixel was hit: cool for rare, hot for frequent." },
+            { label: "Color grading", desc: "Color shows how often a pixel was hit: cool for rare, hot for frequent." },
             { label: "Intensity grading", desc: "Same idea using brightness: rare events are dim, common ones bright." },
             { label: "Clear", desc: "Wipes the stored sweeps. Press it once your setup is final." },
           ]}
@@ -196,14 +196,14 @@ export default function HowToUseOscilloscopePersistenceToFindIntermittentGlitche
       </section>
 
       <section>
-        <h2 id="colour-grading" className="text-xl font-semibold mb-3">Colour grading and intensity: reading the heat map</h2>
+        <h2 id="color-grading" className="text-xl font-semibold mb-3">Color grading and intensity: reading the heat map</h2>
         <p className="text-muted leading-7 mb-4">
           With grading on, the display becomes a histogram drawn on the graticule. The path the signal takes
-          on almost every cycle turns the hottest colour or brightest shade. Edges that wander slightly in
-          time widen into a band. A glitch that happened once sits outside that band in the coolest colour,
+          on almost every cycle turns the hottest color or brightest shade. Edges that wander slightly in
+          time widen into a band. A glitch that happened once sits outside that band in the coolest color,
           which is exactly what makes it easy to spot against a busy trace.
         </p>
-        <Figure caption={<>Illustration of an infinite-persistence display. The normal sweeps pile up into a hot band with slightly smeared edges; the single sweep that contained a runt pulse shows as a faint, cool-coloured outlier.</>}>
+        <Figure caption={<>Illustration of an infinite-persistence display. The normal sweeps pile up into a hot band with slightly smeared edges; the single sweep that contained a runt pulse shows as a faint, cool-colored outlier.</>}>
           <PersistenceScreen />
         </Figure>
       </section>
@@ -225,7 +225,7 @@ export default function HowToUseOscilloscopePersistenceToFindIntermittentGlitche
       <section>
         <StepHeading n={2} id="turn-on-infinite-persistence">Turn on infinite persistence</StepHeading>
         <p className="text-muted leading-7">
-          Persistence normally lives in the Display menu. Set it to Infinite, turn on colour or intensity
+          Persistence normally lives in the Display menu. Set it to Infinite, turn on color or intensity
           grading if your scope offers it, then press Clear so you start from an empty buffer. From here on,
           avoid touching V/div, time/div or the trigger: on most scopes any of those clears the stored
           sweeps and you start again.

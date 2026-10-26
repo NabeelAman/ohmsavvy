@@ -285,7 +285,7 @@ export default function HowToUseAnOscilloscopeToCheckACrystalOscillatorPage() {
             head={["Check", "Why it matters"]}
             rows={[
               ["Has firmware enabled the external oscillator?", "Many microcontrollers boot on an internal RC clock and only start the crystal when configured to"],
-              ["Does it start with the probe removed?", "Test via a clock output or the chip's behaviour; the probe may be what stops it"],
+              ["Does it start with the probe removed?", "Test via a clock output or the chip's behavior; the probe may be what stops it"],
               ["Load capacitors fitted and the right value?", "Missing or wrong capacitors change the load and can stop oscillation"],
               ["Crystal correct for the circuit?", "Wrong frequency, wrong load capacitance or an overtone part can fail to start"],
               ["Solder joints and board clean?", "Cracked joints, a damaged crystal or flux residue leaking between pins all stop it"],

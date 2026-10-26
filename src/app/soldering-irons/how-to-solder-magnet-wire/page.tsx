@@ -97,7 +97,7 @@ export default function HowToSolderMagnetWirePage() {
         <p className="text-muted leading-7">
           Ordinary insulated wire has a plastic jacket thick enough for a stripper&apos;s blades to grip
           and pull off. Magnet wire&apos;s enamel coating is a thin, baked-on varnish layer, often only
-          a few thousandths of a millimetre thick — far too thin for a mechanical stripper to catch,
+          a few thousandths of a millimeter thick — far too thin for a mechanical stripper to catch,
           and it bonds directly to the copper surface rather than sitting as a separate removable layer.
         </p>
       </section>
@@ -112,7 +112,7 @@ export default function HowToSolderMagnetWirePage() {
           Headphone cables use the same enamel-coated strands; <Link href="/soldering-irons/how-to-solder-a-broken-headphone-wire-with-a-soldering-iron" className="text-accent hover:underline">how to solder a broken headphone wire</Link> applies these methods to a cable repair.
         </p>
         <DataTable
-          head={["Enamel type", "Behaviour under a hot iron", "Common use"]}
+          head={["Enamel type", "Behavior under a hot iron", "Common use"]}
           rows={[
             ["Solderable (often polyurethane-based)", "Burns/dissolves away directly under sufficient heat and flux", "Fine-gauge wire: small transformers, inductors, speaker voice coils"],
             ["Non-solderable (polyester-imide, polyimide, heavier builds)", "Resists typical iron temperatures; doesn't clear with heat alone", "Motor windings, heavier-duty or high-temperature-rated magnet wire"],

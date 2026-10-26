@@ -131,12 +131,12 @@ export default function HowToTestA4WireFanMotorWithAMultimeterPage() {
           A 4 wire fan is a brushless DC motor with its own driver electronics in the hub. The driver switches
           current through the stator coils, senses the rotor position, reports the speed on one wire and
           accepts a speed command on another. On the common PC-style connector the pin order is ground, +12
-          V, tach and PWM, with pin 4 the extra pin that a 3 pin header leaves unused. Wire colours are a convention, not a rule:
+          V, tach and PWM, with pin 4 the extra pin that a 3 pin header leaves unused. Wire colors are a convention, not a rule:
           many fans use black, yellow, green and blue, but others differ, so confirm the pinout from the
           fan&apos;s label or datasheet before probing.
         </p>
         <DataTable
-          head={["Pin", "Function", "Common colour", "Typical reading (fan running)"]}
+          head={["Pin", "Function", "Common color", "Typical reading (fan running)"]}
           rows={[
             ["1", "Ground", "Black", "0 V reference for every other measurement"],
             ["2", "+12 V supply", "Yellow (or red)", "About 12 V DC to ground"],
@@ -209,7 +209,7 @@ export default function HowToTestA4WireFanMotorWithAMultimeterPage() {
         <Figure
           caption={
             <>
-              Tach signal with a 5 V pull-up at 2 V/div and 5 ms/div, 0 V on the centre line. The high level
+              Tach signal with a 5 V pull-up at 2 V/div and 5 ms/div, 0 V on the center line. The high level
               is 2.5 div × 2 V = 5 V. One period is 4 div × 5 ms = 20 ms, so the frequency is 50 Hz: 1,500
               rpm at two pulses per revolution. A meter on DC volts would show the average, about 2.5 V.
             </>
@@ -301,7 +301,7 @@ export default function HowToTestA4WireFanMotorWithAMultimeterPage() {
           Power the fan from 12 V on pins 1 and 2 only, with pin 4 left unconnected. Most 4 wire fans then run
           at full speed. Briefly tie pin 4 to ground through a 1 kΩ resistor and many will slow to their
           minimum speed or stop, depending on the design. A fan that ignores both has a faulty control input.
-          Check the datasheet before relying on either behaviour.
+          Check the datasheet before relying on either behavior.
         </KeyIdea>
         <p className="text-muted leading-7 mt-4">
           Some meters offer a duty-cycle function, which reads the percentage directly if the meter can handle

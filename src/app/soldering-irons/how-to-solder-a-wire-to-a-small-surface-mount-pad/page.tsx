@@ -34,7 +34,7 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
       published="2026-10-22"
       intro={
         <>
-          Adding a bodge wire, tapping a test point for a logic analyser, or landing a lead on the end of an
+          Adding a bodge wire, tapping a test point for a logic analyzer, or landing a lead on the end of an
           0603 resistor all mean attaching a conductor to copper with no hole to hold it. If you want to
           solder a wire to a small surface mount pad, the soldering itself takes about a second; the real
           work is in choosing a thin enough wire, tinning both parts beforehand, and making sure nothing
@@ -81,12 +81,12 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
           a: "Yes, on gull-wing packages such as SOIC or TSSOP the outer bend of the pin is often easier to reach than the pad, and the joint is still electrically identical. Keep the wire very short and anchored, because a pin can be bent or cracked off the package as easily as a pad can lift.",
         },
         {
-          q: "How do I keep the wire from shorting to the neighbouring pin?",
-          a: "Strip only as much as the pad is long, tin it thinly so it does not swell, and approach the pad from the side away from its neighbours. Afterwards, check with a meter between the wire and each adjacent pin before power is applied.",
+          q: "How do I keep the wire from shorting to the neighboring pin?",
+          a: "Strip only as much as the pad is long, tin it thinly so it does not swell, and approach the pad from the side away from its neighbors. Afterwards, check with a meter between the wire and each adjacent pin before power is applied.",
         },
         {
           q: "Is hot glue good enough as strain relief?",
-          a: "A small dab of hot glue a few millimetres from the joint works for a quick fix or a prototype. For a repair that has to last, Kapton tape over the wire run or UV-curing solder mask or adhesive gives a thinner, tidier anchor that does not soften if the board gets warm.",
+          a: "A small dab of hot glue a few millimeters from the joint works for a quick fix or a prototype. For a repair that has to last, Kapton tape over the wire run or UV-curing solder mask or adhesive gives a thinner, tidier anchor that does not soften if the board gets warm.",
         },
       ]}
       next={[
@@ -163,12 +163,12 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
         <DataTable
           head={["Target", "Typical size", "Approach"]}
           rows={[
-            ["Test point pad", "Round, often 1mm or more", "Easiest; lay wire across the centre"],
+            ["Test point pad", "Round, often 1mm or more", "Easiest; lay wire across the center"],
             ["0805 end", "Part 2.0 x 1.25mm", "Land on the solder fillet at the end cap"],
             ["0603 end", "Part 1.6 x 0.8mm", "Tin wire very thinly; approach from the end"],
             ["0402 end", "Part 1.0 x 0.5mm", "Magnification needed; tiny solder only"],
             ["SOIC pin", "1.27mm pitch", "Solder to the pin foot, not between pins"],
-            ["TSSOP pin", "0.65mm pitch", "Finest wire; mask neighbours with Kapton"],
+            ["TSSOP pin", "0.65mm pitch", "Finest wire; mask neighbors with Kapton"],
           ]}
         />
       </section>
@@ -191,7 +191,7 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
       <section>
         <StepHeading n={2} id="set-up-tip">Fit a fine tip and set the heat</StepHeading>
         <p className="text-muted leading-7">
-          A fine conical or small bevel tip lets you touch the pad without also heating its neighbours. A
+          A fine conical or small bevel tip lets you touch the pad without also heating its neighbors. A
           typical starting point is around 300-340°C for leaded solder and a little higher for lead-free.
           The target is a joint that wets in about a second; if it takes much longer, add flux or nudge the
           setpoint rather than holding the tip on the pad, since prolonged heat is what loosens the copper.
@@ -230,7 +230,7 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
       <section id="anchor-it">
         <StepHeading n={5}>Anchor the wire before anything else</StepHeading>
         <KeyIdea title="The joint is electrical; the anchor is mechanical">
-          Secure the wire a few millimetres from the joint before you handle or flip the board. Kapton tape
+          Secure the wire a few millimeters from the joint before you handle or flip the board. Kapton tape
           laid over the run, a spot of UV-curing adhesive or solder mask, or a small dab of hot glue all
           work. Route long bodge wires along the board and tack them down at intervals so no length of wire
           can swing. If a pad does come up despite all this, see our guide to{" "}
@@ -246,7 +246,7 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
         <p className="text-muted leading-7 mb-4">
           Clean away the flux, then inspect under magnification for solder that has crept onto an adjacent
           pad or pin. With the board unpowered, measure from the wire to the net it should join somewhere
-          else on the board, then from the wire to each neighbouring pin to confirm there is no connection.
+          else on the board, then from the wire to each neighboring pin to confirm there is no connection.
         </p>
         <Figure
           caption={
@@ -284,7 +284,7 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
             ["Wire pops off when it cools", "Wire moved while freezing", "Hold it with tape; reflow once"],
             ["Short to the next pin", "Too much solder or stripped too long", "Wick lightly; re-strip shorter"],
             ["Insulation shrinks back from joint", "Dwell too long or PVC jacket", "Shorter touch; use Kynar-type wire"],
-            ["Neighbouring part shifted", "Tip too large, heated both ends", "Finer tip, approach from outside"],
+            ["Neighboring part shifted", "Tip too large, heated both ends", "Finer tip, approach from outside"],
           ]}
         />
       </section>

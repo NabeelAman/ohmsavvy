@@ -307,7 +307,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Which is easier for a complete beginner to learn on?",
       answer:
-        "If you have nothing to measure yet, the 1014D, because its generator produces known waveforms to practise triggering and timebase settings. If you are learning while fixing an Arduino or ESP32 project, the DSO2C10 is easier day to day: decoded bytes, 32 automatic measurements and a frequency counter save a lot of manual reading.",
+        "If you have nothing to measure yet, the 1014D, because its generator produces known waveforms to practice triggering and timebase settings. If you are learning while fixing an Arduino or ESP32 project, the DSO2C10 is easier day to day: decoded bytes, 32 automatic measurements and a frequency counter save a lot of manual reading.",
     },
     {
       question: "How much memory does each scope have?",

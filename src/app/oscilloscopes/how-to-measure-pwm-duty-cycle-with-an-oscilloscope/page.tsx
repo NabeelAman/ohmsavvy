@@ -145,7 +145,7 @@ export default function HowToMeasurePwmDutyCycleWithAnOscilloscopePage() {
         <ul className="space-y-2 list-disc pl-5 text-muted leading-7">
           <li>
             <strong className="text-foreground">Use DC coupling.</strong> AC coupling removes the DC
-            level, so the trace floats around the centre line and the true 0 V and high levels are lost.
+            level, so the trace floats around the center line and the true 0 V and high levels are lost.
             On a PWM signal whose average changes with duty, the trace even shifts as the duty changes.
           </li>
           <li>
@@ -176,7 +176,7 @@ export default function HowToMeasurePwmDutyCycleWithAnOscilloscopePage() {
           Set an edge trigger on the PWM channel, slope rising, with the level at about half the high
           voltage: 2.5 V for 5 V logic, around 1.65 V for 3.3 V. Each capture now starts on a rising
           edge, so every pulse lines up in the same place and the trace stands still. With the trigger
-          point at the centre of the screen, a rising edge sits on the centre line and the high time
+          point at the center of the screen, a rising edge sits on the center line and the high time
           extends to its right.
         </p>
         <Figure

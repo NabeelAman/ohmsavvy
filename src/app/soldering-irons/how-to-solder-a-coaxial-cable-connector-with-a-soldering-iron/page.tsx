@@ -40,7 +40,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         <>
           To solder a coaxial cable connector with a soldering iron, you slide the connector&apos;s
           coupling ring onto the cable first, strip the cable to the dimensions on the connector&apos;s
-          instruction sheet, solder the braid to the connector body and the centre conductor to the pin,
+          instruction sheet, solder the braid to the connector body and the center conductor to the pin,
           then check the finished cable with a multimeter. Two things decide whether it works: getting
           enough heat into a heavy metal body without cooking the plastic dielectric inside the cable, and
           testing before the cable goes anywhere near a radio. This guide uses the common PL-259 (UHF)
@@ -69,7 +69,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         { id: "strip-the-cable", label: "Strip the cable" },
         { id: "protect-the-dielectric", label: "Protect the dielectric" },
         { id: "solder-the-shield", label: "Solder the shield" },
-        { id: "solder-the-centre-pin", label: "Solder the centre pin" },
+        { id: "solder-the-center-pin", label: "Solder the center pin" },
         { id: "test-with-a-multimeter", label: "Test with a multimeter" },
         { id: "common-mistakes", label: "Common mistakes" },
         { id: "which-iron", label: "Which iron suits coax work" },
@@ -81,11 +81,11 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         },
         {
           q: "Can you solder a BNC or F connector instead of crimping it?",
-          a: "Only if the connector is designed for it. Many BNC connectors come in crimp, clamp and solder versions, and some solder only the centre pin. F connectors for TV and satellite cable are usually compression or crimp types with no solder joint at all. Use the method the connector was made for and follow its instruction sheet.",
+          a: "Only if the connector is designed for it. Many BNC connectors come in crimp, clamp and solder versions, and some solder only the center pin. F connectors for TV and satellite cable are usually compression or crimp types with no solder joint at all. Use the method the connector was made for and follow its instruction sheet.",
         },
         {
           q: "Why does my SWR reading look wrong after fitting a new connector?",
-          a: "Check the cable with a multimeter first. A short between the centre pin and the shield, an open centre conductor or a stray braid strand touching the pin all upset the reading. If the cable tests clean, look for a deformed dielectric, a centre pin that is not seated, or a coupling ring that is not tightened onto the radio or meter.",
+          a: "Check the cable with a multimeter first. A short between the center pin and the shield, an open center conductor or a stray braid strand touching the pin all upset the reading. If the cable tests clean, look for a deformed dielectric, a center pin that is not seated, or a coupling ring that is not tightened onto the radio or meter.",
         },
         {
           q: "Should coax connectors be weatherproofed after soldering?",
@@ -129,7 +129,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         </h2>
         <p className="text-muted leading-7 mb-4">
           Not every coax connector is meant to be soldered. The classic PL-259 is soldered at both the
-          shield and the centre pin. Many BNC, N and SMA connectors come in several versions, and the same
+          shield and the center pin. Many BNC, N and SMA connectors come in several versions, and the same
           connector name can be a crimp, clamp or solder design depending on the part number. F
           connectors for TV and satellite cable are normally compression or crimp only. The table is a
           general guide; the instruction sheet for your exact part number is the authority.
@@ -137,10 +137,10 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         <DataTable
           head={["Connector", "Common attachment methods", "Where solder is used"]}
           rows={[
-            ["PL-259 / UHF", "Solder (crimp versions also exist)", "Shield through the body holes, plus the centre pin"],
-            ["BNC", "Crimp, clamp or solder versions", "Often the centre pin only; depends on the version"],
-            ["N type", "Clamp or crimp, varies by version", "Centre pin on some clamp versions"],
-            ["SMA", "Crimp or solder versions", "Centre pin, and the shield on some solder types"],
+            ["PL-259 / UHF", "Solder (crimp versions also exist)", "Shield through the body holes, plus the center pin"],
+            ["BNC", "Crimp, clamp or solder versions", "Often the center pin only; depends on the version"],
+            ["N type", "Clamp or crimp, varies by version", "Center pin on some clamp versions"],
+            ["SMA", "Crimp or solder versions", "Center pin, and the shield on some solder types"],
             ["F type", "Compression or crimp", "Usually none"],
           ]}
         />
@@ -167,7 +167,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
               { label: "Strip", sub: "Jacket, braid, dielectric to the sheet's sizes" },
               { label: "Fit body", sub: "Screw on until the pin pokes through" },
               { label: "Shield", sub: "Solder braid through the body holes" },
-              { label: "Centre pin", sub: "Solder, trim, file flush" },
+              { label: "Center pin", sub: "Solder, trim, file flush" },
               { label: "Test", sub: "Continuity both ways, no short" },
             ]}
           />
@@ -189,7 +189,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
             { label: "Vise or clamp", desc: "Holds the cable so both hands are free and nothing touches the hot body." },
             { label: "Sharp stripping tools", desc: "A coax stripper or sharp knife, plus flush cutters. Nicked conductors break later." },
             { label: "Flux and solder", desc: "Rosin-core solder, plus extra flux for the braid and plated body." },
-            { label: "Small file", desc: "Takes excess solder off the outside of the centre pin." },
+            { label: "Small file", desc: "Takes excess solder off the outside of the center pin." },
             { label: "Multimeter", desc: "For the continuity and short checks at the end." },
           ]}
         />
@@ -235,13 +235,13 @@ export default function HowToSolderACoaxialCableConnectorPage() {
           head={["Cut", "What it does", "What to avoid"]}
           rows={[
             ["Outer jacket", "Exposes the braid that will be soldered to the body", "Scoring the braid; cut strands weaken the shield joint"],
-            ["Braid (if trimmed)", "Sets how much shield sits under the solder holes", "Loose strands that later touch the centre pin"],
-            ["Dielectric", "Exposes the centre conductor for the pin", "Nicking the centre conductor; it can snap when flexed"],
-            ["Centre conductor", "Trimmed flush with the pin tip after soldering", "Leaving it proud, which stops the connector mating"],
+            ["Braid (if trimmed)", "Sets how much shield sits under the solder holes", "Loose strands that later touch the center pin"],
+            ["Dielectric", "Exposes the center conductor for the pin", "Nicking the center conductor; it can snap when flexed"],
+            ["Center conductor", "Trimmed flush with the pin tip after soldering", "Leaving it proud, which stops the connector mating"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          If the centre conductor is stranded, twist the strands tight in their original lay direction so
+          If the center conductor is stranded, twist the strands tight in their original lay direction so
           they slide into the pin without splaying. Cut the dielectric square: an angled face leaves a gap
           or a bulge inside the connector.
         </p>
@@ -250,7 +250,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
       <section>
         <StepHeading n={4} id="protect-the-dielectric">Protect the dielectric from heat</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          The dielectric is the insulating core between the centre conductor and the braid, and its
+          The dielectric is the insulating core between the center conductor and the braid, and its
           spacing sets the cable&apos;s impedance. Many common cables use solid or foamed polyethylene,
           which softens at temperatures far below a soldering tip, and foam types tend to deform more
           easily than solid ones. PTFE dielectric tolerates much more heat. Check your cable&apos;s
@@ -281,9 +281,9 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         </ul>
         <div className="mt-5">
           <KeyIdea title="A melted dielectric can test fine and still be faulty">
-            If the dielectric softens, the centre conductor can drift off-centre. The cable may still pass
+            If the dielectric softens, the center conductor can drift off-center. The cable may still pass
             a continuity test while its impedance at that point has changed. Heat control is the only real
-            defence; a multimeter cannot see this fault.
+            defense; a multimeter cannot see this fault.
           </KeyIdea>
         </div>
       </section>
@@ -292,7 +292,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         <StepHeading n={5} id="solder-the-shield">Solder the shield through the body holes</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Screw the connector body onto the prepared cable until the jacket bottoms out inside it and the
-          centre conductor comes through the pin. Look through the solder holes (a PL-259 usually has four):
+          center conductor comes through the pin. Look through the solder holes (a PL-259 usually has four):
           you should see braid, not jacket. If you see jacket, the strip length is wrong; take the body off
           and correct it now.
         </p>
@@ -305,10 +305,10 @@ export default function HowToSolderACoaxialCableConnectorPage() {
       </section>
 
       <section>
-        <StepHeading n={6} id="solder-the-centre-pin">Solder the centre pin, trim and file</StepHeading>
+        <StepHeading n={6} id="solder-the-center-pin">Solder the center pin, trim and file</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Hold the iron against the side of the pin tip and feed solder into the end of the pin, where the
-          centre conductor emerges. A small amount is enough to fill the gap and bond the conductor. Too
+          center conductor emerges. A small amount is enough to fill the gap and bond the conductor. Too
           much runs down the outside of the pin, and a bead there can stop the connector mating or spread
           the socket in whatever it plugs into.
         </p>
@@ -334,16 +334,16 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         <DataTable
           head={["Test", "Probe between", "Good result", "Bad result means"]}
           rows={[
-            ["Centre continuity", "Centre pin at each end", "Low ohms, near the lead resistance", "OL: open pin joint or broken conductor"],
+            ["Center continuity", "Center pin at each end", "Low ohms, near the lead resistance", "OL: open pin joint or broken conductor"],
             ["Shield continuity", "Connector body at each end", "Low ohms, near the lead resistance", "OL or high: shield joint not wetted"],
-            ["Short check", "Centre pin to body, same end", "OL (open)", "Low ohms: braid strand or solder touching the pin"],
+            ["Short check", "Center pin to body, same end", "OL (open)", "Low ohms: braid strand or solder touching the pin"],
           ]}
         />
         <div className="grid sm:grid-cols-2 gap-4 mt-5">
           <Figure
             caption={
               <>
-                Centre-to-centre continuity on a short cable. In this example the meter shows 0.4 Ω; with
+                Center-to-center continuity on a short cable. In this example the meter shows 0.4 Ω; with
                 the probes shorted it showed 0.3 Ω, so the cable itself adds about 0.1 Ω. Pass.
               </>
             }
@@ -353,7 +353,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
           <Figure
             caption={
               <>
-                Centre pin to body at the same end. OL means no measurable connection, which is what you
+                Center pin to body at the same end. OL means no measurable connection, which is what you
                 want. Any low reading here is a short, and the cable must not be used.
               </>
             }
@@ -363,7 +363,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
         </div>
         <p className="text-muted leading-7 mt-4">
           Test with the cable disconnected. Some antennas, matching networks and dummy loads show a DC
-          path between centre and shield by design, which would make a good cable look shorted. A meter
+          path between center and shield by design, which would make a good cable look shorted. A meter
           that beeps unreliably on the continuity checks may be the meter or the probes rather than your
           joints; see{" "}
           <Link href="/multimeters/multimeter-continuity-beep-intermittent" className={link}>
@@ -386,7 +386,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
           </li>
           <li>
             <strong className="text-foreground">Stray braid strands.</strong> One strand bent toward the
-            centre pin is enough to short the cable. Trim and inspect before screwing the body on.
+            center pin is enough to short the cable. Trim and inspect before screwing the body on.
           </li>
           <li>
             <strong className="text-foreground">Solder on the outside of the pin.</strong> File it off;
@@ -414,7 +414,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
       <section>
         <h2 id="which-iron" className="text-xl font-semibold mb-3">Which iron suits coax connector work?</h2>
         <p className="text-muted leading-7">
-          The centre pin is easy for any iron. The shield joint is what separates them: you want enough
+          The center pin is easy for any iron. The shield joint is what separates them: you want enough
           power to recover quickly when a large tip meets a cold brass body, and adjustable temperature so
           you can turn it down again for board work. Bench stations with digital control are the natural
           fit. Compare the full field in our{" "}

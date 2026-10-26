@@ -38,7 +38,7 @@ export default function HowToMeasureALogicSignalPage() {
       category="oscilloscopes"
       intro={
         <>
-          A logic analyser tells you whether a line is a 1 or a 0. An oscilloscope tells you why it is, or
+          A logic analyzer tells you whether a line is a 1 or a 0. An oscilloscope tells you why it is, or
           why it sometimes is not. To measure a logic signal with an oscilloscope probe you set the probe to
           10x with a short ground, trigger on an edge, and read the high and low levels, the timing and the
           edges against the logic family&apos;s thresholds. This guide walks through each step on a 3.3 V
@@ -81,8 +81,8 @@ export default function HowToMeasureALogicSignalPage() {
           a: "The probe is set to 10x but the scope channel is set to 1x, so every reading is ten times too high. Set the channel's probe ratio to match the switch on the probe body. If the reading is ten times too low, the mismatch is the other way round. Some probes report their ratio to the scope automatically, but most basic ones do not.",
         },
         {
-          q: "Is an oscilloscope better than a logic analyser?",
-          a: "They answer different questions. A logic analyser captures many channels for a long time and shows each as a clean 1 or 0, which is ideal for following a protocol. An oscilloscope shows the real voltage on a few channels, which is what you need to find slow edges, ringing, bad levels and glitches. Many people debug with both.",
+          q: "Is an oscilloscope better than a logic analyzer?",
+          a: "They answer different questions. A logic analyzer captures many channels for a long time and shows each as a clean 1 or 0, which is ideal for following a protocol. An oscilloscope shows the real voltage on a few channels, which is what you need to find slow edges, ringing, bad levels and glitches. Many people debug with both.",
         },
         {
           q: "What voltage counts as high on a 5 V logic signal?",
@@ -172,7 +172,7 @@ export default function HowToMeasureALogicSignalPage() {
         <StepHeading n={2} id="set-the-channel">Set the channel: DC coupling, ratio and V/div</StepHeading>
         <p className="text-muted leading-7">
           Use DC coupling, so the ground level is real. AC coupling removes the DC level and makes a logic
-          signal float around the centre line, which hides exactly what you want to read. Set the
+          signal float around the center line, which hides exactly what you want to read. Set the
           channel&apos;s probe ratio to 10x to match the probe. A good starting point is 1 V/div for 3.3 V
           logic and 2 V/div for 5 V logic, with the ground marker moved down so the whole swing fits on
           screen. Leave the bandwidth limit off for edge work.
@@ -203,7 +203,7 @@ export default function HowToMeasureALogicSignalPage() {
               { label: "Channel", sub: "DC coupling, ratio 10x, 1 V/div" },
               { label: "Trigger", sub: "Edge, level at mid-swing" },
               { label: "Measure", sub: "Levels, timing, edges" },
-              { label: "Decode", sub: "Serial decode or logic analyser" },
+              { label: "Decode", sub: "Serial decode or logic analyzer" },
             ]}
           />
         </Figure>
@@ -219,7 +219,7 @@ export default function HowToMeasureALogicSignalPage() {
         <Figure
           caption={
             <>
-              A 3.3 V, 1 MHz clock at 1 V/div and 200 ns/div, ground marker 2 divisions below centre. The
+              A 3.3 V, 1 MHz clock at 1 V/div and 200 ns/div, ground marker 2 divisions below center. The
               high level is 3.3 divisions (3.3 V) above ground and one period spans 5 divisions = 1 µs. The
               dashed line is the trigger level at 1.65 V.
             </>
@@ -264,7 +264,7 @@ export default function HowToMeasureALogicSignalPage() {
         <Figure
           caption={
             <>
-              CH1 (green, bottom): the 1 MHz clock, ground 3.5 divisions below centre. CH2 (blue, top): a data
+              CH1 (green, bottom): the 1 MHz clock, ground 3.5 divisions below center. CH2 (blue, top): a data
               line that changes on the clock&apos;s falling edge. At 200 ns/div, the data settles 2.5
               divisions = 500 ns before the next rising clock edge samples it.
             </>
@@ -374,7 +374,7 @@ export default function HowToMeasureALogicSignalPage() {
           An oscilloscope shows voltages, not bytes. For a slow UART line you can count bits by hand, but
           for I2C, SPI or anything long, you need decoding. Many scopes offer serial protocol decoding,
           sometimes as a paid or licensed option, and it varies by model, so check the manual before you
-          rely on it. A logic analyser is the other route: it records many lines as 1s and 0s for a long
+          rely on it. A logic analyzer is the other route: it records many lines as 1s and 0s for a long
           time and decodes protocols in software, but it does not show the analogue problems in this
           guide. The usual workflow is to decode with whichever tool you have, then switch to the scope
           probe when a bit looks wrong.

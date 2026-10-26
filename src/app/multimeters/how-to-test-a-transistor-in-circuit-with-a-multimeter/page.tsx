@@ -154,7 +154,7 @@ export default function HowToTestATransistorInCircuitWithAMultimeterPage() {
         <p className="text-muted leading-7 mb-4">
           Read the part number off the case and look up its datasheet. Pin order is not standard: two
           transistors in the same TO-92 or SOT-23 package can have base, collector and emitter in different
-          positions, and some board footprints are labelled while others are not. The circuit board&apos;s
+          positions, and some board footprints are labeled while others are not. The circuit board&apos;s
           silkscreen or a service schematic often marks them too.
         </p>
         <InfoCards
@@ -211,7 +211,7 @@ export default function HowToTestATransistorInCircuitWithAMultimeterPage() {
         </p>
         <p className="text-muted leading-7 mt-4">
           Look at the part as well as the numbers. Transistors that have failed from overheating or a surge
-          often show it: a cracked or bulging case, a scorch mark on the board, or discoloured solder around
+          often show it: a cracked or bulging case, a scorch mark on the board, or discolored solder around
           the legs. In power stages, a common failure is a collector-emitter short. When you find one, test the
           parts around it before fitting a replacement. A shorted transistor can take its base resistor, driver
           stage or emitter resistor with it, and a new transistor dropped into the same fault may fail the

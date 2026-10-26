@@ -32,7 +32,7 @@ export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
       published="2026-10-21"
       intro={
         <>
-          Melted, shrunk-back, or discoloured insulation right next to a wire joint is almost always a
+          Melted, shrunk-back, or discolored insulation right next to a wire joint is almost always a
           dwell-time problem — heat sitting too close to the insulation edge for too long, rather than
           the iron being set too hot in absolute terms. A handful of specific habits keep heat where you
           want it and away from the insulation, without needing a cooler iron that struggles to solder
@@ -102,7 +102,7 @@ export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
         <p className="text-muted leading-7">
           Bare wire and solder can handle soldering temperatures without any issue — it&apos;s the
           plastic insulation right next to the joint that has a much lower heat tolerance. Common PVC
-          insulation can soften, shrink back, or discolour well below the temperature the metal itself
+          insulation can soften, shrink back, or discolor well below the temperature the metal itself
           is reaching, especially if the iron sits in one spot for several seconds close to the
           insulation edge.
         </p>

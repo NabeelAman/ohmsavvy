@@ -191,8 +191,8 @@ const comparison: ProductComparisonContent = {
         <div className="mt-4">
           <KeyIdea title="Why DC-only coupling matters for ripple">
             Suppose a 12V supply carries 50 mV of ripple. To see that ripple in detail you want something like 20 mV/div,
-            but at that setting a DC-coupled trace sits 600 divisions above the centre line, far off screen, unless the
-            scope can offset it back. AC coupling blocks the 12V and centres the ripple automatically. FNIRSI lists AC
+            but at that setting a DC-coupled trace sits 600 divisions above the center line, far off screen, unless the
+            scope can offset it back. AC coupling blocks the 12V and centers the ripple automatically. FNIRSI lists AC
             coupling for the DSO152; Hantek lists only DC for the 6022BE and doesn&apos;t quantify its offset range, so
             plan on a blocking capacitor or a different scope if ripple is a regular job.
           </KeyIdea>

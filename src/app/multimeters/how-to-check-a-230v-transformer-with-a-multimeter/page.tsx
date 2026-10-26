@@ -163,7 +163,7 @@ export default function HowToCheckA230vTransformerPage() {
         <h2 id="is-it-a-transformer" className="text-xl font-semibold mb-3">First: is it really a transformer?</h2>
         <p className="text-muted leading-7 mb-4">
           These tests apply to transformers built from copper windings on an iron core. Many modern devices
-          labelled &quot;transformer&quot; contain no such thing:
+          labeled &quot;transformer&quot; contain no such thing:
         </p>
         <InfoCards
           items={[
@@ -178,7 +178,7 @@ export default function HowToCheckA230vTransformerPage() {
         <StepHeading n={1} id="identify-windings">Identify the primary and secondary</StepHeading>
         <p className="text-muted leading-7 mb-4">
           The label usually shows the input (230V or 220–240V) and output voltages and which terminals or
-          wire colours belong to each. On a step-down transformer the primary has many turns of thin wire and the
+          wire colors belong to each. On a step-down transformer the primary has many turns of thin wire and the
           secondary has fewer turns of thicker wire, so the primary always reads the higher resistance.
         </p>
         <Figure caption={<>A step-down transformer. The voltage ratio follows the turns ratio, which is why the primary, with far more wire, reads higher resistance.</>}>
@@ -211,7 +211,7 @@ export default function HowToCheckA230vTransformerPage() {
         <p className="text-muted leading-7 mb-4">
           Probe across the secondary terminals. Expect a much lower figure, often a few ohms or less, so short
           the probes together first and subtract that lead resistance. Transformers with several secondaries or
-          a centre tap give a reading for each section.
+          a center tap give a reading for each section.
         </p>
         <p className="text-muted leading-7 mt-4">
           For 24V heating, HVAC and irrigation control transformers, see <Link href="/multimeters/how-to-check-a-24v-transformer-with-a-multimeter" className="text-accent hover:underline">how to check a 24V transformer with a multimeter</Link>.

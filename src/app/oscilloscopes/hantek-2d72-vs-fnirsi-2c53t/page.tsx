@@ -134,7 +134,7 @@ const comparison: ProductComparisonContent = {
     },
     {
       question: "Do they have the same screen?",
-      answer: "Yes, both use a 2.8-inch, 320 × 240 colour display.",
+      answer: "Yes, both use a 2.8-inch, 320 × 240 color display.",
     },
   ],
   roundup: { label: "See the full oscilloscope roundup", href: "/oscilloscopes/best-beginner-oscilloscopes" },

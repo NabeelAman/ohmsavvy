@@ -40,7 +40,7 @@ function PotPinoutDiagram() {
       {/* Track: arc */}
       <path d="M128 152 A60 60 0 1 1 212 152" className="stroke-muted" strokeWidth="12" fill="none" strokeLinecap="round" />
       <path d="M128 152 A60 60 0 1 1 212 152" className="stroke-foreground" strokeWidth="1" fill="none" strokeDasharray="2 4" />
-      {/* Shaft centre and wiper */}
+      {/* Shaft center and wiper */}
       <circle cx="170" cy="110" r="14" className="fill-surface stroke-border" strokeWidth="1.5" />
       <path d="M170 110 L212 68" className="stroke-accent" strokeWidth="3" strokeLinecap="round" />
       <circle cx="212" cy="68" r="5" className="fill-accent" />

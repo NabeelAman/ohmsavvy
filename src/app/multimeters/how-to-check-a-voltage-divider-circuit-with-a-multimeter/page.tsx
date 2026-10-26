@@ -119,7 +119,7 @@ export default function HowToCheckAVoltageDividerCircuitWithAMultimeterPage() {
         },
         {
           q: "Can I measure the resistors in a divider without removing them?",
-          a: "You can, but the result is often misleading. In circuit, each resistor is in parallel with the other one plus whatever else connects to the node and the supply, so readings come out low. Power off first. For a reliable value, lift one leg of each resistor and measure it on its own against its colour code or marking.",
+          a: "You can, but the result is often misleading. In circuit, each resistor is in parallel with the other one plus whatever else connects to the node and the supply, so readings come out low. Power off first. For a reliable value, lift one leg of each resistor and measure it on its own against its color code or marking.",
         },
         {
           q: "What input impedance does a multimeter have on DC volts?",
@@ -182,7 +182,7 @@ export default function HowToCheckAVoltageDividerCircuitWithAMultimeterPage() {
         <StepHeading n={1} id="calculate-vout">Calculate the expected Vout</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Read R1 (from the input to the output node) and R2 (from the output node to ground) from the
-          schematic, the markings or the colour bands. Then apply the formula. A common 0–25 V voltage-sense
+          schematic, the markings or the color bands. Then apply the formula. A common 0–25 V voltage-sense
           module, for example, uses 30 kΩ over 7.5 kΩ, which divides by exactly five.
         </p>
         <KeyIdea title="Vout = Vin × R2 / (R1 + R2)">

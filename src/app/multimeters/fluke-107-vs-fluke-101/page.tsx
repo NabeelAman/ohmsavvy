@@ -75,7 +75,7 @@ const comparison: ProductComparisonContent = {
       <section>
         <h2 className="text-2xl font-semibold mb-4">How much smaller is the 101?</h2>
         <div className="grid sm:grid-cols-2 gap-4">
-          <Figure caption={<>Length in millimetres, per Fluke.</>}>
+          <Figure caption={<>Length in millimeters, per Fluke.</>}>
             <BarChart
               items={[
                 { label: "Fluke 107", value: 142, display: "142 mm" },

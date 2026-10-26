@@ -134,7 +134,7 @@ export default function HowToCleanFluxResidueAfterSolderingElectronicsPage() {
         <p className="text-muted leading-7">
           For rosin and most no-clean residue you need 99% isopropyl alcohol in a pump dispenser or a
           dedicated flux remover spray, an ESD-safe brush with fairly stiff bristles, and lint-free wipes.
-          Cotton swabs work in a pinch but shed fibres that catch on pins. Disconnect power and remove any
+          Cotton swabs work in a pinch but shed fibers that catch on pins. Disconnect power and remove any
           battery first; you should never clean a board that is energised.
         </p>
       </section>

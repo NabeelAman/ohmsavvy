@@ -136,7 +136,7 @@ export default function HowToMeasureAnEncoderSignalPage() {
         <StepHeading n={1} id="identify-the-wires">Identify the encoder wires from the datasheet</StepHeading>
         <p className="text-muted leading-7">
           Find the supply (often 5 V, sometimes 12 or 24 V on industrial encoders), 0 V, A, B and, if fitted,
-          the index channel, usually called Z or I. Wire colours vary by manufacturer, so go by the label or
+          the index channel, usually called Z or I. Wire colors vary by manufacturer, so go by the label or
           datasheet. Note the output type as well: push-pull outputs drive both high and low, open-collector
           outputs only pull low and need a pull-up resistor, and line-driver (differential) outputs add
           inverted A/, B/ and Z/ wires. Note the PPR too; you will need it for the speed calculation.

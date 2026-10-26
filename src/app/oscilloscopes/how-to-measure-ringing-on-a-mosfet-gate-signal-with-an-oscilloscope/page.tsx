@@ -204,8 +204,8 @@ export default function MeasureMosfetGateRingingPage() {
         <Figure
           caption={
             <>
-              Good: probe tip on the gate pin, ground spring on the source pin, a loop only millimetres
-              across. Avoid: a long ground clip to board ground several centimetres away, which adds its
+              Good: probe tip on the gate pin, ground spring on the source pin, a loop only millimeters
+              across. Avoid: a long ground clip to board ground several centimeters away, which adds its
               own ringing and the voltage drop along the source path.
             </>
           }

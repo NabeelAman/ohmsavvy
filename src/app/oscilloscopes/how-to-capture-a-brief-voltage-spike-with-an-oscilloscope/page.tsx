@@ -157,7 +157,7 @@ export default function CaptureBriefVoltageSpikePage() {
         <Figure
           caption={
             <>
-              Armed and waiting: a steady 5 V rail, moved 1 division below centre with the position
+              Armed and waiting: a steady 5 V rail, moved 1 division below center with the position
               control for headroom, and the trigger level (T) a little over half a division above it. Nothing triggers until something pushes
               the rail through that line.
             </>

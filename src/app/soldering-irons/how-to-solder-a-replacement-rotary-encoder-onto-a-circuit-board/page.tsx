@@ -236,7 +236,7 @@ export default function HowToSolderAReplacementRotaryEncoderOntoACircuitBoardPag
           Push the encoder in from the component side until its body sits flat on the board. A tilted encoder
           wobbles when turned, puts strain on the solder joints, and can bind against a front-panel hole. If
           the shaft passes through a panel, check the alignment now: fit the board in the case loosely, or
-          hold the panel in place, so you can see that the bushing centres in its hole.
+          hold the panel in place, so you can see that the bushing centers in its hole.
         </p>
         <p className="text-muted leading-7">
           The tabs usually snap into their slots and hold the part while you solder. Do not bend them over
@@ -363,7 +363,7 @@ export default function HowToSolderAReplacementRotaryEncoderOntoACircuitBoardPag
           </li>
           <li>
             <strong className="text-foreground">Flux or cleaner inside the body.</strong> Sticky contacts give
-            the same erratic behaviour as the worn part you removed.
+            the same erratic behavior as the worn part you removed.
           </li>
         </ul>
         <p className="text-muted leading-7 mt-4">

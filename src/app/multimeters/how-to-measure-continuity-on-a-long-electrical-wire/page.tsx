@@ -166,7 +166,7 @@ export default function HowToMeasureContinuityOnALongElectricalWirePage() {
           <Link href="/multimeters/how-to-test-electrical-wires-with-a-multimeter" className={link}>
             testing electrical wires with a multimeter
           </Link>{" "}
-          covers that case. On a cable run between rooms, floors or buildings, the far end may be tens of metres
+          covers that case. On a cable run between rooms, floors or buildings, the far end may be tens of meters
           away. You need a way to bring the far end back to the meter, and you need to know what a long but healthy
           wire should read, because its resistance is no longer close to zero.
         </p>

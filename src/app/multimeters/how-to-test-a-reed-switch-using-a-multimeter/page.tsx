@@ -113,7 +113,7 @@ export default function HowToTestAReedSwitchUsingAMultimeterPage() {
         },
         {
           q: "How close does a magnet need to be to close a reed switch?",
-          a: "It depends on the magnet's strength, its orientation and the switch's sensitivity. A small reed with a typical fridge-strength magnet may only operate within a few millimetres, while a stronger magnet works from further away. Door and window alarm contacts specify a rated gap on their packaging or datasheet, which is the figure to test against.",
+          a: "It depends on the magnet's strength, its orientation and the switch's sensitivity. A small reed with a typical fridge-strength magnet may only operate within a few millimeters, while a stronger magnet works from further away. Door and window alarm contacts specify a rated gap on their packaging or datasheet, which is the figure to test against.",
         },
         {
           q: "Can a reed switch go bad?",

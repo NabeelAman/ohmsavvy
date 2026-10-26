@@ -87,13 +87,13 @@ const fitNotes: Record<string, string> = {
   "Fluke 87V":
     "It carries our Hands-on Tested badge and covers the job from a 600.0 µA range to 20 A for 30 seconds, with Peak Capture at 250 µs and a 19,999-count high-resolution mode for reading 12.6 V to fine detail. It trails the 88V and the Power Probes because it offers neither logging nor guided tests.",
   "UNI-T UT181A":
-    "Its 20,000-record logger with a trend graph on a colour screen shows how a parasitic drain steps down as modules sleep, and its ±(0.025% + 5) DC accuracy is the lowest percentage figure here. It also reads 600 µA to 10 A, or 20 A for 30 seconds. Price and a 638.6 g body make it a lot of meter to leave hanging off a battery cable.",
+    "Its 20,000-record logger with a trend graph on a color screen shows how a parasitic drain steps down as modules sleep, and its ±(0.025% + 5) DC accuracy is the lowest percentage figure here. It also reads 600 µA to 10 A, or 20 A for 30 seconds. Price and a 638.6 g body make it a lot of meter to leave hanging off a battery cable.",
   "BTMETER BT-770K":
     "Max/Min with a 1.28 ms peak catches cranking dips, and the 20 A jack (10 seconds) gives more headroom than most cheap meters during the first minutes of a draw test. Its lowest current range is 60 mA, coarser than the µA-capable meters above, and the specs come only from an Amazon listing.",
   "KAIWEETS HT118A":
     "Current ranges from 600 µA to 10 A, Min/Max/Average and True RMS for reading alternator ripple make it the best low-cost choice for draw testing. KAIWEETS publishes no DC accuracy on our sources, so for state-of-charge readings near the 0.2 V boundaries we would trust the Flukes and Power Probes more.",
   "Fluke 179":
-    "Min/Max-Average, current resolution to 0.01 mA, a 10 A input and Fluke's CAT IV 600V build make it a dependable garage meter for draw and charging checks. With no µA range, peak capture or logging it ranks behind the more specialised meters.",
+    "Min/Max-Average, current resolution to 0.01 mA, a 10 A input and Fluke's CAT IV 600V build make it a dependable garage meter for draw and charging checks. With no µA range, peak capture or logging it ranks behind the more specialized meters.",
   "Innova 3340":
     "Min/Max and Hold record cranking dips, and fused 40 mA and 400 mA ranges plus a 15 A input suit parasitic-draw work, with engine functions as a bonus. The 15 A jack is unfused and limited to 15-second tests, and Innova does not publish accuracy figures.",
   "Innova 3320":

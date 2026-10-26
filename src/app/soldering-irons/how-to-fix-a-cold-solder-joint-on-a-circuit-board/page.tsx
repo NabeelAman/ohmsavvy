@@ -244,7 +244,7 @@ export default function HowToFixAColdSolderJointOnACircuitBoardPage() {
         <StepHeading n={2} id="remove-old-solder-first">When to remove the old solder first</StepHeading>
         <p className="text-muted leading-7">
           Reflowing alone is not always enough. Remove the old solder with wick or a pump, then remake the joint,
-          when the joint is a large blob bridging toward a neighbour, when the solder is dark and contaminated after
+          when the joint is a large blob bridging toward a neighbor, when the solder is dark and contaminated after
           many reworks, when a fatigue crack has opened right round the lead, or when you are switching between
           leaded and lead-free alloys. A clean pad and fresh solder give a predictable result where a repeatedly
           reheated joint may not. The{" "}
@@ -278,7 +278,7 @@ export default function HowToFixAColdSolderJointOnACircuitBoardPage() {
         <p className="text-muted leading-7">
           A 10x loupe or a low-power USB microscope shows what the eye misses. Light the board from a low angle
           and rotate it: cracks show as a thin dark line, and a non-wetted edge as a step where solder meets pad.
-          Check neighbouring joints too; cold joints rarely come alone on a heat-cycled board.
+          Check neighboring joints too; cold joints rarely come alone on a heat-cycled board.
         </p>
       </section>
 
@@ -286,7 +286,7 @@ export default function HowToFixAColdSolderJointOnACircuitBoardPage() {
         <h2 id="test-the-repair" className="text-xl font-semibold mb-3">Test the repaired joint</h2>
         <p className="text-muted leading-7">
           With the board unpowered, measure continuity from the lead to the trace it should reach, and confirm no
-          short to neighbouring pads. Press gently on the part while watching the reading. A good repair stays
+          short to neighboring pads. Press gently on the part while watching the reading. A good repair stays
           steady; a flickering beep points to another bad joint, which our page on{" "}
           <Link href="/multimeters/multimeter-continuity-beep-intermittent" className={link}>
             intermittent continuity beeps

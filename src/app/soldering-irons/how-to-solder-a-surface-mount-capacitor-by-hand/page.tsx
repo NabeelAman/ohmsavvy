@@ -61,7 +61,7 @@ function PolarityMarks() {
       viewBox="0 0 360 190"
       className="w-full h-auto"
       role="img"
-      aria-label="Top views comparing polarity marks. A tantalum capacitor's band marks the positive end. A diode's band marks the cathode, the negative end. An aluminium SMD can has a dark segment on the top marking negative and a chamfered base on the positive side."
+      aria-label="Top views comparing polarity marks. A tantalum capacitor's band marks the positive end. A diode's band marks the cathode, the negative end. An aluminum SMD can has a dark segment on the top marking negative and a chamfered base on the positive side."
     >
       {/* tantalum */}
       <rect x="15" y="50" width="90" height="50" rx="4" className="fill-surface stroke-foreground" strokeWidth="2" />
@@ -75,13 +75,13 @@ function PolarityMarks() {
       <text x="144" y="120" textAnchor="middle" fontSize="12" className="fill-foreground">−</text>
       <text x="180" y="140" textAnchor="middle" fontSize="11" className="fill-foreground">Diode</text>
       <text x="180" y="156" textAnchor="middle" fontSize="10" className="fill-foreground">band = cathode (−)</text>
-      {/* aluminium can */}
+      {/* aluminum can */}
       <path d="M 275 45 h 60 v 60 h -60 l -10 -10 v -40 z" className="fill-muted stroke-foreground" strokeWidth="2" />
       <circle cx="300" cy="75" r="26" className="fill-surface stroke-foreground" strokeWidth="2" />
       <path d="M 300 49 A 26 26 0 0 1 300 101 Z" className="fill-foreground" />
       <text x="320" y="122" textAnchor="middle" fontSize="12" className="fill-foreground">−</text>
       <text x="268" y="122" textAnchor="middle" fontSize="12" className="fill-accent">+</text>
-      <text x="300" y="140" textAnchor="middle" fontSize="11" className="fill-foreground">Aluminium can</text>
+      <text x="300" y="140" textAnchor="middle" fontSize="11" className="fill-foreground">Aluminum can</text>
       <text x="300" y="156" textAnchor="middle" fontSize="10" className="fill-foreground">dark segment = −</text>
       <text x="180" y="25" textAnchor="middle" fontSize="11" className="fill-foreground">Same-looking band, opposite meaning</text>
     </svg>
@@ -102,7 +102,7 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
           but heat gently and evenly: keep the tip on the pad and end cap, never on the ceramic body, and
           avoid sudden temperature changes that crack multilayer ceramic capacitors (MLCCs). Identify the
           value before the part leaves its tape, because ceramic chips carry no marking, and check polarity
-          on tantalum and aluminium electrolytic parts. This guide covers what makes capacitors different
+          on tantalum and aluminum electrolytic parts. This guide covers what makes capacitors different
           and how to tell when one has failed.
         </>
       }
@@ -132,15 +132,15 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
       faq={[
         {
           q: "Which end of an SMD tantalum capacitor is positive?",
-          a: "The end with the band or bar is positive on a moulded tantalum chip. That trips people up because a diode uses a similar band to mark its cathode, the negative end. Some polymer tantalum and niobium parts follow the same convention, but check the datasheet and the board silkscreen, which often shows a + sign or a shaded pad for the positive side.",
+          a: "The end with the band or bar is positive on a molded tantalum chip. That trips people up because a diode uses a similar band to mark its cathode, the negative end. Some polymer tantalum and niobium parts follow the same convention, but check the datasheet and the board silkscreen, which often shows a + sign or a shaded pad for the positive side.",
         },
         {
           q: "Do ceramic SMD capacitors have polarity?",
-          a: "No. Multilayer ceramic chip capacitors are non-polarised, so they can go either way round. The things that matter are value, voltage rating, dielectric type such as X7R or C0G, and package size. Because MLCCs are almost never marked, keep them in their labelled tape or measure them before fitting rather than relying on colour or appearance.",
+          a: "No. Multilayer ceramic chip capacitors are non-polarised, so they can go either way round. The things that matter are value, voltage rating, dielectric type such as X7R or C0G, and package size. Because MLCCs are almost never marked, keep them in their labeled tape or measure them before fitting rather than relying on color or appearance.",
         },
         {
           q: "Can I reuse an SMD capacitor I removed?",
-          a: "It is better not to reuse a ceramic chip that has been removed with an iron. Removal heats it unevenly and often with mechanical stress, which can leave hidden cracks that cause a short or drift later. A tantalum or aluminium electrolytic part may survive, but fitting a new one costs little compared with chasing an intermittent fault afterwards.",
+          a: "It is better not to reuse a ceramic chip that has been removed with an iron. Removal heats it unevenly and often with mechanical stress, which can leave hidden cracks that cause a short or drift later. A tantalum or aluminum electrolytic part may survive, but fitting a new one costs little compared with chasing an intermittent fault afterwards.",
         },
         {
           q: "Why won't solder stick to one end of a large capacitor?",
@@ -186,14 +186,14 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
         <p className="text-muted leading-7 mb-4">
           Most surface mount capacitors you will hand solder fall into three families. Ceramic chips use the
           same imperial size codes as chip resistors, such as 0603, 0805 and 1206; tantalum parts use case
-          letters (A, B, C, D) defined by the manufacturer; aluminium electrolytics are cans on a plastic base.
+          letters (A, B, C, D) defined by the manufacturer; aluminum electrolytics are cans on a plastic base.
         </p>
         <DataTable
           head={["Type", "Polarised?", "Marking", "Hand soldering concern"]}
           rows={[
             ["MLCC (ceramic chip)", "No", "Usually none", "Thermal shock cracking; unmarked"],
             ["Tantalum chip", "Yes", "Band = positive, often a value code", "Polarity; failure if reversed"],
-            ["Aluminium electrolytic SMD can", "Yes", "Dark top segment = negative", "Orientation; plastic base melts if overheated"],
+            ["Aluminum electrolytic SMD can", "Yes", "Dark top segment = negative", "Orientation; plastic base melts if overheated"],
             ["Polymer / film chips", "Varies", "Varies by maker", "Check the datasheet for heat limits"],
           ]}
         />
@@ -257,7 +257,7 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
         <StepHeading n={1} id="identify-the-value">Identify the value before you fit it</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Ceramic chip capacitors look alike whatever their value, and two strips of tape from different
-          reels are indistinguishable once the parts are loose. Cut one part at a time from its labelled tape.
+          reels are indistinguishable once the parts are loose. Cut one part at a time from its labeled tape.
           If a part has escaped, measure it on a meter with a capacitance range before it goes on the board;
           our guide to{" "}
           <Link href="/multimeters/how-to-check-a-ceramic-capacitor-with-a-multimeter" className={link}>
@@ -286,14 +286,14 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
       <section>
         <StepHeading n={2} id="check-polarity">Check tantalum and electrolytic polarity</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          The most common SMD capacitor mistake is a tantalum fitted backwards. On a moulded tantalum chip,
+          The most common SMD capacitor mistake is a tantalum fitted backwards. On a molded tantalum chip,
           the band marks the positive terminal. On a diode, a near-identical band marks the cathode, which is
           negative. Anyone used to diodes instinctively puts the band on the wrong side.
         </p>
         <Figure
           caption={
             <>
-              Tantalum band = positive; diode band = negative; aluminium can dark segment = negative, with
+              Tantalum band = positive; diode band = negative; aluminum can dark segment = negative, with
               the chamfered corners of the base on the positive side.
             </>
           }
@@ -301,7 +301,7 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
           <PolarityMarks />
         </Figure>
         <p className="text-muted leading-7 mt-4">
-          Aluminium SMD cans mark the negative side with a dark half-moon on the top, and the plastic base
+          Aluminum SMD cans mark the negative side with a dark half-moon on the top, and the plastic base
           plate has two corners cut off on the positive side. The board silkscreen usually shows a + sign or
           a shaded half; conventions vary between designers, so compare against the old part&apos;s
           orientation or a photo taken before removal.
@@ -333,7 +333,7 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
           A 1206 MLCC of several microfarads contains many electrode layers and can sink a surprising amount of
           heat, and decoupling capacitors often sit on pads joined to ground planes. If solder balls up instead
           of flowing, resist turning the iron up sharply. Preheat the board, use a bigger chisel tip, and add
-          flux. Aluminium cans need care in a different way: the iron should touch only the metal tab on
+          flux. Aluminum cans need care in a different way: the iron should touch only the metal tab on
           the pad, as the plastic base and rubber seal soften with heat. A dull, grainy result means the
           joint never got hot enough; our guide to{" "}
           <Link href="/soldering-irons/how-to-fix-a-cold-solder-joint-on-a-circuit-board" className={link}>
@@ -348,7 +348,7 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
         <DataTable
           head={["What you see", "Type", "What it usually means"]}
           rows={[
-            ["Domed or split top, brown residue at the base", "Aluminium electrolytic", "Dried out or vented; replace it"],
+            ["Domed or split top, brown residue at the base", "Aluminum electrolytic", "Dried out or vented; replace it"],
             ["Fine line across the body, chipped corner", "MLCC", "Cracked; may be shorted or intermittent"],
             ["Charred body, scorch on the board", "Tantalum", "Failed short, often from reversal or overvoltage"],
             ["Looks fine, measures near 0 Ω", "Any", "Internal short; check out of circuit to confirm"],
@@ -358,7 +358,7 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
         <div className="mt-5">
           <KeyIdea title="Replace, don't reflow, a suspect ceramic chip">
             Reflowing a cracked MLCC does not fix the crack inside it. If a ceramic capacitor tests shorted or
-            behaves intermittently, remove it with both ends molten at once and fit a new part from labelled
+            behaves intermittently, remove it with both ends molten at once and fit a new part from labeled
             tape.
           </KeyIdea>
         </div>

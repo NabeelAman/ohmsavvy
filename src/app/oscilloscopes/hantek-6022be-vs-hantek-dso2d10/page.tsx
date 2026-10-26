@@ -159,7 +159,7 @@ const comparison: ProductComparisonContent = {
           both drives a circuit and watches what comes out.
         </p>
         <KeyIdea title="Why the 6022BE runs out of samples before it runs out of bandwidth">
-          A scope needs more than two samples per cycle to draw a recognisable sine, and around ten to show its
+          A scope needs more than two samples per cycle to draw a recognizable sine, and around ten to show its
           shape cleanly. At 48 MS/s the 6022BE reaches ten samples per cycle at about 4.8MHz, well below its 20MHz
           rating. Above that, the trace is a handful of dots joined by straight lines. The DSO2D10 still has ten
           samples per cycle at its full 100MHz on one channel.

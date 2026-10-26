@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/metadata";
 // https://www.keysight.com/us/en/product/EDUX1052G/oscilloscope-50-mhz-2-analog-channels-waveform-generator.html:
 // 50 MHz (-3 dB), calculated rise time 7 ns; 2 analog channels, external trigger viewable as a 3rd digital channel;
 // 1 GSa/s on all channels; 8-bit (High Resolution mode up to 12 bits at <=20 us/div); 200 kpts; 100,000 wfm/s;
-// 7.0-inch WVGA colour TFT; WaveGen 20 MHz (sine to 20 MHz, square/pulse to 10 MHz, ramp to 200 kHz, AM/FM/FSK,
+// 7.0-inch WVGA color TFT; WaveGen 20 MHz (sine to 20 MHz, square/pulse to 10 MHz, ramp to 200 kHz, AM/FM/FSK,
 // up to 20 Vpp into Hi-Z, not isolated); standard I2C and UART/RS-232 trigger/decode; Bode plot; DVM; counter;
 // built-in training signals; no segmented memory; USB 2.0 host+device and 10/100 LAN; 100-240 V, 50 W max;
 // 314 x 165 x 130 mm, 3.23 kg; two N2142A 75 MHz probes; 3-year warranty (research file keysight-edux1052g.json,
@@ -45,7 +45,7 @@ const comparison: ProductComparisonContent = {
     pick: picks.find((p) => p.name === "Keysight EDUX1052G")!,
     imageAlt: "Keysight EDUX1052G two-channel 50MHz oscilloscope with built-in WaveGen generator",
     chooseIf: [
-      "You are learning on your own and want signals to practise on before you have built a circuit",
+      "You are learning on your own and want signals to practice on before you have built a circuit",
       "You want a source and a scope in one box, for filters, amplifiers and Bode plots",
       "You value the fastest screen refresh here for spotting rare glitches",
       "Two channels cover your work: input against output, or clock against data",
@@ -67,7 +67,7 @@ const comparison: ProductComparisonContent = {
     { label: "Waveform update rate", a: "100,000 wfm/s", b: "Up to 30,000 wfm/s" },
     { label: "Memory depth", a: "200 kpts", b: "Rigol conflicts: 12M standard / 24M optional (product page), 24 Mpts (datasheet)" },
     { label: "ADC resolution", a: "8-bit (up to 12-bit in High Resolution mode)", b: "8-bit (up to 12-bit in high-res mode)" },
-    { label: "Display", a: "7-inch WVGA colour TFT", b: "7-inch WVGA, 800 × 480" },
+    { label: "Display", a: "7-inch WVGA color TFT", b: "7-inch WVGA, 800 × 480" },
     { label: "Built-in signal generator", a: "20MHz WaveGen (sine to 20MHz, square/pulse to 10MHz)", b: "None (Rigol fits one only to the -S models)" },
     { label: "Serial trigger and decode", a: "I2C and UART/RS-232, standard", b: "Parallel, UART/RS232, I2C, SPI (option per product page; no option label in datasheet)" },
     { label: "Digital channels", a: "None (external trigger can be shown as a 3rd digital channel)", b: "None" },
@@ -77,7 +77,7 @@ const comparison: ProductComparisonContent = {
   differences: [
     "Channels: the EDUX1052G has two analog inputs, the DS1054Z has four. That is the single biggest practical gap between them.",
     "Only the Keysight has a built-in generator: a 20MHz WaveGen that also drives its Bode plot (frequency-response) mode. The DS1054Z has none; Rigol reserves the generator for its -S models.",
-    "Keysight builds training signals into the EDUX1052G, so a beginner can practise triggering and measuring without a circuit. These are not a feature Rigol lists for the DS1054Z.",
+    "Keysight builds training signals into the EDUX1052G, so a beginner can practice triggering and measuring without a circuit. These are not a feature Rigol lists for the DS1054Z.",
     "Update rate is 100,000 wfm/s on the Keysight against up to 30,000 wfm/s on the Rigol, so the Keysight spends less time blind between captures.",
     "Memory runs the other way: 200 kpts on the Keysight against 12 or 24 Mpts on the Rigol, depending on which Rigol document you read.",
     "The Keysight keeps 1 GSa/s with both channels on; the Rigol drops to 500 MSa/s with two channels and 250 MSa/s with three or four.",
@@ -152,7 +152,7 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mb-4">
           The awkward truth about a first oscilloscope is that it arrives before you have anything interesting to
           look at. The EDUX1052G is designed around that problem. Keysight builds training signals into the scope, so
-          a newcomer can connect a probe and practise the core routine of scaling, triggering and measuring on known
+          a newcomer can connect a probe and practice the core routine of scaling, triggering and measuring on known
           waveforms straight away. Add the 20MHz WaveGen and you also have a source: feed a sine wave into an RC
           filter or a transistor amplifier, probe the input on channel 1 and the output on channel 2, and the Bode
           plot mode will sweep the generator and chart gain against frequency for you. For someone studying alone
@@ -195,7 +195,7 @@ const comparison: ProductComparisonContent = {
         <DataTable
           head={["Job", "Keysight EDUX1052G", "Rigol DS1054Z"]}
           rows={[
-            ["Practising triggers and cursors with no circuit built yet", "Yes: built-in training signals", "Needs an external signal (Arduino, 555 timer, generator)"],
+            ["Practicing triggers and cursors with no circuit built yet", "Yes: built-in training signals", "Needs an external signal (Arduino, 555 timer, generator)"],
             ["Frequency response of an RC filter or audio amplifier", "Yes: WaveGen plus Bode plot mode", "Only with a separate generator, point by point"],
             ["Op-amp input against output", "Yes, both channels at 1 GSa/s", "Yes, with two channels spare"],
             ["Full SPI bus: chip select, clock, MOSI, MISO", "Two lines at a time; SPI decode not listed", "All four lines together; SPI decode listed (option status conflicts)"],
@@ -283,7 +283,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Is the Keysight EDUX1052G or the Rigol DS1054Z better for a complete beginner?",
       answer:
-        "It depends on whether you already have signals to look at. The EDUX1052G includes training signals and a 20MHz generator, so you can practise from the first day without building anything. The DS1054Z has no generator but offers four channels and much deeper memory, which matter more once you are debugging real circuits with several lines.",
+        "It depends on whether you already have signals to look at. The EDUX1052G includes training signals and a 20MHz generator, so you can practice from the first day without building anything. The DS1054Z has no generator but offers four channels and much deeper memory, which matter more once you are debugging real circuits with several lines.",
     },
     {
       question: "What are the training signals on the Keysight EDUX1052G?",

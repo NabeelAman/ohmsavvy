@@ -280,7 +280,7 @@ export default function HowToTestASolenoidCoilWithAMultimeterPage() {
       <section>
         <h2 id="flyback-diodes" className="text-xl font-semibold mb-3">Testing solenoid coils with flyback diodes</h2>
         <p className="text-muted leading-7">
-          Many DC solenoids have a flyback (suppression) diode across the coil, either moulded into the connector
+          Many DC solenoids have a flyback (suppression) diode across the coil, either molded into the connector
           or fitted on the driver board. It absorbs the voltage spike when the coil switches off. On a
           low-resistance coil the diode barely changes an ohms reading, because the meter&apos;s small test
           voltage cannot turn it on. On higher-resistance coils it can, so a reading that changes when you swap

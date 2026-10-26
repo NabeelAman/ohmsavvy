@@ -45,7 +45,7 @@ const comparison: ProductComparisonContent = {
     chooseIf: [
       "Your work moves around: a car, an appliance on the floor, a machine on site",
       "You want a True RMS multimeter and a scope in one tool rather than two",
-      "Your signals are slow: sensor outputs, audio, low-frequency PWM, battery and supply behaviour",
+      "Your signals are slow: sensor outputs, audio, low-frequency PWM, battery and supply behavior",
       "Battery power and USB-C charging matter more than screen size",
     ],
   },
@@ -161,7 +161,7 @@ const comparison: ProductComparisonContent = {
           The 1014D gives up the meter and the battery for a better scope and a better signal source. On a desk,
           the 7-inch 800 × 480 screen shows two traces with room for measurements, and the DDS generator lets you
           inject a sine up to 10 MHz, or square and other shapes up to 2 MHz, at up to 2.5 Vpp. That is enough to
-          sweep an audio or low-RF filter, stand in for a missing clock, or practise triggering on a signal whose
+          sweep an audio or low-RF filter, stand in for a missing clock, or practice triggering on a signal whose
           frequency you already know. FNIRSI also lists 1 GB of internal storage for 1,000 screenshots and 1,000
           waveforms, which helps when you are comparing a board before and after a repair.
         </p>
@@ -226,7 +226,7 @@ const comparison: ProductComparisonContent = {
           head={["Buyer or job", "Better fit", "Why"]}
           rows={[
             ["Car, appliance or HVAC fault-finding on site", "FNIRSI 2C53T", "Battery handheld with a True RMS meter built in"],
-            ["Desk-based electronics hobby, first scope", "FNIRSI 1014D", "100 MHz, 7-inch screen and a generator to practise on"],
+            ["Desk-based electronics hobby, first scope", "FNIRSI 1014D", "100 MHz, 7-inch screen and a generator to practice on"],
             ["Testing filters and amplifiers above audio", "FNIRSI 1014D", "Sine output to 10 MHz against 50 kHz"],
             ["One tool for voltage, current and a quick waveform look", "FNIRSI 2C53T", "Meter and scope share one 300 g case"],
             ["Fast logic edges and MHz clocks", "FNIRSI 1014D", "Twice the bandwidth, four times the sample rate"],

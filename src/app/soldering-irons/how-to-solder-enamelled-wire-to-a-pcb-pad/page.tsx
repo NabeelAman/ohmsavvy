@@ -73,7 +73,7 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
       intro={
         <>
           To solder enamelled wire to a PCB pad, fix the wire to the board or coil first so nothing pulls on
-          it, strip and tin only the last few millimetres, put a small dome of solder on the pad, then lay
+          it, strip and tin only the last few millimeters, put a small dome of solder on the pad, then lay
           the tinned end on the dome and reflow it with a brief touch of the iron. Glue the lead near the pad
           for strain relief, and confirm the joint with a continuity check, because enamel left under the
           solder can look fine and still be open.
@@ -116,7 +116,7 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
         },
         {
           q: "Why won't solder stick to my magnet wire?",
-          a: "The coating is still there. Either the enamel is a high-temperature type that will not strip in solder, or the iron was not hot enough. Scrape a few millimetres back with a blade or fine abrasive until bright copper shows all round, then tin it straight away with fresh flux before the copper oxidises.",
+          a: "The coating is still there. Either the enamel is a high-temperature type that will not strip in solder, or the iron was not hot enough. Scrape a few millimeters back with a blade or fine abrasive until bright copper shows all round, then tin it straight away with fresh flux before the copper oxidises.",
         },
         {
           q: "How do I stop fine enamelled wire breaking at the pad?",
@@ -189,7 +189,7 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
           Fine wire springs, drifts and snaps under its own tension. Fix it first: a strip of tape across it, a
           dot of glue on the coil body or board, or a turn around a nearby pin. If the board has a spare hole
           near the pad, loop the wire down through it and back up; the loop acts as a clamp. Then cut the wire
-          a few millimetres beyond the pad.
+          a few millimeters beyond the pad.
         </p>
       </section>
 
@@ -237,7 +237,7 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
         <p className="text-muted leading-7 mb-4">
           A pad joint holds the wire electrically but cannot resist much pull. Leave a relaxed arc between the
           anchor and the pad, then secure the lead with a dot of hot glue, UV-cure resin or silicone a few
-          millimetres from the joint, not on it. Looping through a spare hole works as both anchor and relief.
+          millimeters from the joint, not on it. Looping through a spare hole works as both anchor and relief.
         </p>
         <Figure
           caption={
@@ -275,7 +275,7 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
           Visual inspection is not enough here. Measure resistance from the coil&apos;s other lead, or the far
           end of a bodge wire, to a point on the board connected to the new pad. A small inductor or winding
           typically reads from a fraction of an ohm to a few tens of ohms; OL means enamel is still under the
-          joint. Then check the pad against its neighbours for a bridge.
+          joint. Then check the pad against its neighbors for a bridge.
         </p>
         <Figure caption={<>Example readings only: a winding with a resistance of the order the datasheet gives (left) and an open joint (right).</>}>
           <div className="grid sm:grid-cols-2 gap-4 items-center">

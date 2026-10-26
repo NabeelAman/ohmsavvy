@@ -76,7 +76,7 @@ const faqs = [
   {
     question: "Why does my 4-20mA loop read 0 mA or below 4 mA?",
     answer:
-      "Zero usually means an open circuit: a broken wire, a blown fuse in the loop supply or a disconnected terminal. A reading below 4 mA but above zero often means the transmitter is signalling a fault, has lost supply voltage, or the loop has too much resistance for the available compliance. Check the supply voltage at the transmitter terminals next.",
+      "Zero usually means an open circuit: a broken wire, a blown fuse in the loop supply or a disconnected terminal. A reading below 4 mA but above zero often means the transmitter is signaling a fault, has lost supply voltage, or the loop has too much resistance for the available compliance. Check the supply voltage at the transmitter terminals next.",
   },
   {
     question: "Do I need a HART resistor to test a 4-20mA loop?",

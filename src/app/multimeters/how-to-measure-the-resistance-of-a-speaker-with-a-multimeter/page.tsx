@@ -171,7 +171,7 @@ export default function HowToMeasureTheResistanceOfASpeakerWithAMultimeterPage()
           A speaker&apos;s rating of 4, 8 or 16 Ω is its nominal impedance, the opposition it presents to an AC
           audio signal. It changes with frequency and includes effects from the coil&apos;s inductance and the
           cone&apos;s motion. A multimeter instead passes a small direct current through the coil and reports
-          the resistance of the copper or aluminium wire, often written as Re or DCR on spec sheets. That
+          the resistance of the copper or aluminum wire, often written as Re or DCR on spec sheets. That
           figure is always lower than the nominal rating.
         </p>
         <Figure
@@ -227,7 +227,7 @@ export default function HowToMeasureTheResistanceOfASpeakerWithAMultimeterPage()
         <p className="text-muted leading-7 mb-4">
           Hold one probe on each speaker terminal. Polarity does not matter for the reading. Let the display
           settle, then subtract the lead value. While the probes are on, press the cone gently in and out by a
-          few millimetres: the reading should stay steady.
+          few millimeters: the reading should stay steady.
         </p>
         <Figure
           caption={

@@ -232,7 +232,7 @@ export default function HowToMeasurePowerSupplyStartupTimeWithAnOscilloscopePage
           coupling on both channels: AC coupling would hide the very step you are trying to time. Set each
           channel so its full swing uses most of the screen height without clipping.
         </p>
-        <Figure caption={<>Probe placement for a single rail. Connect the real load, or an equivalent, since start-up behaviour depends on it.</>}>
+        <Figure caption={<>Probe placement for a single rail. Connect the real load, or an equivalent, since start-up behavior depends on it.</>}>
           <ProbeSetup />
         </Figure>
       </section>

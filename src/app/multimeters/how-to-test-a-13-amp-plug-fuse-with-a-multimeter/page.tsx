@@ -34,7 +34,7 @@ function PlugDiagram() {
   return (
     <svg viewBox="0 0 300 300" className="w-full h-auto max-w-sm mx-auto" role="img" aria-label="Wiring inside a UK 13 amp plug: earth at the top, live with the fuse on the right, neutral on the left">
       <rect x="30" y="20" width="240" height="250" rx="26" className="fill-surface stroke-foreground" strokeWidth="2" />
-      {/* earth pin, top centre */}
+      {/* earth pin, top center */}
       <rect x="138" y="44" width="24" height="40" rx="3" className="fill-surface-raised stroke-foreground" strokeWidth="1.5" />
       {/* neutral pin, left */}
       <rect x="66" y="140" width="34" height="24" rx="3" className="fill-surface-raised stroke-foreground" strokeWidth="1.5" />
@@ -115,8 +115,8 @@ export default function HowToTestA13AmpPlugFuseWithAMultimeterPage() {
           a: "Not always. The plug fuse protects the flexible cable between the plug and the appliance. A thin lamp flex can overheat well before a 13 A fuse blows, so low-power appliances with thin cables often use a 3 A fuse. Follow the appliance manufacturer's instructions; if in doubt, appliances up to about 700 W commonly use 3 A and heaters, kettles and similar loads use 13 A.",
         },
         {
-          q: "Do moulded plugs have a fuse you can test?",
-          a: "Yes. Most moulded UK plugs have a small fuse carrier on the pin face that you can prise open with a flat screwdriver to remove the fuse. Test it exactly as you would one from a rewireable plug. If the carrier is missing or broken, the plug is not safe to use.",
+          q: "Do molded plugs have a fuse you can test?",
+          a: "Yes. Most molded UK plugs have a small fuse carrier on the pin face that you can prise open with a flat screwdriver to remove the fuse. Test it exactly as you would one from a rewireable plug. If the carrier is missing or broken, the plug is not safe to use.",
         },
         {
           q: "My new fuse blew straight away. What now?",
@@ -182,7 +182,7 @@ export default function HowToTestA13AmpPlugFuseWithAMultimeterPage() {
         <p className="text-muted leading-7">
           Switch off and remove the plug from the socket. On a rewireable plug, undo the large central screw on
           the pin face and lift the cover off. While it is open, check that the cable grip is clamped on the
-          outer sheath, the cores are firmly held under their terminals and nothing is discoloured. A loose live
+          outer sheath, the cores are firmly held under their terminals and nothing is discolored. A loose live
           terminal can overheat and mimic a fuse problem.
         </p>
       </section>
@@ -190,7 +190,7 @@ export default function HowToTestA13AmpPlugFuseWithAMultimeterPage() {
       <section>
         <StepHeading n={2} id="remove-the-fuse">Remove the fuse</StepHeading>
         <p className="text-muted leading-7">
-          Lever the fuse out of its clips with a small flat screwdriver. On a moulded plug, prise open the fuse
+          Lever the fuse out of its clips with a small flat screwdriver. On a molded plug, prise open the fuse
           carrier on the pin face instead. Look at the printed rating on the body (3A, 5A or 13A are the common
           ones) and note it before testing.
         </p>
@@ -263,7 +263,7 @@ export default function HowToTestA13AmpPlugFuseWithAMultimeterPage() {
       <section>
         <h2 id="fuse-ratings" className="text-xl font-semibold mb-3">Choosing the right replacement rating</h2>
         <p className="text-muted leading-7 mb-4">
-          Always replace like for like unless the appliance instructions say otherwise. Colour coding helps, but
+          Always replace like for like unless the appliance instructions say otherwise. Color coding helps, but
           it is a convention rather than a guarantee: many 3 A fuses are red and many 13 A fuses are brown, yet
           some makers use plain white bodies. Go by the rating printed on the fuse.
         </p>

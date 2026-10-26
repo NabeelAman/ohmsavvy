@@ -95,7 +95,7 @@ export default function WhySolderWicksAwayFromTipPage() {
           surface offers it the most surface area to wet. Stranded wire is an especially strong
           destination because of the many small gaps between individual strands; a large, clean copper
           pad is strong because of its sheer surface area. The tip, by comparison, is a small reservoir
-          — once a stronger pull exists nearby, solder naturally favours leaving it.
+          — once a stronger pull exists nearby, solder naturally favors leaving it.
         </p>
         <Figure
           caption={

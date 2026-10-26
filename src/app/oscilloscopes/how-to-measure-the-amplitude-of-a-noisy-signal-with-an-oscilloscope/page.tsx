@@ -203,7 +203,7 @@ export default function HowToMeasureTheAmplitudeOfANoisySignalPage() {
         <p className="text-muted leading-7 mb-4">
           Most digital scopes offer both Vpp and Vamp (sometimes called Amplitude). For Vamp, the scope builds
           a histogram of sample voltages and picks the most populated level in the upper half as the top and
-          in the lower half as the base. Noise spreads each level into a hump, but the centre of the hump
+          in the lower half as the base. Noise spreads each level into a hump, but the center of the hump
           stays put, so top minus base lands close to the real step height. The same method also ignores
           overshoot and ringing at the edges.
         </p>
@@ -247,7 +247,7 @@ export default function HowToMeasureTheAmplitudeOfANoisySignalPage() {
         <StepHeading n={3} id="high-res-and-bandwidth-limit">High-res mode and the 20MHz bandwidth limit</StepHeading>
         <p className="text-muted leading-7 mb-4">
           When the signal does not repeat, or the trigger cannot be made steady, filter instead. High-res mode
-          averages neighbouring samples inside one capture, and the 20MHz bandwidth limit found on many bench
+          averages neighboring samples inside one capture, and the 20MHz bandwidth limit found on many bench
           scopes removes content above that frequency. Both are low-pass filters: they quieten the trace in a
           single shot, but anything fast in your signal is filtered too.
         </p>

@@ -66,7 +66,7 @@ function MicroswitchDiagram() {
         <text x="14" y="198">COM probe</text>
         <text x="236" y="194">NO probe</text>
         <text x="10" y="40">Tab order varies:</text>
-        <text x="10" y="52">read the moulded marks</text>
+        <text x="10" y="52">read the molded marks</text>
       </g>
     </svg>
   );
@@ -175,7 +175,7 @@ export default function HowToTestAMicroswitchWithAMultimeterPage() {
             { label: "Washing machine", desc: "The door lock assembly includes a switch that tells the board the door is shut and latched." },
             { label: "Mouse buttons", desc: "Tiny three-pin switches under each button; worn ones cause unwanted double-clicks." },
             { label: "Lever and roller", desc: "Longer actuators reach doors and cams in tumble dryers, dishwashers and vending gear." },
-            { label: "Pin plunger", desc: "The bare switch, pressed directly by a moulded tab or button cap." },
+            { label: "Pin plunger", desc: "The bare switch, pressed directly by a molded tab or button cap." },
           ]}
         />
       </section>
@@ -185,7 +185,7 @@ export default function HowToTestAMicroswitchWithAMultimeterPage() {
         <p className="text-muted leading-7 mb-4">
           Most microswitches have three spade or solder tabs. COM is the common contact, NO (normally open)
           connects to COM only while the actuator is pressed, and NC (normally closed) connects at rest and
-          breaks when pressed. The letters are usually moulded beside each tab, sometimes as C, 1, 2 and 4
+          breaks when pressed. The letters are usually molded beside each tab, sometimes as C, 1, 2 and 4
           on European parts. Some appliance switches have only two tabs, so they are either NO or NC.
         </p>
         <Figure
@@ -326,7 +326,7 @@ export default function HowToTestAMicroswitchWithAMultimeterPage() {
           head={["Symptom on the meter", "What it usually means"]}
           rows={[
             ["Swaps cleanly, under an ohm when closed", "Switch is fine; check the actuator, door alignment or wiring"],
-            ["COM to NO stays OL when pressed", "Contacts burnt or worn, or plunger not travelling far enough"],
+            ["COM to NO stays OL when pressed", "Contacts burnt or worn, or plunger not traveling far enough"],
             ["COM to NO beeps even when released", "Welded contacts, a common microwave interlock fault"],
             ["Closed reading of several ohms, or drifting", "Pitted, oxidised or contaminated contacts"],
             ["Beep crackles or cuts out as you press slowly", "Worn contact or weak snap spring"],

@@ -293,7 +293,7 @@ export default function HowToMeasureNoiseFloorWithAnOscilloscopePage() {
       <section>
         <StepHeading n={5} id="spring-ground">Replace the ground clip with a spring tip</StepHeading>
         <p className="text-muted leading-7">
-          The standard ground lead forms a loop several centimetres across, and that loop behaves like an
+          The standard ground lead forms a loop several centimeters across, and that loop behaves like an
           antenna for magnetic fields from switching regulators, transformers and motors. A spring ground tip shrinks the loop to almost
           nothing. To check, short the probe tip to the spring tip right next to the circuit while it runs:
           anything that still appears is pickup, and it sets your practical floor.
@@ -310,7 +310,7 @@ export default function HowToMeasureNoiseFloorWithAnOscilloscopePage() {
             head={["Mode", "What it does to noise"]}
             rows={[
               ["Average", "Combines many triggered captures. Random noise averages towards zero, so it all but disappears. Useful to reveal a repeating signal; useless for measuring noise."],
-              ["High-res", "Averages neighbouring samples within one capture. Acts like a low-pass filter, lowering both noise and effective bandwidth."],
+              ["High-res", "Averages neighboring samples within one capture. Acts like a low-pass filter, lowering both noise and effective bandwidth."],
               ["Normal", "Raw samples. Use this for noise floor measurements."],
             ]}
           />

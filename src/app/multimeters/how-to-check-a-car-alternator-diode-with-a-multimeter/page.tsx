@@ -102,7 +102,7 @@ export default function HowToCheckACarAlternatorDiodeWithAMultimeterPage() {
       <section>
         <h2 id="symptoms" className="text-xl font-semibold mb-3">Symptoms of a bad alternator diode</h2>
         <p className="text-muted leading-7 mb-4">
-          A shorted or open rectifier diode produces a recognisable set of complaints. None proves a diode
+          A shorted or open rectifier diode produces a recognizable set of complaints. None proves a diode
           fault on its own, but two or three together make the ripple test worth doing before anything else.
         </p>
         <ul className="space-y-2 list-disc pl-5 text-muted leading-7">

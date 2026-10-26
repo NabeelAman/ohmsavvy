@@ -107,7 +107,7 @@ const comparison: ProductComparisonContent = {
     </>
   ),
   bottomLine:
-    "Most hobbyists and students should buy the SDS1104X-E: four channels and the MSO, AWG and Bode-plot upgrade path matter more often than extra bandwidth. Buy the SDS1202X-E if your work centres on fast edges and two channels will always be enough.",
+    "Most hobbyists and students should buy the SDS1104X-E: four channels and the MSO, AWG and Bode-plot upgrade path matter more often than extra bandwidth. Buy the SDS1202X-E if your work centers on fast edges and two channels will always be enough.",
   faqs: [
     {
       question: "Can the SDS1202X-E add logic channels?",

@@ -60,7 +60,7 @@ const comparison: ProductComparisonContent = {
   differences: [
     "Both have four channels, so input count doesn't separate them.",
     "Bandwidth: 100 MHz on the Siglent against 70 MHz on the Rigol, about 43% more.",
-    "Single-channel sample rate favours the Rigol (1.25 GSa/s against 1 GSa/s); with all four channels on the Siglent leads (500 MSa/s each against 312.5 MSa/s).",
+    "Single-channel sample rate favors the Rigol (1.25 GSa/s against 1 GSa/s); with all four channels on the Siglent leads (500 MSa/s each against 312.5 MSa/s).",
     "Resolution: the DHO804 is 12-bit; Siglent lists the SDS1104X-E as 8-bit.",
     "Memory: 25 Mpts on the Rigol with one channel against 14 Mpts on the Siglent, but with all four on the Siglent keeps 7 Mpts each against the Rigol's 5 Mpts.",
     "Both decode serial buses as standard: Rigol lists UART, I2C, SPI, CAN and parallel; Siglent lists I2C, SPI, UART/RS232, CAN and LIN.",
@@ -197,7 +197,7 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mb-4">
           Sample rate is shared across channels on both. With one channel on, the Rigol samples faster (1.25 GSa/s
           against 1 GSa/s). With four on, the Siglent keeps 500 MSa/s each against the Rigol&apos;s 312.5 MSa/s, so a
-          four-signal capture of a fast bus favours the Siglent twice: more bandwidth and more samples. Our guide to{" "}
+          four-signal capture of a fast bus favors the Siglent twice: more bandwidth and more samples. Our guide to{" "}
           <Link href="/oscilloscopes/what-does-gsa-s-mean" className={link}>
             what GSa/s means
           </Link>{" "}
@@ -289,7 +289,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Does the Siglent SDS1104X-E have 12-bit resolution like the DHO804?",
       answer:
-        "No. Siglent's SDS1000X-E data sheet lists 8-bit vertical resolution, or 256 levels. Rigol specifies the DHO804 as 12-bit, which gives 4,096 vertical levels. If small-signal detail such as ripple decides your purchase, that favours the DHO804.",
+        "No. Siglent's SDS1000X-E data sheet lists 8-bit vertical resolution, or 256 levels. Rigol specifies the DHO804 as 12-bit, which gives 4,096 vertical levels. If small-signal detail such as ripple decides your purchase, that favors the DHO804.",
     },
     {
       question: "Can either scope generate a test signal?",

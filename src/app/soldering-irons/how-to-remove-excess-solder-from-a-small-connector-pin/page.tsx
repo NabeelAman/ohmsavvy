@@ -35,10 +35,10 @@ export default function HowToRemoveExcessSolderFromASmallConnectorPinPage() {
       intro={
         <>
           A header or connector pin wearing a ball of solder, a sharp peak, or a fillet that has crept toward
-          its neighbour is not a failed joint yet; it just has more alloy than it needs. To remove excess
+          its neighbor is not a failed joint yet; it just has more alloy than it needs. To remove excess
           solder from a small connector pin you rarely need to desolder anything. The goal is to take the
           surplus away while leaving a correctly shaped joint behind, without cooking the plastic body that
-          sits a millimetre or two above the board.
+          sits a millimeter or two above the board.
         </>
       }
       aside={{
@@ -75,7 +75,7 @@ export default function HowToRemoveExcessSolderFromASmallConnectorPinPage() {
         },
         {
           q: "What width of solder wick should I use for header pins?",
-          a: "Match the braid to the pin and pad: something around 1.5mm wide suits 2.54mm and 2.0mm pitch headers, while finer 1.0mm-pitch parts want a narrower braid. Wick that is wider than the pad soaks up heat from neighbouring joints and is more likely to pull solder from pins you meant to leave alone.",
+          a: "Match the braid to the pin and pad: something around 1.5mm wide suits 2.54mm and 2.0mm pitch headers, while finer 1.0mm-pitch parts want a narrower braid. Wick that is wider than the pad soaks up heat from neighboring joints and is more likely to pull solder from pins you meant to leave alone.",
         },
         {
           q: "How do I know when a fillet is the right size?",
@@ -90,7 +90,7 @@ export default function HowToRemoveExcessSolderFromASmallConnectorPinPage() {
         {
           href: "/soldering-irons/how-to-prevent-solder-bridges",
           title: "How to Prevent Solder Bridges",
-          desc: "Stop surplus solder joining neighbouring pins in the first place.",
+          desc: "Stop surplus solder joining neighboring pins in the first place.",
         },
         {
           href: "/soldering-irons/how-to-remove-solder-from-circuit-board",
@@ -218,7 +218,7 @@ export default function HowToRemoveExcessSolderFromASmallConnectorPinPage() {
       <section>
         <h2 id="inspect" className="text-xl font-semibold mb-3">Inspection and fixes</h2>
         <p className="text-muted leading-7 mb-4">
-          Inspect with magnification and side lighting, then check neighbouring pins for continuity with a
+          Inspect with magnification and side lighting, then check neighboring pins for continuity with a
           meter. If surplus has joined two pins, our guide to{" "}
           <Link href="/soldering-irons/how-to-prevent-solder-bridges" className={link}>
             preventing solder bridges

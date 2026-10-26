@@ -59,7 +59,7 @@ export default function HowToTestABatteryProtectionCircuitWithAMultimeterPage() 
         { id: "safety", label: "Safety first" },
         { id: "board-layout", label: "B+, B−, P+ and P−" },
         { id: "cell-vs-pack", label: "1. Cell voltage vs pack voltage" },
-        { id: "tripped", label: "2. Recognise a tripped board" },
+        { id: "tripped", label: "2. Recognize a tripped board" },
         { id: "wake-up", label: "3. Wake it with a charger" },
         { id: "mosfets", label: "4. Check the protection MOSFETs" },
         { id: "balance-taps", label: "5. Balance taps on multi-cell packs" },
@@ -183,7 +183,7 @@ export default function HowToTestABatteryProtectionCircuitWithAMultimeterPage() 
       </section>
 
       <section>
-        <StepHeading n={2} id="tripped">Recognise a tripped board</StepHeading>
+        <StepHeading n={2} id="tripped">Recognize a tripped board</StepHeading>
         <p className="text-muted leading-7 mb-4">
           If B+ to B− shows a respectable cell voltage but P+ to P− reads zero, the board has opened the
           negative path. A quick confirmation is to measure from B− to P−: with the MOSFETs off, the cell
@@ -282,7 +282,7 @@ export default function HowToTestABatteryProtectionCircuitWithAMultimeterPage() 
         <StepHeading n={5} id="balance-taps">Measure balance taps on multi-cell packs</StepHeading>
         <p className="text-muted leading-7 mb-4">
           On 2S, 3S, 4S and larger packs the board has extra wires to each junction between cells, usually
-          labelled B0 (or B−), B1, B2 and so on up to B+. Measure each adjacent pair, B0 to B1, B1 to B2, and
+          labeled B0 (or B−), B1, B2 and so on up to B+. Measure each adjacent pair, B0 to B1, B1 to B2, and
           so on, to read each cell group on its own. The individual readings should add up to the total across
           the stack and should sit close together on a balanced pack; a spread of more than about a tenth of a
           volt is commonly treated as a warning sign.

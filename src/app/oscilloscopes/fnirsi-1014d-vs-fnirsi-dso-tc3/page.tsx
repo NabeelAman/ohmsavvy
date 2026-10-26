@@ -172,7 +172,7 @@ const comparison: ProductComparisonContent = {
             ["Testing filters or amplifiers across a wide range", "FNIRSI 1014D", "Generator to 10MHz sine and a second channel for the output"],
             ["Switching power supplies", "FNIRSI 1014D", "Switching waveforms usually exceed the DSO-TC3's comfortable range"],
             ["Field checks away from mains power", "FNIRSI DSO-TC3", "Built-in rechargeable battery with USB-C charging"],
-            ["Learning scope basics on a small budget", "Either", "Both include a generator to practise on known signals"],
+            ["Learning scope basics on a small budget", "Either", "Both include a generator to practice on known signals"],
           ]}
         />
       </section>

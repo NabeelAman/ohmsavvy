@@ -87,7 +87,7 @@ const fitNotes: Record<string, string> = {
   "Fluke 87V":
     "It carries our Hands-on Tested badge, reads stator output in True RMS, resolves charging voltage in its 19,999-count high-resolution mode and covers drains from a 600.0 µA range. At 355 g without the holster it is portable, but it costs several times more than the meters below and lacks the 88V's engine functions.",
   "KAIWEETS HT118A":
-    "For under $40 you get True RMS AC volts, a 600 µA to 10 A current span, Min/Max/Average, temperature, a kickstand and a flashlight, which covers every common motorcycle charging and drain test. Amazon lists it at 0.55 kg, bulky for a tail pack, and KAIWEETS's product page and manual disagree on maximum voltage.",
+    "At a budget price you get True RMS AC volts, a 600 µA to 10 A current span, Min/Max/Average, temperature, a kickstand and a flashlight, which covers every common motorcycle charging and drain test. Amazon lists it at 0.55 kg, bulky for a tail pack, and KAIWEETS's product page and manual disagree on maximum voltage.",
   "Power Probe DM600MAX":
     "An IP67 seal, a 4 ft drop rating, True RMS, a 400.0 µA range and Bluetooth logging suit a rider who diagnoses at the roadside in the rain or logs a drain during storage. It is one of the priciest meters here, and with no RPM or dwell its feature list is aimed at general shop work.",
   "Klein Tools MM420":
@@ -121,7 +121,7 @@ const advice = [
   {
     heading: "Pair the meter with a wiring diagram",
     body:
-      "Motorcycle harnesses pack connectors into tight spaces under tanks and fairings, and colour codes vary between makers. A continuity beeper and a wiring diagram find most chafed wires and corroded plugs. For faults that come and go with vibration, a Min/Max reading taken while you wiggle the harness is more telling than a single reading.",
+      "Motorcycle harnesses pack connectors into tight spaces under tanks and fairings, and color codes vary between makers. A continuity beeper and a wiring diagram find most chafed wires and corroded plugs. For faults that come and go with vibration, a Min/Max reading taken while you wiggle the harness is more telling than a single reading.",
   },
 ];
 

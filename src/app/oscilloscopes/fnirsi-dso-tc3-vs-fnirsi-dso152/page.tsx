@@ -130,7 +130,7 @@ const comparison: ProductComparisonContent = {
           For most beginners the DSO-TC3 is the better learning tool, and the reason isn&apos;t its extra
           bandwidth. It is the built-in signal generator. When you first use a scope, the hardest part is often
           having something sensible to look at. With the DSO-TC3 you can generate a waveform of a known shape
-          and frequency, feed it into the scope input, and practise setting the timebase, the volts per division
+          and frequency, feed it into the scope input, and practice setting the timebase, the volts per division
           and the trigger until the trace sits still. Because you know what the answer should be, every mistake
           in your settings shows up straight away. The DSO152 can teach the same controls, but only if you
           already have a circuit or a separate generator producing a signal.
@@ -171,7 +171,7 @@ const comparison: ProductComparisonContent = {
         <DataTable
           head={["If you are…", "Pick", "Why"]}
           rows={[
-            ["A complete beginner learning scope controls", "FNIRSI DSO-TC3", "Its built-in generator gives you known signals to practise on"],
+            ["A complete beginner learning scope controls", "FNIRSI DSO-TC3", "Its built-in generator gives you known signals to practice on"],
             ["Building your first circuits from parts", "FNIRSI DSO-TC3", "The component tester checks transistors, diodes, capacitors and more"],
             ["Watching audio signals only", "FNIRSI DSO152", "200kHz covers the audio band; it is the simpler scope-only tool"],
             ["Checking signals between about 40kHz and 100kHz", "FNIRSI DSO-TC3", "Its 500kHz bandwidth keeps that range within the 3–5× rule"],
@@ -253,7 +253,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Is the FNIRSI DSO-TC3 better than the DSO152 for a beginner?",
       answer:
-        "For most beginners, yes. Its 500kHz bandwidth and 10 MSa/s beat the DSO152's 200kHz and 2.5 MSa/s, and its built-in signal generator gives you known waveforms to practise scope controls on. The DSO152 is the simpler scope-only choice if you only want to watch audio-range signals.",
+        "For most beginners, yes. Its 500kHz bandwidth and 10 MSa/s beat the DSO152's 200kHz and 2.5 MSa/s, and its built-in signal generator gives you known waveforms to practice scope controls on. The DSO152 is the simpler scope-only choice if you only want to watch audio-range signals.",
     },
     {
       question: "Does the FNIRSI DSO152 have a signal generator or component tester?",

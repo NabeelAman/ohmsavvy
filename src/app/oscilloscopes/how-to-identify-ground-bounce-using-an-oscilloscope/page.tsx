@@ -75,7 +75,7 @@ export default function HowToIdentifyGroundBouncePage() {
       faq={[
         {
           q: "What is the difference between ground bounce and crosstalk?",
-          a: "Crosstalk couples from one trace or wire to a neighbour through capacitance and inductance between them, so it depends on how close the two run. Ground bounce comes from the shared return path inside the chip, so it affects every output of that chip at once, including ones routed far from the switching lines. Probing two quiet outputs on opposite sides of the package helps separate them.",
+          a: "Crosstalk couples from one trace or wire to a neighbor through capacitance and inductance between them, so it depends on how close the two run. Ground bounce comes from the shared return path inside the chip, so it affects every output of that chip at once, including ones routed far from the switching lines. Probing two quiet outputs on opposite sides of the package helps separate them.",
         },
         {
           q: "Does ground bounce also affect the power supply pin?",
@@ -146,7 +146,7 @@ export default function HowToIdentifyGroundBouncePage() {
         <p className="text-muted leading-7 mt-4">
           Every output and input on that chip is referenced to the internal ground, so the bounce appears on
           outputs that are supposed to be steady, and it shifts the thresholds of the chip&apos;s inputs.
-          The result is a false edge on a neighbouring line, often a clock, reset or chip select, that has
+          The result is a false edge on a neighboring line, often a clock, reset or chip select, that has
           nothing to do with the signals that caused it.
         </p>
       </section>
@@ -195,7 +195,7 @@ export default function HowToIdentifyGroundBouncePage() {
         <StepHeading n={1} id="pick-a-quiet-output">Pick a quiet output to watch</StepHeading>
         <p className="text-muted leading-7">
           The best window into the chip&apos;s internal ground is an output on the same chip that is held
-          low while its neighbours switch. Because a low output is connected to the internal ground through
+          low while its neighbors switch. Because a low output is connected to the internal ground through
           its output transistor, it follows the bounce. If you write the firmware, set a spare pin as an
           output driven low; on a bus, pick a bit that stays at 0 while others toggle. Probe it as close to
           the chip as you can, not at the far end of a long trace.
@@ -256,7 +256,7 @@ export default function HowToIdentifyGroundBouncePage() {
           caption={
             <>
               Diagram, not a capture. CH2 (blue, top, 2 V/div) is a switching 3.3 V output, falling at
-              2.5 divisions. CH1 (green, 200 mV/div, ground 2 divisions below centre) is a quiet low output.
+              2.5 divisions. CH1 (green, 200 mV/div, ground 2 divisions below center) is a quiet low output.
               The yellow arrow marks a spike 2.5 divisions high = 0.5 V at the same instant, matching the
               500 mV worked example.
             </>

@@ -162,7 +162,7 @@ export default function HowToPreventComponentsFromMovingDuringHandSolderingPage(
         </p>
         <InfoCards
           items={[
-            { label: "Floating and sliding", desc: "A chip drifts off-centre on liquid solder, or follows the tip as you lift it." },
+            { label: "Floating and sliding", desc: "A chip drifts off-center on liquid solder, or follows the tip as you lift it." },
             { label: "Tombstoning", desc: "One end wets first and its pull stands the part up on that end." },
             { label: "Tilting", desc: "A through-hole part slips out when the board is turned over, or a lump of solder props one side up." },
           ]}
@@ -228,7 +228,7 @@ export default function HowToPreventComponentsFromMovingDuringHandSolderingPage(
         <StepHeading n={3} id="tape-and-putty">Use tape and putty</StepHeading>
         <p className="text-muted leading-7 mb-4">
           Kapton (polyimide) tape withstands soldering temperatures and peels away cleanly, so it can sit right
-          beside a joint: tape a row of resistors flat, hold a connector square, or mask neighbouring parts.
+          beside a joint: tape a row of resistors flat, hold a connector square, or mask neighboring parts.
           Masking tape works on the component side, away from heat. Lay one strip across a batch of parts
           before flipping the board and they all stay seated.
         </p>

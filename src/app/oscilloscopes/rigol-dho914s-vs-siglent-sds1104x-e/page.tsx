@@ -66,7 +66,7 @@ const comparison: ProductComparisonContent = {
   differences: [
     "The DHO914S has a built-in single-channel 25 MHz arbitrary/function generator and a Bode plot function; Siglent sells a USB generator module for the SDS1104X-E as an option.",
     "Bandwidth: 125 MHz on the Rigol against 100 MHz on the Siglent.",
-    "Per-channel sample rate with all four channels on favours the Siglent, 500 MSa/s against 312.5 MSa/s; with one channel on the Rigol leads, 1.25 GSa/s against 1 GSa/s.",
+    "Per-channel sample rate with all four channels on favors the Siglent, 500 MSa/s against 312.5 MSa/s; with one channel on the Rigol leads, 1.25 GSa/s against 1 GSa/s.",
     "Resolution: 12-bit (4,096 levels) on the Rigol, 8-bit (256 levels) on the Siglent.",
     "Memory: up to 50 Mpts on the Rigol against 14 Mpts, and 10 Mpts against 7 Mpts per channel with four on.",
     "Both decode UART, I2C, SPI, CAN and LIN as standard; the Rigol also lists parallel.",
@@ -297,7 +297,7 @@ const comparison: ProductComparisonContent = {
         "It depends on the fault. The Rigol's 12 bits show small amplitude details such as rail ripple and sensor noise more clearly. The Siglent's 100,000 wfm/s normal update rate, against Rigol's 30,000, helps rare glitches appear sooner in normal mode, though Rigol's UltraAcquire mode reaches 1,000,000 wfm/s when you switch to it.",
     },
     {
-      question: "Do both scopes decode serial buses without extra licences?",
+      question: "Do both scopes decode serial buses without extra licenses?",
       answer:
         "Yes. Rigol lists parallel, UART, I2C, SPI, CAN and LIN decoding as standard on the DHO914S, and Siglent lists I2C, SPI, UART/RS232, CAN and LIN as standard on the SDS1104X-E. For a home lab working with Arduino, ESP32 or automotive modules, neither scope needs a paid upgrade to read those buses.",
     },

@@ -29,7 +29,7 @@ const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
 
 const link = "text-accent hover:underline";
 
-/** Room thermostat as a switch in the switched-live loop between the wiring centre / boiler and the call-for-heat input. */
+/** Room thermostat as a switch in the switched-live loop between the wiring center / boiler and the call-for-heat input. */
 function SwitchedLiveDiagram() {
   return (
     <svg viewBox="0 0 340 200" className="w-full h-auto" role="img" aria-label="Diagram of a room thermostat switching the live feed back to the boiler">
@@ -47,7 +47,7 @@ function SwitchedLiveDiagram() {
         <circle cx="150" cy="120" r="3" className="fill-foreground" />
       </g>
       <g fontSize="10" className="fill-foreground" textAnchor="middle">
-        <text x="62" y="32">Boiler / wiring centre</text>
+        <text x="62" y="32">Boiler / wiring center</text>
         <text x="278" y="32">Room thermostat</text>
         <text x="62" y="74" className="fill-muted">Live out</text>
         <text x="62" y="124" className="fill-muted">Call for heat in</text>
@@ -170,7 +170,7 @@ export default function HowToTestABoilerThermostatPage() {
         />
         <p className="text-muted leading-7 mt-4">
           A thermostat is a switch. In the usual layout it sits in a loop: a permanent live runs out from the
-          boiler or wiring centre to the stat, and when the room is colder than the setpoint the stat closes and
+          boiler or wiring center to the stat, and when the room is colder than the setpoint the stat closes and
           sends that live back as the &quot;switched live&quot; that tells the boiler to fire.
         </p>
         <Figure caption={<>The room stat completes the switched-live loop. Testing it means checking that this contact closes and opens on command.</>}>
@@ -183,7 +183,7 @@ export default function HowToTestABoilerThermostatPage() {
         <p className="text-muted leading-7 mb-4">
           Find the fused connection unit (spur) that supplies the boiler and controls, usually next to the boiler
           or the hot water cylinder. Switch it off and take the fuse out so nobody can restore power while
-          you work. Some systems also have a separate spur for a wiring centre or pump, so check the system
+          you work. Some systems also have a separate spur for a wiring center or pump, so check the system
           isn&apos;t fed from two places.
         </p>
         <p className="text-muted leading-7">
@@ -274,7 +274,7 @@ export default function HowToTestABoilerThermostatPage() {
             ["OL whatever the setting", "Burnt or open contact, failed relay, or flat batteries in a digital stat"],
             ["Beep whatever the setting", "Welded contacts or stuck relay: boiler would run non-stop"],
             ["Reading that flickers or sits at several ohms", "Pitted contacts: likely to fail intermittently"],
-            ["Stat fine, but no live reaches common", "Fault upstream: programmer, wiring centre or fuse"],
+            ["Stat fine, but no live reaches common", "Fault upstream: programmer, wiring center or fuse"],
           ]}
         />
         <Figure caption={<>Where to look next, in order. Each step either clears or catches one link in the chain.</>}>
@@ -293,7 +293,7 @@ export default function HowToTestABoilerThermostatPage() {
       <section>
         <h2 id="not-the-stat" className="text-xl font-semibold mb-3">When the thermostat tests fine</h2>
         <p className="text-muted leading-7">
-          If the stat switches cleanly, check the cable back to the boiler or wiring centre for a broken core
+          If the stat switches cleanly, check the cable back to the boiler or wiring center for a broken core
           using the method in{" "}
           <Link href="/multimeters/how-to-test-electrical-wires-with-a-multimeter" className={link}>
             how to test electrical wires

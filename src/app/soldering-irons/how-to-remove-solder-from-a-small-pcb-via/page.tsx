@@ -201,7 +201,7 @@ export default function HowToRemoveSolderFromASmallPcbViaPage() {
       <section>
         <StepHeading n={1} id="open-a-tented-via">Open a tented via</StepHeading>
         <p className="text-muted leading-7">
-          If the via is covered with mask, expose the ring first. Scratch the mask gently with a fibreglass pen
+          If the via is covered with mask, expose the ring first. Scratch the mask gently with a fiberglass pen
           or the tip of a scalpel held almost flat until copper shows around the hole. The ring is often only
           about 0.1 mm to 0.15 mm wide, so stop as soon as it shines; cutting through it breaks the connection.
         </p>

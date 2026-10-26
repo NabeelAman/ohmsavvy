@@ -108,7 +108,7 @@ export default function HowToSolderCopperWireToAGroundPadPage() {
           Copper conducts heat extremely well, and a ground plane is often a full layer of it. When the tip
           touches a pad tied to that plane, heat floods outward into the copper instead of building up at the
           joint. The pad never reaches the temperature where solder wets, so the solder melts on the tip and
-          wire but sits on the pad as a grey, balled-up lump. Multilayer boards with internal planes, and
+          wire but sits on the pad as a gray, balled-up lump. Multilayer boards with internal planes, and
           boards with heavy copper, make the effect stronger.
         </p>
       </section>
@@ -243,7 +243,7 @@ export default function HowToSolderCopperWireToAGroundPadPage() {
           head={["What you see", "Likely cause", "Fix"]}
           rows={[
             ["Solder balls up, won't spread on pad", "Pad never reached wetting temperature", "Wider tip, preheat, fresh flux"],
-            ["Grey, grainy surface", "Wire moved while cooling or not enough heat", "Reflow with flux and hold still"],
+            ["Gray, grainy surface", "Wire moved while cooling or not enough heat", "Reflow with flux and hold still"],
             ["Clear ring between solder and pad", "Pad oxidised or still under mask", "Scrape, flux, re-tin the pad"],
             ["Pad lifted or blistered", "Long dwell at very high temperature", "Shorter heat, bigger tip; repair the pad"],
             ["Reading jumps when wire is flexed", "Cracked or partially wetted joint", "Remove, clean, re-tin both parts"],

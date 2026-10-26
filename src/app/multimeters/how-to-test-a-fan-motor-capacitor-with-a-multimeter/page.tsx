@@ -201,7 +201,7 @@ export default function HowToTestAFanMotorCapacitorWithAMultimeterPage() {
         </p>
         <InfoCards
           items={[
-            { label: "Ceiling fans", desc: "Small multi-section capacitors, often a few µF each, with coloured wires. Each section sets a speed." },
+            { label: "Ceiling fans", desc: "Small multi-section capacitors, often a few µF each, with colored wires. Each section sets a speed." },
             { label: "HVAC condenser fans", desc: "A single fan capacitor, or the FAN section of a dual capacitor shared with the compressor." },
             { label: "Extractor fans", desc: "Kitchen hood, bathroom and inline fans with PSC motors use a small run capacitor." },
           ]}
@@ -246,7 +246,7 @@ export default function HowToTestAFanMotorCapacitorWithAMultimeterPage() {
           The label shows the capacitance in µF (sometimes MFD), a tolerance such as ±5% or ±6%, and a voltage
           rating, typically 250 VAC or 450 VAC for fans and 370 VAC or 440 VAC for HVAC units. Ceiling fan
           capacitors with several sections list each value, for example 4 µF + 5 µF, and a wiring key for the
-          coloured leads. Photograph the label and wiring first.
+          colored leads. Photograph the label and wiring first.
         </p>
       </section>
 

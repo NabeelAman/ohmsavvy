@@ -26,7 +26,7 @@ const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
 const link = "text-accent hover:underline";
 
 // Supply rail collapsing at shutdown, drawn so the falling crossing of the
-// trigger level lands exactly on the centre graticule line (x = 150).
+// trigger level lands exactly on the center graticule line (x = 150).
 const railPoints = Array.from({ length: 151 }, (_, i) => {
   const x = i * 2;
   const y = x < 137.5 ? 40 : 130 - 90 * Math.exp(-(x - 137.5) / 35);
@@ -135,15 +135,15 @@ export default function TriggerOnFallingEdgePage() {
         <h2 id="rising-vs-falling" className="text-xl font-semibold mb-3">Rising vs falling on the same signal</h2>
         <p className="text-muted leading-7 mb-4">
           On a plain square wave either slope gives a stable trace; changing it simply swaps which
-          transition sits on the centre line. The two screens below show the same 5-division-period
+          transition sits on the center line. The two screens below show the same 5-division-period
           wave with the level (T) at 0 V. Notice that nothing about the signal changed, only where
           the scope anchors each capture.
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
-          <Figure caption={<>Slope set to rising: the low-to-high transition lands at the centre graticule line.</>}>
+          <Figure caption={<>Slope set to rising: the low-to-high transition lands at the center graticule line.</>}>
             <ScopeScreen wave="square" cycles={2} amplitude={2.5} triggerLevel={0} labels={{ left: "Rising", right: "500 µs/div" }} />
           </Figure>
-          <Figure caption={<>Slope set to falling: the high-to-low transition now sits at the centre instead.</>}>
+          <Figure caption={<>Slope set to falling: the high-to-low transition now sits at the center instead.</>}>
             <ScopeScreen wave="square" cycles={2} amplitude={2.5} shift={2.5} triggerLevel={0} labels={{ left: "Falling", right: "500 µs/div" }} />
           </Figure>
         </div>
@@ -176,7 +176,7 @@ export default function TriggerOnFallingEdgePage() {
             <>
               An active-low chip-select, high for most of the period and low for 1 division. With the
               slope on falling and the level at mid-swing, the start of each select pulse sits at the
-              screen centre.
+              screen center.
             </>
           }
         >
@@ -200,7 +200,7 @@ export default function TriggerOnFallingEdgePage() {
         <StepHeading n={3} id="pre-trigger">Use the trigger point to look before the edge</StepHeading>
         <p className="text-muted leading-7 mb-4">
           A digital scope keeps recording while it waits, so the trigger point does not have to be
-          the left edge of the screen. By default many models put it at the horizontal centre, which
+          the left edge of the screen. By default many models put it at the horizontal center, which
           gives you equal time before and after the drop. Turn the horizontal position (sometimes
           called delay) to slide it: move the trigger point right to see more of what led up to the
           edge, or left to see more of the aftermath. That pre-trigger view is often the whole
@@ -210,12 +210,12 @@ export default function TriggerOnFallingEdgePage() {
           caption={
             <>
               A supply rail collapsing after power is removed. The falling crossing of the trigger
-              level is pinned to the centre line, so the left half shows the steady rail before the
+              level is pinned to the center line, so the left half shows the steady rail before the
               event and the right half shows the decay.
             </>
           }
         >
-          <svg viewBox="0 0 300 170" className="w-full h-auto" role="img" aria-label="Diagram of a supply rail collapsing with the falling-edge trigger point at the screen centre, splitting pre-trigger and post-trigger time">
+          <svg viewBox="0 0 300 170" className="w-full h-auto" role="img" aria-label="Diagram of a supply rail collapsing with the falling-edge trigger point at the screen center, splitting pre-trigger and post-trigger time">
             <rect x="0" y="10" width="300" height="140" rx="4" className="fill-[#0f1a14]" />
             <line x1="150" y1="10" x2="150" y2="150" stroke="#2c4a3a" strokeWidth="1.2" />
             <line x1="0" y1="130" x2="300" y2="130" stroke="#2c4a3a" strokeWidth="1" />
@@ -278,7 +278,7 @@ export default function TriggerOnFallingEdgePage() {
             ["Single never fires on power-down", "Level below where the rail stops, or source wrong", "Raise the level to just under nominal and confirm the trigger channel"],
             ["Trace jumps between positions on serial data", "Data bits also have falling edges", "Increase holdoff to just over one frame time"],
             ["Triggers on idle-line noise", "Level too close to the high state", "Move the level toward mid-swing, or try noise-reject trigger coupling if offered"],
-            ["Nothing before the edge is visible", "Trigger point at the far left of the screen", "Adjust horizontal position to bring the trigger point back toward centre"],
+            ["Nothing before the edge is visible", "Trigger point at the far left of the screen", "Adjust horizontal position to bring the trigger point back toward center"],
           ]}
         />
       </section>

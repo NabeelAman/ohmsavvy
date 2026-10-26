@@ -80,7 +80,7 @@ export default function HowToFindSignalClippingPage() {
         },
         {
           q: "Is clipping the same as distortion?",
-          a: "Clipping is one kind of distortion, and usually the most severe. Other kinds, such as crossover distortion in a class B output stage or the gentle bending from a transistor's curve, change the shape without flattening it. Clipping is easy to see on a scope; low-level distortion often needs a spectrum view or a distortion analyser.",
+          a: "Clipping is one kind of distortion, and usually the most severe. Other kinds, such as crossover distortion in a class B output stage or the gentle bending from a transistor's curve, change the shape without flattening it. Clipping is easy to see on a scope; low-level distortion often needs a spectrum view or a distortion analyzer.",
         },
         {
           q: "Can clipping damage speakers?",
@@ -184,7 +184,7 @@ export default function HowToFindSignalClippingPage() {
         <StepHeading n={2} id="fit-the-waveform">Fit the whole waveform on screen</StepHeading>
         <p className="text-muted leading-7">
           Adjust V/div until the output fills roughly six of the eight vertical divisions, with space
-          above and below. Use vertical position if a DC level pushes it off centre, as explained in{" "}
+          above and below. Use vertical position if a DC level pushes it off center, as explained in{" "}
           <Link href="/oscilloscopes/why-does-an-oscilloscope-waveform-shift-vertically" className={link}>
             why a waveform shifts vertically
           </Link>
@@ -323,7 +323,7 @@ export default function HowToFindSignalClippingPage() {
           head={["What you see", "Likely cause", "Fix"]}
           rows={[
             ["Both peaks flat at the same level", "Input too large for the gain and rails", "Lower the input or the gain"],
-            ["Only one peak flat", "Bias point off centre, or unequal rails", "Check the no-signal DC level against mid-supply"],
+            ["Only one peak flat", "Bias point off center, or unequal rails", "Check the no-signal DC level against mid-supply"],
             ["Flat tops at the screen edge only", "V/div too sensitive", "Use a larger V/div setting"],
             ["Input on CH1 already flat", "Clipping in the source or an earlier stage", "Move the probe back stage by stage"],
             ["Clips well below the rails", "Load too heavy for the output", "Check the load against the datasheet"],

@@ -160,7 +160,7 @@ export default function SolderingIronTipTypesPage() {
         <h2 id="conical" className="text-xl font-semibold mb-3">Conical tips: precision over throughput</h2>
         <p className="text-muted leading-7">
           A conical tip&apos;s small, pointed contact area makes it the easiest shape to aim precisely at
-          a single pad or pin without touching its neighbours, which is why it&apos;s a common default for
+          a single pad or pin without touching its neighbors, which is why it&apos;s a common default for
           fine SMD and tightly-spaced through-hole work. The trade-off is less surface area touching the
           joint, so heat transfers somewhat more slowly than a broader shape on larger, higher
           thermal-mass joints.
@@ -192,7 +192,7 @@ export default function SolderingIronTipTypesPage() {
         <p className="text-muted leading-7">
           A knife tip&apos;s thin edge is built specifically for drag soldering — running the tip along
           a row of closely-spaced pins (common on ICs) while solder flows along the edge from pin to
-          pin, rather than touching down on each pin individually. It&apos;s a specialised shape, not a
+          pin, rather than touching down on each pin individually. It&apos;s a specialized shape, not a
           general-purpose one.
         </p>
       </section>
@@ -205,7 +205,7 @@ export default function SolderingIronTipTypesPage() {
           chisel feels too flat-edged and a conical feels too pointed. A micro-conical tip — a much
           finer version of the standard conical shape — is aimed specifically at extremely small SMD
           packages (0201, 01005), where even a standard fine conical tip is too large to approach a
-          single pad without risking its neighbours. Most hobbyists never need either, but they exist
+          single pad without risking its neighbors. Most hobbyists never need either, but they exist
           for a reason once work gets small or specialized enough.
         </p>
       </section>

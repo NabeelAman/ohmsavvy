@@ -82,7 +82,7 @@ export default function HowToMeasureFrequencyWithAnOscilloscopePage() {
         },
         {
           q: "Why does my oscilloscope show double the real frequency?",
-          a: "Usually edges were counted that are not one full cycle apart. Noise or ringing near the measurement level can register as extra edges, and measuring from a rising edge to the next falling edge gives only half a period on a square wave. Measure rising edge to rising edge, keep two to five clean cycles on screen and stabilise the trigger.",
+          a: "Usually edges were counted that are not one full cycle apart. Noise or ringing near the measurement level can register as extra edges, and measuring from a rising edge to the next falling edge gives only half a period on a square wave. Measure rising edge to rising edge, keep two to five clean cycles on screen and stabilize the trigger.",
         },
         {
           q: "Can a multimeter measure frequency instead of an oscilloscope?",
@@ -191,7 +191,7 @@ export default function HowToMeasureFrequencyWithAnOscilloscopePage() {
       <section>
         <StepHeading n={2} id="count-divisions">Count the divisions in one period</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          Pick two matching points one cycle apart. Edges that cross the centre line are the easiest to
+          Pick two matching points one cycle apart. Edges that cross the center line are the easiest to
           locate precisely, because the trace is steepest there. Count the horizontal divisions between
           them, using the minor ticks (each 0.2 division on most scopes) for the fractional part. The
           standard grid is 10 divisions wide; our guide to{" "}
@@ -318,7 +318,7 @@ export default function HowToMeasureFrequencyWithAnOscilloscopePage() {
         <DataTable
           head={["Symptom", "Likely cause", "Fix"]}
           rows={[
-            ["Auto frequency jumps around or shows nothing", "Noise causing false edges, or less than one full cycle on screen", "Show 2-5 cycles; stabilise the trigger; try the bandwidth limit if your scope has one"],
+            ["Auto frequency jumps around or shows nothing", "Noise causing false edges, or less than one full cycle on screen", "Show 2-5 cycles; stabilize the trigger; try the bandwidth limit if your scope has one"],
             ["Reading is about double the real value", "Noise or ringing counted as extra edges, or a period measured edge to opposite edge", "Measure rising edge to rising edge; check the trace for ringing"],
             ["Waveform looks slow and stable but the frequency is wrong", "Aliasing: the sample rate is too low for the signal at this time/div", "Use a faster time/div setting and check the result changes as expected"],
             ["Answer off by a factor of 1,000", "Unit slip between ms, µs and ns", "Write the time/div unit down before you calculate"],
@@ -392,7 +392,7 @@ export default function HowToMeasureFrequencyWithAnOscilloscopePage() {
           <Link href="/oscilloscopes/what-is-an-oscilloscope" className={link}>
             what an oscilloscope is
           </Link>
-          , and if you want to practise on a known signal, the Hantek DSO2D10&apos;s built-in waveform
+          , and if you want to practice on a known signal, the Hantek DSO2D10&apos;s built-in waveform
           generator can supply one.
         </p>
         <ProductStrip

@@ -198,7 +198,7 @@ export default function HowToCheckACeramicCapacitorWithAMultimeterPage() {
           Look before you measure. Under a magnifier, check SMD chips for hairline cracks, especially
           running diagonally from the edge of a metal end, chipped corners, and dark or burnt spots on the
           body or the board beneath it. On a disc, look for a cracked coating or a scorched lead. A
-          shorted capacitor on a powered rail often gets hot enough to discolour the board around it, so
+          shorted capacitor on a powered rail often gets hot enough to discolor the board around it, so
           a brown patch near one part is a strong clue even when the part itself looks clean.
         </p>
       </section>
@@ -228,7 +228,7 @@ export default function HowToCheckACeramicCapacitorWithAMultimeterPage() {
         <p className="text-muted leading-7 mt-4">
           Shorts are the failure that matters most with multilayer ceramics. An MLCC is a stack of thin
           ceramic layers with interleaved electrodes; a crack from board flexing, a dropped device or
-          thermal shock during soldering can let neighbouring electrodes touch or leak. A shorted
+          thermal shock during soldering can let neighboring electrodes touch or leak. A shorted
           decoupling capacitor pulls its supply rail down to almost nothing, which is why a dead board
           with a near-zero-ohm rail is so often a single cracked chip.
         </p>

@@ -146,7 +146,7 @@ export default function HowToSolderASmallSurfaceMountDiodeByHandPage() {
       <Callout title="Small parts, hot tips">
         <ul className="space-y-2 list-disc pl-5">
           <li>Work on an unpowered board only, and discharge any large capacitors before touching it.</li>
-          <li>Tiny parts can flick off tweezers. Wear safety glasses and work over a light-coloured mat.</li>
+          <li>Tiny parts can flick off tweezers. Wear safety glasses and work over a light-colored mat.</li>
           <li>Ventilate flux fumes, park the iron in its stand, and wash your hands after using leaded solder.</li>
         </ul>
       </Callout>
@@ -172,8 +172,8 @@ export default function HowToSolderASmallSurfaceMountDiodeByHandPage() {
             ["SOD-523", "1.6 × 0.8 mm", "Small-signal, ESD", "Band; often hard to see"],
             ["SOD-323", "2.5 × 1.3 mm", "Small-signal, Schottky, Zener", "Band at one end"],
             ["SOD-123", "3.7 × 1.6 mm", "Small-signal, Zener, Schottky", "Band at one end"],
-            ["SMA (DO-214AC)", "5.2 × 2.6 mm", "1 A rectifiers, Schottky, TVS", "Band on the moulded body"],
-            ["SMB (DO-214AA)", "5.4 × 3.6 mm", "Higher-current rectifiers, TVS", "Band on the moulded body"],
+            ["SMA (DO-214AC)", "5.2 × 2.6 mm", "1 A rectifiers, Schottky, TVS", "Band on the molded body"],
+            ["SMB (DO-214AA)", "5.4 × 3.6 mm", "Higher-current rectifiers, TVS", "Band on the molded body"],
           ]}
           mono={[1]}
         />

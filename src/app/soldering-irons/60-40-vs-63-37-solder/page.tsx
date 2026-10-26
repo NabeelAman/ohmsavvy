@@ -53,7 +53,7 @@ export default function SolderComparisonPage() {
         },
         {
           q: "Can I mix 60/40 and 63/37 solder on the same joint?",
-          a: "You can, and it won't damage anything, but the resulting mixture is neither ratio anymore — its melting behaviour shifts toward whichever alloy dominates the mix, and you lose the predictability of either pure ratio. For consistent, repeatable results, it's better to stick with one alloy per spool and avoid topping up a leftover joint with a different ratio.",
+          a: "You can, and it won't damage anything, but the resulting mixture is neither ratio anymore — its melting behavior shifts toward whichever alloy dominates the mix, and you lose the predictability of either pure ratio. For consistent, repeatable results, it's better to stick with one alloy per spool and avoid topping up a leftover joint with a different ratio.",
         },
         {
           q: "Does the tin percentage affect how long solder lasts on the shelf?",
@@ -101,7 +101,7 @@ export default function SolderComparisonPage() {
         <Figure
           caption={
             <>
-              Cooling behaviour of each alloy. 63/37 (eutectic) drops straight from liquid to solid at a
+              Cooling behavior of each alloy. 63/37 (eutectic) drops straight from liquid to solid at a
               single point. 60/40 (non-eutectic) passes through a plastic/pasty range between its
               liquidus and solidus temperatures, where any movement can fracture the forming joint.
             </>
@@ -176,7 +176,7 @@ export default function SolderComparisonPage() {
           head={["", "60/40", "63/37"]}
           rows={[
             ["Composition", "60% tin, 40% lead", "63% tin, 37% lead"],
-            ["Melting behaviour", "Non-eutectic — 183–191°C plastic range", "Eutectic — melts/freezes at 183°C sharply"],
+            ["Melting behavior", "Non-eutectic — 183–191°C plastic range", "Eutectic — melts/freezes at 183°C sharply"],
             ["Sensitivity to movement while cooling", "Higher — must stay still through the plastic range", "Lower — solidifies almost instantly"],
             ["Typical cost", "Usually slightly cheaper", "Usually a small premium over 60/40"],
             ["Common use", "General hand soldering, less critical joints", "Preferred for fine work and hand-soldering precision"],
@@ -196,7 +196,7 @@ export default function SolderComparisonPage() {
       <section id="third-alloy">
         <Callout title="There's a third common alloy worth knowing about: 62/36/2">
           Adding roughly 2% silver to the 63/37 ratio (giving 62% tin, 36% lead, 2% silver) produces an
-          alloy with a very similar eutectic-like melting behaviour, slightly stronger joints, and
+          alloy with a very similar eutectic-like melting behavior, slightly stronger joints, and
           better wetting on silver-plated components and terminals. It costs more than plain 63/37 and
           isn&apos;t necessary for everyday work, but it&apos;s a reasonable upgrade specifically for
           silver-plated connectors and RF/precision work where the extra wetting and joint strength pay

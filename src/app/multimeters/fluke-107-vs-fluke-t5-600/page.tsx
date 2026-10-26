@@ -87,7 +87,7 @@ const comparison: ProductComparisonContent = {
               ]}
             />
           </Figure>
-          <Figure caption={<>Length of each tool in millimetres.</>}>
+          <Figure caption={<>Length of each tool in millimeters.</>}>
             <BarChart
               items={[
                 { label: "Fluke 107", value: 142, display: "142 mm", highlight: true },

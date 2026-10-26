@@ -64,7 +64,7 @@ export default function AnalogVsDigitalOscilloscopePage() {
         },
         {
           q: "What does \"digital phosphor\" mode actually do?",
-          a: "It's a digital scope feature that emulates the analog CRT's intensity-grading behaviour, varying trace brightness or color based on how often each point on the display is hit across many acquisitions. This recovers much of the \"frequency of occurrence\" information an analog scope's phosphor naturally shows, while keeping digital's storage and measurement advantages.",
+          a: "It's a digital scope feature that emulates the analog CRT's intensity-grading behavior, varying trace brightness or color based on how often each point on the display is hit across many acquisitions. This recovers much of the \"frequency of occurrence\" information an analog scope's phosphor naturally shows, while keeping digital's storage and measurement advantages.",
         },
         {
           q: "Is aliasing something I need to worry about on a modern digital scope?",
@@ -178,7 +178,7 @@ export default function AnalogVsDigitalOscilloscopePage() {
             ["Freeze / single-shot capture", "Not possible on standard analog scopes", "Standard feature"],
             ["Automatic measurements, cursors", "Not available", "Standard feature"],
             ["Aliasing risk", "None — no sampling takes place", "Possible if sample rate is too low for the signal"],
-            ["Intensity grading (occurrence frequency)", "Natural, built into the phosphor's behaviour", "Emulated via \"digital phosphor\" display modes"],
+            ["Intensity grading (occurrence frequency)", "Natural, built into the phosphor's behavior", "Emulated via \"digital phosphor\" display modes"],
             ["Availability new", "Rare — mostly discontinued", "Standard across all current scope lineups"],
           ]}
         />

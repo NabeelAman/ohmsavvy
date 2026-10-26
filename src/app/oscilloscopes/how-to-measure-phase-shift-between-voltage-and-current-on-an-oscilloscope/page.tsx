@@ -79,7 +79,7 @@ export default function HowToMeasurePhaseShiftVoltageCurrentPage() {
         },
         {
           q: "Can I measure power factor with an oscilloscope?",
-          a: "For sine-wave voltage and current, yes: power factor equals the cosine of the phase angle you measure. Many loads, such as switching power supplies and LED drivers, draw distorted, spiky current, and then cos φ only gives the displacement part. A power analyser or a scope with a power analysis option handles those loads properly.",
+          a: "For sine-wave voltage and current, yes: power factor equals the cosine of the phase angle you measure. Many loads, such as switching power supplies and LED drivers, draw distorted, spiky current, and then cos φ only gives the displacement part. A power analyzer or a scope with a power analysis option handles those loads properly.",
         },
         {
           q: "What value shunt resistor should I use?",
@@ -189,7 +189,7 @@ export default function HowToMeasurePhaseShiftVoltageCurrentPage() {
           Trigger on CH1, the voltage, so it becomes the fixed reference and the current trace moves
           relative to it. Set the timebase to show two or three cycles, then adjust each channel&apos;s
           V/div so both waveforms are several divisions tall. They do not need to be the same height;
-          only the timing of the zero crossings matters. Centre both traces on the middle line, or use
+          only the timing of the zero crossings matters. Center both traces on the middle line, or use
           AC coupling if one sits on a DC offset, because a shifted baseline moves the apparent zero
           crossing.
         </p>

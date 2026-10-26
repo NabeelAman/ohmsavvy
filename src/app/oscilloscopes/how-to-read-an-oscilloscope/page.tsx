@@ -72,7 +72,7 @@ export default function HowToReadAnOscilloscopePage() {
       faq={[
         {
           q: "How many divisions are on an oscilloscope screen?",
-          a: "Most digital oscilloscopes use a grid of 10 divisions across and 8 divisions up and down. The centre lines carry finer tick marks, often five per division, so you can estimate to a fraction of a division. A few models use a different grid, so check how many divisions yours shows before converting a count into volts or seconds.",
+          a: "Most digital oscilloscopes use a grid of 10 divisions across and 8 divisions up and down. The center lines carry finer tick marks, often five per division, so you can estimate to a fraction of a division. A few models use a different grid, so check how many divisions yours shows before converting a count into volts or seconds.",
         },
         {
           q: "What does V/div mean on an oscilloscope?",
@@ -107,7 +107,7 @@ export default function HowToReadAnOscilloscopePage() {
       <Callout title="Get a safe signal on screen before you read it">
         <ul className="space-y-2 list-disc pl-5">
           <li>
-            Practise reading the screen on your scope&apos;s built-in test output or a low-voltage circuit
+            Practice reading the screen on your scope&apos;s built-in test output or a low-voltage circuit
             such as a battery or USB-powered board.
           </li>
           <li>
@@ -129,7 +129,7 @@ export default function HowToReadAnOscilloscopePage() {
         <h2 id="the-graticule" className="text-xl font-semibold mb-3">The graticule: a grid of divisions</h2>
         <p className="text-muted leading-7 mb-4">
           The grid on the screen is called the graticule. On most scopes it has 10 divisions across and 8
-          divisions up and down. Each square is one major division. The two solid centre lines are
+          divisions up and down. Each square is one major division. The two solid center lines are
           usually marked with smaller tick marks that split each division further, often into five, so
           you can read to a fraction of a division; the exact number of ticks varies by model.
         </p>
@@ -149,7 +149,7 @@ export default function HowToReadAnOscilloscopePage() {
         </p>
         <InfoCards
           items={[
-            { label: "V/div (per channel)", desc: "Volts per vertical division, shown next to each channel's number or colour." },
+            { label: "V/div (per channel)", desc: "Volts per vertical division, shown next to each channel's number or color." },
             { label: "Time/div", desc: "Seconds per horizontal division, the same for every channel." },
             { label: "Ground marker", desc: "A small arrow or channel number at the left edge showing where 0 V sits." },
             { label: "Trigger marker", desc: "Shows the trigger level (right edge) and the trigger point in time (top)." },
@@ -224,11 +224,11 @@ export default function HowToReadAnOscilloscopePage() {
         <ul className="mt-4 space-y-2 text-muted leading-7 list-disc pl-5">
           <li>
             <strong className="text-foreground">Peak-to-peak:</strong> the top of the wave is 3 divisions
-            above the centre line and the bottom is 3 below, so 6 divisions × 2 V = 12 V peak-to-peak.
+            above the center line and the bottom is 3 below, so 6 divisions × 2 V = 12 V peak-to-peak.
           </li>
           <li>
             <strong className="text-foreground">Peak (amplitude):</strong> half of that, 3 divisions × 2 V
-            = 6 V, measured from the centre line, which is 0 V here.
+            = 6 V, measured from the center line, which is 0 V here.
           </li>
           <li>
             <strong className="text-foreground">RMS:</strong> for a pure sine wave, Vrms = Vpeak ÷ √2, so 6
@@ -248,14 +248,14 @@ export default function HowToReadAnOscilloscopePage() {
       <section>
         <h2 id="example-square-wave" className="text-xl font-semibold mb-3">Example 2: reading a square wave (a logic signal)</h2>
         <p className="text-muted leading-7 mb-5">
-          Here the scope is set to 2 V/div and 10 µs/div, with the channel&apos;s 0 V marker on the centre
+          Here the scope is set to 2 V/div and 10 µs/div, with the channel&apos;s 0 V marker on the center
           line and DC coupling. The low part of the wave sits on 0 V and the high part sits above it,
           which is what a typical 5 V logic signal looks like.
         </p>
         <Figure
           caption={
             <>
-              Square wave at 2 V/div and 10 µs/div, 0 V on the centre line. High level is 2.5 divisions up
+              Square wave at 2 V/div and 10 µs/div, 0 V on the center line. High level is 2.5 divisions up
               (5 V); the high portion lasts 2.5 divisions (25 µs); a full cycle is 5 divisions (50 µs, so
               20 kHz).
             </>
@@ -290,7 +290,7 @@ export default function HowToReadAnOscilloscopePage() {
         </ul>
         <p className="mt-4 text-muted leading-7">
           If you switched this channel to AC coupling, the scope would remove the average (DC) level and
-          the wave would recentre around the 0 V line, swinging roughly from -2.5 V to +2.5 V on screen.
+          the wave would recenter around the 0 V line, swinging roughly from -2.5 V to +2.5 V on screen.
           The signal itself hasn&apos;t changed, only the display. Use DC coupling when the actual levels
           matter, as they do for logic signals.
         </p>
@@ -300,12 +300,12 @@ export default function HowToReadAnOscilloscopePage() {
         <h2 id="example-dc-level" className="text-xl font-semibold mb-3">Example 3: reading a DC level</h2>
         <p className="text-muted leading-7 mb-5">
           A steady DC voltage shows as a flat horizontal line. Its value is simply its height above the 0
-          V marker. Here the scope is at 1 V/div with 0 V on the centre line.
+          V marker. Here the scope is at 1 V/div with 0 V on the center line.
         </p>
         <Figure
           caption={
             <>
-              Flat trace at 1 V/div, 1.5 divisions above the 0 V centre line: 1.5 × 1 V = 1.5 V DC, such as
+              Flat trace at 1 V/div, 1.5 divisions above the 0 V center line: 1.5 × 1 V = 1.5 V DC, such as
               a fresh AA cell.
             </>
           }
@@ -386,7 +386,7 @@ export default function HowToReadAnOscilloscopePage() {
           </li>
           <li>
             <strong className="text-foreground">Line features up with a grid line.</strong> Use the
-            position knobs to put a peak or edge exactly on a division line, then count along the centre
+            position knobs to put a peak or edge exactly on a division line, then count along the center
             axis where the fine ticks are.
           </li>
           <li>

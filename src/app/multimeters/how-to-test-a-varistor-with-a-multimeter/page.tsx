@@ -126,7 +126,7 @@ export default function HowToTestAVaristorWithAMultimeterPage() {
       <section>
         <h2 id="what-a-varistor-does" className="text-xl font-semibold mb-3">What a varistor does</h2>
         <p className="text-muted leading-7 mb-4">
-          A metal oxide varistor is a disc of zinc oxide material between two electrodes, usually a coloured
+          A metal oxide varistor is a disc of zinc oxide material between two electrodes, usually a colored
           blue, red or black disc with two leads. Its resistance depends on the voltage across it. At normal
           mains voltage it is very high, so almost no current flows and it might as well not be there. When a
           surge pushes the voltage above its rated level, its resistance drops sharply and it conducts heavily,
@@ -150,7 +150,7 @@ export default function HowToTestAVaristorWithAMultimeterPage() {
           Unplug the device and remove the cover following the maker&apos;s instructions. On anything with a
           switch-mode power supply, find the large filter capacitor near the input, set the meter to DC volts
           and confirm it has discharged to a safe level before your fingers go near the board. Then locate the
-          varistor: a disc near the mains connector and fuse, often labelled RV, VR, VDR or MOV on the board.
+          varistor: a disc near the mains connector and fuse, often labeled RV, VR, VDR or MOV on the board.
         </p>
       </section>
 
@@ -167,7 +167,7 @@ export default function HowToTestAVaristorWithAMultimeterPage() {
             ["Black scorch marks or a burnt smell", "Failed after conducting a large current"],
             ["Disc partly or completely missing", "Blown apart; check the fuse and nearby parts too"],
             ["Soot or carbon on the board around it", "Clean thoroughly; carbon tracks can conduct"],
-            ["Bulged or discoloured coating", "Overheated; treat as suspect"],
+            ["Bulged or discolored coating", "Overheated; treat as suspect"],
             ["Clean, intact disc", "Proceed to the resistance check"],
           ]}
         />

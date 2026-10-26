@@ -78,7 +78,7 @@ export default function HowToTestADiodeWithAMultimeterPage() {
         },
         {
           q: "Can the forward voltage reading tell me what type of diode I'm holding?",
-          a: "It's a useful clue, not a certainty. Roughly 0.5-0.7V points to an ordinary silicon rectifier or signal diode, 0.2-0.4V points to a Schottky diode or germanium diode, and Zener diodes read close to an ordinary silicon diode's forward value in this direction (their special reverse-breakdown behaviour doesn't show up in a simple forward/reverse diode-mode check). Markings on the part itself are more reliable than voltage alone when you need to be sure of the exact type.",
+          a: "It's a useful clue, not a certainty. Roughly 0.5-0.7V points to an ordinary silicon rectifier or signal diode, 0.2-0.4V points to a Schottky diode or germanium diode, and Zener diodes read close to an ordinary silicon diode's forward value in this direction (their special reverse-breakdown behavior doesn't show up in a simple forward/reverse diode-mode check). Markings on the part itself are more reliable than voltage alone when you need to be sure of the exact type.",
         },
       ]}
       next={[

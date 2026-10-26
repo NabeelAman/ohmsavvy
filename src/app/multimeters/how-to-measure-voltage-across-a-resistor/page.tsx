@@ -103,7 +103,7 @@ export default function HowToMeasureVoltageAcrossAResistorPage() {
           component — and a multimeter&apos;s voltage input is built with very high internal resistance,
           so almost no current flows through the meter itself during the measurement. That means
           connecting the probes across a resistor, even one sitting among other parallel components,
-          doesn&apos;t meaningfully change the circuit&apos;s behaviour. This is the opposite situation
+          doesn&apos;t meaningfully change the circuit&apos;s behavior. This is the opposite situation
           from{" "}
           <Link href="/multimeters/how-to-measure-resistance-in-a-parallel-circuit" className={link}>
             resistance measurement in a parallel circuit

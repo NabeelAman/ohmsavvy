@@ -87,7 +87,7 @@ export default function HowToSolderFinePitchSmdComponentsPage() {
         },
         {
           q: "Why do my SMD pins look soldered but the circuit does not work?",
-          a: "The usual culprits are a pin that looks wetted but is not actually bonded to its pad, a hidden hairline bridge, or a part rotated 90 or 180 degrees. Recheck pin 1 orientation against the board marking, inspect each pin from a low angle, and use a multimeter continuity check between suspect neighbours.",
+          a: "The usual culprits are a pin that looks wetted but is not actually bonded to its pad, a hidden hairline bridge, or a part rotated 90 or 180 degrees. Recheck pin 1 orientation against the board marking, inspect each pin from a low angle, and use a multimeter continuity check between suspect neighbors.",
         },
       ]}
       next={[
@@ -123,7 +123,7 @@ export default function HowToSolderFinePitchSmdComponentsPage() {
       <section>
         <h2 id="what-is-fine-pitch" className="text-xl font-semibold mb-3">What counts as fine pitch?</h2>
         <p className="text-muted leading-7 mb-4">
-          Pitch is the centre-to-centre distance between neighbouring pins. Through-hole DIP chips use 2.54
+          Pitch is the center-to-center distance between neighboring pins. Through-hole DIP chips use 2.54
           mm (0.1 inch), which gives you plenty of room. Surface-mount packages shrink that to half or less,
           and anything around 0.65 mm or finer is generally treated as fine pitch, because the gap between
           pins becomes narrower than the tip you are soldering with. The values below are common for each
@@ -187,7 +187,7 @@ export default function HowToSolderFinePitchSmdComponentsPage() {
           For tacking corners and touching up single pins, a fine conical or small bevel tip gives the
           most control. For drag soldering whole rows, a small bevel (sometimes sold as a &quot;mini
           wave&quot; or hoof tip) or a knife tip holds a small reservoir of solder and slides along the
-          pins. A broad chisel tip is the hardest shape to keep off neighbouring pins. Our guide to{" "}
+          pins. A broad chisel tip is the hardest shape to keep off neighboring pins. Our guide to{" "}
           <Link href="/soldering-irons/soldering-iron-tip-types" className={link}>
             soldering iron tip types
           </Link>{" "}
@@ -376,7 +376,7 @@ export default function HowToSolderFinePitchSmdComponentsPage() {
           <li>
             <strong className="text-foreground">Powering up before checking for shorts.</strong> A bridge
             between a supply pin and ground can damage the part. A quick continuity check between
-            neighbouring supply pins, with the power off, is cheap insurance.
+            neighboring supply pins, with the power off, is cheap insurance.
           </li>
         </ul>
       </section>

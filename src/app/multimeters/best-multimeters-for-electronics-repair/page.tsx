@@ -29,7 +29,7 @@ const comparisonRows: string[][] = [
   ["1", "Fluke 289", "50,000", "1 mΩ (50 Ω range)", "1 nF to 100 mF", "Tracing shorted rails and logging intermittent faults"],
   ["2", "EEVblog Brymen BM786", "60,000", "0.01 Ω", "10.00 nF to 10.00 mF", "Fast continuity and fine readings without logging"],
   ["3", "Fluke 287", "50,000", "0.01 Ω", "1 nF to 100 mF", "Logged bench diagnosis without the 289's low-ohm range"],
-  ["4", "UNI-T UT181A", "60,000", "0.01 Ω (implied)", "6 nF to 60 mF", "Colour-screen logging and two temperature inputs"],
+  ["4", "UNI-T UT181A", "60,000", "0.01 Ω (implied)", "6 nF to 60 mF", "Color-screen logging and two temperature inputs"],
   ["5", "Fluke 87V", "6,000 (19,999 HiRes)", "0.1 Ω", "To 9,999 µF", "Mixed mains and board-level repair"],
   ["6", "UNI-T UT61E+", "22,000", "0.01 Ω", "22 nF to 220 mF", "Value bench meter with hFE and a PC link"],
   ["7", "OWON B41T+", "22,000", "0.01 Ω", "22 nF to 220 mF", "Budget logging of a fault that comes and goes"],
@@ -88,7 +88,7 @@ const fitNotes: Record<string, string> = {
   "Fluke 287":
     "It shares the 289's 50,000 counts, 100 mF capacitance and on-screen logging, so it can watch a supply rail for dropouts overnight. Without the 289's 50 Ω range, its finest resistance step is 0.01 Ω, which is still fine for most short hunting.",
   "UNI-T UT181A":
-    "The colour screen graphs up to 20,000 logged readings, and the two thermocouple inputs with a T1 minus T2 reading help find the part that runs hotter than its neighbour. UNI-T doesn't publish per-range resolution, so the 0.01 Ω figure is inferred from its 600 Ω range and 60,000 counts.",
+    "The color screen graphs up to 20,000 logged readings, and the two thermocouple inputs with a T1 minus T2 reading help find the part that runs hotter than its neighbor. UNI-T doesn't publish per-range resolution, so the 0.01 Ω figure is inferred from its 600 Ω range and 60,000 counts.",
   "Fluke 87V":
     "It carries our Hands-on Tested badge and switches to a 19,999-count HiRes mode, with 0.1 Ω resolution and relative mode to remove lead resistance. It suits shops that repair mains equipment as well as boards, but for milliohm short hunting the meters above it resolve ten times finer.",
   "UNI-T UT61E+":
@@ -285,7 +285,7 @@ export default function BestMultimetersForElectronicsRepairPage() {
           <h2 className="text-2xl sm:text-3xl font-semibold">What to look for in a repair multimeter</h2>
           <InfoCards items={lookFor} />
           <KeyIdea title="Why milliohms find shorts">
-            A copper trace or plane has a little resistance per centimetre. When a capacitor fails short across a rail,
+            A copper trace or plane has a little resistance per centimeter. When a capacitor fails short across a rail,
             the reading between rail and ground is lowest right at that capacitor and rises slightly as you probe
             further away. On a 0.1 Ω meter every point may read the same; at 0.01 Ω, and more so at the Fluke 289&apos;s
             1 mΩ, the gradient becomes visible. For a different fault, see{" "}

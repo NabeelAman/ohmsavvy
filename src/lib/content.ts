@@ -713,6 +713,13 @@ export const content: ContentEntry[] = [
   {
     category: "soldering-irons",
     type: "how-to-guide",
+    title: "Why Does My Soldering Iron Work on Small Wires but Fail on Thick Wires?",
+    description: "Why thick wire beats your iron: copper mass by gauge, wicking, fixes",
+    href: "/soldering-irons/why-does-my-soldering-iron-fail-on-thick-wires",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
     title: "Soldering Iron vs. Soldering Station",
     description: "What a closed-loop station actually buys you over a wand iron",
     href: "/soldering-irons/soldering-iron-vs-soldering-station",
@@ -1652,6 +1659,13 @@ export const content: ContentEntry[] = [
     title: "How to Connect an Oscilloscope Probe Correctly",
     description: "BNC, 1x/10x match, ground clip and spring",
     href: "/oscilloscopes/how-to-connect-an-oscilloscope-probe-correctly",
+  },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "Why Does Connecting an Oscilloscope Probe Change the Signal Being Measured?",
+    description: "How probe R and C load a circuit: shrunk, slowed, ringing",
+    href: "/oscilloscopes/why-does-connecting-an-oscilloscope-probe-change-the-signal",
   },
   {
     category: "oscilloscopes",

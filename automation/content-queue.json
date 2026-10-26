@@ -231,11 +231,12 @@
       "keyword": "best multimeter for RV",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "published",
       "targetPicks": [
         "AstroAI DM6000AR",
         "KAIWEETS KM200s"
-      ]
+      ],
+      "notes": "live at /multimeters/best-multimeter-for-rv (written with Claude, 2026-10-27)"
     },
     {
       "keyword": "best multimeter for industrial use",

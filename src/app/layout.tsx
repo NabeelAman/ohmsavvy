@@ -41,9 +41,9 @@ const sourceSans3 = Source_Sans_3({
 // AdSense publisher ID. Also in public/ads.txt (without the "ca-" prefix).
 const ADSENSE_CLIENT = "ca-pub-6358624783893573";
 
-const SITE_TITLE ="OhmSavvy | Multimeter, Oscilloscope & Soldering Iron Reviews";
+const SITE_TITLE = "Multimeter, Soldering Iron & Oscilloscope Reviews | OhmSavvy";
 const SITE_DESCRIPTION =
-  "In-depth, specification-based reviews of multimeters, soldering irons, and oscilloscopes — honest comparisons to help you pick the right tool.";
+  "Honest, spec-verified reviews, comparisons and how-to guides for multimeters, soldering irons and oscilloscopes, so you can pick the right tool for your bench.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ohmsavvy.com"),
@@ -61,11 +61,13 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: "/",
+    images: [{ url: "/og-default.jpg", width: 2400, height: 1260, alt: "OhmSavvy: electronics test equipment, compared honestly" }],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: ["/og-default.jpg"],
   },
   verification: {
     google: "hiHeIkdBWXcmzt70-nXfNhotNZvCYz_tgUDvPrOecBI",
@@ -91,6 +93,7 @@ const siteJsonLd = [
     name: "OhmSavvy",
     url: "https://ohmsavvy.com",
     description: SITE_DESCRIPTION,
+    sameAs: ["https://www.facebook.com/108696581096211"],
   },
 ];
 

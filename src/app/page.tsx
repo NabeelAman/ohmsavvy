@@ -74,6 +74,19 @@ const CATEGORIES: {
 const ofType = (category: Category, type: ContentEntry["type"]) =>
   content.filter((e) => e.category === category && e.type === type);
 const reviewHrefFor = (name: string) => content.find((e) => e.type === "review" && e.title === `${name} Review`)?.href;
+/** "Fluke 17B+" -> "fluke-17b-plus", matching the site's page slugs. */
+const slugOf = (name: string) => name.toLowerCase().replace(/\+/g, "-plus").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+/** Where a pick's "Review" button should go: its review, else a comparison featuring it, else the roundup. */
+const pickLinkFor = (name: string, category: Category, roundupHref: string) => {
+  const review = reviewHrefFor(name);
+  if (review) return { href: review, label: "Review" };
+  const slug = slugOf(name);
+  const comparison = content.find(
+    (e) => e.category === category && e.type === "comparison" && e.href.split("/").pop()!.split("-vs-").includes(slug),
+  );
+  if (comparison) return { href: comparison.href, label: "Compare" };
+  return { href: roundupHref, label: "See roundup" };
+};
 
 const totalProducts = CATEGORIES.reduce((sum, c) => sum + c.picks.length, 0);
 const totalReviews = content.filter((e) => e.type === "review").length;
@@ -83,7 +96,8 @@ const totalGuides = content.filter((e) => e.type !== "review" && e.type !== "com
 // the page leads with a buying answer; falls back to the editorial #1.
 const topPicks = CATEGORIES.map((c) => {
   const p = c.picks.find((x) => x.name === c.bestSeller && !x.unavailable) ?? c.picks[0];
-  return { ...p, category: c.category, label: c.label, tone: c.tone, reviewHref: reviewHrefFor(p.name) ?? c.roundup.href };
+  const link = pickLinkFor(p.name, c.category, c.roundup.href);
+  return { ...p, category: c.category, label: c.label, tone: c.tone, reviewHref: link.href, linkLabel: link.label };
 });
 
 const quickLinks = [
@@ -98,19 +112,23 @@ const trustStrip = [
   { value: `${totalProducts}`, label: "products compared" },
   { value: `${totalReviews}`, label: "in-depth reviews" },
   { value: `${totalGuides}`, label: "buying & how-to guides" },
-  { value: "0", label: "paid placements" },
 ];
 
 const CATEGORY_ORDER = CATEGORIES.map((c) => c.category);
+
+// URL slugs of retired picks ("Hakko FX888D" -> "hakko-fx888d"), so the homepage
+// never features a review or comparison built around a product Amazon no longer sells.
+const retiredSlugs = CATEGORIES.flatMap((c) => c.picks.filter((p) => p.unavailable).map((p) => slugOf(p.name)));
+const isRetired = (href: string) => retiredSlugs.some((s) => href.split("/").pop()!.split("-vs-").some((part) => part.startsWith(s)));
 
 // Two reviews per category (skipping the hero top picks), one comparison per category.
 const topPickNames = new Set(topPicks.map((p) => p.name));
 const latestReviews = CATEGORY_ORDER.flatMap((cat) =>
   ofType(cat, "review")
-    .filter((e) => ![...topPickNames].some((n) => e.title.startsWith(n)))
+    .filter((e) => ![...topPickNames].some((n) => e.title.startsWith(n)) && !isRetired(e.href))
     .slice(0, 2),
 );
-const featuredComparisons = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "comparison").slice(0, 1));
+const featuredComparisons = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "comparison").filter((e) => !isRetired(e.href)).slice(0, 1));
 // Two use-case guides per category as cards; the rest as compact links.
 const useCaseGuides = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guide").slice(0, 2));
 const moreUseCases = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guide").slice(2));
@@ -140,7 +158,7 @@ const reviewSteps = [
   },
   {
     title: "Top picks tested on our bench",
-    desc: "Our testing team buys every product we rate 4.8 and puts it to work in our lab. Those picks carry a Hands-on Tested badge; everything else is labelled as spec-verified research.",
+    desc: "Our testing team buys every product we rate 4.8 and puts it to work in our lab. Those picks carry a Hands-on Tested badge; everything else is labeled as spec-verified research.",
     icon: "M7 3h6M8 3v5l-4 7a1.5 1.5 0 0 0 1.3 2h9.4a1.5 1.5 0 0 0 1.3-2l-4-7V3M6 12h8",
   },
   {
@@ -169,7 +187,7 @@ const homeFaqs = [
   {
     question: "Why don't some products have photos?",
     answer:
-      "We'd rather show no photo than a wrong one. If we can't find an image we can visually confirm matches the exact model — not a shared sibling-product photo — we show a clearly labelled \"Photo coming soon\" illustration instead of guessing.",
+      "We'd rather show no photo than a wrong one. If we can't find an image we can visually confirm matches the exact model — not a shared sibling-product photo — we show a clearly labeled \"Photo coming soon\" illustration instead of guessing.",
   },
   {
     question: "How often are picks updated?",
@@ -304,7 +322,7 @@ export default function Home() {
                     )}
                     <div className="mt-2 flex items-center gap-3">
                       <Button href={p.ctaHref} className="px-3! py-1.5! text-xs!">Check price on Amazon</Button>
-                      <Link prefetch={false} href={p.reviewHref} className="text-xs font-medium text-muted hover:text-accent">Review</Link>
+                      <Link prefetch={false} href={p.reviewHref} className="text-xs font-medium text-muted hover:text-accent">{p.linkLabel}</Link>
                     </div>
                   </div>
                 </li>
@@ -314,7 +332,7 @@ export default function Home() {
         </div>
 
         <div className="relative border-t border-border bg-surface/80 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-6 py-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="mx-auto max-w-6xl px-6 py-5 grid grid-cols-3 gap-4">
             {trustStrip.map((s) => (
               <div key={s.label} className="flex items-baseline gap-2">
                 <span className="font-display text-2xl font-semibold text-accent">{s.value}</span>

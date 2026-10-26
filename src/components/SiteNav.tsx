@@ -3,6 +3,8 @@ import { getContentByCategoryGrouped, type Category } from "@/lib/content";
 import { Nav, type NavMenu } from "./Nav";
 import { SearchButton } from "./SearchPalette";
 
+const MAX_MENU_GUIDES = 8;
+
 const MENU_CONFIG: {
   category: Category;
   label: string;
@@ -41,6 +43,8 @@ export function SiteNav() {
     const top = getPicks(category)[0];
     const reviewCount = g.review?.length ?? 0;
     const comparisonCount = g.comparison?.length ?? 0;
+    const howToCount = g["how-to-guide"]?.length ?? 0;
+    const buyingGuides = [...(g["use-case-guide"] ?? []), ...(g["buying-guide"] ?? [])];
     return {
       key: category,
       label,
@@ -62,12 +66,21 @@ export function SiteNav() {
         ...(comparisonCount
           ? [{ href: `/${category}/comparisons`, label: "Comparisons", desc: `${comparisonCount} head-to-head matchups` }]
           : []),
+        ...(howToCount
+          ? [{ href: `/${category}/guides`, label: "How-to & troubleshooting", desc: `${howToCount} step-by-step guides` }]
+          : []),
       ],
-      guides: [...(g["use-case-guide"] ?? []), ...(g["buying-guide"] ?? [])].map((e) => ({
+      // The panel has room for about 8 rows; a long list ran off the bottom of the
+      // screen, so the rest sit behind a "See all" link to the guides index.
+      guides: buyingGuides.slice(0, MAX_MENU_GUIDES).map((e) => ({
         href: e.href,
         label: e.title,
         desc: e.description,
       })),
+      guidesMore:
+        buyingGuides.length > MAX_MENU_GUIDES
+          ? { href: `/${category}/guides`, label: `See all ${buyingGuides.length} buying guides` }
+          : undefined,
     };
   });
 

@@ -20,6 +20,8 @@ export type NavMenu = {
   featured: { name: string; image?: string; badge: string; rating: number; href: string };
   primary: NavLink[];
   guides: NavLink[];
+  /** "See all" link under a guides list that was cut short. */
+  guidesMore?: { href: string; label: string };
 };
 
 const TONE = {
@@ -35,6 +37,8 @@ const PRIMARY_ICONS = [
   <path key="r" d="M6 3h6l3 3v11H6V3Zm6 0v3h3m-5.5 3.5.9 1.8 2 .3-1.4 1.4.3 2-1.8-1-1.8 1 .3-2-1.4-1.4 2-.3.9-1.8Z" />,
   // Comparisons: scales
   <path key="c" d="M10 3v14m-5 0h10M4 7h12M4 7l-2 5a2.5 2.5 0 0 0 4 0L4 7Zm12 0-2 5a2.5 2.5 0 0 0 4 0l-2-5Z" />,
+  // Guides: open book
+  <path key="g" d="M10 6c-1.5-1.3-3.5-2-6-2v11c2.5 0 4.5.7 6 2m0-11c1.5-1.3 3.5-2 6-2v11c-2.5 0-4.5.7-6 2m0-11v11" />,
 ];
 
 function Icon({ i }: { i: number }) {
@@ -142,7 +146,7 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
           </div>
           {menu.guides.length > 0 && (
             <div>
-              <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-2">Guides</p>
+              <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-2">Best for the job</p>
               <ul className="space-y-0.5">
                 {menu.guides.map((l) => (
                   <li key={l.href}>
@@ -160,6 +164,16 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
                   </li>
                 ))}
               </ul>
+              {menu.guidesMore && (
+                <Link
+                  prefetch={false}
+                  href={menu.guidesMore.href}
+                  onClick={onNavigate}
+                  className="mt-2 inline-block text-sm font-medium text-accent hover:underline"
+                >
+                  {menu.guidesMore.label} →
+                </Link>
+              )}
             </div>
           )}
         </div>
@@ -440,7 +454,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                         </div>
                         {m.guides.length > 0 && (
                           <div>
-                            <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-1.5 px-2">Guides</p>
+                            <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-1.5 px-2">Best for the job</p>
                             <div className="flex flex-wrap gap-2">
                               {m.guides.map((l) => (
                                 <Link
@@ -454,6 +468,16 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                                 </Link>
                               ))}
                             </div>
+                            {m.guidesMore && (
+                              <Link
+                                prefetch={false}
+                                href={m.guidesMore.href}
+                                onClick={closeAll}
+                                className="mt-3 inline-block px-2 text-sm font-medium text-accent"
+                              >
+                                {m.guidesMore.label} →
+                              </Link>
+                            )}
                           </div>
                         )}
                       </div>

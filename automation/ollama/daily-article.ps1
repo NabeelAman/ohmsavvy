@@ -23,9 +23,20 @@ if (Test-Path $stateFile) {
 }
 if ($state.published -or $state.attempts -ge $maxAttempts) { exit 0 }
 
-# A lock younger than the task's 3-hour limit means another run is still going.
-if ((Test-Path $lockFile) -and ((Get-Date) - (Get-Item $lockFile).LastWriteTime).TotalHours -lt 3) { exit 0 }
+# The lock holds the running script's PID. A run killed by sleep or shutdown leaves
+# its lock behind, so only a lock whose PowerShell process is still alive counts.
+if (Test-Path $lockFile) {
+  $lockPid = (Get-Content $lockFile -Raw).Trim()
+  $holder = Get-Process -Id $lockPid -ErrorAction SilentlyContinue
+  if ($holder -and $holder.ProcessName -match "powershell|pwsh") { exit 0 }
+  "`n(stale lock from PID $lockPid removed: that run was killed)" | Out-File $logFile -Append -Encoding utf8
+}
 Set-Content $lockFile $PID
+
+# Keep Windows from idle-sleeping while a draft is being written: on this CPU a run can
+# take hours, and sleep mid-draft killed earlier runs. Closing the lid still sleeps.
+Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint esFlags);'
+[Win32.Power]::SetThreadExecutionState(0x80000001) | Out-Null  # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
 
 try {
   $state.attempts++
@@ -46,5 +57,6 @@ try {
   if ($code -eq 0) { $state.published = $true; $state | ConvertTo-Json | Set-Content $stateFile }
 }
 finally {
+  [Win32.Power]::SetThreadExecutionState(0x80000000) | Out-Null  # allow sleep again
   Remove-Item $lockFile -ErrorAction SilentlyContinue
 }

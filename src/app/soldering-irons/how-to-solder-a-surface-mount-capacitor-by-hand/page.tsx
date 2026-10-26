@@ -404,7 +404,7 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
               image: weller.image,
               alt: "Weller WE1010NA soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "ESD-safe 70W digital station with tight temperature stability for repeated small SMD joints.",
+              note: "ESD-safe 85W digital station (70W iron) with tight temperature stability for repeated small SMD joints.",
             },
             {
               name: "YIHUA 862BD+",

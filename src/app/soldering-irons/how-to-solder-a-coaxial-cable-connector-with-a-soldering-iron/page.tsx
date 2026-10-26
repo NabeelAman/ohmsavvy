@@ -447,7 +447,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
                 image: weller.image,
                 alt: "Weller WE1010NA digital soldering station",
                 href: "/soldering-irons/weller-we1010na-review",
-                note: "70W digital, ESD-safe station with a heat-up time of about 28 seconds, built for dedicated workbenches and professional use.",
+                note: "85W digital, ESD-safe station (70W iron) with a heat-up time of about 28 seconds, built for dedicated workbenches and professional use.",
               },
             ]}
           />

@@ -323,7 +323,7 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
             {
               name: "Weller WE1010NA",
               image: weller.image,
-              alt: "Weller WE1010NA 70W digital soldering station",
+              alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
               note: "ESD-safe construction protects the chips around the pad while you work a wire onto a test point.",
             },

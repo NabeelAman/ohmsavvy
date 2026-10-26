@@ -1,7 +1,11 @@
 import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
+import Link from "next/link";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
+import { BarChart, DataTable, Figure } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+
+const linkClass = "text-accent hover:underline";
 
 export const metadata = buildMetadata({
   title: "Best Oscilloscopes for Beginners in 2026",
@@ -860,16 +864,47 @@ export const picks: Pick[] = [
   },
 ];
 
+// Four-channel bench scopes in the Picks above, with the per-channel sample rate each maker gives with
+// three or four channels switched on (from the Picks' specs and verdicts).
+const fourChannelRows: string[][] = [
+  ["Rigol DS1054Z", "50 MHz", "1 GSa/s", "250 MSa/s", "Not in our data"],
+  ["Rigol DHO804", "70 MHz", "1.25 GSa/s", "312.5 MSa/s", "12-bit"],
+  ["Siglent SDS1104X-E", "100 MHz", "1 GSa/s", "500 MSa/s", "Not in our data"],
+  ["Rigol DS1104Z-S Plus", "100 MHz", "1 GSa/s", "250 MSa/s", "8-bit"],
+  ["Rigol DHO914", "125 MHz", "1.25 GSa/s", "312.5 MSa/s", "12-bit"],
+  ["Rigol DHO914S", "125 MHz", "1.25 GSa/s", "312.5 MSa/s", "12-bit"],
+];
+
 const faqs = [
   {
     question: "How much bandwidth do I actually need?",
     answer:
-      "For general electronics, Arduino/microcontroller work, and audio circuits, 50-100MHz is plenty. You only need higher bandwidth (200MHz+) for RF work or very high-speed digital signals.",
+      "For general electronics, Arduino/microcontroller work, and audio circuits, 50-100MHz is plenty. You only need higher bandwidth (200MHz+) for RF work or very high-speed digital signals. A common rule of thumb is a bandwidth about five times the highest frequency you need to see clearly, so square edges keep their shape instead of rounding off.",
   },
   {
     question: "Does channel count matter for a beginner?",
     answer:
-      "Yes, more than people expect. Even basic debugging often benefits from comparing two signals at once (e.g., clock vs. data line), so we'd recommend at least 2 channels, with 4 giving real long-term flexibility.",
+      "Yes, more than people expect. Even basic debugging often benefits from comparing two signals at once (e.g., clock vs. data line), so we'd recommend at least 2 channels, with 4 giving real long-term flexibility. Four channels let you watch an SPI bus's clock, data and chip-select lines together, or a power supply's input, output and switching node in one capture.",
+  },
+  {
+    question: "What is the difference between an 8-bit and a 12-bit oscilloscope?",
+    answer:
+      "Bit depth sets how finely the scope slices the vertical scale. An 8-bit converter has 256 levels and a 12-bit one has 4,096. Across an 8 V full screen, that is about 31 mV per step versus about 2 mV, so 12-bit scopes like the Rigol DHO800 series show small ripple and noise that an 8-bit scope blurs into a thick trace. For logic and timing work, 8-bit is fine.",
+  },
+  {
+    question: "How much memory depth does a beginner oscilloscope need?",
+    answer:
+      "Memory decides how long the scope can capture at full speed: capture time equals memory divided by sample rate. At 1 GSa/s, 24 Mpts holds 24 ms, while a 10K-point record holds just 10 µs before the scope must slow its sampling. Deep memory matters for serial packets, power-up sequences and intermittent glitches. For looking at repeating waveforms, a shallow record is less of a handicap.",
+  },
+  {
+    question: "Can I measure mains voltage with a beginner oscilloscope?",
+    answer:
+      "Not directly with standard probes. On a mains-powered bench scope, every probe's ground clip is tied to earth, so clipping it onto a live or neutral conductor can create a short circuit, destroy the probe and injure you. Use a properly rated differential probe or an isolated instrument, and treat a 100X probe as extra voltage range, not isolation. If you are unsure, have a qualified electrician take the measurement.",
+  },
+  {
+    question: "Is a handheld or USB oscilloscope good enough to learn on?",
+    answer:
+      "For learning the basics, yes, with limits. Handhelds like the FNIRSI 2C53T or OWON HDS272S are portable and add a multimeter, but their small screens and short records make detail hard to see. USB scopes such as the PicoScope 2204A use your laptop's screen and polished software but need a computer. If you will mostly work at a bench, a 7-inch benchtop is easier to learn on.",
   },
 ];
 
@@ -885,6 +920,130 @@ export default function BestOscilloscopesPage() {
         updated="2026-10-21"
         picks={picks}
       />
+      <section className="mx-auto max-w-6xl px-6 pt-12">
+        <div className="max-w-4xl space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">Read the three headline specs before the rankings</h2>
+            <p className="text-muted leading-7">
+              Every scope below is sold on bandwidth, sample rate and channel count, and beginners are often oversold
+              on the first while overlooking how the second falls when more channels are switched on. If those terms
+              are new, start with{" "}
+              <Link href="/oscilloscopes/what-is-oscilloscope-bandwidth" className={linkClass}>
+                what oscilloscope bandwidth means
+              </Link>{" "}
+              and{" "}
+              <Link href="/oscilloscopes/what-does-gsa-s-mean" className={linkClass}>
+                what GSa/s means
+              </Link>
+              , then the{" "}
+              <Link href="/oscilloscopes/oscilloscope-buying-guide" className={linkClass}>
+                oscilloscope buying guide
+              </Link>{" "}
+              for memory depth, triggering and probes. Not sure you need a scope at all? Our{" "}
+              <Link href="/oscilloscopes/oscilloscope-vs-multimeter" className={linkClass}>
+                oscilloscope vs multimeter
+              </Link>{" "}
+              comparison shows what each tool can and can&apos;t see.
+            </p>
+            <p className="text-muted leading-7">
+              Our three hands-on tested picks each have a deeper write-up: the{" "}
+              <Link href="/oscilloscopes/rigol-ds1054z-review" className={linkClass}>
+                Rigol DS1054Z review
+              </Link>
+              , the{" "}
+              <Link href="/oscilloscopes/siglent-sds1104x-e-review" className={linkClass}>
+                Siglent SDS1104X-E review
+              </Link>{" "}
+              and{" "}
+              <Link href="/oscilloscopes/rigol-dho804-vs-rigol-ds1054z" className={linkClass}>
+                Rigol DHO804 vs DS1054Z
+              </Link>
+              , which weighs 12-bit resolution against the older classic. If your first projects are microcontrollers,
+              the{" "}
+              <Link href="/oscilloscopes/best-oscilloscope-for-arduino-projects" className={linkClass}>
+                best oscilloscope for Arduino projects
+              </Link>{" "}
+              ranks for that work, and the{" "}
+              <Link href="/oscilloscopes/best-oscilloscope-for-home-electronics-lab" className={linkClass}>
+                home electronics lab guide
+              </Link>{" "}
+              looks at a scope as part of a full bench. When it arrives,{" "}
+              <Link href="/oscilloscopes/how-to-use-an-oscilloscope" className={linkClass}>
+                how to use an oscilloscope
+              </Link>{" "}
+              takes you from probe compensation to your first stable trigger.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">Bandwidth across the range</h2>
+            <p className="text-muted leading-7">
+              The picks span more than three orders of magnitude, from pocket testers rated in kilohertz to benchtops
+              rated in hundreds of megahertz. The kilohertz-class tools are fine for audio, sensors and learning what a
+              waveform looks like, but they can&apos;t show a microcontroller&apos;s clock edges. Anything from about 50
+              MHz up handles the typical hobby bench.
+            </p>
+            <Figure
+              caption={
+                <>
+                  Rated bandwidth in MHz for a representative spread of the picks, on a log scale. The Hantek 1008B
+                  figure comes from its manual and the Analog Discovery 3 is left out because Digilent quotes &quot;30+
+                  MHz&quot; with an adapter.
+                </>
+              }
+            >
+              <BarChart
+                log
+                items={[
+                  { label: "Hantek 1008B", value: 0.1, display: "100 kHz" },
+                  { label: "FNIRSI DSO152", value: 0.2, display: "200 kHz" },
+                  { label: "FNIRSI DSO-TC3", value: 0.5, display: "500 kHz" },
+                  { label: "PicoScope 2204A", value: 10, display: "10 MHz" },
+                  { label: "Hantek 6022BE", value: 20, display: "20 MHz" },
+                  { label: "Rigol DS1054Z", value: 50, display: "50 MHz", highlight: true },
+                  { label: "Rigol DHO804", value: 70, display: "70 MHz" },
+                  { label: "Siglent SDS1104X-E", value: 100, display: "100 MHz" },
+                  { label: "Hantek DSO2D15", value: 150, display: "150 MHz" },
+                  { label: "Siglent SDS1202X-E", value: 200, display: "200 MHz" },
+                  { label: "Rigol DHO924S", value: 250, display: "250 MHz" },
+                  { label: "FNIRSI DPOS350P", value: 350, display: "350 MHz" },
+                ]}
+              />
+            </Figure>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">What happens to sample rate with four channels on</h2>
+            <p className="text-muted leading-7">
+              The headline sample rate usually applies to one channel. Most scopes share their converters, so the rate
+              per channel drops as you switch channels on. With all four in use, the Siglent SDS1104X-E keeps 500 MSa/s
+              per channel, twice the DS1054Z&apos;s 250 MSa/s. As a rough check, a scope wants several samples per
+              cycle of the fastest signal: 250 MSa/s on a 25 MHz signal gives 10 samples per cycle, enough to see its
+              shape.
+            </p>
+            <Figure caption={<>Per-channel sample rate in MSa/s with three or four channels on, as each maker states it.</>}>
+              <BarChart
+                items={[
+                  { label: "Siglent SDS1104X-E", value: 500, display: "500 MSa/s", highlight: true },
+                  { label: "Rigol DHO804", value: 312.5, display: "312.5 MSa/s" },
+                  { label: "Rigol DHO914", value: 312.5, display: "312.5 MSa/s" },
+                  { label: "Rigol DHO914S", value: 312.5, display: "312.5 MSa/s" },
+                  { label: "Rigol DS1054Z", value: 250, display: "250 MSa/s" },
+                  { label: "Rigol DS1104Z-S Plus", value: 250, display: "250 MSa/s" },
+                ]}
+              />
+            </Figure>
+            <DataTable
+              head={["Scope", "Bandwidth", "1-channel rate", "4-channel rate", "ADC"]}
+              rows={fourChannelRows}
+            />
+            <p className="text-xs text-muted leading-5">
+              From the maker&apos;s page or datasheet for each model. &quot;Not in our data&quot; means we haven&apos;t
+              verified the converter resolution for that model, not that it is unusual.
+            </p>
+          </div>
+        </div>
+      </section>
       <ReviewArticle
         hideByline
         picks={picks}

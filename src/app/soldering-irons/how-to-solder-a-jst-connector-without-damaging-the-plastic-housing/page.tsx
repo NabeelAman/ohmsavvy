@@ -289,7 +289,7 @@ export default function HowToSolderAJstConnectorPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W ESD-safe digital station; Weller quotes about 28 seconds from 50 to 350°C.",
+              note: "85W ESD-safe digital station (70W iron); Weller quotes about 28 seconds from 50 to 350°C.",
             },
             {
               name: "Hakko FX-888DX",

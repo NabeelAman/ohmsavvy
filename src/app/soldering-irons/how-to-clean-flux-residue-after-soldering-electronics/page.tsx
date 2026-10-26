@@ -299,7 +299,7 @@ export default function HowToCleanFluxResidueAfterSolderingElectronicsPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W ESD-safe digital station with stable temperature for long bench sessions.",
+              note: "85W ESD-safe digital station (70W iron) with stable temperature for long bench sessions.",
             },
             {
               name: "Hakko FX-888DX",

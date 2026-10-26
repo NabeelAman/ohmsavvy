@@ -239,9 +239,9 @@ export default function SolderWireDiameterGuidePage() {
             {
               name: "Weller WE1010NA",
               image: weller.image,
-              alt: "Weller WE1010NA 70W digital soldering station",
+              alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W, ESD-safe digital station that reaches 350°C in about 28 seconds from 50°C, per Weller.",
+              note: "85W ESD-safe digital station (70W iron) that reaches 350°C in about 28 seconds from 50°C, per Weller.",
             },
           ]}
         />

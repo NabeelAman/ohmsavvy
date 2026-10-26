@@ -1,7 +1,11 @@
+import Link from "next/link";
 import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
+import { BarChart, DataTable, Figure } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+
+const linkClass = "text-accent hover:underline";
 
 export const metadata = buildMetadata({
   title: "Best Multimeters in 2026",
@@ -433,21 +437,61 @@ export const picks: Pick[] = [
   },
 ];
 
+// Every value below is copied from the Picks above (specs, verdicts and their "Specs per" comments).
+// The Southwire 14070T is left out because it is marked unavailable; the 117/323 Kit is two meters already listed.
+const specRows: string[][] = [
+  ["Fluke 117", "Yes", "CAT III 600V", "6,000"],
+  ["Fluke 115", "Yes", "CAT III 600V", "6,000"],
+  ["KAIWEETS KM200s", "Yes", "CAT II 600V", "Not stated"],
+  ["AstroAI DM6000AR", "Yes", "Not stated", "6,000"],
+  ["Klein Tools MM400", "No", "CAT III 600V", "4,000"],
+  ["Fluke 87V", "Yes", "CAT III 1000V / CAT IV 600V", "6,000 (19,999 hi-res)"],
+  ["Milwaukee 2235-20", "Yes", "CAT III 600V", "Not stated"],
+  ["Craftsman CMMT14171", "Yes", "CAT III 600V", "Not stated"],
+  ["Extech EX330", "Not stated", "CAT III 600V", "4,000"],
+  ["UNI-T UT139C", "Yes", "CAT III 600V", "6,000"],
+  ["Fluke 179", "Yes", "CAT III 1000V / CAT IV 600V", "6,000"],
+  ["Klein Tools MM450", "Yes", "CAT III 600V", "4,000"],
+  ["Fluke 107", "No", "CAT III 600V", "6,000"],
+  ["Brymen BM235", "Yes", "CAT III 600V / CAT IV 300V", "6,000"],
+  ["Fluke 17B+", "Not claimed", "CAT III 600V / CAT II 1000V", "4,000"],
+  ["Fluke 15B+", "Not claimed", "CAT III 600V / CAT II 1000V", "4,000"],
+  ["Fluke 106", "No", "CAT III 600V", "6,000"],
+  ["Fluke 101", "Not claimed", "CAT III 600V", "6,000"],
+  ["Fluke T5-600", "No (averaging)", "CAT III 600V", "Not stated"],
+  ["Fluke 323", "Yes", "CAT III 600V / CAT IV 300V", "Not stated"],
+];
+
 const faqs = [
   {
     question: "What does a CAT rating mean?",
     answer:
-      "CAT (Category) ratings indicate how much transient voltage spike a meter is rated to safely withstand. CAT III 600V is the standard recommendation for home electrical panels and most residential wiring work.",
+      "CAT (Category) ratings indicate how much transient voltage spike a meter is rated to safely withstand. CAT III 600V is the standard recommendation for home electrical panels and most residential wiring work. CAT IV covers the utility side: service entrances, meter bases and outdoor feeds. A meter and its test leads are only as safe as the lower of their two ratings.",
   },
   {
     question: "Do I need True RMS?",
     answer:
-      "True RMS matters if you're measuring non-sinusoidal signals — common with modern electronics, variable-speed motors, and dimmer switches. For basic DC continuity checks, it's less critical.",
+      "True RMS matters if you're measuring non-sinusoidal signals — common with modern electronics, variable-speed motors, and dimmer switches. For basic DC continuity checks, it's less critical. An average-responding meter is calibrated for a clean sine wave, so on a distorted waveform it can read noticeably high or low, which is why HVAC and drive work call for True RMS.",
   },
   {
     question: "Should I get a clamp meter instead of a standard multimeter?",
     answer:
       "A clamp meter measures current by clamping around a wire — no need to break the circuit open, which is faster and safer for everyday checks. It's a great addition to a standard multimeter, not usually a replacement, since clamp meters are less practical for resistance, continuity, and low-current work.",
+  },
+  {
+    question: "What does 6,000-count mean on a multimeter?",
+    answer:
+      "The count is the largest number the display can show before it switches range. A 6,000-count meter reads up to 5,999, so a 5 V rail shows as 5.000 V on its 6 V range. A 4,000-count meter tops out at 3,999, so the same 5 V lands on the 40 V range and reads 5.00 V, one digit less. For most household work either is fine; for electronics, the extra digit helps.",
+  },
+  {
+    question: "What is a LoZ (low-impedance) mode and do I need it?",
+    answer:
+      "A normal meter input is very high impedance, so it can show a voltage on a disconnected wire that is only capacitively coupled to a live one, often called ghost voltage. LoZ mode loads the circuit enough to drain that phantom reading, so you see whether the conductor is really live. Electricians who test in shared conduit benefit most. Here, the Fluke 117 and Brymen BM235 have it; the Fluke 115 does not.",
+  },
+  {
+    question: "Is an expensive Fluke more accurate than a budget meter?",
+    answer:
+      "Not always on a simple DC reading: a good budget True RMS meter such as the UNI-T UT139C will read a battery or a 12 V supply perfectly well. Where the premium meters pull ahead is verified safety ratings, input protection, durability and higher-category ratings like the CAT IV 600V on the Fluke 87V and 179. Pay for those if you work on mains or panels; for low-voltage hobby work, the budget picks are enough.",
   },
 ];
 
@@ -463,6 +507,100 @@ export default function BestMultimetersPage() {
         updated="2026-10-21"
         picks={picks}
       />
+      <section className="mx-auto max-w-6xl px-6 pt-12">
+        <div className="max-w-4xl space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">How to use this list</h2>
+            <p className="text-muted leading-7">
+              Three specs separate these meters more than anything else: the CAT safety rating (where on the electrical
+              system you may safely measure), whether AC readings are True RMS, and the display count. The table below
+              puts all three side by side, straight from each maker&apos;s specifications, so you can rule meters in or
+              out before reading the ranked write-ups. If you already know the job, the{" "}
+              <Link href="/multimeters/best-multimeter-for-electricians" className={linkClass}>
+                best multimeter for electricians
+              </Link>{" "}
+              and{" "}
+              <Link href="/multimeters/best-multimeter-for-home-use" className={linkClass}>
+                best multimeter for home use
+              </Link>{" "}
+              guides rank the same pool for that work, and{" "}
+              <Link href="/multimeters/best-multimeter-for-beginners" className={linkClass}>
+                our beginner ranking
+              </Link>{" "}
+              favors the easiest meters to learn on.
+            </p>
+            <p className="text-muted leading-7">
+              The Fluke 117, 115 and 87V are the three meters here we have bought and tested ourselves. The{" "}
+              <Link href="/multimeters/fluke-117-review" className={linkClass}>
+                Fluke 117 review
+              </Link>{" "}
+              and{" "}
+              <Link href="/multimeters/fluke-87v-review" className={linkClass}>
+                Fluke 87V review
+              </Link>{" "}
+              cover two of them in depth, and{" "}
+              <Link href="/multimeters/fluke-115-vs-fluke-117" className={linkClass}>
+                Fluke 115 vs Fluke 117
+              </Link>{" "}
+              explains when the cheaper sibling is enough. On a budget, our{" "}
+              <Link href="/multimeters/best-true-rms-multimeters-under-100" className={linkClass}>
+                budget True RMS multimeter ranking
+              </Link>{" "}
+              narrows the field to affordable meters that keep True RMS. If you are unsure whether you need a clamp meter as well,
+              start with the{" "}
+              <Link href="/multimeters/clamp-meter-buying-guide" className={linkClass}>
+                clamp meter buying guide
+              </Link>
+              , and the{" "}
+              <Link href="/multimeters/multimeter-buying-guide" className={linkClass}>
+                multimeter buying guide
+              </Link>{" "}
+              explains each spec from scratch.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">True RMS, safety rating and display count compared</h2>
+            <DataTable head={["Meter", "True RMS", "Safety rating", "Display count"]} rows={specRows} />
+            <p className="text-xs text-muted leading-5">
+              From each maker&apos;s page, datasheet or manual. &quot;Not claimed&quot; means the maker doesn&apos;t
+              describe the meter as True RMS; &quot;Not stated&quot; means the figure isn&apos;t in our verified data.
+              The Fluke 117/323 Kit pairs two meters already in the table. The Klein MM450&apos;s CAT IV figure on
+              listings applies to its leads; the meter itself is CAT III 600V.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">How much each meter weighs</h2>
+            <p className="text-muted leading-7">
+              Weight is a fair proxy for the trade-off between pocket carry and a rugged, full-size case. The palm-sized
+              Flukes come in at well under half the weight of the 115 and 117, but they give up True RMS to get there,
+              and the 101 drops current measurement entirely. The Klein MM450 is the light option that keeps True RMS.
+            </p>
+            <Figure
+              caption={
+                <>
+                  Weight in grams for the picks whose maker publishes one. Meters without a published weight in our
+                  verified data are left out.
+                </>
+              }
+            >
+              <BarChart
+                items={[
+                  { label: "Fluke 117", value: 550, display: "550 g" },
+                  { label: "Fluke 115", value: 550, display: "550 g" },
+                  { label: "Fluke 323", value: 265, display: "265 g" },
+                  { label: "Extech EX330", value: 260, display: "260 g" },
+                  { label: "Klein Tools MM450", value: 258, display: "258 g", highlight: true },
+                  { label: "Fluke 107", value: 200, display: "200 g" },
+                  { label: "Fluke 106", value: 200, display: "200 g" },
+                  { label: "Fluke 101", value: 160, display: "160 g" },
+                ]}
+              />
+            </Figure>
+          </div>
+        </div>
+      </section>
       <ReviewArticle
         hideByline
         picks={picks}

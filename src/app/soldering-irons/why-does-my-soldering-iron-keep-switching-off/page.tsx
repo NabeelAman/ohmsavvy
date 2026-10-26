@@ -393,7 +393,7 @@ export default function WhyDoesMySolderingIronKeepSwitchingOffPage() {
         title="Irons and stations worth considering"
         items={[
           { name: pinecil.name, image: pinecil.image, alt: "Pinecil V2 smart soldering iron", href: "/soldering-irons/pinecil-v2-review", note: "Runs from any USB-C PD source; up to 88W at 24V DC, about 60W from 20V PD." },
-          { name: weller.name, image: weller.image, alt: "Weller WE1010NA soldering station", href: "/soldering-irons/weller-we1010na-review", note: "70W ESD-safe digital bench station; about 28 seconds from 50 to 350°C." },
+          { name: weller.name, image: weller.image, alt: "Weller WE1010NA soldering station", href: "/soldering-irons/weller-we1010na-review", note: "85W ESD-safe digital bench station (70W iron); about 28 seconds from 50 to 350°C." },
           { name: fx888dx.name, image: fx888dx.image, alt: "Hakko FX-888DX soldering station", href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx", note: "100W station with five presets and a parameter lock; no stated sleep mode." },
         ]}
       />

@@ -382,7 +382,7 @@ export default function HowToRemoveSolderFromAMultiPinPcbConnectorPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station with tight temperature stability for a dedicated electronics bench.",
+              note: "85W digital, ESD-safe station (70W iron) with tight temperature stability for a dedicated electronics bench.",
             },
           ]}
         />

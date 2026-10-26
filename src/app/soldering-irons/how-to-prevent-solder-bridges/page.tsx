@@ -51,7 +51,7 @@ export default function HowToPreventSolderBridgesPage() {
         alt: "Weller WE1010NA digital soldering station with iron in its holder",
         caption: (
           <>
-            A stable, temperature-controlled station such as the Weller WE1010NA (70W, digital, ESD-safe)
+            A stable, temperature-controlled station such as the Weller WE1010NA (85W station, 70W iron, ESD-safe)
             makes fine-pitch work more predictable. See our{" "}
             <Link href="/soldering-irons/weller-we1010na-review" className={link}>
               WE1010NA review
@@ -409,7 +409,7 @@ export default function HowToPreventSolderBridgesPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station that heats in about 28 seconds, for dedicated workbenches.",
+              note: "85W digital, ESD-safe station (70W iron) that heats in about 28 seconds, for dedicated workbenches.",
             },
             {
               name: "YIHUA 862BD+",

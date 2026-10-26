@@ -1,7 +1,11 @@
 import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
+import Link from "next/link";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
+import { BarChart, DataTable, Figure } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
+
+const linkClass = "text-accent hover:underline";
 
 export const metadata = buildMetadata({
   title: "Best Soldering Irons for Electronics in 2026",
@@ -94,17 +98,18 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best for Professional Benches",
-    // Specs per weller-tools.com (WE1010NA): 70W, ESD safe, ~28 s from 50 to 350°C.
+    // Specs per https://www.weller-tools.com/us/en/industrial-soldering/products/soldering-stations/we1010na-120v
+    // (checked 2026-10-26): 85 W station, 70 W WEP 70 iron, 28 s from 50 to 350 °C, 100–450 °C, ±6 °C stability, ESD safe, ET tips.
     name: "Weller WE1010NA",
     image: "https://www.weller-tools.com/sites/default/files/products/images/2026-08/WE_1010.jpg",
     rating: 4.6,
     bottomLine: "ESD-safe construction and tight temperature stability for a dedicated electronics bench.",
     verdict:
-      "Weller's WE1010NA brings ESD-safe construction and tight temperature stability to a 70W digital station, making it a strong choice for anyone running a dedicated electronics bench.",
+      "Weller's WE1010NA brings ESD-safe construction and tight temperature stability to an 85W digital station driving a 70W iron, making it a strong choice for anyone running a dedicated electronics bench.",
     specs: [
-      { label: "Power", value: "70W" },
+      { label: "Power", value: "85W station (70W iron)" },
       { label: "Heat-up time", value: "~28 seconds (50–350°C)" },
-      { label: "Temperature control", value: "Digital, ESD-safe" },
+      { label: "Temperature control", value: "Digital, 100–450°C, ESD-safe" },
       { label: "Best for", value: "Dedicated workbenches, professional use" },
     ],
     pros: ["ESD-safe design protects sensitive components", "Strong temperature stability under sustained use", "Backed by Weller's long-standing reputation"],
@@ -271,16 +276,53 @@ export const picks: Pick[] = [
   },
 ];
 
+// Every value below is copied from the Picks above (specs, verdicts and their "Specs per" comments).
+// The Hakko FX888D is left out because it is marked unavailable.
+const specRows: string[][] = [
+  ["Hakko FX-888DX", "Bench station", "100W station (65W iron)", "50–480°C"],
+  ["Pinecil V2", "Portable, USB-C/DC", "Up to 88W at 24V", "Not stated"],
+  ["Q-MING 60W Kit", "Plug-in pen, dial", "60W", "200–450°C"],
+  ["Weller WE1010NA", "Bench station", "85W station (70W iron)", "100–450°C"],
+  ["YIHUA 862BD+", "Iron + hot air", "75W iron / 500W hot air", "200–480°C iron"],
+  ["Hakko FX-601", "Plug-in, dial on handle", "67W", "240–540°C"],
+  ["Miniware TS101", "Portable, USB-C/DC", "Not clearly stated", "50–400°C"],
+  ["YIHUA 926 III", "Bench station", "60W (listing; sources conflict)", "90–480°C"],
+  ["X-Tronic 3020-XTS", "Bench station", "75W station (60W iron)", "200–480°C"],
+  ["YIHUA 939D+", "Bench station", "\"75W equivalent\" (sources conflict)", "200–480°C"],
+  ["Liouhoum 80W Soldering Iron Kit", "Plug-in pen, LCD", "80W", "180–480°C"],
+  ["FNIRSI HS-02A", "Portable, USB-C", "Up to 100W", "100–450°C"],
+];
+
 const faqs = [
   {
     question: "How much wattage do I actually need?",
     answer:
-      "For general electronics and hobby work, 60-70W gives enough thermal headroom to solder larger joints without losing temperature. Anything below 40W can struggle to heat up ground planes or thicker wires quickly.",
+      "For general electronics and hobby work, 60-70W gives enough thermal headroom to solder larger joints without losing temperature. Anything below 40W can struggle to heat up ground planes or thicker wires quickly. Wattage only tells half the story, though: a well-controlled iron with good tip contact recovers faster than a higher-rated one with a loose, poorly coupled tip.",
   },
   {
     question: "Is a digital temperature display necessary?",
     answer:
-      "Not strictly, but it removes guesswork. Digital stations let you dial in the exact temperature a specific solder type or component needs, which matters more as your projects get more sensitive (e.g., SMD work).",
+      "Not strictly, but it removes guesswork. Digital stations let you dial in the exact temperature a specific solder type or component needs, which matters more as your projects get more sensitive (e.g., SMD work). A dial-only iron like the Q-MING kit works, but you set it by feel and can't confirm the tip is actually at the number printed on the handle.",
+  },
+  {
+    question: "What temperature should I set my soldering iron to?",
+    answer:
+      "A common starting point is around 315–345°C (600–650°F) for 63/37 leaded solder, which melts at 183°C, and around 350–370°C for lead-free SAC alloys, which melt near 217–220°C. Go hotter for heavy wire or ground planes and cooler for small parts. If the joint takes more than a few seconds to wet, a bigger tip usually beats turning the temperature up.",
+  },
+  {
+    question: "Is a USB-C soldering iron as good as a bench station?",
+    answer:
+      "For most hobby joints, yes, provided the power supply can deliver. The Pinecil V2 reaches 88W only from a 24V DC supply and about 60W from 20V USB-C PD, and the FNIRSI HS-02A needs a 100W PD charger for its full rating. A weak phone charger will heat slowly and sag on large joints. Stations still win on stands, tip choice and all-day comfort.",
+  },
+  {
+    question: "Does a soldering iron need to be ESD safe?",
+    answer:
+      "If you work on boards with MOSFETs, microcontrollers or other static-sensitive chips, an ESD-safe iron grounds the tip so stray charge can't discharge through a pin. The Hakko FX-888DX, Weller WE1010NA, X-Tronic 3020-XTS, YIHUA 939D+ and YIHUA 862BD+ are listed as ESD safe. For wires, connectors and through-hole kits, a non-ESD iron is usually fine with sensible grounding habits.",
+  },
+  {
+    question: "Can I use any tip on any soldering iron?",
+    answer:
+      "No. Tips are made for a particular heater design, so they rarely cross between brands. The FX-888DX uses Hakko T18 tips, the Weller WE1010NA uses ET tips, the YIHUA stations take 900M-series tips, and the Miniware TS101 accepts TS100 tips. Check that the tip family is still sold before you buy an iron, because replacement tips are the part you will buy again and again.",
   },
 ];
 
@@ -292,10 +334,120 @@ export default function BestSolderingIronsPage() {
         label="Soldering Irons"
         path="/soldering-irons/best-soldering-irons"
         heading="Best Soldering Irons: Find the Right One for Your Bench"
-        description="From the pocket-sized Pinecil to full bench stations like the Hakko FX888D, we compared heat-up time, temperature stability, and real owner feedback."
+        description="From the pocket-sized Pinecil to full bench stations like the Hakko FX-888DX, we compared heat-up time, temperature stability, and real owner feedback."
         updated="2026-10-21"
         picks={picks}
       />
+      <section className="mx-auto max-w-6xl px-6 pt-12">
+        <div className="max-w-4xl space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">Station, pen or portable: narrow it down first</h2>
+            <p className="text-muted leading-7">
+              These irons fall into four groups: bench stations with a separate base, plug-in pen irons with the control
+              on the handle, USB-C portables, and one combined iron and hot air station. The group matters more than the
+              brand, because it decides where you can work, which tips you can buy and how the iron copes with heavy
+              joints. Our{" "}
+              <Link href="/soldering-irons/soldering-iron-vs-soldering-station" className={linkClass}>
+                soldering iron vs soldering station
+              </Link>{" "}
+              explainer covers that choice in detail, and the{" "}
+              <Link href="/soldering-irons/soldering-iron-buying-guide" className={linkClass}>
+                soldering iron buying guide
+              </Link>{" "}
+              walks through wattage, tips and temperature control. First-timers should also see the{" "}
+              <Link href="/soldering-irons/best-soldering-iron-for-beginners" className={linkClass}>
+                best soldering iron for beginners
+              </Link>
+              .
+            </p>
+            <p className="text-muted leading-7">
+              For a closer look at individual tools, read the{" "}
+              <Link href="/soldering-irons/weller-we1010na-review" className={linkClass}>
+                Weller WE1010NA review
+              </Link>{" "}
+              and the{" "}
+              <Link href="/soldering-irons/pinecil-v2-review" className={linkClass}>
+                Pinecil V2 review
+              </Link>
+              , or put the two leading stations head to head in{" "}
+              <Link href="/soldering-irons/weller-we1010-vs-hakko-fx-888dx" className={linkClass}>
+                Weller WE1010 vs Hakko FX-888DX
+              </Link>
+              . Portable buyers deciding between the two smart irons can compare them in{" "}
+              <Link href="/soldering-irons/pinecil-v2-vs-ts101-soldering-iron" className={linkClass}>
+                Pinecil V2 vs TS101
+              </Link>
+              . Once you own one, the{" "}
+              <Link href="/soldering-irons/soldering-iron-tip-types" className={linkClass}>
+                guide to soldering iron tip types
+              </Link>{" "}
+              and{" "}
+              <Link href="/soldering-irons/soldering-iron-temperature-by-metal" className={linkClass}>
+                soldering temperature by metal
+              </Link>{" "}
+              help you set it up for each job.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">Power and temperature range compared</h2>
+            <DataTable head={["Iron", "Type", "Power (as the maker states it)", "Temperature range"]} rows={specRows} />
+            <p className="text-xs text-muted leading-5">
+              From each maker&apos;s page or the official Amazon listing. Station figures are total power with the
+              iron&apos;s own rating in brackets where the maker gives both. Several budget makers publish conflicting
+              numbers: X-Tronic also quotes 90°C as the 3020-XTS minimum, and YIHUA&apos;s own page gives the 939D+ a
+              450°C maximum, so treat those ends of the range with care.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold">Where each temperature range starts and ends</h2>
+            <p className="text-muted leading-7">
+              Most of these irons top out between 400°C and 480°C, which covers electronics comfortably. The real
+              differences are at the ends. A low minimum, like the 50°C on the FX-888DX and TS101, lets an iron idle
+              cool on the stand; a 240°C floor, as on the Hakko FX-601, is warm for delicate SMD parts. At the top, the
+              FX-601&apos;s 540°C suits heavy terminals and stained glass, while the TS101&apos;s 400°C ceiling is the
+              lowest here.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Figure caption={<>Maximum iron temperature in °C. The Pinecil V2 isn&apos;t shown because its range isn&apos;t in our verified data.</>}>
+                <BarChart
+                  items={[
+                    { label: "Hakko FX-601", value: 540, display: "540°C", highlight: true },
+                    { label: "Hakko FX-888DX", value: 480, display: "480°C" },
+                    { label: "YIHUA 862BD+", value: 480, display: "480°C" },
+                    { label: "YIHUA 926 III", value: 480, display: "480°C" },
+                    { label: "X-Tronic 3020-XTS", value: 480, display: "480°C" },
+                    { label: "YIHUA 939D+", value: 480, display: "480°C" },
+                    { label: "Liouhoum 80W Kit", value: 480, display: "480°C" },
+                    { label: "Weller WE1010NA", value: 450, display: "450°C" },
+                    { label: "Q-MING 60W Kit", value: 450, display: "450°C" },
+                    { label: "FNIRSI HS-02A", value: 450, display: "450°C" },
+                    { label: "Miniware TS101", value: 400, display: "400°C" },
+                  ]}
+                />
+              </Figure>
+              <Figure caption={<>Minimum settable temperature in °C, from the same sources. Lower bars can idle cooler.</>}>
+                <BarChart
+                  items={[
+                    { label: "Hakko FX-601", value: 240, display: "240°C" },
+                    { label: "Q-MING 60W Kit", value: 200, display: "200°C" },
+                    { label: "YIHUA 862BD+", value: 200, display: "200°C" },
+                    { label: "X-Tronic 3020-XTS", value: 200, display: "200°C" },
+                    { label: "YIHUA 939D+", value: 200, display: "200°C" },
+                    { label: "Liouhoum 80W Kit", value: 180, display: "180°C" },
+                    { label: "Weller WE1010NA", value: 100, display: "100°C" },
+                    { label: "FNIRSI HS-02A", value: 100, display: "100°C" },
+                    { label: "YIHUA 926 III", value: 90, display: "90°C" },
+                    { label: "Hakko FX-888DX", value: 50, display: "50°C", highlight: true },
+                    { label: "Miniware TS101", value: 50, display: "50°C", highlight: true },
+                  ]}
+                />
+              </Figure>
+            </div>
+          </div>
+        </div>
+      </section>
       <ReviewArticle
         hideByline
         picks={picks}

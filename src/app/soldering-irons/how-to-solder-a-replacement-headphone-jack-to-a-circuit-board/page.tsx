@@ -91,7 +91,7 @@ export default function HowToSolderAReplacementHeadphoneJackToACircuitBoardPage(
         alt: "Weller WE1010NA ESD-safe digital soldering station",
         caption: (
           <>
-            Audio boards often carry static-sensitive codec chips. The Weller WE1010NA is a 70W digital
+            Audio boards often carry static-sensitive codec chips. The Weller WE1010NA is an 85W digital
             station with an ESD-safe design. See our{" "}
             <Link href="/soldering-irons/weller-we1010na-review" className={link}>
               WE1010NA review
@@ -305,7 +305,7 @@ export default function HowToSolderAReplacementHeadphoneJackToACircuitBoardPage(
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with ESD-safe construction for sensitive boards.",
+              note: "85W digital station (70W iron) with ESD-safe construction for sensitive boards.",
             },
             {
               name: "Pinecil V2",

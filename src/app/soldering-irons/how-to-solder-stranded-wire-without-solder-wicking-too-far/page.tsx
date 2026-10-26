@@ -423,7 +423,7 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station with about 28 second heat-up, for dedicated workbenches.",
+              note: "85W digital, ESD-safe station (70W iron) with about 28 second heat-up, for dedicated workbenches.",
             },
           ]}
         />

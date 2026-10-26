@@ -269,7 +269,7 @@ export default function HowToRepairAPcbTracePage() {
             {
               name: "Weller WE1010NA",
               image: weller.image,
-              alt: "Weller WE1010NA 70W digital soldering station",
+              alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
               note: "ESD-safe 70W station with digital control, a sensible match for jumper work near static-sensitive chips.",
             },

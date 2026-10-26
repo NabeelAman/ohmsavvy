@@ -271,9 +271,9 @@ export default function SolderComparisonPage() {
             {
               name: "Weller WE1010NA",
               image: weller.image,
-              alt: "Weller WE1010NA 70W digital soldering station",
+              alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "A 70W ESD-safe bench station; Weller quotes about 28 seconds to go from 50 to 350°C.",
+              note: "An 85W ESD-safe bench station with a 70W iron; Weller quotes about 28 seconds to go from 50 to 350°C.",
             },
             {
               name: "Pinecil V2",

@@ -341,7 +341,7 @@ export default function WhyDoesMySolderingIronTemperatureKeepDroppingPage() {
               image: weller.image,
               alt: "Weller WE1010NA soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe bench station; Weller states about 28 s from 50 to 350°C.",
+              note: "85W digital, ESD-safe bench station (70W iron); Weller states about 28 s from 50 to 350°C.",
             },
             {
               name: "Pinecil V2",

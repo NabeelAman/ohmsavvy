@@ -51,7 +51,7 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
         alt: "Weller WE1010NA digital soldering station with iron and stand",
         caption: (
           <>
-            Pad repair rewards a controlled, temperature-stable iron. The Weller WE1010NA is a 70W
+            Pad repair rewards a controlled, temperature-stable iron. The Weller WE1010NA is an 85W
             digital, ESD-safe station from our reviews. See our{" "}
             <Link href="/soldering-irons/weller-we1010na-review" className={link}>
               WE1010NA review
@@ -406,7 +406,7 @@ export default function HowToRepairLiftedPcbPadsAfterDesolderingPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station that heats in about 28 seconds, for dedicated workbenches and professional use.",
+              note: "85W digital, ESD-safe station (70W iron) that heats in about 28 seconds, for dedicated workbenches and professional use.",
             },
             {
               name: "YIHUA 862BD+",

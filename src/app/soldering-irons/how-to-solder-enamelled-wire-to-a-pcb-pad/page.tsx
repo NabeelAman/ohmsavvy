@@ -322,7 +322,7 @@ export default function HowToSolderEnamelledWireToAPcbPadPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station.",
+              note: "85W digital, ESD-safe station (70W iron).",
             },
           ]}
         />

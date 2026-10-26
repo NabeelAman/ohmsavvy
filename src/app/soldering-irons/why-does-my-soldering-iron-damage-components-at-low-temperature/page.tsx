@@ -479,7 +479,7 @@ export default function WhyDoesMySolderingIronDamageComponentsAtLowTemperaturePa
               image: weller.image,
               alt: "Weller WE1010NA digital ESD-safe soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station; Weller states about 28 s from 50 to 350°C.",
+              note: "85W digital, ESD-safe station (70W iron); Weller states about 28 s from 50 to 350°C.",
             },
             {
               name: "X-Tronic 3020-XTS",

@@ -235,7 +235,7 @@ export default function WhyWontSolderStickToSolderingIronTipPage() {
         title="Irons with temperature control and easy tip swaps"
         items={[
           { name: fx888dx.name, image: fx888dx.image, alt: "Hakko FX-888DX soldering station", href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx", note: "Digital station with adjustable temperature and replaceable tips." },
-          { name: weller.name, image: weller.image, alt: "Weller WE1010NA soldering station", href: "/soldering-irons/weller-we1010na-review", note: "70W digital station with tight temperature stability." },
+          { name: weller.name, image: weller.image, alt: "Weller WE1010NA soldering station", href: "/soldering-irons/weller-we1010na-review", note: "85W digital station (70W iron) with tight temperature stability." },
           { name: pinecil.name, image: pinecil.image, alt: "Pinecil V2 smart soldering iron", href: "/soldering-irons/pinecil-v2-review", note: "Portable USB-C PD iron that heats up fast." },
         ]}
       />

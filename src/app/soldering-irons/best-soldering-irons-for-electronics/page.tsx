@@ -242,7 +242,7 @@ export default function BestSolderingIronsForElectronicsPage() {
                   { label: "Liouhoum 80W", value: 80, display: "80W (listing)" },
                   { label: "YIHUA 862BD+", value: 75, display: "75W iron" },
                   { label: "YIHUA 939D+", value: 75, display: "75W equiv. (listing)" },
-                  { label: "Weller WE1010NA", value: 70, display: "70W" },
+                  { label: "Weller WE1010NA", value: 70, display: "70W iron" },
                   { label: "Hakko FX-888DX", value: 65, display: "65W" },
                   { label: "X-Tronic 3020-XTS", value: 60, display: "60W iron" },
                   { label: "YIHUA 926 III", value: 60, display: "60W (listing)" },

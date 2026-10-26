@@ -213,7 +213,7 @@ export default function SolderingIronBuyingGuidePage() {
             head={["Iron", "Type", "Iron power", "Temperature control", "Heat-up"]}
             rows={[
               ["Hakko FX-888DX", "Station", "65W iron (100W station)", "Digital, closed-loop, 50–480°C", "Not stated"],
-              ["Weller WE1010NA", "Station", "70W", "Digital, ESD-safe", "~28 s (50–350°C)"],
+              ["Weller WE1010NA", "Station", "70W iron (85W station)", "Digital, ESD-safe", "~28 s (50–350°C)"],
               ["X-Tronic 3020-XTS", "Station", "60W iron (75W station)", "PID, 200–480°C", "Under 30 s (listing)"],
               ["Pinecil V2", "Portable USB-C", "Up to 88W at 24V; ~60W on 20V PD", "OLED digital", "~12 s (20V+ supply)"],
               ["Q-MING 60W Kit", "Plug-in pen iron", "60W", "Dial, 200–450°C", "~15 s"],
@@ -224,7 +224,7 @@ export default function SolderingIronBuyingGuidePage() {
               <BarChart
                 items={[
                   { label: "Pinecil V2 (24V)", value: 88, display: "88W" },
-                  { label: "Weller WE1010NA", value: 70, display: "70W" },
+                  { label: "Weller WE1010NA", value: 70, display: "70W iron" },
                   { label: "Hakko FX-888DX iron", value: 65, display: "65W", highlight: true },
                   { label: "X-Tronic 3020-XTS iron", value: 60, display: "60W" },
                   { label: "Q-MING 60W Kit", value: 60, display: "60W" },

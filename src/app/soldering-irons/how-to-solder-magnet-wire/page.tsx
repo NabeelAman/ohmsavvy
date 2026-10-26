@@ -235,7 +235,7 @@ export default function HowToSolderMagnetWirePage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with ESD-safe construction, suited to winding and inductor repairs on a dedicated bench.",
+              note: "85W digital station (70W iron) with ESD-safe construction, suited to winding and inductor repairs on a dedicated bench.",
             },
           ]}
         />

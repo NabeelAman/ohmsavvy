@@ -268,9 +268,9 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
             {
               name: "Weller WE1010NA",
               image: weller.image,
-              alt: "Weller WE1010NA 70W digital soldering station",
+              alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "A 70W ESD-safe bench station; Weller quotes about 28 seconds to climb from 50 to 350°C before you start on the lugs.",
+              note: "An 85W ESD-safe bench station with a 70W iron; Weller quotes about 28 seconds to climb from 50 to 350°C before you start on the lugs.",
             },
           ]}
         />

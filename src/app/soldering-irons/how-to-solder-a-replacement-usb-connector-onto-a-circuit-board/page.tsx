@@ -340,7 +340,7 @@ export default function HowToSolderAReplacementUsbConnectorPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W ESD-safe digital station with tight temperature stability for bench repair.",
+              note: "85W ESD-safe digital station (70W iron) with tight temperature stability for bench repair.",
             },
           ]}
         />

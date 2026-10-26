@@ -315,7 +315,7 @@ export default function HowToSolderAReplacementSpeakerTerminalOnAPcbPage() {
             {
               name: "Weller WE1010NA",
               image: weller.image,
-              alt: "Weller WE1010NA 70W digital soldering station",
+              alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
               note: "ESD-safe digital station from Weller, well suited to amplifier boards that carry op-amps and other sensitive parts.",
             },

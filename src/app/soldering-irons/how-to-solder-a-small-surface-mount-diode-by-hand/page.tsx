@@ -88,7 +88,7 @@ export default function HowToSolderASmallSurfaceMountDiodeByHandPage() {
         alt: "Weller WE1010NA digital soldering station",
         caption: (
           <>
-            The Weller WE1010NA is a 70W digital station with ESD-safe construction, suited to a dedicated
+            The Weller WE1010NA is an 85W digital station (70W iron) with ESD-safe construction, suited to a dedicated
             electronics bench. See our{" "}
             <Link href="/soldering-irons/weller-we1010na-review" className={link}>
               Weller WE1010NA review
@@ -298,7 +298,7 @@ export default function HowToSolderASmallSurfaceMountDiodeByHandPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with ESD-safe construction.",
+              note: "85W digital station (70W iron) with ESD-safe construction.",
             },
             {
               name: "YIHUA 862BD+",

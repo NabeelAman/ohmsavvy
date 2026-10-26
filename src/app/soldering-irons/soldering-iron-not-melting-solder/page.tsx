@@ -277,7 +277,7 @@ export default function SolderingIronNotMeltingSolderPage() {
             {
               name: "Weller WE1010NA",
               image: weller.image,
-              alt: "Weller WE1010NA 70W digital soldering station",
+              alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
               note: "A 70W digital station whose display shows the real setpoint, ruling out a dial knocked too low.",
             },

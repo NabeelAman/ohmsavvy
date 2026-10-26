@@ -415,7 +415,7 @@ export default function HowToSolderFinePitchSmdComponentsPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital, ESD-safe station that heats in about 28 seconds, for dedicated workbenches.",
+              note: "85W digital, ESD-safe station (70W iron) that heats in about 28 seconds, for dedicated workbenches.",
             },
             {
               name: "Pinecil V2",

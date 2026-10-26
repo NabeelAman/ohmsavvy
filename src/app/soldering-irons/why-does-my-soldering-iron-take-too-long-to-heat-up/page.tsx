@@ -373,7 +373,7 @@ export default function WhyDoesMySolderingIronTakeTooLongToHeatUpPage() {
               image: weller.image,
               alt: "Weller WE1010NA soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: `Stated heat-up: ${heatUp("Weller WE1010NA")}. 70W digital, ESD-safe bench station.`,
+              note: `Stated heat-up: ${heatUp("Weller WE1010NA")}. 85W digital, ESD-safe bench station (70W iron).`,
             },
           ]}
         />

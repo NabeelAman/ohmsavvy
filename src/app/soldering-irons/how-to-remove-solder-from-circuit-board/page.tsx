@@ -296,7 +296,7 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W ESD-safe digital station for a dedicated bench.",
+              note: "85W ESD-safe digital station (70W iron) for a dedicated bench.",
             },
           ]}
         />

@@ -84,7 +84,7 @@ export default function HowToSolderAReplacementMicrophoneOntoACircuitBoardPage()
         alt: "Weller WE1010NA digital soldering station with its iron in the holder",
         caption: (
           <>
-            An ESD-safe station such as the Weller WE1010NA (70W, digital control) suits static-sensitive
+            An ESD-safe station such as the Weller WE1010NA (85W station with a 70W iron) suits static-sensitive
             parts like microphone capsules. See our{" "}
             <Link href="/soldering-irons/weller-we1010na-review" className={link}>
               WE1010NA review
@@ -346,7 +346,7 @@ export default function HowToSolderAReplacementMicrophoneOntoACircuitBoardPage()
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with an ESD-safe design that protects sensitive components.",
+              note: "85W digital station (70W iron) with an ESD-safe design that protects sensitive components.",
             },
             {
               name: "YIHUA 862BD+",

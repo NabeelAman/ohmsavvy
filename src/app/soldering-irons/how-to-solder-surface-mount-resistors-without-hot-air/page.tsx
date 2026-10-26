@@ -53,7 +53,7 @@ export default function HowToSolderSurfaceMountResistorsWithoutHotAirPage() {
         alt: "Weller WE1010NA digital soldering station with its iron in the holder",
         caption: (
           <>
-            A temperature-controlled, ESD-safe station like the Weller WE1010NA (70W) handles chip
+            A temperature-controlled, ESD-safe station like the Weller WE1010NA (85W station, 70W iron) handles chip
             resistors without hot air. See our{" "}
             <Link href="/soldering-irons/weller-we1010na-review" className={link}>
               WE1010NA review

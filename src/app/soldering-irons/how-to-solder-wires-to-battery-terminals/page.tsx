@@ -254,7 +254,7 @@ export default function HowToSolderWiresToBatteryTerminalsPage() {
               image: weller.image,
               alt: "Weller WE1010NA digital soldering station",
               href: "/soldering-irons/weller-we1010na-review",
-              note: "70W digital station with a readable set point, useful for the repeatable short contacts lithium tabs call for.",
+              note: "85W digital station (70W iron) with a readable set point, useful for the repeatable short contacts lithium tabs call for.",
             },
           ]}
         />

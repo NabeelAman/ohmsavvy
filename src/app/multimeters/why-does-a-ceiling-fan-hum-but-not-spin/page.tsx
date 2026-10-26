@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -54,6 +54,7 @@ export default function WhyDoesACeilingFanHumButNotSpinPage() {
         ),
       }}
       toc={[
+        { id: "causes-at-a-glance", label: "Causes at a glance" },
         { id: "confirm-power-is-reaching-it", label: "Confirm power is reaching the motor" },
         { id: "the-capacitor-is-the-usual-suspect", label: "The capacitor is the usual suspect" },
         { id: "check-for-a-physical-obstruction", label: "Check for a physical obstruction" },
@@ -104,10 +105,29 @@ export default function WhyDoesACeilingFanHumButNotSpinPage() {
       </Callout>
 
       <section>
+        <h2 id="causes-at-a-glance" className="text-xl font-semibold mb-3">Causes at a glance</h2>
+        <p className="text-muted leading-7 mb-4">
+          Match what you see and hear to the rows below, then work through the numbered checks in order. The
+          capacitor row comes first because it is the cheapest part and the most frequent failure.
+        </p>
+        <DataTable
+          head={["Symptom", "Likely cause", "How to check", "Fix or who to call"]}
+          rows={[
+            ["Hums, starts if you push the blades", "Weak or open run capacitor", "Capacitance reading against the µF value on its case", "Replace with the same µF and an equal or higher voltage rating"],
+            ["Hums on one speed, works on another", "Worn pull-chain or speed switch contact", "Continuity across each switch position with power off", "Replace the speed switch"],
+            ["Hums and the blades feel stiff by hand", "Dry or seized bearing, debris", "Spin by hand with power off; listen for grinding", "Clean or replace the motor; often not worth repairing"],
+            ["Hums faintly or not at all, never starts", "Loose connection or low voltage at the fan", "Voltage at the supply with the switch on", "Tighten connections; electrician for box or switch wiring"],
+            ["Hums, smells hot, or the housing is scorched", "Shorted winding or burned capacitor", "Winding resistance; visual check for melted insulation", "Stop using the fan; replace it or call an electrician"],
+          ]}
+        />
+      </section>
+
+      <section>
         <StepHeading n={1} id="confirm-power-is-reaching-it">Confirm power is reaching the motor</StepHeading>
         <p className="text-muted leading-7">
-          With power off, check the wall switch and any inline connections for voltage when switched on,
-          confirming power genuinely reaches the fan&apos;s own wiring. Humming itself is usually a strong
+          With the wall switch on, confirm voltage reaches the fan with a non-contact tester or a CAT-rated
+          meter at an accessible point, then switch off at the breaker before opening any housing. This
+          confirms power genuinely reaches the fan&apos;s own wiring. Humming itself is usually a strong
           sign power is present, but confirming it rules out a marginal connection as a contributing factor.
         </p>
       </section>
@@ -122,6 +142,40 @@ export default function WhyDoesACeilingFanHumButNotSpinPage() {
           </Link>
           .
         </p>
+        <p className="text-muted leading-7 mb-4">
+          Most ceiling fans use a permanent split capacitor (PSC) motor with two windings. The main winding
+          connects straight across the supply, while the auxiliary winding is fed through the capacitor,
+          which shifts its current ahead of the main winding&apos;s. That offset turns two pulsing fields into
+          one rotating field, which is what gives the rotor its starting torque. If the capacitor loses its
+          value, the auxiliary current shrinks and the two fields line up in time: the main winding still
+          buzzes at line frequency, but nothing pushes the rotor in either direction.
+        </p>
+        <Figure caption="A PSC fan motor: the main winding runs straight from the supply, and the auxiliary winding runs through the capacitor. A weak capacitor starves the auxiliary winding, leaving a hum with no starting torque.">
+          <svg viewBox="0 0 320 170" className="w-full h-auto" role="img" aria-label="Wiring diagram of a permanent split capacitor ceiling fan motor: the AC supply feeds the main winding directly and the auxiliary winding through a run capacitor, and both windings return to neutral">
+            <g className="stroke-foreground" strokeWidth="2" fill="none">
+              <line x1="30" y1="30" x2="290" y2="30" />
+              <line x1="30" y1="140" x2="290" y2="140" />
+              <line x1="110" y1="30" x2="110" y2="60" />
+              <path d="M110 60 q10 7 0 14 q10 7 0 14 q10 7 0 14 q10 7 0 14" />
+              <line x1="110" y1="116" x2="110" y2="140" />
+              <line x1="230" y1="30" x2="230" y2="44" />
+              <line x1="216" y1="44" x2="244" y2="44" className="stroke-accent" />
+              <line x1="216" y1="52" x2="244" y2="52" className="stroke-accent" />
+              <line x1="230" y1="52" x2="230" y2="66" />
+              <path d="M230 66 q10 6 0 12 q10 6 0 12 q10 6 0 12 q10 6 0 12" />
+              <line x1="230" y1="114" x2="230" y2="140" />
+            </g>
+            <circle cx="30" cy="30" r="3" className="fill-foreground" />
+            <circle cx="30" cy="140" r="3" className="fill-foreground" />
+            <text x="30" y="20" fontSize="10" className="fill-foreground">Line (hot)</text>
+            <text x="30" y="158" fontSize="10" className="fill-foreground">Neutral</text>
+            <text x="126" y="92" fontSize="10" className="fill-foreground">Main winding</text>
+            <text x="126" y="104" fontSize="9" className="fill-muted">fed directly</text>
+            <text x="252" y="51" fontSize="10" className="fill-accent">Capacitor</text>
+            <text x="246" y="92" fontSize="10" className="fill-foreground">Aux</text>
+            <text x="246" y="104" fontSize="10" className="fill-foreground">winding</text>
+          </svg>
+        </Figure>
         <DataTable
           head={["Finding", "Likely cause"]}
           rows={[

@@ -8,6 +8,7 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -23,6 +24,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const brymen = picks.find((p) => p.name === "Brymen BM235")!;
+const unit = picks.find((p) => p.name === "UNI-T UT139C")!;
 
 const link = "text-accent hover:underline";
 
@@ -116,6 +119,7 @@ export default function HowToMeasureTheResistanceOfASpeakerWithAMultimeterPage()
         { id: "crossovers", label: "Speakers with crossovers" },
         { id: "series-and-parallel", label: "Series and parallel wiring" },
         { id: "which-meter", label: "Which meter to use" },
+        { id: "meters", label: "Meters for speaker coil checks" },
       ]}
       faq={[
         {
@@ -345,6 +349,38 @@ export default function HowToMeasureTheResistanceOfASpeakerWithAMultimeterPage()
           </Link>
           .
         </p>
+      </section>
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for speaker coil checks</h2>
+        <p className="text-muted leading-7 mb-6">
+          A voice coil reads only a few ohms, so the lead offset matters. These meters give clear low-ohm readings, and one can subtract the leads for you.
+        </p>
+        <ProductStrip
+          title="Meters for speaker resistance"
+          items={[
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "A hands-on tested Fluke with a 6,000-count display, which typically means 0.1 Ω resolution on the lowest ohms range, enough for a 4 Ω or 8 Ω driver.",
+            },
+            {
+              name: "Brymen BM235",
+              image: brymen.image,
+              alt: "Brymen BM235 True RMS digital multimeter",
+              href: "/multimeters/brymen-bm235-vs-fluke-117",
+              note: "Relative zero lets you store the shorted-lead reading so the display shows only the coil's resistance.",
+            },
+            {
+              name: "UNI-T UT139C",
+              image: unit.image,
+              alt: "UNI-T UT139C True RMS digital multimeter",
+              href: "/multimeters/uni-t-ut139c-review",
+              note: "An affordable 6,000-count meter with manual ranging, so you can lock it on the lowest ohms range for a row of drivers.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

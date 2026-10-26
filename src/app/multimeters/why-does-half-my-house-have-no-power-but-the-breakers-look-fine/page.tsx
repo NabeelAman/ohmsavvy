@@ -123,6 +123,10 @@ export default function WhyDoesHalfMyHouseHaveNoPowerPage() {
           q: "Will the power company charge me to check the service?",
           a: "Policies vary by utility. Many check the transformer, service drop and meter at no charge, while repairs to equipment the homeowner owns, such as the meter base or service entrance cable on some homes, are the homeowner's responsibility. Ask when you call.",
         },
+        {
+          q: "Can a storm or a falling branch cause half the house to lose power?",
+          a: "Yes. Wind, ice or a branch can break or loosen one conductor of the overhead service drop while the other stays connected, leaving one leg dead. Look for a sagging or damaged line between the pole and the house, but stay well clear of it. Call the utility's outage or emergency number, and never try to move or touch a downed line.",
+        },
       ]}
       next={[
         {

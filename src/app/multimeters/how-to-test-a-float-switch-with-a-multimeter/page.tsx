@@ -7,6 +7,7 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
 
 const link = "text-accent hover:underline";
 
@@ -323,6 +326,46 @@ export default function HowToTestAFloatSwitchWithAMultimeterPage() {
           and run a water test with the pump connected: fill the pit or tank slowly and confirm the pump starts
           and stops where it should.
         </KeyIdea>
+      </section>
+      <section>
+        <h2 id="meters-for-float-switches" className="text-xl font-semibold mb-3">Meters for pump and float switch jobs</h2>
+        <p className="text-muted leading-7 mb-6">
+          The float test itself is a continuity check, but pump circuits run on mains, so the same meter often
+          has to prove the outlet or the pump cord is dead before you touch it. That makes a CAT III rated meter
+          with a voltage range you trust the better choice for sump and condensate pumps; a budget meter is fine
+          for low-voltage aquarium and tank-level switches. Basement pump outlets are often GFCI protected; if
+          yours keeps cutting the pump off, see{" "}
+          <Link href="/multimeters/why-does-my-gfci-outlet-keep-tripping" className={link}>
+            why a GFCI outlet keeps tripping
+          </Link>
+          .
+        </p>
+        <ProductStrip
+          title="Meters for float switch and pump checks"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS electrician's multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. CAT III 600V with built-in NCV to confirm a pump circuit is dead before you start.",
+            },
+            {
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 True RMS digital multimeter",
+              href: "/multimeters/fluke-87v-vs-fluke-179",
+              note: "CAT IV 600V rating, bar graph and Min/Max recording to watch a switch change state as the float rises.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "CAT II 600V budget meter with NCV, suited to aquarium and low-voltage tank switches rather than panels.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

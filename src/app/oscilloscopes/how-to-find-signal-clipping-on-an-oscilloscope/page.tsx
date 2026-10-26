@@ -90,6 +90,10 @@ export default function HowToFindSignalClippingPage() {
           q: "Why does my scope show a flat line at the top of the screen?",
           a: "Usually the vertical scale is too sensitive and the waveform runs past the top of the display, so the scope captures only the part inside its range. Turn the V/div knob to a larger value or use AUTO, and check the channel's probe setting matches the probe. If the flat top is still there with the whole waveform on screen, the circuit is clipping.",
         },
+        {
+          q: "Can I use the oscilloscope's FFT to detect clipping?",
+          a: "Yes, and it often shows clipping before the flat tops are obvious. A clean sine puts nearly all its energy at one frequency. As clipping starts, harmonics climb quickly: symmetrical clipping adds mostly odd harmonics such as the 3rd and 5th, while one-sided clipping adds even harmonics too. Feed a sine, open the FFT math function and watch the harmonics as you raise the level.",
+        },
       ]}
       next={[
         {

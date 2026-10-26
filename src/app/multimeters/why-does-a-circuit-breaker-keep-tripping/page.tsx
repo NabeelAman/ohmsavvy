@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -120,10 +120,50 @@ export default function WhyDoesACircuitBreakerKeepTrippingPage() {
       <section>
         <StepHeading n={2} id="measure-the-load">Measure the circuit&apos;s actual load</StepHeading>
         <p className="text-muted leading-7">
-          Clamp around a single accessible conductor feeding the circuit (an extension cord to a device, or
-          an exposed wire at an outlet box) while everything normally run on that circuit is switched on, and
-          read the current. Compare the total against the breaker&apos;s amperage rating printed on its
-          switch.
+          Clamp around a single conductor feeding the load while everything normally run on that circuit is
+          switched on, and read the current. Clamping a whole power cord reads close to zero, because the
+          equal and opposite currents in the hot and neutral wires cancel; plug the device through an AC line
+          splitter (an adapter that separates one conductor into a loop for the clamp) instead of cutting or
+          opening anything. Compare the total against the breaker&apos;s amperage rating printed on its
+          handle.
+        </p>
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                Schematic trip behavior of a typical thermal-magnetic breaker (not to scale). Modest overloads
+                heat a bimetal strip and trip after a delay; a short pulls far more current and trips the
+                magnetic element almost instantly.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 200" className="w-full h-auto" role="img" aria-label="Schematic time-current curve for a thermal-magnetic circuit breaker: the horizontal axis is current as a multiple of the breaker rating and the vertical axis is time to trip; below the rating the breaker holds indefinitely, between roughly one and a few times the rating the thermal region trips after seconds to minutes, getting faster as current rises, and at very high multiples the magnetic region trips almost instantly">
+              <g className="stroke-foreground" strokeWidth="1.4" fill="none">
+                <line x1="50" y1="20" x2="50" y2="165" />
+                <line x1="50" y1="165" x2="325" y2="165" />
+              </g>
+              <line x1="95" y1="20" x2="95" y2="165" className="stroke-muted" strokeWidth="1" strokeDasharray="3 3" />
+              <path d="M100 22 C 110 70, 140 110, 200 128 L 228 132 L 228 156 L 320 156" className="stroke-accent" strokeWidth="2.2" fill="none" />
+              <text x="16" y="94" fontSize="9" className="fill-muted" transform="rotate(-90 16 94)">time to trip</text>
+              <text x="188" y="186" fontSize="9" textAnchor="middle" className="fill-muted">current, multiples of the breaker rating</text>
+              <text x="95" y="177" fontSize="9" textAnchor="middle" className="fill-foreground">1×</text>
+              <text x="228" y="177" fontSize="9" textAnchor="middle" className="fill-foreground">~5–10×</text>
+              <text x="60" y="34" fontSize="9" className="fill-muted">holds</text>
+              <text x="150" y="70" fontSize="9" className="fill-accent">thermal: overload,</text>
+              <text x="150" y="82" fontSize="9" className="fill-accent">minutes to seconds</text>
+              <text x="240" y="134" fontSize="9" className="fill-accent">magnetic: short,</text>
+              <text x="240" y="146" fontSize="9" className="fill-accent">near-instant</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          A worked example shows where your clamp reading lands on that curve. A common 15 A, 120 V household
+          circuit can carry 15 × 120 = 1,800 W before it reaches its rating, and electrical code guidance
+          generally limits continuous loads to 80% of the rating, about 12 A or 1,440 W. A 1,500 W space
+          heater (12.5 A) plus a 700 W microwave (about 5.8 A) on the same circuit totals roughly 18.3 A,
+          about 1.2 times the rating: squarely in the thermal region, which is why that combination trips
+          after a few minutes rather than the moment the microwave starts. A breaker that trips the instant a
+          device is switched on is sitting at the far right of the curve, and that points to a short.
         </p>
       </section>
 

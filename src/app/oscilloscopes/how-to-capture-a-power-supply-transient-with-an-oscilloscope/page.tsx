@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   ScopeScreen,
   StepHeading,
 } from "@/components/HowTo";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
 
 const link = "text-accent hover:underline";
 
@@ -88,6 +91,7 @@ export default function CapturePowerSupplyTransientPage() {
         { id: "measure", label: "Measure undershoot and recovery" },
         { id: "input-side", label: "Input-side transients" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "scopes", label: "Scopes for transient work" },
       ]}
       faq={[
         {
@@ -105,6 +109,10 @@ export default function CapturePowerSupplyTransientPage() {
         {
           q: "Can I use AC coupling to measure the recovery time?",
           a: "For fast recoveries, yes. AC coupling blocks the DC level through a high-pass filter, so a dip that lasts a long time compared with that filter's time constant gets distorted and appears to recover on its own. If the recovery takes milliseconds, use DC coupling with offset instead.",
+        },
+        {
+          q: "How do I capture inrush current when a power supply turns on?",
+          a: "A scope measures voltage, so put a small, low-value sense resistor in the supply's input or output return and probe across it, or use a current probe. Current equals the measured voltage divided by the resistance. Set Single mode with a rising-edge trigger just above zero, choose a timebase of a few milliseconds per division, then switch the supply on and read the peak.",
         },
       ]}
       next={[
@@ -239,7 +247,7 @@ export default function CapturePowerSupplyTransientPage() {
         <StepHeading n={3} id="zoom-rail">Zoom on the rail: DC with offset, or AC coupling</StepHeading>
         <p className="text-muted leading-7 mb-4">
           A 100 mV dip on a 5 V rail is invisible at 1 V/div. You need around 20 to 50 mV/div with the
-          rail centred on screen, and there are two ways to get there.
+          rail centered on screen, and there are two ways to get there.
         </p>
         <DataTable
           head={["Method", "How", "Strength", "Weakness"]}
@@ -343,6 +351,39 @@ export default function CapturePowerSupplyTransientPage() {
           that needs a differential probe. Load resistors and MOSFETs can get hot enough to burn, even at
           low duty cycles, so mount them on a heatsink and keep fingers clear.
         </Callout>
+      </section>
+
+      <section id="scopes">
+        <h2 className="text-xl font-semibold mb-3">Scopes for transient work</h2>
+        <p className="text-muted leading-7 mb-4">
+          Load-step testing benefits from more than two channels, so the rail, the gate drive and the sense resistor sit on one screen, and from fine vertical resolution when the dip is only tens of millivolts on a multi-volt rail.
+        </p>
+        <ProductStrip
+          title="Scopes for power supply transients"
+          items={[
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "4 channels at 50MHz cover rail, gate and current-sense traces together at an approachable price.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 12-bit four-channel oscilloscope with touchscreen",
+              href: "/oscilloscopes/best-beginner-oscilloscopes#rigol-dho804",
+              note: "12-bit vertical resolution resolves small rail dips in finer steps than an 8-bit converter.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "100MHz and 4 channels, with 500 MSa/s per channel when every input is in use.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

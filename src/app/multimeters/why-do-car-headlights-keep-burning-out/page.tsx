@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -50,6 +50,7 @@ export default function WhyDoCarHeadlightsKeepBurningOutPage() {
         { id: "check-charging-voltage", label: "Check for overcharging" },
         { id: "inspect-the-connector", label: "Inspect the connector for moisture and corrosion" },
         { id: "check-the-ground", label: "Check the headlight's ground connection" },
+        { id: "where-voltage-goes", label: "Where the headlight circuit goes wrong" },
         { id: "bulb-handling", label: "Bulb handling matters too" },
         { id: "which-meter", label: "Which meter to use" },
       ]}
@@ -147,6 +148,73 @@ export default function WhyDoCarHeadlightsKeepBurningOutPage() {
             cause.
           </KeyIdea>
         </div>
+      </section>
+
+      <section>
+        <h2 id="where-voltage-goes" className="text-xl font-semibold mb-3">Where the headlight circuit goes wrong</h2>
+        <p className="text-muted leading-7">
+          A headlight circuit is a single loop: battery positive, fuse, relay or switch, the connector at the
+          bulb, the filament, then the ground wire back to the body and battery negative. Every joint in that
+          loop is a place where resistance can build. Resistance on the feed side starves the bulb and cooks
+          the connector; resistance on the ground side does the same from the other end. Measuring the two
+          halves separately, with the lamp switched on, tells you which half is at fault.
+        </p>
+        <div className="mt-4">
+          <Figure
+            caption={
+              <>
+                The headlight loop and the two voltage-drop checks. V1 reads the loss along the feed side, V2
+                the loss along the ground side; on a healthy circuit each is a small fraction of a volt. The
+                connector and ground strap (highlighted) are where heat and corrosion usually start.
+              </>
+            }
+          >
+            <svg
+              viewBox="0 0 360 180"
+              className="w-full h-auto"
+              role="img"
+              aria-label="Headlight circuit diagram from battery positive through fuse, relay and connector to the bulb, then through the ground strap back to battery negative, with voltmeter V1 across the feed side and V2 across the ground side"
+            >
+              <rect x="10" y="60" width="44" height="60" rx="4" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="32" y="86" fontSize="10" textAnchor="middle" className="fill-foreground">+</text>
+              <text x="32" y="112" fontSize="10" textAnchor="middle" className="fill-foreground">−</text>
+              <text x="32" y="134" fontSize="9" textAnchor="middle" className="fill-muted">Battery</text>
+              <line x1="54" y1="80" x2="84" y2="80" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="84" y="72" width="34" height="16" rx="3" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="101" y="68" fontSize="9" textAnchor="middle" className="fill-muted">Fuse</text>
+              <line x1="118" y1="80" x2="146" y2="80" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="146" y="70" width="40" height="20" rx="3" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="166" y="66" fontSize="9" textAnchor="middle" className="fill-muted">Relay</text>
+              <line x1="186" y1="80" x2="222" y2="80" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="222" y="70" width="30" height="20" rx="3" className="fill-surface stroke-accent" strokeWidth="2" />
+              <text x="237" y="66" fontSize="9" textAnchor="middle" className="fill-accent">Connector</text>
+              <line x1="252" y1="80" x2="284" y2="80" className="stroke-foreground" strokeWidth="1.5" />
+              <circle cx="300" cy="80" r="16" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <path d="M290 84 q5 -10 10 0 q5 10 10 0" className="fill-none stroke-accent" strokeWidth="1.5" />
+              <text x="300" y="56" fontSize="9" textAnchor="middle" className="fill-muted">Bulb</text>
+              <line x1="300" y1="96" x2="300" y2="140" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="280" y="134" width="40" height="12" rx="3" className="fill-surface stroke-accent" strokeWidth="2" />
+              <text x="336" y="132" fontSize="9" textAnchor="middle" className="fill-accent">Ground</text>
+              <text x="336" y="143" fontSize="9" textAnchor="middle" className="fill-accent">strap</text>
+              <line x1="280" y1="140" x2="32" y2="140" className="stroke-foreground" strokeWidth="1.5" />
+              <line x1="32" y1="140" x2="32" y2="120" className="stroke-foreground" strokeWidth="1.5" />
+              <text x="160" y="155" fontSize="9" textAnchor="middle" className="fill-muted">Body / chassis return</text>
+              <path d="M54 76 Q170 20 284 76" className="fill-none stroke-accent" strokeWidth="1" strokeDasharray="4 3" />
+              <text x="170" y="34" fontSize="10" textAnchor="middle" className="fill-accent">V1: feed-side drop</text>
+              <path d="M54 116 Q170 178 300 152" className="fill-none stroke-accent" strokeWidth="1" strokeDasharray="4 3" />
+              <text x="170" y="174" fontSize="10" textAnchor="middle" className="fill-accent">V2: ground-side drop</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Why does a few percent of extra voltage matter so much? A widely quoted lamp-engineering rule of
+          thumb says incandescent and halogen filament life varies roughly with the inverse twelfth power of
+          the applied voltage, so treat the figures here as approximate. A bulb run 5% above its design voltage
+          lasts about 1 ÷ 1.05¹² ≈ 0.56 of its rated life, a little over half. At 10% over, 1 ÷ 1.10¹² ≈ 0.32,
+          roughly a third. That is why a regulator that lets the system climb well past its normal charging
+          range kills headlights long before it harms anything else, and why a measurement on the battery
+          with the engine running is the first check worth making.
+        </p>
       </section>
 
       <section>

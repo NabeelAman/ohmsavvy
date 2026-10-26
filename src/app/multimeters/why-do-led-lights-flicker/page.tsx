@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -50,6 +50,7 @@ export default function WhyDoLedLightsFlickerPage() {
         { id: "check-supply-voltage", label: "Check supply voltage" },
         { id: "check-connections", label: "Check for loose or corroded connections" },
         { id: "dimmer-compatibility", label: "Check dimmer compatibility" },
+        { id: "inside-the-driver", label: "Where flicker gets into an LED fixture" },
         { id: "when-to-call-an-electrician", label: "When to call an electrician" },
         { id: "which-meter", label: "Which meter to use" },
       ]}
@@ -141,6 +142,70 @@ export default function WhyDoLedLightsFlickerPage() {
       </section>
 
       <section>
+        <h2 id="inside-the-driver" className="text-xl font-semibold mb-3">Where flicker gets into an LED fixture</h2>
+        <p className="text-muted leading-7">
+          An LED can&apos;t run on mains AC directly. A small driver inside the bulb or fixture rectifies the AC,
+          smooths it with a capacitor and regulates the current through the LEDs. Each of the three causes
+          above disturbs a different stage of that chain, which is why they show up differently: a supply
+          sag or loose joint starves the input, a phase-cut dimmer chops part of every half-cycle away, and a
+          driver with a tired smoothing capacitor lets ripple through to the LEDs. On a 60 Hz supply that
+          ripple repeats at 120 times a second, often too fast to notice directly but visible as stripes on a
+          phone camera or as a stroboscopic effect on moving objects.
+        </p>
+        <div className="mt-4">
+          <Figure
+            caption={
+              <>
+                The LED driver chain and where each flicker cause enters it. Your multimeter can confirm the input
+                stage (steady AC voltage, tight connections); dimmer and driver faults are confirmed by swapping
+                the dimmer or the bulb.
+              </>
+            }
+          >
+            <svg
+              viewBox="0 0 360 170"
+              className="w-full h-auto"
+              role="img"
+              aria-label="Block diagram of an LED driver: mains supply and dimmer feed a rectifier, smoothing capacitor and current regulator that drive the LEDs, with markers showing supply sag and loose connections at the input, dimmer phase-cutting, and capacitor ripple as the three entry points for flicker"
+            >
+              <path d="M8 60 q10 -26 20 0 q10 26 20 0" className="fill-none stroke-foreground" strokeWidth="1.5" />
+              <text x="28" y="96" fontSize="9" textAnchor="middle" className="fill-muted">Mains AC</text>
+              <line x1="50" y1="60" x2="64" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="64" y="44" width="50" height="32" rx="4" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="89" y="64" fontSize="9" textAnchor="middle" className="fill-foreground">Dimmer</text>
+              <line x1="114" y1="60" x2="128" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="128" y="44" width="54" height="32" rx="4" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="155" y="64" fontSize="9" textAnchor="middle" className="fill-foreground">Rectifier</text>
+              <line x1="182" y1="60" x2="196" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="196" y="44" width="50" height="32" rx="4" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="221" y="64" fontSize="9" textAnchor="middle" className="fill-foreground">Capacitor</text>
+              <line x1="246" y1="60" x2="260" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <rect x="260" y="44" width="50" height="32" rx="4" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="285" y="64" fontSize="9" textAnchor="middle" className="fill-foreground">Regulator</text>
+              <line x1="310" y1="60" x2="322" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <path d="M322 50 L322 70 L340 60 Z" className="fill-accent stroke-accent" strokeWidth="1" />
+              <line x1="340" y1="50" x2="340" y2="70" className="stroke-accent" strokeWidth="2" />
+              <text x="334" y="94" fontSize="9" textAnchor="middle" className="fill-muted">LEDs</text>
+              <circle cx="40" cy="128" r="9" className="fill-accent" />
+              <text x="40" y="132" fontSize="10" textAnchor="middle" className="fill-surface">1</text>
+              <line x1="40" y1="119" x2="40" y2="76" className="stroke-accent" strokeWidth="1" strokeDasharray="3 2" />
+              <text x="40" y="154" fontSize="9" textAnchor="middle" className="fill-accent">Sag / loose joint</text>
+              <circle cx="89" cy="128" r="9" className="fill-accent" />
+              <text x="89" y="132" fontSize="10" textAnchor="middle" className="fill-surface">2</text>
+              <line x1="89" y1="119" x2="89" y2="76" className="stroke-accent" strokeWidth="1" strokeDasharray="3 2" />
+              <text x="120" y="154" fontSize="9" textAnchor="middle" className="fill-accent">Phase-cut dimming</text>
+              <circle cx="221" cy="128" r="9" className="fill-accent" />
+              <text x="221" y="132" fontSize="10" textAnchor="middle" className="fill-surface">3</text>
+              <line x1="221" y1="119" x2="221" y2="76" className="stroke-accent" strokeWidth="1" strokeDasharray="3 2" />
+              <text x="250" y="154" fontSize="9" textAnchor="middle" className="fill-accent">Ripple from a worn cap</text>
+              <path d="M210 30 l6 -8 l6 8 l6 -8 l6 8" className="fill-none stroke-accent" strokeWidth="1.2" />
+              <text x="221" y="16" fontSize="8" textAnchor="middle" className="fill-muted">120 Hz ripple</text>
+            </svg>
+          </Figure>
+        </div>
+      </section>
+
+      <section>
         <h2 id="when-to-call-an-electrician" className="text-xl font-semibold mb-3">When to call an electrician</h2>
         <p className="text-muted leading-7">
           Call a licensed electrician for anything involving the panel itself, fixed wiring you&apos;re not
@@ -168,7 +233,7 @@ export default function WhyDoLedLightsFlickerPage() {
               image: fluke117.image,
               alt: "Fluke 117 digital multimeter",
               href: "/multimeters/fluke-117-review",
-              note: "True RMS AC volts, CAT III 600V.",
+              note: "Hands-on tested. True RMS AC volts, CAT III 600V.",
             },
           ]}
         />

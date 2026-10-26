@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -102,6 +102,54 @@ export default function CarRadioNoSoundPage() {
           With the connector plugged in and the unit powered on, back-probe the main power (often labeled
           constant 12V and switched/accessory 12V) and ground pins and measure voltage between each power
           pin and ground. Both should read close to battery voltage with the ignition on.
+        </p>
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                Inside a typical head unit, the display logic and the amplifier draw from the same harness but
+                along different paths. A break that affects only the amplifier path, or the speaker pairs after
+                it, leaves the screen working with no sound.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 190" className="w-full h-auto" role="img" aria-label="Block diagram of a car head unit: constant and accessory 12 volt feeds enter the harness; one branch feeds the display and logic section, another branch passes through a fuse to the amplifier section; the amplifier drives a positive and negative wire pair to a door speaker; a ground wire returns to the chassis; the amplifier branch, its fuse and the speaker pair are highlighted as the parts that can fail without darkening the display">
+              <rect x="90" y="20" width="170" height="130" rx="6" className="stroke-foreground" strokeWidth="1.4" fill="none" />
+              <text x="175" y="14" fontSize="10" textAnchor="middle" className="fill-muted">head unit</text>
+              <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+                <line x1="20" y1="50" x2="110" y2="50" />
+                <rect x="110" y="36" width="70" height="28" rx="3" />
+                <line x1="20" y1="132" x2="110" y2="132" />
+              </g>
+              <g className="stroke-accent" strokeWidth="1.8" fill="none">
+                <line x1="70" y1="50" x2="70" y2="96" />
+                <line x1="70" y1="96" x2="110" y2="96" />
+                <rect x="110" y="88" width="24" height="16" rx="2" />
+                <line x1="134" y1="96" x2="160" y2="96" />
+                <rect x="160" y="82" width="70" height="28" rx="3" />
+                <line x1="230" y1="90" x2="300" y2="90" />
+                <line x1="230" y1="102" x2="300" y2="102" />
+                <path d="M300 82 l14 -10 v48 l-14 -10 z" />
+              </g>
+              <text x="20" y="44" fontSize="9" className="fill-foreground">12 V feeds</text>
+              <text x="145" y="54" fontSize="9" textAnchor="middle" className="fill-foreground">display/logic</text>
+              <text x="122" y="122" fontSize="8" textAnchor="middle" className="fill-accent">fuse</text>
+              <text x="195" y="100" fontSize="9" textAnchor="middle" className="fill-accent">amplifier</text>
+              <text x="266" y="84" fontSize="8" className="fill-accent">+</text>
+              <text x="266" y="116" fontSize="8" className="fill-accent">−</text>
+              <text x="307" y="136" fontSize="9" textAnchor="middle" className="fill-muted">speaker</text>
+              <text x="20" y="126" fontSize="9" className="fill-foreground">ground</text>
+              <text x="20" y="178" fontSize="9" className="fill-muted">Highlighted: the path that can fail while the screen stays lit</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Once the harness is unplugged, the speaker side of that diagram is also easy to measure for
+          resistance, not just continuity. Most factory car speakers are rated at a nominal 4 Ω, and a healthy
+          voice coil usually reads a little below its rating on a meter&apos;s ohms range, roughly 3 to 4 Ω
+          for a 4 Ω speaker. A reading of OL means an open coil or a broken wire, and a reading near 0 Ω on a
+          pair means the two speaker wires are shorted together, a fault that can make many head units mute
+          or shut down their amplifier to protect themselves.
         </p>
       </section>
 

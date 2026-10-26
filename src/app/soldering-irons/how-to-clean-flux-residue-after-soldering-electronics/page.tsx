@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
 
@@ -279,6 +282,42 @@ export default function HowToCleanFluxResidueAfterSolderingElectronicsPage() {
         before you start, never spray near a hot tip, and work with good ventilation. Wear nitrile gloves to
         keep solvent off your skin, and keep containers closed when not in use.
       </Callout>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons that leave less to clean</h2>
+        <p className="text-muted leading-7 mb-6">
+          Flux that is held at too high a temperature for too long tends to darken and bake onto the board,
+          and that charred film is the hardest kind to shift with alcohol. A temperature-controlled iron set
+          only as hot as the joint needs keeps residue lighter and easier to dissolve. On a bench where
+          boards are cleaned and handled constantly, ESD-safe construction matters too.
+        </p>
+        <ProductStrip
+          title="Temperature-controlled irons for electronics benches"
+          items={[
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W ESD-safe digital station with stable temperature for long bench sessions.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX digital soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "ESD safe, 50–480°C, with five presets so you can drop to a lower setting for small joints.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable USB-C soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "USB-C powered portable iron with an OLED temperature readout, for repairs away from the bench.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

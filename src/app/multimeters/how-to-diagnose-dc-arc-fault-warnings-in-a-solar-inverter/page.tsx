@@ -128,6 +128,10 @@ export default function HowToDiagnoseDcArcFaultWarningsInASolarInverterPage() {
           q: "Is the system safe to leave in daylight while I wait for the installer?",
           a: "Shutting the inverter down stops the current that sustains an arc, which is why AFCI works. The panels and DC wiring are still energized whenever light falls on them, so keep people and pets away from any damaged cable, and if your system has a rapid-shutdown initiator, its label explains how to use it. Any smoke, smell or sparking means 911.",
         },
+        {
+          q: "Does an arc fault mean my solar panels need replacing?",
+          a: "Usually not. Most arcs happen at a connector, splice or terminal, and the repair is often a pair of correctly crimped, matched connectors or a new section of cable. A panel is replaced only when the arc is inside its junction box or the module itself is cracked or burned. The installer's inspection, not the error code alone, decides which parts have to go.",
+        },
       ]}
       next={[
         {

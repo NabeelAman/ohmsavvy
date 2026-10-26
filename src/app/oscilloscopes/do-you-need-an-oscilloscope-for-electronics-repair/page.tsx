@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, KeyIdea, MeterReadout, ProductStrip, ScopeScreen } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, HowToShell, KeyIdea, MeterReadout, ProductStrip, ScopeScreen } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-beginner-oscilloscopes/page";
 
@@ -52,6 +52,7 @@ export default function DoYouNeedAnOscilloscopeForElectronicsRepairPage() {
       toc={[
         { id: "meter-enough", label: "What a multimeter already finds" },
         { id: "scope-only", label: "Faults only a scope can show" },
+        { id: "timescales", label: "Why a meter misses fast faults" },
         { id: "by-repair-type", label: "By type of repair" },
         { id: "when-to-buy", label: "Signs it's time to buy one" },
         { id: "mains-safety", label: "A safety point before you probe mains gear" },
@@ -72,6 +73,10 @@ export default function DoYouNeedAnOscilloscopeForElectronicsRepairPage() {
         {
           q: "Can an oscilloscope replace a multimeter on the repair bench?",
           a: "No. A scope is poor at accurate DC voltage, it doesn't measure resistance, continuity or current directly, and you would miss the quick go/no-go checks a meter does in seconds. Repair benches use both, each for the question it answers best.",
+        },
+        {
+          q: "Is a USB or PC oscilloscope good enough for repair work?",
+          a: "It can be, for low-voltage boards on the bench. A USB scope uses your computer as the screen, so it is cheap for the bandwidth you get, but it ties you to a laptop and shares the computer's ground through the USB cable. That makes probing anything mains-connected riskier than with a battery handheld, so pair it with an isolation transformer or stick to low-voltage work.",
         },
       ]}
       next={[
@@ -139,6 +144,32 @@ export default function DoYouNeedAnOscilloscopeForElectronicsRepairPage() {
             persistence to find intermittent glitches
           </Link>
           .
+        </p>
+      </section>
+
+      <section id="timescales">
+        <h2 className="text-xl font-semibold mb-3">Why a meter misses fast faults</h2>
+        <p className="text-muted leading-7 mb-4">
+          The gap is one of timescale. A typical handheld meter updates its display a few times a second,
+          so each number on the screen sums up a few hundred milliseconds of signal. The events that matter
+          in modern electronics are thousands to millions of times shorter. The chart compares a typical
+          meter update interval with the period of some common signals; the meter figure is a general
+          ballpark, and the others follow directly from their frequencies (period = 1 ÷ frequency).
+        </p>
+        <BarChart
+          items={[
+            { label: "Meter display update (typical)", value: 300000, display: "~300 ms" },
+            { label: "60 Hz mains cycle", value: 16700, display: "16.7 ms" },
+            { label: "100 kHz switching supply", value: 10, display: "10 µs", highlight: true },
+            { label: "16 MHz microcontroller clock", value: 0.0625, display: "62.5 ns" },
+          ]}
+          log
+        />
+        <p className="text-muted leading-7 mt-4">
+          In one meter update, a 100 kHz switching supply completes about 30,000 cycles, and a 16 MHz clock
+          about 4.8 million. Whatever those cycles look like, the meter can only report their average.
+          A scope samples fast enough to draw each cycle, which is why it can show a ripple spike, a missing
+          clock or a runt pulse that the meter folds into one steady number.
         </p>
       </section>
 
@@ -211,8 +242,8 @@ export default function DoYouNeedAnOscilloscopeForElectronicsRepairPage() {
         title="Scopes that suit a repair bench"
         items={[
           { name: fnirsi.name, image: fnirsi.image, alt: "FNIRSI 2C53T handheld oscilloscope and multimeter", href: "/oscilloscopes/hantek-2d72-vs-fnirsi-2c53t", note: "Low-cost two-channel handheld with a True RMS multimeter built in." },
-          { name: ds1054z.name, image: ds1054z.image, alt: "Rigol DS1054Z digital oscilloscope", href: "/oscilloscopes/rigol-ds1054z-review", note: "Four-channel 50MHz bench scope, a long-standing first choice." },
-          { name: dho804.name, image: dho804.image, alt: "Rigol DHO804 digital oscilloscope", href: "/oscilloscopes/rigol-dho804-vs-rigol-ds1054z", note: "Four channels, 12-bit resolution and a 7-inch touchscreen." },
+          { name: ds1054z.name, image: ds1054z.image, alt: "Rigol DS1054Z digital oscilloscope", href: "/oscilloscopes/rigol-ds1054z-review", note: "Hands-on tested. Four-channel 50MHz bench scope, a long-standing first choice." },
+          { name: dho804.name, image: dho804.image, alt: "Rigol DHO804 digital oscilloscope", href: "/oscilloscopes/rigol-dho804-vs-rigol-ds1054z", note: "Hands-on tested. Four channels, 12-bit resolution and a 7-inch touchscreen." },
         ]}
       />
     </HowToShell>

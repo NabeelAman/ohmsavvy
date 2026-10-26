@@ -89,6 +89,10 @@ export default function HowToTestATransistorInCircuitWithAMultimeterPage() {
           q: "How do I tell if a transistor is NPN or PNP with a multimeter?",
           a: "Find the pin that conducts to both other pins in diode mode; that is the base. If the readings appear with the red lead on the base, it is NPN. If they appear with the black lead on the base, it is PNP. Confirm the result against the datasheet, because the pin order varies between packages and manufacturers.",
         },
+        {
+          q: "Can I test a transistor with a meter that has no diode mode?",
+          a: "Usually, with care. Use a resistance range and look for the same pattern as the diode test: low in one direction across each junction, high in the other, and high both ways from collector to emitter. Some digital meters apply too little voltage on their low ohms ranges to forward-bias a silicon junction, so try a higher range and compare against a known-good part rather than trusting absolute numbers.",
+        },
       ]}
       next={[
         {

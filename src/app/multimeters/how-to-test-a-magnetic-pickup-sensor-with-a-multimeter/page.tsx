@@ -7,6 +7,7 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const fluke87v = picks.find((p) => p.name === "Fluke 87V")!;
+const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 
 const link = "text-accent hover:underline";
 
@@ -268,6 +271,45 @@ export default function HowToTestAMagneticPickupSensorWithAMultimeterPage() {
           </Link>{" "}
           helps interpret open readings along the harness.
         </Callout>
+      </section>
+      <section>
+        <h2 id="meters-for-sensor-tests" className="text-xl font-semibold mb-3">Meters for crank, cam and ABS sensor checks</h2>
+        <p className="text-muted leading-7 mb-6">
+          These tests need only an ohms range and an AC volts range, but a pickup&apos;s output wanders as cranking
+          speed rises and falls, so a meter that updates quickly or shows a bar graph makes the reading easier
+          to follow. For a VR sensor on a car, a meter that resolves tens of millivolts matters more than a high
+          CAT rating. Wider choices are in our{" "}
+          <Link href="/multimeters/best-multimeter-for-automotive" className={link}>
+            automotive multimeter guide
+          </Link>
+          .
+        </p>
+        <ProductStrip
+          title="Meters that suit sensor diagnosis"
+          items={[
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "Hands-on tested. 6,000-count backlit display, True RMS and capacitance and frequency ranges, CAT III 600V.",
+            },
+            {
+              name: "Fluke 87V",
+              image: fluke87v.image,
+              alt: "Fluke 87V industrial True RMS multimeter",
+              href: "/multimeters/fluke-87v-review",
+              note: "Hands-on tested. Its 32-segment analog bar graph tracks a pickup's AC output as engine speed changes.",
+            },
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR True RMS digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "Low-cost True RMS, 6,000-count meter with manual ranging; no CAT rating stated, so keep it to vehicle wiring.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

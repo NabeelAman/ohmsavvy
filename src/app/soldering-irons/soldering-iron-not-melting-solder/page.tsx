@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,9 @@ export const metadata = buildMetadata({
 });
 
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
 
@@ -63,6 +67,7 @@ export default function SolderingIronNotMeltingSolderPage() {
         { id: "lead-free-solder", label: "4. Lead-free solder needs more heat" },
         { id: "power-fault", label: "5. A power or element fault" },
         { id: "quick-reference", label: "Quick reference table" },
+        { id: "irons", label: "Replacement irons with temperature you can read" },
       ]}
       faq={[
         {
@@ -251,6 +256,38 @@ export default function SolderingIronNotMeltingSolderPage() {
             ["Works on small joints, fails on ground planes/thick wire", "Not enough wattage for that joint's thermal mass", "Use a higher-wattage iron, or extend dwell slightly with a larger tip"],
             ["Solder melts slowly or only partially", "Temperature set too low for your solder alloy", "Raise the temperature setpoint; confirm leaded vs. lead-free setting"],
             ["Iron barely warms up at all over several minutes", "Power or heating-element fault", "Check the cord/plug; if the element itself is dead, repair or replace"],
+          ]}
+        />
+      </section>
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Replacement irons with temperature you can read</h2>
+        <p className="text-muted leading-7 mb-6">
+          If cleaning and re-tinning do not revive your iron, a replacement with a digital setpoint removes the guesswork about whether the tip is hot enough for your alloy.
+        </p>
+        <ProductStrip
+          title="Irons that show their setpoint"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX digital soldering station with FX-8801 iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Hakko quotes ±1°C idle stability across 50–480°C, plus a parameter lock so nobody quietly changes the calibration.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA 70W digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "A 70W digital station whose display shows the real setpoint, ruling out a dial knocked too low.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "An OLED screen reports tip temperature directly; give it a 20V or higher PD supply for full heat.",
+            },
           ]}
         />
       </section>

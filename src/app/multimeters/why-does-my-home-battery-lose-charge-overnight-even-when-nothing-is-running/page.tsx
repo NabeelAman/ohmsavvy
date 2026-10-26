@@ -115,6 +115,10 @@ export default function WhyDoesMyHomeBatteryLoseChargeOvernightPage() {
           q: "Is this different for European systems?",
           a: "The causes are the same. European homes run at 230 V, so the same wattage draws roughly half the current of a US 120 V load, and many monitors report energy per phase on three-phase supplies. Read the per-phase figures when hunting for a base load.",
         },
+        {
+          q: "Can I check my home battery's charge with a multimeter?",
+          a: "Only roughly, and the battery covers should stay closed. Lithium iron phosphate cells, the chemistry in many home batteries, hold an almost flat voltage across most of their charge range, so terminal voltage barely moves between about 20% and 80%. The battery management system counts current in and out to estimate charge, which is far more useful. A meter earns its keep measuring the household loads instead.",
+        },
       ]}
       next={[
         {

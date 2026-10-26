@@ -5,6 +5,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   ScopeScreen,
   StepHeading,
 } from "@/components/HowTo";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const hantek = picks.find((p) => p.name === "Hantek DSO2D10")!;
+const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
 
 const link = "text-accent hover:underline";
 
@@ -67,6 +70,7 @@ export default function CompareInputAndOutputSignalsPage() {
         { id: "inversion-distortion", label: "Spot inversion, clipping and attenuation" },
         { id: "gain-db-table", label: "Gain to dB reference" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "scopes", label: "Scopes for input/output comparisons" },
       ]}
       faq={[
         {
@@ -84,6 +88,10 @@ export default function CompareInputAndOutputSignalsPage() {
         {
           q: "My output is bigger than expected by exactly 10 times. What happened?",
           a: "Almost certainly a probe attenuation mismatch. One channel is set to 1x while a 10x probe is attached, or the other way round, so its reading is off by a factor of ten, which is 20 dB. Check the attenuation setting in each channel menu against the switch on each probe.",
+        },
+        {
+          q: "Do I need a signal generator to compare input and output signals?",
+          a: "Not always. Any steady, repeating signal the circuit already handles, such as audio from a phone or a sensor output, lets you compare the two sides. A generator helps because it gives a clean sine at a known frequency and amplitude, so gain and distortion are easy to judge. Some bench scopes include one; otherwise a basic function generator or a microcontroller PWM pin will do.",
         },
       ]}
       next={[
@@ -163,7 +171,7 @@ export default function CompareInputAndOutputSignalsPage() {
       <section>
         <StepHeading n={3} id="overlay-or-stack">Overlay or stack the two traces</StepHeading>
         <p className="text-muted leading-7 mb-4">
-          With both channels centred on the same zero line, the traces sit on top of each other and
+          With both channels centered on the same zero line, the traces sit on top of each other and
           any difference in height or timing is obvious. That overlay works well for gain. When the
           shapes get busy, use each channel&apos;s vertical position to stack them, input in the
           upper half and output in the lower half, so you can study each waveform without the other
@@ -315,6 +323,39 @@ export default function CompareInputAndOutputSignalsPage() {
             the CAT and voltage ratings printed on the probes and the scope inputs.
           </Callout>
         </div>
+      </section>
+
+      <section id="scopes">
+        <h2 className="text-xl font-semibold mb-3">Scopes for input/output comparisons</h2>
+        <p className="text-muted leading-7 mb-4">
+          Two channels are the minimum for this job, since both traces must share one trigger and one timebase. A built-in generator saves a separate box for driving the input, and extra channels let you watch an intermediate stage at the same time.
+        </p>
+        <ProductStrip
+          title="Scopes for comparing two signals"
+          items={[
+            {
+              name: "Hantek DSO2D10",
+              image: hantek.image,
+              alt: "Hantek DSO2D10 two-channel oscilloscope with built-in generator",
+              href: "/oscilloscopes/hantek-dso2d10-review",
+              note: "100MHz, 2 channels, with a single-channel 25 MHz generator built in to drive the circuit input.",
+            },
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "50MHz and 4 channels, so you can probe input, output and two points in between on one screen.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "100MHz, 4 channels and 1 GSa/s, with headroom for faster amplifier and filter stages.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

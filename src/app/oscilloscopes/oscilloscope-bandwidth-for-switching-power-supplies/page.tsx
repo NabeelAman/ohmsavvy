@@ -89,6 +89,10 @@ export default function OscilloscopeBandwidthForSwitchingPowerSuppliesPage() {
           q: "Does sample rate matter as much as bandwidth for power supplies?",
           a: "It matters too. A common guideline is a sample rate several times the bandwidth, so the scope has enough points to draw a fast edge. A 1 GSa/s scope takes one sample per nanosecond, which is adequate for edges of tens of nanoseconds. Sample rate can drop when several channels share it or at slow timebases.",
         },
+        {
+          q: "What bandwidth do I need for GaN or SiC power supplies?",
+          a: "More than for most silicon designs. GaN and SiC transistors can switch in a few nanoseconds or faster, so the 0.35/rise-time rule with a 3-5x margin points to several hundred megahertz or more for a faithful edge. Check the transistor datasheet for its typical rise and fall times. Output ripple still uses the 20MHz limit, so a modest scope stays useful for that half of the job.",
+        },
       ]}
       next={[
         {

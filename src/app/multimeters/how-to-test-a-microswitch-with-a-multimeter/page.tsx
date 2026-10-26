@@ -7,6 +7,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const ex330 = picks.find((p) => p.name === "Extech EX330")!;
 
 const link = "text-accent hover:underline";
 
@@ -337,6 +340,45 @@ export default function HowToTestAMicroswitchWithAMultimeterPage() {
           A bent lever, flat-spotted roller or cracked door hook can stop a good switch being pressed. If a
           reading flickers with the actuator held still, check the probe contact before blaming the switch.
         </p>
+      </section>
+      <section>
+        <h2 id="meters-for-microswitches" className="text-xl font-semibold mb-3">Meters for appliance switch testing</h2>
+        <p className="text-muted leading-7 mb-6">
+          A microswitch test needs a quick continuity beeper and an ohms range that reads below one ohm clearly,
+          since contact resistance is what separates a good switch from a pitted one. Appliance work also means
+          confirming the machine is unplugged and any capacitor discharged, which is where a meter with a
+          proper CAT rating earns its place. Compare options in our{" "}
+          <Link href="/multimeters/best-multimeter-for-beginners" className={link}>
+            best multimeter for beginners
+          </Link>{" "}
+          guide.
+        </p>
+        <ProductStrip
+          title="Meters for appliance microswitches"
+          items={[
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Auto-ranging True RMS with a backlit screen that helps inside dim appliance cabinets; CAT II 600V.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "Hands-on tested. CAT III 600V and a 6,000-count display, built for repeated appliance and field service calls.",
+            },
+            {
+              name: "Extech EX330",
+              image: ex330.image,
+              alt: "Extech EX330 compact digital multimeter",
+              href: "/multimeters/extech-ex330-review",
+              note: "Pocket-sized CAT III 600V meter with NCV; Extech does not list it as True RMS, which doesn't matter for switches.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

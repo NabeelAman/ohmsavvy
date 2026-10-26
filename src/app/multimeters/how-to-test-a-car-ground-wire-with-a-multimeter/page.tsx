@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -27,10 +27,11 @@ export default function HowToTestACarGroundWirePage() {
       category="multimeters"
       intro={
         <>
-          A ground that reads nearly 0 Ω with everything switched off can still cause dim lights or
-          intermittent faults once real current is flowing, because resistance that looks tiny at rest can
-          produce a meaningful voltage drop under load. The reliable test is a voltage-drop measurement with
-          the circuit energized and working, not a resistance check with it off.
+          To test a car ground wire, switch the circuit on so it draws its normal current, set the meter to
+          DC volts, and measure from the component&apos;s ground point to the battery negative post: a good
+          ground drops no more than a few tenths of a volt, and a bad one drops much more. A resistance
+          check with the circuit off isn&apos;t enough, because a corroded joint that reads nearly 0Ω at
+          rest can still lose real voltage once amps flow through it.
         </>
       }
       aside={{
@@ -53,6 +54,7 @@ export default function HowToTestACarGroundWirePage() {
         { id: "where-to-test", label: "Where to test on the car" },
         { id: "interpreting-results", label: "Interpreting the readings" },
         { id: "symptoms", label: "Symptoms a bad ground causes" },
+        { id: "worked-example", label: "Worked example: why load current matters" },
         { id: "which-meter", label: "Which meter to use" },
       ]}
       faq={[
@@ -117,14 +119,33 @@ export default function HowToTestACarGroundWirePage() {
           touch one probe to the ground point closest to the component and the other to a known-good ground
           reference, such as the battery negative post directly.
         </p>
-        <Figure caption="Any voltage the meter shows here is dropped across the ground connection itself — a perfect connection would read 0 V even with current flowing through it.">
-          <div className="rounded-lg border border-border bg-surface-raised p-5 text-sm text-muted">
-            Probe 1: ground point at the component (e.g. light housing, motor case)
-            <br />
-            Probe 2: battery negative post, directly
-            <br />
-            Circuit: switched on and drawing its normal current
-          </div>
+        <Figure caption="The ground return runs from the component through the body, the body-to-engine strap and the negative battery cable. Any voltage the meter shows is dropped across that path; a perfect ground would read 0V even with current flowing.">
+          <svg viewBox="0 0 360 180" className="w-full h-auto" role="img" aria-label="Car ground path from a headlight through the body and ground strap to the battery negative post, with the meter connected from the component ground to the battery negative">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="20" y="40" width="60" height="36" rx="4" className="fill-surface" />
+              <rect x="280" y="40" width="60" height="36" rx="4" className="fill-surface" />
+              <path d="M310 40 V20 H50 V40" />
+              <path d="M50 76 V110 H140" />
+              <path d="M140 110 H220" strokeWidth="5" className="stroke-muted" />
+              <path d="M220 110 H250 V96 M250 110 V120 H300 V76" />
+              <circle cx="140" cy="110" r="4" className="fill-accent stroke-accent" />
+              <circle cx="220" cy="110" r="4" className="fill-accent stroke-accent" />
+            </g>
+            <g fontSize="9" textAnchor="middle" className="fill-foreground">
+              <text x="50" y="62">headlight</text>
+              <text x="310" y="56">battery</text>
+              <text x="310" y="68" className="fill-muted">− post</text>
+              <text x="180" y="14" className="fill-muted">12V feed through fuse and switch</text>
+              <text x="180" y="100">body / chassis</text>
+              <text x="140" y="128" className="fill-accent">body ground bolt</text>
+              <text x="252" y="88" className="fill-muted">strap</text>
+              <text x="275" y="134" className="fill-muted">negative cable</text>
+            </g>
+            <path d="M35 76 V150 H172 M198 150 H325 V76" className="stroke-accent" strokeWidth="1.3" fill="none" strokeDasharray="4 3" />
+            <circle cx="185" cy="150" r="13" className="fill-surface stroke-accent" strokeWidth="2" />
+            <text x="185" y="154" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-accent">mV</text>
+            <text x="185" y="176" fontSize="8.5" textAnchor="middle" className="fill-muted">meter: component ground to battery negative, circuit on</text>
+          </svg>
         </Figure>
       </section>
 
@@ -136,6 +157,14 @@ export default function HowToTestACarGroundWirePage() {
           battery negative separately, since either link can be the weak one; for a flickering accessory,
           test its nearest body ground point. Testing each link separately, rather than battery-to-component
           in one jump, tells you which specific connection is bad.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Once the meter points at a suspect link, a temporary jumper confirms it. Run a heavy jumper lead
+          from the component&apos;s ground point straight to the battery negative and repeat the test, or
+          simply operate the circuit. If the drop falls to near zero and the lights brighten or the motor
+          speeds up, you&apos;ve proved the original path is at fault before unbolting anything. Size the
+          jumper for the load; a thin test lead is fine for a lamp but will heat up quickly on a starter
+          or cooling-fan circuit.
         </p>
       </section>
 
@@ -170,6 +199,40 @@ export default function HowToTestACarGroundWirePage() {
       </section>
 
       <section>
+        <h2 id="worked-example" className="text-xl font-semibold mb-3">Worked example: why load current matters</h2>
+        <p className="text-muted leading-7 mb-4">
+          Ohm&apos;s law explains the whole problem. Voltage lost across a connection is its resistance
+          multiplied by the current through it (V = I × R). Take a corroded body ground with an
+          illustrative resistance of 0.02Ω, small enough that most meters show it as 0.0Ω or close to the
+          reading of the leads themselves.
+        </p>
+        <BarChart
+          items={[
+            { label: "Ohmmeter test current (~1 mA)", value: 0.00002, display: "0.00002V" },
+            { label: "Headlight circuit (~10A)", value: 0.2, display: "0.2V" },
+            { label: "Blower motor (~20A)", value: 0.4, display: "0.4V" },
+            { label: "Starter motor (~150A)", value: 3, display: "3V", highlight: true },
+          ]}
+          log
+        />
+        <p className="text-muted leading-7 mt-4">
+          The arithmetic: 0.02Ω × 10A = 0.2V, 0.02Ω × 20A = 0.4V, and 0.02Ω × 150A = 3V. The currents are
+          round, typical figures for illustration, not specifications for any vehicle. The same joint
+          that&apos;s invisible to an ohmmeter is borderline on a headlight circuit and enough to make a
+          starter click instead of crank, which is why engine-to-chassis and battery-cable grounds are the
+          first suspects in a slow-crank complaint. If that&apos;s your symptom, see{" "}
+          <Link href="/multimeters/why-does-my-car-starter-click-but-the-engine-wont-start" className={link}>
+            why a starter clicks but the engine won&apos;t start
+          </Link>
+          , and for the same test on the positive side of a circuit, our{" "}
+          <Link href="/multimeters/how-to-check-voltage-drop-on-a-car" className={link}>
+            car voltage drop guide
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
         <h2 id="which-meter" className="text-xl font-semibold mb-3">Which meter to use</h2>
         <p className="text-muted leading-7 mb-6">
           A meter with a millivolt DC range and auto-ranging makes small voltage drops easy to read
@@ -194,7 +257,7 @@ export default function HowToTestACarGroundWirePage() {
               image: fluke117.image,
               alt: "Fluke 117 digital multimeter",
               href: "/multimeters/fluke-117-review",
-              note: "Auto-ranging DC volts resolves small ground-drop readings cleanly.",
+              note: "Hands-on tested. Auto-ranging DC volts resolves small ground-drop readings cleanly.",
             },
           ]}
         />

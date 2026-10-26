@@ -118,6 +118,10 @@ export default function HowToTestAGfciOutletThatWontResetPage() {
           q: "Is this the same problem as a GFCI that keeps tripping?",
           a: "Related but not the same. A GFCI that keeps tripping resets fine and then trips again, which points to leakage on the circuit. One that will not reset at all is more often missing power, miswired or worn out.",
         },
+        {
+          q: "Is it safe to bypass a GFCI that won't reset?",
+          a: "No. Moving the feed wires to other terminals or swapping in an ordinary receptacle removes the shock protection that electrical codes require in bathrooms, kitchens, garages, outdoors and other damp locations. Leave the outlet and anything downstream unused until a new GFCI is fitted, and have a licensed electrician do that if you are not qualified.",
+        },
       ]}
       next={[
         {

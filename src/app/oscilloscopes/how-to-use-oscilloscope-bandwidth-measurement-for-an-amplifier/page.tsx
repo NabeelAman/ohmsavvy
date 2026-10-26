@@ -89,6 +89,10 @@ export default function HowToUseOscilloscopeBandwidthMeasurementForAnAmplifierPa
           q: "How many frequency points should I measure?",
           a: "Three to five points per decade, such as 10, 20, 50 and 100 Hz, give a usable curve. Add extra points around each cutoff until you bracket the frequency where the gain crosses 0.707. On a log frequency axis the points then spread evenly, which makes the roll-off slope easy to see when you plot them.",
         },
+        {
+          q: "How does amplifier bandwidth relate to an op amp's gain-bandwidth product?",
+          a: "For a voltage-feedback op amp, closed-loop bandwidth is roughly the gain-bandwidth product divided by the noise gain. A part rated at 1 MHz GBW set for a gain of 10 should reach about 100 kHz. That is only an estimate: layout, load and slew-rate limits often pull the real -3 dB point lower, which is why the measured sweep is the figure to trust.",
+        },
       ]}
       next={[
         {

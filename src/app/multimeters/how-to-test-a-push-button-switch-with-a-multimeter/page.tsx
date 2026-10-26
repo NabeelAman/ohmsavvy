@@ -7,6 +7,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const unit = picks.find((p) => p.name === "UNI-T UT139C")!;
+const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 
 const link = "text-accent hover:underline";
 
@@ -147,6 +150,7 @@ export default function HowToTestAPushButtonSwitchWithAMultimeterPage() {
         { id: "bounce-and-intermittent", label: "Bounce and intermittent contacts" },
         { id: "panel-buttons", label: "Panel and illuminated buttons" },
         { id: "reading-the-result", label: "Reading the result" },
+        { id: "meters", label: "Meters for button and contact tests" },
       ]}
       faq={[
         {
@@ -359,6 +363,38 @@ export default function HowToTestAPushButtonSwitchWithAMultimeterPage() {
           same footprint and actuation force. Panel buttons can usually be fixed by swapping only the contact
           block.
         </p>
+      </section>
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for button and contact tests</h2>
+        <p className="text-muted leading-7 mb-6">
+          Testing a button is mostly continuity and low resistance, so a quick beeper and a stable ohms reading matter more than a high safety rating here.
+        </p>
+        <ProductStrip
+          title="Meters for push button checks"
+          items={[
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Smart auto-ranging and a backlit screen make press-and-release checks quick on a cluttered bench.",
+            },
+            {
+              name: "UNI-T UT139C",
+              image: unit.image,
+              alt: "UNI-T UT139C True RMS digital multimeter",
+              href: "/multimeters/uni-t-ut139c-review",
+              note: "True RMS with a 6,000-count display and both auto and manual ranging, so a dirty contact's few ohms stand out.",
+            },
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR True RMS digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "A popular hobbyist meter for Arduino projects, where tactile switches are the most common button you will test.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

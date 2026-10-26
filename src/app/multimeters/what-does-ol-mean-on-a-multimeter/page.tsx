@@ -1,11 +1,13 @@
 import Link from "next/link";
 import {
   Callout,
+  DataTable,
   Figure,
   HowToShell,
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
@@ -20,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const ut139c = picks.find((p) => p.name === "UNI-T UT139C")!;
 
 const link = "text-accent hover:underline";
 
@@ -61,8 +65,10 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
         { id: "continuity-beep-mode", label: "Does continuity (beep) mode show OL too?" },
         { id: "diode-mode", label: "OL in diode mode" },
         { id: "voltage-and-current", label: "OL in voltage and current mode" },
+        { id: "range-example", label: "Worked example: one battery, five ranges" },
         { id: "quick-reference", label: "Quick reference" },
         { id: "when-its-actually-a-fault", label: "When OL means a real fault" },
+        { id: "meters-that-avoid-ol", label: "Auto-ranging meters that cut down on OL" },
       ]}
       faq={[
         {
@@ -80,6 +86,10 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
         {
           q: "Does every multimeter display \"OL\" specifically, or do some show something else?",
           a: "Display conventions vary by manufacturer and model — some show \"OL,\" others show a lone \"1\" on the left of the display, and some older analog-style displays show the needle pinned at the far end of the scale. All of these represent the same underlying situation: the meter can't represent the value on the current range or function.",
+        },
+        {
+          q: "Why does my multimeter read OL when I test a resistor?",
+          a: "Either the resistor's value is above the selected ohms range, or the resistor is open. A 47kΩ part on a 20kΩ range shows OL even though it's fine, so step up a range first. If it still reads OL on the top range, and the color bands say it should be far lower, the resistor has failed open or one probe isn't touching bare metal.",
         },
       ]}
       next={[
@@ -180,6 +190,38 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
         </p>
       </section>
 
+      <section id="range-example">
+        <h2 className="text-xl font-semibold mb-3">Worked example: one battery, five ranges</h2>
+        <p className="text-muted leading-7">
+          A manual-ranging meter shows OL whenever the true value is larger than the top of the selected
+          range. On a typical 2,000-count meter, each voltage range tops out at 1,999 counts, so the
+          200 mV range can show at most 199.9 mV and the 20 V range at most 19.99 V. Measure a car battery
+          sitting at about 12.6 V and the first two ranges overflow, while the higher ones read it at
+          coarser and coarser resolution. The readings below are illustrative, worked from those range
+          limits rather than taken from a specific meter.
+        </p>
+        <div className="mt-4">
+          <DataTable
+            head={["Range selected", "Largest value it can show", "Display with ~12.6 V applied", "Resolution"]}
+            rows={[
+              ["200 mV", "199.9 mV", "OL", "0.1 mV"],
+              ["2 V", "1.999 V", "OL", "1 mV"],
+              ["20 V", "19.99 V", "12.60", "10 mV"],
+              ["200 V", "199.9 V", "12.6", "100 mV"],
+              ["600 V", "600 V", "13", "1 V"],
+            ]}
+            mono={[1, 2, 3]}
+          />
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The best range is the lowest one that does not overflow: here 20 V, which resolves the battery
+          to hundredths of a volt. A 6,000-count auto-ranging meter makes the same choice for you, using
+          ranges such as 6 V and 60 V, which is why OL from a range mismatch almost disappears on modern
+          meters. Resistance works the same way: a 2.2 kΩ resistor shows OL on a 200 Ω range and a sensible
+          2.200 on the 20 kΩ range.
+        </p>
+      </section>
+
       <Callout title="On current mode specifically, check the fuse too">
         If a manually-ranged meter shows OL on current mode even after selecting the highest available
         range, also consider whether the measurement actually exceeds the meter&apos;s absolute maximum
@@ -205,6 +247,40 @@ export default function WhatDoesOlMeanOnAMultimeterPage() {
           voltage reading that stays OL even on the meter&apos;s highest range. Otherwise, it&apos;s
           simply telling you the open circuit or range mismatch you&apos;d expect.
         </KeyIdea>
+      </section>
+
+      <section id="meters-that-avoid-ol">
+        <h2 className="text-xl font-semibold mb-3">Auto-ranging meters that cut down on OL</h2>
+        <p className="text-muted leading-7 mb-4">
+          If range-related OL keeps tripping you up, an auto-ranging meter removes most of it, leaving OL to
+          mean what it should: an open path or a value beyond the meter&apos;s top range.
+        </p>
+        <ProductStrip
+          title="Auto-ranging meter picks"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 electrician's True RMS multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. True RMS, auto-ranging and CAT III 600V, with built-in non-contact voltage detection.",
+            },
+            {
+              name: "UNI-T UT139C",
+              image: ut139c.image,
+              alt: "UNI-T UT139C digital multimeter",
+              href: "/multimeters/uni-t-ut139c-review",
+              note: "6,000-count True RMS with both auto and manual ranging, so you can see exactly how range limits work.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s auto-ranging multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Budget True RMS with smart auto-ranging and a backlit display. CAT II 600V, so keep it off service panels.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

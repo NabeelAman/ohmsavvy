@@ -88,6 +88,10 @@ export default function HowToTestA4WireFanMotorWithAMultimeterPage() {
           q: "How many pulses per revolution does a PC fan tach give?",
           a: "Two pulses per revolution is the common convention for PC-style fans, and it is the figure motherboards normally assume when they display rpm. Some industrial and special-purpose fans use a different count, so check the datasheet before converting a measured frequency into a speed.",
         },
+        {
+          q: "Can I run two 4 wire fans from one header with a splitter?",
+          a: "Yes, within the header's current rating, which the motherboard manual lists and which is often around 1 A. Add up the rated current printed on both fan labels. A splitter feeds power and PWM to both fans but passes the tach signal from only one, so the board reports a single speed. Check the second fan by measuring its own tach pin or watching it spin.",
+        },
       ]}
       next={[
         {

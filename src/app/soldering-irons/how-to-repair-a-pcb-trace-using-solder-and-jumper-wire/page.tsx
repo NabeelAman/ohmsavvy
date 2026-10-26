@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -65,6 +68,7 @@ export default function HowToRepairAPcbTracePage() {
         { id: "wire-gauge", label: "Matching wire to trace width" },
         { id: "test-and-seal", label: "5. Test, then seal the repair" },
         { id: "diagnosis", label: "Diagnosing a failed repair" },
+        { id: "irons", label: "Irons for fine trace repairs" },
       ]}
       faq={[
         {
@@ -254,6 +258,38 @@ export default function HowToRepairAPcbTracePage() {
         </Link>{" "}
         for general safe-handling habits.
       </Callout>
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons for fine trace repairs</h2>
+        <p className="text-muted leading-7 mb-6">
+          Trace repair is fine work on fragile copper, so steady, displayed temperature and a small tip matter more than peak power. These picks from our reviews fit that job.
+        </p>
+        <ProductStrip
+          title="Irons for trace and jumper work"
+          items={[
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA 70W digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "ESD-safe 70W station with digital control, a sensible match for jumper work near static-sensitive chips.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "A compact USB-C iron whose screen-set temperature suits tacking thin Kynar wire to a via without guessing at heat.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX digital soldering station with FX-8801 iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Takes Hakko's T18 tips and holds ±1°C at idle per Hakko, so a fine tip stays at the temperature you chose.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

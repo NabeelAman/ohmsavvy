@@ -7,6 +7,7 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
+const fluke107 = picks.find((p) => p.name === "Fluke 107")!;
+const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
 
 const link = "text-accent hover:underline";
 
@@ -101,6 +104,7 @@ export default function HowToCheckA9vBatteryWithAMultimeterUnderLoadPage() {
         { id: "chemistry-notes", label: "Alkaline, lithium and NiMH notes" },
         { id: "smoke-alarms", label: "Why smoke alarms chirp" },
         { id: "never-measure-current", label: "Never measure current across it" },
+        { id: "meters", label: "Meters for battery checks" },
       ]}
       faq={[
         {
@@ -303,6 +307,38 @@ export default function HowToCheckA9vBatteryWithAMultimeterUnderLoadPage() {
           The drop matters as much as the reading. A battery that loses only a few tenths of a volt under a
           470 Ω load is healthy, whatever its chemistry; one that loses a volt or more is close to finished.
         </KeyIdea>
+      </section>
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for battery checks</h2>
+        <p className="text-muted leading-7 mb-6">
+          Any digital meter reads DC volts well enough for a loaded battery test. These picks add useful resolution or portability for a drawer of spare batteries.
+        </p>
+        <ProductStrip
+          title="Meters for 9V battery testing"
+          items={[
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR True RMS digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "Its 6,000-count resolution shows the tenths-of-a-volt drop under load that separates a healthy battery from a tired one.",
+            },
+            {
+              name: "Fluke 107",
+              image: fluke107.image,
+              alt: "Fluke 107 palm-sized digital multimeter",
+              href: "/multimeters/fluke-117-vs-fluke-107",
+              note: "A 200 g palm-sized Fluke rated CAT III 600V, small enough to live next to the smoke alarm spares.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "An inexpensive auto-ranging meter that picks the right DC volts range for you, a sensible first meter for household checks.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

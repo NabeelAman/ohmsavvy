@@ -6,8 +6,10 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
@@ -18,6 +20,11 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/why-solder-sticks-to-tip",
 });
+
+const all = getAllPicks("soldering-irons");
+const yihua926 = all.find((p) => p.name === "YIHUA 926 III")!;
+const tronic = all.find((p) => p.name === "X-Tronic 3020-XTS")!;
+const ts101 = all.find((p) => p.name === "Miniware TS101")!;
 
 const link = "text-accent hover:underline";
 
@@ -48,6 +55,7 @@ export default function WhySolderSticksToTipPage() {
         { id: "check-the-joint", label: "4. Confirm the joint itself is clean" },
         { id: "temperature-and-dross", label: "Does a hotter iron make dross form faster?" },
         { id: "quick-reference", label: "Quick reference" },
+        { id: "irons", label: "Irons with idle sleep" },
       ]}
       faq={[
         {
@@ -65,6 +73,10 @@ export default function WhySolderSticksToTipPage() {
         {
           q: "Can I use anything other than a sponge or brass wool to remove dross?",
           a: "A dedicated tip-tinner/cleaner (a small tin of solid flux-and-solder compound you wipe the hot tip into) works well specifically for dross and stubborn buildup that a simple wipe doesn't fully clear. Avoid abrasive tools like sandpaper or files on a plated tip, covered in our tip care guide.",
+        },
+        {
+          q: "Should I leave solder on the tip when I put the iron down?",
+          a: "Yes. Before parking the iron or switching it off, wipe it clean and then melt a fresh coat of solder over the working end. That sacrificial layer takes the oxidation instead of the tip plating. The thing to avoid is reusing that coat on the next joint: wipe it off when you pick the iron back up and start with fresh solder.",
         },
       ]}
       next={[
@@ -219,6 +231,42 @@ export default function WhySolderSticksToTipPage() {
             ["Solder balls up rather than flowing to the joint", "Too much solder fed at once", "Feed less solder per joint; let the joint draw it in"],
             ["Solder sticks on one specific joint only", "That joint's surface is dirty or oxidised", "Clean the joint itself, add flux if needed"],
             ["Tip stays coated even right after cleaning", "Tip genuinely worn, plating compromised", "See the tip care guide's replacement signs"],
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons with idle sleep</h2>
+        <p className="text-muted leading-7 mb-4">
+          Much of the dross and tip oxidation on a hobby bench happens while the iron sits idle at full
+          temperature between joints. An iron that drops to a lower standby temperature on its own slows both
+          down, and it&apos;s safer if you walk away with it on. These picks from our reviews list a sleep or
+          standby feature in their maker or listing specs.
+        </p>
+        <ProductStrip
+          title="Irons that cool down when idle"
+          items={[
+            {
+              name: "YIHUA 926 III",
+              image: yihua926.image,
+              alt: "YIHUA 926 LED III soldering station",
+              href: "/soldering-irons/best-soldering-irons#yihua-926-iii",
+              note: "PID station, 90–480°C, with a selectable sleep after 5, 10 or 30 minutes idle.",
+            },
+            {
+              name: "X-Tronic 3020-XTS",
+              image: tronic.image,
+              alt: "X-Tronic 3020-XTS soldering station",
+              href: "/soldering-irons/best-soldering-irons#x-tronic-3020-xts",
+              note: "ESD-safe PID station that sleeps and cools down after 10 minutes, with a 3-year warranty.",
+            },
+            {
+              name: "Miniware TS101",
+              image: ts101.image,
+              alt: "Miniware TS101 portable smart soldering iron",
+              href: "/soldering-irons/best-soldering-irons#miniware-ts101",
+              note: "Portable USB-C iron with motion-sensing sleep, so it drops temperature whenever you set it down.",
+            },
           ]}
         />
       </section>

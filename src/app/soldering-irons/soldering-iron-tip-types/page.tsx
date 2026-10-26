@@ -6,6 +6,7 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
@@ -20,6 +21,8 @@ export const metadata = buildMetadata({
 });
 
 const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const yihua926 = picks.find((p) => p.name === "YIHUA 926 III")!;
+const hs02a = picks.find((p) => p.name === "FNIRSI HS-02A")!;
 
 const link = "text-accent hover:underline";
 
@@ -64,6 +67,8 @@ export default function SolderingIronTipTypesPage() {
         { id: "specialty-shapes", label: "Specialty shapes beyond the core four" },
         { id: "side-by-side", label: "Side-by-side comparison" },
         { id: "choosing", label: "Choosing a tip for the job" },
+        { id: "tip-size", label: "Sizing the tip to the joint" },
+        { id: "tip-ecosystems", label: "Irons with a good tip range" },
       ]}
       faq={[
         {
@@ -81,6 +86,10 @@ export default function SolderingIronTipTypesPage() {
         {
           q: "Are soldering iron tips interchangeable between brands?",
           a: "Rarely directly — tip mounting (the shape and size of the barrel that inserts into the iron) varies by manufacturer and often by product line, so tips are generally brand- and sometimes model-specific. Always check compatibility with your exact iron before buying replacement tips.",
+        },
+        {
+          q: "What do the letter and number codes on soldering tips mean?",
+          a: "They are each maker's shorthand for tip shape and size, usually a series prefix, a shape letter and a width or variant number. The letters are not standardized: the same letter can mean a different profile from one brand to the next. Rely on the maker's tip chart, which shows the drawn profile and the width in millimeters, instead of the code alone, and check the series matches your iron before you order.",
         },
       ]}
       next={[
@@ -239,6 +248,70 @@ export default function SolderingIronTipTypesPage() {
           general-purpose coverage. Add a fine conical tip once SMD or tightly-spaced work becomes a
           regular part of what you solder, rather than before you actually need the precision it offers.
         </p>
+      </section>
+
+      <section>
+        <h2 id="tip-size" className="text-xl font-semibold mb-3">Sizing the tip to the joint</h2>
+        <p className="text-muted leading-7 mb-4">
+          A practical rule many technicians use is to pick the largest tip that touches only the joint you are
+          working on. A tip roughly as wide as the pad delivers heat quickly without spilling onto neighbors;
+          a tip much smaller than the pad has to sit on it longer, which is harder on the board than a brief
+          touch from a bigger tip. The widths below are common starting points, not fixed rules, and the
+          right choice also depends on how much copper sits under the pad.
+        </p>
+        <DataTable
+          head={["Job", "Typical tip", "Common working-end width"]}
+          rows={[
+            ["0402/0603 passives, fine-pitch IC pins", "Fine conical or small bevel", "About 0.2–0.5 mm"],
+            ["Standard through-hole leads, 0805/1206 parts", "Small chisel or bevel", "About 1.2–2.4 mm"],
+            ["Drag soldering rows of IC pins", "Knife or hoof", "Edge length matched to the row"],
+            ["Wire splices, connectors, ground planes", "Broad chisel", "About 3–5 mm"],
+          ]}
+        />
+        <p className="mt-4 text-muted leading-7">
+          A useful sign that a tip is too small is a joint that takes more than a few seconds to wet even
+          though the tip is clean and the temperature is sensible. Rather than turning the temperature up,
+          which shortens tip life and stresses pads, try the next size up first. Our{" "}
+          <Link href="/soldering-irons/soldering-iron-temperature-by-metal" className={link}>
+            temperature-by-metal guide
+          </Link>{" "}
+          covers the settings side of the same trade-off.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="tip-ecosystems" className="text-xl font-semibold mb-3">Irons with a good tip range</h2>
+        <p className="text-muted leading-7 mb-4">
+          Because tips rarely cross brands, the tip system you buy into matters as much as the iron. These
+          picks from our reviews either use a long-running tip series or ship with several shapes in the box,
+          so adding a knife or a fine conical later is easy.
+        </p>
+        <ProductStrip
+          title="Irons with a wide choice of tips"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "Takes Hakko's T18 tips, the same series the FX888D used, so conical, chisel, bevel and knife shapes are all available.",
+            },
+            {
+              name: "YIHUA 926 III",
+              image: yihua926.image,
+              alt: "YIHUA 926 LED III soldering station kit with tips",
+              href: "/soldering-irons/best-soldering-irons#yihua-926-iii",
+              note: "Uses common 900M-series tips, and the Amazon kit includes six of them to start with.",
+            },
+            {
+              name: "FNIRSI HS-02A",
+              image: hs02a.image,
+              alt: "FNIRSI HS-02A USB-C smart soldering iron kit",
+              href: "/soldering-irons/best-soldering-irons#fnirsi-hs-02a",
+              note: "Kit ships with six tips (K, KU, JS, I, C2, B); buy HS-02A tips specifically, as the HS-02B uses a different set.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

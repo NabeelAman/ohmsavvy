@@ -7,8 +7,10 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -22,6 +24,10 @@ export const metadata = buildMetadata({
 });
 
 const klein = picks.find((p) => p.name === "Klein Tools MM400")!;
+const all = getAllPicks("multimeters");
+const craftsman = all.find((p) => p.name === "Craftsman CMMT14171")!;
+const dm300 = all.find((p) => p.name === "Power Probe DM300AUTO")!;
+const ht118a = all.find((p) => p.name === "KAIWEETS HT118A")!;
 
 const link = "text-accent hover:underline";
 
@@ -60,9 +66,11 @@ export default function HowToTestAnAutomotiveRelayWithAMultimeterPage() {
         { id: "coil-resistance", label: "1. Test coil resistance" },
         { id: "resting-contacts", label: "2. Check the resting contact state" },
         { id: "energized-contacts", label: "3. Energize the coil and recheck" },
+        { id: "voltage-drop", label: "4. Voltage-drop test under load" },
         { id: "interpreting-results", label: "Interpreting the results" },
         { id: "relay-sizes", label: "Mini, micro, and standard relay sizes" },
         { id: "coil-resistance-ranges", label: "Typical coil resistance by relay type" },
+        { id: "meters", label: "Meters for relay testing" },
       ]}
       faq={[
         {
@@ -80,6 +88,10 @@ export default function HowToTestAnAutomotiveRelayWithAMultimeterPage() {
         {
           q: "Can a relay fail intermittently and still pass a bench test?",
           a: "Yes — intermittent faults (contacts that work when cold but fail when hot, or a coil with a marginal winding that fails under vibration) can pass a static bench test and still cause real-world problems. If symptoms point at a relay that tests fine, consider testing it again under load or after it's warmed up in its actual operating position.",
+        },
+        {
+          q: "Can I swap a relay with an identical one to test it?",
+          a: "Yes, and it's a quick first check: many fuse boxes use several relays with the same part number, such as horn and fog-light relays. Swap the suspect relay with a matching one from a non-critical circuit and see whether the fault moves. Only swap relays with identical part numbers and pin diagrams, because a diode-equipped relay or a changeover type may not behave the same.",
         },
       ]}
       next={[
@@ -176,6 +188,25 @@ export default function HowToTestAnAutomotiveRelayWithAMultimeterPage() {
           the coil still energized, recheck continuity: pin 30 should now show continuity with pin 87
           (normally open) and no longer show continuity with pin 87a.
         </p>
+        <p className="mt-4 text-muted leading-7">
+          The coil resistance tells you what current your 12V source has to supply. As a worked example, a coil
+          measuring 80Ω draws 12 ÷ 80 = 0.15 A, or 150 mA, which any fused jumper lead or small bench supply
+          handles easily. That same figure is a useful check on the circuit that drives the relay: a body
+          control module or switch only has to sink about 150 mA, while the contacts it controls may carry
+          20 A or more to a fan or fuel pump.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={4} id="voltage-drop">Voltage-drop test under load</StepHeading>
+        <p className="text-muted leading-7">
+          Continuity mode only proves the contacts touch; it can&apos;t show that they pass full current. To
+          check that, plug the relay back in (or use a relay test jumper), run the circuit, and set the meter
+          to DC volts. Probe pin 30 and pin 87 while the load is on. A healthy contact set typically drops
+          only a small fraction of a volt, often under about 0.2V. A reading of a volt or more with the
+          load running points to pitted contacts that pass a continuity beep but starve the load. Treat
+          these thresholds as rules of thumb and check the service manual where it gives a figure.
+        </p>
       </section>
 
       <section>
@@ -225,6 +256,41 @@ export default function HowToTestAnAutomotiveRelayWithAMultimeterPage() {
             { label: "Standard 12V automotive relay", value: 95, display: "~70–120Ω" },
             { label: "Mini relay", value: 70, display: "~50–90Ω" },
             { label: "Micro relay", value: 60, display: "~40–80Ω" },
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for relay testing</h2>
+        <p className="text-muted leading-7 mb-4">
+          Any meter with resistance, continuity and DC volts covers the four steps above. For regular
+          automotive work, a fast continuity beeper, Min/Max capture for intermittent faults and automotive
+          extras make the job quicker. These picks from our automotive coverage fit that brief.
+        </p>
+        <ProductStrip
+          title="Meters for relay and circuit checks"
+          items={[
+            {
+              name: "Craftsman CMMT14171",
+              image: craftsman.image,
+              alt: "Craftsman CMMT14171 automotive multimeter",
+              href: "/multimeters/craftsman-cmmt14171-review",
+              note: "True RMS, CAT III 600V, with RPM, dwell and duty cycle for the wider diagnosis around a relay fault.",
+            },
+            {
+              name: "Power Probe DM300AUTO",
+              image: dm300.image,
+              alt: "Power Probe DM300AUTO automotive multimeter",
+              href: "/multimeters/best-multimeter-for-automotive#power-probe-dm300auto",
+              note: "Fuse-current mode estimates the current a relayed circuit draws through its fuse, up to 80 A, without pulling the fuse.",
+            },
+            {
+              name: "KAIWEETS HT118A",
+              image: ht118a.image,
+              alt: "KAIWEETS HT118A True RMS multimeter",
+              href: "/multimeters/best-multimeter-for-automotive#kaiweets-ht118a",
+              note: "Budget 6,000-count True RMS meter with Min/Max, handy for catching a relay that drops out intermittently.",
+            },
           ]}
         />
       </section>

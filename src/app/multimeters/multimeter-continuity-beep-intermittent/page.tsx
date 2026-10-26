@@ -4,6 +4,8 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -19,6 +21,8 @@ export const metadata = buildMetadata({
 });
 
 const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const fluke87v = picks.find((p) => p.name === "Fluke 87V")!;
 
 const link = "text-accent hover:underline";
 
@@ -58,6 +62,7 @@ export default function MultimeterContinuityBeepIntermittentPage() {
         { id: "the-wiggle-test", label: "The wiggle test: finding where it's happening" },
         { id: "step-by-step", label: "Running the wiggle test" },
         { id: "quick-reference", label: "Quick reference" },
+        { id: "meters-for-continuity", label: "Meters for continuity work" },
       ]}
       faq={[
         {
@@ -75,6 +80,10 @@ export default function MultimeterContinuityBeepIntermittentPage() {
         {
           q: "Can temperature affect an intermittent continuity reading?",
           a: "It can, for a connection that's already right at the margin — thermal expansion and contraction in a marginal solder joint or oxidized crimp can shift contact resistance enough to cross the continuity threshold as the connection warms slightly from handling or ambient conditions, though a mechanical cause (loose crimp, fatigued strand) is far more common.",
+        },
+        {
+          q: "Can a wire beep for continuity and still be bad?",
+          a: "Yes. The beep only says resistance is under the meter's threshold, often tens of ohms, while a good wire should read well under 1Ω. A cable with most strands broken can still beep yet heat up or drop volts under real current. Switch to resistance mode, subtract the reading with the probes shorted together, or measure voltage drop with the circuit loaded.",
         },
       ]}
       next={[
@@ -172,8 +181,48 @@ export default function MultimeterContinuityBeepIntermittentPage() {
           head={["Symptom", "Likely cause", "Fix"]}
           rows={[
             ["Beep flutters only when that specific wire/connector flexes", "Marginal crimp or fatigued strand at that point", "Re-crimp, re-solder, or replace that section"],
-            ["Beep is steady on a known-good reference, flutters on the suspect wire", "Confirms the fault is in the wire, not the meter/probes"],
+            ["Beep is steady on a known-good reference, flutters on the suspect wire", "Confirms the fault is in the wire, not the meter/probes", "Wiggle-test the suspect path section by section and repair the spot that cuts out"],
             ["Beep flutters everywhere, even on known-good connections", "Probe tips worn, dirty, or not held with firm pressure", "Clean probe tips; apply steady, even pressure"],
+          ]}
+        />
+      </section>
+
+      <KeyIdea title="An intermittent beep is a location clue, not a meter fault">
+        Once the probes pass on a known-good connection, a stuttering beep tells you resistance somewhere in
+        the path is crossing the threshold. Move the flex point until the stutter follows your hand, and you
+        have found the joint to repair.
+      </KeyIdea>
+
+      <section id="meters-for-continuity">
+        <h2 className="text-xl font-semibold mb-3">Meters for continuity work</h2>
+        <p className="text-muted leading-7 mb-4">
+          Every general-purpose meter beeps for continuity. A display that tracks fast changes helps when the
+          fault is a flicker rather than a clean open.
+        </p>
+        <ProductStrip
+          title="Meters for tracing flaky connections"
+          items={[
+            {
+              name: "Fluke 87V",
+              image: fluke87v.image,
+              alt: "Fluke 87V industrial True RMS multimeter",
+              href: "/multimeters/fluke-87v-review",
+              note: "Hands-on tested. Its 32-segment analog bar graph shows resistance jumping as you flex a marginal joint.",
+            },
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 electrician's multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. True RMS, CAT III 600V and auto-ranging for wiring checks before and after the repair.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s budget multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Budget True RMS meter with a backlit display. CAT II 600V, suited to low-voltage harness and cable work.",
+            },
           ]}
         />
       </section>

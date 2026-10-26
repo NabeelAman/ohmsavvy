@@ -7,6 +7,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const km200s = picks.find((p) => p.name === "KAIWEETS KM200s")!;
 
 const link = "text-accent hover:underline";
 
@@ -226,6 +229,41 @@ export default function HowToTestAThermalFuseWithAMultimeterPage() {
           </Link>{" "}
           explains why that reading confirms a blown fuse rather than a meter problem.
         </p>
+      </section>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for appliance fuse checks</h2>
+        <p className="text-muted leading-7 mb-6">
+          The fuse test itself is an unpowered continuity check, but the same meter usually ends up confirming
+          the outlet, the cord and the heating element afterwards. A backlit display helps inside a dark
+          dryer cabinet, and a CAT rating matters once you move on to live checks at the outlet.
+        </p>
+        <ProductStrip
+          title="Meters for dryer and appliance repair"
+          items={[
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "True RMS, CAT III 600V, 6,000-count backlit display, plus capacitance for motor start capacitors. Hands-on Tested.",
+            },
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 electrician's digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Adds NCV and a LoZ mode to the 115's feature set, useful for confirming an appliance circuit is dead. Hands-on Tested.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: km200s.image,
+              alt: "KAIWEETS KM200s budget True RMS multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Budget True RMS with auto-ranging, NCV and a backlight. CAT II 600V, so keep it to appliance and outlet work.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

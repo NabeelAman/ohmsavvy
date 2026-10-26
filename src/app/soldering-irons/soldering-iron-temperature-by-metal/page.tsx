@@ -6,7 +6,10 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
+  StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
@@ -17,6 +20,11 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/soldering-iron-temperature-by-metal",
 });
+
+const all = getAllPicks("soldering-irons");
+const fx888dx = all.find((p) => p.name === "Hakko FX-888DX")!;
+const fx601 = all.find((p) => p.name === "Hakko FX-601")!;
+const tronic = all.find((p) => p.name === "X-Tronic 3020-XTS")!;
 
 const link = "text-accent hover:underline";
 
@@ -41,16 +49,19 @@ export default function SolderingIronTemperatureByMetalPage() {
         { id: "the-two-variables", label: "The two variables: alloy and thermal mass" },
         { id: "by-solder-alloy", label: "Setpoint by solder alloy" },
         { id: "by-joint-type", label: "Setpoint by joint / metal type" },
+        { id: "by-base-metal", label: "Base metals: copper, brass, nickel, steel, aluminum" },
         { id: "heat-flow-diagram", label: "Why thermal mass changes the picture" },
         { id: "why-hotter-isnt-better", label: "Why hotter isn't simply better" },
         { id: "signs-to-adjust", label: "Signs you should adjust" },
         { id: "preheating-tip", label: "Preheating for extreme thermal mass" },
         { id: "quick-reference", label: "Quick reference table" },
+        { id: "dial-in", label: "Dialing in a setting, step by step" },
+        { id: "irons", label: "Irons with an adjustable setpoint" },
       ]}
       faq={[
         {
           q: "What temperature should I start at if I'm not sure?",
-          a: "Around 315-345°C (600-650°F) for leaded solder on typical through-hole electronics work is a reasonable, widely-used starting point. Adjust upward if solder is melting slowly or joints are taking more than two to three seconds to wet, and downward if you're seeing scorched flux or damaged components.",
+          a: "Around 300-330°C (570-630°F) for leaded solder on typical through-hole electronics work is a reasonable, widely-used starting point. Adjust upward if solder is melting slowly or joints are taking more than two to three seconds to wet, and downward if you're seeing scorched flux or damaged components.",
         },
         {
           q: "Does wire gauge affect the right temperature setting?",
@@ -63,6 +74,10 @@ export default function SolderingIronTemperatureByMetalPage() {
         {
           q: "Is it true that a lower temperature is always gentler on components?",
           a: "Not quite — a temperature too low for the joint often means holding the iron there much longer to compensate, and that extended dwell time can do more heat damage to a component than a correctly higher setting applied briefly. Matching temperature to the joint, rather than always running cool, usually protects components better.",
+        },
+        {
+          q: "What temperature is 350°C in Fahrenheit, and which unit should I set?",
+          a: "350°C is 662°F, using °F = °C × 9 ÷ 5 + 32. Likewise 300°C is 572°F and 370°C is 698°F. Use whichever unit your station displays, but stick to one: most solder datasheets and tutorials quote Celsius, so many people switch their station to °C to avoid converting every figure they read.",
         },
       ]}
       next={[
@@ -122,6 +137,30 @@ export default function SolderingIronTemperatureByMetalPage() {
             ["Standard through-hole components", "Middle of range", "Balances reliable melting with component safety margin"],
             ["Ground planes, large copper pours", "Higher end of range, or larger tip", "High thermal mass draws heat away quickly; needs more heat supplied, faster"],
             ["Thick wire, chassis grounds, connectors", "Higher end of range, larger tip, longer dwell", "Large metal mass needs sustained heat delivery to come up to temperature"],
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="by-base-metal" className="text-xl font-semibold mb-3">Base metals: copper, brass, nickel, steel, aluminum</h2>
+        <p className="text-muted leading-7 mb-4">
+          The metal being joined matters too, mainly through how well solder wets it and how fast it conducts
+          heat away. Copper and tinned copper wet easily but conduct heat very well, so heavy copper needs a
+          larger tip rather than a dramatically hotter one. Brass wets well with ordinary rosin flux once it is
+          clean. Nickel-plated battery tabs and connector shells wet more slowly and often need extra flux.
+          Steel conducts heat poorly, so it is easy to heat locally, but plain and stainless steel usually
+          need an aggressive acid-type flux that must never be used on electronics. Aluminum forms a tough
+          oxide layer that ordinary solder and flux won&apos;t break through; it needs a dedicated aluminum
+          solder and flux system.
+        </p>
+        <DataTable
+          head={["Base metal", "Wettability with rosin flux", "Setting approach"]}
+          rows={[
+            ["Copper / tinned copper", "Excellent", "Normal setpoint; size the tip to the copper mass"],
+            ["Brass", "Good once cleaned", "Normal to upper setpoint; brass terminals are often bulky"],
+            ["Nickel-plated tabs", "Fair; needs extra flux", "Upper setpoint with a broad tip and short dwell"],
+            ["Plain / stainless steel", "Poor; needs acid flux", "Not for electronics work; follow the flux maker's guidance"],
+            ["Aluminum", "Very poor with standard solder", "Special aluminum solder and flux only"],
           ]}
         />
       </section>
@@ -227,6 +266,69 @@ export default function SolderingIronTemperatureByMetalPage() {
             see at the joint, as covered above.
           </p>
         </KeyIdea>
+      </section>
+
+      <section>
+        <StepHeading n={1} id="dial-in">Start at the alloy&apos;s typical setpoint</StepHeading>
+        <p className="text-muted leading-7">
+          Pick the starting figure from the chart above for your solder: around 300–330°C for leaded alloys
+          and 340–370°C for lead-free. Let the station settle on that number before you judge anything.
+        </p>
+        <StepHeading n={2}>Time a test joint</StepHeading>
+        <p className="text-muted leading-7">
+          On a clean, freshly tinned tip, solder one representative joint and count. Wetting within about one
+          to three seconds means the setting suits that joint. Much longer means too little heat is reaching
+          it; much quicker, with flux smoking hard, suggests you can come down.
+        </p>
+        <StepHeading n={3}>Change the tip before the temperature</StepHeading>
+        <p className="text-muted leading-7">
+          If a heavy joint is slow, fit a broader tip and retest at the same setting. Raise the temperature in
+          small steps of about 10–20°C only if a bigger tip isn&apos;t practical, and drop it back when you
+          return to small joints.
+        </p>
+      </section>
+
+      <Callout title="Heat and fume safety">
+        Tips at 300–370°C cause serious burns instantly. Always return the iron to its stand, keep the cord
+        clear of the hot barrel, and work with ventilation or fume extraction, especially at the higher
+        lead-free settings where flux smokes more. Acid fluxes for steel give off corrosive fumes and belong
+        in a separate, well-ventilated workspace.
+      </Callout>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons with an adjustable setpoint</h2>
+        <p className="text-muted leading-7 mb-4">
+          Everything on this page assumes you can set and trust a number. A fixed-wattage iron has no setpoint
+          at all, so its tip simply settles wherever heat in balances heat out. These picks from our reviews
+          all offer closed-loop control, and they cover the full range from fine leaded work to heavy
+          lead-free joints.
+        </p>
+        <ProductStrip
+          title="Temperature-controlled irons from our reviews"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "50–480°C with five presets per Hakko, so leaded, lead-free and heavy-joint settings can each be saved.",
+            },
+            {
+              name: "X-Tronic 3020-XTS",
+              image: tronic.image,
+              alt: "X-Tronic 3020-XTS soldering station",
+              href: "/soldering-irons/best-soldering-irons#x-tronic-3020-xts",
+              note: "PID station, 200–480°C with ±2°C static stability and a C/F switch, ESD safe.",
+            },
+            {
+              name: "Hakko FX-601",
+              image: fx601.image,
+              alt: "Hakko FX-601 soldering iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-601",
+              note: "67W with a 240–540°C dial for thick wire, terminals and other heavy metal; too warm at minimum for fine SMD.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

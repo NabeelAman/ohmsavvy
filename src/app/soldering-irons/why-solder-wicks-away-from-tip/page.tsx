@@ -1,10 +1,14 @@
+import Link from "next/link";
 import {
   Callout,
   DataTable,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
@@ -15,6 +19,13 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/why-solder-wicks-away-from-tip",
 });
+
+const all = getAllPicks("soldering-irons");
+const fx888dx = all.find((p) => p.name === "Hakko FX-888DX")!;
+const pinecil = all.find((p) => p.name === "Pinecil V2")!;
+const yihua926 = all.find((p) => p.name === "YIHUA 926 III")!;
+
+const link = "text-accent hover:underline";
 
 export default function WhySolderWicksAwayFromTipPage() {
   return (
@@ -38,8 +49,10 @@ export default function WhySolderWicksAwayFromTipPage() {
         { id: "why-it-happens", label: "Why some destinations pull solder so strongly" },
         { id: "tip-running-dry", label: "Problem 1: The tip keeps running dry" },
         { id: "overwicking-wire", label: "Problem 2: Solder travels further up a wire than intended" },
+        { id: "controlled-tinning", label: "Problem 3: Tinning a wire to an exact length" },
         { id: "fixes", label: "Fixes for both situations" },
         { id: "quick-reference", label: "Quick reference" },
+        { id: "irons", label: "Irons that keep up with hungry joints" },
       ]}
       faq={[
         {
@@ -57,6 +70,10 @@ export default function WhySolderWicksAwayFromTipPage() {
         {
           q: "Does flux make wicking stronger or weaker?",
           a: "Stronger, generally — flux is exactly what lets solder wet and flow onto clean metal in the first place, so more flux on a longer stretch of wire or a larger pad tends to pull solder further, not less. Limiting flux to just the section you want wetted helps keep wicking contained to that area.",
+        },
+        {
+          q: "Why does solder disappear into a through-hole joint and leave the top dry?",
+          a: "A plated through-hole is a narrow copper tube, so capillary action pulls solder down the barrel and out the far side, which is exactly what a good through-hole joint needs. If the pad on your side looks starved, the hole has simply taken the solder. Feed a little more until a small concave fillet forms around the lead on both sides of the board.",
         },
       ]}
       next={[
@@ -146,6 +163,25 @@ export default function WhySolderWicksAwayFromTipPage() {
         </p>
       </section>
 
+      <section>
+        <StepHeading n={3} id="controlled-tinning">Tin a wire to an exact length</StepHeading>
+        <p className="text-muted leading-7 mb-4">
+          When a wire goes into a screw terminal or a crimp barrel, you usually want only the part inside the
+          terminal tinned. Work out that length first: if the terminal is 6 mm deep, strip about 6–7 mm, not
+          15 mm. Then hold the tip and solder at the very end of the strands, not halfway along, and feed only
+          as much solder as the strands absorb in a second or two. Solder stops wicking where the strands are
+          cooler and unfluxed, so heat applied at the end, briefly, leaves a sharp boundary close to where you
+          want it.
+        </p>
+        <p className="text-muted leading-7">
+          Wire gauge changes the numbers. Fine 24–26 AWG hookup wire saturates almost instantly and wicks fast,
+          so a quick touch is plenty; heavy 12–14 AWG wire needs more heat before it wicks at all, so a
+          bigger chisel tip and a slightly longer contact are normal there. Many technicians avoid tinning
+          wires that go into screw terminals entirely, because solder can creep under clamping pressure and
+          loosen the connection over time. Tinning suits pins, splices and solder cups better.
+        </p>
+      </section>
+
       <section id="fixes">
         <Callout title="Fixes for both situations">
           <ul className="space-y-1 list-disc pl-5">
@@ -166,6 +202,62 @@ export default function WhySolderWicksAwayFromTipPage() {
             ["Tip runs dry on stranded wire", "Normal — multi-strand joints pull solder quickly by design"],
             ["Solder wicks further up a wire than wanted", "Limit flux to the intended section; use a heatsink clip to contain it"],
             ["Want wicking to stop at an exact point", "Pre-tin only up to that point, keeping flux away from the rest"],
+          ]}
+        />
+        <div className="mt-6">
+          <KeyIdea title="Wicking is the joint working, not the iron failing">
+            Solder always moves toward the hottest, cleanest, best-fluxed metal with the most surface to wet.
+            Control where that metal is, with flux placement, strip length and where you put the heat, and you
+            control where the solder goes.
+          </KeyIdea>
+        </div>
+      </section>
+
+      <Callout title="Hot solder and hot wire">
+        A wire that has just wicked solder along its length stays hot well beyond the joint. Hold wires with
+        pliers or a helping hand, not your fingers, and let a tinned lead cool before you handle it. Work with
+        ventilation for flux fumes, and wash your hands after handling leaded solder.
+      </Callout>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons that keep up with hungry joints</h2>
+        <p className="text-muted leading-7 mb-4">
+          A joint that pulls solder quickly also pulls heat quickly. An iron that holds its temperature lets
+          you finish the joint in one or two short touches, which keeps wicking on a wire contained. Tip choice
+          matters as well; see our{" "}
+          <Link href="/soldering-irons/soldering-iron-tip-types" className={link}>
+            tip types guide
+          </Link>{" "}
+          and{" "}
+          <Link href="/soldering-irons/soldering-iron-temperature-by-metal" className={link}>
+            temperature-by-metal guide
+          </Link>
+          . These picks from our reviews have temperature control and a range of replaceable tips.
+        </p>
+        <ProductStrip
+          title="Temperature-controlled irons for wire and pad work"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "65W iron on a 100W station with ±1°C idle stability and a wide T18 tip range, from fine conicals to broad chisels.",
+            },
+            {
+              name: "YIHUA 926 III",
+              image: yihua926.image,
+              alt: "YIHUA 926 LED III soldering station kit",
+              href: "/soldering-irons/best-soldering-irons#yihua-926-iii",
+              note: "Compact PID station, 90–480°C, taking common 900M-series tips; the kit ships with six of them.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Portable USB-C iron, up to 88W from 24V, for splicing and tinning wires away from the bench.",
+            },
           ]}
         />
       </section>

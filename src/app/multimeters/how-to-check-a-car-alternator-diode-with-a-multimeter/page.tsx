@@ -7,8 +7,10 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -22,6 +24,9 @@ export const metadata = buildMetadata({
 });
 
 const craftsman = picks.find((p) => p.name === "Craftsman CMMT14171")!;
+const autoPicks = getAllPicks("multimeters");
+const dm300 = autoPicks.find((p) => p.name === "Power Probe DM300AUTO")!;
+const ht118a = autoPicks.find((p) => p.name === "KAIWEETS HT118A")!;
 
 const link = "text-accent hover:underline";
 
@@ -247,6 +252,41 @@ export default function HowToCheckACarAlternatorDiodeWithAMultimeterPage() {
             ["Diode reads low or beeps in both directions", "Shorted diode; replace the rectifier"],
             ["Diode reads OL in both directions", "Open diode; replace the rectifier"],
             ["Normal ripple, but low charging voltage", "Regulator, brushes, belt slip or a voltage drop in the cabling"],
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for charging-system checks</h2>
+        <p className="text-muted leading-7 mb-6">
+          The ripple test needs a meter that reads small AC voltages riding on DC, and the bench test needs a
+          diode mode. A Min/Max function is a bonus for catching charging voltage swings while someone blips
+          the throttle. These three come from our automotive meter picks.
+        </p>
+        <ProductStrip
+          title="Meters for alternator and battery diagnosis"
+          items={[
+            {
+              name: "Craftsman CMMT14171",
+              image: craftsman.image,
+              alt: "Craftsman CMMT14171 automotive digital multimeter",
+              href: "/multimeters/craftsman-cmmt14171-review",
+              note: "True RMS at CAT III 600V, adding RPM, dwell angle and duty cycle for the rest of the engine bay.",
+            },
+            {
+              name: "Power Probe DM300AUTO",
+              image: dm300.image,
+              alt: "Power Probe DM300AUTO automotive multimeter",
+              href: "/multimeters/best-multimeter-for-automotive#power-probe-dm300auto",
+              note: "Guided cranking and alternator charging tests for 12V and 24V systems with on-screen pass/fail. Voltage accuracy ±(2% + 3).",
+            },
+            {
+              name: "KAIWEETS HT118A",
+              image: ht118a.image,
+              alt: "KAIWEETS HT118A True RMS digital multimeter",
+              href: "/multimeters/best-multimeter-for-automotive#kaiweets-ht118a",
+              note: "Budget 6,000-count True RMS with Min/Max and a 600 µA range for parasitic-drain checks.",
+            },
           ]}
         />
       </section>

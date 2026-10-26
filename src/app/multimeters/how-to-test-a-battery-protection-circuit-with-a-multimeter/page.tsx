@@ -7,6 +7,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const uni = picks.find((p) => p.name === "UNI-T UT139C")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 
 const link = "text-accent hover:underline";
 
@@ -311,6 +314,45 @@ export default function HowToTestABatteryProtectionCircuitWithAMultimeterPage() 
             ["Large B−/P− drop under load, board warm", "Damaged MOSFETs or under-rated board for the load"],
             ["B+/B− very low or 0 V", "Cell deeply discharged or dead; treat with caution"],
             ["One balance group much lower than the rest", "Weak or self-discharging cell group"],
+          ]}
+        />
+      </section>
+      <section>
+        <h2 id="meters-for-bms-checks" className="text-xl font-semibold mb-3">Meters for battery and protection board work</h2>
+        <p className="text-muted leading-7 mb-6">
+          Protection board checks are mostly DC volts read to two decimal places, plus diode mode across the
+          MOSFETs. A 6,000-count meter resolves a single lithium cell to 0.001 V on its 6 V range, which is
+          enough to compare a cell with its pack terminals or spot a weak balance group. Fine probe tips matter
+          as much as the meter, because the B and P pads sit close together. For larger packs, see{" "}
+          <Link href="/multimeters/how-to-test-a-48v-lifepo4-battery-for-voltage-imbalance-between-cells" className={link}>
+            checking cell imbalance in a 48V LiFePO4 pack
+          </Link>
+          .
+        </p>
+        <ProductStrip
+          title="Meters for pack and BMS checks"
+          items={[
+            {
+              name: "UNI-T UT139C",
+              image: uni.image,
+              alt: "UNI-T UT139C True RMS digital multimeter",
+              href: "/multimeters/uni-t-ut139c-review",
+              note: "Affordable 6,000-count meter, CAT III 600V, with auto or manual ranging for cell and balance-tap readings.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "Hands-on tested. Backlit 6,000-count display and robust Fluke build for regular battery pack repair.",
+            },
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR True RMS digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "Inexpensive 6,000-count meter for hobby packs; AstroAI states no CAT rating, so keep it off mains.",
+            },
           ]}
         />
       </section>

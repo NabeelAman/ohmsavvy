@@ -74,6 +74,10 @@ export default function WhyOscilloscopeWaveformIsNoisyPage() {
           q: "Can the oscilloscope itself be the source of the noise?",
           a: "It's possible but less common than setup or circuit causes — a scope's own internal noise floor is usually well below what shows up from grounding issues or genuine circuit noise. If a careful ground check and a shorted-input test both come back clean, only then is it worth suspecting the scope's own front end.",
         },
+        {
+          q: "Will switching my probe from 10x to 1x make the trace less noisy?",
+          a: "On very small signals, often yes. At 10x the probe divides your signal by ten before it reaches the scope, so the scope's own noise floor looks ten times larger relative to it. The catch is that 1x mode on a typical switchable probe has far less bandwidth and loads the circuit more, so keep 10x for fast edges and use 1x for millivolt-level, low-frequency work.",
+        },
       ]}
       next={[
         {

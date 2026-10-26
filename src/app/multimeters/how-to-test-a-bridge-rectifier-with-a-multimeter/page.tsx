@@ -4,6 +4,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -19,6 +20,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const astroai = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 
 const link = "text-accent hover:underline";
 
@@ -58,6 +61,7 @@ export default function HowToTestABridgeRectifierWithAMultimeterPage() {
         { id: "step-by-step", label: "Testing step by step" },
         { id: "interpreting-results", label: "Interpreting the results" },
         { id: "in-circuit-caveat", label: "The in-circuit caveat" },
+        { id: "meters-for-diode-tests", label: "Meters for rectifier testing" },
       ]}
       faq={[
         {
@@ -75,6 +79,10 @@ export default function HowToTestABridgeRectifierWithAMultimeterPage() {
         {
           q: "Why do I get a reading on the AC-to-AC pins too?",
           a: "Measuring between the two AC pins directly isn't one of the four standard diode tests, and the result depends on the specific internal diode paths in series — it's not a meaningful pass/fail check on its own. Stick to testing AC-to-+ and AC-to-− combinations as covered on this page.",
+        },
+        {
+          q: "Can a bridge rectifier pass a multimeter test and still be bad?",
+          a: "Yes. Diode mode pushes only a small test current at a couple of volts, so it can't show a junction that breaks down near its rated reverse voltage or one that fails only when hot. If the bridge tests fine but the supply still misbehaves, check the DC output ripple under load with a scope, or swap in a known-good part with the same voltage and current rating.",
         },
       ]}
       next={[
@@ -202,6 +210,41 @@ export default function HowToTestABridgeRectifierWithAMultimeterPage() {
           smoothing capacitor across the DC output — can distort readings. Discharge any capacitor
           safely and, where practical, remove the rectifier from the circuit for the cleanest test.
         </KeyIdea>
+      </section>
+
+      <section id="meters-for-diode-tests">
+        <h2 className="text-xl font-semibold mb-3">Meters for rectifier testing</h2>
+        <p className="text-muted leading-7 mb-4">
+          Any meter with a diode-test position will run the eight checks above. If the rectifier lives in a
+          mains-powered supply, a meter with a proper CAT rating is the safer choice for the live voltage
+          checks you will make before and after the repair.
+        </p>
+        <ProductStrip
+          title="Meters for diode and rectifier checks"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. True RMS and CAT III 600V for the live AC input and DC output checks around a power-supply bridge.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 field-service multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "Hands-on tested. Same body and CAT III 600V rating as the 117, without NCV, plus capacitance for the smoothing cap.",
+            },
+            {
+              name: "AstroAI DM6000AR",
+              image: astroai.image,
+              alt: "AstroAI DM6000AR digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "True RMS, 6,000-count bench meter for unpowered board work. No CAT rating stated, so keep it off mains.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

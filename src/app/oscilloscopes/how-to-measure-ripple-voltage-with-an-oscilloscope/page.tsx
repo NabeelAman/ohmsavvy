@@ -87,6 +87,10 @@ export default function HowToMeasureRippleVoltageWithAnOscilloscopePage() {
           q: "What is the difference between ripple and noise on a power supply?",
           a: "Ripple is the repeating variation linked to how the supply works: the mains rectifier frequency on a linear supply or the switching frequency on a switcher. Noise is the less regular, higher-frequency content such as the narrow spikes at each switching edge. Many power supply datasheets quote a combined ripple and noise figure in millivolts peak-to-peak.",
         },
+        {
+          q: "Why does ripple get worse as a power supply gets older?",
+          a: "The usual culprit is the output filter capacitors. Electrolytic capacitors slowly dry out with heat and age, so their capacitance falls and their internal resistance (ESR) rises, and both let more ripple through. A supply that once measured a few tens of millivolts can creep far higher. Bulging or leaking capacitors confirm it, but rising ripple often shows up before any visible damage.",
+        },
       ]}
       next={[
         {
@@ -199,7 +203,7 @@ export default function HowToMeasureRippleVoltageWithAnOscilloscopePage() {
         <StepHeading n={2} id="ac-coupling">How to use oscilloscope AC coupling to measure ripple</StepHeading>
         <p className="text-muted leading-7 mb-4">
           AC coupling puts a capacitor in series with the channel input, blocking the DC part of the
-          signal so only the variation reaches the screen, centred on the ground line. Open the
+          signal so only the variation reaches the screen, centered on the ground line. Open the
           channel menu, change coupling from DC to AC, and the 5 V trace drops to the center line. Now
           you can turn the sensitivity right up:
         </p>

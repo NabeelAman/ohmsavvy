@@ -4,8 +4,11 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
@@ -16,6 +19,11 @@ export const metadata = buildMetadata({
   description,
   path: "/oscilloscopes/how-to-measure-rise-time-with-oscilloscope-cursors",
 });
+
+const scopes = getAllPicks("oscilloscopes");
+const ds1054z = scopes.find((p) => p.name === "Rigol DS1054Z")!;
+const dho804 = scopes.find((p) => p.name === "Rigol DHO804")!;
+const sds1104 = scopes.find((p) => p.name === "Siglent SDS1104X-E")!;
 
 export default function HowToMeasureRiseTimeWithOscilloscopeCursorsPage() {
   return (
@@ -40,6 +48,7 @@ export default function HowToMeasureRiseTimeWithOscilloscopeCursorsPage() {
         { id: "fall-time-too", label: "Fall time works the same way, in reverse" },
         { id: "scope-bandwidth-limit", label: "Your scope's own rise time sets a limit" },
         { id: "common-mistakes", label: "Common mistakes" },
+        { id: "scopes-for-edge-work", label: "Scopes for edge measurements" },
       ]}
       faq={[
         {
@@ -57,6 +66,10 @@ export default function HowToMeasureRiseTimeWithOscilloscopeCursorsPage() {
         {
           q: "Why does my measured rise time seem slower than the signal source should produce?",
           a: "Check your probe and scope's own bandwidth and rise time specs first — a scope or probe with insufficient bandwidth rounds off fast edges, making the measured rise time look slower than the signal actually is at its source. This is covered in more depth in our oscilloscope bandwidth guide.",
+        },
+        {
+          q: "How do I correct a measured rise time for my scope's own rise time?",
+          a: "Rise times add roughly as a root sum of squares, so the signal's own value is about √(measured² − scope²). A 100 MHz scope has a system rise time near 0.35 ÷ 100 MHz = 3.5 ns. If it shows 5 ns, the edge is about √(25 − 12.25) ≈ 3.6 ns. The correction becomes unreliable once the measured value is under about twice the scope's own figure.",
         },
       ]}
       next={[
@@ -167,6 +180,47 @@ export default function HowToMeasureRiseTimeWithOscilloscopeCursorsPage() {
             ["Not zoomed in enough on the edge", "Imprecise cursor placement on a sliver of screen width"],
             ["Reference levels taken from a noisy or non-flat baseline", "10%/90% calculation is off from the start"],
             ["Ignoring the scope/probe's own bandwidth limit", "Measured rise time reads slower than the signal actually is"],
+          ]}
+        />
+      </section>
+
+      <KeyIdea title="Cursors measure what the scope shows, not the edge itself">
+        A cursor reading is only as fast as the probe, front end and sample rate let the edge appear. Set the
+        10% and 90% levels from flat, settled parts of the waveform, zoom until the edge spans several
+        divisions, and compare the result with the scope&apos;s own rise time before you trust it.
+      </KeyIdea>
+
+      <section id="scopes-for-edge-work">
+        <h2 className="text-xl font-semibold mb-3">Scopes for edge measurements</h2>
+        <p className="text-muted leading-7 mb-4">
+          Using the common 0.35 ÷ bandwidth approximation, a 50 MHz scope settles at about 7 ns of its own rise
+          time, 70 MHz at about 5 ns and 100 MHz at about 3.5 ns. Pick the bandwidth that keeps your scope well
+          faster than the edges you need to measure.
+        </p>
+        <ProductStrip
+          title="Bench scopes for rise-time work"
+          items={[
+            {
+              name: "Siglent SDS1104X-E",
+              image: sds1104.image,
+              alt: "Siglent SDS1104X-E four-channel digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "Hands-on tested. 100 MHz, 4 channels and 1 GSa/s, the fastest edge headroom of these three.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 12-bit digital oscilloscope",
+              href: "/oscilloscopes/best-beginner-oscilloscopes#rigol-dho804",
+              note: "Hands-on tested. 70 MHz, 4 channels, 12-bit vertical resolution and up to 1.25 GSa/s on one channel.",
+            },
+            {
+              name: "Rigol DS1054Z",
+              image: ds1054z.image,
+              alt: "Rigol DS1054Z four-channel digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "Hands-on tested. 50 MHz and 1 GSa/s on one channel, fine for edges slower than a few tens of nanoseconds.",
+            },
           ]}
         />
       </section>

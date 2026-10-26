@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
 
@@ -66,6 +69,7 @@ export default function HowToSolderAReplacementSpeakerTerminalOnAPcbPage() {
         { id: "solder-the-pins", label: "5. Solder and reflow every pin" },
         { id: "test-it", label: "6. Test continuity and isolation" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "irons", label: "Irons for amplifier terminal swaps" },
       ]}
       faq={[
         {
@@ -286,6 +290,38 @@ export default function HowToSolderAReplacementSpeakerTerminalOnAPcbPage() {
         large filter capacitors in amplifiers can hold a dangerous charge for some time. Do not touch
         mains-side parts, ventilate flux smoke, and wash your hands after using leaded solder.
       </Callout>
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons for amplifier terminal swaps</h2>
+        <p className="text-muted leading-7 mb-6">
+          Speaker clips often sit on wide ground copper next to heat-sensitive plastic housings, so you want strong recovery and a temperature you control precisely.
+        </p>
+        <ProductStrip
+          title="Irons for speaker terminal work"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX digital soldering station with FX-8801 iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Heat reserve from a 100W station gets the negative pins on ground copper molten fast, keeping dwell short near the clip housing.",
+            },
+            {
+              name: "YIHUA 862BD+",
+              image: yihua.image,
+              alt: "YIHUA 862BD+ soldering iron and hot air rework station",
+              href: "/soldering-irons/yihua-862bd-plus-review",
+              note: "Its hot air gun helps warm a whole multi-pin terminal block so it lifts out evenly instead of pin by pin.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA 70W digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "ESD-safe digital station from Weller, well suited to amplifier boards that carry op-amps and other sensitive parts.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

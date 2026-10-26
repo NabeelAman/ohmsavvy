@@ -7,10 +7,11 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
-import { picks } from "../best-multimeters/page";
+import { getAllPicks } from "@/lib/catalog";
 
 const description =
   "How to check a thermocouple with a multimeter: the resistance test, the millivolt test when heated, Type K mV values, and furnace pilot thermocouple checks.";
@@ -21,7 +22,10 @@ export const metadata = buildMetadata({
   path: "/multimeters/how-to-check-a-thermocouple-with-a-multimeter",
 });
 
-const fluke87 = picks.find((p) => p.name === "Fluke 87V")!;
+const all = getAllPicks("multimeters");
+const fluke87 = all.find((p) => p.name === "Fluke 87V")!;
+const fluke116 = all.find((p) => p.name === "Fluke 116")!;
+const mm420 = all.find((p) => p.name === "Klein Tools MM420")!;
 
 const link = "text-accent hover:underline";
 
@@ -113,7 +117,7 @@ export default function HowToCheckAThermocoupleWithAMultimeterPage() {
         },
         {
           q: "Can a thermocouple test fine on resistance and still be bad?",
-          a: "Yes. Continuity only proves the circuit is closed. A tip that has oxidised or been damaged by heat can still read a few ohms but produce too little voltage, or a voltage that wanders. That is why the millivolt test with heat applied is the one that decides whether a thermocouple is still usable.",
+          a: "Yes. Continuity only proves the circuit is closed. A tip that has oxidized or been damaged by heat can still read a few ohms but produce too little voltage, or a voltage that wanders. That is why the millivolt test with heat applied is the one that decides whether a thermocouple is still usable.",
         },
         {
           q: "Why does my thermocouple read 0 mV at room temperature?",
@@ -366,6 +370,37 @@ export default function HowToCheckAThermocoupleWithAMultimeterPage() {
           </Link>
           .
         </p>
+        <p className="text-muted leading-7 mt-4 mb-4">
+          If most of your thermocouple work is on furnaces, a meter with both a Type K input and a DC
+          microamp range covers the pilot thermocouple and the flame-rectification rod with one tool. For
+          bench probes and oven sensors, a high-resolution mV mode matters more than HVAC extras.
+        </p>
+        <ProductStrip
+          title="Meters for thermocouple and pilot checks"
+          items={[
+            {
+              name: "Fluke 87V",
+              image: fluke87.image,
+              alt: "Fluke 87V True RMS industrial digital multimeter",
+              href: "/multimeters/fluke-87v-review",
+              note: "Hands-on tested. A 19,999-count high-resolution mode shows small mV changes in finer steps.",
+            },
+            {
+              name: "Fluke 116",
+              image: fluke116.image,
+              alt: "Fluke 116 HVAC digital multimeter",
+              href: "/multimeters/best-multimeter-for-hvac-technicians",
+              note: "Type K input (-40 to 400 °C) plus a 0.1 µA range for flame-rod checks. No mA or amp ranges.",
+            },
+            {
+              name: "Klein Tools MM420",
+              image: mm420.image,
+              alt: "Klein Tools MM420 digital multimeter",
+              href: "/multimeters/best-multimeters-for-electricians-under-100",
+              note: "Budget True RMS meter that reads temperature to 1832 °F with the thermocouple in the box.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

@@ -87,6 +87,10 @@ export default function HowToTestAnOptocouplerWithAMultimeterPage() {
           q: "Why does my optocoupler output read low resistance even with the LED off?",
           a: "Out of circuit, that points to a shorted or leaky output transistor, and the part should be replaced. In circuit, the meter is usually measuring through other components connected across the collector and emitter, such as a pull-up resistor or a transistor stage. Lift the part or at least its output pins to be sure.",
         },
+        {
+          q: "Do optocouplers wear out over time?",
+          a: "Yes, slowly. The internal infrared LED gives less light as it ages, and it fades faster when driven at high current or kept hot, so the current transfer ratio drops over years of service. A part that still tests fine on the bench can then fail to switch a marginal circuit. Good designs allow for this by driving the LED hard enough to keep the output saturated at a reduced CTR.",
+        },
       ]}
       next={[
         {

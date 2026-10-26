@@ -86,6 +86,10 @@ export default function HowToMeasureAVoltageReferenceWithAMultimeterPage() {
           q: "Should I measure a voltage reference on the auto or manual range?",
           a: "Either works once the reading is stable, but a manual range avoids the meter hunting between ranges and lets you pick the lowest range that still contains the voltage, which gives the best resolution. On a 6,000-count meter, 2.5 V and 4.096 V both fit the 6 V range with a resolution of 0.001 V.",
         },
+        {
+          q: "Can a weak multimeter battery affect a precision reading?",
+          a: "It can. Many meters specify their accuracy only while the battery is above the low-battery threshold, and a reading taken after the warning symbol appears may not meet the published spec. For a precision check, fit a fresh battery first, then compare against the reference. If the reading changes after a battery swap, the old battery was already affecting the measurement.",
+        },
       ]}
       next={[
         {

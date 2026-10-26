@@ -8,6 +8,7 @@ import {
   InfoCards,
   KeyIdea,
   ScopeScreen,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -23,6 +24,8 @@ export const metadata = buildMetadata({
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
 
 const link = "text-accent hover:underline";
 
@@ -334,6 +337,46 @@ export default function HowToUseOscilloscopeCursorsToMeasureVoltageDifferencePag
           
           <li>Forgetting that AC coupling removes the DC level, so Y1 and Y2 are relative to the average.</li>
         </ul>
+      </section>
+      <section>
+        <h2 id="scopes-for-cursor-work" className="text-xl font-semibold mb-3">Scopes worth using for cursor measurements</h2>
+        <p className="text-muted leading-7 mb-6">
+          Every modern bench scope has voltage cursors, so the differences are in the screen and the converter
+          behind it. A larger display makes it easier to drag a line onto the right part of the trace, and more
+          vertical resolution makes each cursor step smaller: a 12-bit converter splits the range into 4,096
+          levels instead of 256. All three scopes below have four channels, so you can place cursors on one
+          trace while watching others. More choices are in our{" "}
+          <Link href="/oscilloscopes/best-beginner-oscilloscopes" className={link}>
+            best beginner oscilloscopes
+          </Link>{" "}
+          guide.
+        </p>
+        <ProductStrip
+          title="Four-channel scopes for cursor measurements"
+          items={[
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "Hands-on tested. 50MHz, four channels, 1 GSa/s with one channel on and a 7-inch display.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "Hands-on tested. 100MHz bandwidth across four channels, 1 GSa/s, or 500 MSa/s per channel with all on.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 12-bit four-channel oscilloscope",
+              href: "/oscilloscopes/rigol-dho804-vs-rigol-ds1054z",
+              note: "Hands-on tested. 12-bit vertical resolution and a 7-inch touchscreen for finer cursor placement; 70MHz.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

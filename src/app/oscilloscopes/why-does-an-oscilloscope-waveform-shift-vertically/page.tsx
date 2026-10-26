@@ -89,6 +89,10 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
           q: "Can a damaged probe make the trace shift?",
           a: "Yes. A broken ground lead or a worn ground connection at the BNC leaves the probe without a proper return, so the trace can wander, pick up hum and sit at the wrong level. Touch the probe tip to its own ground clip: a good probe shows a flat line on the ground marker. Swapping in a second probe confirms it.",
         },
+        {
+          q: "Should I run self-calibration if the trace sits off zero?",
+          a: "It is worth doing if the trace rests a fraction of a division away from the ground marker with the input on GND coupling or nothing connected. Let the scope warm up first, often around 30 minutes, unplug every probe, then start self-calibration from the utility menu. It corrects small internal offset errors; it will not fix a faulty probe or a genuine DC level on the signal.",
+        },
       ]}
       next={[
         {

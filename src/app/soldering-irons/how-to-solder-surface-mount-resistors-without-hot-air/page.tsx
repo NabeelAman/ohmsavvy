@@ -91,6 +91,10 @@ export default function HowToSolderSurfaceMountResistorsWithoutHotAirPage() {
           q: "How long can I hold the iron on an SMD resistor?",
           a: "Aim for a few seconds per end. Chip resistors are small and heat almost instantly, so if solder has not flowed within about three seconds the problem is usually an oxidised tip, too little flux or a temperature that is too low, not a lack of time. The component datasheet gives the soldering heat limits for that part.",
         },
+        {
+          q: "Should I use leaded or lead-free solder for SMD resistors?",
+          a: "Leaded solder such as 63/37 is easier to learn on: it melts at a lower temperature, flows readily and freezes at a single point, so small joints form quickly and look shiny when good. Lead-free alloys need a hotter tip and more flux, and a good joint looks duller. Use lead-free when the product must meet RoHS rules, and ventilate the bench either way.",
+        },
       ]}
       next={[
         {

@@ -87,6 +87,10 @@ export default function GeneratorShutsOffUnderLoadPage() {
           q: "Is my inverter generator broken if the overload light comes on?",
           a: "Usually not. Inverter generators protect their electronics by cutting the output when the load exceeds their limit, then lighting an overload indicator. Unplug everything, reset as the manual describes, and reduce or stagger the load.",
         },
+        {
+          q: "Will a soft starter help my generator run an air conditioner?",
+          a: "Often, yes. A soft starter fitted to an air conditioner or heat pump compressor ramps the motor up over a short period instead of hitting it with full voltage at once, which cuts the starting surge substantially. Kit makers quote large reductions, so check the figures for your specific unit, and have a qualified technician install it, because it wires into the compressor circuit.",
+        },
       ]}
       next={[
         {

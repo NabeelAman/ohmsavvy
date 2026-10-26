@@ -89,6 +89,10 @@ export default function HowToSolderFinePitchSmdComponentsPage() {
           q: "Why do my SMD pins look soldered but the circuit does not work?",
           a: "The usual culprits are a pin that looks wetted but is not actually bonded to its pad, a hidden hairline bridge, or a part rotated 90 or 180 degrees. Recheck pin 1 orientation against the board marking, inspect each pin from a low angle, and use a multimeter continuity check between suspect neighbors.",
         },
+        {
+          q: "How do I remove a fine-pitch IC without lifting the pads?",
+          a: "Hot air is the usual tool: flux the pins, heat the whole package evenly until every joint melts at once, then lift it off with tweezers using no force. With only an iron, flood each row with solder or a low-melting removal alloy so all pins stay molten together. Never lever the chip up while any pin is still solid, because that is what tears pads and traces away.",
+        },
       ]}
       next={[
         {

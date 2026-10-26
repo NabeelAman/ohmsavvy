@@ -89,6 +89,10 @@ export default function HowToMeasurePhaseShiftVoltageCurrentPage() {
           q: "Why does my phase reading jump by 180 degrees?",
           a: "The current signal is inverted. That happens when the shunt or current probe is connected the opposite way round, for example a clamp facing backwards on the wire. Flip the probe, swap the shunt connections, or use the channel's invert setting, then check that the reading lands in a sensible range for the load.",
         },
+        {
+          q: "Can I use a current probe instead of a shunt resistor?",
+          a: "Yes. A scope current probe clamps around the wire, so nothing is added to the circuit and the probe output is isolated from it. The catch is that the probe adds its own delay, and AC-only transformer types also shift phase at low frequencies, so deskew it against the voltage channel first. A clamp meter without an analog output cannot feed a scope at all.",
+        },
       ]}
       next={[
         {

@@ -91,7 +91,11 @@ export default function HowToTestASolenoidValveCoilResistanceWithAMultimeterPage
         },
         {
           q: "Can I test a solenoid coil without removing it from the valve?",
-          a: "Yes. The coil usually stays on the valve for a resistance test; you only need to disconnect its wires or unplug its connector so nothing else is in parallel. Removing the coil from its stem is useful for the body test on some designs, but never energise a coil while it is off the valve, because many coils can overheat that way.",
+          a: "Yes. The coil usually stays on the valve for a resistance test; you only need to disconnect its wires or unplug its connector so nothing else is in parallel. Removing the coil from its stem is useful for the body test on some designs, but never energize a coil while it is off the valve, because many coils can overheat that way.",
+        },
+        {
+          q: "Why does my solenoid valve coil get hot?",
+          a: "Many coils rated for continuous duty run warm to hot when energized for long periods, which is normal within the maker's rating. Excess heat points to a supply voltage above the coil rating, a coil of the wrong voltage or AC/DC type, or, on AC coils, a plunger that cannot seat fully and so keeps the current high. Discolored insulation or a burning smell means the coil should be replaced.",
         },
       ]}
       next={[

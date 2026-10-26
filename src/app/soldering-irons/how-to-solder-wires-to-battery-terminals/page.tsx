@@ -4,6 +4,8 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -19,6 +21,8 @@ export const metadata = buildMetadata({
 });
 
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const fx601 = picks.find((p) => p.name === "Hakko FX-601")!;
 
 const link = "text-accent hover:underline";
 
@@ -60,6 +64,7 @@ export default function HowToSolderWiresToBatteryTerminalsPage() {
         { id: "general-safety", label: "General safety for any battery" },
         { id: "step-by-step", label: "Step-by-step technique" },
         { id: "quick-reference", label: "Quick reference" },
+        { id: "irons", label: "Irons suited to terminal work" },
       ]}
       faq={[
         {
@@ -77,6 +82,10 @@ export default function HowToSolderWiresToBatteryTerminalsPage() {
         {
           q: "What if my iron doesn't let me control temperature precisely?",
           a: "On lithium cell work especially, a simple fixed-wattage iron without temperature control makes it harder to judge how much heat you're actually applying — a station with a digital temperature readout, covered in our soldering iron vs. soldering station guide, gives you a known, repeatable setting rather than guessing from experience alone.",
+        },
+        {
+          q: "Should I solder or crimp a wire onto a car battery terminal?",
+          a: "For the main battery cables, a properly sized crimped lug on a clamp terminal is the normal automotive method, and many installers add solder only after a good crimp. Solder alone in a high-current joint can crack under vibration where the wire leaves the joint. Use heat-shrink over the transition to support the wire and keep moisture out.",
         },
       ]}
       next={[
@@ -115,7 +124,7 @@ export default function HowToSolderWiresToBatteryTerminalsPage() {
       </section>
 
       <section>
-        <StepHeading n={1} id="lithium-cell-tabs">Soldering lithium cell tabs</StepHeading>
+        <h2 id="lithium-cell-tabs" className="text-xl font-semibold mb-3">Soldering lithium cell tabs</h2>
         <p className="text-muted leading-7 mb-4">
           Work only on an already-attached tab, not the bare cell casing. Pre-tin the wire separately
           before touching the cell, so the actual contact time at the tab is as brief as possible —
@@ -152,7 +161,7 @@ export default function HowToSolderWiresToBatteryTerminalsPage() {
       </Callout>
 
       <section>
-        <StepHeading n={2} id="general-safety">General safety for any battery, regardless of chemistry</StepHeading>
+        <h2 id="general-safety" className="text-xl font-semibold mb-3">General safety for any battery, regardless of chemistry</h2>
         <DataTable
           head={["Practice", "Why it matters"]}
           rows={[
@@ -165,12 +174,36 @@ export default function HowToSolderWiresToBatteryTerminalsPage() {
       </section>
 
       <section>
-        <h2 id="step-by-step" className="text-xl font-semibold mb-3">Step-by-step technique</h2>
+        <StepHeading n={1} id="step-by-step">Isolate the battery and let it rest</StepHeading>
         <p className="text-muted leading-7">
-          Disconnect the battery from any charger and let it sit. Clean the terminal. Pre-tin the wire
-          end separately. For lithium cells, clip a heatsink onto the tab between the cell body and
-          where you&apos;ll solder. Touch the iron briefly, feed solder, and remove — keeping contact
-          time as short as the joint allows, especially on lithium chemistry.
+          Disconnect the battery from any charger and from the vehicle or device it powers, then let it sit in a
+          ventilated spot. In a car, remove the negative cable first so a slipped tool can&apos;t short the
+          positive post to the body.
+        </p>
+        <StepHeading n={2}>Clean the terminal down to bright metal</StepHeading>
+        <p className="text-muted leading-7">
+          Scrub a lead post or brass lug with a wire brush, and wipe a nickel tab with isopropyl alcohol. Solder
+          will not wet oxide or grease, and every second spent fighting a dirty surface is extra heat going into
+          the battery.
+        </p>
+        <StepHeading n={3}>Pre-tin the wire and the terminal separately</StepHeading>
+        <p className="text-muted leading-7">
+          Strip the wire, twist the strands and tin them away from the battery. Then add a thin coat of solder to
+          the terminal itself, with a dab of flux on nickel tabs. Two tinned surfaces fuse in a fraction of the
+          time it takes to wet bare metal.
+        </p>
+        <StepHeading n={4}>Fit a heatsink clip on lithium tabs</StepHeading>
+        <p className="text-muted leading-7">
+          For lithium cells, clip a heatsink onto the tab between the cell body and where you&apos;ll solder.
+          Slide heat-shrink tubing onto the wire now, well back from the joint, so you don&apos;t have to
+          desolder later to fit it.
+        </p>
+        <StepHeading n={5}>Join with one short, hot contact</StepHeading>
+        <p className="text-muted leading-7">
+          Use a large chisel tip at a firm working temperature, press the tinned wire onto the tinned terminal,
+          touch the iron to both, feed a little solder and lift away. A big tip at a higher setting delivers heat
+          quickly and gets off sooner, which is kinder to a cell than a small tip held on for a long time. Keep
+          the wire still until the solder sets, then shrink the tubing over the joint.
         </p>
       </section>
 
@@ -181,6 +214,48 @@ export default function HowToSolderWiresToBatteryTerminalsPage() {
           rows={[
             ["Lead-acid (car/leisure)", "Reasonably tolerant at the external terminal post", "Hydrogen gas risk if charging; never bridge terminals"],
             ["Lithium-ion/LiPo cells", "Low — very brief dwell time only", "Solder only to an attached tab, not the bare cell; consider spot-welding instead"],
+          ]}
+        />
+        <div className="mt-6">
+          <KeyIdea title="Short and hot beats long and cool">
+            The heat a cell absorbs depends on how long the iron stays on, not just the set temperature. Tin
+            both surfaces first, use the biggest tip that fits and keep the final contact to a few seconds.
+          </KeyIdea>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons suited to terminal work</h2>
+        <p className="text-muted leading-7 mb-4">
+          A battery post or a thick cable lug soaks up heat fast, so an underpowered iron has to sit on the
+          joint for a long time, which is exactly what you want to avoid. Look for enough power to hold the tip
+          temperature on heavy metal, a range of chisel tips and a setting you can read and repeat. These picks
+          from our reviews meet that bar.
+        </p>
+        <ProductStrip
+          title="Irons with the power for battery terminals"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "100W station driving a 65W iron, with presets so a high terminal setting is one press away from your usual electronics temperature.",
+            },
+            {
+              name: "Hakko FX-601",
+              image: fx601.image,
+              alt: "Hakko FX-601 temperature-controlled soldering iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-601",
+              note: "67W stationless iron with a 240–540°C dial on the handle; Hakko pitches it at heavy wire and terminal work.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W digital station with a readable set point, useful for the repeatable short contacts lithium tabs call for.",
+            },
           ]}
         />
       </section>

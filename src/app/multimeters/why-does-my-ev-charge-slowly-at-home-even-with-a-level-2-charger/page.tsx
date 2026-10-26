@@ -80,7 +80,7 @@ export default function WhyDoesMyEvChargeSlowlyAtHomePage() {
           <>
             A CAT III meter tells you whether a plug-in charger&apos;s receptacle gets 208 V or 240 V. See{" "}
             <Link href="/multimeters/best-multimeters-for-electricians-under-100" className={link}>
-              electricians&apos; meters under $100
+              budget-friendly meters for electricians
             </Link>
             .
           </>
@@ -112,6 +112,10 @@ export default function WhyDoesMyEvChargeSlowlyAtHomePage() {
         {
           q: "Would a more expensive charger make my car charge faster?",
           a: "Only if the charger is the lowest limit today. If your car's onboard charger tops out at 32 A, or your circuit can only support a 32 A setting, a 48 A charger will still deliver 32 A. Find the bottleneck first, then decide whether any hardware change helps.",
+        },
+        {
+          q: "Can a long wire run from the panel slow down EV charging?",
+          a: "Slightly. Every foot of copper adds resistance, so a long run to a detached garage drops some voltage under a 32 A or 40 A load, and charging power falls in proportion. A 3% drop on a 240 V circuit is about 7 V, costing roughly 3% of the rate. Electricians size wire for both ampacity and voltage drop, so a properly installed run shouldn't noticeably slow charging.",
         },
       ]}
       next={[

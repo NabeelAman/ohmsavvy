@@ -87,6 +87,10 @@ export default function HowToTriggerAnOscilloscopeOnARuntPulsePage() {
           q: "Does probe bandwidth matter when hunting runts?",
           a: "It can. A narrow runt passed through a 1x probe or a scope near its bandwidth limit is rounded off and reads lower than it really is, so a short full-height glitch can look like a runt. Use a compensated 10x probe with a short ground and keep the bandwidth limit off while you hunt.",
         },
+        {
+          q: "Can a logic analyzer catch runt pulses?",
+          a: "Not reliably. A logic analyzer compares each input against a single threshold and records only high or low, so a runt either looks like a normal pulse or vanishes, depending on which side of that threshold it peaks. It is still useful for finding when the fault happens and what the bus was doing at the time; then use the scope's runt trigger to see the real amplitude.",
+        },
       ]}
       next={[
         {
@@ -358,7 +362,7 @@ export default function HowToTriggerAnOscilloscopeOnARuntPulsePage() {
           head={["Likely cause", "Typical clue on the scope", "What to check"]}
           rows={[
             ["Logic race or hazard", "Runt lines up with another input changing", "Gate logic, add a register or synchronise"],
-            ["Metastable flip-flop", "Runt or late edge after an asynchronous input", "Synchroniser stages on the input"],
+            ["Metastable flip-flop", "Runt or late edge after an asynchronous input", "Synchronizer stages on the input"],
             ["Bus contention", "Runt when two drivers are enabled at once", "Enable timing, direction control"],
             ["Weak driver or heavy load", "Slow edges that sometimes do not finish", "Load capacitance, pull-up value"],
             ["Supply droop or ground bounce", "Runts coincide with dips on the rail (CH2)", "Decoupling, ground path"],

@@ -70,6 +70,10 @@ export default function AnalogVsDigitalOscilloscopePage() {
           q: "Is aliasing something I need to worry about on a modern digital scope?",
           a: "Rarely, as long as the scope's sample rate is comfortably higher than the frequency content of what you're measuring — a common rule of thumb is at least 5-10x the highest frequency of interest. It becomes a real concern mainly when probing signals near or above a scope's rated sample rate, or when using overly aggressive memory-saving settings that reduce the effective sample rate.",
         },
+        {
+          q: "Is a cheap used analog oscilloscope a good first scope for a beginner?",
+          a: "It can teach the basics of triggering and timebase, but it is usually a poor first buy. Old units often need recalibration, worn switches and tired CRTs are common, and you lose single-shot capture, cursors and automatic measurements that make learning faster. An entry-level digital bench scope does everything the analog one does for hobby signals, plus storage and screenshots.",
+        },
       ]}
       next={[
         {

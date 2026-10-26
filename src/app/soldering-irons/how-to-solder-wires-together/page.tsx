@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const fx601 = picks.find((p) => p.name === "Hakko FX-601")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -65,6 +68,7 @@ export default function HowToSolderWiresTogetherPage() {
         { id: "cool-and-shrink", label: "5. Let it cool, then shrink the tubing" },
         { id: "conductivity-note", label: "Does a soldered splice conduct as well as the original wire?" },
         { id: "common-mistakes", label: "Common mistakes with wire splices" },
+        { id: "irons", label: "Irons that suit wire splicing" },
       ]}
       faq={[
         {
@@ -82,6 +86,10 @@ export default function HowToSolderWiresTogetherPage() {
         {
           q: "Is heat-shrink tubing actually necessary, or is electrical tape enough?",
           a: "Heat-shrink is the better choice for most splices. It forms a continuous seal around the joint and adds genuine strain relief at the stiff solder point, where a flexible wire transitions into a rigid soldered section — exactly where repeated flexing is most likely to fatigue and break the wire. Electrical tape alone doesn't add that strain relief and can loosen or unwind over time.",
+        },
+        {
+          q: "What temperature should I set to solder wires together?",
+          a: "Many people start around 330–370°C (about 625–700°F) for leaded solder on thin hookup wire and go higher, toward 380–400°C, for lead-free alloys or thicker gauges that pull heat away quickly. Treat those as starting points, not rules: the right setting is the lowest one that lets solder wick through the twist within two or three seconds without scorching the insulation.",
         },
       ]}
       next={[
@@ -266,6 +274,41 @@ export default function HowToSolderWiresTogetherPage() {
           </Link>{" "}
           for more on when each method fits.
         </p>
+      </section>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons that suit wire splicing</h2>
+        <p className="text-muted leading-7 mb-4">
+          Thin signal wire splices fine with almost any temperature-controlled iron. Thicker gauges are a
+          different story: the copper soaks up heat, so an iron that recovers quickly or runs hotter makes
+          the solder wick through the twist instead of sitting on top of it.
+        </p>
+        <ProductStrip
+          title="Irons for splicing wires"
+          items={[
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable USB-C soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Runs from USB-C PD or a 12–24V DC source, so it travels to splices in a car or out in the field.",
+            },
+            {
+              name: "Hakko FX-601",
+              image: fx601.image,
+              alt: "Hakko FX-601 soldering iron with temperature dial on the handle",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-601",
+              note: "67W with a 240–540°C dial on the handle, aimed at heavy wire and terminals that drain heat fast.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX digital soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Closed-loop bench station, 50–480°C, with T18 tips from fine points to wide chisels for bigger joints.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

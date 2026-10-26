@@ -7,6 +7,7 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
 
 const link = "text-accent hover:underline";
 
@@ -63,6 +66,7 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
         { id: "diode-mode", label: "4. Test single LEDs in diode mode" },
         { id: "rgb-strips", label: "Common-anode RGB strips" },
         { id: "diagnosis", label: "Reading the results" },
+        { id: "meters", label: "Meters for LED strip work" },
       ]}
       faq={[
         {
@@ -80,6 +84,10 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
         {
           q: "Can I power a 12V LED strip from a 24V supply?",
           a: "No. Each segment's resistor is sized for the strip's rated voltage, so doubling it drives far too much current through the LEDs and they overheat quickly. Match the supply voltage to the voltage printed on the strip, and confirm it with your meter at the supply output before connecting.",
+        },
+        {
+          q: "How do I know if my LED strip is 12V or 24V?",
+          a: "Look for the voltage printed on the copper pads beside each cut mark or on the reel label. If it is missing, count the LEDs between cut marks: three per segment usually means 12V and six usually means 24V, though some high-density designs differ. Confirm by measuring the power supply output on DC volts before connecting anything.",
         },
       ]}
       next={[
@@ -252,6 +260,41 @@ export default function HowToTestAnLedStripWithAMultimeterPage() {
           </Link>{" "}
           covers DC voltage measurement if you are new to it.
         </p>
+      </section>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for LED strip work</h2>
+        <p className="text-muted leading-7 mb-4">
+          Strip testing needs only DC volts, continuity and diode mode, so a modest meter is enough. Sharp
+          probe tips help on the small copper pads, and a backlit display helps when the strip runs under a
+          cabinet or along a dark cove.
+        </p>
+        <ProductStrip
+          title="Meters for checking LED strips"
+          items={[
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Auto-ranging True RMS meter for home use, with a non-contact detector for tracing the mains side of the supply.",
+            },
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR True RMS digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "6,000-count True RMS meter with auto and manual ranging, suited to low-voltage hobby electronics like strip lighting.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "CAT III 600V and a backlit 6,000-count display, for jobs that also involve checking the outlet or driver input.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

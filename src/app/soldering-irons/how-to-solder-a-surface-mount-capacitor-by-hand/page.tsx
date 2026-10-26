@@ -6,6 +6,7 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const yihua862 = picks.find((p) => p.name === "YIHUA 862BD+")!;
 
 const link = "text-accent hover:underline";
 
@@ -373,6 +376,45 @@ export default function HowToSolderASurfaceMountCapacitorByHandPage() {
           </Link>{" "}
           roundup.
         </p>
+      </section>
+      <section>
+        <h2 id="tools-for-smd-capacitors" className="text-xl font-semibold mb-3">Irons and rework stations for SMD capacitors</h2>
+        <p className="text-muted leading-7 mb-6">
+          Hand soldering chip capacitors rewards an iron with steady temperature and fast recovery, so you can
+          use a moderate setting and still finish each end quickly. Removing a capacitor is a different job:
+          both ends have to melt together, which is far easier with hot air or two irons than with a single
+          tip. For smaller packages and tighter spacing, see{" "}
+          <Link href="/soldering-irons/how-to-solder-fine-pitch-smd-components" className={link}>
+            how to solder fine-pitch SMD components
+          </Link>
+          .
+        </p>
+        <ProductStrip
+          title="Tools for SMD capacitor work"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX digital soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "ESD-safe 100W station, 50–480°C, with presets so you can switch between small chip and larger bulk capacitor settings.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "ESD-safe 70W digital station with tight temperature stability for repeated small SMD joints.",
+            },
+            {
+              name: "YIHUA 862BD+",
+              image: yihua862.image,
+              alt: "YIHUA 862BD+ soldering and hot air rework station",
+              href: "/soldering-irons/yihua-862bd-plus-review",
+              note: "75W iron plus a 500W hot air gun with separate readouts, for lifting chip capacitors with both ends molten.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

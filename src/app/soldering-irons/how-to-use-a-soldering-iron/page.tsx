@@ -80,7 +80,7 @@ export default function HowToUseASolderingIronPage() {
         },
         {
           q: "Do I need flux if my solder already has a flux core?",
-          a: "Core flux handles most clean, straightforward joints. Add extra liquid or paste flux when you are reworking an existing joint, soldering to a larger pad or ground plane that pulls heat away quickly, or working with an oxidised surface — the core flux in the wire alone often isn't enough once a joint needs rework rather than a first pass.",
+          a: "Core flux handles most clean, straightforward joints. Add extra liquid or paste flux when you are reworking an existing joint, soldering to a larger pad or ground plane that pulls heat away quickly, or working with an oxidized surface — the core flux in the wire alone often isn't enough once a joint needs rework rather than a first pass.",
         },
         {
           q: "Why does my solder joint look dull and grainy instead of shiny?",
@@ -88,7 +88,11 @@ export default function HowToUseASolderingIronPage() {
         },
         {
           q: "Can I reuse solder that's already stuck to the tip?",
-          a: "Not for a new joint. Old solder sitting on the tip oxidises and loses flux activity, so it won't wet a fresh joint properly even if it still looks silver. Wipe the tip clean on a damp sponge or brass wool, re-tin it, then feed new solder from the spool into the actual joint.",
+          a: "Not for a new joint. Old solder sitting on the tip oxidizes and loses flux activity, so it won't wet a fresh joint properly even if it still looks silver. Wipe the tip clean on a damp sponge or brass wool, re-tin it, then feed new solder from the spool into the actual joint.",
+        },
+        {
+          q: "What temperature should I set my soldering iron to?",
+          a: "Common starting points are about 330 to 350 °C (625 to 660 °F) for leaded 63/37 or 60/40 solder and about 350 to 380 °C (660 to 715 °F) for lead-free alloys. Go higher for large pads and thick wires. Use the lowest setting that lets a joint flow within one to three seconds, because a hotter tip oxidizes faster and wears sooner.",
         },
       ]}
       next={[
@@ -112,7 +116,7 @@ export default function HowToUseASolderingIronPage() {
             down on a bench.
           </li>
           <li>
-            Solder fumes are mostly flux vapour, which irritates eyes and airways with prolonged
+            Solder fumes are mostly flux vapor, which irritates eyes and airways with prolonged
             exposure. Work in a ventilated area or use a small fan/extractor to pull fumes away from
             your face, and avoid breathing directly over the joint.
           </li>
@@ -132,7 +136,7 @@ export default function HowToUseASolderingIronPage() {
           items={[
             { label: "Stand & sponge/brass wool", desc: "Holds the hot iron safely and cleans the tip between joints." },
             { label: "Rosin-core solder", desc: "60/40 or 63/37 leaded, or a lead-free alloy — flux is built into the core." },
-            { label: "Liquid or paste flux", desc: "For rework, larger pads, or oxidised surfaces core flux alone won't wet." },
+            { label: "Liquid or paste flux", desc: "For rework, larger pads, or oxidized surfaces core flux alone won't wet." },
             { label: "Wire cutters/strippers", desc: "To trim leads flush after soldering and prep wire ends." },
             { label: "Helping-hands or vise", desc: "Frees both hands for the iron and the solder spool." },
             { label: "Ventilation", desc: "A fan or extractor pulling flux fumes away from your face." },
@@ -186,7 +190,7 @@ export default function HowToUseASolderingIronPage() {
           Strip wire ends to bare, clean copper and twist stranded wire so it doesn&apos;t fray. On a
           PCB, make sure the component lead sits fully through the hole and is bent slightly to hold it
           in place. Both surfaces being soldered — not just one — need to be clean metal; solder
-          won&apos;t wet oxidised, painted, or greasy surfaces no matter how long you apply heat.
+          won&apos;t wet oxidized, painted, or greasy surfaces no matter how long you apply heat.
         </p>
       </section>
 
@@ -282,7 +286,7 @@ export default function HowToUseASolderingIronPage() {
             <li>Melting solder directly onto the tip, then wiping it onto the joint — this skips proper heating of the joint itself.</li>
             <li>Pulling the iron away the instant solder starts to flow, before the joint is fully wetted.</li>
             <li>Holding a part in loose tweezers that lets it shift during cooling.</li>
-            <li>Using a cold, oxidised tip and wondering why nothing melts — see the{" "}
+            <li>Using a cold, oxidized tip and wondering why nothing melts — see the{" "}
               <Link href="/soldering-irons/soldering-iron-not-melting-solder" className={link}>troubleshooting guide</Link> for this specifically.
             </li>
           </ul>

@@ -91,6 +91,10 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
           q: "Should you tin stranded wire before crimping it?",
           a: "Generally no. A crimp works by compressing the strands into a gas-tight joint, and solder can slowly deform under that pressure, loosening the connection over time. It also leaves a stiff point right at the back of the crimp. Crimp bare, clean strands with the correct tool and terminal, and follow the terminal maker's instructions.",
         },
+        {
+          q: "What type of solder is best for stranded wire?",
+          a: "Use rosin-core electronics solder in a diameter that suits the wire, thin for small gauges so you can feed a measured amount without flooding the strands. Leaded 63/37 flows at a lower temperature, which shortens the heating time; lead-free alloys work but need a little more heat. Never use acid-core plumbing solder on wire, because its flux residue keeps corroding the copper long after the joint cools.",
+        },
       ]}
       next={[
         {

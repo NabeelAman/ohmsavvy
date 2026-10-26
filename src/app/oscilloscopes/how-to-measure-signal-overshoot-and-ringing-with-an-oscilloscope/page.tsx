@@ -87,6 +87,10 @@ export default function HowToMeasureSignalOvershootAndRingingPage() {
           q: "What is preshoot on an oscilloscope?",
           a: "Preshoot is a small excursion in the opposite direction just before an edge starts, so a rising edge dips slightly first. Many scopes offer it as an automatic measurement alongside overshoot, expressed as a percentage of the amplitude. It is calculated the same way as overshoot but before the edge, and definitions vary by brand, so check your manual.",
         },
+        {
+          q: "Is overshoot on a power supply's output measured the same way?",
+          a: "The arithmetic is the same: peak excursion divided by the step size. The setup differs, though. You apply a load step, trigger on the change in output voltage and use a much slower timebase, because a regulator's control loop responds over microseconds to milliseconds. Large or slow-settling overshoot there usually points to low loop phase margin rather than to traces or cables.",
+        },
       ]}
       next={[
         {

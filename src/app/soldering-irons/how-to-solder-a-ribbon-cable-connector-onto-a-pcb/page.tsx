@@ -89,6 +89,10 @@ export default function HowToSolderARibbonCableConnectorOntoAPcbPage() {
           q: "How do I fix a box header I soldered on backwards?",
           a: "On a shrouded header the cleanest fix is often to cut the plastic shroud and pin strip away, then remove each pin one at a time and clear the holes with wick or a solder sucker. Fit a new header the right way round. Trying to pull a whole row out at once usually lifts pads.",
         },
+        {
+          q: "Should I fit a straight or right-angle header for a ribbon cable?",
+          a: "Follow the board footprint and the enclosure. A straight header sends the cable upward, which suits boards with open space above them. A right-angle header lets the cable run flat along the board, handy in shallow cases or at a board edge. Both come in the same common pitches, but pin 1 on a right-angle part is easy to misread, so confirm it against the silkscreen before soldering.",
+        },
       ]}
       next={[
         {

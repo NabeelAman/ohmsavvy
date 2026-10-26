@@ -114,11 +114,42 @@ export default function HowToFindABrokenWirePage() {
           available) and measure across each connector or splice along the wire&apos;s length, one at a time.
         </p>
         <Figure caption="A perfect connection drops 0 V even under load — any reading here is lost across that specific point.">
-          <div className="rounded-lg border border-border bg-surface-raised p-5 text-sm text-muted">
-            Probe 1: wire just before the connector · Probe 2: wire just after the connector · Circuit:
-            switched on, carrying its normal load
-          </div>
+          <svg viewBox="0 0 340 170" className="w-full h-auto" role="img" aria-label="Diagram of a live circuit with a battery feeding a lamp through a wire and an inline connector; inside the connector only a few strands are still touching; the meter's red probe is on the wire just before the connector and the black probe just after it, and the meter shows an illustrative 1.8 volt drop while a good connection would show close to zero">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="12" y="40" width="40" height="26" rx="3" />
+              <line x1="52" y1="53" x2="140" y2="53" />
+              <rect x="140" y="40" width="50" height="26" rx="4" />
+              <line x1="190" y1="53" x2="280" y2="53" />
+              <circle cx="296" cy="53" r="14" />
+              <line x1="296" y1="67" x2="296" y2="100" />
+              <line x1="32" y1="66" x2="32" y2="100" />
+              <line x1="32" y1="100" x2="296" y2="100" />
+            </g>
+            <g className="stroke-accent" strokeWidth="1.2">
+              <line x1="146" y1="50" x2="162" y2="50" />
+              <line x1="146" y1="56" x2="160" y2="56" />
+              <line x1="184" y1="50" x2="168" y2="50" />
+              <line x1="184" y1="56" x2="164" y2="54" />
+            </g>
+            <text x="32" y="32" fontSize="10" textAnchor="middle" className="fill-foreground">12 V</text>
+            <text x="165" y="32" fontSize="10" textAnchor="middle" className="fill-accent">few strands left</text>
+            <text x="296" y="57" fontSize="9" textAnchor="middle" className="fill-foreground">lamp</text>
+            <circle cx="120" cy="53" r="3" className="fill-accent" />
+            <circle cx="210" cy="53" r="3" className="fill-foreground" />
+            <line x1="120" y1="56" x2="140" y2="124" className="stroke-accent" strokeWidth="1.4" />
+            <line x1="210" y1="56" x2="190" y2="124" className="stroke-foreground" strokeWidth="1.4" />
+            <rect x="130" y="124" width="70" height="22" rx="3" className="fill-surface stroke-accent" strokeWidth="1.2" />
+            <text x="165" y="139" fontSize="11" textAnchor="middle" className="fill-accent">1.8 V DC</text>
+            <text x="12" y="162" fontSize="9" className="fill-muted">Illustrative reading. A sound joint under load: near 0 V</text>
+          </svg>
         </Figure>
+        <p className="text-muted leading-7 mt-4">
+          Read the diagram as a series circuit. The battery&apos;s 12 V is shared between everything in the
+          loop, so the voltage that appears across the damaged connector is voltage the lamp no longer gets.
+          In this illustrative case, 1.8 V lost at the joint leaves roughly 10.2 V for the lamp, which is why
+          it glows dim instead of going fully dark. The same joint would beep on a continuity test, because the
+          meter&apos;s tiny test current passes through a few strands without any measurable loss.
+        </p>
       </section>
 
       <section>

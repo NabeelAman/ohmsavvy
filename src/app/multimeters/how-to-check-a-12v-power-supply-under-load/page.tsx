@@ -5,6 +5,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -20,6 +21,9 @@ export const metadata = buildMetadata({
 });
 
 const astroai = picks.find((p) => p.name === "AstroAI DM6000AR")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const km200s = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const ut139c = picks.find((p) => p.name === "UNI-T UT139C")!;
 
 const link = "text-accent hover:underline";
 
@@ -76,6 +80,10 @@ export default function HowToCheckA12vPowerSupplyUnderLoadPage() {
         {
           q: "Does this same technique apply to testing a car battery?",
           a: "Yes, the same core idea applies, though automotive testing often uses the engine's starter motor itself as a very heavy, brief load (a \"load test\"), or a dedicated battery load tester, rather than a simple resistor — the current demand during cranking is much higher than most bench loads can safely provide.",
+        },
+        {
+          q: "How do I measure how much current my 12V load actually draws?",
+          a: "Move the red lead to the meter's 10A (or mA) jack, select DC amps, and break the positive wire so the meter sits in series with the load. Start on the highest range. Note the current, then return the lead to the volts jack before measuring voltage again, or the next reading can blow the meter's fuse.",
         },
       ]}
       next={[
@@ -189,6 +197,42 @@ export default function HowToCheckA12vPowerSupplyUnderLoadPage() {
         drawing from it — which is the one condition that never actually matters in real use. Testing
         under a realistic load is what actually tells you whether the supply can do its job.
       </KeyIdea>
+
+      <section>
+        <h2 id="meters-for-load-testing" className="text-xl font-semibold mb-3">Meters for load-testing 12V supplies</h2>
+        <p className="text-muted leading-7">
+          A loaded test needs only DC volts, plus DC amps if you want to know the exact current. These
+          verified picks all read both with auto-ranging.
+        </p>
+        <div className="mt-4">
+          <ProductStrip
+            title="Meters for supply and battery checks"
+            items={[
+              {
+                name: "Fluke 115",
+                image: fluke115.image,
+                alt: "Fluke 115 True RMS digital multimeter",
+                href: "/multimeters/fluke-115-review",
+                note: "Hands-on tested. True RMS, CAT III 600V and a 6,000-count backlit display for clean before-and-after voltage readings.",
+              },
+              {
+                name: "UNI-T UT139C",
+                image: ut139c.image,
+                alt: "UNI-T UT139C True RMS digital multimeter",
+                href: "/multimeters/uni-t-ut139c-review",
+                note: "True RMS, 6,000-count and CAT III 600V, with manual ranging when you want a fixed range during a sag test.",
+              },
+              {
+                name: "KAIWEETS KM200s",
+                image: km200s.image,
+                alt: "KAIWEETS KM200s True RMS digital multimeter",
+                href: "/multimeters/kaiweets-km200s-review",
+                note: "Budget True RMS auto-ranging meter with a backlight. CAT II 600V, so keep it to low-voltage supplies, not panels.",
+              },
+            ]}
+          />
+        </div>
+      </section>
     </HowToShell>
   );
 }

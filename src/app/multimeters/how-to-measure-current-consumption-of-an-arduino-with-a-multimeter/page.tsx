@@ -89,6 +89,10 @@ export default function HowToMeasureCurrentConsumptionOfAnArduinoWithAMultimeter
           q: "Do servos and motors count in an Arduino current measurement?",
           a: "Only if they are powered through the same lead the meter is in. Servos and motors draw large, brief current peaks that can blow a meter's mA fuse and reset the board. Measure them separately on the meter's A range, and power them from their own supply rather than the Arduino's 5 V pin where possible.",
         },
+        {
+          q: "Can I use a USB power meter instead of a multimeter?",
+          a: "For a quick look, yes. An inline USB power meter shows voltage and current on the cable, but its reading includes the USB-serial chip, regulator and power LED, and many units resolve only whole milliamps, which hides sleep currents entirely. A multimeter in series with the supply rail on the right range is still needed for microamp sleep figures and battery-powered designs.",
+        },
       ]}
       next={[
         {

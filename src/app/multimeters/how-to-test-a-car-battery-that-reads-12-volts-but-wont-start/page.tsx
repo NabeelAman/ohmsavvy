@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -107,6 +107,54 @@ export default function BatteryReads12VButWontStartPage() {
           charge. A battery with internal damage can still hold a surface charge that shows a reasonable
           resting voltage, then collapse the instant real current is demanded — which a no-load reading
           simply cannot reveal.
+        </p>
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                A battery behaves like an ideal voltage source with a small internal resistance in series. At
+                rest almost no current flows, so the meter sees the full source voltage; during cranking the
+                starter&apos;s heavy current drops part of that voltage inside the battery itself.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 180" className="w-full h-auto" role="img" aria-label="Circuit model of a car battery: an ideal 12.6 volt cell in series with an internal resistance, connected through a switch to the starter motor; a meter across the battery terminals reads 12.6 volts with the switch open and a lower voltage while cranking because of the drop across the internal resistance">
+              <rect x="20" y="24" width="120" height="120" rx="6" className="stroke-muted" strokeWidth="1.2" fill="none" strokeDasharray="4 3" />
+              <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+                <line x1="60" y1="60" x2="80" y2="60" />
+                <line x1="64" y1="68" x2="76" y2="68" />
+                <line x1="70" y1="40" x2="70" y2="60" />
+                <line x1="70" y1="68" x2="70" y2="84" />
+                <path d="M70 84 l6 4 l-12 6 l12 6 l-12 6 l6 4" />
+                <line x1="70" y1="110" x2="70" y2="130" />
+                <line x1="70" y1="40" x2="140" y2="40" />
+                <line x1="70" y1="130" x2="140" y2="130" />
+                <line x1="140" y1="40" x2="230" y2="40" />
+                <line x1="230" y1="40" x2="250" y2="30" />
+                <line x1="258" y1="40" x2="290" y2="40" />
+                <circle cx="290" cy="85" r="18" />
+                <line x1="290" y1="40" x2="290" y2="67" />
+                <line x1="290" y1="103" x2="290" y2="130" />
+                <line x1="140" y1="130" x2="290" y2="130" />
+              </g>
+              <text x="92" y="68" fontSize="9" className="fill-foreground">12.6 V cell</text>
+              <text x="84" y="101" fontSize="9" className="fill-accent">R internal</text>
+              <text x="80" y="18" fontSize="9" textAnchor="middle" className="fill-muted">inside the battery</text>
+              <text x="244" y="22" fontSize="9" textAnchor="middle" className="fill-muted">key</text>
+              <text x="290" y="89" fontSize="9" textAnchor="middle" className="fill-foreground">starter</text>
+              <circle cx="140" cy="40" r="3" className="fill-accent" />
+              <circle cx="140" cy="130" r="3" className="fill-accent" />
+              <text x="160" y="80" fontSize="9" className="fill-accent">meter here</text>
+              <text x="20" y="162" fontSize="9" className="fill-muted">Rest: ~0 A, reads 12.6 V. Cranking: I × R lost inside</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Here&apos;s a worked example with illustrative round numbers, not measurements. Assume the starter
+          draws 200 A. A healthy battery with an internal resistance of about 0.01 Ω loses 200 × 0.01 = 2 V
+          inside itself, so the terminals sit near 10.6 V while cranking. A sulfated or damaged battery that
+          has climbed to 0.02 Ω loses 4 V and falls to about 8.6 V, below the common 9.6 V pass line, yet both
+          batteries show the same 12.6 V on the meter when nothing is drawing current.
         </p>
       </section>
 

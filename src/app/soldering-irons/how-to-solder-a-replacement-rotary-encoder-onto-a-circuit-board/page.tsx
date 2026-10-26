@@ -90,6 +90,10 @@ export default function HowToSolderAReplacementRotaryEncoderOntoACircuitBoardPag
           q: "Do rotary encoders have a polarity or orientation?",
           a: "They have no electrical polarity, but they do have a fixed pinout. The A, common and B pins must go into the matching holes, and the footprint usually only allows one orientation. If A and B end up swapped, the encoder still works but counts in the reverse direction, which is easy to spot when you test it.",
         },
+        {
+          q: "What are the two extra pins on a five-pin rotary encoder?",
+          a: "On most panel encoders with a push-button shaft, the three pins on one side are A, common and B, while the two on the opposite side belong to a separate switch that closes when you press the knob. Check them on continuity: the pair should read open at rest and closed while the shaft is pushed in. If the device uses that press function, the replacement needs the switch too.",
+        },
       ]}
       next={[
         {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -117,6 +117,56 @@ export default function HowToTestAThermostatPage() {
           (often labeled &quot;C&quot;) terminal and the power (&quot;R&quot;) terminal at the thermostat
           base. A reading close to the system&apos;s rated control voltage confirms the thermostat is
           receiving power.
+        </p>
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                A typical 24 V AC heating control loop. The thermostat is only a switch between R and W: when it
+                calls for heat, the contact closes and the transformer&apos;s voltage reaches the heat relay or
+                valve coil, which returns to the transformer on C.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 180" className="w-full h-auto" role="img" aria-label="Wiring diagram of a 24 volt AC thermostat loop: a transformer secondary feeds the R wire to the thermostat, an internal contact in the thermostat connects R to W, the W wire runs to a heat relay coil in the equipment, and the coil returns to the transformer on the C wire; a meter placed between R and C at the thermostat reads about 24 volts AC">
+              <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+                <path d="M40 50 q8 8 0 16 q8 8 0 16 q8 8 0 16 q8 8 0 16" />
+                <line x1="40" y1="50" x2="40" y2="34" />
+                <line x1="40" y1="34" x2="170" y2="34" />
+                <line x1="40" y1="114" x2="40" y2="140" />
+                <line x1="40" y1="140" x2="290" y2="140" />
+                <rect x="160" y="22" width="70" height="60" rx="5" />
+                <line x1="180" y1="34" x2="180" y2="54" />
+                <line x1="180" y1="54" x2="208" y2="46" />
+                <line x1="212" y1="54" x2="212" y2="70" />
+                <line x1="212" y1="70" x2="290" y2="70" />
+                <rect x="270" y="86" width="40" height="34" rx="3" />
+                <line x1="290" y1="70" x2="290" y2="86" />
+                <line x1="290" y1="120" x2="290" y2="140" />
+              </g>
+              <text x="40" y="24" fontSize="10" textAnchor="middle" className="fill-foreground">24 V AC</text>
+              <text x="40" y="160" fontSize="9" textAnchor="middle" className="fill-muted">transformer</text>
+              <text x="195" y="96" fontSize="9" textAnchor="middle" className="fill-muted">thermostat</text>
+              <text x="174" y="48" fontSize="9" textAnchor="end" className="fill-accent">R</text>
+              <text x="220" y="66" fontSize="9" className="fill-accent">W</text>
+              <text x="290" y="107" fontSize="9" textAnchor="middle" className="fill-foreground">coil</text>
+              <text x="290" y="132" fontSize="9" textAnchor="middle" className="fill-muted">heat relay</text>
+              <text x="150" y="152" fontSize="9" className="fill-accent">C (common)</text>
+              <circle cx="120" cy="34" r="3" className="fill-accent" />
+              <circle cx="120" cy="140" r="3" className="fill-accent" />
+              <line x1="120" y1="37" x2="120" y2="137" className="stroke-accent" strokeWidth="1.2" strokeDasharray="3 3" />
+              <text x="114" y="92" fontSize="9" textAnchor="end" className="fill-accent">meter R–C</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The loop explains a second useful check. With the system powered and the thermostat not calling,
+          measuring AC volts across R and W typically shows close to the full control voltage, because the
+          open contact holds back the whole supply while the coil passes it through to W. Turn the setpoint
+          up so the thermostat calls for heat, and that same R-to-W reading should fall to near zero as the
+          contact closes. If it stays at full voltage while the display says it&apos;s heating, the contact
+          inside the thermostat isn&apos;t closing. Transformer outputs vary somewhat with line voltage and load,
+          so a reading in the low-to-high 20s is normal for a nominal 24 V system.
         </p>
       </section>
 

@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const ts101 = picks.find((p) => p.name === "Miniware TS101")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
 
@@ -66,6 +69,7 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
         { id: "anchor-it", label: "5. Anchor the wire before anything else" },
         { id: "check-for-shorts", label: "6. Check for shorts and continuity" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "irons", label: "Irons for bodge wires on tiny pads" },
       ]}
       faq={[
         {
@@ -294,6 +298,38 @@ export default function HowToSolderAWireToASmallSurfaceMountPadPage() {
         solder when it springs free, so wear eye protection, ventilate flux smoke away from your face, and
         wash your hands after handling leaded solder.
       </Callout>
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons for bodge wires on tiny pads</h2>
+        <p className="text-muted leading-7 mb-6">
+          Small pads lift if you heat them too long, so a responsive iron with a fine tip and a temperature you can dial in precisely makes single-touch tacking much easier.
+        </p>
+        <ProductStrip
+          title="Irons for small SMD pads"
+          items={[
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Heats in about 12 s on a 20V+ supply and shows its temperature on an OLED screen, so you can set a modest value for tiny pads.",
+            },
+            {
+              name: "Miniware TS101",
+              image: ts101.image,
+              alt: "Miniware TS101 portable smart soldering iron",
+              href: "/soldering-irons/pinecil-v2-vs-ts101-soldering-iron",
+              note: "Miniware lists 50–400°C, motion-sensing sleep and TS100 tip compatibility for a portable fine-work kit.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA 70W digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "ESD-safe construction protects the chips around the pad while you work a wire onto a test point.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

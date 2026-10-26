@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -13,7 +13,7 @@ export const metadata = buildMetadata({
 });
 
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
-const craftsman = picks.find((p) => p.name === "Craftsman CMMT14171")!;
+const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
 
 const link = "text-accent hover:underline";
 
@@ -27,10 +27,12 @@ export default function HowToFindAnIntermittentFaultPage() {
       category="multimeters"
       intro={
         <>
-          An intermittent fault rarely shows up the instant you connect a meter and wait — it needs
-          provoking. Setting the meter to min/max (or record) mode and physically wiggling, tapping, or
-          heating sections of the suspect circuit while it holds the lowest and highest readings seen is
-          what actually catches a fault that comes and goes in a fraction of a second.
+          To find an intermittent electrical fault with a multimeter, clip the leads to the suspect
+          circuit, switch the meter to min/max (record) mode, and then provoke the fault by wiggling,
+          tapping, heating or flexing one section of wiring at a time: the section that makes the stored
+          minimum or maximum jump is where the fault lives. An intermittent rarely shows up while you stand
+          and watch a live reading, because it can come and go in a fraction of a second; min/max holds the
+          extreme value for you, and halving the circuit narrows the search quickly.
         </>
       }
       aside={{
@@ -52,6 +54,7 @@ export default function HowToFindAnIntermittentFaultPage() {
         { id: "wiggle-test", label: "Wiggle, tap, and flex while watching" },
         { id: "voltage-drop-approach", label: "A voltage-drop approach for circuits under load" },
         { id: "narrow-the-section", label: "Narrow it down section by section" },
+        { id: "capture-speed", label: "How fast a dropout can min/max catch?" },
         { id: "which-meter", label: "Which meter to use" },
       ]}
       faq={[
@@ -157,6 +160,58 @@ export default function HowToFindAnIntermittentFaultPage() {
           half contains it. This halves the harness length you need to search with each round rather than
           checking every connector individually from one end.
         </p>
+        <Figure
+          caption={
+            <>
+              Half-splitting a harness: test at the middle connector first. If the dropout appears between
+              the source and C4, the far half is cleared in one move; split the remaining half at C2 next,
+              and so on until one section is left.
+            </>
+          }
+        >
+          <svg viewBox="0 0 360 150" className="w-full h-auto" role="img" aria-label="Half-split diagram of a wiring harness with connectors C1 to C7 between the source and the load, showing the first test at the middle connector and the second test at the quarter point">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="8" y="50" width="40" height="30" rx="4" className="fill-surface" />
+              <rect x="312" y="50" width="40" height="30" rx="4" className="fill-surface" />
+              <path d="M48 65 H312" />
+            </g>
+            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+              <g key={n}>
+                <rect x={48 + n * 33 - 6} y="58" width="12" height="14" rx="2" className={n === 4 ? "fill-accent stroke-accent" : n === 2 ? "fill-accent/50 stroke-accent" : "fill-surface stroke-foreground"} strokeWidth="1.4" />
+                <text x={48 + n * 33} y="90" fontSize="9" textAnchor="middle" className="fill-muted">C{n}</text>
+              </g>
+            ))}
+            <g fontSize="9" textAnchor="middle" className="fill-foreground">
+              <text x="28" y="69">source</text>
+              <text x="332" y="69">load</text>
+            </g>
+            <path d="M180 56 V30" className="stroke-accent" strokeWidth="1.4" />
+            <text x="180" y="24" fontSize="9" textAnchor="middle" className="fill-accent">test 1: middle (C4)</text>
+            <path d="M114 74 V108" className="stroke-accent" strokeWidth="1.4" strokeDasharray="3 2" />
+            <text x="114" y="120" fontSize="9" textAnchor="middle" className="fill-accent">test 2: C2</text>
+            <path d="M186 100 H312" className="stroke-muted" strokeWidth="5" opacity="0.5" />
+            <text x="249" y="120" fontSize="9" textAnchor="middle" className="fill-muted">cleared after test 1</text>
+            <text x="180" y="142" fontSize="9" textAnchor="middle" className="fill-muted">each test halves the wiring left to search</text>
+          </svg>
+        </Figure>
+        <p className="text-muted leading-7 mt-4 mb-4">
+          The saving grows quickly with harness length. Checking connectors one at a time from one end can
+          take as many tests as there are connectors; halving needs only about log₂ of that number. The
+          chart shows the worst case for each approach.
+        </p>
+        <BarChart
+          items={[
+            { label: "8 connectors, one by one", value: 8, display: "up to 8 tests" },
+            { label: "8 connectors, half-split", value: 3, display: "3 tests", highlight: true },
+            { label: "16 connectors, one by one", value: 16, display: "up to 16 tests" },
+            { label: "16 connectors, half-split", value: 4, display: "4 tests", highlight: true },
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          In practice the split points are wherever you can reach a connector, not perfect halves, but the
+          principle holds. It matters most on an intermittent fault, because every test means provoking the
+          fault again and waiting to see whether the min/max reading moves.
+        </p>
         <div className="mt-4">
           <KeyIdea title="Document the captured reading before you move on">
             Note the min/max values and exactly what provoked the change at each point you test. It&apos;s
@@ -164,6 +219,27 @@ export default function HowToFindAnIntermittentFaultPage() {
             connectors into a long harness.
           </KeyIdea>
         </div>
+      </section>
+
+      <section>
+        {/* Fluke 87V Peak Capture "as fast as 250 µS" per https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-87v */}
+        <h2 id="capture-speed" className="text-xl font-semibold mb-3">How fast a dropout can min/max catch?</h2>
+        <p className="text-muted leading-7">
+          Min/max isn&apos;t a high-speed recorder. On most handheld meters it captures a change that lasts
+          long enough for the meter to complete a measurement, and the response time is listed in the
+          manual&apos;s specifications; check yours before you rely on it. A wire that breaks contact for a
+          few milliseconds on a bump may never register, while one that stays open for a quarter of a
+          second will. Some meters add a separate peak-capture mode for much shorter events; Fluke rates
+          the 87V&apos;s Peak Capture at 250 µs. If the symptom is a flicker the meter never records, a{" "}
+          <Link href="/oscilloscopes/how-to-use-oscilloscope-persistence-to-find-intermittent-glitches" className={link}>
+            scope with persistence
+          </Link>{" "}
+          is the next tool, and continuity beeps that stutter as you move a lead are covered in{" "}
+          <Link href="/multimeters/multimeter-continuity-beep-intermittent" className={link}>
+            why a continuity beep is intermittent
+          </Link>
+          .
+        </p>
       </section>
 
       <section>
@@ -184,14 +260,14 @@ export default function HowToFindAnIntermittentFaultPage() {
               image: fluke117.image,
               alt: "Fluke 117 digital multimeter",
               href: "/multimeters/fluke-117-review",
-              note: "Min/max recording, True RMS, CAT III 600V.",
+              note: "Hands-on tested. Min/max recording, True RMS, CAT III 600V.",
             },
             {
-              name: "Craftsman CMMT14171",
-              image: craftsman.image,
-              alt: "Craftsman CMMT14171 automotive digital multimeter",
-              href: "/multimeters/craftsman-cmmt14171-review",
-              note: "A budget-friendly option with min/max for automotive harness chasing.",
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 True RMS digital multimeter",
+              href: "/multimeters/fluke-117-vs-fluke-179",
+              note: "Min/Max-Average recording and an analog bar graph that shows flicker as it happens.",
             },
           ]}
         />

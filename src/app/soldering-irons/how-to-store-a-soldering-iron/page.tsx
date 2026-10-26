@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -61,6 +64,7 @@ export default function HowToStoreASolderingIronPage() {
         { id: "traveling-with-an-iron", label: "Traveling or transporting an iron" },
         { id: "what-to-avoid", label: "What to avoid" },
         { id: "quick-reference", label: "Quick reference" },
+        { id: "irons", label: "Bench, kit and portable irons" },
       ]}
       faq={[
         {
@@ -78,6 +82,10 @@ export default function HowToStoreASolderingIronPage() {
         {
           q: "Does humidity affect a stored soldering iron?",
           a: "It can, over time — a damp storage environment accelerates corrosion on an iron's metal parts, including the tip and any exposed connector contacts on a station handpiece. A dry location is one of the simplest ways to protect an iron you're not using daily.",
+        },
+        {
+          q: "How long should a soldering iron cool before I put it away?",
+          a: "Plan on at least 10 to 15 minutes in open air on the stand, and longer for a station handpiece with a large tip, which holds more heat than a slim pencil iron. Don't test by touching the tip. Hold the back of your hand a few centimeters away: if you still feel warmth radiating, it isn't ready for a case or drawer.",
         },
       ]}
       next={[
@@ -201,6 +209,40 @@ export default function HowToStoreASolderingIronPage() {
           </Link>{" "}
           for the full cleaning and tinning process referenced above.
         </p>
+      </section>
+
+      <section id="irons">
+        <h2 className="text-xl font-semibold mb-3">Bench, kit and portable irons</h2>
+        <p className="text-muted leading-7 mb-4">
+          How you store an iron depends on its type: a station lives on the bench, a kit iron goes back in its
+          box, and a portable iron travels in a bag. These verified picks cover all three.
+        </p>
+        <ProductStrip
+          title="Irons and how they store"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX bench soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Bench station: a 100W base with a 65W handpiece that stays set up on the bench between sessions.",
+            },
+            {
+              name: "Q-MING 60W Kit",
+              image: qming.image,
+              alt: "Q-MING 60W soldering iron kit",
+              href: "/soldering-irons/q-ming-60w-soldering-iron-kit-review",
+              note: "60W starter kit with a 200–450°C dial, easy to pack away once the iron is fully cool.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable USB-C soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Pocket-sized and USB-C powered, with no base station, so a tip cover matters when you carry it.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

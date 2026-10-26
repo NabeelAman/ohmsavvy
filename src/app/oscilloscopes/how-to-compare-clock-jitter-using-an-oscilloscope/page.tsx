@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const hantek = picks.find((p) => p.name === "Hantek DSO2D10")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
 
 const link = "text-accent hover:underline";
 
@@ -74,6 +77,7 @@ export default function CompareClockJitterPage() {
         { id: "compare", label: "Compare two clocks fairly" },
         { id: "floor", label: "The scope's own jitter floor" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "scopes", label: "Scopes for jitter comparisons" },
       ]}
       faq={[
         {
@@ -91,6 +95,10 @@ export default function CompareClockJitterPage() {
         {
           q: "Should I measure jitter on the rising or the falling edge?",
           a: "Pick one and use it for every measurement in the comparison. Rising and falling edges can have different slew rates and thresholds, and a clock with uneven duty cycle can show different numbers on each. Most datasheets specify rising-edge jitter, so that is a sensible default.",
+        },
+        {
+          q: "Does clock jitter matter for UART, I2C or SPI?",
+          a: "Rarely at hobby speeds. These buses sample each bit in the middle of a period lasting microseconds, so jitter of a few nanoseconds is a tiny fraction of the timing margin. Jitter starts to matter for high-speed links, audio converters, radio and precise timing. If a slow bus fails, check baud-rate mismatch, edge quality and ground first, and suspect jitter last.",
         },
       ]}
       next={[
@@ -349,6 +357,39 @@ export default function CompareClockJitterPage() {
           Use a probe hook or a soldered test point, and never connect a mains-earthed scope ground to a
           non-isolated mains circuit.
         </Callout>
+      </section>
+
+      <section id="scopes">
+        <h2 className="text-xl font-semibold mb-3">Scopes for jitter comparisons</h2>
+        <p className="text-muted leading-7 mb-4">
+          Jitter work rewards a high sample rate and bandwidth well above the clock frequency, because both set how precisely the scope can place each edge in time. The scope&apos;s own timebase stability caps how small a jitter difference you can resolve.
+        </p>
+        <ProductStrip
+          title="Scopes for timing and jitter work"
+          items={[
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "100MHz, 1 GSa/s and 4 channels: enough to compare two clocks side by side with headroom on edges.",
+            },
+            {
+              name: "Hantek DSO2D10",
+              image: hantek.image,
+              alt: "Hantek DSO2D10 two-channel oscilloscope with built-in generator",
+              href: "/oscilloscopes/hantek-dso2d10-review",
+              note: "100MHz and 1 GSa/s in a compact two-channel body, enough for one reference clock and one under test.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 12-bit four-channel oscilloscope with touchscreen",
+              href: "/oscilloscopes/best-beginner-oscilloscopes#rigol-dho804",
+              note: "70MHz, up to 1.25 GSa/s with one channel on, plus a 7-inch touchscreen for dragging cursors.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

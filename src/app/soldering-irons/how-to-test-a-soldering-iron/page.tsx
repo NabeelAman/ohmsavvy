@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const yihua926 = picks.find((p) => p.name === "YIHUA 926 III")!;
 
 const link = "text-accent hover:underline";
 
@@ -61,7 +64,9 @@ export default function HowToTestASolderingIronPage() {
         { id: "visual-inspection", label: "2. Visual inspection" },
         { id: "heat-up-test", label: "3. Timed heat-up test" },
         { id: "solder-melt-test", label: "4. Solder-melt test" },
+        { id: "tip-temperature", label: "5. Check tip temperature and grounding" },
         { id: "interpreting-results", label: "Interpreting the results" },
+        { id: "replacement", label: "If it fails: replacement irons" },
       ]}
       faq={[
         {
@@ -79,6 +84,10 @@ export default function HowToTestASolderingIronPage() {
         {
           q: "How long should a healthy iron take to reach working temperature?",
           a: "It depends heavily on wattage and element type — see our ceramic vs. nichrome heating element comparison — but as a rough guide, many common 60-80W irons reach a usable temperature within 30-60 seconds from cold. A dramatic, sudden slowdown compared to an iron's own past performance is more telling than any single absolute number.",
+        },
+        {
+          q: "How can I check if my soldering iron is actually reaching the temperature it shows?",
+          a: "Use a dedicated tip thermometer with a thermocouple sensor designed for soldering tips, wet the sensor with a little solder and hold the tip on it until the reading settles. An infrared thermometer won't work well, because shiny tinned tips reflect rather than emit infrared. If the reading is well off and your station supports calibration, enter the offset using the maker's procedure.",
         },
       ]}
       next={[
@@ -152,6 +161,15 @@ export default function HowToTestASolderingIronPage() {
           wattage reads roughly a quarter of these values. Always check your specific iron&apos;s own
           documentation rather than relying on a generic figure.
         </p>
+        <p className="mt-4 text-muted leading-7">
+          For a US iron the arithmetic is the same with 120V: a 60W element works out to 120² ÷ 60 = 240Ω and
+          an 80W element to 120² ÷ 80 = 180Ω. Treat these as ballpark checks, because many elements read
+          noticeably lower when cold than at operating temperature, and low-voltage station handpieces run
+          from a transformer at a few tens of volts, so their elements typically read only a few ohms to a few tens of ohms. Stations with a
+          separate sensor also have a second pair of contacts at the connector; that sensor reading is a
+          different number from the heater, so check the service manual&apos;s pinout before you decide
+          anything has failed.
+        </p>
       </section>
 
       <section>
@@ -194,6 +212,22 @@ export default function HowToTestASolderingIronPage() {
       </section>
 
       <section>
+        <StepHeading n={5} id="tip-temperature">Check tip temperature and grounding</StepHeading>
+        <p className="text-muted leading-7 mb-4">
+          For a temperature-controlled station, a tip thermometer tells you whether the display can be trusted.
+          Set a round value such as 350°C, let it settle for a minute and measure with a thermocouple tip
+          tester. A difference within about 10–15°C is generally workable for hobby use; a larger gap suggests
+          a worn tip, a failing sensor or a calibration offset you can correct if the station allows it.
+        </p>
+        <p className="text-muted leading-7">
+          On an ESD-safe station, also check the path from tip to ground. With the station unplugged, measure
+          resistance from the tip to the plug&apos;s ground pin, or to the station&apos;s ground jack. A reading
+          of a few ohms or less is typical, and many maker manuals call for under about 2Ω. An open reading
+          means the tip is floating and can carry static or leakage to sensitive parts.
+        </p>
+      </section>
+
+      <section>
         <h2 id="interpreting-results" className="text-xl font-semibold mb-3">Interpreting the results together</h2>
         <DataTable
           head={["Result pattern", "Likely meaning"]}
@@ -211,6 +245,42 @@ export default function HowToTestASolderingIronPage() {
         check are all reasons to stop and repair or replace the iron before using it again — these are
         safety issues, not just performance ones.
       </KeyIdea>
+
+      <section>
+        <h2 id="replacement" className="text-xl font-semibold mb-3">If it fails: replacement irons</h2>
+        <p className="text-muted leading-7 mb-4">
+          An open element or a damaged cord on a cheap plug-in iron usually isn&apos;t worth repairing. On a
+          station, replacement heaters and handpieces are often sold separately, so check spares before
+          replacing the whole unit. If you do replace it, these picks from our reviews have readable
+          temperature settings, which makes every test on this page easier to repeat.
+        </p>
+        <ProductStrip
+          title="Stations with temperature you can verify"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "Digital readout, ±1°C idle stability per Hakko, and a parameter lock so a calibration offset can't be changed by accident.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W ESD-safe station; Weller quotes about 28 seconds from 50 to 350°C, a useful baseline for the timed heat-up test.",
+            },
+            {
+              name: "YIHUA 926 III",
+              image: yihua926.image,
+              alt: "YIHUA 926 LED III soldering station",
+              href: "/soldering-irons/best-soldering-irons#yihua-926-iii",
+              note: "Budget PID station, 90–480°C, with digital calibration and a sleep timer of 5, 10 or 30 minutes.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

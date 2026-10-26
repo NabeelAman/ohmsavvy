@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -111,9 +111,53 @@ export default function WhyDoesMyTrailerKeepBlowingFusesPage() {
         <p className="text-muted leading-7 mb-4">
           With the trailer&apos;s wiring disconnected from the tow vehicle, set the meter to resistance and
           measure from each trailer circuit (running lights, brake lights, turn signals) to the trailer&apos;s
-          chassis or ground wire. A healthy circuit reads open (OL); a low reading confirms a short somewhere
-          in the trailer&apos;s own harness.
+          chassis or ground wire. Pull the bulbs or unplug the lamps first: a working incandescent bulb is
+          itself a low-resistance path to ground and would read like a short. With the lamps out, a healthy
+          circuit reads open (OL); a low reading confirms a short somewhere in the trailer&apos;s own harness.
         </p>
+        <div className="mt-2 mb-6">
+          <Figure
+            caption={
+              <>
+                Splitting the circuit at the plug. A common 4-way flat connector carries ground, tail lights
+                and two combined turn/brake circuits. Test each trailer-side pin to the ground pin; any
+                reading other than OL (lamps out) is a short on that circuit.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 190" className="w-full h-auto" role="img" aria-label="Diagram of a tow vehicle and trailer joined by an unplugged 4-way flat connector: the vehicle half and trailer half are shown apart, the trailer half's four pins are labeled ground in white, tail lights in brown, left turn and brake in yellow, and right turn and brake in green; a meter is shown measuring from the tail-light pin to the ground pin, and a chafed spot near the trailer axle on the brown wire is marked as a short to the frame">
+              <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+                <rect x="12" y="40" width="70" height="90" rx="6" />
+                <line x1="82" y1="60" x2="110" y2="60" />
+                <line x1="82" y1="75" x2="110" y2="75" />
+                <line x1="82" y1="90" x2="110" y2="90" />
+                <line x1="82" y1="105" x2="110" y2="105" />
+                <rect x="110" y="52" width="16" height="62" rx="2" />
+                <rect x="150" y="52" width="16" height="62" rx="2" />
+                <line x1="166" y1="60" x2="300" y2="60" />
+                <line x1="166" y1="75" x2="300" y2="75" />
+                <line x1="166" y1="90" x2="300" y2="90" />
+                <line x1="166" y1="105" x2="300" y2="105" />
+                <line x1="200" y1="150" x2="330" y2="150" strokeWidth="2.4" />
+              </g>
+              <path d="M262 75 L 268 112 L 258 130 L 264 150" className="stroke-accent" strokeWidth="2" fill="none" />
+              <text x="47" y="34" fontSize="10" textAnchor="middle" className="fill-foreground">tow vehicle</text>
+              <text x="138" y="40" fontSize="9" textAnchor="middle" className="fill-muted">unplugged</text>
+              <text x="250" y="34" fontSize="10" textAnchor="middle" className="fill-foreground">trailer harness</text>
+              <text x="178" y="57" fontSize="8" className="fill-foreground">white: ground</text>
+              <text x="178" y="72" fontSize="8" className="fill-accent">brown: tail lights</text>
+              <text x="178" y="87" fontSize="8" className="fill-foreground">yellow: left turn/brake</text>
+              <text x="178" y="102" fontSize="8" className="fill-foreground">green: right turn/brake</text>
+              <text x="272" y="126" fontSize="9" className="fill-accent">chafed</text>
+              <text x="265" y="166" fontSize="9" textAnchor="middle" className="fill-muted">trailer frame</text>
+              <circle cx="166" cy="60" r="3" className="fill-accent" />
+              <circle cx="166" cy="75" r="3" className="fill-accent" />
+              <rect x="120" y="140" width="66" height="18" rx="3" className="fill-surface stroke-accent" strokeWidth="1.2" />
+              <text x="153" y="153" fontSize="9" textAnchor="middle" className="fill-accent">brown–white</text>
+              <text x="12" y="182" fontSize="9" className="fill-muted">Lamps out: healthy = OL; a few ohms or less = short</text>
+            </svg>
+          </Figure>
+        </div>
         <DataTable
           head={["Where tested", "Finding and meaning"]}
           rows={[

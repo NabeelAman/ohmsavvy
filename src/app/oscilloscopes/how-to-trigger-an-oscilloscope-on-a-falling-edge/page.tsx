@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   ScopeScreen,
   StepHeading,
 } from "@/components/HowTo";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const hantek = picks.find((p) => p.name === "Hantek DSO2D10")!;
 
 const link = "text-accent hover:underline";
 
@@ -74,6 +77,7 @@ export default function TriggerOnFallingEdgePage() {
         { id: "single-normal", label: "Single or Normal mode" },
         { id: "holdoff-start-bit", label: "Holdoff for serial frames" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "scopes", label: "Scopes for edge triggering" },
       ]}
       faq={[
         {
@@ -91,6 +95,10 @@ export default function TriggerOnFallingEdgePage() {
         {
           q: "What does an either-edge or alternating slope setting do?",
           a: "Some scopes offer a setting that triggers on both rising and falling crossings. It can help when you only want to know that a line changed, but because consecutive captures can align on opposite edges, the picture may look like two overlapping traces. For studying one specific drop, choose falling only.",
+        },
+        {
+          q: "How do I measure the fall time once the scope triggers on the edge?",
+          a: "Spread the edge across several divisions with a faster timebase, then use the automatic Fall Time measurement, which normally times the drop from 90% to 10% of the swing, or place cursors at those levels yourself. Use a 10x probe with a short ground. A scope can't show an edge much faster than about 0.35 divided by its bandwidth.",
         },
       ]}
       next={[
@@ -291,6 +299,39 @@ export default function TriggerOnFallingEdgePage() {
           coil or inductive load turns off, the voltage spike can be far higher than the supply, so
           use a 10x probe and check its rating before you watch that edge.
         </Callout>
+      </section>
+
+      <section id="scopes">
+        <h2 className="text-xl font-semibold mb-3">Scopes for edge triggering</h2>
+        <p className="text-muted leading-7 mb-4">
+          Every digital scope offers a falling-edge trigger, so the differences that matter here are channel count for watching other signals around the edge and bandwidth for timing fast transitions accurately.
+        </p>
+        <ProductStrip
+          title="Scopes for falling-edge captures"
+          items={[
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "4 channels at 50MHz: trigger on a chip-select or reset line and watch three more signals at once.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "100MHz bandwidth for faster logic edges, with 4 channels and 1 GSa/s.",
+            },
+            {
+              name: "Hantek DSO2D10",
+              image: hantek.image,
+              alt: "Hantek DSO2D10 two-channel oscilloscope with built-in generator",
+              href: "/oscilloscopes/hantek-dso2d10-review",
+              note: "Compact 100MHz two-channel scope; its 25 MHz generator can supply a test signal while you learn triggers.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

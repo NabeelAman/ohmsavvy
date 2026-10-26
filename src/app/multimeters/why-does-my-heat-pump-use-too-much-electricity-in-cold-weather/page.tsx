@@ -115,6 +115,10 @@ export default function WhyDoesMyHeatPumpUseTooMuchElectricityInColdWeatherPage(
           q: "Does this apply to air-to-water heat pumps in Europe?",
           a: "The same physics applies. An air-to-water unit also loses efficiency as outdoor air cools and as the flow temperature it has to produce rises, so a high radiator flow temperature setting raises consumption. Many have a backup immersion or inline electric heater that behaves like auxiliary strip heat.",
         },
+        {
+          q: "Is it normal for a heat pump to run nonstop in very cold weather?",
+          a: "Often, yes. Variable-speed heat pumps are designed to run for long periods at low speed, and near or below the balance point even a single-stage unit may run continuously. Running all the time is only a concern when the house cannot hold the thermostat setting, the supply air feels lukewarm, or the thermostat shows auxiliary heat on for most of the day.",
+        },
       ]}
       next={[
         {

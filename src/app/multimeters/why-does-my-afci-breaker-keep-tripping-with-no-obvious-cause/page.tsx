@@ -122,6 +122,10 @@ export default function WhyDoesMyAfciBreakerKeepTrippingPage() {
           q: "Do AFCI breakers wear out or get nuisance trips with age?",
           a: "Breakers can fail like any device, and some manufacturers have released updated versions of earlier AFCI designs to reduce nuisance tripping. An electrician can check whether yours is affected, but rule out the wiring and loads first; a trip is more often right than wrong.",
         },
+        {
+          q: "Does an AFCI breaker also trip on overloads like a normal breaker?",
+          a: "Yes. An AFCI breaker still contains standard overcurrent protection, so a space heater and a hair dryer on the same circuit can trip it exactly as they would a plain breaker. If the trips line up with heavy loads and the circuit draws more than its rating, that is an overload, not an arc. Some models show which kind of trip occurred.",
+        },
       ]}
       next={[
         {

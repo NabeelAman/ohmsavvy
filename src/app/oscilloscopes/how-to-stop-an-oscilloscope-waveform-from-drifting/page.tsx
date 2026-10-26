@@ -7,6 +7,7 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
   ScopeScreen,
   StepHeading,
 } from "@/components/HowTo";
@@ -23,6 +24,8 @@ export const metadata = buildMetadata({
 });
 
 const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
+const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
 
 const link = "text-accent hover:underline";
 
@@ -108,6 +111,7 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
         { id: "roll-mode", label: "Roll mode on slow timebases" },
         { id: "real-frequency-change", label: "When the frequency really varies" },
         { id: "quick-fix-table", label: "Quick fix table" },
+        { id: "which-scope", label: "Scopes in our reviews" },
       ]}
       faq={[
         {
@@ -349,6 +353,47 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
             ]}
           />
         </div>
+      </section>
+
+      <section>
+        <h2 id="which-scope" className="text-xl font-semibold mb-3">Scopes in our reviews</h2>
+        <p className="text-muted leading-7 mb-4">
+          Like any bench scope, each one below has the edge-trigger source, level, slope and Auto/Normal
+          controls this page relies on, so a drifting trace on any of them is a settings problem, not a
+          reason to upgrade. Where they differ
+          is channel count, bandwidth and screen, which matter more for the signals you probe than for
+          trigger stability. Compare them in our{" "}
+          <Link href="/oscilloscopes/best-beginner-oscilloscopes" className={link}>
+            best beginner oscilloscopes
+          </Link>{" "}
+          roundup.
+        </p>
+        <ProductStrip
+          title="Bench scopes for stable triggering"
+          items={[
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "Hands-on tested. 100MHz, 4 channels, 1 GSa/s, with a well-regarded user interface.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 four-channel 12-bit oscilloscope with touchscreen",
+              href: "/oscilloscopes/rigol-dho804-vs-siglent-sds1104x-e",
+              note: "Hands-on tested. 70MHz, 4 channels, 12-bit, and a 7-inch touchscreen for quick menu changes.",
+            },
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "Hands-on tested. 50MHz, 4 channels, 1 GSa/s, with strong community documentation.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

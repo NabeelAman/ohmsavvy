@@ -7,6 +7,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke179 = picks.find((p) => p.name === "Fluke 179")!;
+const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const uni = picks.find((p) => p.name === "UNI-T UT139C")!;
 
 const link = "text-accent hover:underline";
 
@@ -310,6 +313,45 @@ export default function HowToTestARotaryEncoderWithAMultimeterPage() {
           </Link>
           .
         </p>
+      </section>
+      <section>
+        <h2 id="meters-for-encoders" className="text-xl font-semibold mb-3">Meters suited to encoder testing</h2>
+        <p className="text-muted leading-7 mb-6">
+          Encoder checks lean on the continuity beeper and the low ohms range, so the most useful feature is a
+          beeper that responds quickly enough to reveal contact bounce as you creep through a detent. Any
+          meter with a resistance range and a fast beeper will do; voltage ratings hardly matter on a
+          low-voltage control panel. Compare options in our{" "}
+          <Link href="/multimeters/best-multimeters" className={link}>
+            best multimeters
+          </Link>{" "}
+          roundup.
+        </p>
+        <ProductStrip
+          title="Meters for switch and encoder checks"
+          items={[
+            {
+              name: "Fluke 179",
+              image: fluke179.image,
+              alt: "Fluke 179 True RMS digital multimeter",
+              href: "/multimeters/fluke-117-vs-fluke-179",
+              note: "6,000-count display with analog bar graph and Min/Max-Average recording; CAT IV 600V / CAT III 1000V.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Budget auto-ranging True RMS meter with a backlit display, fine for knobs and switches on hobby boards.",
+            },
+            {
+              name: "UNI-T UT139C",
+              image: uni.image,
+              alt: "UNI-T UT139C True RMS digital multimeter",
+              href: "/multimeters/uni-t-ut139c-review",
+              note: "True RMS, 6,000-count and manual ranging, so you can lock the ohms range while stepping the shaft.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

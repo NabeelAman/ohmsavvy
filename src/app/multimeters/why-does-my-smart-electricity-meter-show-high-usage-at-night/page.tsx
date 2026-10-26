@@ -134,6 +134,10 @@ export default function WhyDoesMySmartElectricityMeterShowHighUsageAtNightPage()
           q: "Will a plug-in energy monitor find the problem?",
           a: "Only for things that plug into a standard outlet. It is ideal for confirming a dehumidifier, freezer, space heater or entertainment system, but it cannot see hardwired loads such as a water heater, furnace, heat pump or well pump. For those, use the breaker-by-breaker method or have an electrician install a whole-home monitor.",
         },
+        {
+          q: "Can a wiring fault or leaking appliance raise my overnight usage?",
+          a: "It can, but rarely by much before it becomes dangerous. Current leaking to ground inside the home still passes through the meter and is billed, yet a leak large enough to show on the bill often trips a GFCI, warms a cable or gives a tingle from a metal case. If you notice any of those, stop investigating and have an electrician test the circuits with proper equipment.",
+        },
       ]}
       next={[
         {

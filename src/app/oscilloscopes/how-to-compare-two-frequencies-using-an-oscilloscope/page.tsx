@@ -87,6 +87,10 @@ export default function HowToCompareTwoFrequenciesUsingAnOscilloscopePage() {
           q: "Can I compare a sine wave with a square wave?",
           a: "Yes. Period measurement does not care about wave shape, so measure each with edge triggering and cursors or the automatic frequency reading. Lissajous figures still show the ratio by their repeat count, but the shapes have sharp corners and flat sides instead of smooth loops, which makes them harder to read.",
         },
+        {
+          q: "Can I use the FFT function to compare two frequencies?",
+          a: "Yes, and it helps when signals are noisy or contain several tones. The FFT shows each frequency as a peak along a horizontal frequency axis, so two signals appear as two peaks whose positions you can read with cursors. Its resolution depends on the sample rate and record length, so close frequencies can merge into one peak. For a precise ratio, period measurement is usually better.",
+        },
       ]}
       next={[
         {

@@ -123,6 +123,10 @@ export default function HowToDetectAFaultySolarOptimizerPage() {
           q: "Does this work the same with microinverters?",
           a: "The detective work does. Microinverters also report per panel, and the same comparison against neighbors, at midday, on a clear day, separates shading from hardware faults. The difference is that a microinverter converts to AC on the roof, so a failure takes out that one panel's output and nothing else.",
         },
+        {
+          q: "Can I replace a solar optimizer myself?",
+          a: "It is not a homeowner job. The optimizer sits under the panel on the roof, in a DC string that can carry several hundred volts in daylight, and the replacement has to be a compatible model that is registered or paired in the monitoring system. Most makers also route warranty replacements through an installer, so a DIY swap can complicate the claim. Send the panel data to the installer instead.",
+        },
       ]}
       next={[
         {

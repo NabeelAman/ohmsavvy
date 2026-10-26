@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
+const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
 
 const link = "text-accent hover:underline";
 
@@ -90,6 +93,7 @@ export default function MeasureSettlingTimePage() {
         { id: "average", label: "Average out the noise" },
         { id: "cursors", label: "Read settling time with cursors" },
         { id: "resolution", label: "Vertical resolution limits" },
+        { id: "which-scope", label: "Scopes suited to settling work" },
         { id: "troubleshooting", label: "Troubleshooting" },
       ]}
       faq={[
@@ -378,6 +382,45 @@ export default function MeasureSettlingTimePage() {
       </section>
 
       <section>
+        <h2 id="which-scope" className="text-xl font-semibold mb-3">Scopes suited to settling work</h2>
+        <p className="text-muted leading-7 mb-4">
+          Two features matter most here. Vertical resolution decides how finely the zoomed error band is
+          sliced: a 12-bit converter divides the screen into 4,096 levels instead of 256, so each step is
+          sixteen times smaller and a tight band stays visible without leaning so hard on averaging. A
+          second channel matters almost as much, because triggering on the clean input step and timing
+          from it is the most repeatable way to start the clock. Bandwidth only has to be comfortably
+          above the ringing frequency you expect; tens of megahertz cover most op-amp, DAC and regulator
+          work.
+        </p>
+        <ProductStrip
+          title="Scopes for timing a step response"
+          items={[
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 four-channel 12-bit digital oscilloscope",
+              href: "/oscilloscopes/best-beginner-oscilloscopes#rigol-dho804",
+              note: "12-bit resolution and 70MHz, so a millivolt-scale band around the final value is cut into far finer steps.",
+            },
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "100MHz and four channels: input step, output and a GPIO marker can all share the screen.",
+            },
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "50MHz and four channels; with averaging and offset it handles the looser settling bands well.",
+            },
+          ]}
+        />
+      </section>
+
+      <section>
         <h2 id="troubleshooting" className="text-xl font-semibold mb-3">Troubleshooting a settling-time measurement</h2>
         <DataTable
           head={["Symptom", "Likely cause", "Fix"]}
@@ -396,8 +439,8 @@ export default function MeasureSettlingTimePage() {
         <Callout title="Mind the input limits when zooming">
           Pushing a large step far off screen is normal for this measurement, but the voltage at the
           input is still the full signal. Stay within the probe and scope input ratings, never connect a
-          mains-earthed scope ground to a non-isolated mains circuit, and use a differential probe for
-          anything not referenced to earth.
+          grounded scope&apos;s ground clip to a non-isolated line-voltage circuit, and use a differential probe for
+          anything not referenced to ground.
         </Callout>
       </section>
     </HowToShell>

@@ -114,6 +114,10 @@ export default function HowToDiagnoseASolarBatteryThatStopsChargingAt80PercentPa
           q: "Does this differ for 230 V European systems?",
           a: "The battery-side behavior is identical, since cell chemistry and BMS limits don't depend on the grid voltage. What differs is the inverter's grid settings and export rules, which follow national grid codes, so limits on exporting or grid charging can vary by country and network operator.",
         },
+        {
+          q: "How long should a solar battery take to charge from 80 to 100 percent?",
+          a: "Longer than the same 20% lower down. As an illustrative example, a 10 kWh battery needs about 2 kWh to go from 80 to 100%, about an hour at a steady 2 kW. Near full, the charger holds a constant voltage and the current tapers, and the BMS may pause to balance cells, so the final stretch commonly takes noticeably longer than that arithmetic suggests.",
+        },
       ]}
       next={[
         {

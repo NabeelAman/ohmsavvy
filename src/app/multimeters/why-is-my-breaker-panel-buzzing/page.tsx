@@ -110,6 +110,10 @@ export default function WhyIsMyBreakerPanelBuzzingPage() {
           q: "Why does my panel buzz only when the AC or dryer is on?",
           a: "Large loads put more current through the breakers, bus and lugs. A good connection may hum slightly louder; a loose or corroded one heats up and can buzz. Because the sound tracks the load, an electrician can find the joint under load with a thermal camera.",
         },
+        {
+          q: "Is it safe to stay in the house overnight with a buzzing panel?",
+          a: "With only a faint, steady hum and no heat, odor, crackling or flickering lights, most households book an electrician and carry on as normal in the meantime. Make sure the smoke alarms work and keep boxes, laundry and other clutter away from the panel. If the sound grows louder, the cover feels warm or anything smells scorched, treat it as urgent rather than waiting until morning.",
+        },
       ]}
       next={[
         {

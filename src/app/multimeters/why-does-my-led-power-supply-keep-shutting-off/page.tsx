@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -122,6 +122,53 @@ export default function WhyDoesMyLedPowerSupplyKeepShuttingOffPage() {
             ["Output voltage never recovers after shutdown", "Driver has failed outright, not just tripped a protection feature"],
           ]}
         />
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                Two protection signatures as seen on the output voltage (schematic, not to scale). Overload or
+                short protection often &quot;hiccups&quot;: rapid off-and-retry cycles that make LEDs blink. Thermal
+                shutdown comes after a long run and stays off until the driver cools.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 190" className="w-full h-auto" role="img" aria-label="Two voltage-versus-time traces for a 12 volt LED driver: the top trace shows overload or short protection, with the output switching off and retrying in short repeated pulses; the bottom trace shows thermal protection, with the output steady at 12 volts for a long time, then dropping to zero and staying off for a long cooling period before returning">
+              <text x="12" y="16" fontSize="10" className="fill-foreground">Overload or short: hiccup</text>
+              <g className="stroke-foreground" strokeWidth="1.2">
+                <line x1="40" y1="80" x2="330" y2="80" />
+                <line x1="40" y1="170" x2="330" y2="170" />
+              </g>
+              <polyline
+                points="40,36 90,36 90,80 120,80 120,36 128,36 128,80 158,80 158,36 166,36 166,80 196,80 196,36 204,36 204,80 234,80 234,36 242,36 242,80 330,80"
+                className="stroke-accent"
+                strokeWidth="2"
+                fill="none"
+              />
+              <text x="12" y="106" fontSize="10" className="fill-foreground">Thermal shutdown</text>
+              <polyline
+                points="40,126 200,126 200,170 290,170 290,126 330,126"
+                className="stroke-accent"
+                strokeWidth="2"
+                fill="none"
+              />
+              <text x="36" y="40" fontSize="9" textAnchor="end" className="fill-muted">12 V</text>
+              <text x="36" y="84" fontSize="9" textAnchor="end" className="fill-muted">0 V</text>
+              <text x="36" y="130" fontSize="9" textAnchor="end" className="fill-muted">12 V</text>
+              <text x="36" y="174" fontSize="9" textAnchor="end" className="fill-muted">0 V</text>
+              <text x="120" y="120" fontSize="9" textAnchor="middle" className="fill-muted">runs normally, heats up</text>
+              <text x="245" y="162" fontSize="9" textAnchor="middle" className="fill-muted">cooling</text>
+              <text x="185" y="186" fontSize="9" textAnchor="middle" className="fill-muted">time →</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The wattage check from step 1 is simple arithmetic, so work it on paper first. Take an illustrative
+          16.4 ft (5 m) reel of 12 V strip rated at 14.4 W per meter: 5 × 14.4 = 72 W. On a 60 W driver that
+          load is 120% of capacity, which is exactly the situation that produces the top trace. A widely used
+          rule of thumb is to keep the load at or below about 80% of the driver&apos;s rating for headroom and
+          cooler running, so this strip wants a driver of at least 72 ÷ 0.8 = 90 W. Use the per-foot or
+          per-meter figure printed on your own strip&apos;s spec sheet rather than these example values.
+        </p>
       </section>
 
       <section>

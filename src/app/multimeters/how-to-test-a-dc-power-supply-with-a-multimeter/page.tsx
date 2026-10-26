@@ -121,11 +121,44 @@ export default function HowToTestADcPowerSupplyPage() {
           the output voltage again while current flows. Compare it to the unloaded reading.
         </p>
         <Figure caption="A well-regulated supply's voltage barely moves between unloaded and loaded readings; a failing one sags noticeably.">
-          <div className="rounded-lg border border-border bg-surface-raised p-5 text-sm text-muted">
-            Unloaded: meter alone across the output · Loaded: device or test resistor connected and drawing
-            current, meter still across the output
-          </div>
+          <svg viewBox="0 0 340 170" className="w-full h-auto" role="img" aria-label="Test setup for a DC power supply: the supply is drawn as an ideal source with a small internal output resistance, its output terminals connect through a switch to a 12 ohm power resistor used as a test load, and a meter stays connected across the output terminals for both the unloaded reading with the switch open and the loaded reading with the switch closed">
+            <rect x="14" y="20" width="110" height="120" rx="6" className="stroke-muted" strokeWidth="1.2" fill="none" strokeDasharray="4 3" />
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <circle cx="50" cy="80" r="16" />
+              <line x1="50" y1="64" x2="50" y2="40" />
+              <line x1="50" y1="40" x2="62" y2="40" />
+              <path d="M62 40 l4 -6 l6 12 l6 -12 l6 12 l6 -12 l4 6" />
+              <line x1="100" y1="40" x2="250" y2="40" />
+              <line x1="50" y1="96" x2="50" y2="120" />
+              <line x1="50" y1="120" x2="300" y2="120" />
+              <line x1="250" y1="40" x2="268" y2="30" />
+              <line x1="274" y1="40" x2="300" y2="40" />
+              <line x1="300" y1="40" x2="300" y2="58" />
+              <path d="M300 58 l-6 4 l12 6 l-12 6 l12 6 l-12 6 l12 6 l-6 4" />
+              <line x1="300" y1="96" x2="300" y2="120" />
+            </g>
+            <text x="50" y="84" fontSize="9" textAnchor="middle" className="fill-foreground">V</text>
+            <text x="81" y="58" fontSize="9" textAnchor="middle" className="fill-accent">R out</text>
+            <text x="69" y="152" fontSize="9" textAnchor="middle" className="fill-muted">supply (model)</text>
+            <text x="260" y="22" fontSize="9" textAnchor="middle" className="fill-muted">load switch</text>
+            <text x="312" y="80" fontSize="9" className="fill-foreground">12 Ω</text>
+            <circle cx="160" cy="40" r="3" className="fill-accent" />
+            <circle cx="160" cy="120" r="3" className="fill-accent" />
+            <line x1="160" y1="43" x2="160" y2="117" className="stroke-accent" strokeWidth="1.2" strokeDasharray="3 3" />
+            <text x="168" y="84" fontSize="9" className="fill-accent">meter stays here</text>
+            <text x="14" y="164" fontSize="9" className="fill-muted">Switch open = unloaded reading; closed = loaded reading</text>
+          </svg>
         </Figure>
+        <p className="text-muted leading-7 mt-4">
+          Every supply behaves as if it had a small resistance in series with its output, and the regulator&apos;s
+          job is to hide it. The more current you draw, the more voltage that hidden resistance can steal, so
+          the gap between your two readings is a direct measure of how well the regulation is working. Here&apos;s
+          an illustrative worked example for a 12 V supply. A 12 Ω resistor draws 12 ÷ 12 = 1 A and
+          dissipates 12 × 1 = 12 W, so pick a resistor rated for at least 25 W to keep it from overheating.
+          If the meter shows 12.05 V unloaded and 11.98 V loaded, load regulation is (12.05 − 11.98) ÷ 11.98 ×
+          100 ≈ 0.6%, a good result. A reading that falls to 11.2 V under the same load is a 7.6% sag, well
+          outside what most regulated supplies list in their specifications.
+        </p>
         <DataTable
           head={["Behavior", "Likely meaning"]}
           rows={[

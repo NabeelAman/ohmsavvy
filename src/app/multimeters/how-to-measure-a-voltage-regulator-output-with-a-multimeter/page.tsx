@@ -89,6 +89,10 @@ export default function HowToMeasureAVoltageRegulatorOutputWithAMultimeterPage()
           q: "Why does my LM317 output the wrong voltage?",
           a: "An adjustable regulator sets its output with two resistors, so a wrong or drifted resistor, a broken trimmer or a bad solder joint on the ADJ pin changes the voltage. Check the resistor values against the formula in the datasheet, then confirm the input headroom, as with any linear regulator.",
         },
+        {
+          q: "Why does my regulator output read high with no load connected?",
+          a: "Some adjustable regulators, the LM317 among them, need a minimum load current to stay in regulation, and the datasheet gives the figure. With nothing connected and a high-value feedback divider, the output can creep above its setting. Designs usually size the divider so it draws that current on its own. Add a modest load resistor and measure again before blaming the part.",
+        },
       ]}
       next={[
         {

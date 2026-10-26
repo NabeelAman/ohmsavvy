@@ -88,6 +88,10 @@ export default function HowToTestAVaristorWithAMultimeterPage() {
           q: "Do surge protector power strips use varistors?",
           a: "Many do. The varistors inside absorb surges and wear a little with each one, and many strips have an indicator that shows when protection is no longer active. Treat a strip with a failed indicator, scorch marks or a burnt smell as worn out and replace the whole strip rather than opening it to change parts.",
         },
+        {
+          q: "How long does a varistor last before it needs replacing?",
+          a: "There is no fixed lifespan. A varistor that never sees a surge can outlast the equipment, while one on a supply with frequent spikes degrades faster. Manufacturers publish pulse-rating curves showing how many surges of a given current and duration a part tolerates before its voltage drifts out of tolerance. In practice, replace it when it shows damage, tests shorted or sits beside a fuse that has blown.",
+        },
       ]}
       next={[
         {

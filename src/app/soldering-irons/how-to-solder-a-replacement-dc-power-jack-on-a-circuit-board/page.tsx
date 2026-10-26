@@ -5,6 +5,7 @@ import {
   Figure,
   FlowDiagram,
   HowToShell,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -20,6 +21,8 @@ export const metadata = buildMetadata({
 });
 
 const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
 
@@ -62,6 +65,7 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
         { id: "fit-the-new-jack", label: "4. Fit and solder the new jack" },
         { id: "verify-polarity", label: "5. Verify polarity before power" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "irons", label: "Irons that handle heavy jack lugs" },
       ]}
       faq={[
         {
@@ -239,6 +243,38 @@ export default function HowToSolderAReplacementDcPowerJackPage() {
         Higher setpoints mean more flux smoke, so use extraction. Unplug the device and remove batteries
         before work, and let large capacitors discharge. Wash your hands after handling leaded solder.
       </Callout>
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons that handle heavy jack lugs</h2>
+        <p className="text-muted leading-7 mb-6">
+          Jack lugs tied into ground copper punish an iron that sags when the tip lands. Each of these holds a set temperature you can read, and one adds hot air for surface-mount jacks.
+        </p>
+        <ProductStrip
+          title="Irons for power jack swaps"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX digital soldering station with FX-8801 iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "A 100W station behind a 65W handpiece, so the setpoint recovers quickly on thick ground lugs; Hakko lists 50–480°C with five presets.",
+            },
+            {
+              name: "YIHUA 862BD+",
+              image: yihua.image,
+              alt: "YIHUA 862BD+ soldering iron and hot air rework station",
+              href: "/soldering-irons/yihua-862bd-plus-review",
+              note: "Pairs a 75W iron with a 500W hot air gun, useful for lifting surface-mount jacks with several anchoring tabs at once.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA 70W digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "A 70W ESD-safe bench station; Weller quotes about 28 seconds to climb from 50 to 350°C before you start on the lugs.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

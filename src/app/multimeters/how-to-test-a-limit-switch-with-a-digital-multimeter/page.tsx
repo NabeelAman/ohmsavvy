@@ -8,6 +8,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -23,6 +24,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke87v = picks.find((p) => p.name === "Fluke 87V")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const bm235 = picks.find((p) => p.name === "Brymen BM235")!;
 
 const link = "text-accent hover:underline";
 
@@ -247,6 +250,42 @@ export default function HowToTestALimitSwitchWithADigitalMultimeterPage() {
             ["Closed contact reads several ohms or drifts", "Dirty, oxidised or arcing-damaged contacts"],
             ["Trip point varies from press to press", "Worn spring, loose lever or failing mechanism"],
             ["Several volts across a closed switch, live", "High contact resistance under load; replace the switch"],
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for control-circuit work</h2>
+        <p className="text-muted leading-7 mb-6">
+          The live voltage-across-the-switch check happens inside control panels, so the meter&apos;s CAT
+          rating matters as much as its continuity beeper. A low-impedance (LoZ) mode also helps on long
+          control runs, where an open switch can show a misleading induced voltage on a standard
+          high-impedance input.
+        </p>
+        <ProductStrip
+          title="Meters for limit switches and machine controls"
+          items={[
+            {
+              name: "Fluke 87V",
+              image: fluke87v.image,
+              alt: "Fluke 87V industrial True RMS multimeter",
+              href: "/multimeters/fluke-87v-review",
+              note: "CAT III 1000V / CAT IV 600V with a 19,999-count high-resolution mode and an analog bar graph. Hands-on Tested.",
+            },
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 electrician's digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "True RMS, CAT III 600V, with AutoVolt, LoZ and NCV for 120V control wiring. Hands-on Tested.",
+            },
+            {
+              name: "Brymen BM235",
+              image: bm235.image,
+              alt: "Brymen BM235 True RMS multimeter",
+              href: "/multimeters/best-multimeters-for-electronics-repair#brymen-bm235",
+              note: "True RMS with AutoV LoZ, NCV and a VFD mode, rated CAT III 600V / CAT IV 300V.",
+            },
           ]}
         />
       </section>

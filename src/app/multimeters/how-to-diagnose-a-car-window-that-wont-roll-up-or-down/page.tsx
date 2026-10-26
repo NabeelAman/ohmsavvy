@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -27,10 +27,12 @@ export default function CarWindowWontMovePage() {
       category="multimeters"
       intro={
         <>
-          A power window circuit has three main links to check in order: the switch, the wiring to the
-          motor, and the motor&apos;s ground. Testing voltage at the switch&apos;s output while pressing it,
-          then at the motor itself, tells you which link is the weak one without needing to remove the door
-          panel until you&apos;ve narrowed it down.
+          To diagnose a car window that won&apos;t roll up or down, rule out the fuse and the lockout
+          button, then measure voltage at the switch output while pressing it, at the motor connector, and
+          across the motor&apos;s ground: the first point where the voltage goes missing is the fault. If
+          full voltage reaches a motor that only hums or clicks, the problem is mechanical, usually the
+          regulator. The switch test needs no disassembly, so you can often narrow it down before the
+          door panel comes off.
         </>
       }
       aside={{
@@ -47,9 +49,11 @@ export default function CarWindowWontMovePage() {
         ),
       }}
       toc={[
+        { id: "how-the-circuit-works", label: "How a power window circuit works" },
         { id: "listen-first", label: "Listen first: does the motor try to move?" },
         { id: "test-the-switch", label: "Test voltage at the switch output" },
         { id: "test-at-the-motor", label: "Test voltage at the motor" },
+        { id: "expected-readings", label: "Readings to expect" },
         { id: "test-the-ground", label: "Test the motor's ground" },
         { id: "mechanical-vs-electrical", label: "Mechanical vs. electrical failure" },
         { id: "which-meter", label: "Which meter to use" },
@@ -98,6 +102,56 @@ export default function CarWindowWontMovePage() {
       </Callout>
 
       <section>
+        <h2 id="how-the-circuit-works" className="text-xl font-semibold mb-3">How a power window circuit works</h2>
+        <p className="text-muted leading-7 mb-4">
+          A window motor is a small permanent-magnet DC motor, and it changes direction when the polarity
+          across it is reversed. The switch does that job. At rest, both motor wires are connected to
+          ground through the switch. Press &quot;up&quot; and one wire is lifted from ground and connected to
+          12V; press &quot;down&quot; and the other wire gets the 12V while the first returns to ground.
+          That&apos;s why the switch is the first place to measure: in one direction a single wire should
+          carry battery voltage while its partner stays at ground. Many newer cars replace the direct
+          switch with a door control module and a one-touch relay, but the motor still sees the same
+          reversing polarity at its connector.
+        </p>
+        <Figure
+          caption={
+            <>
+              Simplified power window circuit. Pressing &quot;up&quot; puts 12V on wire A and ground on wire
+              B; &quot;down&quot; swaps them, so the motor turns the other way. The meter reads across the
+              motor connector or from either wire to ground.
+            </>
+          }
+        >
+          <svg viewBox="0 0 360 170" className="w-full h-auto" role="img" aria-label="Power window circuit: fuse feeds a reversing switch, two wires to the window motor, meter across the motor connector">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <path d="M20 40 H60" />
+              <rect x="60" y="33" width="34" height="14" rx="3" />
+              <path d="M94 40 H130" />
+              <rect x="130" y="25" width="80" height="100" rx="6" className="fill-surface" />
+              <path d="M210 55 H270 M210 95 H270" />
+              <circle cx="290" cy="75" r="22" className="fill-surface" />
+              <path d="M270 55 Q280 55 284 58 M270 95 Q280 95 284 92" />
+              <path d="M170 125 V150 H40 V160 M30 160 H50" />
+            </g>
+            <g fontSize="9" textAnchor="middle" className="fill-foreground">
+              <text x="20" y="32">12V</text>
+              <text x="77" y="28">fuse</text>
+              <text x="170" y="62">window</text>
+              <text x="170" y="74">switch</text>
+              <text x="170" y="92" className="fill-muted">up / down</text>
+              <text x="240" y="50">wire A</text>
+              <text x="240" y="110">wire B</text>
+              <text x="290" y="79" fontWeight="700">M</text>
+              <text x="100" y="146" className="fill-muted">ground</text>
+            </g>
+            <path d="M262 55 V20 H340 V75 M262 95 V130 H340 V95" className="stroke-accent" strokeWidth="1.3" fill="none" strokeDasharray="4 3" />
+            <circle cx="340" cy="85" r="11" className="fill-surface stroke-accent" strokeWidth="2" />
+            <text x="340" y="89" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-accent">V</text>
+          </svg>
+        </Figure>
+      </section>
+
+      <section>
         <StepHeading n={1} id="listen-first">Listen first: does the motor try to move?</StepHeading>
         <p className="text-muted leading-7">
           Press the switch and listen closely. A motor that hums, clicks, or strains without the glass moving
@@ -125,14 +179,40 @@ export default function CarWindowWontMovePage() {
           not at the motor points to a break in the wiring between them.
         </p>
         <DataTable
-          head={["Finding", "Likely cause"]}
+          head={["Symptom", "Likely cause", "How to check", "Fix"]}
           rows={[
-            ["No voltage at the switch's output at all", "Faulty switch, or no power reaching the switch"],
-            ["Voltage at the switch, none at the motor", "Broken wire or connector between switch and motor"],
-            ["Voltage at the motor, motor doesn't move", "Bad motor, bad ground, or a mechanical jam"],
-            ["Motor strains or clicks but glass doesn't move", "Mechanical fault — regulator, cable, or track"],
+            ["Silent, no voltage at the switch's output", "Blown fuse, lockout engaged, or a failed switch", "Power at the switch input but none at its outputs", "Replace the fuse or switch; release the lockout"],
+            ["Voltage at the switch, none at the motor", "Broken wire or connector between switch and motor", "Probe both ends of the wire while pressing the switch", "Repair the wire, often in the door-jamb boot"],
+            ["Voltage at the motor, motor doesn't move", "Bad motor, bad ground, or a mechanical jam", "Full voltage across the motor connector, no movement", "Tap the motor; replace it if it stays dead"],
+            ["Motor strains or clicks but glass doesn't move", "Mechanical fault: regulator, cable, or track", "Motor runs with the regulator unbolted", "Replace the regulator or free the track"],
+            ["Works in one direction only", "Worn switch contact for that direction", "Output wire stays at 0V for one direction only", "Replace the switch"],
           ]}
         />
+      </section>
+
+      <section>
+        <h2 id="expected-readings" className="text-xl font-semibold mb-3">Readings to expect</h2>
+        <p className="text-muted leading-7 mb-4">
+          These are general guidelines for a 12V car with the ignition on and the engine off, not values
+          from a specific model. Start by measuring the battery so you have a reference; most will sit
+          around 12.4–12.6V.
+        </p>
+        <DataTable
+          head={["Measurement point", "Healthy (guideline)", "Points to a fault"]}
+          rows={[
+            ["Switch input to ground", "Within a few tenths of battery voltage", "0V: fuse, relay or feed wire"],
+            ["Switch output, button pressed", "Close to battery voltage", "0V or several volts low: switch contacts"],
+            ["Across the motor connector, button pressed", "Within about 0.5V of battery", "Much lower: wiring or connector resistance"],
+            ["Motor ground side to chassis, button pressed", "Under about 0.2V", "Higher: poor ground path"],
+          ]}
+          mono={[1]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          An illustrative example: the battery reads 12.5V, the switch output reads 12.4V while pressed,
+          but the motor connector shows only 6V. Half the voltage is being lost in the wiring between
+          them, so look at the rubber boot between the door and the body, where the harness flexes every
+          time the door opens and copper strands break inside intact insulation.
+        </p>
       </section>
 
       <section>
@@ -155,6 +235,14 @@ export default function CarWindowWontMovePage() {
           mechanical — a broken regulator cable, worn gear, or a track obstruction — and electrical testing
           has done its job of ruling out the wiring. At that point the repair shifts from a multimeter to
           disassembling the regulator mechanism itself.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          One electronic quirk is worth ruling out before you buy parts. On many cars with one-touch
+          auto-up, the window module forgets the glass&apos;s end positions after the battery is
+          disconnected or goes flat, and the auto function, sometimes the anti-pinch reverse as well,
+          stops working properly until it&apos;s re-learned. The usual procedure is to run the window fully
+          down, then fully up and keep holding the switch for a few seconds, but the exact steps vary, so
+          check the owner&apos;s manual. If that restores normal operation, no part has failed.
         </p>
         <div className="mt-4">
           <KeyIdea title="A strained-sounding motor is a mechanical clue, not just noise">
@@ -188,7 +276,7 @@ export default function CarWindowWontMovePage() {
               image: fluke117.image,
               alt: "Fluke 117 digital multimeter",
               href: "/multimeters/fluke-117-review",
-              note: "Auto-ranging DC volts and continuity.",
+              note: "Hands-on tested. Auto-ranging DC volts and continuity, CAT III 600V.",
             },
           ]}
         />

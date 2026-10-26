@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   ScopeScreen,
   StepHeading,
 } from "@/components/HowTo";
@@ -24,6 +25,7 @@ export const metadata = buildMetadata({
 const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
 const fnirsi = picks.find((p) => p.name === "FNIRSI DSO152")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
 
 // Rise time ≈ 0.35 ÷ bandwidth, using only the bandwidth listed on each pick.
 const bw = (p: typeof siglent) => p.specs.find((s) => s.label === "Bandwidth")!.value;
@@ -71,6 +73,7 @@ export default function CaptureBriefVoltageSpikePage() {
         { id: "measure-spike", label: "Measure the spike with cursors" },
         { id: "bandwidth", label: "Is your bandwidth enough?" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "scopes", label: "Scopes for catching spikes" },
       ]}
       faq={[
         {
@@ -88,6 +91,10 @@ export default function CaptureBriefVoltageSpikePage() {
         {
           q: "Can a spike be real if it only appears with the long ground lead?",
           a: "Treat it as suspect. If the spike shrinks or disappears when you swap to the short ground spring, or appears with the probe tip touched to its own ground near the circuit, it was being picked up by the ground loop. A real spike keeps roughly the same shape whichever short ground method you use.",
+        },
+        {
+          q: "Can I leave an oscilloscope waiting overnight for an intermittent spike?",
+          a: "Yes. In Single mode the scope arms once and waits indefinitely, then freezes the first capture that crosses your level, so it is still on screen in the morning. Normal mode keeps re-arming and overwrites earlier events with the latest one. Disable any screen saver or auto power-off first, and leave a mains-powered circuit unattended only if it is safe to do so.",
         },
       ]}
       next={[
@@ -321,6 +328,39 @@ export default function CaptureBriefVoltageSpikePage() {
           mains-earthed scope ground onto a non-isolated mains circuit, and use a differential probe or
           isolated scope when the circuit is not referenced to earth.
         </Callout>
+      </section>
+
+      <section id="scopes">
+        <h2 className="text-xl font-semibold mb-3">Scopes for catching spikes</h2>
+        <p className="text-muted leading-7 mb-4">
+          Catching a short spike depends mostly on sample rate, memory and a trigger that can sit armed for hours. Bandwidth then decides how faithfully the spike&apos;s height and edges are drawn once it is caught.
+        </p>
+        <ProductStrip
+          title="Scopes for spike and glitch capture"
+          items={[
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "100MHz and 1 GSa/s, with 500 MSa/s per channel even with all four channels running.",
+            },
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "50MHz, 4 channels and 1 GSa/s on one channel, a well-documented scope for learning trigger modes.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 12-bit four-channel oscilloscope with touchscreen",
+              href: "/oscilloscopes/best-beginner-oscilloscopes#rigol-dho804",
+              note: "12-bit resolution, 70MHz and up to 1.25 GSa/s with one channel on, for small spikes riding on a large signal.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

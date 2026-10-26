@@ -7,6 +7,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
 
 const link = "text-accent hover:underline";
 
@@ -62,6 +65,7 @@ export default function HowToTestARotarySwitchWithAMultimeterPage() {
         { id: "contact-resistance", label: "3. Measure contact resistance" },
         { id: "shorting-vs-non-shorting", label: "4. Shorting vs non-shorting" },
         { id: "diagnosis", label: "Reading the results" },
+        { id: "meters", label: "Meters for mapping switch positions" },
       ]}
       faq={[
         {
@@ -287,6 +291,38 @@ export default function HowToTestARotarySwitchWithAMultimeterPage() {
           </Link>{" "}
           helps tell a worn contact from a loose probe.
         </p>
+      </section>
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for mapping switch positions</h2>
+        <p className="text-muted leading-7 mb-6">
+          Mapping a rotary switch means dozens of continuity checks, so a fast beeper and a readable display save time. These picks from our reviews all handle the job.
+        </p>
+        <ProductStrip
+          title="Meters for rotary switch checks"
+          items={[
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR True RMS digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "A 6,000-count display shows small contact resistances clearly, and manual ranging stops the meter hunting between checks.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "One of our hands-on tested meters: True RMS with a backlit 6,000-count screen that stays readable through long mapping sessions.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "A budget True RMS meter with a backlit display and auto-ranging, enough for bench switch work at home.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

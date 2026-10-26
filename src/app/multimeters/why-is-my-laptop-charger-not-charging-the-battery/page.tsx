@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -123,6 +123,45 @@ export default function WhyIsMyLaptopChargerNotChargingPage() {
             ["0 V", "Dead adapter, or a break in the cable before the connector"],
           ]}
         />
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                Probing a center-positive barrel plug: red probe inside the tip, black probe on the outer
+                sleeve, laptop disconnected. The two strain-relief zones are where a cable usually breaks.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 170" className="w-full h-auto" role="img" aria-label="Diagram of a laptop adapter brick with its cable running to a barrel plug; the red meter probe touches the center tip marked positive and the black probe touches the outer sleeve marked negative, and the two cable ends near the brick and the plug are highlighted as the most common break points">
+              <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+                <rect x="14" y="50" width="70" height="44" rx="6" />
+                <path d="M84 72 C 130 72, 150 40, 200 60 S 240 72, 250 72" />
+                <rect x="250" y="62" width="40" height="20" rx="3" />
+                <line x1="290" y1="66" x2="306" y2="66" />
+                <line x1="290" y1="78" x2="306" y2="78" />
+              </g>
+              <g className="stroke-accent" strokeWidth="2" fill="none" strokeDasharray="3 3">
+                <circle cx="94" cy="72" r="12" />
+                <circle cx="240" cy="72" r="12" />
+              </g>
+              <text x="49" y="76" fontSize="10" textAnchor="middle" className="fill-foreground">adapter</text>
+              <text x="49" y="110" fontSize="9" textAnchor="middle" className="fill-muted">label: e.g. 19 V</text>
+              <text x="167" y="108" fontSize="9" textAnchor="middle" className="fill-accent">flex points: breaks happen here</text>
+              <circle cx="310" cy="72" r="3" className="fill-accent" />
+              <line x1="310" y1="72" x2="310" y2="30" className="stroke-accent" strokeWidth="1.6" />
+              <text x="310" y="24" fontSize="10" textAnchor="middle" className="fill-accent">red: tip (+)</text>
+              <line x1="300" y1="80" x2="300" y2="130" className="stroke-foreground" strokeWidth="1.6" />
+              <text x="300" y="144" fontSize="10" textAnchor="middle" className="fill-foreground">black: sleeve (−)</text>
+              <text x="14" y="160" fontSize="9" className="fill-muted">Meter on DC V; polarity per the symbol on the label</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The polarity symbol on the label (a dot inside a C shape, with + and − at the ends) tells you which
+          contact is positive. Most laptop bricks are center-positive, so a correctly connected meter shows a
+          positive number. If the display shows a minus sign in front of the rated voltage, the probes are
+          simply reversed; the adapter is still producing its output, and the reading is just as valid.
+        </p>
       </section>
 
       <section>

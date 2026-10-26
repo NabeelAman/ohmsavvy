@@ -114,6 +114,10 @@ export default function SmartThermostatLosingPowerPage() {
           q: "My thermostat uses AA batteries and still loses power. Why?",
           a: "Battery-only models usually just need fresh alkaline cells, but some thermostats use the batteries only as backup for the clock and settings while the 24 VAC supply runs the display and radio. If fresh cells don't help, measure R to C to see whether the main supply is reaching the thermostat at all.",
         },
+        {
+          q: "Why did my thermostat go blank after I changed the furnace filter?",
+          a: "Many furnaces have a door safety switch that cuts power to the control board, and with it the 24-volt supply to the thermostat, whenever the blower door is off. If the door is not fully seated after a filter change, that switch stays open and the thermostat goes dark. Push the door firmly into place so it presses the switch, then give the system a minute or two to restart.",
+        },
       ]}
       next={[
         {

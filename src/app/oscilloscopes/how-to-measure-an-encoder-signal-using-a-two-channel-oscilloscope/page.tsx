@@ -88,6 +88,10 @@ export default function HowToMeasureAnEncoderSignalPage() {
           q: "Do mechanical rotary encoders produce clean signals?",
           a: "Not usually. Hand-turned rotary encoders, like those on volume knobs, use sliding contacts that bounce, so each edge can show several fast transitions on the scope before it settles. The firmware or an RC filter is expected to deal with this. Optical and magnetic encoders normally give cleaner edges.",
         },
+        {
+          q: "How do I find the PPR of an encoder without a datasheet?",
+          a: "If it has an index output, put Z on one channel and A on the other, run the shaft at a steady speed and measure both frequencies. Because Z fires once per turn, the A frequency divided by the Z frequency is the PPR. Without an index, mark the shaft, turn it exactly one revolution by hand and count the A pulses on a long timebase or with the scope's edge counter, if it has one.",
+        },
       ]}
       next={[
         {

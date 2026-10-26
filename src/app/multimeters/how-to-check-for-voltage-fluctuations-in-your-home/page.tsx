@@ -127,6 +127,10 @@ export default function HowToCheckForVoltageFluctuationsInYourHomePage() {
           q: "Will the utility come out to check my voltage?",
           a: "Most utilities investigate voltage complaints, and many will install a recorder at the meter. Dates, times and readings from your own log make the request more specific and help them decide where to look.",
         },
+        {
+          q: "Will a whole-house surge protector stop voltage fluctuations?",
+          a: "No. A surge protective device clamps short, high-energy spikes such as those from lightning or utility switching. It does nothing about sags when a motor starts, a supply that sits high or low for minutes, or swings caused by a loose neutral. Those need the cause found and fixed. A surge protector is still worth having, but alongside the diagnosis, not instead of it.",
+        },
       ]}
       next={[
         {

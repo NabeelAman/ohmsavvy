@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -119,6 +119,48 @@ export default function WhyDoesMyCarKeepBlowingFusesPage() {
             how to find a short circuit in a car
           </Link>
           .
+        </p>
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                Why the fuse keeps blowing: a chafed wire touching the body gives current a path to ground that
+                bypasses the load. With the fuse pulled, the meter between the load-side terminal and chassis
+                sees that path as a low resistance instead of OL.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 180" className="w-full h-auto" role="img" aria-label="Diagram of a car circuit: battery feeds a fuse socket, a wire runs to a lamp load that is grounded to the chassis, and partway along the wire the insulation is chafed and touching the body, creating a short to ground; a meter connected from the load side of the empty fuse socket to chassis ground reads a low resistance">
+              <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+                <rect x="14" y="30" width="44" height="26" rx="3" />
+                <line x1="58" y1="43" x2="90" y2="43" />
+                <rect x="90" y="33" width="44" height="20" rx="3" strokeDasharray="4 3" />
+                <line x1="134" y1="43" x2="300" y2="43" />
+                <circle cx="300" cy="62" r="14" />
+                <line x1="300" y1="76" x2="300" y2="120" />
+                <line x1="10" y1="120" x2="330" y2="120" strokeWidth="2.4" />
+              </g>
+              <g className="stroke-accent" strokeWidth="2" fill="none">
+                <path d="M210 43 L 216 70 L 206 92 L 214 120" />
+              </g>
+              <text x="36" y="24" fontSize="10" textAnchor="middle" className="fill-foreground">battery</text>
+              <text x="112" y="24" fontSize="10" textAnchor="middle" className="fill-muted">fuse removed</text>
+              <text x="300" y="66" fontSize="9" textAnchor="middle" className="fill-foreground">load</text>
+              <text x="222" y="84" fontSize="10" className="fill-accent">chafed wire to body</text>
+              <text x="170" y="136" fontSize="10" textAnchor="middle" className="fill-muted">chassis ground</text>
+              <circle cx="134" cy="43" r="3" className="fill-accent" />
+              <line x1="134" y1="46" x2="134" y2="100" className="stroke-accent" strokeWidth="1.4" strokeDasharray="2 2" />
+              <rect x="104" y="100" width="60" height="16" rx="3" className="fill-surface stroke-accent" strokeWidth="1.2" />
+              <text x="134" y="112" fontSize="9" textAnchor="middle" className="fill-accent">meter: 0.3 Ω</text>
+              <text x="14" y="164" fontSize="9" className="fill-muted">Illustrative value. Load unplugged + healthy wiring = OL</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          A useful rule of thumb when reading that number: an incandescent bulb or small motor in the circuit
+          usually measures somewhere from a fraction of an ohm to a few tens of ohms, so first unplug the load
+          and then measure. With the load disconnected, anything other than OL from the fuse&apos;s load
+          terminal to ground means copper is touching metal somewhere along the run.
         </p>
       </section>
 

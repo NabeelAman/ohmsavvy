@@ -4,6 +4,8 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -19,6 +21,8 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
 
@@ -60,6 +64,7 @@ export default function HowToSolderMagnetWirePage() {
         { id: "method-mechanical", label: "Method 2: Mechanical stripping (any enamel type)" },
         { id: "confirm-its-clean", label: "Confirming the coating is actually gone" },
         { id: "quick-reference", label: "Quick reference" },
+        { id: "irons-for-magnet-wire", label: "Irons with heat to spare for enamel" },
       ]}
       faq={[
         {
@@ -77,6 +82,10 @@ export default function HowToSolderMagnetWirePage() {
         {
           q: "Why won't solder stick even after I think I've removed the enamel?",
           a: "A thin, nearly invisible residue of enamel or carbon can remain even when the wire looks shiny, and that residue blocks wetting the same way any contaminated surface does. Light sanding with fine abrasive paper, followed by fresh flux, usually clears it — confirm by checking for continuity end to end once you believe it's tinned.",
+        },
+        {
+          q: "How do I attach magnet wire to a PCB pad or a stranded lead?",
+          a: "Strip and tin the magnet wire end first, tin the pad or lead separately, then press them together and reflow briefly so you aren't fighting enamel and a joint at once. Fine magnet wire breaks easily right where the solder stops, so glue or tape the wire down nearby, or leave a small loop, to keep flexing away from the joint.",
         },
       ]}
       next={[
@@ -173,6 +182,13 @@ export default function HowToSolderMagnetWirePage() {
         </Callout>
       </section>
 
+      <Callout title="Ventilate when burning off enamel">
+        Burning through solderable enamel releases more smoke than ordinary flux, and the fumes from heated
+        polyurethane coatings are irritating to breathe. Work with a fan or fume extractor drawing smoke away
+        from your face, keep the iron in its stand between joints, and let a freshly tinned end cool before
+        handling it.
+      </Callout>
+
       <section>
         <h2 id="quick-reference" className="text-xl font-semibold mb-3">Quick reference</h2>
         <DataTable
@@ -182,6 +198,45 @@ export default function HowToSolderMagnetWirePage() {
             ["Known heavier/non-solderable enamel", "Mechanical stripping from the start"],
             ["Very fine wire where sanding risks breaking it", "Direct heat, kept brief, is gentler than aggressive scraping"],
             ["After either method", "Confirm with a continuity check before relying on the joint"],
+          ]}
+        />
+      </section>
+
+      <KeyIdea title="Clear the copper first, then solder normally">
+        Every magnet-wire problem is a coating problem. Once the end is bright copper and takes a thin, even
+        coat of solder, the joint itself is no harder than any other small-wire splice.
+      </KeyIdea>
+
+      <section id="irons-for-magnet-wire">
+        <h2 className="text-xl font-semibold mb-3">Irons with heat to spare for enamel</h2>
+        <p className="text-muted leading-7 mb-4">
+          The direct-heat method needs an iron that holds 370–400°C at the tip while flux and enamel pull heat
+          away. Any of these verified picks reaches that range with room left over.
+        </p>
+        <ProductStrip
+          title="Irons for stripping and tinning magnet wire"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX soldering station with handpiece",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Adjustable to 480°C with ±1°C idle stability and five presets, handy for switching between tinning and assembly.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Heats in about 12 seconds on a 20V+ supply and runs from USB-C, convenient for coil work away from the bench.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W digital station with ESD-safe construction, suited to winding and inductor repairs on a dedicated bench.",
+            },
           ]}
         />
       </section>

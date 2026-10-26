@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -121,6 +121,60 @@ export default function WhyDoesAPowerToolKeepStoppingPage() {
             ["Voltage stays normal but the tool still cuts out", "Likely the trigger switch or internal tool wiring"],
           ]}
         />
+        <div className="mt-4">
+          <Figure
+            caption={
+              <>
+                Inside the loop: the pack behaves like ideal cells in series with an internal resistance. The
+                voltage the tool sees is the cell voltage minus the current times that resistance, minus any
+                loss at the contacts and trigger. Example (illustrative): a pack with 0.1 Ω of internal
+                resistance drawing 20 A loses 20 × 0.1 = 2 V before the motor gets anything.
+              </>
+            }
+          >
+            <svg
+              viewBox="0 0 360 170"
+              className="w-full h-auto"
+              role="img"
+              aria-label="Cordless tool circuit: battery cells with internal resistance, pack contacts, trigger switch and motor in a loop, with a voltmeter across the pack terminals showing where the voltage sags under load"
+            >
+              <rect x="12" y="30" width="120" height="110" rx="6" className="fill-none stroke-border" strokeWidth="1.5" strokeDasharray="4 3" />
+              <text x="72" y="22" fontSize="10" textAnchor="middle" className="fill-muted">Battery pack</text>
+              <line x1="40" y1="60" x2="40" y2="110" className="stroke-foreground" strokeWidth="1.5" />
+              <line x1="30" y1="78" x2="50" y2="78" className="stroke-foreground" strokeWidth="2" />
+              <line x1="34" y1="86" x2="46" y2="86" className="stroke-foreground" strokeWidth="2" />
+              <line x1="30" y1="94" x2="50" y2="94" className="stroke-foreground" strokeWidth="2" />
+              <line x1="34" y1="102" x2="46" y2="102" className="stroke-foreground" strokeWidth="2" />
+              <text x="40" y="128" fontSize="9" textAnchor="middle" className="fill-muted">Cells</text>
+              <line x1="40" y1="60" x2="70" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <path d="M70 60 l5 -6 l6 12 l6 -12 l6 12 l6 -12 l5 6" className="fill-none stroke-accent" strokeWidth="1.5" />
+              <text x="88" y="46" fontSize="9" textAnchor="middle" className="fill-accent">R internal</text>
+              <line x1="104" y1="60" x2="132" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <line x1="40" y1="110" x2="40" y2="120" className="stroke-foreground" strokeWidth="1.5" />
+              <line x1="40" y1="120" x2="132" y2="120" className="stroke-foreground" strokeWidth="1.5" />
+              <circle cx="132" cy="60" r="4" className="fill-surface stroke-accent" strokeWidth="2" />
+              <circle cx="132" cy="120" r="4" className="fill-surface stroke-accent" strokeWidth="2" />
+              <text x="150" y="140" fontSize="9" textAnchor="middle" className="fill-accent">Contacts</text>
+              <line x1="136" y1="60" x2="200" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <line x1="200" y1="60" x2="226" y2="48" className="stroke-foreground" strokeWidth="1.5" />
+              <circle cx="200" cy="60" r="2.5" className="fill-foreground" />
+              <circle cx="230" cy="60" r="2.5" className="fill-foreground" />
+              <text x="215" y="38" fontSize="9" textAnchor="middle" className="fill-muted">Trigger</text>
+              <line x1="230" y1="60" x2="300" y2="60" className="stroke-foreground" strokeWidth="1.5" />
+              <circle cx="300" cy="90" r="22" className="fill-surface stroke-foreground" strokeWidth="1.5" />
+              <text x="300" y="94" fontSize="11" textAnchor="middle" className="fill-foreground">M</text>
+              <line x1="300" y1="60" x2="300" y2="68" className="stroke-foreground" strokeWidth="1.5" />
+              <line x1="300" y1="112" x2="300" y2="120" className="stroke-foreground" strokeWidth="1.5" />
+              <line x1="136" y1="120" x2="300" y2="120" className="stroke-foreground" strokeWidth="1.5" />
+              <text x="330" y="94" fontSize="9" textAnchor="middle" className="fill-muted">Motor</text>
+              <rect x="150" y="76" width="56" height="28" rx="4" className="fill-surface stroke-accent" strokeWidth="1.5" />
+              <text x="178" y="94" fontSize="11" textAnchor="middle" className="fill-accent">V meter</text>
+              <line x1="150" y1="84" x2="132" y2="64" className="stroke-accent" strokeWidth="1" strokeDasharray="3 2" />
+              <line x1="150" y1="98" x2="132" y2="116" className="stroke-accent" strokeWidth="1" strokeDasharray="3 2" />
+              <text x="250" y="160" fontSize="10" textAnchor="middle" className="fill-foreground">V at tool = V cells − I × R internal</text>
+            </svg>
+          </Figure>
+        </div>
       </section>
 
       <section>
@@ -165,14 +219,14 @@ export default function WhyDoesAPowerToolKeepStoppingPage() {
               image: fluke117.image,
               alt: "Fluke 117 digital multimeter",
               href: "/multimeters/fluke-117-review",
-              note: "Min/max recording catches a brief voltage sag under load.",
+              note: "Hands-on tested. Min/max recording catches a brief voltage sag under load.",
             },
             {
               name: "Fluke 115",
               image: fluke115.image,
               alt: "Fluke 115 digital multimeter",
               href: "/multimeters/fluke-115-review",
-              note: "A lighter-weight option with the same core DC volts range.",
+              note: "Hands-on tested. Same 550 g body, True RMS and CAT III 600V as the 117, without non-contact voltage detection.",
             },
           ]}
         />

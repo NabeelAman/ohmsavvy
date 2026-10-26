@@ -127,6 +127,10 @@ export default function HowToTestABidirectionalEvChargerPage() {
           q: "Does V2H work the same way in Europe?",
           a: "The principle is the same, but the home runs at 230 V and 50 Hz, wiring is usually single-phase or three-phase rather than 120/240 V split-phase, and grid-connection rules for bidirectional chargers vary by country and network operator. Expect different approved equipment lists and commissioning steps.",
         },
+        {
+          q: "Does vehicle-to-home use wear out my EV battery faster?",
+          a: "Every kilowatt-hour drawn out and put back adds to the battery's total cycling, so heavy daily V2H use adds some wear, while occasional outage backup adds very little. How much depends on depth of discharge, temperature and the pack chemistry. Read the vehicle maker's warranty terms on bidirectional use before relying on it every day, since some manufacturers limit or attach conditions to coverage when the car powers a home.",
+        },
       ]}
       next={[
         {

@@ -89,6 +89,10 @@ export default function HowToCheckAMotorWindingForAShortWithAMultimeterPage() {
           q: "Why does a motor keep tripping when its windings test good?",
           a: "The winding may have a turn-to-turn short or insulation weakness that a low-voltage meter cannot reveal, or the cause may be outside the motor: a seized bearing or overloaded machine, a lost supply phase, a failing starter contact or capacitor, or a wrongly set overload. Measure the running current on each phase with a clamp meter and compare it with the nameplate.",
         },
+        {
+          q: "Is it worth rewinding a motor with a shorted winding?",
+          a: "It depends on size and type. Small fractional-horsepower motors are usually cheaper to replace than to rewind, while larger industrial motors are commonly sent to a rewind shop, which also tests the insulation and checks the bearings. Get a repair quote alongside the cost of a new motor, weigh the lead time and downtime, and consider whether a newer replacement would run more efficiently over its working life.",
+        },
       ]}
       next={[
         {

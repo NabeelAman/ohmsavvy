@@ -6,6 +6,7 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const klein = picks.find((p) => p.name === "Klein Tools MM400")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const craftsman = picks.find((p) => p.name === "Craftsman CMMT14171")!;
 
 const link = "text-accent hover:underline";
 
@@ -34,10 +37,12 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
       published="2026-10-21"
       intro={
         <>
-          The standard way to test a fuse — pull it and check continuity — needs the circuit powered
-          off and the fuse out of its holder. When that&apos;s inconvenient, there&apos;s a live-circuit
-          alternative: measuring the voltage dropped across the fuse&apos;s own terminals while the
-          circuit is energized and something downstream is trying to draw power.
+          To test a fuse without removing it, leave the circuit powered with its load switched on and
+          measure voltage across the fuse&apos;s two terminals: near 0V means the fuse is good, and the
+          full supply voltage means it&apos;s blown. If the load can&apos;t be switched on, measure from
+          each terminal to ground instead: voltage on both sides is a good fuse, voltage on one side only
+          is a blown one. The standard pull-and-check-continuity method needs the fuse out of its holder;
+          these two live checks don&apos;t.
         </>
       }
       aside={{
@@ -59,7 +64,10 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
         { id: "fuse-types", label: "Where to probe, by fuse type" },
         { id: "step-by-step", label: "Testing a fuse in-circuit, step by step" },
         { id: "reading-the-result", label: "Reading the result" },
+        { id: "test-to-ground", label: "The to-ground check when the load is off" },
+        { id: "worked-example", label: "Worked example: a car fuse box" },
         { id: "standard-method-comparison", label: "When to use the standard method instead" },
+        { id: "which-meter", label: "Which meter to use" },
       ]}
       faq={[
         {
@@ -100,7 +108,9 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
         Unlike a standard continuity check, this test is done with power on. Use a meter rated for the
         voltage and category of the circuit you&apos;re working on, keep fingers clear of any exposed
         conductors, and if you&apos;re not confident working on a live circuit, use the standard
-        removed-fuse method instead.
+        removed-fuse method instead. In a home breaker panel or a 240V appliance, switch off and pull
+        the fuse, or call a licensed electrician; a car or low-voltage DC fuse box is the right place
+        for this live test.
       </Callout>
 
       <section>
@@ -155,10 +165,9 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
       <section id="fuse-types">
         <h2 className="text-xl font-semibold mb-3">Where to probe, by fuse type</h2>
         <p className="text-muted leading-7 mb-4">
-          The principle is identical across fuse styles — only the physical probing point changes:
-        </p>
-        <p className="text-muted leading-7 mt-4">
-          The fuse inside a UK three-pin plug is a different case: it can only be reached with the plug unplugged and opened. See <Link href="/multimeters/how-to-test-a-13-amp-plug-fuse-with-a-multimeter" className="text-accent hover:underline">how to test a 13 amp plug fuse with a multimeter</Link>.
+          The principle is identical across fuse styles; only the physical probing point changes. Most
+          automotive blade fuses have two small exposed metal test points on their top face for exactly
+          this purpose, so you can probe them without pulling anything.
         </p>
         <InfoCards
           items={[
@@ -205,15 +214,43 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
             <text x="260" y="98" fontSize="9" textAnchor="middle" className="fill-foreground">Bolt-down: two lugs</text>
           </svg>
         </Figure>
+        <p className="text-muted leading-7 mt-4">
+          The fuse inside a UK three-pin plug is a different case: it can only be reached with the plug unplugged and opened. See <Link href="/multimeters/how-to-test-a-13-amp-plug-fuse-with-a-multimeter" className="text-accent hover:underline">how to test a 13 amp plug fuse with a multimeter</Link>.
+        </p>
       </section>
 
       <section>
-        <StepHeading n={1} id="step-by-step">Testing a fuse in-circuit, step by step</StepHeading>
+        <StepHeading n={1} id="step-by-step">Switch the protected circuit on</StepHeading>
         <p className="text-muted leading-7">
-          Switch on whatever the fuse protects, or confirm the circuit is actively trying to draw
-          power. Set the multimeter to DC or AC voltage mode as appropriate for the circuit. Touch one
-          probe to each terminal of the fuse itself (not across the whole circuit) and read the
-          display.
+          Turn on whatever the fuse feeds: the ignition and the dead accessory in a car, or the device&apos;s
+          power switch on a piece of equipment. Without a load trying to draw current there&apos;s no
+          voltage to see across an open fuse, and the test reads nothing in either case.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={2}>Set the meter for the circuit</StepHeading>
+        <p className="text-muted leading-7">
+          Choose DC volts for a vehicle, a battery system or a low-voltage power supply, and AC volts for
+          mains equipment. On a manual-ranging meter, pick a range above the supply voltage (20V for a
+          12V car). Check the leads are in the COM and V jacks, not the amps jack.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={3}>Probe across the fuse itself</StepHeading>
+        <p className="text-muted leading-7">
+          Put one probe on each terminal or test point of the same fuse, not from the fuse to the chassis
+          and not across the whole circuit. Hold both tips steady for a second and read the display.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={4}>Confirm with the to-ground check</StepHeading>
+        <p className="text-muted leading-7">
+          If the reading is ambiguous, move the black probe to a known ground and touch the red probe to
+          each side of the fuse in turn. That second view takes about ten seconds and catches the case
+          where the load was quietly off, which is described in detail below.
         </p>
       </section>
 
@@ -229,6 +266,53 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
         />
       </section>
 
+      <section>
+        <h2 id="test-to-ground" className="text-xl font-semibold mb-3">The to-ground check when the load is off</h2>
+        <p className="text-muted leading-7">
+          Measuring across the fuse only works while current is trying to flow. When the load can&apos;t be
+          switched on, for example because the component you suspect is the very thing that died, use
+          ground as your reference instead. With the black probe on a clean chassis ground or the battery
+          negative, a healthy fuse shows supply voltage on both of its terminals, because the intact
+          element connects them. A blown fuse shows supply voltage on the input side and roughly 0V on the
+          output side. No voltage on either side means the fuse never received power, so the fault is
+          further upstream: an ignition-switched feed that&apos;s off, a relay, or a main fusible link.
+          Our guide to{" "}
+          <Link href="/multimeters/car-fuse-power-on-one-side-only" className={link}>
+            car fuses with power on one side only
+          </Link>{" "}
+          walks through that last pattern.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="worked-example" className="text-xl font-semibold mb-3">Worked example: a car fuse box</h2>
+        <p className="text-muted leading-7 mb-4">
+          Say the 12V accessory socket is dead and the battery reads 12.6V at rest. The table shows the
+          readings you&apos;d expect for each fuse condition. These are illustrative values for a typical
+          12V car, not measurements from a specific vehicle.
+        </p>
+        <DataTable
+          head={["Check", "Fuse good (illustrative)", "Fuse blown (illustrative)"]}
+          rows={[
+            ["Across the fuse, load on", "A few mV, close to 0V", "About 12.6V"],
+            ["Input side to ground", "About 12.6V", "About 12.6V"],
+            ["Output side to ground", "About 12.6V", "About 0V"],
+            ["Across the fuse, load off", "0V", "0V or a small floating reading"],
+          ]}
+          mono={[1, 2]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The last row is the trap: with nothing drawing current, a blown fuse can look identical to a good
+          one when you measure straight across it. The middle two rows don&apos;t have that weakness,
+          which is why the to-ground check is the better habit in a car. If a replacement fuse blows again
+          as soon as the circuit is switched on, stop swapping fuses and look for the short; see{" "}
+          <Link href="/multimeters/why-does-my-car-keep-blowing-fuses" className={link}>
+            why a car keeps blowing fuses
+          </Link>
+          .
+        </p>
+      </section>
+
       <section id="standard-method-comparison">
         <KeyIdea title="When to use the standard removed-fuse method instead">
           If working on a live circuit isn&apos;t practical or comfortable, pull the fuse, let the
@@ -237,8 +321,48 @@ export default function HowToTestAFuseWithoutRemovingItPage() {
             OL reading guide
           </Link>{" "}
           for what that result means. Both methods diagnose the same thing; this page&apos;s method
-          simply avoids needing to access and remove the fuse itself.
+          simply avoids needing to access and remove the fuse itself. For the pulled-fuse routine step
+          by step, see{" "}
+          <Link href="/multimeters/how-to-test-a-fuse-with-a-multimeter" className={link}>
+            how to test a fuse with a multimeter
+          </Link>
+          .
         </KeyIdea>
+      </section>
+
+      <section>
+        <h2 id="which-meter" className="text-xl font-semibold mb-3">Which meter to use</h2>
+        <p className="text-muted leading-7 mb-6">
+          Live testing is where the meter&apos;s safety rating matters more than its feature list. For car
+          and low-voltage DC work almost any meter is fine; for anything connected to mains, use one with
+          at least a CAT III 600V rating and leads in good condition.
+        </p>
+        <ProductStrip
+          title="Meters from our reviews"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. CAT III 600V and built-in non-contact voltage detection.",
+            },
+            {
+              name: "Craftsman CMMT14171",
+              image: craftsman.image,
+              alt: "Craftsman CMMT14171 automotive digital multimeter",
+              href: "/multimeters/craftsman-cmmt14171-review",
+              note: "Automotive meter with CAT III 600V for fuse-box checks around the car.",
+            },
+            {
+              name: "Klein Tools MM400",
+              image: klein.image,
+              alt: "Klein Tools MM400 digital multimeter",
+              href: "/multimeters/klein-mm400-review",
+              note: "CAT III 600V, auto-ranging and drop-rated to 1 m. Discontinued by Klein.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

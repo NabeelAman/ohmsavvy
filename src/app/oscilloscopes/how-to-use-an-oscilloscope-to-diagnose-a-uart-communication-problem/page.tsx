@@ -5,6 +5,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   ScopeScreen,
   StepHeading,
 } from "@/components/HowTo";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
+const ds1102ze = picks.find((p) => p.name === "Rigol DS1102Z-E")!;
 
 const link = "text-accent hover:underline";
 
@@ -96,6 +99,7 @@ export default function DiagnoseUartProblemPage() {
         { id: "edges", label: "Look at edge quality" },
         { id: "decode", label: "Use protocol decode if available" },
         { id: "diagnosis", label: "Symptom-to-check table" },
+        { id: "which-scope", label: "Scopes for serial debugging" },
       ]}
       faq={[
         {
@@ -346,6 +350,46 @@ export default function DiagnoseUartProblemPage() {
             ["Nothing received, TX active", "Probe at the receiver's RX pin with its ground", "Broken wire, missing ground, or level too low for the input"],
             ["Intermittent errors", "Zoom on edges; check for noise near mid-swing", "Slow edges on a long cable, crosstalk, or marginal baud error"],
             ["Works only with scope attached", "Measure between the two boards' grounds", "No ground wire; the scope earth was providing the return"],
+          ]}
+        />
+      </section>
+
+      <section id="which-scope">
+        <h2 className="text-xl font-semibold mb-3">Scopes for UART debugging</h2>
+        <p className="text-muted leading-7 mb-4">
+          For most UART faults, two channels and a bit-width measurement are all you need, since common baud
+          rates put one bit between about 8.7 µs (115200) and 104 µs (9600). Built-in decode saves time once
+          the timing checks out, and a third or fourth channel lets you watch a reset or enable line next to
+          TX and RX. The scopes below are from our{" "}
+          <Link href="/oscilloscopes/best-beginner-oscilloscopes" className={link}>
+            best beginner oscilloscopes
+          </Link>{" "}
+          roundup.
+        </p>
+        <ProductStrip
+          title="Scopes for serial debugging"
+          items={[
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 four-channel 12-bit oscilloscope with touchscreen",
+              href: "/oscilloscopes/rigol-dho804-vs-rigol-ds1054z",
+              note: "Hands-on tested. 70MHz, 4 channels, with UART, I2C, SPI, CAN and parallel decoding.",
+            },
+            {
+              name: "Rigol DS1102Z-E",
+              image: ds1102ze.image,
+              alt: "Rigol DS1102Z-E two-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1102z-e-vs-rigol-ds1054z",
+              note: "100MHz on two channels, enough for TX and RX, with standard UART, I2C and SPI decoding.",
+            },
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "Hands-on tested. 50MHz, 4 channels, 1 GSa/s, leaving spare inputs for reset or enable lines.",
+            },
           ]}
         />
       </section>

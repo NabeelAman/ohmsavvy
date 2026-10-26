@@ -86,6 +86,10 @@ export default function HowToMeasureResistanceOfAHeatingElementPage() {
           q: "Why does a heating element trip the RCD or GFCI?",
           a: "Usually because the insulation inside the element has broken down and current is leaking to its metal sheath and the appliance chassis. That leakage is exactly what a residual-current device is designed to detect. A multimeter on its highest resistance range finds hard faults; a slight leak that only appears when hot may need an insulation resistance tester.",
         },
+        {
+          q: "Can I use the continuity beeper to test a heating element?",
+          a: "Only as a quick check for a broken element. Many meters beep below a threshold of a few tens of ohms, and that threshold varies by model, so a healthy higher-resistance element may stay silent while a low-resistance one beeps. The beeper also gives no number to compare with the rating. Use the ohms range for a real verdict and keep the beeper for tracing broken leads.",
+        },
       ]}
       next={[
         {

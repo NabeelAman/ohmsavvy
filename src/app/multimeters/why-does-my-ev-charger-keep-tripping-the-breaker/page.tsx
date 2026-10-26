@@ -125,6 +125,10 @@ export default function WhyDoesMyEvChargerKeepTrippingTheBreakerPage() {
           q: "Should I reset the breaker and try again tonight?",
           a: "One reset to see whether the trip repeats is reasonable if there is no heat, smell or damage at the plug, receptacle or charger. If it trips again, or anything looks or smells scorched, leave it off and book an electrician.",
         },
+        {
+          q: "Can a breaker get weaker after tripping many times?",
+          a: "It can. Repeated trips under heavy load stress the contacts and thermal element, and a breaker that has run hot for years beside a loose terminal may end up tripping below its rating. You cannot judge this by eye or from a receptacle reading. An electrician can check terminal torque, clamp the actual current during a charging session and replace the breaker if it turns out to be the weak link.",
+        },
       ]}
       next={[
         {

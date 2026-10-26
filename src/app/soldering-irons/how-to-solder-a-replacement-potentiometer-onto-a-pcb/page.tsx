@@ -88,6 +88,10 @@ export default function HowToSolderAReplacementPotentiometerOntoAPcbPage() {
           q: "Why is my new potentiometer noisy right after installing it?",
           a: "Check the solder joints first: a cold or cracked wiper joint causes crackle that sounds like a worn track. Flux residue between pins on a high-impedance circuit can also cause noise, so clean the area. If the joints are good and the meter sweep is smooth, the noise may come from elsewhere, such as DC on the pot from a failed coupling capacitor.",
         },
+        {
+          q: "Can I mount a replacement potentiometer off the board on wires?",
+          a: "Yes, as a repair or a test, though it is rarely as tidy as a board-mounted part. Keep the wires short, twist the three together, and use shielded cable in audio circuits so the wiper lead does not pick up hum. Anchor the pot to the panel so the wires carry no strain, and ground its metal case if the original tabs did that job.",
+        },
       ]}
       next={[
         {

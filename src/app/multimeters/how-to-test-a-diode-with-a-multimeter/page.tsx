@@ -1,9 +1,12 @@
 import Link from "next/link";
 import {
+  BarChart,
+  Callout,
   DataTable,
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -19,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 
 const link = "text-accent hover:underline";
 
@@ -32,10 +37,11 @@ export default function HowToTestADiodeWithAMultimeterPage() {
       published="2026-10-21"
       intro={
         <>
-          Nearly every multimeter has a dedicated diode-test mode, usually sharing a dial position with
-          continuity and marked with a diode symbol. It works differently from resistance mode
-          specifically so it can give a meaningful reading on a component that only conducts one way —
-          here&apos;s how to read what it tells you.
+          To test a diode, switch the multimeter to its diode mode, put the red probe on the anode and the
+          black probe on the cathode band: a healthy silicon diode reads roughly 0.5–0.7V. Swap the probes
+          and it should read OL; a low reading both ways means it&apos;s shorted, and OL both ways means
+          it&apos;s open. Below is why that mode exists, the full sequence, and how to interpret the
+          in-between readings that confuse people.
         </>
       }
       aside={{
@@ -55,9 +61,11 @@ export default function HowToTestADiodeWithAMultimeterPage() {
         { id: "why-not-resistance-mode", label: "Why not just use resistance mode" },
         { id: "how-diode-mode-works", label: "How diode mode actually works" },
         { id: "step-by-step", label: "Testing a diode step by step" },
+        { id: "typical-drops", label: "Typical forward drops by diode type" },
         { id: "reading-the-results", label: "Reading the results" },
         { id: "testing-leds", label: "Testing an LED the same way" },
         { id: "in-circuit-caveat", label: "The in-circuit caveat" },
+        { id: "which-meter", label: "Which meter to use" },
       ]}
       faq={[
         {
@@ -94,6 +102,18 @@ export default function HowToTestADiodeWithAMultimeterPage() {
         },
       ]}
     >
+      <Callout title="Power off and discharge before you probe">
+        <ul className="space-y-2 list-disc pl-5">
+          <li>Diode mode is for unpowered parts only. Unplug the device and remove its battery first.</li>
+          <li>
+            Rectifier diodes in mains power supplies sit next to large filter capacitors that can hold a
+            dangerous charge after unplugging. Confirm they read near 0V on the DC volts range before
+            touching anything.
+          </li>
+          <li>Any voltage left on the board corrupts the reading and can damage the meter&apos;s diode circuit.</li>
+        </ul>
+      </Callout>
+
       <section>
         <h2 id="why-not-resistance-mode" className="text-xl font-semibold mb-3">Why not just use resistance mode?</h2>
         <p className="text-muted leading-7">
@@ -148,12 +168,33 @@ export default function HowToTestADiodeWithAMultimeterPage() {
       </section>
 
       <section>
-        <StepHeading n={1} id="step-by-step">Testing a diode step by step</StepHeading>
+        <StepHeading n={1} id="step-by-step">Check the leads and find the band</StepHeading>
         <p className="text-muted leading-7">
-          Set the dial to diode test mode (the diode symbol). Touch the red probe to the diode&apos;s
-          anode lead and the black probe to the cathode lead (identified by the painted band on most
-          diodes). Note the reading, then swap the probes and note the reading again. A healthy diode
-          shows a forward voltage drop one way and OL the other way.
+          Set the dial to diode test mode (the diode symbol) and touch the probe tips together. Most meters
+          beep and show a value close to 0V; if yours shows OL, a lead or the meter&apos;s fuse path is
+          the problem, not the diode. Then find the cathode: on glass and black-epoxy diodes it&apos;s the
+          end with the painted band, and on surface-mount parts it&apos;s usually a stripe or notch on one
+          end of the case.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={2}>Read the forward drop</StepHeading>
+        <p className="text-muted leading-7">
+          Touch the red probe to the anode and the black probe to the band end. Hold steady contact for a
+          second or two and write the number down. A 1N4148 signal diode or a 1N4007 rectifier typically
+          lands somewhere around 0.5–0.7V; a big power rectifier can read a little lower because its
+          larger junction passes the small test current more easily.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={3}>Reverse the probes</StepHeading>
+        <p className="text-muted leading-7">
+          Swap the leads so red is on the band. A good diode blocks, and the meter shows OL. Any number at
+          all in this direction is a warning sign: a few hundred millivolts suggests a short, and a reading
+          that slowly creeps downward usually means you&apos;re charging a capacitor somewhere else in the
+          circuit rather than looking at the diode alone.
         </p>
       </section>
 
@@ -171,7 +212,32 @@ export default function HowToTestADiodeWithAMultimeterPage() {
       </section>
 
       <section>
-        <StepHeading n={2} id="testing-leds">Testing an LED the same way</StepHeading>
+        <h2 id="typical-drops" className="text-xl font-semibold mb-3">Typical forward drops by diode type</h2>
+        <p className="text-muted leading-7 mb-4">
+          The number on the display is the most useful clue you have, so it helps to know roughly where
+          each family sits. These are typical textbook values at a small test current, not limits; the
+          exact figure depends on the part, its temperature and how much current your meter pushes.
+        </p>
+        <BarChart
+          items={[
+            { label: "Germanium", value: 0.3, display: "~0.2–0.4V" },
+            { label: "Schottky", value: 0.3, display: "~0.2–0.4V" },
+            { label: "Silicon (1N4148, 1N4007)", value: 0.6, display: "~0.5–0.7V", highlight: true },
+            { label: "Red LED", value: 1.8, display: "~1.6–2.0V" },
+            { label: "Blue or white LED", value: 3.0, display: "~2.7–3.3V" },
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          Notice the LED bars. A meter can only show a forward drop smaller than the voltage its diode
+          range applies, and many handheld meters apply only around 2–3V. A blue or white LED can therefore
+          read OL in both directions on some meters even though it&apos;s perfectly healthy. Before you
+          bin an LED on that basis, check your meter manual&apos;s diode-test voltage or try a coin cell
+          and a resistor instead.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={4} id="testing-leds">Testing an LED the same way</StepHeading>
         <p className="text-muted leading-7 mb-4">
           LEDs are diodes, so the same test applies, with one bonus: many meters&apos; diode-test
           current is enough to make the LED visibly glow when oriented for forward conduction. That
@@ -187,15 +253,15 @@ export default function HowToTestADiodeWithAMultimeterPage() {
             </>
           }
         >
-          <svg viewBox="0 0 220 140" className="w-full h-auto" role="img" aria-label="Diagram of LED polarity markings: flat side and shorter lead both indicate the cathode">
-            <path d="M70 20 A40 40 0 1 1 69 20 Z" className="fill-accent/40 stroke-foreground" strokeWidth="1.6" />
-            <path d="M30 20 L30 55 L110 55 L110 20" className="fill-none stroke-foreground" strokeWidth="1.6" />
-            <line x1="30" y1="55" x2="30" y2="30" className="stroke-foreground" strokeWidth="6" />
-            <text x="18" y="70" fontSize="9" textAnchor="middle" className="fill-accent">flat side</text>
-            <line x1="45" y1="95" x2="45" y2="118" className="stroke-foreground" strokeWidth="2" />
-            <line x1="95" y1="95" x2="95" y2="108" className="stroke-foreground" strokeWidth="2" />
-            <text x="45" y="130" fontSize="9" textAnchor="middle" className="fill-foreground">anode (+)</text>
-            <text x="95" y="122" fontSize="9" textAnchor="middle" className="fill-accent">cathode (−)</text>
+          <svg viewBox="0 0 220 150" className="w-full h-auto" role="img" aria-label="LED polarity diagram: the flat side of the case and the shorter leg both mark the cathode">
+            <path d="M80 70 V40 A30 30 0 0 1 140 40 V70" className="fill-accent/30 stroke-foreground" strokeWidth="1.6" />
+            <rect x="74" y="70" width="72" height="8" className="fill-surface stroke-foreground" strokeWidth="1.6" />
+            <line x1="146" y1="68" x2="146" y2="80" className="stroke-accent" strokeWidth="4" />
+            <line x1="95" y1="78" x2="95" y2="132" className="stroke-foreground" strokeWidth="2" />
+            <line x1="125" y1="78" x2="125" y2="116" className="stroke-foreground" strokeWidth="2" />
+            <text x="178" y="76" fontSize="9" textAnchor="middle" className="fill-accent">flat side</text>
+            <text x="70" y="144" fontSize="9" textAnchor="middle" className="fill-foreground">anode (+), longer</text>
+            <text x="160" y="128" fontSize="9" textAnchor="middle" className="fill-accent">cathode (−), shorter</text>
           </svg>
         </Figure>
       </section>
@@ -210,6 +276,62 @@ export default function HowToTestADiodeWithAMultimeterPage() {
           </Link>{" "}
           for the same underlying issue explained in more depth.
         </KeyIdea>
+        <p className="text-muted leading-7 mt-4">
+          Bridge rectifiers are just four diodes in one package, so the same forward-and-reverse routine
+          applies to each pair of pins; our{" "}
+          <Link href="/multimeters/how-to-test-a-bridge-rectifier-with-a-multimeter" className={link}>
+            bridge rectifier guide
+          </Link>{" "}
+          maps out all eight probe positions. Zeners need a different approach for their breakdown voltage,
+          covered in{" "}
+          <Link href="/multimeters/how-to-test-a-zener-diode-with-a-digital-multimeter" className={link}>
+            how to test a Zener diode
+          </Link>
+          , and if your readings look off for a part you know is good, see{" "}
+          <Link href="/multimeters/why-does-my-multimeter-show-the-wrong-diode-voltage" className={link}>
+            why a multimeter shows the wrong diode voltage
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
+        <h2 id="which-meter" className="text-xl font-semibold mb-3">Which meter to use</h2>
+        <p className="text-muted leading-7 mb-6">
+          Any meter with a diode position on the dial will do this job; the differences are in display
+          resolution, how firmly the leads seat, and whether the meter is safe to use on the mains side of
+          the same equipment later. More options are in our{" "}
+          <Link href="/multimeters/best-multimeters-for-electronics-repair" className={link}>
+            best multimeters for electronics repair
+          </Link>{" "}
+          guide.
+        </p>
+        <ProductStrip
+          title="Meters from our reviews"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. True RMS, CAT III 600V, diode test and continuity on the dial.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "Hands-on tested. Same body as the 117, adds capacitance and frequency, no NCV.",
+            },
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR 6,000-count digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "Budget 6,000-count True RMS meter for low-voltage bench work; no CAT rating stated.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

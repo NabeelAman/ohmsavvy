@@ -6,9 +6,10 @@ import {
   FlowDiagram,
   HowToShell,
   InfoCards,
+  ProductStrip,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
-import { picks } from "../best-multimeters/page";
 
 const description =
   "What causes unstable multimeter readings: poor probe contact, a genuinely fluctuating signal, electrical noise, a weak battery, or a meter hunting between ranges.";
@@ -21,7 +22,10 @@ export const metadata = buildMetadata({
 
 const link = "text-accent hover:underline";
 
-const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const meters = getAllPicks("multimeters");
+const fluke117 = meters.find((p) => p.name === "Fluke 117")!;
+const fluke87v = meters.find((p) => p.name === "Fluke 87V")!;
+const rigol = getAllPicks("oscilloscopes").find((p) => p.name === "Rigol DS1054Z")!;
 
 export default function UnstableMultimeterReadingsPage() {
   return (
@@ -59,6 +63,7 @@ export default function UnstableMultimeterReadingsPage() {
         { id: "measurement-side-causes", label: "Measurement-side causes" },
         { id: "real-signal-causes", label: "The signal is actually fluctuating" },
         { id: "meter-vs-scope-view", label: "Why a scope shows what a meter can't" },
+        { id: "which-tool", label: "Tools for fluctuating signals" },
       ]}
       faq={[
         {
@@ -195,6 +200,46 @@ export default function UnstableMultimeterReadingsPage() {
         &quot;unstable reading&quot; reports. Work through those before concluding the meter itself, or
         the circuit, has a genuine problem.
       </Callout>
+
+      <section>
+        <h2 id="which-tool" className="text-xl font-semibold mb-3">Tools that make a wandering reading easier to read</h2>
+        <p className="text-muted leading-7 mb-6">
+          If the cause turns out to be a real, varying signal, the instrument decides how much you can learn
+          from it. A True RMS meter gives a meaningful number on distorted AC, an analog bar graph lets you
+          watch a drifting value without squinting at flickering digits, and a scope shows the shape behind
+          the number. Compare more options in our{" "}
+          <Link href="/multimeters/best-multimeters" className={link}>
+            best multimeters
+          </Link>{" "}
+          roundup.
+        </p>
+        <ProductStrip
+          title="Picks for fluctuating signals"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "True RMS, so a distorted AC waveform reads as its real effective value.",
+            },
+            {
+              name: "Fluke 87V",
+              image: fluke87v.image,
+              alt: "Fluke 87V industrial digital multimeter",
+              href: "/multimeters/fluke-87v-review",
+              note: "32-segment analog bar graph shows a drifting value at a glance.",
+            },
+            {
+              name: "Rigol DS1054Z",
+              image: rigol.image,
+              alt: "Rigol DS1054Z four-channel digital oscilloscope",
+              href: "/oscilloscopes/rigol-ds1054z-review",
+              note: "Draws the ripple, PWM or switching pattern a meter can only average.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

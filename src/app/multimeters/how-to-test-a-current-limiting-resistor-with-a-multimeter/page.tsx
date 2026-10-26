@@ -6,6 +6,7 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const uni = picks.find((p) => p.name === "UNI-T UT139C")!;
 
 const link = "text-accent hover:underline";
 
@@ -290,6 +293,45 @@ export default function HowToTestACurrentLimitingResistorWithAMultimeterPage() {
           pin and short a rail. Use fine tips or clip one lead to ground, and never leave the meter in a
           current range while probing across components.
         </Callout>
+      </section>
+      <section>
+        <h2 id="meters-for-resistor-checks" className="text-xl font-semibold mb-3">Meters for resistor and LED circuit checks</h2>
+        <p className="text-muted leading-7 mb-6">
+          Checking a current-limiting resistor uses three ranges: ohms with a leg lifted, DC volts across it
+          under power, and sometimes DC milliamps in series with the LED. A 6,000-count meter reads a 330 Ω
+          part to a tenth of an ohm on its 600 Ω range, more than enough to judge a 5% tolerance band. For the
+          powered check in more depth, see{" "}
+          <Link href="/multimeters/how-to-measure-voltage-across-a-resistor" className={link}>
+            how to measure voltage across a resistor
+          </Link>
+          .
+        </p>
+        <ProductStrip
+          title="Meters for resistor and LED checks"
+          items={[
+            {
+              name: "KAIWEETS KM200s",
+              image: kaiweets.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/kaiweets-km200s-review",
+              note: "Value auto-ranging meter covering ohms, DC volts and current for LED and indicator circuits.",
+            },
+            {
+              name: "UNI-T UT139C",
+              image: uni.image,
+              alt: "UNI-T UT139C True RMS digital multimeter",
+              href: "/multimeters/uni-t-ut139c-review",
+              note: "6,000-count resolution with manual ranging, useful for reading small resistor values precisely.",
+            },
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. CAT III 600V Fluke for indicator circuits inside mains equipment and panels.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

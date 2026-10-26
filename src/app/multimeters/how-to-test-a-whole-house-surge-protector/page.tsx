@@ -123,6 +123,10 @@ export default function WholeHouseSurgeProtectorTestPage() {
           q: "Do I still need plug-in surge strips if I have a whole-house unit?",
           a: "Many electricians recommend layering protection: a Type 1 or Type 2 unit for surges arriving on the service, and point-of-use Type 3 devices for sensitive electronics, because some surges are generated inside the home by motors and switching.",
         },
+        {
+          q: "Will a whole-house surge protector protect against a direct lightning strike?",
+          a: "No device in the panel can absorb a direct strike to the house. A whole-house SPD diverts surges that arrive on the service wires from nearby strikes and utility switching, which are far more common. Protection against direct strikes needs a dedicated lightning protection system with air terminals and grounding, designed by a specialist. Unplug sensitive electronics during severe storms.",
+        },
       ]}
       next={[
         {

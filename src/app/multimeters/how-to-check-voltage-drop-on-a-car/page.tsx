@@ -89,6 +89,10 @@ export default function HowToCheckVoltageDropOnACarPage() {
           q: "Do I need a special meter for voltage drop testing?",
           a: "No. Any digital multimeter with a DC volts range that reads to hundredths of a volt will do. Long leads or extension leads make it easier to reach from the battery to the starter, and a MIN/MAX record function, where a meter has one, helps capture the reading during a short crank. Keep the leads in the V jack, never the current jacks.",
         },
+        {
+          q: "Do voltage drop readings change with engine temperature?",
+          a: "They can. Copper and corroded joints both gain resistance as they warm, while a cold engine with thick oil pulls more cranking current, which raises the drop across every connection in the path. A cable that scrapes through on a mild afternoon may fail on a frosty morning. Test at similar temperatures when comparing before and after a repair, and distrust borderline readings if the car only struggles in one season.",
+        },
       ]}
       next={[
         {

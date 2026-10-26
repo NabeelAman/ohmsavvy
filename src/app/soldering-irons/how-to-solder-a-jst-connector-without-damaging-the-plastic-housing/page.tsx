@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
 
@@ -266,6 +269,45 @@ export default function HowToSolderAJstConnectorPage() {
         between joints, and wash your hands after handling leaded solder. Small connectors invite holding
         parts with fingers near the tip; use tweezers or tape instead.
       </Callout>
+      <section>
+        <h2 id="irons-for-small-connectors" className="text-xl font-semibold mb-3">Irons that make short dwell times easier</h2>
+        <p className="text-muted leading-7 mb-6">
+          Protecting a JST housing comes down to getting heat into the pin quickly and then leaving. A
+          temperature-controlled iron that recovers fast after touching the joint lets you work at a moderate
+          setting with a short touch, instead of cranking the dial up and hoping. A fine conical or small chisel
+          tip that matches the pitch keeps the tip away from the plastic walls. For tip shapes, see our{" "}
+          <Link href="/soldering-irons/soldering-iron-tip-types" className={link}>
+            soldering iron tip types
+          </Link>{" "}
+          guide.
+        </p>
+        <ProductStrip
+          title="Temperature-controlled irons for connector work"
+          items={[
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W ESD-safe digital station; Weller quotes about 28 seconds from 50 to 350°C.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station with ±1°C idle stability and five presets, and it takes the same T18 tips as the older FX888D.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable USB-C soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Pocket USB-C PD iron, up to 88W from a 24V supply, handy for fixing a connector away from the bench.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

@@ -4,6 +4,7 @@ import {
   DataTable,
   Figure,
   HowToShell,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 const link = "text-accent hover:underline";
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
   return (
@@ -230,6 +233,41 @@ export default function HowToSolderWiresWithoutOverheatingInsulationPage() {
             ["Pre-tin wire ends separately", "Final joint needs only a brief reheat, not a full tin-and-join"],
             ["Use a heat sink clip on sensitive wire", "Absorbs excess heat before it reaches the insulation"],
             ["Keep dwell time short at proper temperature", "Less total heat exposure than a too-cool iron lingering"],
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons that make short dwell times easier</h2>
+        <p className="text-muted leading-7 mb-6">
+          Melted insulation is usually a dwell-time problem, and dwell time comes down to whether the tip can
+          deliver heat fast and hold its set temperature when it touches a cold wire. A temperature-controlled
+          iron with enough power reserve lets solder flow on the first touch instead of after a long wait that cooks the jacket.
+        </p>
+        <ProductStrip
+          title="Temperature-controlled irons for wire splicing"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX digital soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "100W station with a 65W iron, 50–480°C closed-loop control, ±1°C idle stability and five presets.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable USB-C soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Pocket iron, up to 88W at 24V DC and about 60W from 20V USB-C PD, for splicing wires in the field.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W ESD-safe digital station; Weller quotes about 28 seconds from 50 to 350°C.",
+            },
           ]}
         />
       </section>

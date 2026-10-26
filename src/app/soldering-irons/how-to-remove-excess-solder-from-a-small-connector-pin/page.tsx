@@ -6,6 +6,7 @@ import {
   FlowDiagram,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const ts101 = picks.find((p) => p.name === "Miniware TS101")!;
 
 const link = "text-accent hover:underline";
 
@@ -242,6 +245,41 @@ export default function HowToRemoveExcessSolderFromASmallConnectorPinPage() {
         joint. Ventilate flux smoke away from your face, and wash your hands after working with leaded
         solder.
       </Callout>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons with fine tips for connector work</h2>
+        <p className="text-muted leading-7 mb-6">
+          Pulling a blob off a header pin is easiest with an iron whose tip range includes small chisels and
+          whose temperature stays put when the braid soaks up heat. Each of these takes a widely sold tip
+          family, so a narrow tip for pin work is easy to add.
+        </p>
+        <ProductStrip
+          title="Irons for small pins and connectors"
+          items={[
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 portable USB-C soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "USB-C PD powered pocket iron, about 12 seconds to heat with a 20V+ supply.",
+            },
+            {
+              name: "Miniware TS101",
+              image: ts101.image,
+              alt: "Miniware TS101 portable smart soldering iron",
+              href: "/soldering-irons/pinecil-v2-vs-ts101-soldering-iron",
+              note: "OLED iron, 50–400°C, motion-sensing sleep, and it takes TS100 tips. USB-C PD or DC input.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX digital soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Bench station on Hakko's T18 tip range, 50–480°C with ±1°C idle stability. ESD safe.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

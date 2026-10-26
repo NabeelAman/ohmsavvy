@@ -5,6 +5,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
@@ -19,6 +20,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const ut139c = picks.find((p) => p.name === "UNI-T UT139C")!;
+const astroai = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 
 const link = "text-accent hover:underline";
 
@@ -58,6 +61,7 @@ export default function WhyDoesMyMultimeterShowNegativeVoltagePage() {
         { id: "digital-vs-analog", label: "Digital meters vs. old analog meters" },
         { id: "ac-mode-difference", label: "Why AC mode never shows negative" },
         { id: "when-it-signals-a-problem", label: "When a negative reading does signal a problem" },
+        { id: "meters", label: "Meters with clear polarity readouts" },
       ]}
       faq={[
         {
@@ -70,11 +74,15 @@ export default function WhyDoesMyMultimeterShowNegativeVoltagePage() {
         },
         {
           q: "Why did my reading flip from positive to negative when I touched a different point?",
-          a: "That's expected in an AC-to-DC circuit (like a bridge rectifier's output) or around any component where current direction reverses, such as during a switching cycle. The sign is simply tracking which side is instantaneously higher — probing a point on the other side of a component often flips it.",
+          a: "The reading is always the red probe's potential relative to the black probe. Move the red probe from a point above the black probe's potential to one below it, such as from a 12V rail to a point on the negative side of a load, and the sign flips. In a dual-supply circuit, anything on the negative rail reads negative to ground by design.",
         },
         {
           q: "Is there a difference between -5V and 5V with reversed probes?",
           a: "Electrically, no — both readings describe the exact same potential difference, just referenced from opposite probes. If a schematic specifically calls for a negative supply rail (common in op-amp circuits needing a dual supply), that's a genuinely different, intentionally negative voltage relative to the circuit's own ground — not just a probe-reversal artifact.",
+        },
+        {
+          q: "Why does my multimeter show a tiny negative voltage with nothing connected?",
+          a: "A reading of a few counts, such as -0.002 V or -0.3 mV, with open or shorted leads is normal offset and pickup on the input, not a real voltage. It sits within the meter's least-significant-digit tolerance. Short the probes together: if the display settles near zero, the meter is fine. A reading that stays far from zero points to a damaged input or low battery.",
         },
       ]}
       next={[
@@ -86,7 +94,7 @@ export default function WhyDoesMyMultimeterShowNegativeVoltagePage() {
         {
           href: "/multimeters/how-to-test-a-bridge-rectifier-with-a-multimeter",
           title: "How to Test a Bridge Rectifier",
-          desc: "A circuit where current direction — and therefore sign — reverses by design.",
+          desc: "Its marked + and − output pins make a handy polarity check.",
         },
       ]}
     >
@@ -141,7 +149,7 @@ export default function WhyDoesMyMultimeterShowNegativeVoltagePage() {
           rows={[
             ["Probing a battery with leads swapped", "Red probe simply landed on the negative terminal"],
             ["Measuring across a resistor with assumed current direction wrong", "Actual current flows the opposite way to what you expected"],
-            ["Checking a bridge rectifier's output pins", "Current direction through each internal diode alternates by design"],
+            ["Checking a bridge rectifier's DC output with the red probe on the − pin", "The output has fixed polarity, so red on − and black on + always reads negative"],
             ["Probing a dual-supply op-amp circuit's negative rail", "A genuinely negative voltage relative to the circuit's own ground — not a probe artifact"],
           ]}
         />
@@ -187,6 +195,41 @@ export default function WhyDoesMyMultimeterShowNegativeVoltagePage() {
         anything is wrong. If the sign simply flips back to positive with the same magnitude, the
         circuit is behaving normally — you were just reading it backward.
       </KeyIdea>
+
+      <section id="meters">
+        <h2 className="text-xl font-semibold mb-3">Meters with clear polarity readouts</h2>
+        <p className="text-muted leading-7 mb-4">
+          Every digital meter shows the minus sign, so polarity is never the reason to upgrade. These verified
+          picks are worth a look if you also want True RMS for AC work and a display that resolves small DC
+          offsets.
+        </p>
+        <ProductStrip
+          title="Meters for DC polarity checks"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. AutoVolt picks AC or DC for you, which avoids reading a DC rail on the AC range.",
+            },
+            {
+              name: "UNI-T UT139C",
+              image: ut139c.image,
+              alt: "UNI-T UT139C 6,000-count multimeter",
+              href: "/multimeters/uni-t-ut139c-review",
+              note: "True RMS, 6,000-count and CAT III 600V, with manual ranging for steady low-voltage readings.",
+            },
+            {
+              name: "AstroAI DM6000AR",
+              image: astroai.image,
+              alt: "AstroAI DM6000AR bench multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "Inexpensive 6,000-count True RMS meter for dual-supply and op-amp circuits. No CAT rating stated.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

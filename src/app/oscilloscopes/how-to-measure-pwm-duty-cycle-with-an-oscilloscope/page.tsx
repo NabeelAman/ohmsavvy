@@ -89,6 +89,10 @@ export default function HowToMeasurePwmDutyCycleWithAnOscilloscopePage() {
           q: "Why does my scope show no duty cycle reading at 0% or 100%?",
           a: "At 0% the output stays low and at 100% it stays high, so there are no edges. With no edges, the scope cannot find a period or a pulse width, and most scopes show the measurement as invalid or blank. The flat line itself is the answer: confirm its level against the ground marker.",
         },
+        {
+          q: "How do I measure an RC servo signal with an oscilloscope?",
+          a: "Measure the positive pulse width rather than the duty cycle. Hobby servos typically expect a pulse of roughly 1 to 2 ms repeated about every 20 ms, so the duty cycle sits around 5 to 10% and barely moves. Check your servo's documentation for its exact range, trigger on the rising edge, and watch the +Width measurement while you move the control.",
+        },
       ]}
       next={[
         {

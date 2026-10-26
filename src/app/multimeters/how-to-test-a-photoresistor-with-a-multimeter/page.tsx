@@ -8,6 +8,7 @@ import {
   InfoCards,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -23,6 +24,8 @@ export const metadata = buildMetadata({
 });
 
 const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
+const kaiweets = picks.find((p) => p.name === "KAIWEETS KM200s")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
 
 const link = "text-accent hover:underline";
 
@@ -362,6 +365,34 @@ export default function HowToTestAPhotoresistorWithAMultimeterPage() {
           </Link>{" "}
           roundup.
         </p>
+        <div className="mt-6">
+          <ProductStrip
+            title="Meters for LDR and light-sensor tests"
+            items={[
+              {
+                name: "AstroAI DM6000AR",
+                image: astro.image,
+                alt: "AstroAI DM6000AR True RMS digital multimeter",
+                href: "/multimeters/astroai-dm6000ar-review",
+                note: "Auto-ranging 6,000-count meter, handy when an LDR's resistance swings across several ranges as you shade it.",
+              },
+              {
+                name: "KAIWEETS KM200s",
+                image: kaiweets.image,
+                alt: "KAIWEETS KM200s True RMS digital multimeter",
+                href: "/multimeters/kaiweets-km200s-review",
+                note: "Budget smart auto-ranging meter whose backlight helps when you are testing a sensor in the dark.",
+              },
+              {
+                name: "Fluke 115",
+                image: fluke115.image,
+                alt: "Fluke 115 True RMS digital multimeter",
+                href: "/multimeters/fluke-115-review",
+                note: "Hands-on tested. A CAT III 600V Fluke for when the light sensor sits in a mains-powered fitting.",
+              },
+            ]}
+          />
+        </div>
       </section>
     </HowToShell>
   );

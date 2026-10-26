@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ScopeScreen } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ProductStrip, ScopeScreen } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -13,6 +13,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const km200s = picks.find((p) => p.name === "KAIWEETS KM200s")!;
 
 const link = "text-accent hover:underline";
 
@@ -63,6 +65,7 @@ export default function AcVsDcVoltagePage() {
         { id: "rms-and-peak", label: "RMS and peak: what an AC reading means" },
         { id: "measuring", label: "Measuring each with a multimeter" },
         { id: "wrong-setting", label: "What happens on the wrong setting" },
+        { id: "meters", label: "Meters for AC and DC work" },
       ]}
       faq={[
         {
@@ -80,6 +83,10 @@ export default function AcVsDcVoltagePage() {
         {
           q: "What is the difference between AC and DC current, as opposed to voltage?",
           a: "Voltage is the push, current is the flow it causes. AC voltage drives AC current and DC voltage drives DC current, so the same direction rule applies. A multimeter has separate settings for each (A~ and ADC), and measuring current needs the leads in the current jacks and the meter in series with the load.",
+        },
+        {
+          q: "Does a USB charger output AC or DC?",
+          a: "A USB charger takes AC from the wall and outputs DC. Inside it, a rectifier and switching regulator turn the 120V or 230V AC input into a steady DC supply, nominally 5V on a standard port and higher on USB-C fast-charging profiles once the phone negotiates them. Measure it on the DC voltage setting with the red lead on the positive pin.",
         },
       ]}
       next={[
@@ -204,6 +211,41 @@ export default function AcVsDcVoltagePage() {
           dead. If a reading makes no sense, the dial setting is the first thing to check, before the
           circuit.
         </p>
+      </section>
+
+      <section id="meters">
+        <h2 className="text-xl font-semibold mb-3">Meters that handle both kinds of voltage</h2>
+        <p className="text-muted leading-7 mb-4">
+          Every digital multimeter reads AC and DC volts, so the useful differences are True RMS for messy AC
+          waveforms, a CAT rating that covers outlets and panels, and help with choosing the right function.
+          These verified picks cover those needs.
+        </p>
+        <ProductStrip
+          title="True RMS meters for AC and DC work"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 True RMS digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "AutoVolt picks AC or DC voltage for you, plus non-contact voltage detection. True RMS, CAT III 600V.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "True RMS and CAT III 600V with a 6,000-count backlit display; you choose AC or DC on the dial yourself.",
+            },
+            {
+              name: "KAIWEETS KM200s",
+              image: km200s.image,
+              alt: "KAIWEETS KM200s True RMS digital multimeter",
+              href: "/multimeters/best-multimeters#kaiweets-km200s",
+              note: "Budget True RMS, auto-ranging meter with non-contact detection. Rated CAT II 600V, so keep it to plug-in loads.",
+            },
+          ]}
+        />
       </section>
 
       <section>

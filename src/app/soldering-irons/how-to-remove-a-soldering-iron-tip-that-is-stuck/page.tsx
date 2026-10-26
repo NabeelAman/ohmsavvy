@@ -88,7 +88,11 @@ export default function HowToRemoveASolderingIronTipThatIsStuckPage() {
         },
         {
           q: "Will a stuck tip affect how well my iron solders?",
-          a: "It can. Oxide between the tip and heater is a poor heat conductor, so a seized tip often runs cooler at the working end than the setpoint suggests, and the iron struggles on larger joints. If an iron has slowly lost its punch, a seized or oxidised tip connection is worth checking alongside the tip's own surface.",
+          a: "It can. Oxide between the tip and heater is a poor heat conductor, so a seized tip often runs cooler at the working end than the setpoint suggests, and the iron struggles on larger joints. If an iron has slowly lost its punch, a seized or oxidized tip connection is worth checking alongside the tip's own surface.",
+        },
+        {
+          q: "Can I use a different brand of tip in my soldering iron?",
+          a: "Only if it is made for that exact iron or tip series. Tips are sized to the heater and handpiece, and a loose or slightly oversized copy transfers heat poorly, runs cooler than the setpoint and can bind once its shank oxidizes. Check the maker's tip list for your model; genuine or properly matched tips are also far easier to pull off when the time comes.",
         },
       ]}
       next={[

@@ -88,6 +88,10 @@ export default function HowToMeasureALogicSignalPage() {
           q: "What voltage counts as high on a 5 V logic signal?",
           a: "It depends on the logic family of the receiving chip. TTL-compatible inputs typically accept about 2 V and above as high, while standard 5 V CMOS inputs typically need about 70% of the supply, roughly 3.5 V. The exact limits are in the receiving chip's datasheet, listed as VIH and VIL.",
         },
+        {
+          q: "Can I check a logic signal with a multimeter instead of a scope?",
+          a: "Only for static levels. On DC volts a multimeter shows a steady high or low correctly, but on a toggling line it shows something close to the average, roughly the supply times the duty cycle, so a 3.3 V clock at 50% reads near 1.65 V. It cannot show edges, ringing, glitches or timing, which is why the scope is the tool for anything that switches.",
+        },
       ]}
       next={[
         {

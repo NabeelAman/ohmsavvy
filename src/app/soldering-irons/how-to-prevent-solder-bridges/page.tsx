@@ -88,6 +88,10 @@ export default function HowToPreventSolderBridgesPage() {
           q: "Why do I get bridges even with a clean tip?",
           a: "A clean tip helps, but bridges usually come from too much solder on the joint or flux that has already burned off. Feed less solder, add fresh flux before each pass, and keep the tip moving. A temperature that is too low can also leave solder sluggish so it does not pull back onto the pads.",
         },
+        {
+          q: "Does lead-free solder bridge more easily than leaded solder?",
+          a: "Many people find it does in hand work. Common lead-free alloys melt at a higher temperature than 63/37 tin-lead, wet more slowly and lose fluidity faster as they cool, so excess solder is more likely to leave icicles or bridges. Fresh flux, a tip temperature within the solder maker's guidance and less solder per joint narrow the gap.",
+        },
       ]}
       next={[
         {

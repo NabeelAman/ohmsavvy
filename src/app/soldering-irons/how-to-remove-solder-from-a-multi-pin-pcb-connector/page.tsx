@@ -89,6 +89,10 @@ export default function HowToRemoveSolderFromAMultiPinPcbConnectorPage() {
           q: "What width of solder wick is best for connector pins?",
           a: "Pick a braid about as wide as one pad, often 1.5 mm to 2 mm for 2.54 mm pitch headers. Wider braid soaks up heat and touches neighboring pins; narrower braid saturates quickly. Use fresh, fluxed braid for each pin and cut off the used part as you go.",
         },
+        {
+          q: "Is lead-free solder harder to remove from a connector?",
+          a: "Usually, yes. Common lead-free alloys such as SAC305 melt at roughly 217 °C to 220 °C, against about 183 °C for 63/37 tin-lead, and they wet braid less eagerly. Many technicians add a little leaded solder to each joint first, which mixes in and lowers the melting point. If the board must stay lead-free for compliance, use extra flux and a larger, hotter tip instead.",
+        },
       ]}
       next={[
         {

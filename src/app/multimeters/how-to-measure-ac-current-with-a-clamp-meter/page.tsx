@@ -1,11 +1,14 @@
 import Link from "next/link";
 import {
+  Callout,
   DataTable,
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -19,6 +22,9 @@ export const metadata = buildMetadata({
 });
 
 const milwaukee = picks.find((p) => p.name === "Milwaukee 2235-20")!;
+const all = getAllPicks("multimeters");
+const fluke323 = all.find((p) => p.name === "Fluke 323")!;
+const cl445 = all.find((p) => p.name === "Klein Tools CL445")!;
 
 const link = "text-accent hover:underline";
 
@@ -59,6 +65,7 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
         { id: "jaw-size", label: "Jaw size vs. what you're clamping" },
         { id: "ac-only-vs-ac-dc", label: "Confirm your meter reads AC" },
         { id: "inrush-current", label: "Can it catch a brief inrush spike?" },
+        { id: "clamp-meters", label: "Clamp meters we recommend" },
       ]}
       faq={[
         {
@@ -76,6 +83,10 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
         {
           q: "Can a clamp meter measure current through a very thick cable or bus bar?",
           a: "Only if it physically fits inside the jaw opening. Clamp meters come with different jaw sizes for this reason — check the jaw opening dimension against the actual conductor or bus bar size you need to measure, not just the meter's current rating.",
+        },
+        {
+          q: "How do I measure a small AC current, under 1 amp, with a clamp meter?",
+          a: "Loop the single conductor through the jaw several times, then divide the reading by the number of turns. Five passes of a wire carrying 0.4 A make the meter see about 2 A, which sits higher in its range where resolution is better. For milliamp-level or DC microamp work, a meter with test leads or a dedicated µA range is the better tool.",
         },
       ]}
       next={[
@@ -136,12 +147,41 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
       </section>
 
       <section>
-        <StepHeading n={1} id="step-by-step">Measuring AC current step by step</StepHeading>
+        <Callout title="Safety first: the conductor is live while you clamp it">
+          Clamping is non-contact, but you are still working beside energized mains wiring. Use a meter rated
+          at least CAT III for panel and branch-circuit work, wear safety glasses, keep your fingers behind the
+          jaw&apos;s tactile barrier and never remove a panel cover you aren&apos;t qualified to work behind.
+          If reaching a single conductor means opening a breaker panel and you aren&apos;t trained for that,
+          call a licensed electrician instead.
+        </Callout>
+      </section>
+
+      <section>
+        <StepHeading n={1} id="step-by-step">Select the AC current function</StepHeading>
         <p className="text-muted leading-7">
-          Turn the dial to the AC current function (usually marked A~ or with a sine-wave symbol).
-          Squeeze the trigger to open the jaw, position it around a single, isolated conductor, and
-          release the trigger to let the jaw close fully around it. Center the conductor in the jaw
-          opening and read the display.
+          Turn the dial to the AC current function (usually marked A~ or with a sine-wave symbol). If your
+          meter has manual ranges, start on the highest one and step down. Unplug the test leads if the
+          meter doesn&apos;t need them for this mode; they only get in the way near live wiring.
+        </p>
+        <StepHeading n={2}>Find one isolated conductor</StepHeading>
+        <p className="text-muted leading-7">
+          Choose the hot conductor of the circuit you want to measure, where it runs on its own: at a breaker
+          lug, a terminal block or through a line splitter on a plug-in load. Don&apos;t include the neutral
+          or any other wire inside the jaw.
+        </p>
+        <StepHeading n={3}>Close the jaw around it and center it</StepHeading>
+        <p className="text-muted leading-7">
+          Squeeze the trigger to open the jaw, position it around the conductor and release the trigger so the
+          jaw closes fully with no gap at the tips. Move the meter until the wire sits near the center of the
+          opening, away from the hinge.
+        </p>
+        <StepHeading n={4}>Run the load and read the display</StepHeading>
+        <p className="text-muted leading-7">
+          Switch the load on, let the reading settle for a second or two and note it. Use the Hold button if
+          you can&apos;t see the screen from where you&apos;re clamping. As a sanity check, compare the
+          figure with the load&apos;s nameplate: a 1,500 W space heater on 120 V should draw roughly
+          1,500 ÷ 120 = 12.5 A, so a reading near 12 A is plausible while a reading near zero points back
+          to a clamping mistake.
         </p>
       </section>
 
@@ -217,6 +257,44 @@ export default function HowToMeasureAcCurrentWithAClampMeterPage() {
           </Link>{" "}
           guide covers in more depth.
         </p>
+      </section>
+
+      <section>
+        <h2 id="clamp-meters" className="text-xl font-semibold mb-3">Clamp meters we recommend</h2>
+        <p className="text-muted leading-7 mb-4">
+          For household and light commercial circuits, a 400 A AC clamp with True RMS covers almost
+          everything: branch circuits rarely exceed 20–50 A, and True RMS keeps readings honest on dimmers,
+          LED drivers and variable-speed motors. If you service HVAC equipment, an inrush mode and a
+          microamp range for flame sensors earn their place. A reading that looks wrong is most often the
+          two-conductor mistake above, a jaw not fully closed, or an averaging meter on a distorted waveform,
+          so rule those out before suspecting the load.
+        </p>
+        <ProductStrip
+          title="Clamp meters from our verified picks"
+          items={[
+            {
+              name: "Milwaukee 2235-20",
+              image: milwaukee.image,
+              alt: "Milwaukee 2235-20 True RMS clamp meter",
+              href: "/multimeters/milwaukee-2235-20-review",
+              note: "True RMS, 400 A AC through a 1-inch jaw, CAT III 600V. It reads AC amps only, which is all this job needs.",
+            },
+            {
+              name: "Fluke 323",
+              image: fluke323.image,
+              alt: "Fluke 323 True RMS clamp meter",
+              href: "/multimeters/fluke-117-vs-fluke-323",
+              note: "Fluke's compact True RMS clamp: 400 A AC, rated CAT III 600V and CAT IV 300V. No DC amps or backlight.",
+            },
+            {
+              name: "Klein Tools CL445",
+              image: cl445.image,
+              alt: "Klein Tools CL445 HVAC clamp meter",
+              href: "/multimeters/best-multimeter-for-hvac-technicians#klein-tools-cl445",
+              note: "600 A AC with an inrush mode for motor start-up, plus a 0.1 µA DC range through the leads for flame sensors.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

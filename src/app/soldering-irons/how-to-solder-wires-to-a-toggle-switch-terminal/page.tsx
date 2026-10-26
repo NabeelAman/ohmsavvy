@@ -5,6 +5,7 @@ import {
   Figure,
   FlowDiagram,
   HowToShell,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -20,6 +21,8 @@ export const metadata = buildMetadata({
 });
 
 const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -64,6 +67,7 @@ export default function HowToSolderWiresToAToggleSwitchTerminalPage() {
         { id: "strain-relief", label: "5. Shrink, dress and strain-relieve" },
         { id: "continuity-check", label: "6. Check continuity in both positions" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "irons", label: "Irons suited to switch lugs" },
       ]}
       faq={[
         {
@@ -257,6 +261,38 @@ export default function HowToSolderWiresToAToggleSwitchTerminalPage() {
         Never solder a switch that is still wired into a live circuit, especially mains-rated switches.
         Ventilate flux smoke away from your face, and wash your hands after using leaded solder.
       </Callout>
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons suited to switch lugs</h2>
+        <p className="text-muted leading-7 mb-6">
+          Switch lugs need a short, hot touch so the plastic body never softens. A tip you can choose and a temperature you can set do more for that than raw wattage.
+        </p>
+        <ProductStrip
+          title="Irons for switch wiring"
+          items={[
+            {
+              name: "Q-MING 60W Kit",
+              image: qming.image,
+              alt: "Q-MING 60W soldering iron kit with tips and stand",
+              href: "/soldering-irons/q-ming-60w-soldering-iron-kit-review",
+              note: "A 60W starter kit with a 200–450°C dial, five tips and a stand, enough for occasional pedal or panel switch jobs.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "USB-C PD powered with an OLED readout and roughly 12 s warm-up, handy when the switch is mounted in a panel away from the bench.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX digital soldering station with FX-8801 iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Five stored presets make it easy to keep one quick, hotter setting for lugs and a gentler one for board work.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

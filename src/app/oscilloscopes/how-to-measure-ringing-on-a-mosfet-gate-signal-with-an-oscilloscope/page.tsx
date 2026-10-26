@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   ScopeScreen,
   StepHeading,
 } from "@/components/HowTo";
@@ -23,6 +24,8 @@ export const metadata = buildMetadata({
 
 const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
+const sds1202 = picks.find((p) => p.name === "Siglent SDS1202X-E")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
 const bw = (p: typeof siglent) => p.specs.find((s) => s.label === "Bandwidth")!.value;
 
 const link = "text-accent hover:underline";
@@ -80,6 +83,7 @@ export default function MeasureMosfetGateRingingPage() {
         { id: "measure", label: "Measure ring frequency and peak Vgs" },
         { id: "fixes", label: "Damp the ringing" },
         { id: "troubleshooting", label: "Troubleshooting" },
+        { id: "which-scope", label: "Scopes with enough bandwidth" },
       ]}
       faq={[
         {
@@ -365,6 +369,43 @@ export default function MeasureMosfetGateRingingPage() {
           </Link>{" "}
           picks up where the gate leaves off.
         </p>
+      </section>
+
+      <section>
+        <h2 id="which-scope" className="text-xl font-semibold mb-3">Scopes with enough bandwidth for gate ringing</h2>
+        <p className="text-muted leading-7 mb-4">
+          Pick the scope from the ring frequency you expect. Using the common rule of thumb that bandwidth
+          should be several times the highest frequency you need to see, a gate ring in the 18 to 50 MHz
+          range from the loop examples above points toward 100 MHz at minimum, and toward 200 MHz for
+          the tightest, fastest loops. Two channels cover gate and
+          drain; a four-channel scope adds the switch node and the driver input on the same capture.
+        </p>
+        <ProductStrip
+          title="Scopes for gate-drive work"
+          items={[
+            {
+              name: "Siglent SDS1104X-E",
+              image: siglent.image,
+              alt: "Siglent SDS1104X-E four-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-review",
+              note: "Hands-on tested. 100MHz on 4 channels, so gate, drain, switch node and driver input fit at once.",
+            },
+            {
+              name: "Siglent SDS1202X-E",
+              image: sds1202.image,
+              alt: "Siglent SDS1202X-E two-channel benchtop digital oscilloscope",
+              href: "/oscilloscopes/siglent-sds1104x-e-vs-siglent-sds1202x-e",
+              note: "200MHz on two channels, the most headroom here for fast rings on gate and drain.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 four-channel 12-bit oscilloscope with touchscreen",
+              href: "/oscilloscopes/rigol-dho804-vs-siglent-sds1104x-e",
+              note: "Hands-on tested. 12-bit resolution resolves small Vgs overshoot; its 70MHz limits fast rings.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

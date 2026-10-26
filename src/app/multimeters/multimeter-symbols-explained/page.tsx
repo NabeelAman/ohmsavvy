@@ -125,6 +125,10 @@ export default function MultimeterSymbolsExplainedPage() {
           q: "Is the speaker symbol the same as the diode symbol?",
           a: "No. The speaker or sound-wave icon is continuity, where the meter beeps below a low resistance threshold. The arrow-into-a-bar icon is diode test, which shows the forward voltage drop of a semiconductor junction. Many meters share one dial position between them and switch with a button.",
         },
+        {
+          q: "What does LoZ or AutoV mean on a multimeter dial?",
+          a: "LoZ marks a low-impedance voltage setting. Instead of the usual high input resistance, the meter puts a much smaller load across the probes, which drains away the phantom or ghost voltage that unconnected wires pick up from neighboring live cables. AutoV versions also choose AC or DC by themselves. It suits electrical troubleshooting, not delicate electronics, where that load can disturb the circuit.",
+        },
       ]}
       next={[
         {

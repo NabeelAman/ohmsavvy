@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -51,6 +51,7 @@ export default function WhyDoesAnExtensionCordOverheatPage() {
         { id: "gauge-and-length", label: "Check gauge against length and load" },
         { id: "measure-actual-current", label: "Measure the actual current draw" },
         { id: "voltage-drop-along-the-cord", label: "Check voltage drop along the cord" },
+        { id: "the-numbers", label: "The numbers: heat by wire gauge" },
         { id: "inspect-for-damage", label: "Inspect connectors and insulation" },
         { id: "when-to-stop-using-it", label: "When to stop using a cord" },
         { id: "which-meter", label: "Which meter to use" },
@@ -123,9 +124,11 @@ export default function WhyDoesAnExtensionCordOverheatPage() {
       <section>
         <StepHeading n={2} id="measure-actual-current">Measure the actual current draw</StepHeading>
         <p className="text-muted leading-7">
-          Clamp around one conductor of the cord (split the jacket open at a connector if needed to access a
-          single wire, or clamp one prong&apos;s wire inside an open outlet box) while the device is running
-          under its normal load, and read the current in amps. Compare that reading against the cord&apos;s
+          A clamp meter has to go around a single conductor, and an extension cord keeps both inside one
+          jacket, so plug the cord into an AC line splitter (an inexpensive adapter with a loop that
+          separates one conductor) and clamp that loop while the device runs under its normal load. Never
+          cut or split the cord&apos;s jacket to reach a wire. The nameplate on the tool or appliance gives
+          its rated amps if you don&apos;t have a clamp meter. Compare that reading against the cord&apos;s
           rated ampacity for its gauge and length.
         </p>
       </section>
@@ -138,6 +141,73 @@ export default function WhyDoesAnExtensionCordOverheatPage() {
           percentage of the supply voltage; a larger drop means the cord (or a connection along it) is
           undersized or damaged for the current it&apos;s carrying.
         </p>
+      </section>
+
+      <section>
+        <h2 id="the-numbers" className="text-xl font-semibold mb-3">The numbers: heat by wire gauge</h2>
+        <p className="text-muted leading-7 mb-4">
+          A cord heats up because its copper has resistance, and the power turned into heat is the current
+          squared times that resistance (P = I² × R). Current flows out on one conductor and back on the
+          other, so a 50 ft cord puts 100 ft of wire in the circuit. Using standard copper resistance
+          figures at room temperature (about 4.0Ω per 1,000 ft for 16 AWG, 2.5Ω for 14 AWG and 1.6Ω for
+          12 AWG), here is a 50 ft cord feeding a 13A load on a 120V circuit:
+        </p>
+        <DataTable
+          head={["Gauge", "Round-trip resistance", "Voltage drop at 13A", "Heat in the cord"]}
+          rows={[
+            ["16 AWG", "≈ 0.40Ω", "≈ 5.2V (4.4%)", "≈ 68W"],
+            ["14 AWG", "≈ 0.25Ω", "≈ 3.3V (2.7%)", "≈ 43W"],
+            ["12 AWG", "≈ 0.16Ω", "≈ 2.1V (1.7%)", "≈ 27W"],
+          ]}
+          mono={[1, 2, 3]}
+        />
+        <div className="mt-4">
+          <BarChart
+            items={[
+              { label: "16 AWG, 50 ft, 13A", value: 68, display: "≈ 68W of heat", highlight: true },
+              { label: "14 AWG, 50 ft, 13A", value: 43, display: "≈ 43W" },
+              { label: "12 AWG, 50 ft, 13A", value: 27, display: "≈ 27W" },
+            ]}
+          />
+        </div>
+        <p className="text-muted leading-7 mt-4 mb-4">
+          The arithmetic for the 16 AWG row: 100 ft × 4.0Ω / 1,000 ft ≈ 0.40Ω; 13A × 0.40Ω ≈ 5.2V; and
+          13² × 0.40 ≈ 68W. Spread along a straight, uncoiled cord, 68W is warm but manageable. Wound on a
+          reel, the same 68W is trapped in a tight bundle that can&apos;t shed it, which is why reels carry
+          a lower rating when coiled. Because heat rises with the square of current, doubling the load
+          quadruples the heat. A connection is a different story: a loose plug blade with even 0.1Ω of
+          contact resistance turns about 17W into heat at 13A inside a space the size of a fingertip, which
+          is what melts plugs.
+        </p>
+        <Figure
+          caption={
+            <>
+              Both conductors of the cord act as resistors in series with the load. Heat in the wire is spread
+              along its whole length; heat at a bad contact is concentrated in one small spot, so it gets hot
+              far faster.
+            </>
+          }
+        >
+          <svg viewBox="0 0 360 160" className="w-full h-auto" role="img" aria-label="Extension cord circuit: outlet, two cord conductors drawn as resistances spread along their length, a hot spot at a loose plug contact, and the load">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="10" y="40" width="44" height="70" rx="5" className="fill-surface" />
+              <rect x="306" y="40" width="44" height="70" rx="5" className="fill-surface" />
+              <path d="M54 55 H80 l6 -6 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l6 6 H306" />
+              <path d="M54 95 H80 l6 -6 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l8 12 l8 -12 l6 6 H306" />
+            </g>
+            <circle cx="290" cy="55" r="9" className="fill-accent/40 stroke-accent" strokeWidth="1.6" />
+            <g fontSize="9" textAnchor="middle" className="fill-foreground">
+              <text x="32" y="32">outlet</text>
+              <text x="328" y="32">load</text>
+              <text x="32" y="79" className="fill-muted">120V</text>
+              <text x="328" y="79" className="fill-muted">13A</text>
+              <text x="180" y="30" className="fill-muted">hot conductor: heat spread along its length</text>
+              <text x="180" y="124" className="fill-muted">neutral conductor: same current, same heat</text>
+              <text x="270" y="146" className="fill-accent">loose contact: heat in one spot</text>
+            </g>
+            <path d="M290 64 V136" className="stroke-accent" strokeWidth="1.2" strokeDasharray="3 2" />
+          </svg>
+        </Figure>
       </section>
 
       <section>

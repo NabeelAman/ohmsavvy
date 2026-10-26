@@ -7,6 +7,7 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const extech = picks.find((p) => p.name === "Extech EX330")!;
+const brymen = picks.find((p) => p.name === "Brymen BM235")!;
+const fluke87v = picks.find((p) => p.name === "Fluke 87V")!;
 
 const link = "text-accent hover:underline";
 
@@ -64,6 +67,7 @@ export default function HowToMeasureResistanceOfAHeatingCartridgeWithAMultimeter
         { id: "cold-vs-hot", label: "Cold vs hot resistance" },
         { id: "wrong-voltage", label: "12V cartridge on 24V: why it's dangerous" },
         { id: "diagnosis", label: "Reading the results" },
+        { id: "meters", label: "Meters for low-ohm cartridge checks" },
       ]}
       faq={[
         {
@@ -275,6 +279,38 @@ export default function HowToMeasureResistanceOfAHeatingCartridgeWithAMultimeter
             ["Reading jumps when the leads are moved", "Broken conductor or loose crimp near the hot end"],
             ["Near 0 Ω across the leads", "Shorted leads or a shorted element; inspect the cable first"],
             ["Any reading from a lead to the sheath", "Insulation breakdown; replace the cartridge"],
+          ]}
+        />
+      </section>
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for low-ohm cartridge checks</h2>
+        <p className="text-muted leading-7 mb-6">
+          Heater cartridges often read only a few ohms, so lead resistance is a real share of the reading. A relative-zero function or a fine resolution helps you trust the number.
+        </p>
+        <ProductStrip
+          title="Meters for heater resistance"
+          items={[
+            {
+              name: "Brymen BM235",
+              image: brymen.image,
+              alt: "Brymen BM235 True RMS digital multimeter",
+              href: "/multimeters/brymen-bm235-vs-fluke-117",
+              note: "Brymen includes a relative zero mode, so you can null the test leads before reading a low-ohm cartridge.",
+            },
+            {
+              name: "Fluke 87V",
+              image: fluke87v.image,
+              alt: "Fluke 87V industrial True RMS multimeter",
+              href: "/multimeters/fluke-87v-review",
+              note: "Its 19,999-count high-resolution mode resolves the small differences between a healthy element and a 12V/24V mix-up.",
+            },
+            {
+              name: "Extech EX330",
+              image: extech.image,
+              alt: "Extech EX330 compact auto-ranging multimeter",
+              href: "/multimeters/extech-ex330-review",
+              note: "Compact and auto-ranging, with Type K temperature input for checking the hot end once the heater is back in.",
+            },
           ]}
         />
       </section>

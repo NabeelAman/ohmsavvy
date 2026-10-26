@@ -86,6 +86,10 @@ export default function SolderingIronForUsbPortRepairPage() {
           q: "Why does my new USB port only charge but not transfer data?",
           a: "Charging uses the power and ground contacts, while data needs the much smaller signal pins to be soldered properly. A data fault after a port swap usually points to an unsoldered or bridged data pin, or a damaged pad. Inspect the signal pins under magnification and check continuity from each pin to its trace with the device powered off.",
         },
+        {
+          q: "Should I clean a charging port before replacing it?",
+          a: "Yes. Pocket lint packed into the bottom of a phone port often stops the plug seating fully, which looks just like a failed connector. Power the device off and ease the debris out with a wooden or plastic pick, never metal. If the cable then clicks in firmly and charges reliably, the port did not need replacing at all, and no soldering is required.",
+        },
       ]}
       next={[
         {

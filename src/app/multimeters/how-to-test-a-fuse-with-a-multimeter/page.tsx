@@ -105,6 +105,10 @@ export default function HowToTestAFuseWithAMultimeterPage() {
           q: "Can I replace a blown fuse with a higher-rated one if it keeps blowing?",
           a: "No. The rating protects the wiring and the device; a larger fuse lets a fault draw enough current to overheat cables or start a fire. A fuse that blows repeatedly is reporting a fault, such as a short or an overload, that needs finding first. Replace like for like: same current rating, voltage rating, speed (fast or slow-blow) and size.",
         },
+        {
+          q: "How do I read the rating printed on a fuse before replacing it?",
+          a: "Glass and ceramic cartridges are usually stamped on an end cap with the current, often a letter for speed and the voltage, for example T2AL250V: T means time-delay (slow-blow), F means fast, 2A is the current, L means low breaking capacity and 250V is the maximum voltage. Blade fuses use color plus a molded number for amps. Match every part of that code.",
+        },
       ]}
       next={[
         {

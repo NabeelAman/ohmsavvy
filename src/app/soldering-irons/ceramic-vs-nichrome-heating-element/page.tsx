@@ -5,6 +5,7 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
@@ -19,6 +20,9 @@ export const metadata = buildMetadata({
 });
 
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const fx601 = picks.find((p) => p.name === "Hakko FX-601")!;
+const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
+const liouhoum = picks.find((p) => p.name === "Liouhoum 80W Soldering Iron Kit")!;
 
 const link = "text-accent hover:underline";
 
@@ -60,6 +64,7 @@ export default function CeramicVsNichromeHeatingElementPage() {
         { id: "self-regulating-ptc", label: "Self-regulating (PTC) ceramic elements" },
         { id: "which-irons-use-which", label: "Which irons use which" },
         { id: "does-it-matter", label: "Does this actually matter for your purchase?" },
+        { id: "ceramic-irons", label: "Ceramic-element irons we've covered" },
       ]}
       faq={[
         {
@@ -77,6 +82,10 @@ export default function CeramicVsNichromeHeatingElementPage() {
         {
           q: "Which lasts longer, ceramic or nichrome?",
           a: "Both can last a long time with reasonable use; ceramic heating elements are generally considered more durable against thermal cycling stress over many years of regular on/off use, since the ceramic material handles repeated heating and cooling with less degradation than a wound wire element does over the same cycles.",
+        },
+        {
+          q: "Can I replace a burned-out heating element instead of buying a new iron?",
+          a: "Often, yes. Many stations and cartridge irons sell the heater, or a heater-and-sensor assembly, as a spare part, and some budget pen irons use generic ceramic cores. Match the exact part number and voltage, unplug the iron, and check the new element's resistance with a multimeter before reassembly. On very cheap irons a replacement can cost nearly as much as the whole tool.",
         },
       ]}
       next={[
@@ -225,6 +234,16 @@ export default function CeramicVsNichromeHeatingElementPage() {
           range; price and stated heat-up time are reasonably good proxies even when the spec sheet
           doesn&apos;t say outright.
         </p>
+        <p className="mt-4 text-muted leading-7">
+          Where makers do state it, the pattern holds across price tiers. Hakko describes the FX-601 as using a
+          ceramic heater with a built-in sensor, which is how it manages closed-loop control from a dial on the
+          handle without a separate station. At the budget end, the Q-MING 60W kit and the Liouhoum 80W pen iron
+          both advertise ceramic cores in their Amazon listings, and the Liouhoum adds a digital readout and
+          auto sleep. Quoted heat-up times show why direct comparisons are hard: Weller gives about 28 seconds
+          from 50 to 350°C for the WE1010NA, while the Liouhoum listing claims 10 seconds with no start or end
+          temperature stated. Treat any heat-up figure without both temperatures as marketing rather than a
+          measurement.
+        </p>
       </section>
 
       <section>
@@ -236,6 +255,41 @@ export default function CeramicVsNichromeHeatingElementPage() {
           underlying cause of those outcomes, but the outcomes themselves are what actually affect how
           the iron feels to use.
         </p>
+      </section>
+
+      <section>
+        <h2 id="ceramic-irons" className="text-xl font-semibold mb-3">Ceramic-element irons we&apos;ve covered</h2>
+        <p className="text-muted leading-7 mb-4">
+          If you specifically want a ceramic heater, these picks state it in their maker or listing specs. They
+          span a mains-powered closed-loop iron and two budget kits, so you can see the element type appear at
+          very different price points.
+        </p>
+        <ProductStrip
+          title="Irons with a stated ceramic heater"
+          items={[
+            {
+              name: "Hakko FX-601",
+              image: fx601.image,
+              alt: "Hakko FX-601 soldering iron with ceramic heater",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-601",
+              note: "Ceramic heater with its own sensor, 67W and a 240–540°C dial on the handle, per Hakko.",
+            },
+            {
+              name: "Q-MING 60W Kit",
+              image: qming.image,
+              alt: "Q-MING 60W adjustable soldering iron kit",
+              href: "/soldering-irons/q-ming-60w-soldering-iron-kit-review",
+              note: "Starter kit with a ceramic element, a 200–450°C dial, five tips and a stand. No digital readout.",
+            },
+            {
+              name: "Liouhoum 80W Soldering Iron Kit",
+              image: liouhoum.image,
+              alt: "Liouhoum 80W digital soldering iron kit",
+              href: "/soldering-irons/best-soldering-irons#liouhoum-80w-soldering-iron-kit",
+              note: "Ceramic-core pen iron with an LCD, 180–480°C and 5-minute auto sleep, per its Amazon listing.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, InfoCards, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -126,6 +126,47 @@ export default function HowToTestA12vBatteryUnderLoadPage() {
             ["Drops well below 9.6 V, slow or failed crank", "Fails — battery likely needs replacing"],
           ]}
         />
+        <div className="mt-6">
+          <Figure
+            caption={
+              <>
+                What the battery voltage does during a few seconds of cranking (schematic, illustrative values).
+                The deepest point is a brief spike as the starter first engages; the steadier plateau after it
+                is the level to compare with the 9.6 V line.
+              </>
+            }
+          >
+            <svg viewBox="0 0 340 200" className="w-full h-auto" role="img" aria-label="Schematic graph of battery voltage over a few seconds of cranking: both traces start at about 12.6 volts at rest, dip sharply when the starter engages, then settle into a plateau while cranking before recovering when the key is released; the healthy battery's plateau sits around 10.5 volts, above a dashed 9.6 volt pass line, while the weak battery's plateau sags to around 8.8 volts, below the line">
+              <g className="stroke-foreground" strokeWidth="1.2" fill="none">
+                <line x1="44" y1="16" x2="44" y2="170" />
+                <line x1="44" y1="170" x2="330" y2="170" />
+              </g>
+              <line x1="44" y1="104" x2="330" y2="104" className="stroke-muted" strokeWidth="1" strokeDasharray="4 3" />
+              <polyline points="44,30 90,30 96,98 104,80 230,82 238,40 330,34" className="stroke-foreground" strokeWidth="2" fill="none" />
+              <polyline points="44,30 90,30 96,132 104,112 160,116 230,122 238,46 330,38" className="stroke-accent" strokeWidth="2" fill="none" />
+              <text x="40" y="34" fontSize="9" textAnchor="end" className="fill-muted">12.6</text>
+              <text x="40" y="108" fontSize="9" textAnchor="end" className="fill-muted">9.6</text>
+              <text x="40" y="174" fontSize="9" textAnchor="end" className="fill-muted">V</text>
+              <text x="160" y="64" fontSize="9" textAnchor="middle" className="fill-foreground">healthy: ~10.5 V</text>
+              <text x="166" y="140" fontSize="9" textAnchor="middle" className="fill-accent">weak: sags to ~8.8 V</text>
+              <text x="300" y="100" fontSize="9" textAnchor="end" className="fill-muted">pass line</text>
+              <text x="66" y="24" fontSize="9" textAnchor="middle" className="fill-muted">rest</text>
+              <text x="166" y="186" fontSize="9" textAnchor="middle" className="fill-muted">cranking</text>
+              <text x="286" y="24" fontSize="9" textAnchor="middle" className="fill-muted">key released</text>
+            </svg>
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Two details in that picture change how you read the meter. First, the opening dip lasts only a
+          fraction of a second, so a meter&apos;s min/max mode often records it as the minimum even on a good
+          battery; judge the battery on the voltage it holds while the engine is turning over, not on that
+          first spike alone. Second, the weak battery keeps sliding downward the longer it cranks, which is
+          why a shop carbon-pile test holds its load for a fixed period rather than taking an instant reading.
+          A commonly used carbon-pile procedure applies a load of about half the battery&apos;s CCA rating for
+          15 seconds: on a 600 CCA battery that&apos;s 300 A, and a healthy battery at around 70°F should
+          stay at or above the same 9.6 V line for the full 15 seconds. In cold weather the pass line is set
+          lower, so check the tester&apos;s temperature table before failing a battery on a cold morning.
+        </p>
       </section>
 
       <section>

@@ -7,6 +7,7 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 
 const link = "text-accent hover:underline";
 
@@ -35,11 +38,11 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
       published="2026-10-21"
       intro={
         <>
-          Removing solder cleanly — to pull a component, fix a bridge, or rework a joint — comes down to
-          melting the existing solder and giving it somewhere to go: a wick that draws it away, a vacuum
-          that sucks it off, or hot air that frees a whole component at once. The biggest risk with all
-          three isn&apos;t the solder itself, it&apos;s overheating a small, thin copper pad until it
-          lifts off the board.
+          To remove solder from a circuit board, add a little fresh flux, melt the joint, and give the
+          solder somewhere to go: copper wick that soaks it up, a solder sucker that vacuums it out of the
+          hole, or hot air that frees a whole multi-pin part at once. Whichever you use, keep each
+          heating burst short, because the real risk isn&apos;t the solder, it&apos;s overheating a thin
+          copper pad until it lifts off the board.
         </>
       }
       aside={{
@@ -59,12 +62,14 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
       toc={[
         { id: "three-methods", label: "Three methods, compared" },
         { id: "learning-curve", label: "Learning curve and typical pace" },
+        { id: "temperatures", label: "The temperatures involved" },
         { id: "solder-wick", label: "Using solder wick (desoldering braid)" },
         { id: "solder-sucker", label: "Using a solder sucker (vacuum pump)" },
         { id: "hot-air", label: "Using hot air for whole components" },
         { id: "protecting-pads", label: "Protecting pads and traces" },
         { id: "plated-through-holes", label: "Plated through-holes need extra care" },
         { id: "which-to-use", label: "Which method should you use" },
+        { id: "tools", label: "Stations that make desoldering easier" },
       ]}
       faq={[
         {
@@ -73,7 +78,7 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
         },
         {
           q: "Do I need flux to remove solder, or just to add it?",
-          a: "Flux helps considerably with removal too. Adding a small amount of fresh flux to an old, oxidised joint before trying to wick or suck the solder away makes it flow and release far more easily, since old solder on a board oxidises over time just like solder sitting on a tip does.",
+          a: "Flux helps considerably with removal too. Adding a small amount of fresh flux to an old, oxidized joint before trying to wick or suck the solder away makes it flow and release far more easily, since old solder on a board oxidizes over time just like solder sitting on a tip does.",
         },
         {
           q: "Can I reuse desoldered solder for a new joint?",
@@ -104,7 +109,9 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
       <Callout title="Heat damage is the real risk, not the solder">
         Prolonged direct heat on one spot is what lifts pads and delaminates traces — not the act of
         removing solder itself. Work in short bursts, let the board cool between attempts on a stubborn
-        joint, and prefer adding fresh flux over simply holding the iron there longer.
+        joint, and prefer adding fresh flux over simply holding the iron there longer. The tip and any
+        molten solder flicked off a wick or sucker can burn skin, so wear safety glasses, park the iron
+        in its stand, and unplug the board and any battery before you start.
       </Callout>
 
       <section>
@@ -125,13 +132,40 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
           while you&apos;re still building confidence versus how quickly they clear solder once
           you&apos;re comfortable with the timing.
         </p>
-        <BarChart
-          items={[
-            { label: "Solder wick — forgiving for beginners", value: 2, display: "slower, easy to control" },
-            { label: "Solder sucker — faster once comfortable", value: 3.5, display: "fast, timing-sensitive" },
-            { label: "Hot air — fast on multi-pin parts", value: 4, display: "fast, needs even heating", highlight: true },
+        <DataTable
+          head={["Method", "Best job", "Pace", "Main risk"]}
+          rows={[
+            ["Solder wick", "Single joints, bridges, flattening pads", "Slower, easy to control", "Holding the iron too long on a saturated braid"],
+            ["Solder sucker", "Clearing through-hole leads", "Fast once the timing clicks", "Recoil knocking the tip into nearby parts"],
+            ["Hot air", "ICs, connectors, SMD parts", "Fast on multi-pin parts", "Heating neighbors or melting plastic housings"],
           ]}
         />
+      </section>
+
+      <section>
+        <h2 id="temperatures" className="text-xl font-semibold mb-3">The temperatures involved</h2>
+        <p className="text-muted leading-7 mb-4">
+          Desoldering only needs the joint above the alloy&apos;s melting point for a moment; what pulls
+          pads is staying there. The chart puts the standard melting points next to a common iron setting
+          and the top of a rework station&apos;s range, using the YIHUA 862BD+&apos;s published figures as
+          the example station.
+        </p>
+        <BarChart
+          items={[
+            { label: "Sn63/Pb37 melts", value: 183, display: "183°C" },
+            { label: "SAC305 lead-free melts", value: 218, display: "~217–220°C" },
+            { label: "Common iron setting for wick work", value: 350, display: "~330–370°C", highlight: true },
+            { label: "YIHUA 862BD+ iron/air maximum", value: 480, display: "480°C" },
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The iron setting is a typical starting point rather than a rule: it sits well above the melting
+          point so the braid, which is itself a heat sink, can still melt the joint in two or three
+          seconds. Turning up toward the top of the range rarely helps. If a joint won&apos;t release in a
+          few seconds, more flux or a broader tip is usually the answer. Most consumer boards made since the
+          mid-2000s use lead-free factory solder, which is why it can feel stubborn compared with leaded
+          hobby solder; flowing a little leaded solder into the joint first lowers its melting point.
+        </p>
       </section>
 
       <section>
@@ -190,7 +224,7 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
         <DataTable
           head={["Practice", "Why it helps"]}
           rows={[
-            ["Add fresh flux before removal attempts", "Old, oxidised solder releases far more easily with fresh flux than without"],
+            ["Add fresh flux before removal attempts", "Old, oxidized solder releases far more easily with fresh flux than without"],
             ["Work in short bursts, let the board cool between tries", "Prolonged heat on one spot is what softens pad adhesive and lifts copper"],
             ["Support the component gently, don't pry before solder is fully molten", "Forcing a joint before it's liquid risks tearing the pad rather than releasing the lead"],
             ["Match tip size to the joint", "A too-small tip concentrates heat and takes longer, increasing total heat exposure"],
@@ -216,6 +250,56 @@ export default function HowToRemoveSolderFromCircuitBoardPage() {
           Multi-pin components (ICs, connectors) or SMD parts: hot air removes the whole part evenly
           in one step, which a wick or sucker can&apos;t do without working pin by pin.
         </KeyIdea>
+        <p className="text-muted leading-7 mt-4">
+          For the trickier cases, see our dedicated guides to{" "}
+          <Link href="/soldering-irons/how-to-remove-solder-from-a-plated-through-hole" className={link}>
+            clearing a plated through-hole
+          </Link>
+          ,{" "}
+          <Link href="/soldering-irons/how-to-remove-solder-from-a-multi-pin-pcb-connector" className={link}>
+            desoldering a multi-pin connector
+          </Link>
+          , and{" "}
+          <Link href="/soldering-irons/how-to-repair-lifted-pcb-pads-after-desoldering" className={link}>
+            repairing a pad that lifted anyway
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
+        <h2 id="tools" className="text-xl font-semibold mb-3">Stations that make desoldering easier</h2>
+        <p className="text-muted leading-7 mb-6">
+          Wick and suckers are cheap accessories; the iron behind them is what decides how quickly a joint
+          melts. A temperature-controlled station recovers heat as the braid soaks it up, and a station
+          with hot air adds the whole-component option.
+        </p>
+        <ProductStrip
+          title="Stations from our soldering reviews"
+          items={[
+            {
+              name: "YIHUA 862BD+",
+              image: yihua.image,
+              alt: "YIHUA 862BD+ soldering iron and hot air rework station",
+              href: "/soldering-irons/yihua-862bd-plus-review",
+              note: "75W iron plus 500W hot air in one station; 200–480°C iron and 100–480°C air.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station with a 65W iron, 50–480°C digital control and T18 tips.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W ESD-safe digital station for a dedicated bench.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

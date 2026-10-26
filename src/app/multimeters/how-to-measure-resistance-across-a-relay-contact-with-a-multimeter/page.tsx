@@ -89,6 +89,10 @@ export default function HowToMeasureResistanceAcrossARelayContactWithAMultimeter
           q: "Do I need to remove the relay to test its contacts?",
           a: "For an ohms test, yes, or at least disconnect the contact terminals, because other parts of the circuit connected across the contacts can give a false reading. The voltage-drop test is the exception: it is done with the relay in its working circuit, with power on and the load running, so the contact is tested under real conditions.",
         },
+        {
+          q: "Can I test a solid-state relay the same way as a mechanical one?",
+          a: "No. A solid-state relay switches with a semiconductor such as a triac or MOSFET rather than metal contacts, so an ohms reading across its output tells you little and may show leakage or nothing at all. Many AC types also need load current flowing before they switch properly. Apply the control voltage from the datasheet to the input, then check the output in circuit with a real load connected.",
+        },
       ]}
       next={[
         {

@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const yihua = picks.find((p) => p.name === "YIHUA 862BD+")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
 
@@ -66,6 +69,7 @@ export default function HowToSolderCopperWireToAGroundPadPage() {
         { id: "make-the-joint", label: "4. Make the joint and hold still" },
         { id: "check-the-joint", label: "5. Inspect and measure" },
         { id: "cold-joint-signs", label: "Cold-joint signs and fixes" },
+        { id: "irons", label: "Irons with power for ground pads" },
       ]}
       faq={[
         {
@@ -255,6 +259,38 @@ export default function HowToSolderCopperWireToAGroundPadPage() {
         Hotter setpoints burn flux faster, so use extraction or a fan. Preheated boards stay hot for a
         while; handle them by the edges with gloves. Wash your hands after working with leaded solder.
       </Callout>
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons with power for ground pads</h2>
+        <p className="text-muted leading-7 mb-6">
+          A ground pour drains heat as fast as a weak tip can deliver it. These picks either bring reserve power or add hot air to preheat the area around the pad.
+        </p>
+        <ProductStrip
+          title="Irons for ground-plane joints"
+          items={[
+            {
+              name: "YIHUA 862BD+",
+              image: yihua.image,
+              alt: "YIHUA 862BD+ soldering iron and hot air rework station",
+              href: "/soldering-irons/yihua-862bd-plus-review",
+              note: "The 500W hot air side can warm the copper around the pad while the 75W iron makes the joint, the preheat method in this guide.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX digital soldering station with FX-8801 iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Station rated 100W, with the 65W FX-8801 iron and closed-loop control from 50 to 480°C for stubborn pours.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Pine64 rates it up to 88W on a 24V supply, so a strong DC source gives a portable iron real headroom on heavy copper.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

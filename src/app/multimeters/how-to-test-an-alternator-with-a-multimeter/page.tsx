@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Callout, DataTable, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, HowToShell, KeyIdea, ProductStrip, StepHeading } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -56,11 +56,13 @@ export default function HowToTestAnAlternatorPage() {
         ),
       }}
       toc={[
+        { id: "how-charging-works", label: "What you are actually measuring" },
         { id: "resting-voltage-first", label: "Check resting voltage first" },
         { id: "charging-voltage-at-idle", label: "Measure charging voltage at idle" },
         { id: "charging-under-load", label: "Measure charging voltage under load" },
         { id: "ac-ripple-check", label: "Check for AC ripple (diode fault)" },
         { id: "interpreting-results", label: "Interpreting the readings" },
+        { id: "charge-wire-drop", label: "Rule out the charge cable" },
         { id: "which-meter", label: "Which meter to use" },
       ]}
       faq={[
@@ -105,6 +107,58 @@ export default function HowToTestAnAlternatorPage() {
           <li>Work in a ventilated area; don&apos;t run the engine in an enclosed space.</li>
         </ul>
       </Callout>
+
+      <section>
+        <h2 id="how-charging-works" className="text-xl font-semibold mb-3">What you&apos;re actually measuring</h2>
+        <p className="text-muted leading-7 mb-4">
+          Inside the alternator, the belt spins a magnetized rotor inside three sets of stator windings,
+          which produce three-phase AC. A bank of six diodes, the rectifier, turns that into DC, and the
+          voltage regulator varies the rotor&apos;s field current to hold the output near its set point.
+          The output leaves through the heavy B+ wire to the battery. Every test on this page is taken at
+          the battery terminals, so you&apos;re seeing the end result of the whole chain: belt, windings,
+          diodes, regulator and the cable between them.
+        </p>
+        <Figure
+          caption={
+            <>
+              The charging path: the stator makes AC, the rectifier diodes turn it into DC, the regulator
+              controls the level, and the B+ cable carries it to the battery, where the meter reads the
+              result. A fault anywhere along the path shows up at the battery.
+            </>
+          }
+        >
+          <svg viewBox="0 0 360 170" className="w-full h-auto" role="img" aria-label="Alternator charging circuit: belt-driven stator, rectifier diodes, voltage regulator, B+ cable to the battery, with a multimeter across the battery terminals">
+            <g className="stroke-foreground" strokeWidth="1.6" fill="none">
+              <rect x="10" y="30" width="190" height="80" rx="6" strokeDasharray="5 3" />
+              <rect x="22" y="50" width="50" height="40" rx="4" className="fill-surface" />
+              <rect x="86" y="50" width="50" height="40" rx="4" className="fill-surface" />
+              <rect x="150" y="50" width="40" height="40" rx="4" className="fill-surface" />
+              <path d="M72 70 H86 M136 70 H150" />
+              <path d="M190 70 H250 V58" />
+              <rect x="250" y="40" width="70" height="40" rx="3" className="fill-surface" />
+              <path d="M320 70 V130 H105 V110" />
+            </g>
+            <g fontSize="9" textAnchor="middle" className="fill-foreground">
+              <text x="105" y="24">alternator</text>
+              <text x="47" y="68">stator</text>
+              <text x="47" y="80" className="fill-muted">3-phase AC</text>
+              <text x="111" y="68">6 diodes</text>
+              <text x="111" y="80" className="fill-muted">AC → DC</text>
+              <text x="170" y="68">reg.</text>
+              <text x="170" y="80" className="fill-muted">sets V</text>
+              <text x="222" y="64">B+ cable</text>
+              <text x="285" y="64">battery</text>
+              <text x="285" y="76" className="fill-muted">12V</text>
+              <text x="212" y="144" className="fill-muted">ground return through engine block and chassis</text>
+            </g>
+            <g>
+              <path d="M262 40 V22 H340 M308 40 V30 H340" className="stroke-accent" strokeWidth="1.4" fill="none" strokeDasharray="4 3" />
+              <circle cx="345" cy="26" r="12" className="fill-surface stroke-accent" strokeWidth="2" />
+              <text x="345" y="30" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-accent">V</text>
+            </g>
+          </svg>
+        </Figure>
+      </section>
 
       <section>
         <StepHeading n={1} id="resting-voltage-first">Check resting voltage first</StepHeading>
@@ -167,6 +221,43 @@ export default function HowToTestAnAlternatorPage() {
           healthy — look elsewhere for the symptom that sent you testing. Low or absent charging voltage
           points to the alternator, belt, or its main connections. Clean DC voltage with the charge light
           still on separately suggests a wiring or dash-circuit issue rather than the alternator itself.
+        </p>
+        <p className="text-muted leading-7 mt-4 mb-4">
+          The chart puts the typical reference points for a 12V car side by side. They&apos;re widely
+          quoted general figures, not a spec for any particular vehicle; your service manual&apos;s
+          numbers take priority, and many newer cars with smart charging deliberately let voltage drift
+          lower at cruise.
+        </p>
+        <BarChart
+          items={[
+            { label: "Fully charged battery, engine off", value: 12.7, display: "~12.6–12.8V" },
+            { label: "Charging at idle, accessories off", value: 14.1, display: "~13.8–14.4V", highlight: true },
+            { label: "Under load: lights, blower, defrost", value: 13.6, display: "a few tenths lower" },
+            { label: "Overcharging, suspect the regulator", value: 15.2, display: "above ~15V" },
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          A worked example with illustrative numbers: the battery rests at 12.6V, rises to 14.2V at idle,
+          and drops to 13.9V with the headlights, blower and defroster on. That&apos;s a 1.6V rise from rest
+          and only a 0.3V sag under load, which is a healthy charging system. If the same car read 12.9V
+          at idle and 12.3V under load, the battery would be discharging while the engine runs, and the
+          next stop is the belt tension and the B+ connections, then the alternator itself.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="charge-wire-drop" className="text-xl font-semibold mb-3">Rule out the charge cable before replacing the alternator</h2>
+        <p className="text-muted leading-7">
+          A corroded B+ cable or ground strap can make a good alternator look weak. With the engine running
+          and loads on, put one probe on the alternator&apos;s output stud and the other on the battery
+          positive post: you&apos;re reading the voltage lost in the cable. Then repeat between the
+          alternator case and the battery negative post. Both readings should be small, and a common
+          guideline is a few tenths of a volt at most. A larger reading on either side means the wiring is
+          the fault, and our{" "}
+          <Link href="/multimeters/how-to-check-voltage-drop-on-a-car" className={link}>
+            voltage drop guide
+          </Link>{" "}
+          shows the same technique on other circuits.
         </p>
       </section>
 

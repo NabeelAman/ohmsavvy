@@ -113,6 +113,10 @@ export default function HowToTestA48vLifepo4BatteryForCellImbalancePage() {
           q: "Is it safe to open my home battery to check the cells?",
           a: "No, not for a factory-built home storage system. Its enclosure holds a high-energy DC pack, opening it can void the warranty, and the BMS app already shows the cell data. Only owners of self-built packs, who already work on them, should consider direct cell measurements, and only with the pack isolated.",
         },
+        {
+          q: "How often should I check the cell balance on my 48V battery?",
+          a: "A quick look at the highest and lowest cell voltages in the BMS app once a month is a sensible habit, plus a check after long storage, a deep discharge or a firmware update. Compare readings taken at a similar state of charge, ideally near full, because that is where LiFePO4 cells reveal their differences. Write the delta down so you can tell whether it is slowly creeping wider.",
+        },
       ]}
       next={[
         {

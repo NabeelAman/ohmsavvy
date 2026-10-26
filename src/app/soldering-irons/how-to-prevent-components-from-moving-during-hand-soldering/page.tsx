@@ -7,6 +7,7 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -22,6 +23,8 @@ export const metadata = buildMetadata({
 });
 
 const qming = picks.find((p) => p.name === "Q-MING 60W Kit")!;
+const yihua926 = picks.find((p) => p.name === "YIHUA 926 III")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
 
 const link = "text-accent hover:underline";
 
@@ -329,6 +332,45 @@ export default function HowToPreventComponentsFromMovingDuringHandSolderingPage(
           </Link>{" "}
           guide if you are choosing a first iron.
         </p>
+      </section>
+      <section>
+        <h2 id="kits-with-holding-tools" className="text-xl font-semibold mb-3">Kits and stations that help keep parts still</h2>
+        <p className="text-muted leading-7 mb-6">
+          Some starter kits include the holding aids this guide relies on, such as helping hands and fine
+          tweezers, which saves buying them separately. A temperature-controlled station also helps indirectly:
+          a shorter dwell means less time for a part to float or drift on molten solder. Check the box contents
+          rather than the headline wattage when choosing. For first-iron advice, see our{" "}
+          <Link href="/soldering-irons/best-soldering-iron-for-diy-electronics" className={link}>
+            best soldering iron for DIY electronics
+          </Link>{" "}
+          guide.
+        </p>
+        <ProductStrip
+          title="Irons and kits for steady joints"
+          items={[
+            {
+              name: "Q-MING 60W Kit",
+              image: qming.image,
+              alt: "Q-MING 60W soldering iron kit",
+              href: "/soldering-irons/q-ming-60w-soldering-iron-kit-review",
+              note: "Budget 60W kit with five tips and a stand, adjustable from 200 to 450°C; enough for occasional through-hole work.",
+            },
+            {
+              name: "YIHUA 926 III",
+              image: yihua926.image,
+              alt: "YIHUA 926 LED III soldering station kit",
+              href: "/soldering-irons/best-soldering-irons-for-electronics",
+              note: "PID station kit that adds two helping hands and ESD-safe tweezers, the holding tools this guide uses.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX soldering station",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "Stable 100W station with five presets, so joints finish fast before a tacked part can drift.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

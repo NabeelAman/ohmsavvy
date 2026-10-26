@@ -91,6 +91,10 @@ export default function HowToSolderACoaxialCableConnectorPage() {
           q: "Should coax connectors be weatherproofed after soldering?",
           a: "Outdoors, yes. Water that gets into the braid travels along the cable and degrades it over time. Once the cable tests good, a common approach is self-amalgamating tape over the joint, often with a layer of electrical tape on top for UV protection. Keep the tape off the mating face so the connector can still be undone.",
         },
+        {
+          q: "Can I use lead-free solder on a coax connector?",
+          a: "Yes, but it makes the job harder. Lead-free alloys melt at a higher temperature than 63/37 or 60/40 leaded solder and wet more slowly, so the connector body needs more heat and longer contact, which is exactly what softens the dielectric. Use a powerful iron with a large tip, good flux and a clean connector, and keep the heat on only as long as the joint needs it.",
+        },
       ]}
       next={[
         {
@@ -403,7 +407,7 @@ export default function HowToSolderACoaxialCableConnectorPage() {
             soldering stranded wire without solder wicking too far
           </Link>{" "}
           covers the stiff spot solder leaves behind a joint, and a clean, tinned tip transfers heat far
-          better than an oxidised one, as explained in{" "}
+          better than an oxidized one, as explained in{" "}
           <Link href="/soldering-irons/soldering-iron-tip-care" className={link}>
             soldering iron tip care
           </Link>

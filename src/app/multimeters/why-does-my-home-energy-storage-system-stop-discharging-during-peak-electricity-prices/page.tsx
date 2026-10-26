@@ -120,6 +120,10 @@ export default function WhyDoesMyHomeEnergyStorageSystemStopDischargingDuringPea
           q: "Does cold weather stop a home battery from discharging?",
           a: "Cold mainly limits charging, but the battery management system can also reduce discharge power at low or high cell temperatures, and many systems run heaters or fans that use some of the stored energy. Batteries in unheated garages or outdoors show this most. The app often reports a temperature-related derate as a warning or reduced power figure.",
         },
+        {
+          q: "How long should a home battery cover the evening peak?",
+          a: "Divide the energy available above your backup reserve by the average household draw during the peak. As an illustrative example, 10 kWh above reserve feeding a steady 2.5 kW load lasts about four hours, while the same battery against a 5 kW load with cooking and air conditioning running lasts about two. If the peak window is longer than that, running out early is expected, not a fault.",
+        },
       ]}
       next={[
         {

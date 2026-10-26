@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
@@ -21,6 +22,8 @@ export const metadata = buildMetadata({
 });
 
 const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const fluke115 = picks.find((p) => p.name === "Fluke 115")!;
+const astro = picks.find((p) => p.name === "AstroAI DM6000AR")!;
 
 const link = "text-accent hover:underline";
 
@@ -216,6 +219,42 @@ export default function HowToMeasureResistanceInAParallelCircuitPage() {
             { label: "R2 = 220Ω", value: 220, display: "220Ω" },
             { label: "R3 = 330Ω", value: 330, display: "330Ω" },
             { label: "Combined (all three in parallel)", value: 56.9, display: "≈56.9Ω", highlight: true },
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters that resolve small resistance differences</h2>
+        <p className="text-muted leading-7 mb-6">
+          Telling a 68.7Ω parallel pair from a 100Ω resistor on its own is easy on any digital meter, but
+          spotting a few percent of drift in a combined value needs a display with enough counts. All three
+          below have 6,000-count displays; the cheapest suits bench electronics, the Flukes suit mixed
+          electrical and electronics work.
+        </p>
+        <ProductStrip
+          title="Meters for resistance work"
+          items={[
+            {
+              name: "AstroAI DM6000AR",
+              image: astro.image,
+              alt: "AstroAI DM6000AR True RMS digital multimeter",
+              href: "/multimeters/astroai-dm6000ar-review",
+              note: "6,000-count True RMS with both auto and manual ranging. No CAT rating stated, so keep it to low-voltage circuit boards.",
+            },
+            {
+              name: "Fluke 115",
+              image: fluke115.image,
+              alt: "Fluke 115 True RMS digital multimeter",
+              href: "/multimeters/fluke-115-review",
+              note: "6,000-count backlit display, CAT III 600V, with capacitance and frequency. Hands-on Tested.",
+            },
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 electrician's digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "The 115's measurement core plus NCV and LoZ for household wiring. Hands-on Tested.",
+            },
           ]}
         />
       </section>

@@ -115,6 +115,10 @@ export default function WhyDoMyLightsFlickerWhenTheRefrigeratorOrAcStartsPage() 
           q: "Could the flicker damage my appliances?",
           a: "Short, shallow startup dips are something appliances are designed to ride through. Repeated deep sags, or a neutral fault that pushes some circuits well above normal voltage, can stress motors and electronics. That second pattern is the one to act on quickly.",
         },
+        {
+          q: "Do LED bulbs flicker more than incandescent bulbs when a motor starts?",
+          a: "They can behave differently. An incandescent filament dims smoothly during a sag because it holds heat. An LED bulb's driver may ride through a small dip with no visible change, or, in cheaper bulbs and some dimmer combinations, show a sharp blink or flutter. Swapping bulbs can change how noticeable the flicker is, but it does not change the voltage dip itself.",
+        },
       ]}
       next={[
         {

@@ -7,7 +7,9 @@ import {
   HowToShell,
   InfoCards,
   KeyIdea,
+  ProductStrip,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
@@ -18,6 +20,11 @@ export const metadata = buildMetadata({
   description,
   path: "/soldering-irons/60-40-vs-63-37-solder",
 });
+
+const all = getAllPicks("soldering-irons");
+const fx888dx = all.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = all.find((p) => p.name === "Weller WE1010NA")!;
+const pinecil = all.find((p) => p.name === "Pinecil V2")!;
 
 const link = "text-accent hover:underline";
 
@@ -45,6 +52,7 @@ export default function SolderComparisonPage() {
         { id: "why-it-matters", label: "Why the plastic range actually matters" },
         { id: "side-by-side", label: "Side-by-side comparison" },
         { id: "which-to-buy", label: "Which one should you buy" },
+        { id: "irons", label: "Irons that handle both alloys" },
       ]}
       faq={[
         {
@@ -62,6 +70,14 @@ export default function SolderComparisonPage() {
         {
           q: "Why do some irons list a minimum temperature around 300°C if solder melts near 183°C?",
           a: "The iron's tip needs to run meaningfully hotter than the solder's melting point so it can transfer enough heat into the joint fast enough, since the joint itself is constantly losing heat to the surrounding metal and air. Setting the iron only a few degrees above the solder's melting point means very slow, unreliable melting in practice.",
+        },
+        {
+          q: "Is 63/37 solder the same as Sn63Pb37 on the label?",
+          a: "Yes. Sn63Pb37 and Sn63/Pb37 are the chemical-symbol way of writing 63% tin and 37% lead, and Sn60Pb40 is the 60/40 alloy. Spools often print both styles. If the label reads Sn62Pb36Ag2, that's the silver-bearing 62/36/2 variant, which melts a few degrees lower (around 179°C) than plain 63/37 and behaves almost the same at the iron.",
+        },
+        {
+          q: "Is lead-free solder a better choice than either tin-lead alloy?",
+          a: "Lead-free alloys such as SAC305 avoid lead exposure and are required for many commercial products, but they melt higher, typically around 217–220°C, wet more slowly and leave duller joints. For hobby repairs on older leaded boards, 63/37 is easier to work. For anything you sell, check whether lead-free assembly is legally required where it will be sold.",
         },
       ]}
       next={[
@@ -221,6 +237,53 @@ export default function SolderComparisonPage() {
           </Link>{" "}
           if solder isn&apos;t melting the way you expect.
         </p>
+        <p className="mt-4 text-muted leading-7">
+          A worked example shows why the 8°C gap rarely changes your iron setting. Many hobbyists run
+          tin-lead work somewhere around 300–330°C at the tip; the exact figure depends on tip size and how
+          much copper the joint sinks heat into. Against a 183°C eutectic point that is roughly 115–145°C of
+          margin, and against 60/40&apos;s 191°C liquidus it is still about 110–140°C. The temperature
+          setting is effectively the same for both alloys. What differs is the few seconds after you lift the
+          tip: with 60/40 the joint stays soft for slightly longer, so hold the wire or part still until the
+          surface turns from mirror-wet to a set, bright finish. Wire diameter and flux core matter as much
+          as the alloy: a thin 0.5–0.8 mm wire with a rosin core feeds cleanly onto small pads, while thicker
+          wire suits terminals and heavy splices.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="irons" className="text-xl font-semibold mb-3">Irons that handle both alloys well</h2>
+        <p className="text-muted leading-7 mb-4">
+          Either alloy rewards an iron that holds its set temperature when the tip touches cold metal, because
+          a tip that sags lengthens the time the joint spends near its melting range. These picks from our
+          reviews all offer adjustable, displayed temperatures, so you can set one value for tin-lead and
+          another if you later switch to a lead-free spool.
+        </p>
+        <ProductStrip
+          title="Temperature-controlled irons for tin-lead work"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX digital soldering station with FX-8801 iron",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "Hakko rates it 50–480°C with ±1°C idle stability and five presets, handy for keeping a leaded and a lead-free setting.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA 70W digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "A 70W ESD-safe bench station; Weller quotes about 28 seconds to go from 50 to 350°C.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "USB-C powered portable iron, up to 88W from a 24V supply, for leaded touch-ups away from the bench.",
+            },
+          ]}
+        />
       </section>
     </HowToShell>
   );

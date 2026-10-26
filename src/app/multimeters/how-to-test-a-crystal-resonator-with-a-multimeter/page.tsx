@@ -87,6 +87,10 @@ export default function HowToTestACrystalResonatorWithAMultimeterPage() {
           q: "Can I replace a crystal with a ceramic resonator?",
           a: "Sometimes, if the frequency matches and the circuit tolerates the lower accuracy, since ceramic resonators are typically much less precise than quartz crystals. Timing for USB, serial baud rates or clocks may need the tighter crystal tolerance. A 3-pin resonator also replaces the two load capacitors, so the footprint differs. Check the chip maker's guidance before swapping.",
         },
+        {
+          q: "Do quartz crystals wear out with age?",
+          a: "They age rather than wear out. A crystal's frequency drifts slowly over the years as its mounting relaxes and its surfaces change, and datasheets quote this as an aging figure in parts per million per year, usually largest in the first year. For most clocks that drift is negligible. Sudden failures more often come from mechanical shock, overheating during soldering or an oscillator that overdrives the crystal.",
+        },
       ]}
       next={[
         {
@@ -274,7 +278,7 @@ export default function HowToTestACrystalResonatorWithAMultimeterPage() {
           <Figure
             caption={
               <>
-                The scope&apos;s view of XTAL_OUT: 0.5 V/div with ground on the bottom line, a sine centred at
+                The scope&apos;s view of XTAL_OUT: 0.5 V/div with ground on the bottom line, a sine centered at
                 3.3 div = 1.65 V, swinging ±2 div = ±1 V. Four cycles across 10 × 50 ns = 500 ns is 8 MHz.
               </>
             }

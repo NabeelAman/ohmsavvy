@@ -1,12 +1,15 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -20,6 +23,10 @@ export const metadata = buildMetadata({
 });
 
 const klein = picks.find((p) => p.name === "Klein Tools MM400")!;
+const all = getAllPicks("multimeters");
+const fluke117 = all.find((p) => p.name === "Fluke 117")!;
+const mm720 = all.find((p) => p.name === "Klein Tools MM720")!;
+const bm235 = all.find((p) => p.name === "Brymen BM235")!;
 
 const link = "text-accent hover:underline";
 
@@ -57,10 +64,12 @@ export default function HowToMeasureVoltageOnAFloatingGroundCircuitPage() {
       toc={[
         { id: "what-phantom-voltage-is", label: "What phantom voltage actually is" },
         { id: "why-it-happens", label: "Why high input impedance causes this" },
+        { id: "worked-example", label: "A worked example: why the number collapses" },
         { id: "measure-the-right-two-points", label: "1. Measure between the actual two points" },
         { id: "add-a-load", label: "2. Add a load to collapse a phantom reading" },
         { id: "use-loz-mode", label: "3. Use LoZ mode if your meter has it" },
         { id: "quick-reference", label: "Quick reference" },
+        { id: "meters", label: "Meters with LoZ mode" },
       ]}
       faq={[
         {
@@ -78,6 +87,10 @@ export default function HowToMeasureVoltageOnAFloatingGroundCircuitPage() {
         {
           q: "Can I just trust a non-contact voltage tester instead?",
           a: "A non-contact tester is a useful cross-check, since it detects an electric field rather than relying on a floating reference point the way a standard multimeter probe does. It's best used alongside a multimeter reading, not as a complete replacement, since non-contact testers can also occasionally give false readings from nearby fields.",
+        },
+        {
+          q: "Why does my car or solar circuit read voltage between two grounds that should be the same?",
+          a: "Ground wires and chassis paths have resistance, and current flowing through them creates a small voltage difference. A reading of a few tenths of a volt between two ground points while a load runs usually means a corroded strap or loose bolt, not a floating circuit. Unlike phantom voltage, this reading appears only under load and doesn't collapse when you add a test load.",
         },
       ]}
       next={[
@@ -142,11 +155,43 @@ export default function HowToMeasureVoltageOnAFloatingGroundCircuitPage() {
       </section>
 
       <section>
+        <h2 id="worked-example" className="text-xl font-semibold mb-3">A worked example: why the number collapses</h2>
+        <p className="text-muted leading-7 mb-4">
+          Think of the coupling between the live wire and the floating wire as a very large impedance in series
+          with the meter, forming a voltage divider. The numbers below are illustrative, not measurements: say
+          the coupling acts like 10 MΩ from a 120V conductor. A standard meter with a 10 MΩ input forms an even
+          split, so it reads 120 × 10 ÷ (10 + 10) = 60V. Swap in a low-impedance input of a few kilohms, say
+          3 kΩ, and the same divider gives 120 × 0.003 ÷ (10 + 0.003) ≈ 0.04V. A real, driven conductor has a
+          source impedance of a fraction of an ohm, so it reads close to the full 120V on either setting.
+        </p>
+        <BarChart
+          items={[
+            { label: "Floating wire, 10 MΩ meter input (illustrative)", value: 60, display: "≈ 60V" },
+            { label: "Floating wire, ~3 kΩ LoZ input (illustrative)", value: 0.04, display: "≈ 0.04V" },
+            { label: "Driven 120V conductor, either input (illustrative)", value: 120, display: "≈ 120V", highlight: true },
+          ]}
+        />
+        <p className="mt-4 text-muted leading-7">
+          That difference is the whole diagnostic: a floating wire&apos;s reading depends heavily on the
+          meter&apos;s input impedance, while a real source&apos;s reading barely moves. Real coupling values
+          depend on cable length, spacing and frequency, so the phantom number you see can be anything from a
+          few volts to most of the supply voltage.
+        </p>
+      </section>
+
+      <section>
         <StepHeading n={1} id="measure-the-right-two-points">Measure between the actual two points, not an assumed ground</StepHeading>
         <p className="text-muted leading-7">
           Where possible, measure directly between the two specific points you actually care about,
           rather than referencing an assumed common ground that may not genuinely be shared between
           them. This sidesteps the floating-reference problem entirely for many situations.
+        </p>
+        <p className="mt-4 text-muted leading-7">
+          For example, on an isolated battery-powered board, put the black probe on that board&apos;s own
+          negative rail rather than on a bench ground or a nearby metal case. On an isolated power supply
+          output, measure directly across its plus and minus terminals. If the two points you need to
+          compare genuinely sit in different systems, measure each one against its own reference and compare
+          the results instead of probing straight between them.
         </p>
       </section>
 
@@ -194,6 +239,42 @@ export default function HowToMeasureVoltageOnAFloatingGroundCircuitPage() {
         may say more about nearby stray fields than about the circuit itself. Confirming with a load,
         LoZ mode, or a direct two-point measurement separates a real voltage from a phantom one.
       </KeyIdea>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters with LoZ mode</h2>
+        <p className="text-muted leading-7 mb-4">
+          If you chase ghost voltages often, a meter with a built-in low-impedance mode saves carrying a load
+          resistor and gives a cleaner yes-or-no answer. These picks from our reviews list LoZ in their
+          maker&apos;s specs. Note that LoZ mode briefly loads the circuit, so don&apos;t use it on sensitive
+          electronics or control signals that a few kilohms could disturb.
+        </p>
+        <ProductStrip
+          title="Meters that can rule out phantom voltage"
+          items={[
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 electrician's True RMS multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "Hands-on tested. True RMS, CAT III 600V, with AutoVolt, LoZ and non-contact voltage built in.",
+            },
+            {
+              name: "Klein Tools MM720",
+              image: mm720.image,
+              alt: "Klein Tools MM720 True RMS multimeter",
+              href: "/multimeters/best-multimeters-for-electricians-under-100#klein-tools-mm720",
+              note: "CAT IV 600V / CAT III 1000V, 6,000-count True RMS, with a LoZ mode for ghost voltages.",
+            },
+            {
+              name: "Brymen BM235",
+              image: bm235.image,
+              alt: "Brymen BM235 True RMS multimeter",
+              href: "/multimeters/brymen-bm235-vs-fluke-117",
+              note: "True RMS and 6,000-count, with AutoV low-impedance voltage, NCV and a VFD mode.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

@@ -8,8 +8,10 @@ import {
   HowToShell,
   KeyIdea,
   MeterReadout,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
+import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
@@ -23,6 +25,8 @@ export const metadata = buildMetadata({
 });
 
 const klein = picks.find((p) => p.name === "Klein Tools MM400")!;
+const fluke117 = picks.find((p) => p.name === "Fluke 117")!;
+const fluke116 = getAllPicks("multimeters").find((p) => p.name === "Fluke 116")!;
 
 const link = "text-accent hover:underline";
 
@@ -251,6 +255,42 @@ export default function HowToCheckA24vTransformerWithAMultimeterPage() {
         </Link>{" "}
         walks through those continuity checks.
       </KeyIdea>
+
+      <section>
+        <h2 id="meters" className="text-xl font-semibold mb-3">Meters for furnace and control-board work</h2>
+        <p className="text-muted leading-7 mb-6">
+          Checking the transformer means probing a board that also carries line voltage on the primary, so
+          pick a meter rated at least CAT III 600V. Once the 24V side checks out, the same visit often moves on
+          to capacitors, temperature rise or a flame sensor, which is where an HVAC-focused meter earns its
+          place.
+        </p>
+        <ProductStrip
+          title="Meters for 24V controls and HVAC calls"
+          items={[
+            {
+              name: "Fluke 116",
+              image: fluke116.image,
+              alt: "Fluke 116 HVAC True RMS multimeter",
+              href: "/multimeters/best-multimeter-for-hvac-technicians#fluke-116",
+              note: "True RMS, CAT III 600V, with a 0.1 µA flame-sensor range, Type K temperature, capacitance and LoZ. No amp ranges.",
+            },
+            {
+              name: "Fluke 117",
+              image: fluke117.image,
+              alt: "Fluke 117 electrician's digital multimeter",
+              href: "/multimeters/fluke-117-review",
+              note: "True RMS, CAT III 600V, with NCV as a quick warning of live line wiring near the primary. Hands-on Tested.",
+            },
+            {
+              name: "Klein Tools MM400",
+              image: klein.image,
+              alt: "Klein Tools MM400 auto-ranging multimeter",
+              href: "/multimeters/klein-mm400-review",
+              note: "Auto-ranging, CAT III 600V, with temperature and capacitance. Not True RMS, and discontinued by Klein (the MM420 replaces it).",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

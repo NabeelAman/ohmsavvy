@@ -90,6 +90,10 @@ export default function HowToTestAPressureSwitchWithAMultimeterPage() {
           q: "Why does my furnace pressure switch not close even though it tests good?",
           a: "If the switch closes when you apply suction on the bench, the problem is usually on the pressure side: a cracked, kinked or water-filled hose, a blocked port on the inducer housing, a weak inducer motor or a blocked vent or condensate drain. These stop the switch from seeing enough vacuum, so it correctly stays open.",
         },
+        {
+          q: "How do I adjust a well pump pressure switch?",
+          a: "On the common residential type, switch off and lock out the power first, because the terminals are live. Turning the nut on the large spring clockwise raises cut-in and cut-out together, while the small spring changes only the cut-out, and so the differential. Make small turns, watch a pressure gauge through a full cycle, stay within the switch and tank ratings, and set the tank pre-charge to suit the new cut-in.",
+        },
       ]}
       next={[
         {

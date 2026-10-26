@@ -1,5 +1,7 @@
 import {
+  BarChart,
   Callout,
+  DataTable,
   Figure,
   HowToShell,
   KeyIdea,
@@ -20,6 +22,7 @@ export const metadata = buildMetadata({
 
 const rigol = picks.find((p) => p.name === "Rigol DS1054Z")!;
 const siglent = picks.find((p) => p.name === "Siglent SDS1104X-E")!;
+const dho804 = picks.find((p) => p.name === "Rigol DHO804")!;
 
 export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
   return (
@@ -45,7 +48,10 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
         { id: "lissajous-method", label: "Method 3: Lissajous figure (XY mode)" },
         { id: "phase-as-rotation", label: "Thinking of phase as a rotation" },
         { id: "rc-filter-example", label: "A real-world reference point: the RC filter" },
+        { id: "delay-to-degrees", label: "Delay-to-degrees lookup at 1 kHz" },
+        { id: "rc-phase-chart", label: "RC filter phase across frequency" },
         { id: "common-mistakes", label: "Common mistakes" },
+        { id: "scopes", label: "Scopes for this measurement" },
       ]}
       faq={[
         {
@@ -63,6 +69,10 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
         {
           q: "Why does my Lissajous figure look like a tilted ellipse instead of a circle or a line?",
           a: "A tilted, non-circular ellipse indicates a phase difference somewhere between 0° and 90° (or between 90° and 180°), rather than one of those two clean extremes. The exact angle can be calculated from the ellipse's shape, though for most practical troubleshooting, recognizing \"somewhere in between\" is often enough without computing the precise figure.",
+        },
+        {
+          q: "How do I tell whether a signal is leading or lagging?",
+          a: "Look at which trace reaches the matching point first, measured from the trigger channel. If CH2 crosses zero going upward after CH1 does, CH2 lags CH1; if it crosses before, it leads. Automatic phase readouts usually show this as a sign, but conventions differ between brands, so confirm the sign once against the traces before relying on it in a report.",
         },
       ]}
       next={[
@@ -227,6 +237,57 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
         </KeyIdea>
       </section>
 
+      <section>
+        <h2 id="delay-to-degrees" className="text-xl font-semibold mb-3">Delay-to-degrees lookup at 1 kHz</h2>
+        <p className="text-muted leading-7 mb-4">
+          At 1 kHz the period is 1 ms, so every 100 µs of delay equals 36°. The table applies the same
+          (Δt ÷ T) × 360° formula to a few round values, which makes a handy check on what your cursors or
+          automatic readout should show. For other frequencies, scale the delay: at 10 kHz the same angles
+          correspond to one tenth of these times.
+        </p>
+        <DataTable
+          head={["Measured Δt at 1 kHz", "Δt ÷ T", "Phase difference"]}
+          rows={[
+            ["125 µs", "0.125", "45°"],
+            ["250 µs", "0.25", "90°"],
+            ["333 µs", "0.333", "120° (as between three-phase lines)"],
+            ["500 µs", "0.5", "180° (inverted)"],
+            ["750 µs", "0.75", "270° (same as 90° leading)"],
+          ]}
+          mono={[0, 1, 2]}
+        />
+        <p className="mt-4 text-muted leading-7">
+          Resolution is rarely the limit on a modern scope. Even at a modest 100 MSa/s, samples are 10 ns
+          apart, which at 1 kHz is 10 ns ÷ 1 ms × 360° ≈ 0.004°. In practice, noise on a slow zero-crossing
+          and probe mismatch limit accuracy far more, so spread one or two cycles across the screen and use
+          averaging if the readout jitters.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="rc-phase-chart" className="text-xl font-semibold mb-3">RC filter phase across frequency</h2>
+        <p className="text-muted leading-7 mb-4">
+          To build a test circuit, a 1.6 kΩ resistor and a 100 nF capacitor give a cutoff of
+          1 ÷ (2π × 1,600 × 0.0000001) ≈ 995 Hz, close enough to 1 kHz. For a first-order low-pass filter the
+          output lags by arctan(f ÷ fc), so sweeping your generator around the cutoff should produce the
+          calculated lags below. Real component tolerances of a few percent will shift the readings slightly,
+          which is itself a useful sense of how precise the measurement needs to be.
+        </p>
+        <BarChart
+          items={[
+            { label: "f = 0.1 × fc (about 100 Hz)", value: 5.7, display: "5.7° lag" },
+            { label: "f = 0.5 × fc (about 500 Hz)", value: 26.6, display: "26.6° lag" },
+            { label: "f = fc (about 1 kHz)", value: 45, display: "45° lag", highlight: true },
+            { label: "f = 2 × fc (about 2 kHz)", value: 63.4, display: "63.4° lag" },
+            { label: "f = 10 × fc (about 10 kHz)", value: 84.3, display: "84.3° lag" },
+          ]}
+        />
+        <p className="mt-4 text-xs text-muted">
+          Calculated values for an ideal first-order RC low-pass filter, not measurements. The lag approaches
+          but never reaches 90° as frequency rises.
+        </p>
+      </section>
+
       <section id="common-mistakes">
         <Callout title="Common mistakes">
           <ul className="space-y-1 list-disc pl-5">
@@ -238,10 +299,13 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3">Scopes with two channels for this measurement</h2>
+        <h2 id="scopes" className="text-xl font-semibold mb-3">Scopes with two channels for this measurement</h2>
         <p className="text-muted leading-7 mb-6">
           Phase comparison needs at least two input channels, and ideally XY mode for the Lissajous
-          method above.
+          method above. Four channels let you compare an input against several outputs at once, such as each
+          stage of a multi-stage filter, without moving probes. Match the two probes&apos; attenuation
+          settings, and compensate both on the scope&apos;s calibration output first, because a badly
+          compensated probe adds its own phase shift at higher frequencies.
         </p>
         <ProductStrip
           title="Two-channel-and-up scopes"
@@ -259,6 +323,13 @@ export default function HowToMeasurePhaseDifferenceOscilloscopePage() {
               alt: "Siglent SDS1104X-E four-channel digital benchtop oscilloscope",
               href: "/oscilloscopes/siglent-sds1104x-e-review",
               note: "Bench scope: 4 channels, 100MHz, 1 GSa/s.",
+            },
+            {
+              name: "Rigol DHO804",
+              image: dho804.image,
+              alt: "Rigol DHO804 four-channel 12-bit oscilloscope with touchscreen",
+              href: "/oscilloscopes/rigol-dho804-vs-rigol-ds1054z",
+              note: "Hands-on tested. 4 channels, 70MHz and 12-bit vertical resolution for clean zero-crossings on small signals.",
             },
           ]}
         />

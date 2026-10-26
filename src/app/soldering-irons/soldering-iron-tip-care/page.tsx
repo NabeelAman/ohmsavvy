@@ -38,7 +38,7 @@ export default function SolderingIronTipCarePage() {
       intro={
         <>
           Nearly every tip that looks &quot;dead&quot; — black, pitted, or refusing to melt solder —
-          is actually just oxidised, not worn out, and a few minutes of proper cleaning brings it back.
+          is actually just oxidized, not worn out, and a few minutes of proper cleaning brings it back.
           This guide covers the daily cleaning routine, how plated tips differ from older copper tips,
           and the specific signs that mean a tip really has reached the end of its life.
         </>
@@ -75,7 +75,7 @@ export default function SolderingIronTipCarePage() {
         },
         {
           q: "How often should I clean the tip while soldering?",
-          a: "Wipe it on a damp sponge or brass wool before most joints where you notice a dull, oxidised film building up — not necessarily every single joint on light, clean work, but often enough that the tip stays shiny. A tip that sits idle at temperature for minutes between joints oxidises faster, so clean and re-tin it before picking up the iron again.",
+          a: "Wipe it on a damp sponge or brass wool before most joints where you notice a dull, oxidized film building up — not necessarily every single joint on light, clean work, but often enough that the tip stays shiny. A tip that sits idle at temperature for minutes between joints oxidizes faster, so clean and re-tin it before picking up the iron again.",
         },
         {
           q: "Why does my tip turn black soon after cleaning it?",
@@ -83,7 +83,11 @@ export default function SolderingIronTipCarePage() {
         },
         {
           q: "Does tip shape affect how it wears?",
-          a: "Yes — a fine conical tip concentrates heat into a tiny area and tends to oxidise and wear at that point faster than a broader chisel tip used on the same joints, simply because less metal surface is doing the work. Match tip shape to the job (fine point for dense SMD work, chisel for larger through-hole joints) rather than using the finest tip for everything.",
+          a: "Yes — a fine conical tip concentrates heat into a tiny area and tends to oxidize and wear at that point faster than a broader chisel tip used on the same joints, simply because less metal surface is doing the work. Match tip shape to the job (fine point for dense SMD work, chisel for larger through-hole joints) rather than using the finest tip for everything.",
+        },
+        {
+          q: "Can tip tinner paste fix a tip that won't take solder?",
+          a: "Often, yes, if the plating is still intact. Tinner paste combines solder powder with an aggressive flux, so pressing a hot tip into it for a few seconds strips stubborn oxide and leaves a fresh solder coat. Use it as an occasional rescue, not a daily habit, because the stronger chemistry wears plating faster. If the tip still refuses to wet afterward, the plating has failed and it needs replacing.",
         },
       ]}
       next={[
@@ -95,7 +99,7 @@ export default function SolderingIronTipCarePage() {
         {
           href: "/soldering-irons/soldering-iron-not-melting-solder",
           title: "Why Won't My Soldering Iron Melt Solder?",
-          desc: "A dirty or oxidised tip is one of the most common causes — here's how to rule it out.",
+          desc: "A dirty or oxidized tip is one of the most common causes — here's how to rule it out.",
         },
       ]}
     >
@@ -108,7 +112,7 @@ export default function SolderingIronTipCarePage() {
       <section>
         <h2 id="why-tips-fail" className="text-xl font-semibold mb-3">Why a tip looks &quot;dead&quot; long before it actually is</h2>
         <p className="text-muted leading-7">
-          At soldering temperatures, a bare metal tip oxidises within seconds of exposure to air. That
+          At soldering temperatures, a bare metal tip oxidizes within seconds of exposure to air. That
           oxide layer is what turns the tip black or gray and stops solder from wetting it — the metal
           underneath is usually still fine. This is why a tip that refuses to melt solder one minute can
           work perfectly again a minute later, right after a proper clean and re-tin. Genuine
@@ -136,7 +140,7 @@ export default function SolderingIronTipCarePage() {
             steps={[
               { label: "Fresh/tinned", sub: "Shiny, solder-wetted surface" },
               { label: "In use", sub: "Transfers heat into joints" },
-              { label: "Oxidising", sub: "Film builds up between joints" },
+              { label: "Oxidizing", sub: "Film builds up between joints" },
               { label: "Cleaned & re-tinned", sub: "Back to stage one" },
               { label: "Worn out", sub: "Plating gone — replace it" },
             ]}
@@ -226,7 +230,7 @@ export default function SolderingIronTipCarePage() {
           head={["Sign", "What's actually happening"]}
           rows={[
             ["Pitting or craters in the tip surface", "Plating has worn through in spots; the exposed copper is dissolving into the solder"],
-            ["Tip won't tin even after a thorough clean", "Plating is compromised across the working surface, not just oxidised"],
+            ["Tip won't tin even after a thorough clean", "Plating is compromised across the working surface, not just oxidized"],
             ["Visible deformation or a bent/mushroomed point", "Physical damage, usually from excess pressure or dropping the iron"],
             ["Noticeably slower heat-up or poor heat transfer despite cleaning", "Internal plating breakdown reducing thermal contact, separate from surface oxide"],
           ]}

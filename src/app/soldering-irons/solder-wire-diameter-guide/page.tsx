@@ -6,6 +6,7 @@ import {
   Figure,
   HowToShell,
   KeyIdea,
+  ProductStrip,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
@@ -20,6 +21,8 @@ export const metadata = buildMetadata({
 });
 
 const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
+const fx888dx = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
 const link = "text-accent hover:underline";
 
 export default function SolderWireDiameterGuidePage() {
@@ -61,6 +64,7 @@ export default function SolderWireDiameterGuidePage() {
         { id: "the-area-math", label: "Why a small diameter change matters more than it looks" },
         { id: "diameter-vs-flux", label: "Diameter is separate from flux type and core %" },
         { id: "one-spool-or-several", label: "Do you need more than one spool?" },
+        { id: "irons", label: "Irons that suit fine and heavy wire" },
       ]}
       faq={[
         {
@@ -78,6 +82,10 @@ export default function SolderWireDiameterGuidePage() {
         {
           q: "Can I use thick solder wire on fine SMD work if that's all I have?",
           a: "It's workable but awkward — a thick wire makes it harder to feed a small, controlled amount, increasing the risk of bridging adjacent fine-pitch pads with excess solder. If you do SMD work regularly, a thinner spool (0.5mm or less) is a worthwhile small investment.",
+        },
+        {
+          q: "What solder diameter should I use for 0603 or 0402 SMD parts?",
+          a: "For 0805 and 0603 passives and SOIC chips, 0.5mm wire is usually comfortable. For 0402 parts or 0.5mm-pitch ICs, many technicians drop to 0.3–0.4mm wire, or tin one pad with a touch of wire and add extra flux, because even 0.5mm wire carries more solder per millimeter than a pad that small needs.",
         },
       ]}
       next={[
@@ -108,11 +116,11 @@ export default function SolderWireDiameterGuidePage() {
         <h2 id="common-diameters" className="text-xl font-semibold mb-3">Common solder wire diameters</h2>
         <BarChart
           items={[
-            { label: "0.5mm (0.020\")", value: 0.5, display: "Fine SMD, tight-pitch work" },
-            { label: "0.6mm (0.025\")", value: 0.6, display: "General electronics, versatile", highlight: true },
-            { label: "0.8mm (0.031\")", value: 0.8, display: "General electronics, slightly faster feed" },
-            { label: "1.0mm (0.040\")", value: 1.0, display: "Larger joints, wire splicing" },
-            { label: "1.6mm (0.062\")", value: 1.6, display: "Heavy joints, bulk/production work" },
+            { label: "Fine SMD, tight-pitch work", value: 0.5, display: "0.5mm (0.020\")" },
+            { label: "General electronics, versatile", value: 0.6, display: "0.6mm (0.025\")", highlight: true },
+            { label: "General electronics, faster feed", value: 0.8, display: "0.8mm (0.031\")" },
+            { label: "Larger joints, wire splicing", value: 1.0, display: "1.0mm (0.040\")" },
+            { label: "Heavy joints, bulk work", value: 1.6, display: "1.6mm (0.062\")" },
           ]}
         />
       </section>
@@ -204,6 +212,40 @@ export default function SolderWireDiameterGuidePage() {
         kit — fine enough to control on most through-hole joints, and not so thin that general repair
         work feels slow.
       </KeyIdea>
+
+      <section id="irons">
+        <h2 className="text-xl font-semibold mb-3">Irons that suit fine and heavy wire</h2>
+        <p className="text-muted leading-7 mb-4">
+          Thin wire rewards a small tip and stable temperature; thick wire on heavy joints needs an iron with
+          enough power to keep up. These verified picks cover both ends.
+        </p>
+        <ProductStrip
+          title="Irons for every solder diameter"
+          items={[
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Up to 88W at 24V with an OLED temperature display, in a pen-sized body that suits fine-wire SMD work.",
+            },
+            {
+              name: "Hakko FX-888DX",
+              image: fx888dx.image,
+              alt: "Hakko FX-888DX digital soldering station",
+              href: "/soldering-irons/best-soldering-irons#hakko-fx-888dx",
+              note: "100W station with a 65W iron, closed-loop control from 50 to 480°C and Hakko T18 tips.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA 70W digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W, ESD-safe digital station that reaches 350°C in about 28 seconds from 50°C, per Weller.",
+            },
+          ]}
+        />
+      </section>
     </HowToShell>
   );
 }

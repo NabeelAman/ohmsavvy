@@ -1,16 +1,19 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
   HowToShell,
+  KeyIdea,
+  ProductStrip,
   StepHeading,
 } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
 
 const description =
-  "Why solder beads up into a ball instead of flowing and wetting a wire: an oxidised or contaminated surface, too little flux, or the workpiece not hot enough.";
+  "Why solder beads up into a ball instead of flowing and wetting a wire: an oxidized or contaminated surface, too little flux, or the workpiece not hot enough.";
 
 export const metadata = buildMetadata({
   title: "Why Does Solder Bead Up Instead of Flowing?",
@@ -21,6 +24,8 @@ export const metadata = buildMetadata({
 const link = "text-accent hover:underline";
 
 const weller = picks.find((p) => p.name === "Weller WE1010NA")!;
+const hakko = picks.find((p) => p.name === "Hakko FX-888DX")!;
+const pinecil = picks.find((p) => p.name === "Pinecil V2")!;
 
 export default function SolderBeadingUpNotFlowingPage() {
   return (
@@ -32,11 +37,12 @@ export default function SolderBeadingUpNotFlowingPage() {
       published="2026-10-21"
       intro={
         <>
-          This is a different problem from solder sticking to the tip — here the solder melts and
-          leaves the tip just fine, but instead of spreading into a thin, bonded layer on the wire or
-          pad, it draws itself into a round ball that just sits on the surface. That beading behavior
-          is the visible sign of a surface that solder isn&apos;t wetting, and it has a short, specific
-          list of causes.
+          Solder beads up instead of flowing because the metal it lands on isn&apos;t clean enough or hot
+          enough for it to wet: an oxide or grease film, too little flux, or a wire or pad that never
+          reached the solder&apos;s melting point. Clean the surface, add fresh flux, and heat the joint
+          itself rather than the solder, and it will spread. This is a different problem from solder
+          sticking to the tip: here the solder leaves the tip fine but pulls itself into a round ball on
+          the workpiece, and the sections below show how to tell which of the three causes you have.
         </>
       }
       aside={{
@@ -54,12 +60,15 @@ export default function SolderBeadingUpNotFlowingPage() {
       }}
       toc={[
         { id: "wetting-vs-beading", label: "Wetting vs. beading" },
-        { id: "surface-contamination", label: "1. Oxidised or contaminated surface" },
+        { id: "surface-contamination", label: "1. Oxidized or contaminated surface" },
         { id: "not-enough-flux", label: "2. Not enough flux" },
         { id: "how-flux-works", label: "How flux actually fixes this" },
         { id: "workpiece-not-hot-enough", label: "3. The workpiece itself isn't hot enough" },
         { id: "lead-free-factor", label: "Does lead-free solder bead more easily?" },
-        { id: "quick-reference", label: "Quick reference" },
+        { id: "fix-it", label: "Fixing a beaded joint, step by step" },
+        { id: "melting-points", label: "Melting points and working temperatures" },
+        { id: "quick-reference", label: "Causes at a glance" },
+        { id: "which-iron", label: "Irons that hold temperature" },
       ]}
       faq={[
         {
@@ -76,7 +85,7 @@ export default function SolderBeadingUpNotFlowingPage() {
         },
         {
           q: "Does wire material (copper vs. tinned vs. silver-plated) affect beading?",
-          a: "Yes, somewhat — bare copper oxidises faster than pre-tinned or silver-plated wire, so bare copper that's sat exposed to air for a while is more prone to beading than freshly stripped or pre-tinned wire. This is one reason pre-tinned wire is popular for repeated or delayed soldering work.",
+          a: "Yes, somewhat — bare copper oxidizes faster than pre-tinned or silver-plated wire, so bare copper that's sat exposed to air for a while is more prone to beading than freshly stripped or pre-tinned wire. This is one reason pre-tinned wire is popular for repeated or delayed soldering work.",
         },
         {
           q: "Can too much flux cause its own problems?",
@@ -96,6 +105,15 @@ export default function SolderBeadingUpNotFlowingPage() {
         },
       ]}
     >
+      <Callout title="Hot tools and flux fumes">
+        <ul className="space-y-2 list-disc pl-5">
+          <li>A soldering tip typically runs at roughly 300–400°C. Keep it in its stand between joints and never test heat with a finger.</li>
+          <li>Hold small wires in helping hands or a clamp: re-flowing a stubborn joint heats the whole wire.</li>
+          <li>Flux smoke irritates the airways. Work with a fan or fume extractor pulling it away from your face.</li>
+          <li>Wash your hands after handling leaded solder and keep food off the bench.</li>
+        </ul>
+      </Callout>
+
       <section>
         <h2 id="wetting-vs-beading" className="text-xl font-semibold mb-3">Wetting vs. beading</h2>
         <p className="text-muted leading-7">
@@ -125,11 +143,11 @@ export default function SolderBeadingUpNotFlowingPage() {
       </section>
 
       <section>
-        <StepHeading n={1} id="surface-contamination">Oxidised or contaminated surface</StepHeading>
+        <StepHeading n={1} id="surface-contamination">Oxidized or contaminated surface</StepHeading>
         <p className="text-muted leading-7">
           By far the most common cause. Solder needs clean, bare metal to bond to — an oxide layer,
           old flux residue, insulation residue, oil, or grease on the wire all block that bond the same
-          way an oxidised iron tip blocks heat transfer. Strip back to bright, clean metal, or clean the
+          way an oxidized iron tip blocks heat transfer. Strip back to bright, clean metal, or clean the
           existing surface thoroughly, before trying again.
         </p>
       </section>
@@ -140,7 +158,7 @@ export default function SolderBeadingUpNotFlowingPage() {
           Flux&apos;s job is removing the thin oxide layer that forms the instant bare metal is exposed
           to air, so solder can actually reach and bond to the metal underneath. Core flux built into
           solder wire is often enough for a quick, clean joint, but a surface that&apos;s already a bit
-          oxidised, larger, or has been reheated a few times benefits from a touch of additional liquid
+          oxidized, larger, or has been reheated a few times benefits from a touch of additional liquid
           or paste flux applied directly before soldering.
         </p>
       </section>
@@ -204,14 +222,116 @@ export default function SolderBeadingUpNotFlowingPage() {
       </section>
 
       <section>
-        <h2 id="quick-reference" className="text-xl font-semibold mb-3">Quick reference</h2>
+        <StepHeading n={4} id="fix-it">Remove the bead and start clean</StepHeading>
+        <p className="text-muted leading-7">
+          Don&apos;t try to persuade the existing ball to spread. Melt it and flick it off with the tip, or
+          lift it with a strand of desoldering braid. The bead is now full of spent flux and oxide, and
+          it will only make the next attempt harder.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={5}>Clean the metal until it&apos;s bright</StepHeading>
+        <p className="text-muted leading-7">
+          Strip a few millimeters of fresh wire, or scrape a dull pad lightly with a fiberglass pen or a
+          blade, then wipe off any finger grease with isopropyl alcohol. Bright copper or a shiny tinned
+          surface is the target; a brown or rainbow-tinted film means oxide is still there.
+        </p>
+      </section>
+
+      <section>
+        <StepHeading n={6}>Flux, heat the joint, then feed solder</StepHeading>
+        <p className="text-muted leading-7">
+          Brush on a thin coat of rosin or no-clean flux. Wipe and re-tin the iron tip so it&apos;s shiny,
+          press it against the wire or pad for two or three seconds, then feed solder into the joint on the
+          side opposite the tip. If the workpiece is hot enough, the solder melts on contact with the
+          metal and runs toward the heat in a thin film. If it still balls up, raise the temperature in
+          small steps or move to a broader tip that transfers more heat.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="melting-points" className="text-xl font-semibold mb-3">Melting points and working temperatures</h2>
+        <p className="text-muted leading-7 mb-4">
+          Wetting only starts once the workpiece is above the alloy&apos;s melting point, so it helps to know
+          the numbers. These are the standard published values for the three alloys people use most;
+          check the label on your own spool for its exact figure.
+        </p>
+        <BarChart
+          items={[
+            { label: "Sn63/Pb37 (eutectic)", value: 183, display: "183°C" },
+            { label: "Sn60/Pb40", value: 190, display: "183–190°C" },
+            { label: "SAC305 lead-free", value: 220, display: "~217–220°C", highlight: true },
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          A tip set well above these figures is normal, because a small tip loses heat quickly into the
+          joint. A common starting point is roughly 330–350°C for leaded solder and about 350–370°C for
+          lead-free, adjusted up for heavy wires and ground planes. Lead-free has the narrower margin:
+          its melting point is roughly 35°C higher, so an iron that sags under load drops out of the
+          wetting window sooner. Our{" "}
+          <Link href="/soldering-irons/60-40-vs-63-37-solder" className={link}>
+            60/40 vs. 63/37 comparison
+          </Link>{" "}
+          explains why the eutectic alloy is the more forgiving of the two leaded options.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="quick-reference" className="text-xl font-semibold mb-3">Causes at a glance</h2>
         <DataTable
-          head={["Cause", "Fix"]}
+          head={["Symptom", "Likely cause", "How to check", "Fix"]}
           rows={[
-            ["Oxidised, dirty, or greasy surface", "Strip or clean back to bright, bare metal"],
-            ["Insufficient flux", "Add fresh liquid or paste flux before soldering"],
-            ["Workpiece not actually up to temperature", "Hold the iron on the workpiece itself, not just the solder"],
-            ["Lead-free solder with marginal heat/flux", "Raise temperature to suit the alloy; add flux generously"],
+            ["Ball forms the moment solder touches the wire", "Oxidized, dirty or greasy surface", "Wire or pad looks dull, brown or rainbow-tinted", "Strip or clean back to bright, bare metal"],
+            ["Solder spreads briefly, then pulls back into a ball", "Flux used up before the joint finished", "Little or no flux smoke after the first second", "Add fresh liquid or paste flux before reheating"],
+            ["Solder melts on the tip but not on the wire", "Workpiece not up to temperature", "Wire touched with solder alone doesn't melt it", "Hold the iron on the workpiece itself, not just the solder"],
+            ["Started after switching to lead-free", "Lead-free alloy with marginal heat or flux", "Same joint flows with leaded solder", "Raise temperature to suit the alloy; add flux generously"],
+            ["Beads on one big pad, fine on small ones", "Iron can't keep up with the heat sink", "Tip temperature drops on contact", "Use a broader tip or a higher-power iron"],
+          ]}
+        />
+        <div className="mt-6">
+          <KeyIdea title="Solder flows toward clean heat">
+            Solder doesn&apos;t spread because you push it. It spreads because a clean, fluxed surface above
+            its melting point pulls it in. Fix the surface and the temperature, and beading stops on its
+            own.
+          </KeyIdea>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="which-iron" className="text-xl font-semibold mb-3">Irons that hold temperature</h2>
+        <p className="text-muted leading-7 mb-6">
+          A temperature-controlled iron with a usable range of tips solves the &quot;not hot enough&quot;
+          cause for good, because it feeds heat back as the joint draws it away. These are picks from our{" "}
+          <Link href="/soldering-irons/best-soldering-irons" className={link}>
+            best soldering irons
+          </Link>{" "}
+          roundup.
+        </p>
+        <ProductStrip
+          title="Picks from our soldering iron reviews"
+          items={[
+            {
+              name: "Hakko FX-888DX",
+              image: hakko.image,
+              alt: "Hakko FX-888DX soldering station with FX-8801 handpiece",
+              href: "/soldering-irons/weller-we1010-vs-hakko-fx-888dx",
+              note: "100W station, digital 50–480°C control and ±1°C idle stability, T18 tips.",
+            },
+            {
+              name: "Weller WE1010NA",
+              image: weller.image,
+              alt: "Weller WE1010NA digital soldering station",
+              href: "/soldering-irons/weller-we1010na-review",
+              note: "70W ESD-safe digital station, about 28 seconds from 50 to 350°C.",
+            },
+            {
+              name: "Pinecil V2",
+              image: pinecil.image,
+              alt: "Pinecil V2 USB-C portable soldering iron",
+              href: "/soldering-irons/pinecil-v2-review",
+              note: "Portable USB-C iron, up to 88W at 24V, for fixes away from the bench.",
+            },
           ]}
         />
       </section>

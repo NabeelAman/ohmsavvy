@@ -158,7 +158,7 @@ const reviewSteps = [
   },
   {
     title: "Top picks tested on our bench",
-    desc: "Our testing team buys every product we rate 4.8 and puts it to work in our lab. Those picks carry a Hands-on Tested badge; everything else is labeled as spec-verified research.",
+    desc: "We buy every product we rate 4.8 and test it on our own bench. Those picks carry a Hands-on Tested badge; everything else is labeled as spec-verified research.",
     icon: "M7 3h6M8 3v5l-4 7a1.5 1.5 0 0 0 1.3 2h9.4a1.5 1.5 0 0 0 1.3-2l-4-7V3M6 12h8",
   },
   {
@@ -182,7 +182,7 @@ const homeFaqs = [
   {
     question: "Do you physically test the products?",
     answer:
-      "Our top picks, yes. Our testing team buys every product we rate 4.8 and puts it to work in our lab, and those products carry a \"Hands-on Tested\" badge. Every other review is desk research: every spec checked against the manufacturer's own data or the official Amazon listing, plus patterns in verified-purchase reviews. Each review says plainly which kind it is.",
+      "Our top picks, yes. We buy every product we rate 4.8 and test it on our own bench, and those products carry a \"Hands-on Tested\" badge. Every other review is desk research: every spec checked against the manufacturer's own data or the official Amazon listing, plus patterns in verified-purchase reviews. Each review says plainly which kind it is.",
   },
   {
     question: "Why don't some products have photos?",
@@ -580,7 +580,7 @@ export default function Home() {
           eyebrow="HOW WE REVIEW"
           title="One standard, applied the same way to every product"
           links={[
-            { href: "/about", label: "About our team and lab" },
+            { href: "/about", label: "About us and how we test" },
             { href: "/about#how-were-funded", label: "How we're funded" },
           ]}
         />
@@ -604,7 +604,7 @@ export default function Home() {
         </ol>
         <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted">
           <Badge variant="accent">Hands-on Tested</Badge>
-          <span>marks a product our testing team has bought and used. Every other review says plainly that it&apos;s spec-verified research.</span>
+          <span>marks a product we bought and tested ourselves. Every other review says plainly that it&apos;s spec-verified research.</span>
         </div>
       </section>
 

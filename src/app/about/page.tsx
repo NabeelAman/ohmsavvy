@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "About Us: How We Test and Review",
-  description: "How OhmSavvy reviews test equipment: top picks bought and hands-on tested by our testing team, every spec verified against manufacturer data, no paid placements.",
+  description: "How OhmSavvy reviews test equipment: top picks bought and tested on our own bench, every spec verified against manufacturer data, no sponsored picks.",
   path: "/about",
 });
 
@@ -89,7 +89,7 @@ const FAQS = [
   },
   {
     q: "Do you test every product you review?",
-    a: "Every product we rate 4.8 is bought and hands-on tested by our testing team, and carries a Hands-on Tested badge. Other products are reviewed through desk research against manufacturer data and the official listing, and each of those reviews says so.",
+    a: "Every product we rate 4.8 is one we bought and tested ourselves on our own bench, and it carries a Hands-on Tested badge. Other products are reviewed through desk research against manufacturer data and the official listing, and each of those reviews says so.",
   },
   {
     q: "Does a higher commission affect the rankings?",
@@ -133,9 +133,9 @@ export default function AboutPage() {
 
   const stats = [
     { value: `${all.length}`, label: "Products reviewed" },
-    { value: `${tested.length}`, label: "Hands-on tested in our lab" },
+    { value: `${tested.length}`, label: "Hands-on tested on our bench" },
     { value: `${published}`, label: "Guides, reviews & comparisons" },
-    { value: "$0", label: "Paid placements, ever" },
+    { value: "0", label: "Sponsored picks, ever" },
   ];
 
   // Rating bands, counted live from the product data so the page can't drift
@@ -144,7 +144,7 @@ export default function AboutPage() {
     {
       range: "4.8",
       title: "Top-rated · bought and tested",
-      desc: "Our strongest recommendations. Every product at this rating has been bought and hands-on tested by our team.",
+      desc: "Our strongest recommendations. Every product at this rating has been bought and hands-on tested by us.",
       items: all.filter((p) => p.rating >= 4.8),
     },
     {
@@ -220,7 +220,7 @@ export default function AboutPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-8">
             OhmSavvy covers the tools that live on an electronics workbench: multimeters, soldering irons and
-            oscilloscopes. Our testing team buys our top-rated picks and puts them to work in our lab, and every spec
+            oscilloscopes. We buy our top-rated picks and test them on our own bench, and every spec
             on the site is checked against the manufacturer&apos;s own data.
           </p>
         </div>
@@ -338,9 +338,9 @@ export default function AboutPage() {
                   </span>
                   <Badge variant="accent">Hands-on Tested</Badge>
                 </div>
-                <h3 className="mt-4 text-xl font-semibold">Bought and tested in our lab</h3>
+                <h3 className="mt-4 text-xl font-semibold">Bought and tested on our bench</h3>
                 <p className="mt-2 text-muted leading-7">
-                  Our testing team buys the unit, puts it to work on our electronics bench, and checks how it holds up
+                  We buy the unit, put it to work on our own electronics bench, and check how it holds up
                   against its published specs and our written assessment. Only then does the badge go on.
                 </p>
                 <p className="mt-3 text-sm font-medium text-accent">
@@ -369,11 +369,11 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          {/* Tested in our lab */}
+          {/* Tested on our bench */}
           {tested.length > 0 && (
             <div className="mt-14">
               <Reveal>
-                <h3 className="text-xl font-semibold">Tools our team has had on the bench</h3>
+                <h3 className="text-xl font-semibold">Tools we&apos;ve had on our bench</h3>
               </Reveal>
               <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
                 {tested.map((p, i) => {
@@ -422,10 +422,10 @@ export default function AboutPage() {
           <Reveal className="mt-14">
             <div className="rounded-3xl border border-border bg-gradient-to-br from-accent/10 via-surface to-surface p-8 sm:p-10">
               <p className="font-display text-xs uppercase tracking-[0.15em] text-accent">Our testing rule</p>
-              <h3 className="mt-1 text-2xl sm:text-3xl font-semibold">Every product we rate 4.8 gets tested in our lab</h3>
+              <h3 className="mt-1 text-2xl sm:text-3xl font-semibold">Every product we rate 4.8 gets tested on our bench</h3>
               <div className="mt-6 grid gap-6 sm:grid-cols-3">
                 {[
-                  ["Top picks are tested", "Every product earning our 4.8 rating is bought and hands-on tested by our team."],
+                  ["Top picks are tested", "Every product earning our 4.8 rating is bought and hands-on tested by us."],
                   ["The badge comes last", "A product only carries the Hands-on Tested badge after its testing is complete, never before."],
                   ["Only real findings", "We never publish measurements or results we didn't actually get on our own bench."],
                 ].map(([t, b]) => (
@@ -561,8 +561,8 @@ export default function AboutPage() {
             <section className="h-full rounded-2xl border border-border bg-surface p-6">
               <h2 className="text-lg font-semibold">Who&apos;s behind OhmSavvy</h2>
               <p className="mt-2 text-sm text-muted leading-6">
-                OhmSavvy is run by a research team that writes and verifies every review and a testing team that
-                handles hands-on testing in our lab. We publish under the OhmSavvy name and never invent author bios or
+                OhmSavvy is a small, independent site: we research and verify every review, and we buy and test our
+                top picks on our own bench. We publish under the OhmSavvy name and never invent author bios or
                 credentials: if a byline ever claims a specific qualification, it&apos;s genuinely true.
               </p>
             </section>

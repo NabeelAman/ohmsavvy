@@ -56,8 +56,8 @@ const review: ProductReviewContent = {
       body: "The tip is bonded to the station's ground through a path Hakko specifies at under 2 ohms. Any static charge or small leakage on the tip drains to ground instead of passing into the pin you're touching, which is why the FX888D was trusted on boards carrying microcontrollers, MOSFETs and other parts that can be damaged by a discharge you'd never feel. It only works if the station is plugged into a properly grounded outlet, so don't defeat the third prong with an adapter.",
     },
     {
-      heading: "Hands-on in our lab",
-      body: "Our testing team bought this unit and tested it in our lab, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published here yet; when they are, they'll sit in this section with the method we used. Until then, the power, ESD and temperature-control details on this page are verified against Hakko's own published data, and the verdict rests on what they mean for regular electronics and repair work.",
+      heading: "Bought and tested on our bench",
+      body: "We bought this unit and tested it on our own bench, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published here yet; when they are, they'll sit in this section with the method we used. Until then, the power, ESD and temperature-control details on this page are verified against Hakko's own published data, and the verdict rests on what they mean for regular electronics and repair work.",
     },
     {
       heading: "The genuine-tip ecosystem",
@@ -104,7 +104,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "Is the Hakko FX888D hands-on tested, or based on the spec sheet?",
-      answer: "Hands-on tested. Our testing team bought this unit and tested it in our lab, which is why it carries a \"Hands-on Tested\" badge on this page. We haven't published detailed test results here yet, so the power, ESD and temperature-control details above come from Hakko's own published specifications. We'll add our results to this review when they're ready.",
+      answer: "Hands-on tested. We bought this unit and tested it on our own bench, which is why it carries a \"Hands-on Tested\" badge on this page. We haven't published detailed test results here yet, so the power, ESD and temperature-control details above come from Hakko's own published specifications. We'll add our results to this review when they're ready.",
     },
     {
       question: "Is the Hakko FX888D discontinued?",

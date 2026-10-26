@@ -65,8 +65,8 @@ const review: ProductReviewContent = {
       body: "Beyond the missing NCV and LoZ, the 115 tops out at CAT III 600V, so it isn't rated for service-entrance or CAT IV work, and its 1 kHz upper limit on AC volts means it isn't a tool for audio or switching-frequency voltage measurements. There's no temperature input, no low-current ranges and no data logging or Bluetooth. If temperature or microamps matter, the Fluke 87V adds both; for current without breaking the circuit, look at a clamp meter.",
     },
     {
-      heading: "Hands-on in our lab",
-      body: "Our testing team bought this unit and used it directly rather than relying only on Fluke's published specifications, which is why it carries a \"Hands-on Tested\" badge. We're not publishing specific bench measurements yet — our lab testing program is still early — but direct use didn't turn up anything that contradicts Fluke's reliability record or the 115's positioning as a general field-service meter.",
+      heading: "Bought and tested on our bench",
+      body: "We bought this unit and used it directly rather than relying only on Fluke's published specifications, which is why it carries a \"Hands-on Tested\" badge. We're not publishing specific bench measurements yet — our hands-on testing program is still early — but direct use didn't turn up anything that contradicts Fluke's reliability record or the 115's positioning as a general field-service meter.",
     },
   ],
   alternatives: [

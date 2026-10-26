@@ -54,7 +54,7 @@ const START_HERE = [
   { href: "/oscilloscopes/how-to-use-an-oscilloscope", label: "How to use an oscilloscope" },
 ];
 
-const TRUST = ["Top picks hands-on tested", "Specs verified at the source", "No paid placements"];
+const TRUST = ["Top picks bought and tested", "Specs verified at the source"];
 
 const linkClass = "text-muted hover:text-foreground transition-colors";
 

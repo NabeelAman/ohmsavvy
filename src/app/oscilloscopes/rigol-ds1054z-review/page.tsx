@@ -63,8 +63,8 @@ const review: ProductReviewContent = {
       body: "The datasheet lists parallel, RS232/UART, I2C and SPI decoding, plus USB host and device ports and LAN for saving screenshots and remote control. Rigol's product page presents bus triggering and decoding as options, so confirm what the unit you buy includes. The ADC is 8-bit, with a 12-bit high-resolution mode for small, slow signals."
     },
     {
-      heading: "Hands-on in our lab",
-      body: "Our testing team bought this unit and tested it in our lab, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published on this page yet; when they are, they'll appear here with the method we used. Until then, the bandwidth, channel count, sample rate and display details on this page are verified against Rigol's own published data, and the verdict rests on what those specs mean for beginner and hobby work.",
+      heading: "Bought and tested on our bench",
+      body: "We bought this unit and tested it on our own bench, which is why it carries our \"Hands-on Tested\" badge rather than an assessment from the spec sheet alone. Detailed results from that testing aren't published on this page yet; when they are, they'll appear here with the method we used. Until then, the bandwidth, channel count, sample rate and display details on this page are verified against Rigol's own published data, and the verdict rests on what those specs mean for beginner and hobby work.",
     },
     {
       heading: "Buy the bandwidth you need",

@@ -68,8 +68,8 @@ const METHOD = [
     icon: "M4 5h12v8H8l-4 3V5Zm3 3h6M7 10.5h4",
   },
   {
-    title: "No paid placement",
-    body: "We earn Amazon affiliate commissions only. No brand pays for a spot, a ranking, or a badge.",
+    title: "No sponsored picks",
+    body: "We earn mainly from Amazon affiliate commissions and may also show display ads from Google. No brand or advertiser can pay for a spot, a ranking or a badge, and ads never affect our picks.",
     icon: "M10 3 4 5.5V10c0 3.5 2.6 6.2 6 7 3.4-.8 6-3.5 6-7V5.5L10 3Z",
   },
 ];

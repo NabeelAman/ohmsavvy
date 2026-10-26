@@ -39,6 +39,7 @@ const CATEGORIES = [
 
 const COMPANY = [
   { href: "/about", label: "About OhmSavvy" },
+  { href: "/contact", label: "Contact us" },
   { href: "/about#how-we-review", label: "How we test" },
   { href: "/about#ratings", label: "Our ratings" },
   { href: "/about#standards", label: "Editorial standards" },

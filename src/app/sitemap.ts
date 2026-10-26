@@ -10,6 +10,7 @@ const localeRoutes = LOCALES.flatMap((locale) => TRANSLATED_PAGES.map((p) => `/$
 const staticPages = [
   "",
   "/about",
+  "/contact",
   "/privacy-policy",
   "/terms-of-service",
   "/multimeters/best-multimeters",

@@ -20,7 +20,8 @@ const csp = [
   // source rather than an ever-growing per-domain allowlist. Images can't
   // execute script, so this doesn't weaken the policy's real protections.
   "img-src 'self' data: https:",
-  "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
+  // formspree.io: the /contact form posts there with fetch().
+  "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://formspree.io",
   "object-src 'none'",
   "base-uri 'self'",
   "frame-ancestors 'none'",

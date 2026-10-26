@@ -144,7 +144,7 @@ const homeFaqs = [
   {
     question: "How does OhmSavvy make money?",
     answer:
-      "Through Amazon affiliate commissions when you buy via a link on this site, at no extra cost to you. That's the only funding source — no advertising, no sponsored placements, no manufacturer payments for a favorable review.",
+      "Mainly through Amazon affiliate commissions when you buy via a link on this site, at no extra cost to you. We may also show display ads from Google. Neither advertisers nor manufacturers can pay for a placement, a rating or a favorable review, and there are no sponsored picks.",
   },
   {
     question: "Do you physically test the products?",

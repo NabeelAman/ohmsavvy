@@ -85,7 +85,7 @@ const NEVER = [
 const FAQS = [
   {
     q: "Do brands pay OhmSavvy for reviews or placements?",
-    a: "No. Brands can't pay for a review, a placement or a rating, and we have no sponsorship deals with manufacturers. Our only income is Amazon affiliate commission when a reader buys through one of our links, at no extra cost to them.",
+    a: "No. Brands can't pay for a review, a placement or a rating, and we have no sponsorship deals with manufacturers. We're funded mainly by Amazon affiliate commission when a reader buys through one of our links, at no extra cost to them, and we may also show display ads from Google. Advertisers have no say in what we review or how we rate it.",
   },
   {
     q: "Do you test every product you review?",
@@ -582,8 +582,8 @@ export default function AboutPage() {
               <h2 className="text-lg font-semibold">How we&apos;re funded</h2>
               <p className="mt-2 text-sm text-muted leading-6">
                 As an Amazon Associate I earn from qualifying purchases. OhmSavvy is reader-supported: when you buy
-                through a link on this site, we may earn a commission from Amazon at no extra cost to you. That&apos;s our only income: no advertising, no sponsored placements, no
-                paid reviews.
+                through a link on this site, we may earn a commission from Amazon at no extra cost to you. We may also show display ads from Google, which are labelled as ads and
+                kept out of our rankings. No sponsored placements, no paid reviews.
               </p>
             </section>
           </Reveal>

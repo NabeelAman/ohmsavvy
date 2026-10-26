@@ -41,8 +41,10 @@ const CATEGORIES: {
     roundup: { href: "/multimeters/best-multimeters", title: "Best Multimeters" },
     blurb: "CAT safety ratings, True RMS and accuracy, from first meters to panel-rated electrician tools.",
     picks: multimeterPicks,
-    // Amazon listing B071JL6LLL, 2026-10-26: 5K+ bought in past month, 20,275 ratings, #1 in Multimeters & Analyzers
-    bestSeller: "AstroAI DM6000AR",
+    // Owner wants a Fluke here (2026-10-27): the best-selling Fluke among our picks.
+    // Amazon listing B0779621KZ, 2026-10-26: 2K+ bought in past month, 1,070 ratings
+    // (next Flukes: 107 400+/2,537; 101 300+/4,402; 115 200+/3,082).
+    bestSeller: "Fluke 17B+",
     tone: { text: "text-cat-multimeters", bg: "bg-cat-multimeters", border: "border-cat-multimeters", soft: "from-cat-multimeters/15" },
   },
   {
@@ -77,10 +79,10 @@ const totalProducts = CATEGORIES.reduce((sum, c) => sum + c.picks.length, 0);
 const totalReviews = content.filter((e) => e.type === "review").length;
 const totalGuides = content.filter((e) => e.type !== "review" && e.type !== "comparison").length;
 
-// The "Best Overall" pick of each category, shown in the hero so the page
-// leads with a buying answer rather than only links to articles.
+// The most popular pick of each category (see `bestSeller`), shown in the hero so
+// the page leads with a buying answer; falls back to the editorial #1.
 const topPicks = CATEGORIES.map((c) => {
-  const p = c.picks[0];
+  const p = c.picks.find((x) => x.name === c.bestSeller && !x.unavailable) ?? c.picks[0];
   return { ...p, category: c.category, label: c.label, tone: c.tone, reviewHref: reviewHrefFor(p.name) ?? c.roundup.href };
 });
 
@@ -272,7 +274,7 @@ export default function Home() {
 
           <div className="rounded-2xl border border-border bg-surface shadow-lg overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-surface-raised">
-              <p className="font-display text-xs uppercase tracking-wide text-accent">Top picks right now</p>
+              <p className="font-display text-xs uppercase tracking-wide text-accent">Most popular right now</p>
               <Link prefetch={false} href="/about" className="text-[11px] text-muted hover:text-accent">How we pick →</Link>
             </div>
             <ul className="divide-y divide-border">

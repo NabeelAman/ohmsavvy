@@ -271,7 +271,7 @@ const comparison: ProductComparisonContent = {
           />
         </Figure>
         <p className="text-muted leading-7 my-4">
-          The picture below makes those ratios visible. Grey is the real sine, the dots are where a four-channel
+          The picture below makes those ratios visible. Gray is the real sine, the dots are where a four-channel
           capture actually samples it, and the dashed line is what you would see if the scope simply joined the dots.
           Interpolation can redraw a smooth sine from sparse points, but it only has the samples to work with, so
           anything that happens between two dots, such as a short glitch, never reaches the screen.

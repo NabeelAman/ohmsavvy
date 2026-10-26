@@ -253,7 +253,7 @@ const comparison: ProductComparisonContent = {
             needed. For ordinary mains, batteries and resistors that&apos;s fine; on drives and electronic lighting,
             both can misread AC. If that is your work, look at our{" "}
             <Link href="/multimeters/best-true-rms-multimeters-under-100" className={link}>
-              True RMS meters under $100
+              budget True RMS meters
             </Link>
             .
           </KeyIdea>

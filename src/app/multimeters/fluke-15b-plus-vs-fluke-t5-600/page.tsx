@@ -39,7 +39,7 @@ function CordCancellationDiagram() {
       viewBox="0 0 340 200"
       className="w-full h-auto"
       role="img"
-      aria-label="Two jaw placements. Left: the T5-600 jaw around a whole two-wire cord, where the outgoing current in the hot wire and the returning current in the neutral are equal and opposite, so their magnetic fields cancel and the reading is about zero. Right: the jaw around the hot conductor alone, where the field is not cancelled and the tester reads the load current."
+      aria-label="Two jaw placements. Left: the T5-600 jaw around a whole two-wire cord, where the outgoing current in the hot wire and the returning current in the neutral are equal and opposite, so their magnetic fields cancel and the reading is about zero. Right: the jaw around the hot conductor alone, where the field is not canceled and the tester reads the load current."
     >
       <text x="85" y="16" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">Jaw around the whole cord</text>
       {jaw(85)}

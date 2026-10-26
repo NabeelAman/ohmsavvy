@@ -215,7 +215,7 @@ const comparison: ProductComparisonContent = {
           averaging meter tends to read low. Variable-speed drives, dimmers and switch-mode loads all produce these
           shapes, which is why True RMS matters most for drive and lighting work. Our{" "}
           <Link href="/multimeters/best-true-rms-multimeters-under-100" className={link}>
-            True RMS multimeters under $100
+            budget True RMS multimeters
           </Link>{" "}
           guide lists other options.
         </p>

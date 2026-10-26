@@ -127,7 +127,7 @@ const review: ProductReviewContent = {
       href: "/multimeters/multimeter-buying-guide"
     },
     {
-      label: "Best True RMS multimeters under $100",
+      label: "Best budget True RMS multimeters",
       href: "/multimeters/best-true-rms-multimeters-under-100"
     },
     {

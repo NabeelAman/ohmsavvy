@@ -222,7 +222,7 @@ const comparison: ProductComparisonContent = {
             </Link>{" "}
             for a fuller explanation, or our{" "}
             <Link href="/multimeters/best-true-rms-multimeters-under-100" className={link}>
-              True RMS meters under $100
+              budget True RMS meters
             </Link>{" "}
             if you want the measuring method without the 179&apos;s other extras.
           </KeyIdea>

@@ -1,5 +1,15 @@
 import type { NextConfig } from "next";
 
+const ADSENSE_HOSTS = [
+  "https://pagead2.googlesyndication.com",
+  "https://*.googlesyndication.com",
+  "https://*.doubleclick.net",
+  "https://*.googleadservices.com",
+  "https://*.google.com",
+  "https://*.gstatic.com",
+  "https://*.adtrafficquality.google",
+].join(" ");
+
 const csp = [
   "default-src 'self'",
   // 'unsafe-inline' is required here — not optional. Without it, Next.js's
@@ -10,7 +20,11 @@ const csp = [
   // CSP avoids this but requires forcing every page to dynamic rendering
   // (losing static generation), which isn't worth it for a static content
   // site. This is Next.js's own documented "without nonces" baseline.
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+  // AdSense: the loader comes from pagead2.googlesyndication.com, and it pulls
+  // further scripts and ad iframes from Google's ad hosts listed here and in
+  // frame-src/connect-src (including the EEA consent message from fundingchoices).
+  `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com ${ADSENSE_HOSTS}`,
+  `frame-src ${ADSENSE_HOSTS}`,
   // Fonts are now self-hosted via next/font (served from our own origin
   // at build time), so no external font-related CSP allowances are needed.
   "style-src 'self' 'unsafe-inline'",
@@ -21,7 +35,7 @@ const csp = [
   // execute script, so this doesn't weaken the policy's real protections.
   "img-src 'self' data: https:",
   // formspree.io: the /contact form posts there with fetch().
-  "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://formspree.io",
+  `connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://formspree.io ${ADSENSE_HOSTS}`,
   "object-src 'none'",
   "base-uri 'self'",
   "frame-ancestors 'none'",

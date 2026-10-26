@@ -38,7 +38,10 @@ const sourceSans3 = Source_Sans_3({
   display: "swap",
 });
 
-const SITE_TITLE = "OhmSavvy | Multimeter, Oscilloscope & Soldering Iron Reviews";
+// AdSense publisher ID. Also in public/ads.txt (without the "ca-" prefix).
+const ADSENSE_CLIENT = "ca-pub-6358624783893573";
+
+const SITE_TITLE ="OhmSavvy | Multimeter, Oscilloscope & Soldering Iron Reviews";
 const SITE_DESCRIPTION =
   "In-depth, specification-based reviews of multimeters, soldering irons, and oscilloscopes — honest comparisons to help you pick the right tool.";
 
@@ -66,6 +69,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "hiHeIkdBWXcmzt70-nXfNhotNZvCYz_tgUDvPrOecBI",
+  },
+  other: {
+    "google-adsense-account": ADSENSE_CLIENT,
   },
 };
 
@@ -95,6 +101,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`h-full antialiased ${bigShouldersDisplay.variable} ${ibmPlexMono.variable} ${sourceSans3.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* AdSense site verification + Auto ads. Plain <script> so it is in the
+            server HTML that Google's verifier reads; async keeps it off the
+            render path. */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Script id="theme-init" strategy="beforeInteractive">{THEME_INIT_SCRIPT}</Script>
         <script

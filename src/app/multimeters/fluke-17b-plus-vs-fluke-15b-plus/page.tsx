@@ -7,9 +7,15 @@
 //   MIN MAX "17B+ only", not available on resistance, capacitance, frequency, duty cycle or diode;
 //   hazardous-voltage LED at 30 V or OL, 17B+ only; temperature 17B+ only)
 // Fixed 2026-10-26: the old page said relative mode zeroes lead resistance, but the manual excludes resistance.
+// Re-checked 2026-10-27 on the en-us 15B+ and 17B+ pages above: neither page states a warranty term (only "30-day
+// Returns" in the purchase box), so the users manual's one-year warranty stands for BOTH meters. 17B+ temperature
+// 0.1 °C resolution: -55-0 °C ±(9% + 2 °C), 0-50 °C ±2 °C, 50-400 °C ±(2% + 1 °C); Type-K probe included, model not
+// named. Frequency ranges 50.00 Hz/500.0 Hz/5.000 kHz/50.00 kHz/100.0 kHz, ±(0.1% + 3). Duty cycle 1-99%, 0.1%
+// resolution, 1% typical "at 50 or 60 Hz, 10% to 90% duty". AC current 40-400 Hz and AC volts 40-500 Hz on both.
+// 15B+ in the box: TL75 leads, 2 AA. 17B+ in the box: TL75 leads, Type-K probe, 2 AA.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
-import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
@@ -17,9 +23,9 @@ import { buildMetadata } from "@/lib/metadata";
 const path = "/multimeters/fluke-17b-plus-vs-fluke-15b-plus";
 
 export const metadata = buildMetadata({
-  title: "Fluke 17B+ vs Fluke 15B+",
+  title: "Fluke 17B+ vs Fluke 15B+: Which Should You Buy?",
   description:
-    "Fluke 17B+ vs Fluke 15B+: the same body and CAT rating, but the 17B+ adds temperature, frequency, duty cycle, MIN MAX and relative mode. Which to buy.",
+    "Fluke 15B+ vs Fluke 17B+ comparison: same case, accuracy and one-year warranty; the 17B+ adds temperature, Hz, duty cycle and MIN MAX. Decision chart inside.",
   path: "/multimeters/fluke-17b-plus-vs-fluke-15b-plus",
 });
 
@@ -52,12 +58,57 @@ function MinMaxDiagram() {
   );
 }
 
+/** Buyer decision flow: four yes/no questions; any "yes" points to the 17B+, four "no" answers end at the 15B+. */
+function BuyerDecisionFlow() {
+  const qs = [
+    { y: 62, text: "Measure temperature?", why: "Type K probe" },
+    { y: 122, text: "Read Hz or PWM duty?", why: "Hz / % mode" },
+    { y: 182, text: "Chase sags or peaks?", why: "MIN MAX" },
+    { y: 242, text: "Want a 30 V warning LED?", why: "Live-input alert" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 340 330"
+      className="w-full h-auto"
+      role="img"
+      aria-label="Decision flow for choosing between the Fluke 17B+ and 15B+. First, if you work on drives, dimmers or LED drivers, pick a True RMS meter such as the Fluke 115 or 117 instead. Otherwise answer four questions: do you measure temperature, read frequency or PWM duty cycle, chase voltage sags or peaks, or want a 30 volt warning light. A yes to any of them points to the 17B+; four noes lead to the 15B+."
+    >
+      <rect x="10" y="6" width="320" height="34" rx="6" className="fill-surface stroke-border" strokeWidth="1" strokeDasharray="4 3" />
+      <text x="170" y="20" fontSize="9" textAnchor="middle" className="fill-foreground">Drives, dimmers or LED drivers? Neither: buy True RMS</text>
+      <text x="170" y="33" fontSize="8.5" textAnchor="middle" className="fill-muted">(Fluke 115 or 117). Otherwise, start below.</text>
+      {qs.map((q, i) => (
+        <g key={q.text}>
+          <path d={`M110 ${q.y - 16} V${q.y}`} className="stroke-muted fill-none" strokeWidth="1.4" />
+          <path d={`M106 ${q.y - 5} L110 ${q.y} L114 ${q.y - 5}`} className="stroke-muted fill-none" strokeWidth="1.4" />
+          {i > 0 && (
+            <text x="116" y={q.y - 6} fontSize="8.5" className="fill-muted">No</text>
+          )}
+          <rect x="10" y={q.y} width="200" height="34" rx="6" className="fill-surface stroke-foreground" strokeWidth="1.4" />
+          <text x="110" y={q.y + 21} fontSize="10" fontWeight="600" textAnchor="middle" className="fill-foreground">{q.text}</text>
+          <path d={`M210 ${q.y + 17} H246`} className="stroke-accent fill-none" strokeWidth="1.8" />
+          <path d={`M241 ${q.y + 12} L246 ${q.y + 17} L241 ${q.y + 22}`} className="stroke-accent fill-none" strokeWidth="1.8" />
+          <text x="228" y={q.y + 12} fontSize="8.5" textAnchor="middle" className="fill-accent">Yes</text>
+          <rect x="248" y={q.y} width="82" height="34" rx="6" className="fill-[#f0b429]/20 stroke-foreground" strokeWidth="1.2" />
+          <text x="289" y={q.y + 15} fontSize="9.5" fontWeight="700" textAnchor="middle" className="fill-foreground">17B+</text>
+          <text x="289" y={q.y + 27} fontSize="8" textAnchor="middle" className="fill-muted">{q.why}</text>
+        </g>
+      ))}
+      <path d="M110 276 V292" className="stroke-muted fill-none" strokeWidth="1.4" />
+      <path d="M106 287 L110 292 L114 287" className="stroke-muted fill-none" strokeWidth="1.4" />
+      <text x="116" y="286" fontSize="8.5" className="fill-muted">No to all four</text>
+      <rect x="10" y="292" width="200" height="34" rx="6" className="fill-accent/15 stroke-foreground" strokeWidth="1.4" />
+      <text x="110" y="307" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">Fluke 15B+</text>
+      <text x="110" y="320" fontSize="8" textAnchor="middle" className="fill-muted">same accuracy, µA to 10 A, fewer modes</text>
+    </svg>
+  );
+}
+
 const comparison: ProductComparisonContent = {
   category: "multimeters",
   heading: "Fluke 17B+ vs Fluke 15B+",
   path,
   published: "2026-10-22",
-  updated: "2026-10-26",
+  updated: "2026-10-27",
   intro:
     "Fluke 17B+ vs Fluke 15B+ is a comparison of two meters built on one platform. They share the case, the CAT III 600V / CAT II 1000V rating, the 4,000-count backlit display and the µA-to-10A current ranges, so the decision rests entirely on the functions the 17B+ adds and the 15B+ leaves out: temperature, frequency, duty cycle, MIN MAX, relative mode and a hazardous-voltage LED.",
   a: {
@@ -89,6 +140,8 @@ const comparison: ProductComparisonContent = {
     { label: "Hazardous-voltage LED", a: "Lights at 30V or more", b: "No" },
     { label: "Size / weight", a: "183 × 91 × 49.5 mm, 455 g", b: "183 × 91 × 49.5 mm, 455 g" },
     { label: "Battery / warranty", a: "2 × AA, 500 h minimum; 1 year", b: "2 × AA, 500 h minimum; 1 year" },
+    { label: "AC bandwidth (volts / amps)", a: "40–500 Hz / 40–400 Hz", b: "40–500 Hz / 40–400 Hz" },
+    { label: "In the box", a: "TL75 leads, Type K probe, 2 × AA", b: "TL75 leads, 2 × AA" },
   ],
   differences: [
     "Only the 17B+ measures temperature; Fluke includes a Type K probe and specifies −55 °C to 400 °C.",
@@ -220,17 +273,100 @@ const comparison: ProductComparisonContent = {
           checks and standby-current tests still work. Fewer buttons also means fewer chances to leave the meter in an
           unexpected mode, which some trainers and shared-tool shops value.
         </p>
-        <Figure caption={<>If none of the middle steps describes your work, the 15B+ does everything you need.</>}>
-          <FlowDiagram
-            steps={[
-              { label: "Basic checks", sub: "Volts, amps, ohms, continuity" },
-              { label: "Need temperature?", sub: "Yes: 17B+" },
-              { label: "Need Hz or duty?", sub: "Yes: 17B+" },
-              { label: "Logging dips?", sub: "MIN MAX: 17B+" },
-              { label: "None of these", sub: "15B+ is enough" },
-            ]}
-          />
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Buyer decision flow: 15B+ or 17B+ in four questions</h2>
+        <p className="text-muted leading-7 mb-4">
+          Because the shared functions are identical, the choice reduces to whether any one of the 17B+&apos;s extras
+          would get used. Work down the chart. A single yes is enough, since there is no way to add temperature or a
+          frequency counter to a 15B+ later; four noes mean the extras would sit idle.
+        </p>
+        <Figure caption={<>Decision flow built from the functions Fluke&apos;s manual marks 17B+ only. Start with the True RMS check at the top.</>}>
+          <BuyerDecisionFlow />
         </Figure>
+        <p className="text-muted leading-7 mt-4">
+          The top box matters more than it looks. Fluke makes no True RMS claim for either meter, and their AC current
+          is specified from 40 to 400 Hz and AC volts from 40 to 500 Hz. If a variable-speed drive or electronic
+          dimmer is involved, both will misread its distorted output, and choosing between them misses the point.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Temperature use cases, with the tolerance at each</h2>
+        <p className="text-muted leading-7 mb-4">
+          Fluke splits the 17B+&apos;s temperature accuracy into three bands: ±(9% + 2 °C) from −55 to 0 °C, a flat
+          ±2 °C from 0 to 50 °C, and ±(2% + 1 °C) from 50 to 400 °C, all at 0.1 °C resolution and for the meter alone.
+          Applied to everyday targets, it looks like this. The targets are common reference values, not OhmSavvy
+          measurements; check the appliance maker&apos;s own figure before acting on a reading.
+        </p>
+        <DataTable
+          head={["Job", "Typical target", "17B+ band", "Meter tolerance"]}
+          rows={[
+            ["Freezer check", "−18 °C (0 °F)", "−55 to 0 °C", "±3.6 °C"],
+            ["Refrigerator check", "4 °C (40 °F) or below", "0 to 50 °C", "±2.0 °C"],
+            ["Water heater outlet", "about 49 °C (120 °F)", "0 to 50 °C", "±2.0 °C"],
+            ["Oven calibration", "177 °C (350 °F)", "50 to 400 °C", "±4.5 °C"],
+            ["3D-printer hot end (PLA)", "around 210 °C", "50 to 400 °C", "±5.2 °C"],
+          ]}
+        />
+        <div className="mt-6 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>17B+ meter tolerance at each target above, °C, worked from Fluke&apos;s three temperature bands.</>}>
+            <BarChart
+              items={[
+                { label: "Freezer −18 °C", value: 3.6, display: "±3.6 °C" },
+                { label: "Fridge 4 °C", value: 2, display: "±2.0 °C" },
+                { label: "Water heater 49 °C", value: 2, display: "±2.0 °C" },
+                { label: "Oven 177 °C", value: 4.5, display: "±4.5 °C" },
+                { label: "Hot end 210 °C", value: 5.2, display: "±5.2 °C", highlight: true },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>17B+ frequency tolerance at three common signals, Hz, worked from ±(0.1% + 3 counts) on the range each lands in.</>}>
+            <BarChart
+              items={[
+                { label: "60 Hz line (500.0 Hz range)", value: 0.36, display: "±0.36 Hz" },
+                { label: "1 kHz timer (5.000 kHz range)", value: 4, display: "±4 Hz" },
+                { label: "25 kHz fan PWM (50.00 kHz range)", value: 55, display: "±55 Hz", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Two practical notes. On air-conditioning work, relative mode is allowed on temperature: rest the probe in the
+          return air, press REL, then move it to a supply register and the display shows the drop directly, though
+          each reading still carries its own tolerance. And the 400 °C ceiling belongs to the meter, not necessarily the
+          probe. Fluke&apos;s page includes a Type K bead probe without naming its model or its maximum, so don&apos;t
+          assume it is good to 400 °C; for a soldering tip or a kiln, use a probe whose own rating you have checked.
+          Our guide on{" "}
+          <Link href="/multimeters/how-to-check-a-thermocouple-with-a-multimeter" className={link}>
+            checking a thermocouple with a multimeter
+          </Link>{" "}
+          covers the furnace-side version of this job, and the 15B+ can do that one too, since it measures the
+          thermocouple&apos;s millivolts rather than its temperature.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Frequency and duty cycle use cases</h2>
+        <p className="text-muted leading-7 mb-4">
+          The 17B+ counts from 10 Hz to 100 kHz across five ranges, and the range sets the step: 0.01 Hz on the
+          50.00 Hz range up to 0.1 kHz on the top one. A US portable generator should hold close to 60 Hz; that lands
+          on the 500.0 Hz range, where the tolerance is 0.1% × 60 + 3 × 0.1 = ±0.36 Hz, fine enough to spot a governor
+          running fast or slow under load. If your generator cuts out when an appliance starts, read the frequency and
+          voltage with the load applied, alongside our guide to{" "}
+          <Link href="/multimeters/why-does-my-portable-generator-shut-off-when-i-plug-in-an-appliance" className={link}>
+            a generator that shuts off under load
+          </Link>
+          .
+        </p>
+        <p className="text-muted leading-7">
+          Duty cycle carries a catch that Fluke states in small print: the 1% typical accuracy applies at 50 or 60 Hz
+          with a duty between 10% and 90%. A PC or EC-motor fan PWM line usually runs far faster, often around 25 kHz,
+          so a 17B+ reading there is a useful indication (is the controller commanding 30% or 90%?) rather than a
+          specified measurement. The frequency figure itself remains specified at those speeds. The 15B+ has neither
+          mode; on a PWM line its DC volts range shows only the average.
+        </p>
       </section>
 
       <section>
@@ -289,6 +425,16 @@ const comparison: ProductComparisonContent = {
       question: "Can the Fluke 15B+ measure temperature?",
       answer:
         "No. Fluke's manual lists temperature as a 17B+-only function, and the 15B+ has no thermocouple position on its dial. If you need temperature from a 15B+, you'd carry a separate thermometer. The 17B+ ships with a Type K bead probe and reads from −55 °C to 400 °C in °C or °F.",
+    },
+    {
+      question: "What warranty do the Fluke 15B+ and 17B+ have?",
+      answer:
+        "One year for both. Fluke's 15B+/17B+/18B+ users manual gives a one-year warranty, and the US product pages don't state a different term; they show only a 30-day return window in the purchase box. That's a shorter term than Fluke gives the pocket 106/107 or the 115/117, so keep your proof of purchase.",
+    },
+    {
+      question: "Can the Fluke 17B+ check a generator's frequency?",
+      answer:
+        "Yes. Its frequency mode covers 10 Hz to 100 kHz, and a 60 Hz output reads on the 500.0 Hz range to about ±0.36 Hz, enough to see whether a governor holds speed under load. The 15B+ can read the generator's voltage but has no frequency function, so checking speed regulation would need a second tool.",
     },
     {
       question: "Why does the Amazon 17B+ listing show a 17B MAX?",

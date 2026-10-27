@@ -710,4 +710,137 @@ export const multimeterCatalogPicks: Pick[] = [
     cons: ["Manual ranging, 2,000 counts", "No AC current, Min/Max or temperature"],
     ctaHref: "https://www.amazon.com/dp/B08CX9W7G3?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Fluke Utility Meter with VCHEK",
+    // Specs per fluke.com (Fluke 113 product/spec page) and the official Amazon listing (B004Q05ODI). Conflict: fluke.com gives IEC 61010-2-033 CAT IV 600 V and the meter is printed "CAT IV 600V", but an Amazon bullet says CAT III 600 V / CAT IV 300 V; we use Fluke. True RMS per the Amazon title and the meter's front label (fluke.com spec page doesn't state it). Photo: Amazon main image of B004Q05ODI, shows "FLUKE 113 TRUE RMS MULTIMETER", VCHEK and LOW IMPEDANCE. Amazon-buyable 2026-10-27.
+    name: "Fluke 113",
+    image: "https://m.media-amazon.com/images/I/61L0VkFzIZL._SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "A 6000-count utility meter built around VCHEK: one LoZ dial position that reads voltage and drops to continuity when the circuit is dead.",
+    verdict:
+      "The Fluke 113 is a two-jack, 6000-count meter for utility and service work. Its VCHEK position is a low-impedance (about 3 kΩ) voltage test on 6, 60 and 600 V ranges at ±(2.0% + 3), and it switches to a continuity check when no voltage is present, which helps sort ghost voltage from a live feed. It also measures resistance to 60 kΩ and capacitance up to 9999 µF, with min/max and a backlit display, and Fluke rates it CAT IV 600V. It has no current ranges at all, and Fluke warns that LoZ readings phase-to-earth can trip a GFCI or RCD.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(2.0% + 3) VCHEK volts" },
+      { label: "Safety rating", value: "CAT IV 600V (per Fluke)" },
+      { label: "Auto-ranging", value: "Yes (manual override)" },
+      { label: "Best for", value: "Utility and ghost-voltage checks" },
+    ],
+    pros: ["VCHEK LoZ voltage test that falls back to continuity", "Capacitance up to 9999 µF on a two-jack meter", "Fluke rates it CAT IV 600V"],
+    cons: ["No current measurement", "Resistance tops out at 60 kΩ", "Amazon listing quotes a lower CAT rating than Fluke does"],
+    ctaHref: "https://www.amazon.com/dp/B004Q05ODI?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Go/No-Go Electrician Meter",
+    // Specs per fluke.com (Fluke 114 product/spec page) and the official Amazon listing (B000IZ9FD0). fluke.com's overview mentions "current" but its spec table lists no current ranges and the meter has only COM/+ jacks; we treat it as voltage/resistance only. Weight: Fluke 550 g, Amazon 0.51 kg. Photo: Amazon main image of B000IZ9FD0, shows "FLUKE 114 TRUE RMS MULTIMETER", AUTO-V LoZ and CAT III 600V. Amazon-buyable 2026-10-27.
+    name: "Fluke 114",
+    image: "https://m.media-amazon.com/images/I/61iC35IcD9L._SL1500_.jpg",
+    rating: 4.5,
+    bottomLine: "A True RMS voltage-and-continuity meter with AutoVolt LoZ, made for quick go/no-go checks on 600 V circuits.",
+    verdict:
+      "The Fluke 114 does voltage, resistance and continuity, and nothing else. AutoVolt picks AC or DC on its own on a low-impedance input, so ghost voltage from long cable runs reads near zero instead of fooling you. The regular ranges are better: DC volts at ±(0.5% + 2) and True RMS AC volts at ±(1.0% + 3) from 45 to 500 Hz, plus resistance to 40 MΩ. Min/Max/Average with elapsed time, a white LED backlight and a 3-year warranty round it out. There's no current, capacitance or temperature, and it's rated CAT III 600V, not CAT IV.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.5% + 2) DC V" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes (manual override)" },
+      { label: "Best for", value: "Electrician go/no-go voltage checks" },
+    ],
+    pros: ["AutoVolt AC/DC selection on a LoZ input", "Min/Max/Average with elapsed time", "Resistance up to 40 MΩ"],
+    cons: ["No current or capacitance", "CAT III 600V only", "3-year warranty, not lifetime"],
+    ctaHref: "https://www.amazon.com/dp/B000IZ9FD0?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best No-Frills Fluke 170 Series",
+    // Specs per fluke.com (Fluke 175 product/spec page) and the official Amazon listing (B00012Z0UM, "Fluke 175 ESFP"). Display count isn't stated on the 175 page; backlight isn't stated and the photo shows no backlight button. Photo: Amazon main image of B00012Z0UM, shows "FLUKE 175 TRUE RMS MULTIMETER" with test leads and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
+    name: "Fluke 175",
+    image: "https://m.media-amazon.com/images/I/71MHzMKDxPL._SL1500_.jpg",
+    rating: 4.5,
+    bottomLine: "The entry 170-series Fluke: True RMS volts and amps to 10 A, CAT IV 600V and a lifetime warranty, minus the 177's backlight.",
+    verdict:
+      "The Fluke 175 covers the full general-purpose set: True RMS AC volts and amps, DC volts at ±(0.15% + 2), current to 10 A on fused 400 mA and 10 A jacks, resistance to 50 MΩ, capacitance to 10,000 µF and frequency to 100 kHz. Display Hold, Auto Hold and Min/Max-average recording are there, and it carries CAT III 1000V / CAT IV 600V ratings with a lifetime warranty. Compared with the 177 it gives up some DC accuracy (0.15% against 0.09%) and Fluke doesn't list a backlight. Battery life is about 200 hours on a 9 V cell.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.15% + 2) DC V" },
+      { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
+      { label: "Auto-ranging", value: "Yes (manual override)" },
+      { label: "Best for", value: "General electrical and electronic repair" },
+    ],
+    pros: ["True RMS volts and amps, current to 10 A", "CAT III 1000V / CAT IV 600V", "Lifetime warranty"],
+    cons: ["No backlight listed (the 177 adds one)", "No temperature (that's the 179)", "About 200 h battery life on a 9 V"],
+    ctaHref: "https://www.amazon.com/dp/B00012Z0UM?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Backlit Everyday Fluke",
+    // Specs per fluke.com (Fluke 177 product/spec page) and the official Amazon listing (B005WFW26S). Amazon's "1.81 g" item weight is a listing error; Fluke states 420 g. Photo: Amazon main image of B005WFW26S, shows "FLUKE 177 TRUE RMS MULTIMETER" with backlight button and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
+    name: "Fluke 177",
+    image: "https://m.media-amazon.com/images/I/71RYn-8eR1L._SL1500_.jpg",
+    rating: 4.6,
+    bottomLine: "The middle 170-series meter: 0.09% DC volts, True RMS to 10 A and a backlight, without paying for the 179's thermometer.",
+    verdict:
+      "The Fluke 177 adds a backlight and tighter DC accuracy, ±(0.09% + 2), to the 175's feature set. It's a 6000-count True RMS meter with a 33-segment bar graph, AC and DC current to 10 A, resistance to 50 MΩ, capacitance to 10,000 µF and frequency to 100 kHz, plus Hold, Auto Hold and Min/Max/Average. It's rated CAT III 1000V / CAT IV 600V and carries a lifetime warranty. There's no temperature input, no LoZ and no low-pass filter, so it's a general troubleshooting meter rather than a VFD or HVAC tool.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.09% + 2) DC V" },
+      { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
+      { label: "Auto-ranging", value: "Yes (manual override)" },
+      { label: "Best for", value: "Everyday electrical troubleshooting" },
+    ],
+    pros: ["0.09% basic DC volts accuracy", "Backlight and fast 33-segment bar graph", "Lifetime warranty"],
+    cons: ["No temperature (the 179 has it)", "No LoZ or low-pass filter", "9 V battery, about 200 h"],
+    ctaHref: "https://www.amazon.com/dp/B005WFW26S?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Rugged Industrial Meter",
+    // Specs per fluke.com (Fluke 87V MAX product/spec page) and the official Amazon listing (B07YQSBJSB, bare meter with TL175 leads; B0B6R4J4RP is the MC4/solar lead kit). LoZ isn't listed by Fluke for this model. Photo: Amazon main image of B07YQSBJSB, shows "FLUKE 87V MAX TRUE RMS MULTIMETER", IP67 and "1000V CAT III / 600V CAT IV". Amazon-buyable 2026-10-27.
+    name: "Fluke 87V MAX",
+    image: "https://m.media-amazon.com/images/I/61tdkYzn87L._SL1500_.jpg",
+    rating: 4.7,
+    bottomLine: "The 87V's measurement set in an IP67 case rated for a 4 m drop, with 800-hour AA battery life and a backlit keypad.",
+    verdict:
+      "Fluke lists the 87V MAX at ±(0.05% + 1) DC volts, ±(0.7% + 4) True RMS AC volts, 0.1 µA to 10 A current, frequency to 199.99 kHz and a 19,999-count hi-res mode, plus a low-pass filter for VFD work, 250 µs Peak Min/Max and a −200 to 1090 °C temperature input with the included 80BK-A probe. It's rated CAT IV 600V / CAT III 1000V, sealed to IP67 and drop-tested to 4 m, and runs about 800 hours on three AAs. It comes with TL175 TwistGuard leads and a lifetime warranty. Fluke doesn't list LoZ, and it costs more than a standard 87V.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.05% + 1) DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual override)" },
+      { label: "Best for", value: "Industrial, outdoor and VFD work" },
+    ],
+    pros: ["IP67 and 4 m drop rating", "Low-pass filter, 250 µs peak capture and temperature", "About 800 h on three AA cells"],
+    cons: ["No LoZ listed by Fluke", "Costs more than the standard 87V"],
+    ctaHref: "https://www.amazon.com/dp/B07YQSBJSB?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best IP67 Meter for Mining and Field Work",
+    // Specs per fluke.com (Fluke 28 II product/spec page) and the official Amazon listing (B002X9ISWI; listing says the unit ships with a NIST-traceable calibration certificate; sold by a third party). Amazon's "300 g" weight conflicts with Fluke's 698.5 g with holster; we use Fluke. Not the 28 II EX (B00C2DVKPC). Photo: Amazon main image of B002X9ISWI, shows "FLUKE 28 II TRUE RMS MULTIMETER", IP67 and "1000V CAT III / 600V CAT IV". Amazon-buyable 2026-10-27.
+    name: "Fluke 28 II",
+    image: "https://m.media-amazon.com/images/I/71JaS21Kb0L._SL1500_.jpg",
+    rating: 4.6,
+    bottomLine: "An IP67, MSHA-approved True RMS meter with 87V-class volts accuracy, a low-pass filter and a 3 m drop rating.",
+    verdict:
+      "The Fluke 28 II publishes ±(0.05% + 1) DC volts and ±(0.7% + 4) True RMS AC volts over 15 Hz to 20 kHz, current from 0.1 µA to 10 A, frequency to 199.99 kHz and temperature from −200 to +1090 °C with the included 80BK-A probe. It adds a low-pass filter, 250 µs peak capture, Min/Max/Avg and a 20,000-count hi-res mode. It's IP67, MSHA approved, rated CAT IV 600V / CAT III 1000V and drop-tested to 3 m, and runs 800 hours on three AAs with a lifetime warranty. Fluke doesn't list LoZ, and the Amazon offer is from a third-party seller.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, 0.05% + 1 DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual override)" },
+      { label: "Best for", value: "Wet, dusty and mining sites" },
+    ],
+    pros: ["IP67 and MSHA approved", "Low-pass filter, peak capture and temperature", "Listing includes a NIST-traceable calibration certificate"],
+    cons: ["3 m drop rating (the 87V MAX is rated 4 m)", "Third-party seller on Amazon", "No LoZ listed by Fluke"],
+    ctaHref: "https://www.amazon.com/dp/B002X9ISWI?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Insulation Multimeter",
+    // Specs per fluke.com (Fluke 1587 FC product/spec page) and the Fluke 1587 FC/1577 technical data sheet (6000-count display), plus the official Amazon listing (B017OVC2UI, bare meter; the I400, 62MAX+ and MDT kits are separate ASINs). fluke.com lists the case as both "soft" and "hard"; Amazon's 1645 g item weight conflicts with Fluke's 550 g. Photo: Amazon main image of B017OVC2UI, shows "FLUKE 1587 FC INSULATION MULTIMETER", INSULATION TEST button and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
+    name: "Fluke 1587 FC",
+    image: "https://m.media-amazon.com/images/I/71XrB9ZhFwL._SL1500_.jpg",
+    rating: 4.6,
+    bottomLine: "A True RMS multimeter and 50–1000 V insulation tester in one, with PI/DAR tests and Fluke Connect logging to your phone.",
+    verdict:
+      "The 1587 FC tests insulation at 50, 100, 250, 500 and 1000 V from 0.01 MΩ to 2 GΩ, runs PI and DAR timed ratio tests, and won't start a test if it sees more than 30 V on the terminals. Over Fluke Connect it saves readings to the app with TrendIt graphs and temperature compensation. As a meter it's 6000-count True RMS with ±(0.09% + 2) DC volts, a low-pass filter for VFDs, capacitance to 9999 µF and temperature from −40 to 537 °C. It's rated CAT IV 600V / CAT III 1000V. Current tops out at 400 mA with no 10 A jack, the case is only IP40 and the warranty is 3 years.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.09% + 2) DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual override)" },
+      { label: "Best for", value: "Motor, cable and insulation testing" },
+    ],
+    pros: ["Insulation test 50–1000 V up to 2 GΩ with PI/DAR", "Fluke Connect wireless logging and trend graphs", "Low-pass filter and temperature input"],
+    cons: ["mA current only (400 mA max), no 10 A input", "IP40 case and 3-year warranty"],
+    ctaHref: "https://www.amazon.com/dp/B017OVC2UI?tag=ohmsavvy-20",
+  },
 ];

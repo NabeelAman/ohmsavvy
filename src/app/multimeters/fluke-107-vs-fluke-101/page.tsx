@@ -11,6 +11,18 @@
 //   10 Hz to 100 kHz; diode and continuity with buzzer; "Hold: No"; auto shutoff; 2 × AAA; 130 × 65 × 27 mm; 160 g;
 //   1 m drop; CAT III 600 V; 1-year warranty. Fluke's 101 documents conflict on the top capacitance range (100 µF / 1,000 µF)
 //   and give duty cycle as 1-99% (datasheet, per the Pick) or 0.1-99.9% (India product page).
+// Re-checked 2026-10-27:
+// - Fluke 101 per https://www.fluke.com/en-in/product/electrical-testing/digital-multimeters/fluke-101 : per-range
+//   resolutions (AC V 600.0 mV/6/60/600 V; DC V 6/60/600 V; ohms 400.0 Ω to 40.00 MΩ, 400 Ω ±(0.5% + 3), 4 kΩ-4 MΩ
+//   ±(0.5% + 2), 40 MΩ ±(1.5% + 3); capacitance 50.00 nF/500.0 nF/5.000/50.00/500.0/1000 µF, accuracy not listed;
+//   frequency 50.00 Hz/500.0 Hz/5.000/50.00/100.0 kHz, accuracy not listed; duty 0.1-99.9%, 0.1% resolution);
+//   0-40 °C operating, -30-60 °C storage, 2,000 m, IP40, MIL-PRF-28800F Class 2 vibration, 1 m drop at -10 °C;
+//   temperature coefficient 0.1 × spec per °C outside 18-28 °C. No accessories or backlight listed.
+// - https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-101 resolves to Fluke's US
+//   digital-multimeter category page, with no 101 listed (the 107 is the closest model shown).
+// - Fluke 107 per the en-us page above: AC current band 40-200 Hz; volts input >10 MΩ, <100 pF; AC mV input >1 MΩ;
+//   includes TL75 leads, SmartStrap magnetic lanyard and 2 AAA cells; page FAQ: no calibration certificate;
+//   same environmental and temperature-coefficient specs as the 101.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
@@ -21,9 +33,9 @@ import { buildMetadata } from "@/lib/metadata";
 const path = "/multimeters/fluke-107-vs-fluke-101";
 
 export const metadata = buildMetadata({
-  title: "Fluke 107 vs Fluke 101",
+  title: "Fluke 107 vs Fluke 101: Which Compact Is Better?",
   description:
-    "Fluke 107 vs Fluke 101: both read frequency and test diodes, but only the 107 measures current, and only its specs list a backlight. Which to buy.",
+    "Fluke 101 vs Fluke 107 comparison: every range and accuracy figure, current readings, size and US availability. Only the 107 reads amps or has a backlight.",
   path: "/multimeters/fluke-107-vs-fluke-101",
 });
 
@@ -70,7 +82,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 107 vs Fluke 101",
   path,
   published: "2026-10-22",
-  updated: "2026-10-26",
+  updated: "2026-10-27",
   intro:
     "Fluke 107 vs Fluke 101 pits the two most capable pocket Flukes for electronics against each other. They share a 6,000-count display, CAT III 600V, identical voltage and resistance accuracy, frequency, duty cycle and diode test. What separates them is current measurement, a backlight, data hold and a two-year warranty, all listed only for the 107, against the 101's smaller, lighter body. For most buyers the 107 is the one to get.",
   a: {
@@ -102,6 +114,8 @@ const comparison: ProductComparisonContent = {
     { label: "Max voltage", a: "600V AC/DC", b: "600V AC/DC" },
     { label: "Size", a: "142 × 69 × 28 mm", b: "130 × 65 × 27 mm" },
     { label: "Weight", a: "200 g", b: "160 g" },
+    { label: "In the box", a: "TL75 leads, SmartStrap magnetic lanyard, 2 × AAA", b: "Not stated" },
+    { label: "Fluke US product page", a: "Yes", b: "No (regional pages only)" },
     { label: "Drop rating", a: "1 m", b: "1 m" },
     { label: "Battery", a: "2 × AAA, 200 hours minimum", b: "2 × AAA, 200 hours minimum" },
     { label: "Warranty", a: "2 years", b: "1 year" },
@@ -190,6 +204,47 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Range by range: resolution and accuracy for every function</h2>
+        <p className="text-muted leading-7 mb-4">
+          The summary table above hides how each function is split into ranges, and the range decides the last digit
+          you see. Below is every range Fluke publishes for both meters, with the resolution (one count) and the
+          tolerance. Where the 101&apos;s page gives ranges but no accuracy, the cell says so instead of borrowing the
+          107&apos;s figure.
+        </p>
+        <DataTable
+          head={["Function and range", "Resolution", "Fluke 107 accuracy", "Fluke 101 accuracy"]}
+          rows={[
+            ["DC V: 6.000 / 60.00 / 600.0 V", "1 mV / 10 mV / 0.1 V", "±(0.5% + 3)", "±(0.5% + 3)"],
+            ["AC V, 40–500 Hz: 6.000 / 60.00 / 600.0 V", "1 mV / 10 mV / 0.1 V", "±(1.0% + 3)", "±(1.0% + 3)"],
+            ["AC mV: 600.0 mV", "0.1 mV", "±(3.0% + 3)", "±(3.0% + 3)"],
+            ["Ohms: 400.0 Ω", "0.1 Ω", "±(0.5% + 3)", "±(0.5% + 3)"],
+            ["Ohms: 4.000 kΩ to 4.000 MΩ (four ranges)", "1 Ω to 1 kΩ", "±(0.5% + 2)", "±(0.5% + 2)"],
+            ["Ohms: 40.00 MΩ", "10 kΩ", "±(1.5% + 3)", "±(1.5% + 3)"],
+            ["Capacitance: 50.00 nF / 500.0 nF", "0.01 nF / 0.1 nF", "±(2% + 5)", "Ranges listed, accuracy not stated"],
+            ["Capacitance: 5.000 µF to 1000 µF (four ranges)", "0.001 µF to 1 µF", "±(5% + 5)", "Ranges listed, accuracy not stated"],
+            ["Frequency: 50.00 Hz to 100.0 kHz (five ranges)", "0.01 Hz to 0.1 kHz", "±(0.1% + 3)", "Ranges listed, accuracy not stated"],
+            ["Duty cycle", "0.1%", "1–99%, 1% typical", "0.1–99.9% (India page)"],
+            ["DC and AC amps: 4.000 / 10.00 A", "1 mA / 10 mA", "±(1.5% + 3); AC 40–200 Hz", "No current function"],
+            ["Diode: 2.000 V", "1 mV", "10%; under 0.6 mA test current", "Diode test listed, no figures"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          Turning those percentages into real numbers shows how close the pair sits. A car battery reading 12.60 V lands
+          on the 60.00 V range, so either meter is allowed 0.5% × 12.60 + 3 × 0.01 = ±0.093 V: anything from 12.51 to
+          12.69 V is in spec. A 4.7 kΩ resistor autoranges to 40.00 kΩ, giving 0.5% × 4.70 + 2 × 0.01 = ±0.044 kΩ, about
+          ±44 Ω. On the 107, a 100 µF electrolytic reads on the 500.0 µF range to ±(5 + 0.5) = ±5.5 µF, and a 1 kHz
+          signal on the 5.000 kHz range to ±4 Hz. The 101 would show the same digits for those last two, but Fluke&apos;s
+          page doesn&apos;t commit to how close they are.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          One footnote applies to both: the published tolerances hold from 18 to 28 °C. Outside that band Fluke adds 0.1
+          times the spec for every degree. In a 38 °C summer car, 10 degrees over, that is a full extra helping, so the
+          12.60 V reading&apos;s window doubles to ±0.19 V. Both meters are rated to operate from 0 to 40 °C, so a
+          glovebox in a parked car in July can sit outside the working range altogether.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">How the 107 reads current, and why the 101 can&apos;t</h2>
         <p className="text-muted leading-7 mb-4">
           Voltage is measured across a component, with the meter in parallel. Current has to be measured through it: you
@@ -220,6 +275,92 @@ const comparison: ProductComparisonContent = {
             shows one common use.
           </KeyIdea>
         </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">A current job, worked on both meters</h2>
+        <p className="text-muted leading-7 mb-4">
+          Picture a 12 V cooler box or a bilge pump that seems to flatten its battery faster than it should. On the 107
+          you break the positive lead, put the meter in series on the A jack and read the draw directly. Suppose it
+          shows 3.20 A (an illustrative figure, not a test result): that sits on the 4.000 A range, so the window is
+          1.5% × 3.20 + 3 × 0.001 = ±0.051 A. If the load climbs past 4 A, the 107 moves to its 10.00 A range, where a
+          6.50 A reading carries ±0.13 A because each count is now 10 mA. AC current is specified from 40 to 200 Hz,
+          which covers 50 and 60 Hz household loads but not 400 Hz aircraft or generator test supplies.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          The 101 can still get you an answer, just indirectly. Wire a low-value resistor of known value in series as a
+          shunt, read the DC voltage across it, and divide: I = V / R. With a 0.10 Ω shunt and 2 A flowing you would see
+          0.200 V, which the 101 resolves to 1 mV on its 6.000 V range, a meter tolerance of about ±0.004 V or ±2%
+          before the resistor&apos;s own tolerance is added. The shunt dissipates I² × R = 0.4 W at that current, so it
+          needs a 1 W part, and the method only works for DC. Our guide to{" "}
+          <Link href="/multimeters/how-to-test-a-shunt-resistor-with-a-multimeter" className={link}>
+            testing a shunt resistor
+          </Link>{" "}
+          covers the setup. If you would do this more than once, the 107&apos;s A jack is the simpler tool; for mains
+          appliances, a clamp avoids breaking the circuit at all, as explained in{" "}
+          <Link href="/multimeters/can-you-measure-current-without-breaking-the-circuit-with-a-multimeter" className={link}>
+            measuring current without breaking the circuit
+          </Link>
+          .
+        </p>
+        <DataTable
+          head={["Load current (illustrative)", "Fluke 107 range", "Tolerance", "Fluke 101"]}
+          rows={[
+            ["25 mA (dev board)", "4.000 A", "±3.4 mA, about ±14%", "Shunt method only"],
+            ["3.20 A (12 V cooler)", "4.000 A", "±0.051 A, about ±1.6%", "Shunt method only"],
+            ["6.50 A (inverter load)", "10.00 A", "±0.13 A, about ±2.0%", "Shunt method only"],
+          ]}
+        />
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Size and pocketability</h2>
+        <p className="text-muted leading-7 mb-4">
+          Both are true pocket meters, but the numbers favor the 101. Multiply Fluke&apos;s dimensions and the 107
+          occupies about 274 cm³ (142 × 69 × 28 mm) against the 101&apos;s 228 cm³ (130 × 65 × 27 mm), so the 101 takes up
+          roughly 17% less space and weighs 20% less. The thickness is almost the same, 27 vs 28 mm; the saving is in
+          length and width, which is what decides whether a meter disappears into a shirt pocket or pokes out of it.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Body volume in cm³, calculated from Fluke&apos;s listed dimensions.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 107", value: 274, display: "274 cm³" },
+                { label: "Fluke 101", value: 228, display: "228 cm³", highlight: true },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Tolerance on a 12.60 V reading (either meter), worked from Fluke&apos;s spec and temperature coefficient.</>}>
+            <BarChart
+              items={[
+                { label: "At 18–28 °C", value: 0.093, display: "±0.093 V" },
+                { label: "At 38 °C", value: 0.186, display: "±0.186 V", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The 107 claws back some convenience in the box: Fluke ships it with TL75 test leads and a SmartStrap
+          magnetic lanyard, so it can hang off a steel panel door while you work. Fluke&apos;s 101 page lists no box
+          contents. Both are IP40, rated to 2,000 m and drop-tested from 1 m, and the 101 page adds a MIL-PRF-28800F
+          Class 2 vibration rating. Neither ships with a calibration certificate; Fluke&apos;s 107 FAQ says so outright.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Buying in the US: availability and import notes</h2>
+        <p className="text-muted leading-7 mb-4">
+          The two meters are aimed at different markets. When we checked on 2026-10-27, Fluke&apos;s US address for the
+          101 opened the general digital-multimeter category page with no 101 on it, while the 107 has a full US product
+          page with specs, documents and a two-year warranty. The 101&apos;s specs live on Fluke&apos;s regional pages,
+          such as India, which list a one-year warranty.
+        </p>
+        <p className="text-muted leading-7">
+          In practice a US buyer gets a 101 through an import or third-party listing. Before ordering one, check that
+          the listing names the exact model, ask where warranty claims are handled, and remember that a one-year term
+          on an imported unit may mean shipping it abroad. None of that is a problem with the meter; it simply makes
+          the 107 the lower-friction purchase in the US, on top of its extra functions.
+        </p>
       </section>
 
       <section>
@@ -292,6 +433,16 @@ const comparison: ProductComparisonContent = {
       question: "Which is better for Arduino and hobby electronics?",
       answer:
         "The 107, because it can read a project's supply current through its 4 A range with 1 mA steps. That's coarse for sleep-mode currents, which need a meter with mA or µA ranges. If you only probe voltages, PWM signals and diodes, the 101 covers those with identical accuracy in a smaller body.",
+    },
+    {
+      question: "Can you buy the Fluke 101 in the United States?",
+      answer:
+        "Not from Fluke's US site: when we checked in October 2026, its US address for the 101 opened the general multimeter category with no 101 listed. The meter is documented on Fluke's regional pages, such as India, with a one-year warranty, and US buyers usually find it through import listings. Confirm the exact model and where warranty claims go before ordering.",
+    },
+    {
+      question: "Does heat affect the accuracy of the Fluke 101 and 107?",
+      answer:
+        "Yes, in the same way on both. Fluke's tolerances apply from 18 to 28 °C; outside that band you add 0.1 times the stated accuracy for every degree. At 38 °C the allowance on DC volts effectively doubles. Both meters are rated to operate from 0 to 40 °C, so don't leave either baking in a parked car before use.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

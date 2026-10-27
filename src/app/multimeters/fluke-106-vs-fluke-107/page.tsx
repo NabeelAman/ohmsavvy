@@ -5,6 +5,17 @@
 //   (diode, frequency and duty cycle marked "107 only"; continuity beeps below 70 Ω; auto power off after 20 min;
 //   backlight auto-off after 2 min; capacitance readings take up to 18 s to settle)
 // Fluke 107 "not a true-RMS" and "2-year warranty" per the 107 page; the 106 page states no warranty and no backlight.
+// Re-checked 2026-10-27 on the en-us pages above:
+// - 106: in the box TL75 leads + 2 AAA (no lanyard listed); hold, backlight and auto-off not mentioned; "AC is
+//   specified from 1% to 100% of range"; AC current 40-200 Hz; volts input >10 MΩ <100 pF, AC mV >1 MΩ; CMRR >60 dB
+//   (AC V) and >100 dB (DC V); positioned for "everyday applications, where true-rms accuracy isn't needed"; listed
+//   in stock on Fluke US. Warranty: 2 years per OhmSavvy's 2026-10-26 check of Fluke's 106/107 documentation; the
+//   106 page itself states none.
+// - 107: data hold and backlit display listed; in the box TL75 leads, SmartStrap magnetic lanyard, 2 AAA; no
+//   calibration certificate (page FAQ); AC current 40-200 Hz.
+// - 15B+ per https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus : 400.0 µA to
+//   10.00 A ranges, CAT III 600 V with 1000 V max to earth, 183 × 91 × 49.5 mm, 455 g, 2 AA.
+// - Fluke 117 facts (True RMS, non-contact voltage detection) per the Fluke 117 Pick.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
@@ -15,9 +26,9 @@ import { buildMetadata } from "@/lib/metadata";
 const path = "/multimeters/fluke-106-vs-fluke-107";
 
 export const metadata = buildMetadata({
-  title: "Fluke 106 vs Fluke 107",
+  title: "Fluke 106 vs Fluke 107: Differences and Value",
   description:
-    "Fluke 106 vs Fluke 107: identical palm-sized bodies, but only the 107 adds diode test, frequency and duty cycle. Which pocket Fluke to buy, with charts.",
+    "Fluke 106 vs Fluke 107 differences: one body and identical accuracy, but the 107 adds diode test, Hz, duty cycle and a backlight. Every gap and the value math.",
   path: "/multimeters/fluke-106-vs-fluke-107",
 });
 
@@ -65,7 +76,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 106 vs Fluke 107",
   path,
   published: "2026-10-22",
-  updated: "2026-10-26",
+  updated: "2026-10-27",
   intro:
     "Fluke 106 vs Fluke 107 is a choice between two meters that share one body. Both are 142 × 69 × 28 mm, 200 g, CAT III 600V and 6,000-count, and Fluke documents them in a single users manual. The difference is a short list of functions the 107 adds, so the right pick depends on whether you work on electronics or only on wiring.",
   a: {
@@ -96,6 +107,8 @@ const comparison: ProductComparisonContent = {
     { label: "Frequency / duty cycle", a: "No", b: "10 Hz to 100 kHz; 1% to 99%" },
     { label: "Size / weight", a: "142 × 69 × 28 mm, 200 g", b: "142 × 69 × 28 mm, 200 g" },
     { label: "Battery", a: "2 × AAA, 200 hours minimum", b: "2 × AAA, 200 hours minimum" },
+    { label: "Data hold", a: "Not listed by Fluke", b: "Yes" },
+    { label: "In the box", a: "TL75 leads, 2 × AAA", b: "TL75 leads, SmartStrap magnetic lanyard, 2 × AAA" },
   ],
   differences: [
     "Fluke's 106/107 manual marks diode test, frequency and duty cycle as 107-only functions.",
@@ -118,6 +131,35 @@ const comparison: ProductComparisonContent = {
             { label: "Verdict", desc: "Electronics or automotive signals: 107. Wiring checks only: 106." },
           ]}
         />
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Every difference between the Fluke 106 and 107</h2>
+        <p className="text-muted leading-7 mb-4">
+          We went through both of Fluke&apos;s US product pages, spec tabs and the shared users manual line by line.
+          These are all the differences we found, including the small ones that never make it into a feature list.
+          Anything not in this table is the same on both meters.
+        </p>
+        <DataTable
+          head={["Difference", "Fluke 106", "Fluke 107", "Who notices"]}
+          rows={[
+            ["Diode test", "None", "2.000 V range, 1 mV steps, about 2.0 V open-circuit, under 0.6 mA", "Anyone checking LEDs, rectifiers, flyback diodes"],
+            ["Frequency", "None", "10 Hz to 100 kHz in five ranges, ±(0.1% + 3)", "Generator, motor, oscillator and sensor checks"],
+            ["Hz while on AC volts or AC amps", "No", "Yes, per the manual", "Checking line frequency without re-wiring"],
+            ["Duty cycle", "None", "1% to 99%, 0.1% resolution, 1% typical", "PWM fans, dimmers, injectors"],
+            ["Backlight", "Not listed by Fluke", "Listed; turns itself off after 2 minutes", "Attics, crawl spaces, footwells"],
+            ["Data hold", "Not listed on the 106 page", "Listed on the 107 page", "Readings taken where you can't see the screen"],
+            ["Lanyard in the box", "Not listed (TL75 leads and batteries only)", "SmartStrap magnetic lanyard plus TL75 leads", "Hands-free work on steel panels"],
+            ["Warranty shown on the US page", "Not stated on the page (2 years per Fluke's 106/107 documentation)", "2 years", "Paperwork only, same term"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          That is the whole list: three measuring functions, two display conveniences and an accessory. The body, the
+          CAT III 600V rating, the 11 A fuse, the 6,000-count display, battery life, every accuracy figure and even the
+          input impedance (over 10 MΩ on volts, over 1 MΩ on AC millivolts) are shared. So is a limit Fluke footnotes on
+          the 106 page: AC readings are specified only from 1% to 100% of range, so anything under 0.06 V on the 6.000 V
+          AC range is outside the published accuracy on either meter.
+        </p>
       </section>
 
       <section>
@@ -264,6 +306,62 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Value: what each step up actually buys</h2>
+        <p className="text-muted leading-7 mb-4">
+          We don&apos;t quote prices, because they move weekly, but value can still be judged by what each tier adds
+          and what it takes away. Count the measuring functions and the 106 has eight: AC volts, DC volts, AC
+          millivolts, AC amps, DC amps, resistance, continuity and capacitance. The 107 has eleven, adding diode,
+          frequency and duty cycle, and it gives up nothing to get them: the same 200 g body, the same tolerances, the
+          same battery life.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Measuring functions on each meter, counted from Fluke&apos;s spec tables and manual.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 106", value: 8, display: "8 functions" },
+                { label: "Fluke 107", value: 11, display: "11 functions", highlight: true },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Weight in grams per Fluke: the 107 adds functions at no weight cost; the 15B+ adds low-current ranges in a much larger case.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 106", value: 200, display: "200 g" },
+                { label: "Fluke 107", value: 200, display: "200 g", highlight: true },
+                { label: "Fluke 15B+", value: 455, display: "455 g" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          That makes 106 to 107 the cleanest upgrade in Fluke&apos;s entry range, a pure addition. The next steps are
+          trades rather than additions, which is why the ladder below says what you lose as well as what you gain.
+        </p>
+        <div className="mt-4">
+          <DataTable
+            head={["Tier", "What it adds", "What it gives up", "Worth it if…"]}
+            rows={[
+              ["Fluke 106", "Volts, 4 A and 10 A current, ohms, continuity, capacitance in a 200 g body", "Diode, Hz, duty cycle, listed backlight", "Your work is outlets, fuses, batteries and heaters"],
+              ["Fluke 107", "Diode, frequency, duty cycle, backlight, data hold, magnetic lanyard", "Nothing versus the 106", "You touch electronics, cars or PWM-driven loads even occasionally"],
+              ["Fluke 15B+", "400.0 µA to 400 mA ranges, readings to 1000 V (CAT II), backlight and diode test", "Frequency and duty cycle; adds 255 g", "You need standby current or flame-sensor microamps"],
+              ["Fluke 117", "True RMS and non-contact voltage detection", "Leaves the palm-sized format", "You work on drives, dimmers or electronic loads for a living"],
+            ]}
+          />
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The value case for the 106 is narrow but real. A second meter for a van or kitchen drawer, a meter for
+          someone who will only ever check receptacles and batteries, or a shared tool where fewer modes means fewer
+          mistakes: in those roles the three missing functions have no worth to you. Everywhere else, the cost of
+          missing them is a second instrument, because there is no reliable workaround for a diode test or a
+          frequency reading on a meter that lacks them. For the next step past the pair, see{" "}
+          <Link href="/multimeters/fluke-15b-plus-vs-fluke-106" className={link}>
+            Fluke 15B+ vs Fluke 106
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">What neither pocket Fluke does</h2>
         <ul className="space-y-3 text-muted leading-7">
           <li>
@@ -329,6 +427,11 @@ const comparison: ProductComparisonContent = {
       question: "What frequency can the Fluke 107 measure?",
       answer:
         "Fluke specifies 10 Hz to 100 kHz across five ranges with ±(0.1% + 3) accuracy, and duty cycle from 1% to 99% at 0.1% resolution. The manual lets you switch to frequency while reading AC volts or AC current, so you can check a 60 Hz line or a switching signal without moving the leads.",
+    },
+    {
+      question: "Does the Fluke 106 have a backlight or data hold?",
+      answer:
+        "Fluke's US page for the 106 lists neither, and its product photo shows no backlight button, while the 107 page lists both a backlit display and data hold. If you take readings in a dark panel or somewhere you can't watch the screen, that alone can justify the 107, since every shared measurement is otherwise identical.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

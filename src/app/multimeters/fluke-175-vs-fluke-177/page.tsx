@@ -3,11 +3,24 @@
 //   (True RMS AC V and AC A; DC V ±(0.15% + 2); AC V ±(1.0% + 3); DC A ±(1.0% + 3); AC A ±(1.5% + 3); 0.01 mA res; 10 A;
 //   50 MΩ ±(0.9% + 1); 1 nF to 10,000 µF ±(1.2% + 2); 100 kHz ±(0.1% + 1); continuity, diode; Hold, Auto Hold,
 //   Min/Max-average; CAT III 1000 V / CAT IV 600 V; 9 V, about 200 h "without backlight"; 43 × 90 × 185 mm; 420 g; lifetime.
-//   Display count and backlight are not stated for the 175.)
+//   175: 6,000 counts, bar graph; backlight on 177/179 only, per the 170 Series detailed specifications.)
 // - Fluke 177 product page and spec tab: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-177
 //   (same table except DC V ±(0.09% + 2); 6000 counts; digital display with analog bar graph and backlight; lifetime.)
 // - Official Amazon listings: https://www.amazon.com/dp/B00012Z0UM (175) and https://www.amazon.com/dp/B005WFW26S (177).
 //   The 175 listing photo shows no backlight key; the 177 photo shows one.
+// - Added 2026-10-28: Fluke 170 Series Detailed Specifications (Fluke Corporation, Pub_ID 10824-eng, 06/05, hosted by
+//   Farnell): https://www.farnell.com/datasheets/2631819.pdf
+//   "Model Differences (all other specifications are the same for each model)": backlight 177 and 179 only; temperature
+//   179 only; basic DC V 0.15% (175), 0.09% (177, 179). So the 175 shares the 6,000-count display (4 updates/s) and
+//   33-segment bar graph (40 updates/s). Range table: DC V 600.0 mV / 6.000 / 60.00 V at 0.15% + 2 (175) and
+//   0.09% + 2 (177); 600.0 V and 1000 V at 0.15% + 2 (175) and 0.1% + 2 (177). AC V 600.0 mV to 1000 V, 1.0% + 3 at
+//   45-500 Hz, 2.0% + 3 at 500 Hz-1 kHz. Ohms 600.0 Ω 0.9% + 2; 6.000 kΩ to 6.000 MΩ 0.9% + 1; 50.00 MΩ 1.5% + 3.
+//   Capacitance 1000 nF / 10.00 µF / 100.0 µF 1.2% + 2; 9999 µF range 10% typical (footnote: 1.2% to 1000 µF).
+//   Current 60.00 mA (0.01 mA), 400.0 mA (0.1 mA), 6.000 A, 10.00 A; DC 1.0% + 3, AC 1.5% + 3 at 45 Hz-1 kHz.
+//   Hz 99.99 Hz to 99.99 kHz, 0.1% + 1 (30 kHz max in mA/A ranges); the datasheet's nominal table says 2 Hz to 50 kHz
+//   (conflict stated). Continuity on below 25 Ω, off above 250 Ω, catches opens/shorts of 250 µs; diode 2.400 V,
+//   1% + 2. MIN MAX: ±12 counts for DC changes longer than 275 ms, ±40 counts for AC changes longer than 1.2 s.
+//   Fuses 440 mA and 11 A, 1000 V. Display timeout 2 minutes, disable by power-up option.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
@@ -69,6 +82,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 175 vs Fluke 177: Which Multimeter Should You Choose?",
   path,
   published: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "Choose the Fluke 177 if you work in dim panels, attics or under dashboards, or if you want the tighter DC volts spec: Fluke lists ±(0.09% + 2) on the 177 against ±(0.15% + 2) on the 175, and the 177 has a backlit display. Everywhere else Fluke's spec tables match line for line: True RMS AC volts and amps, 1000 V, 10 A, 50 MΩ, 10,000 µF, 100 kHz, CAT IV 600V / CAT III 1000V, the same 420 g case and a lifetime warranty. If you work in good light and your DC readings don't need better than about a sixth of a percent, the 175 does the same job.",
   a: {
@@ -77,7 +91,7 @@ const comparison: ProductComparisonContent = {
     chooseIf: [
       "You read meters in dark panels, crawlspaces, attics or footwells, where a backlit display saves holding a flashlight",
       "You check DC sources against a tight tolerance and want the 0.09% basic DC accuracy",
-      "You want Fluke's stated 6,000-count display; Fluke doesn't publish the 175's count",
+      "You want the 170 Series backlight without paying for the 179's thermometer",
     ],
   },
   b: {
@@ -90,9 +104,9 @@ const comparison: ProductComparisonContent = {
     ],
   },
   extraSpecs: [
-    { label: "DC volts accuracy", a: "±(0.09% + 2), to 1000 V", b: "±(0.15% + 2), to 1000 V" },
+    { label: "DC volts accuracy", a: "±(0.09% + 2) to 60 V; ±(0.1% + 2) on 600 V and 1000 V", b: "±(0.15% + 2) on every range to 1000 V" },
     { label: "AC volts (True RMS)", a: "±(1.0% + 3), to 1000 V", b: "±(1.0% + 3), to 1000 V" },
-    { label: "Display", a: "6,000 counts, analog bar graph, backlight", b: "Count not stated; backlight not stated (photo shows no backlight key)" },
+    { label: "Display", a: "6,000 counts, 33-segment bar graph, backlight", b: "6,000 counts, 33-segment bar graph, no backlight" },
     { label: "DC / AC current", a: "±(1.0% + 3) / ±(1.5% + 3), 0.01 mA to 10 A", b: "±(1.0% + 3) / ±(1.5% + 3), 0.01 mA to 10 A" },
     { label: "Resistance", a: "±(0.9% + 1), to 50 MΩ", b: "±(0.9% + 1), to 50 MΩ" },
     { label: "Capacitance", a: "±(1.2% + 2), 1 nF to 10,000 µF", b: "±(1.2% + 2), 1 nF to 10,000 µF" },
@@ -103,9 +117,9 @@ const comparison: ProductComparisonContent = {
     { label: "Warranty", a: "Lifetime", b: "Lifetime" },
   ],
   differences: [
-    "The 177 has a backlit display. Fluke doesn't list a backlight for the 175, and the 175's Amazon listing photo shows no backlight key where the 177 has one.",
-    "DC volts accuracy: ±(0.09% + 2) on the 177 against ±(0.15% + 2) on the 175. The percentage term on the 177 is 40% smaller.",
-    "Fluke states 6,000 counts for the 177. The 175 page doesn't give a count, so we list it as not stated.",
+    "The 177 has a backlit display and the 175 doesn't: Fluke's 170 Series datasheet lists the backlight for the 177 and 179 only, and the 175's Amazon photo shows no backlight key.",
+    "DC volts accuracy: ±(0.09% + 2) on the 177's ranges up to 60 V and ±(0.1% + 2) on its 600 V and 1000 V ranges, against ±(0.15% + 2) on every 175 range.",
+    "Same display: the datasheet says all other specs match, so the 175 also has 6,000 counts and a 33-segment bar graph.",
     "Every other line in Fluke's two spec tables is identical: AC volts, both current functions, resistance, capacitance, frequency, safety ratings, size, weight, battery and warranty.",
     "Neither has temperature, LoZ, non-contact voltage or a low-pass filter. Temperature starts at the Fluke 179.",
   ],
@@ -134,12 +148,12 @@ const comparison: ProductComparisonContent = {
         <h2 className="text-2xl font-semibold mb-4">Fluke 175 vs Fluke 177 spec by spec</h2>
         <p className="text-muted leading-7 mb-4">
           Fluke uses the same accuracy table layout for every 170-series meter, listing the best accuracy for each
-          function. Put the 175 and 177 tables side by side and they differ in one row.
+          function. Put the 175 and 177 tables side by side and they differ in one measurement row and one feature.
         </p>
         <DataTable
           head={["Function", "Fluke 175", "Fluke 177", "Match?"]}
           rows={[
-            ["DC volts", "±(0.15% + 2), 0.1 mV res, 1000 V", "±(0.09% + 2), 0.1 mV res, 1000 V", "177 tighter"],
+            ["DC volts", "±(0.15% + 2), 0.1 mV res, 1000 V", "±(0.09% + 2) to 60 V, ±(0.1% + 2) above; 1000 V", "177 tighter"],
             ["AC volts, True RMS", "±(1.0% + 3), 1000 V", "±(1.0% + 3), 1000 V", "Same"],
             ["DC current", "±(1.0% + 3), 0.01 mA res, 10 A", "±(1.0% + 3), 0.01 mA res, 10 A", "Same"],
             ["AC current, True RMS", "±(1.5% + 3), 10 A", "±(1.5% + 3), 10 A", "Same"],
@@ -148,8 +162,8 @@ const comparison: ProductComparisonContent = {
             ["Frequency", "±(0.1% + 1), 0.01 Hz to 100 kHz", "±(0.1% + 1), 0.01 Hz to 100 kHz", "Same"],
             ["Continuity, diode", "Yes", "Yes", "Same"],
             ["Hold, Auto Hold, Min/Max-average", "Yes", "Yes", "Same"],
-            ["Display", "Count not stated", "6,000 counts, analog bar graph", "177 stated"],
-            ["Backlight", "Not stated; no key in photo", "Yes", "177 only"],
+            ["Display", "6,000 counts, 33-segment bar graph", "6,000 counts, 33-segment bar graph", "Same"],
+            ["Backlight", "No (datasheet: 177 and 179 only)", "Yes", "177 only"],
             ["Safety", "CAT III 1000V / CAT IV 600V", "CAT III 1000V / CAT IV 600V", "Same"],
             ["Battery life", "9 V, about 200 h (page says without backlight)", "9 V, about 200 h without backlight", "Same"],
             ["Operating temperature", "−10 °C to +50 °C", "−10 °C to +50 °C", "Same"],
@@ -210,14 +224,14 @@ const comparison: ProductComparisonContent = {
             ["12.6 V lead-acid battery", "±18.9 mV", "±11.3 mV", "7.6 mV"],
             ["24 V control supply", "±36 mV", "±21.6 mV", "14.4 mV"],
             ["48 V battery bank", "±72 mV", "±43.2 mV", "28.8 mV"],
-            ["400 V DC string", "±0.60 V", "±0.36 V", "0.24 V"],
+            ["400 V DC string (600 V range)", "±0.60 V", "±0.40 V (0.1% on this range)", "0.20 V"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">
-          On the 177, Fluke&apos;s 6,000-count figure lets us finish the arithmetic: 12.6 V lands on a range that steps
-          in 0.01 V, so the two counts add 0.02 V and the full allowance is about ±0.031 V. Fluke doesn&apos;t publish
-          the 175&apos;s display count, so we can&apos;t convert its two counts to volts. Either way, the
-          spread on a car battery is tens of millivolts. The difference between a charged and a half-discharged
+          Fluke&apos;s 170 Series datasheet confirms both meters use the same 6,000-count display, which lets us finish
+          the arithmetic. 12.6 V lands on the 60.00 V range, which steps in 0.01 V, so the two counts add 0.02 V on
+          either meter: about ±0.039 V in total on the 175 and ±0.031 V on the 177. Either way, the spread on a car
+          battery is tens of millivolts. The difference between a charged and a half-discharged
           lead-acid battery is a few hundred millivolts, so either meter makes that call easily.
         </p>
         <p className="text-muted leading-7 mt-4">
@@ -233,11 +247,77 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 177 vs 175: features and measurement differences, range by range</h2>
+        <p className="text-muted leading-7 mb-4">
+          Fluke&apos;s product pages give one best-case figure per function. Its 170 Series detailed specifications go
+          range by range, and they show one detail the product pages hide: the 177&apos;s 0.09% DC spec covers its
+          ranges up to 60 V, and its 600 V and 1000 V ranges are specified at ±(0.1% + 2). The 175 holds ±(0.15% + 2)
+          on every DC range. The datasheet also states that apart from the backlight, the DC volts line and the
+          179&apos;s temperature input, every other specification is the same for all three models.
+        </p>
+        <DataTable
+          head={["Function and range", "Resolution", "Fluke 175", "Fluke 177"]}
+          rows={[
+            ["DC mV, 600.0 mV", "0.1 mV", "±(0.15% + 2)", "±(0.09% + 2)"],
+            ["DC V, 6.000 V and 60.00 V", "0.001 / 0.01 V", "±(0.15% + 2)", "±(0.09% + 2)"],
+            ["DC V, 600.0 V and 1000 V", "0.1 / 1 V", "±(0.15% + 2)", "±(0.1% + 2)"],
+            ["AC V, 600.0 mV to 1000 V, 45 to 500 Hz", "0.1 mV to 1 V", "±(1.0% + 3)", "±(1.0% + 3)"],
+            ["AC V, 500 Hz to 1 kHz", "Same", "±(2.0% + 3)", "±(2.0% + 3)"],
+            ["DC A, 60.00 mA / 400.0 mA", "0.01 / 0.1 mA", "±(1.0% + 3)", "±(1.0% + 3)"],
+            ["DC A, 6.000 A / 10.00 A", "0.001 / 0.01 A", "±(1.0% + 3)", "±(1.0% + 3)"],
+            ["AC A, 60 mA to 10 A, 45 Hz to 1 kHz", "0.01 mA to 0.01 A", "±(1.5% + 3)", "±(1.5% + 3)"],
+            ["Ohms, 600.0 Ω", "0.1 Ω", "±(0.9% + 2)", "±(0.9% + 2)"],
+            ["Ohms, 6.000 kΩ to 6.000 MΩ", "1 Ω to 1 kΩ", "±(0.9% + 1)", "±(0.9% + 1)"],
+            ["Ohms, 50.00 MΩ", "10 kΩ", "±(1.5% + 3)", "±(1.5% + 3)"],
+            ["Capacitance, 1000 nF to 100.0 µF", "1 nF to 0.1 µF", "±(1.2% + 2)", "±(1.2% + 2)"],
+            ["Capacitance, 9999 µF range", "1 µF", "1.2% to 1000 µF; 10% typical above", "1.2% to 1000 µF; 10% typical above"],
+            ["Frequency, 99.99 Hz to 99.99 kHz", "0.01 Hz to 0.01 kHz", "±(0.1% + 1)", "±(0.1% + 1)"],
+            ["Diode test, 2.400 V", "0.001 V", "±(1% + 2)", "±(1% + 2)"],
+            ["Continuity", "—", "Beeps below 25 Ω; catches 250 µs opens/shorts", "Same"],
+          ]}
+        />
+        <div className="mt-6 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>DC volts accuracy by range, as ±% of reading. Lower is better.</>}>
+            <BarChart
+              items={[
+                { label: "175, any range", value: 0.15, display: "0.15% + 2" },
+                { label: "177, 600 V and 1000 V", value: 0.1, display: "0.1% + 2" },
+                { label: "177, 600 mV to 60 V", value: 0.09, display: "0.09% + 2", highlight: true },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Shortest change Min/Max/Avg is specified to capture, same on both meters. Shorter is better.</>}>
+            <BarChart
+              items={[
+                { label: "DC functions", value: 275, display: "> 275 ms", highlight: true },
+                { label: "AC functions", value: 1200, display: "> 1.2 s" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          A few measurement details apply to both meters and are worth knowing before you buy either. Min/Max/Avg is
+          specified at ±12 counts for DC changes lasting longer than 275 ms and ±40 counts for AC changes longer than
+          1.2 s, so it suits sags and slow drifts rather than spikes. The continuity beeper catches opens or shorts as
+          brief as 250 µs, which makes a wiggle test on a cord or harness useful. Above 1,000 µF the capacitance reading
+          is a 10% typical figure, which is fine for a sanity check on a big filter capacitor but too loose to grade one against its tolerance. In the mA and A
+          ranges, frequency is specified only to 30 kHz.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Two source conflicts to note. Fluke&apos;s product pages give the frequency ceiling as 100 kHz and the range
+          table runs to 99.99 kHz, while the datasheet&apos;s nominal summary says 2 Hz to 50 kHz; we follow the range
+          table. The product pages list capacitance to 10,000 µF, the datasheet&apos;s top range is 9,999 µF. Neither
+          conflict separates the 175 from the 177, because both models share those lines.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Do you need the backlight?</h2>
         <p className="text-muted leading-7 mb-4">
           The backlight is the difference you notice most in daily use. Fluke describes the 177&apos;s display as having a
-          backlight for poorly lit areas. The 175&apos;s page doesn&apos;t mention one, and its Amazon photo shows no
-          backlight key on the front panel. Think about where you will be holding the meter:
+          backlight for poorly lit areas. The 175&apos;s page doesn&apos;t mention one, Fluke&apos;s 170 Series
+          datasheet lists the backlight for the 177 and 179 only, and the 175&apos;s Amazon photo shows no backlight key
+          on the front panel. Think about where you will be holding the meter:
         </p>
         <DataTable
           head={["Where you read the meter", "Light", "Better fit"]}
@@ -334,14 +414,19 @@ const comparison: ProductComparisonContent = {
         "Two things, per Fluke's spec pages. The 177 has a backlit display, and its DC volts accuracy is ±(0.09% + 2) against the 175's ±(0.15% + 2). Every other published line matches, including True RMS AC, 10 A current, 50 MΩ, 10,000 µF, 100 kHz, the CAT IV 600V rating, the 420 g body and the lifetime warranty.",
     },
     {
+      question: "Is the Fluke 177 more accurate than the 175 on every range?",
+      answer:
+        "Only on DC volts, and not by the same margin on every range. Fluke's 170 Series datasheet gives the 177 ±(0.09% + 2) from 600 mV to 60 V and ±(0.1% + 2) on the 600 V and 1000 V ranges, against ±(0.15% + 2) throughout on the 175. AC volts, current, resistance, capacitance, frequency and diode test carry identical specs on both.",
+    },
+    {
       question: "Does the Fluke 175 have a backlight?",
       answer:
-        "Fluke doesn't list a backlight for the 175. Its spec page never describes a lit display (its battery note copies the 177 wording, about 200 hours without backlight), and the main photo on the official Amazon listing shows no backlight key on the front panel, while the 177's photo does. If you often read the meter in a dark panel or crawlspace, the 177 is the safer choice.",
+        "No. Fluke's 170 Series detailed specifications list the backlight as a 177 and 179 feature only, the 175 product page never describes a lit display, and the main photo on the official Amazon listing shows no backlight key, while the 177's photo does. If you often read the meter in a dark panel or crawlspace, the 177 is the safer choice.",
     },
     {
       question: "How many counts is the Fluke 175 display?",
       answer:
-        "Fluke's 175 page doesn't state a display count, so we list it as not stated. The 177 page gives 6,000 counts. Both list the same 0.1 mV best resolution on DC volts, but without a published count we won't assume the 175 matches. If the count matters to you, check the 175 users manual before buying.",
+        "6,000 counts, the same as the 177. The 175 product page doesn't say, but Fluke's 170 Series detailed specifications give 6,000 counts at four updates a second and a 33-segment bar graph at 40 updates a second, and state that every spec other than the backlight, DC volts accuracy and temperature is shared by the 175, 177 and 179.",
     },
     {
       question: "Is the Fluke 177 worth the upgrade from the 175?",

@@ -25,7 +25,7 @@ const path = "/multimeters/fluke-17b-plus-vs-fluke-15b-plus";
 export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 15B+: Which Should You Buy?",
   description:
-    "Fluke 15B+ vs Fluke 17B+ comparison: same case, accuracy and one-year warranty; the 17B+ adds temperature, Hz, duty cycle and MIN MAX. Decision chart inside.",
+    "Fluke 15B+ vs Fluke 17B+ for budget buyers: same case, accuracy and one-year warranty; the 17B+ adds temperature, Hz, duty cycle and MIN MAX. Decision chart.",
   path: "/multimeters/fluke-17b-plus-vs-fluke-15b-plus",
 });
 
@@ -108,7 +108,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 17B+ vs Fluke 15B+",
   path,
   published: "2026-10-22",
-  updated: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "Fluke 17B+ vs Fluke 15B+ is a comparison of two meters built on one platform. They share the case, the CAT III 600V / CAT II 1000V rating, the 4,000-count backlit display and the µA-to-10A current ranges, so the decision rests entirely on the functions the 17B+ adds and the 15B+ leaves out: temperature, frequency, duty cycle, MIN MAX, relative mode and a hazardous-voltage LED.",
   a: {
@@ -370,6 +370,50 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">For the budget buyer: value by features</h2>
+        <p className="text-muted leading-7 mb-4">
+          On a tight budget, the useful question is not which meter is better but what the cheaper one costs you in
+          capability. With this pair the answer is precise, because the spec table above splits cleanly: ten shared
+          rows with identical figures and five rows that exist only on the 17B+. Saving money on the 15B+ never means
+          a less accurate volts, amps or ohms reading, a lower safety rating, a weaker fuse or a shorter warranty. It
+          means doing without specific functions, and for each one the question is whether you have a workaround.
+        </p>
+        <DataTable
+          head={["17B+ function you give up", "Workaround on a 15B+", "How good is the workaround?"]}
+          rows={[
+            ["Temperature with Type K probe", "A separate thermometer", "Fine, but one more tool to buy and carry"],
+            ["Frequency, 10 Hz to 100 kHz", "None on the meter", "No substitute; DC volts shows only an average"],
+            ["Duty cycle, 1% to 99%", "None on the meter", "No substitute for reading a PWM command"],
+            ["MIN MAX on volts, amps, temperature", "Watch the display", "Misses short dips at 3 updates/s"],
+            ["Relative mode", "Subtract by hand", "Workable for lead capacitance"],
+            ["30 V hazardous-voltage LED", "Read the display before touching", "Workable with good habits"],
+          ]}
+        />
+        <div className="mt-6">
+          <Figure caption={<>Rows in the spec-by-spec table above: identical on both meters versus 17B+ only.</>}>
+            <BarChart
+              items={[
+                { label: "Identical on both", value: 10, display: "10 rows", highlight: true },
+                { label: "17B+ only", value: 5, display: "5 rows" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Three of the six have reasonable workarounds and three don&apos;t. If frequency, duty cycle or catching a
+          brief sag is part of your work, a 15B+ can&apos;t do it at all, and the 17B+ is the better value even on a
+          budget. If all you need are volts, amps, ohms, continuity and capacitance, the 15B+ delivers the same
+          measurements and the extra spend would buy dial positions you never turn to. Neither meter is described by
+          Fluke as True RMS, so a budget buyer who works near drives or LED drivers should stretch to a True RMS model
+          instead; the{" "}
+          <Link href="/multimeters/fluke-117-vs-fluke-15b-plus" className={link}>
+            Fluke 117 vs Fluke 15B+
+          </Link>{" "}
+          comparison shows what that step adds.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 17B+ or 15B+: which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -425,6 +469,11 @@ const comparison: ProductComparisonContent = {
       question: "Can the Fluke 15B+ measure temperature?",
       answer:
         "No. Fluke's manual lists temperature as a 17B+-only function, and the 15B+ has no thermocouple position on its dial. If you need temperature from a 15B+, you'd carry a separate thermometer. The 17B+ ships with a Type K bead probe and reads from −55 °C to 400 °C in °C or °F.",
+    },
+    {
+      question: "Is the Fluke 15B+ the better value for a budget buyer?",
+      answer:
+        "Yes, if your work is volts, amps, ohms, continuity and capacitance. Fluke gives it the same accuracy, current ranges, fuses, safety rating and one-year warranty as the 17B+. It is poorer value if you will ever need frequency, duty cycle or MIN MAX, because the 15B+ has no way to take those readings, while temperature can at least come from a separate thermometer.",
     },
     {
       question: "What warranty do the Fluke 15B+ and 17B+ have?",

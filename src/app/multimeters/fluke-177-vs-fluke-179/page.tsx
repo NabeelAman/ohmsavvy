@@ -23,7 +23,7 @@ const path = "/multimeters/fluke-177-vs-fluke-179";
 export const metadata = buildMetadata({
   title: "Fluke 177 vs 179: Features and Accuracy Compared",
   description:
-    "Fluke 177 vs Fluke 179 differences: identical accuracy tables for volts, amps and ohms, but only the 179 reads temperature. Worked tolerances and a verdict.",
+    "Fluke 177 vs Fluke 179: identical volts, amps and ohms accuracy, so is the 179's temperature function and 80BK probe worth paying more for? Worked tolerances.",
   path: "/multimeters/fluke-177-vs-fluke-179",
 });
 
@@ -81,6 +81,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 177 vs Fluke 179: Features and Accuracy Compared",
   path,
   published: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "The Fluke 179 is a Fluke 177 with a thermometer: Fluke publishes the same accuracy line for both meters on DC volts (±0.09% + 2), AC volts, AC and DC current, resistance, capacitance and frequency, and only the 179 adds a temperature function, −40 °C to 400 °C at ±(1.0% + 10), with an 80BK probe in the box. Same 420 g body, same CAT IV 600V / CAT III 1000V rating, same backlight, battery and lifetime warranty. Buy the 179 if you will measure temperature; otherwise the 177 gives identical electrical readings.",
   a: {
@@ -279,6 +280,46 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Which features justify paying more for the 179?</h2>
+        <p className="text-muted leading-7 mb-4">
+          Upgrades usually bundle several improvements, so buyers assume the dearer model is better across the board.
+          This pair breaks that habit. Go through everything a buyer might hope the step up delivers, and only two
+          lines change: the temperature function itself and the 80BK probe that ships with it. Every other item on the
+          list is either identical on the 177 or missing from both meters.
+        </p>
+        <DataTable
+          head={["What you might expect from the step up", "Fluke 179 vs 177", "Does it justify the extra?"]}
+          rows={[
+            ["Temperature, −40 °C to 400 °C", "179 only, ±(1.0% + 10)", "Yes, if you take temperatures"],
+            ["A thermocouple probe in the box", "179 only, 80BK", "Yes; it saves buying one"],
+            ["Tighter DC or AC volts accuracy", "Same ±(0.09% + 2) and ±(1.0% + 3)", "No"],
+            ["Finer current for flame sensors", "Same 0.01 mA best resolution", "No; neither resolves a few µA"],
+            ["Higher safety rating", "Same CAT IV 600V / CAT III 1000V", "No"],
+            ["Better display or backlight", "Same 6,000 counts, bar graph, backlight", "No"],
+            ["Longer battery life or warranty", "Same 200 h on a 9 V; lifetime on both", "No"],
+            ["LoZ or non-contact voltage", "Missing on both", "No"],
+          ]}
+        />
+        <div className="mt-6">
+          <Figure caption={<>Functions in Fluke&apos;s 170-series accuracy table (eight rows): how many carry an identical spec on both meters, and how many differ.</>}>
+            <BarChart
+              items={[
+                { label: "Identical on 177 and 179", value: 7, display: "7 functions" },
+                { label: "Only on the 179", value: 1, display: "1 (temperature)", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          That makes the value test unusually simple. Count how often a temperature reading would save you fetching
+          another instrument. If it is part of most service calls, as on HVAC, motor and bearing checks, the 179 pays
+          for itself in time and in the probe you don&apos;t have to buy separately. If you can&apos;t name a job in the
+          last month where you needed one, the extra spend buys a dial position that will sit unused, and the 177 is
+          the better value. Nothing about the 179 makes your volts or amps readings more trustworthy.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Which jobs need the 179&apos;s extra function</h2>
         <p className="text-muted leading-7 mb-4">
           Because the electrical specs are identical, the right question is how often you&apos;d reach for a temperature
@@ -350,6 +391,11 @@ const comparison: ProductComparisonContent = {
       question: "How accurate is the Fluke 179 at room temperature?",
       answer:
         "About ±1.25 °C at 25 °C from the meter alone, worked from Fluke's ±(1.0% + 10) spec: 1% of 25 °C is 0.25 °C, and ten counts at 0.1 °C add 1.0 °C. The probe's own tolerance adds to that. At 200 °C the meter allowance grows to ±3.0 °C, and at 400 °C to ±5.0 °C.",
+    },
+    {
+      question: "Is the Fluke 179 worth paying more for than the 177?",
+      answer:
+        "Only if you will use temperature. The extra money buys one function, −40 °C to 400 °C at ±(1.0% + 10), plus an 80BK probe in the box. It does not buy better electrical accuracy, a higher safety rating, a longer warranty or finer current resolution, because Fluke lists those identically for both meters. Without temperature work, the 177 is the better value.",
     },
     {
       question: "Should an HVAC technician buy the 177 or the 179?",

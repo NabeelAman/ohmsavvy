@@ -111,7 +111,7 @@ const comparison: ProductComparisonContent = {
     { label: "Operating temperature", a: "-15 to 55 °C; -40 °C for 20 min; 95% RH", b: "-20 to 55 °C" },
     { label: "Spike withstand", a: "8,000 V", b: "Over 8,000 V" },
     { label: "AC volts", a: "0.7% + 4, 15 Hz to 20 kHz", b: "±(0.7% + 2), 20 kHz" },
-    { label: "DC amps", a: "0.2% + 4", b: "±(0.2% + 2)" },
+    { label: "DC amps", a: "0.2% + 4", b: "±(0.2% + 4) on 60 mA; ±(0.2% + 2) on 400 mA" },
     { label: "Resistance", a: "0.1 Ω to 50 MΩ; accuracy not stated on page", b: "To 50 MΩ, ±(0.2% + 1)" },
     { label: "Hi-res mode", a: "20,000 counts", b: "19,999 counts" },
     { label: "Battery", a: "3 × AA, 800 h", b: "9V alkaline, ~400 h" },
@@ -124,7 +124,7 @@ const comparison: ProductComparisonContent = {
     "Environment: the 28 II is IP67 (sealed against dust and rated for temporary immersion). The 87V is IP30, with no rated water protection.",
     "Mining: Fluke lists MSHA approval for the 28 II. The 87V's listed approvals are CE, CSA and RCM, with no MSHA.",
     "Cold: the 28 II can run down to -40 °C for up to 20 minutes. Its continuous range starts at -15 °C, while the 87V's starts lower, at -20 °C.",
-    "Precision: the 87V's AC volts (0.7% + 2) and DC amps (0.2% + 2) carry two fewer counts than the 28 II's (0.7% + 4 and 0.2% + 4). DC volts are identical at 0.05% + 1.",
+    "Precision: the 87V's AC volts (0.7% + 2) and DC amps on the 400 mA range (0.2% + 2) carry two fewer counts than the 28 II's (0.7% + 4 and 0.2% + 4); on the 60 mA loop range both are 0.2% + 4. DC volts are identical at 0.05% + 1.",
     "Power and visibility: three AA cells for 800 hours and a backlit keypad on the 28 II; one 9V for about 400 hours and an unlit keypad on the 87V.",
     "Shared: CAT IV 600V / CAT III 1000V, a low-pass filter, 250 µs peak capture, 10 A input (20 A for 30 s), -200 to 1090 °C temperature, frequency to about 200 kHz and a lifetime warranty.",
   ],
@@ -172,7 +172,7 @@ const comparison: ProductComparisonContent = {
             ["DC volts", "0.05% + 1, to 1000 V", "±(0.05% + 1), to 1000 V", "Same"],
             ["AC volts", "0.7% + 4, 15 Hz to 20 kHz", "±(0.7% + 2), 20 kHz", "87V"],
             ["Low-pass filter", "Yes", "Yes, 3 dB at 1 kHz", "Same"],
-            ["DC amps", "0.2% + 4", "±(0.2% + 2)", "87V"],
+            ["DC amps", "0.2% + 4", "±(0.2% + 4) on 60 mA; ±(0.2% + 2) on 400 mA", "Tie on loops; 87V on 400 mA"],
             ["AC amps", "1.0% + 2", "±(1.0% + 2)", "Same"],
             ["Current span", "0.1 µA to 10 A (20 A, 30 s)", "To 10 A (20 A, 30 s); 0.01 µA DC resolution", "87V"],
             ["Resistance", "0.1 Ω to 50 MΩ", "±(0.2% + 1), to 50 MΩ", "87V (spec published)"],
@@ -207,13 +207,13 @@ const comparison: ProductComparisonContent = {
             caption={
               <>
                 Illustrative: allowed DC error on a 12.00 mA loop reading, assuming both meters resolve 0.01 mA on that
-                range (Fluke&apos;s 28 II page doesn&apos;t list its range steps). Lower is better.
+                range (Fluke&apos;s 28 II page doesn&apos;t list its range steps). Fluke&apos;s 83V/87V detailed specifications give the 87V&apos;s 60 mA range as ±(0.2% + 4), so at loop currents the two come out the same; the 87V&apos;s tighter + 2 applies on its 400 mA range.
               </>
             }
           >
             <BarChart
               items={[
-                { label: "Fluke 87V: 0.2% + 2", value: 0.044, display: "±0.044 mA", highlight: true },
+                { label: "Fluke 87V: 0.2% + 4 (60 mA range)", value: 0.064, display: "±0.064 mA" },
                 { label: "Fluke 28 II: 0.2% + 4", value: 0.064, display: "±0.064 mA" },
               ]}
             />
@@ -254,7 +254,7 @@ const comparison: ProductComparisonContent = {
             ["Pump and lift stations, wastewater", "Fluke 28 II", "Wet floors, drops into sumps"],
             ["Outdoor substation or yard in winter", "Fluke 28 II", "-40 °C excursions for up to 20 minutes"],
             ["MCC room and drive cabinets", "Fluke 87V", "Same low-pass filter, tighter AC volts digits, lighter"],
-            ["Instrument loops and calibration checks", "Fluke 87V", "0.2% + 2 on DC amps; 0.01 µA DC resolution"],
+            ["Instrument loops and calibration checks", "Fluke 87V", "0.01 µA DC resolution; same 0.2% + 4 as the 28 II on the 60 mA loop range"],
             ["Steady cold storage below -15 °C", "Fluke 87V", "Its continuous rating goes to -20 °C"],
             ["Hot process areas above 55 °C", "Neither", "Both stop at 55 °C; keep the meter out of the heat"],
           ]}
@@ -343,7 +343,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "Which is more accurate, the Fluke 28 II or 87V?",
       answer:
-        "The 87V, slightly. Fluke lists both at 0.05% + 1 on DC volts and 1.0% + 2 on AC amps, but the 87V's AC volts are ±(0.7% + 2) against 0.7% + 4 on the 28 II, and its DC amps are ±(0.2% + 2) against 0.2% + 4. Fluke also publishes a resistance accuracy for the 87V but not for the 28 II.",
+        "The 87V, slightly. Fluke lists both at 0.05% + 1 on DC volts and 1.0% + 2 on AC amps, but the 87V's AC volts are ±(0.7% + 2) against 0.7% + 4 on the 28 II, and its DC amps are ±(0.2% + 2) against 0.2% + 4 on the 400 mA range (both are 0.2% + 4 on the 60 mA range used for 4-20 mA loops). Fluke also publishes a resistance accuracy for the 87V but not for the 28 II.",
     },
     {
       question: "Does the Fluke 28 II come with a calibration certificate?",

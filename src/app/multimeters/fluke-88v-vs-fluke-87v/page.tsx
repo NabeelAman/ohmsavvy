@@ -33,7 +33,7 @@ const path = "/multimeters/fluke-88v-vs-fluke-87v";
 export const metadata = buildMetadata({
   title: "Fluke 88V vs Fluke 87V: Which Is Better?",
   description:
-    "Fluke 88V vs Fluke 87V compared: injector pulse width and RPM on the 88V, True RMS and a drive filter on the 87V. Specs from Fluke manuals, charts and a verdict.",
+    "Fluke 88V vs Fluke 87V for automotive vs industrial work: injector pulse width and RPM on the 88V, True RMS and a drive filter on the 87V. Specs and a verdict.",
   path: "/multimeters/fluke-88v-vs-fluke-87v",
 });
 
@@ -123,6 +123,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 88V vs Fluke 87V: Which Multimeter Is Better?",
   path,
   published: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "The Fluke 88V and Fluke 87V share a body, a 1000 V CAT III / 600 V CAT IV rating, a 19,999-count high-resolution mode, 250 µs peak capture and a lifetime warranty. They split on two things. The 88V adds car-specific readings: millisecond pulse width for fuel injectors and RPM through an inductive pickup. The 87V is True RMS with a low-pass filter for motor drives, while Fluke's own 88V manual says its AC conversion is average responding. So the better meter depends on whether your day is spent under a hood or in front of a drive cabinet.",
   a: {
@@ -312,6 +313,51 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Automotive vs industrial: the job-by-job split</h2>
+        <p className="text-muted leading-7 mb-4">
+          Lay a typical week of car work next to a typical week of plant maintenance and the pattern is clear. The
+          vehicle side is mostly DC and timing, where the 88V&apos;s extra functions save steps and its average-responding
+          AC rarely matters. The plant side is AC from electronic sources, where the 87V&apos;s True RMS converter and
+          filter decide whether the number on the screen can be trusted. The rows below use only functions and figures
+          from the two Fluke documents cited on this page.
+        </p>
+        <DataTable
+          head={["Job", "Setting", "Fluke 88V", "Fluke 87V", "Edge"]}
+          rows={[
+            ["Charging voltage, illustrative 14.40 V", "Automotive", "±0.024 V from ±(0.1% + 1)", "±0.017 V from ±(0.05% + 1)", "Tie in practice"],
+            ["Starter or cranking voltage dip", "Automotive", "250 µs Peak Min/Max", "250 µs Peak Capture", "Tie"],
+            ["Injector on-time", "Automotive", "Direct, 0.002–1999.9 ms", "Calculate from Hz and duty %", "88V"],
+            ["Engine speed", "Automotive", "30–12,000 RPM with RPM80", "No RPM function", "88V"],
+            ["Hybrid pack, orange cabling", "Automotive", "CAT IV 600V, 1000 V DC range", "CAT IV 600V, 1000 V DC range", "Tie"],
+            ["Motor side of a VFD", "Industrial", "No filter listed", "Low-pass filter, 3 dB at 1 kHz", "87V"],
+            ["Supply feeding LED drivers or SMPS", "Industrial", "Average responding", "True RMS", "87V"],
+            ["Motor frame or bearing temperature", "Industrial", "−200 to 1090 °C, probe may be extra", "−200 to 1090 °C, 80BK in box", "Tie"],
+            ["Contactor or relay transient", "Industrial", "250 µs peak", "250 µs peak", "Tie"],
+          ]}
+        />
+        <div className="mt-6">
+          <Figure caption={<>Rows in the table above each meter wins outright, by setting. Every other row is a tie.</>}>
+            <BarChart
+              items={[
+                { label: "88V wins, automotive rows (of 5)", value: 2, display: "2 of 5", highlight: true },
+                { label: "87V wins, automotive rows (of 5)", value: 0, display: "0 of 5" },
+                { label: "88V wins, industrial rows (of 4)", value: 0, display: "0 of 4" },
+                { label: "87V wins, industrial rows (of 4)", value: 2, display: "2 of 4", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Neither meter loses a row in its own setting, and each one&apos;s wins are rows the other can&apos;t fake. The
+          87V can at least work out injector on-time with a calculator; the 88V has no way to filter a drive output or
+          correct a distorted waveform. That asymmetry is why a technician who splits time between vehicles and a plant
+          is usually better served by the 87V, while a full-time automotive tech gains real speed from the 88V. The
+          charging-voltage row also shows the 87V&apos;s tighter DC spec is not a reason to pick it for cars: seven
+          thousandths of a volt never decides a charging diagnosis.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Which should you buy?</h2>
         <DataTable
           head={["Your work", "Better fit", "Why"]}
@@ -416,6 +462,11 @@ const comparison: ProductComparisonContent = {
       question: "Is the Fluke 88V safe for hybrid vehicles?",
       answer:
         "Its rating is the same as the 87V's: 1000 V CAT III and 600 V CAT IV, with a 1000 V DC range. That covers hybrid high-voltage systems on paper. Safety still depends on rated leads, insulated gloves and the vehicle maker's disable procedure before you touch orange cabling. The meter's rating is only one layer of protection.",
+    },
+    {
+      question: "Can the Fluke 88V be used for industrial work?",
+      answer:
+        "For DC controls, resistance, temperature and clean sine-wave mains, yes: it shares the 87V's CAT III 1000V / CAT IV 600V rating, 10 A input and 250 µs peak capture. It is a poor fit for drive outputs, inverters and electronic loads, because Fluke's manual says its AC is average responding and lists no low-pass filter. For that industrial work, the 87V is the right meter.",
     },
     {
       question: "Which is better for an all-round technician, the 88V or 87V?",

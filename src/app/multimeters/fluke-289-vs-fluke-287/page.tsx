@@ -28,7 +28,7 @@ const path = "/multimeters/fluke-289-vs-fluke-287";
 export const metadata = buildMetadata({
   title: "Fluke 289 vs Fluke 287: Which Logger Is Better?",
   description:
-    "Fluke 289 vs Fluke 287: same 50,000-count logging core; the 289 adds a 50 Ω low-ohm range, LoZ and a low-pass filter. Electronics repair verdict, specs and charts.",
+    "Fluke 289 vs 287 logging meters: same 50,000-count core and recording memory; the 289 adds a 50 Ω low-ohm range, LoZ and a low-pass filter. Specs and verdict.",
   path: "/multimeters/fluke-289-vs-fluke-287",
 });
 
@@ -91,6 +91,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 289 vs Fluke 287: Which Logging Multimeter Is Better?",
   path,
   published: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "The Fluke 289 and Fluke 287 are the same logging multimeter with three differences, all in the 289's favor: a 50 Ω low-ohm range that resolves 0.001 Ω, a LoZ input for ghost voltage, and an AC low-pass filter for inverters and drives. Everything else matches in Fluke's 287/289 manual, from the 50,000-count display and 0.025% DC accuracy to the 0.01 µA microamp range, TrendCapture logging memory and CAT IV 600V rating. For electronics repair, the 289 is better only if you measure resistances below about an ohm; otherwise the 287 does the same job for less.",
   a: {
@@ -315,6 +316,57 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Logging on the 289 and 287: the same recorder</h2>
+        <p className="text-muted leading-7 mb-4">
+          If logging is the reason you are shopping in the 280 Series, the choice between these two doesn&apos;t
+          affect it. The shared manual gives both meters the same recording memory (up to 10,000 sample intervals,
+          with events filling the rest of a 15,000-record budget), the same on-screen trend graph, the same real-time
+          clock and the same infrared link to FlukeView Forms on a PC. Battery life is listed as 100 hours minimum and
+          200 hours in logging mode on both. None of the three 289 extras changes what or how long either meter records.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          How long a session can run is simple arithmetic: 10,000 intervals multiplied by the interval length, capped
+          by the 200-hour logging battery figure. The table works it out for a few interval lengths; check the
+          recording setup in the manual for the exact intervals the meter offers.
+        </p>
+        <DataTable
+          head={["Sample interval", "10,000 intervals last", "Limit that bites first", "Typical use"]}
+          rows={[
+            ["1 s", "About 2.8 hours", "Memory", "A dropout that happens within an afternoon"],
+            ["10 s", "About 28 hours", "Memory", "Overnight supply drift on a bench"],
+            ["30 s", "About 83 hours", "Memory", "A weekend of battery or solar charging"],
+            ["60 s", "About 167 hours (6.9 days)", "Memory", "A week of panel voltage or room temperature"],
+            ["120 s", "About 333 hours by memory", "Battery, about 200 hours", "Long unattended runs; plan around 200 h"],
+          ]}
+        />
+        <div className="mt-6">
+          <Figure caption={<>Hours until 10,000 intervals are used, from the manual&apos;s memory figure. The 200-hour logging battery figure caps the last bar on either meter.</>}>
+            <BarChart
+              items={[
+                { label: "1 s interval", value: 2.8, display: "2.8 h" },
+                { label: "10 s interval", value: 27.8, display: "28 h" },
+                { label: "30 s interval", value: 83.3, display: "83 h" },
+                { label: "60 s interval", value: 166.7, display: "167 h" },
+                { label: "120 s interval", value: 200, display: "200 h (battery)", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          These are best-case figures that assume the memory fills with intervals. A noisy signal that keeps crossing
+          the event threshold adds event records too, so set the threshold with the signal&apos;s normal wander in mind.
+          The only logging difference is indirect: LoZ, the low-pass filter and the 50 Ω range exist only on the 289,
+          so the 287 can&apos;t take those readings, logged or not. For logging volts, microamps, frequency or
+          temperature, the two share the same memory, battery figure and PC link. Logging a whole installation over days is covered from
+          the electrician&apos;s side in our{" "}
+          <Link href="/multimeters/fluke-87v-vs-fluke-289" className={link}>
+            Fluke 87V vs Fluke 289
+          </Link>{" "}
+          comparison.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -381,6 +433,11 @@ const comparison: ProductComparisonContent = {
       question: "Do the Fluke 287 and 289 log the same amount of data?",
       answer:
         "Yes. The shared manual gives both up to 10,000 recorded sample intervals, with events filling the rest of a 15,000-record budget. Both view logged data as a graph on the meter, have a real-time clock, and transfer to a PC through the infrared link with FlukeView Forms. Battery life is listed as 100 hours minimum, 200 hours in logging mode.",
+    },
+    {
+      question: "How long can the Fluke 289 or 287 log on one set of batteries?",
+      answer:
+        "Fluke's manual lists 200 hours in logging mode on six AA cells for both meters, a little over eight days. The memory of 10,000 intervals usually runs out first: at one sample a minute it lasts about 167 hours, and at one a second under three hours. Pick the interval so the memory and the battery figure both cover the run you need.",
     },
     {
       question: "Which has the better microamp range, the 287 or 289?",

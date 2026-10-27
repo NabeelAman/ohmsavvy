@@ -24,7 +24,7 @@ const path = "/multimeters/fluke-116-vs-fluke-117";
 export const metadata = buildMetadata({
   title: "Fluke 116 vs Fluke 117: Electrician Comparison",
   description:
-    "Fluke 116 vs Fluke 117 comparison for electricians: VoltAlert and 10 A ranges on the 117, microamps and temperature on the 116. Specs, charts and a verdict.",
+    "Fluke 116 vs Fluke 117 for electricians and HVAC techs: VoltAlert and 10 A ranges on the 117, microamps and temperature on the 116. Specs, charts and a verdict.",
   path: "/multimeters/fluke-116-vs-fluke-117",
 });
 
@@ -101,6 +101,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 116 vs Fluke 117: Which Is Better for Electricians?",
   path,
   published: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "For most electricians the Fluke 117 is the better meter: it has VoltAlert non-contact detection and 6 A and 10 A current ranges, and the Fluke 116 has neither. The 116 is Fluke's HVAC model, trading the amp ranges for a 600.0 µA range and a thermocouple input. Both share the same case, CAT III 600V rating, True RMS core and AutoVolt LoZ input, so this Fluke 116 vs Fluke 117 comparison comes down to amps and NCV against microamps and temperature.",
   a: {
@@ -338,6 +339,56 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 116 vs 117 for HVAC work</h2>
+        <p className="text-muted leading-7 mb-4">
+          Swap the electrician for an HVAC technician and the scorecard changes, though less than you might expect.
+          Both meters share several readings HVAC calls depend on: run-capacitor microfarads (1 nF to 9,999 µF at
+          ±(1.9% + 2) on each), 24 V control voltage with a LoZ position for idle thermostat conductors, and pilot
+          thermocouple millivolts on the same 600.0 mV DC range. What splits them is the season. A heating call leans
+          on the 116&apos;s microamps and Type K input; the 117 answers with VoltAlert at the condenser disconnect and a
+          6.000 A range that reads heat-anticipator and other small control currents in series.
+        </p>
+        <DataTable
+          head={["HVAC reading", "Call type", "Fluke 116", "Fluke 117"]}
+          rows={[
+            ["Flame-rod signal, a few µA", "Heating", "600.0 µA range, 0.1 µA steps", "Reads 0.000 A"],
+            ["Temperature rise across the furnace", "Heating", "Type K, 80BK probe included", "No temperature input"],
+            ["Pilot thermocouple millivolts", "Heating", "600.0 mV DC", "600.0 mV DC"],
+            ["Heat-anticipator current, under 1 A", "Heating", "Not possible", "6.000 A range, 1 mA steps"],
+            ["Run capacitor on the condenser", "Cooling", "To 9,999 µF, ±(1.9% + 2)", "To 9,999 µF, ±(1.9% + 2)"],
+            ["Supply vs return air split", "Cooling", "Type K, 0.1 °C steps", "No temperature input"],
+            ["Is the disconnect still live?", "Cooling", "Leads only", "VoltAlert first, then leads"],
+            ["Thermostat or 24 V transformer", "Both", "V AC or AutoVolt LoZ", "V AC or AutoVolt LoZ"],
+            ["Compressor or blower amps", "Both", "Clamp meter", "Clamp meter"],
+          ]}
+        />
+        <div className="mt-6">
+          <Figure caption={<>Heating-only and cooling-only rows from the table that each meter handles on its own. The two shared rows are left out.</>}>
+            <BarChart
+              items={[
+                { label: "116, heating rows", value: 3, display: "3 of 4", highlight: true },
+                { label: "117, heating rows", value: 2, display: "2 of 4" },
+                { label: "116, cooling rows", value: 2, display: "2 of 3" },
+                { label: "117, cooling rows", value: 2, display: "2 of 3" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Cooling work is a draw: each meter misses one reading the other takes. Heating work tips to the 116, because a
+          furnace that lights and drops out can&apos;t be diagnosed without a microamp range, while the anticipator
+          check the 117 wins applies only to older mechanical thermostats. An HVAC technician with gas furnaces on the
+          route should carry the 116 plus a clamp; one working on heat pumps and mini-splits loses little with the 117
+          and gains a non-contact check before opening a condenser panel. The heating-side detail, including the
+          flame-rod hookup and temperature tolerances, is on our{" "}
+          <Link href="/multimeters/fluke-116-vs-fluke-115" className={link}>
+            Fluke 116 vs Fluke 115 for HVAC
+          </Link>{" "}
+          page rather than repeated here.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 116 vs Fluke 117: which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -406,6 +457,11 @@ const comparison: ProductComparisonContent = {
       question: "Can the Fluke 117 test a furnace flame sensor?",
       answer:
         "Not usefully. Flame-sensor current is typically a few microamps, and the 117's finest current step is 1 mA, so the display reads zero. Fluke designed the 116 for this job with its 600.0 µA range at 0.1 µA resolution. HVAC clamp meters with a µA range, such as the Klein CL445, also do it.",
+    },
+    {
+      question: "Is the Fluke 116 or 117 better for HVAC?",
+      answer:
+        "For technicians who service gas furnaces, the 116: it reads flame-rod current to 0.1 µA and Type K temperature with the included 80BK probe, and the 117 can do neither. On cooling calls the two are close, since both test run capacitors and have LoZ for 24 V controls. Carry a clamp meter with either for compressor and blower amps.",
     },
     {
       question: "Are the Fluke 116 and 117 the same size?",

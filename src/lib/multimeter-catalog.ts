@@ -65,12 +65,12 @@ export const multimeterCatalogPicks: Pick[] = [
     ctaHref: "https://www.amazon.com/dp/B08N61LF4Z?tag=ohmsavvy-20",
   },
   {
-    badge: "Best Under $100 for Electronics",
+    badge: "Best Budget Meter for Electronics",
     // Specs per meters.uni-trend.com (UT61+ series page) and the UT61B+/D+/E+ user manual. Photo: Amazon main image of B093BS9MYM, shows "UT61E+ ... 22000 Counts". Amazon-buyable 2026-10-24.
     name: "UNI-T UT61E+",
     image: "https://m.media-amazon.com/images/I/61p7ga5bJnL._SL1500_.jpg",
     rating: 4.5,
-    bottomLine: "A 22,000-count True RMS meter under $100 with 0.01 µA and 0.01 Ω resolution, REL mode and a USB link.",
+    bottomLine: "A budget 22,000-count True RMS meter with 0.01 µA and 0.01 Ω resolution, REL mode and a USB link.",
     verdict:
       "The UT61E+ is UNI-T's 22,000-count version of the UT61+ series: True RMS, CAT III 1000V / CAT IV 600V, with a 220.00 µA range at 0.01 µA resolution and a 220.00 Ω range at 0.01 Ω (±0.5% + 10 digits). REL mode subtracts lead resistance, which UNI-T's manual tells you to do for low-ohm readings. It also adds capacitance to 220 mF, frequency to 220 MHz, hFE, NCV and a USB cable for PC readout. It has no temperature function (that's the UT61D+), and UNI-T doesn't publish its burden voltage.",
     specs: [
@@ -79,7 +79,7 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Auto-ranging", value: "Yes (manual override)" },
       { label: "Best for", value: "Arduino, hobby electronics, PCB repair" },
     ],
-    pros: ["0.01 µA and 0.01 Ω resolution for under $100", "REL mode to zero test-lead resistance", "USB PC link, capacitance to 220 mF, frequency to 220 MHz"],
+    pros: ["0.01 µA and 0.01 Ω resolution at a budget price", "REL mode to zero test-lead resistance", "USB PC link, capacitance to 220 mF, frequency to 220 MHz"],
     cons: ["No temperature measurement", "Burden voltage not published"],
     ctaHref: "https://www.amazon.com/dp/B093BS9MYM?tag=ohmsavvy-20",
   },
@@ -141,7 +141,7 @@ export const multimeterCatalogPicks: Pick[] = [
     ctaHref: "https://www.amazon.com/dp/B0D73NCL5S?tag=ohmsavvy-20",
   },
   {
-    badge: "Best Bluetooth Logger Under $100",
+    badge: "Best Budget Bluetooth Logger",
     // Specs per owon.com.hk (B41T+ page). OWON's page gives no CAT rating; the meter's front is marked 1000V CAT III. Photo: Amazon main image of B0BZCWZKJF, shows "OWON B41T+". Amazon-buyable 2026-10-24.
     name: "OWON B41T+",
     image: "https://m.media-amazon.com/images/I/71sFTZYXw3L._SL1500_.jpg",
@@ -165,7 +165,7 @@ export const multimeterCatalogPicks: Pick[] = [
     name: "OWON OW18E",
     image: "https://m.media-amazon.com/images/I/71VEqMwGfDL._SL1500_.jpg",
     rating: 4.1,
-    bottomLine: "A sub-$60 True RMS meter with a 200.00 µA range, 0.01 Ω resolution, Bluetooth and offline logging.",
+    bottomLine: "A budget True RMS meter with a 200.00 µA range, 0.01 Ω resolution, Bluetooth and offline logging.",
     verdict:
       "The OW18E is a 19,999-count (sold as 20,000) True RMS meter. Its 200.00 µA range resolves 0.01 µA at ±(0.5% + 10 digits) DC and its 200.00 Ω range resolves 0.01 Ω. It adds NCV, a flashlight, Type-K temperature, capacitance to 20 mF and a 20 A range, plus BLE 4.0 and offline recording on the E model. The case is marked 1000V CAT III / 600V CAT IV, but OWON's page doesn't state a rating and doesn't publish burden voltage. Amazon showed only one in stock when we checked.",
     specs: [
@@ -174,7 +174,7 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Arduino and hobby electronics on a budget" },
     ],
-    pros: ["0.01 µA and 0.01 Ω resolution under $60", "Bluetooth with offline recording", "NCV, flashlight and temperature included"],
+    pros: ["0.01 µA and 0.01 Ω resolution at a budget price", "Bluetooth with offline recording", "NCV, flashlight and temperature included"],
     cons: ["Low stock on Amazon at last check", "OWON publishes no burden voltage or CAT rating"],
     ctaHref: "https://www.amazon.com/dp/B0B2QVQZR6?tag=ohmsavvy-20",
   },
@@ -184,7 +184,7 @@ export const multimeterCatalogPicks: Pick[] = [
     name: "KAIWEETS HT118E",
     image: "https://m.media-amazon.com/images/I/81lmVClgFiL._SL1500_.jpg",
     rating: 4.2,
-    bottomLine: "A $45 True RMS meter with 20,000 counts and a 200 µA range, but no relative mode for low-ohm work.",
+    bottomLine: "A budget True RMS meter with 20,000 counts and a 200 µA range, but no relative mode for low-ohm work.",
     verdict:
       "The HT118E has a 20,000-count display, CAT III 1000V / CAT IV 600V and a 200 µA range at ±(0.5% + 5 digits) DC. At 20,000 counts that implies 0.01 µA resolution, though KAIWEETS doesn't print it. It covers temperature, capacitance, frequency, NCV and continuity, with lit input jacks and a flashlight. Its 200 Ω range is only ±(1.0% + 15 digits) and KAIWEETS lists no relative mode, so you have to subtract lead resistance yourself. That makes it better for sleep-current checks than for milliohm work.",
     specs: [
@@ -193,12 +193,12 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Beginner Arduino and µA checks" },
     ],
-    pros: ["200 µA range with 20,000 counts for about $45", "CAT III 1000V / CAT IV 600V", "Lit input jacks, NCV and flashlight"],
+    pros: ["200 µA range with 20,000 counts at a budget price", "CAT III 1000V / CAT IV 600V", "Lit input jacks, NCV and flashlight"],
     cons: ["No relative mode listed for zeroing test leads", "Per-range resolution and burden voltage not published"],
     ctaHref: "https://www.amazon.com/dp/B0B7WFPB4T?tag=ohmsavvy-20",
   },
   {
-    badge: "Best Klein True RMS Under $70",
+    badge: "Best Budget Klein True RMS",
     // Specs per kleintools.com (MM420 page) and the MM420 instruction manual (current table: 400.0 µA range, 0.1 µA). Photo: Amazon main image of B0B57PFFYX, meter face reads "MM420 Digital Multi-Meter ... TrueRMS". Amazon-buyable 2026-10-24 (sold by Amazon.com, $64.96).
     name: "Klein Tools MM420",
     image: "https://m.media-amazon.com/images/I/51hgJ2yCwqL._SL1500_.jpg",
@@ -217,14 +217,14 @@ export const multimeterCatalogPicks: Pick[] = [
     ctaHref: "https://www.amazon.com/dp/B0B57PFFYX?tag=ohmsavvy-20",
   },
   {
-    badge: "Best Electrician's Meter Under $100",
+    badge: "Best Budget Electrician's Meter",
     // Specs per kleintools.com (MM720 page) and the MM720 instruction manual (frequency to 500 kHz per manual; Klein's 04/26 selection guide shows 50 kHz). Photo: Amazon main image of B0B57PDQJC, meter face reads "MM720 Digital Multi-Meter ... TrueRMS ... CAT IV 600V CAT III 1000V". Amazon-buyable 2026-10-24 (sold by Amazon.com, $99.96).
     name: "Klein Tools MM720",
     image: "https://m.media-amazon.com/images/I/61Ba-L7Q2RL._SL1500_.jpg",
     rating: 4.6,
-    bottomLine: "CAT IV 600V, 1000V, LoZ and True RMS for just under $100, the most panel-ready meter in this price range.",
+    bottomLine: "CAT IV 600V, 1000V, LoZ and True RMS at a budget price, the most panel-ready meter in this tier.",
     verdict:
-      "The MM720 is rated CAT IV 600V / CAT III 1000V and measures up to 1000V AC/DC, with a LoZ mode for ghost voltages. It is True RMS, auto-ranging and 6,000-count, and the reverse-contrast display adjusts itself to the light. Current runs from a 600.0 µA range (0.1 µA) to 10 A. It adds 60 MΩ resistance, capacitance to 6,000 µF, temperature to 1832°F, IP42 and a 2 m drop rating, and a carrying pouch comes in the box. Klein lists no NCV, and at $99.96 it sits right at the $100 limit.",
+      "The MM720 is rated CAT IV 600V / CAT III 1000V and measures up to 1000V AC/DC, with a LoZ mode for ghost voltages. It is True RMS, auto-ranging and 6,000-count, and the reverse-contrast display adjusts itself to the light. Current runs from a 600.0 µA range (0.1 µA) to 10 A. It adds 60 MΩ resistance, capacitance to 6,000 µF, temperature to 1832°F, IP42 and a 2 m drop rating, and a carrying pouch comes in the box. Klein lists no NCV.",
     specs: [
       { label: "Accuracy", value: "True RMS, 6,000-count" },
       { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
@@ -232,7 +232,7 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Best for", value: "Electricians working panels and feeders" },
     ],
     pros: ["CAT IV 600V and 1000V AC/DC", "LoZ mode for ghost voltages", "IP42, 2 m drop rating and pouch included"],
-    cons: ["Price sits right at $100", "No non-contact voltage detection"],
+    cons: ["Priced at the top of the budget tier", "No non-contact voltage detection"],
     ctaHref: "https://www.amazon.com/dp/B0B57PDQJC?tag=ohmsavvy-20",
   },
   {
@@ -260,7 +260,7 @@ export const multimeterCatalogPicks: Pick[] = [
     name: "Klein Tools MM325",
     image: "https://m.media-amazon.com/images/I/51EPzXFvIAL._SL1500_.jpg",
     rating: 4.1,
-    bottomLine: "A $30 Klein for checking outlets, batteries and continuity, as long as you're happy picking ranges yourself.",
+    bottomLine: "A low-cost Klein for checking outlets, batteries and continuity, as long as you're happy picking ranges yourself.",
     verdict:
       "The MM325 is a manual-ranging, 2,000-count meter rated CAT III 600V. It reads AC/DC voltage to 600V, DC current from a 200 µA range up to 10 A, and resistance to 2 MΩ, and it has diode, continuity and a 1.5V/9V battery test. Lead-Alert lights, a backlight and a 2 m drop rating come from Klein's pricier meters. Klein doesn't claim True RMS for it, it can't measure AC current, and you have to choose each range on the dial.",
     specs: [
@@ -269,17 +269,17 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Auto-ranging", value: "No (manual ranging)" },
       { label: "Best for", value: "Basic household and battery checks" },
     ],
-    pros: ["About $30 from a major tool brand", "Battery test for 1.5V and 9V cells", "Lead-Alert lights and backlit display"],
+    pros: ["Low cost from a major tool brand", "Battery test for 1.5V and 9V cells", "Lead-Alert lights and backlit display"],
     cons: ["Manual ranging and not True RMS", "No AC current, capacitance or temperature"],
     ctaHref: "https://www.amazon.com/dp/B0B57L9FNL?tag=ohmsavvy-20",
   },
   {
-    badge: "Best True RMS Under $40",
+    badge: "Best Low-Cost True RMS",
     // Specs per the KAIWEETS HT118A user manual (spec tables: 1000V DC / 750V AC, 600 µA range at 0.1 µA, 2 x AA) and kaiweets.com (3-year warranty). kaiweets.com product text says 600V AC/DC, which conflicts with the manual, Amazon listing and meter face. Photo: Amazon main image of B07SHLS639, shows "KAIWEETS HT118A ... 6000 Counts TRUE RMS". Amazon-buyable 2026-10-24 (sold by KAIWEETS Direct, $37.99).
     name: "KAIWEETS HT118A",
     image: "https://m.media-amazon.com/images/I/81THgD001tL._SL1500_.jpg",
     rating: 4.4,
-    bottomLine: "True RMS, CAT III 1000V and µA current with NCV and temperature for under $40.",
+    bottomLine: "True RMS, CAT III 1000V and µA current with NCV and temperature at a low price.",
     verdict:
       "The HT118A is a 6,000-count, auto-ranging True RMS meter with an analog bar. KAIWEETS's manual rates it CAT III 1000V / CAT IV 600V for up to 1000V DC and 750V AC, and current runs from a 600 µA range (0.1 µA) to 10 A. It also measures resistance to 60 MΩ, capacitance, frequency to 10 MHz, duty cycle and temperature, and adds NCV, a Live-wire test, Min/Max, jack lights, a flashlight and a kickstand. KAIWEETS gives a 3-year warranty. Its own product page lists 600V AC/DC, which disagrees with the manual and the meter face.",
     specs: [
@@ -479,7 +479,7 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Best for", value: "Instrument techs: 4-20 mA loops and transmitters" },
     ],
     pros: ["0.001 mA measure and source resolution", "24 V loop power and 250 Ω HART resistor", "% of span, SpanCheck, step and ramp"],
-    cons: ["Around $1,300 or more", "Limited new Amazon stock from a third-party seller"],
+    cons: ["Expensive for a single-function-group meter", "Limited new Amazon stock from a third-party seller"],
     ctaHref: "https://www.amazon.com/dp/B000R8ETKW?tag=ohmsavvy-20",
   },
   {
@@ -517,7 +517,7 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Best for", value: "Loop troubleshooting and transmitter checks" },
     ],
     pros: ["Clamp, in-series measure, source and simulate", "24 V loop power", "Ramp, 25% steps and % of span display"],
-    cons: ["Around $1,460 on Amazon", "No voltage measurement"],
+    cons: ["Expensive", "No voltage measurement"],
     ctaHref: "https://www.amazon.com/dp/B002EL4LIK?tag=ohmsavvy-20",
   },
   {
@@ -635,7 +635,7 @@ export const multimeterCatalogPicks: Pick[] = [
     ctaHref: "https://www.amazon.com/dp/B0DWTD82L8?tag=ohmsavvy-20",
   },
   {
-    badge: "Best Engine Analyzer Under $60",
+    badge: "Best Budget Engine Analyzer",
     // Specs per the official Amazon listing (no BTMETER maker page found). The listing gives RPM as 600–12,000 in one place and 300–1,200 in another; the BT-705A inductive clamp is NOT included. Photo: Amazon main image of B07WVX4L8K, shows "BTMETER BT-770K". Amazon-buyable 2026-10-24.
     name: "BTMETER BT-770K",
     image: "https://m.media-amazon.com/images/I/71URv9nbd0L._SL1500_.jpg",
@@ -692,7 +692,7 @@ export const multimeterCatalogPicks: Pick[] = [
     ctaHref: "https://www.amazon.com/dp/B01ISAMUA6?tag=ohmsavvy-20",
   },
   {
-    badge: "Best Under $15",
+    badge: "Best Ultra-Budget Pick",
     // Specs per the official Amazon listing (accuracy table, CAT III 600V); no KM100 page on kaiweets.com. Photo: Amazon main image of B08CX9W7G3, shows "KAIWEETS KM100". Amazon-buyable 2026-10-24.
     name: "KAIWEETS KM100",
     image: "https://m.media-amazon.com/images/I/81AI4HcSdBL._SL1500_.jpg",
@@ -750,7 +750,7 @@ export const multimeterCatalogPicks: Pick[] = [
   },
   {
     badge: "Best No-Frills Fluke 170 Series",
-    // Specs per fluke.com (Fluke 175 product/spec page) and the official Amazon listing (B00012Z0UM, "Fluke 175 ESFP"). Display count isn't stated on the 175 page; backlight isn't stated and the photo shows no backlight button. Photo: Amazon main image of B00012Z0UM, shows "FLUKE 175 TRUE RMS MULTIMETER" with test leads and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
+    // Specs per fluke.com (Fluke 175 product/spec page) and the official Amazon listing (B00012Z0UM, "Fluke 175 ESFP"). 6,000 counts and 33-segment bar graph per the Fluke 170 Series detailed specifications (Pub 10824-eng, farnell.com/datasheets/2631819.pdf), which list the backlight on the 177 and 179 only; the photo shows no backlight button. Photo: Amazon main image of B00012Z0UM, shows "FLUKE 175 TRUE RMS MULTIMETER" with test leads and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
     name: "Fluke 175",
     image: "https://m.media-amazon.com/images/I/71MHzMKDxPL._SL1500_.jpg",
     rating: 4.5,
@@ -764,7 +764,7 @@ export const multimeterCatalogPicks: Pick[] = [
       { label: "Best for", value: "General electrical and electronic repair" },
     ],
     pros: ["True RMS volts and amps, current to 10 A", "CAT III 1000V / CAT IV 600V", "Lifetime warranty"],
-    cons: ["No backlight listed (the 177 adds one)", "No temperature (that's the 179)", "About 200 h battery life on a 9 V"],
+    cons: ["No backlight (the 177 and 179 have one)", "No temperature (that's the 179)", "About 200 h battery life on a 9 V"],
     ctaHref: "https://www.amazon.com/dp/B00012Z0UM?tag=ohmsavvy-20",
   },
   {
@@ -842,5 +842,119 @@ export const multimeterCatalogPicks: Pick[] = [
     pros: ["Insulation test 50–1000 V up to 2 GΩ with PI/DAR", "Fluke Connect wireless logging and trend graphs", "Low-pass filter and temperature input"],
     cons: ["mA current only (400 mA max), no 10 A input", "IP40 case and 3-year warranty"],
     ctaHref: "https://www.amazon.com/dp/B017OVC2UI?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Rugged Non-RMS Fluke",
+    // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-27-ii) and the official Amazon listing (B002X9IPB2, "Fluke 27II AVG Multimeter"). Average responding per the Amazon title/bullet ("AVG multimeter"); fluke.com's spec table doesn't state RMS type. Amazon overview's "Corded Electric" power source conflicts with Fluke's 3 × AA; we use Fluke. Photo: Amazon main image of B002X9IPB2, shows "FLUKE 27 II MULTIMETER", IP67 and "1000V CAT III / 600V CAT IV". Amazon-buyable 2026-10-28 (sold by Amazon.com).
+    name: "Fluke 27 II",
+    image: "https://m.media-amazon.com/images/I/61MXAUq8KHL._AC_SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "The 28 II's IP67, 3 m-drop body with average-responding AC, for harsh sites where the loads are plain sine waves.",
+    verdict:
+      "The Fluke 27 II is built for wet, dusty and cold work: IP67 sealing, a 3 m (10 ft) drop rating, MSHA approval and an operating range of −15 to +55 °C, with −40 °C allowed for 20 minutes. It's a 6000-count meter with DC volts at ±(0.1% + 1), AC volts at ±(0.5% + 3) across a 40 Hz to 30 kHz bandwidth, current from 0.1 µA to 10 A, capacitance to 9999 µF and frequency to 199.99 kHz. Min/Max/Avg, Relative and a backlight are included, and three AA cells last about 800 hours. AC is average responding, not True RMS, so readings on VFD outputs or other distorted waveforms will be off. If you need True RMS, look at the 28 II.",
+    specs: [
+      { label: "Accuracy", value: "Average responding, ±(0.1% + 1) DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Wet, dusty or cold sites with sine-wave loads" },
+    ],
+    pros: ["IP67, 3 m drop and MSHA approval", "0.1 µA to 10 A current and 40 Hz–30 kHz AC bandwidth", "Limited lifetime warranty, about 800 h on 3 × AA"],
+    cons: ["Average responding, not True RMS", "No temperature function", "Heavy at about 700 g with holster"],
+    ctaHref: "https://www.amazon.com/dp/B002X9IPB2?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Basic Insulation Multimeter",
+    // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/insulation-testers/fluke-1577) and the official Amazon listing (B000VRJFPI). Conflict: an Amazon bullet says "550V and 1000V" test voltages; Fluke, the Amazon description and the dial say 500 V and 1000 V, which we use. fluke.com's spec table also lists 50/100/250 V rows (shared with the 1587), but the 1577 tests only at 500 V and 1000 V. Display count not stated. Photo: Amazon main image of B000VRJFPI, shows "FLUKE 1577 INSULATION MULTIMETER" and the 500 V / 1000 V insulation position. Amazon-buyable 2026-10-28 (Granny's Picks, fulfilled by Amazon; other new offers).
+    name: "Fluke 1577",
+    image: "https://m.media-amazon.com/images/I/51EaCLDWKzL._AC_SL1181_.jpg",
+    rating: 4.5,
+    bottomLine: "A True RMS multimeter with a 500 V / 1000 V insulation tester built in, for motor, cable and switchgear checks.",
+    verdict:
+      "The Fluke 1577 combines a True RMS multimeter with an insulation tester. It applies 500 V or 1000 V and reads insulation resistance from 0.1 to 600 MΩ at ±(2.0% + 5). It won't start a test if more than 30 V is on the circuit, and it discharges capacitive voltage when the test ends. A remote probe is included. The meter side covers volts to 1000 V (DC ±(0.2% + 2)), current to 400 mA and resistance to 50 MΩ, and Fluke rates it CAT IV 600V / CAT III 1000V with a 3-year warranty. Four AA cells give about 1000 insulation tests. Compared with the 1587 FC it has only two test voltages, a 600 MΩ ceiling, no 10 A input and IP40 sealing.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.2% + 2) DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Motor, cable and switchgear insulation checks" },
+    ],
+    pros: ["500 V and 1000 V insulation tests to 600 MΩ", "Live-circuit lockout above 30 V and auto discharge", "About 1000 insulation tests on 4 × AA"],
+    cons: ["Only two test voltages and a 600 MΩ ceiling", "Current tops out at 400 mA", "IP40 only; 3-year warranty"],
+    ctaHref: "https://www.amazon.com/dp/B000VRJFPI?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best mA Source Without the 789's Price",
+    // Specs per fluke.com (https://www.fluke.com/en-us/product/calibration-tools/ma-loop-calibrators/fluke-787b) and the official Amazon listing (B071ZPSQ88). fluke.com doesn't state a built-in 24 V loop supply or HART resistor for the 787B (the 789 has both); simulate mode needs an external 15–48 V supply. Display count not stated. Amazon bullet gives only "CAT III 1000 V"; Fluke and the meter say CAT IV 600V / CAT III 1000V. Photo: Amazon main image of B071ZPSQ88, shows "FLUKE 787B PROCESSMETER" and "OUTPUT 0-24mA SOURCE / SIMULATE". Amazon-buyable 2026-10-28 (buy box seller "Amazan-Warehouse", a third party; other new offers).
+    name: "Fluke 787B",
+    image: "https://m.media-amazon.com/images/I/613oILGqB5L._SL1000_.jpg",
+    rating: 4.6,
+    bottomLine: "A True RMS ProcessMeter that measures, sources and simulates 0-20 or 4-20 mA, without the 789's built-in loop supply.",
+    verdict:
+      "The Fluke 787B puts an mA loop calibrator into a 1000 V True RMS multimeter. It sources or simulates 0–20 or 4–20 mA (to 24 mA over-range) at ±0.05% of span, drives up to 1,200 Ω at 20 mA, and steps or ramps the output automatically. The 0% and 100% keys jump straight to span ends. On the meter side you get DC volts at ±(0.1% + 1), a 30 mA range at ±(0.05% + 2), a 1 A range (0.44 A continuous) and frequency to 20 kHz on a backlit dual display. Fluke lists CAT IV 600V / CAT III 1000V and a 3-year warranty. Unlike the 789, Fluke doesn't list a built-in 24 V loop supply, so simulate mode needs an external 15–48 V supply. There's no 10 A input, and sourcing at 12 mA runs about 10 hours on 4 × AA.",
+    specs: [
+      { label: "Accuracy", value: "True RMS; 0.05% of span mA source" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Sourcing and simulating 4-20 mA signals" },
+    ],
+    pros: ["Sources and simulates 0-20 / 4-20 mA at 0.05% of span", "Auto step, ramp and 0%/100% span keys", "True RMS DMM with a 30 mA range at ±(0.05% + 2)"],
+    cons: ["No built-in 24 V loop supply listed (the 789 has one)", "Current tops out at 1 A, no 10 A input", "About 10 h battery life while sourcing"],
+    ctaHref: "https://www.amazon.com/dp/B071ZPSQ88?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Average-Responding Fluke Workhorse",
+    // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-77-iv) and the official Amazon listing (B000U8WQ4U, "Fluke 77-4 Automotive Digital Multimeter"). fluke.com says "Average responding AC measurements", so not True RMS. Warranty, IP and drop not stated on the fluke.com page. Photo: Amazon main image of B000U8WQ4U, shows "FLUKE 77 IV MULTIMETER" and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-28 (ships from Amazon, sold by kandk-co).
+    name: "Fluke 77 IV",
+    image: "https://m.media-amazon.com/images/I/61Dk7I2rw-L._SL1500_.jpg",
+    rating: 4.3,
+    bottomLine: "The updated Fluke 77: a 6000-count, 10 A, 1000 V meter with capacitance and a backlight, but average-responding AC.",
+    verdict:
+      "The Fluke 77 IV replaces the original 77. It reads 6000 counts with a fast 33-segment bar graph and covers DC volts to 1000 V at ±(0.3% + 1), current to 10 A on fused 400 mA and 10 A inputs, resistance to 50 MΩ, capacitance to 9,999 µF and frequency to about 100 kHz. Min/Max, a backlight and auto or manual ranging are included, and Fluke rates it CAT III 1000V / CAT IV 600V. A 9 V battery lasts about 400 hours. AC is average responding, not True RMS, and AC volts at ±(2.0% + 2) is loose. Amazon lists it as an automotive meter, but it has no RPM, duty cycle or temperature functions, which the 88V has.",
+    specs: [
+      { label: "Accuracy", value: "Average responding, ±(0.3% + 1) DC V" },
+      { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "General electrical and electronic repair" },
+    ],
+    pros: ["10 A current on fused 400 mA and 10 A inputs", "Capacitance to 9,999 µF and frequency to ~100 kHz", "CAT III 1000V / CAT IV 600V, about 400 h on a 9 V"],
+    cons: ["Average responding, not True RMS", "AC volts only ±(2.0% + 2)", "No temperature, duty cycle or RPM despite the 'automotive' listing"],
+    ctaHref: "https://www.amazon.com/dp/B000U8WQ4U?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Wireless Fluke Connect Meter",
+    // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-3000-fc) and the official Amazon listing (B00JJQ3Y6S). fluke.com lists DC V accuracy as 0.09% + 2 and 0.15% + 2 without mapping them to ranges; we quote the best figure. Current is 400 mA max (no 10 A jack, confirmed on the photo). Drop rating not stated. Temperature needs the separate t3000 FC module. Photo: Amazon main image of B00JJQ3Y6S, shows "FLUKE 3000 FC TRUE RMS MULTIMETER" with TL175 leads and alligator clips. Amazon-buyable 2026-10-28 (sold by Amazon.com).
+    name: "Fluke 3000 FC",
+    image: "https://m.media-amazon.com/images/I/81DO0fA5YCL._AC_SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "A True RMS meter that sends readings to the Fluke Connect app and shows up to three wireless modules on its own screen.",
+    verdict:
+      "The Fluke 3000 FC is a 6000-count True RMS meter with Fluke Connect. It sends readings to a phone up to 20 m away in open air (about 6.5 m through drywall), where you can trend and share them. It can also show its own reading plus up to three wireless modules on screen at once, which helps when the panel and the equipment are in different places. Fluke names it as the replacement for the discontinued 233 remote-display meter. DC volts reach 1000 V at a best ±(0.09% + 2), and it adds capacitance to 9999 µF, frequency to 99.99 kHz, Min/Max and a backlight. Fluke rates it CAT III 1000V / CAT IV 600V and IP54, with a 3-year warranty. Current stops at 400 mA, temperature needs the separate t3000 FC module, and there's no logging memory in the meter.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.09% + 2) DC V" },
+      { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Remote readings and multi-point checks via app" },
+    ],
+    pros: ["Fluke Connect, up to 20 m open-air range", "Shows its own reading plus three wireless modules", "IP54, 340 g, 250 h on 3 × AA"],
+    cons: ["Current only to 400 mA, no 10 A input", "Temperature needs the t3000 FC module", "No in-meter logging memory"],
+    ctaHref: "https://www.amazon.com/dp/B00JJQ3Y6S?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best for 1500 V Solar Strings",
+    // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/283-fcpv-solar-digital-multimeter) and the official Amazon listing (B0DGBYD8ZK). KIT: no bare 283 FC is listed on Amazon.com, so this Pick is the 283 FC/PV kit (283 FC meter + a283 FC wireless 60 A AC/DC clamp + MC4 and TL175-HV leads). The meter has no current jacks; current is via the clamp only. Amazon item weight "16 ounces" conflicts with Fluke's 0.7 kg for the meter; we use Fluke. Photo: Amazon main image of B0DGBYD8ZK, a kit shot showing the "FLUKE 283 FC TRUE RMS 1500V MULTIMETER" and the "a283 FC" clamp. Amazon-buyable 2026-10-28 (sold by Amazon.com).
+    name: "Fluke 283 FC/PV",
+    image: "https://m.media-amazon.com/images/I/81xYPvQd-cL._SL1500_.jpg",
+    rating: 4.5,
+    bottomLine: "A CAT III 1500V True RMS meter and wireless 60 A AC/DC clamp kit with MC4 leads for solar PV strings.",
+    verdict:
+      "The Fluke 283 FC/PV kit is built for DC systems up to 1500 V, such as solar strings, wind, rail and data centers. The 6000-count True RMS meter reads DC to 1500 V at ±(0.09% + 3) up to 600 V and ±(0.15% + 2) on the 1500 V range, with CAT III 1500V / CAT IV 1000V ratings. The a283 FC clamp sends 0–60 A AC/DC current (±(1.5% + 0.15 A)) to the meter wirelessly, so the meter can show volts, amps and calculated VA together. Polarity alerts, a user limit gauge, a readiness self-check, time-stamped logging and Fluke Connect are built in, and the kit includes Stäubli MC4 leads. The meter has no current jacks of its own, it's rated only IP52 with a 2 m drop, and the clamp's warranty is 1 year against the meter's limited lifetime.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±(0.09% + 3) DC V" },
+      { label: "Safety rating", value: "CAT III 1500V / CAT IV 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Solar PV strings and 1500 V DC systems" },
+    ],
+    pros: ["1500 V DC range with CAT III 1500V rating", "Wireless 60 A AC/DC clamp and MC4 leads included", "Polarity alerts, limit gauge, self-check and logging"],
+    cons: ["Sold only as a kit on Amazon", "No current jacks on the meter; current only via the clamp", "IP52 and 2 m drop; clamp has a 1-year warranty"],
+    ctaHref: "https://www.amazon.com/dp/B0DGBYD8ZK?tag=ohmsavvy-20",
   },
 ];

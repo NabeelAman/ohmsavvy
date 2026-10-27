@@ -9,6 +9,9 @@
 // 45-500 Hz; AC amps ±(1.5% + 3) at 45-500 Hz; >10 MΩ DC, >5 MΩ AC; AutoVolt LoZ about 3 kΩ; VoltAlert Lo/Hi; 6 A and
 // 10 A; resistance to 40.00 MΩ; capacitance 1 nF to 9,999 µF; frequency to 50 kHz; one 9V, 400 h typical;
 // 167 × 84 × 46 mm; 550 g; 3-year warranty.
+// Continuity thresholds (added 2026-10-28): 107 beeps below 70 Ω per the Fluke 106/107 users manual
+// (https://media.fluke.com/8eaf269b-51d3-435f-9e69-b10800c0e4df_original%20file.pdf); 117 beeps below 20 Ω per the
+// fluke.com 116/117 spec tabs as cited on /multimeters/fluke-116-vs-fluke-117.
 // The 1.11 form factor and square-wave arithmetic below are standard textbook values, not Fluke figures.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
@@ -22,7 +25,7 @@ const path = "/multimeters/fluke-117-vs-fluke-107";
 export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 107",
   description:
-    "Fluke 117 vs Fluke 107: True RMS, NCV and LoZ against a 200 g palm-sized meter that isn't True RMS. Specs, size chart and which Fluke to carry.",
+    "Fluke 117 vs Fluke 107 for home electrical testing and pro work: True RMS, NCV and LoZ against a 200 g palm-sized meter that isn't True RMS. Specs and verdict.",
   path: "/multimeters/fluke-117-vs-fluke-107",
 });
 
@@ -71,7 +74,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 117 vs Fluke 107",
   path,
   published: "2026-10-22",
-  updated: "2026-10-26",
+  updated: "2026-10-28",
   intro:
     "Fluke 117 vs Fluke 107 (or Fluke 107 vs Fluke 117, as many people search it) compares Fluke's electrician's meter with its palm-sized one. Both are CAT III 600V with 6,000-count backlit displays and 10A current. The 117 is True RMS and adds VoltAlert non-contact detection, AutoVolt and a low-impedance mode; the 107 weighs 200 g, fits in a pocket, and Fluke states plainly that it is not True RMS.",
   a: {
@@ -259,6 +262,52 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Home electrical testing with the 117 or the 107</h2>
+        <p className="text-muted leading-7 mb-4">
+          Around a house, most readings are the easy kind: is the receptacle getting its 120 V, is the battery flat, is
+          the fuse or the lamp cord open. On those the two meters are equals, because Fluke gives them the same AC volts
+          line and nearly the same DC line. The 117 pulls ahead on the three jobs that involve uncertainty about what
+          is live: finding which box or cable is energized, telling a dead circuit from one showing phantom voltage,
+          and reading circuits fed by dimmers or LED drivers.
+        </p>
+        <DataTable
+          head={["Home task", "Fluke 117", "Fluke 107", "Edge"]}
+          rows={[
+            ["Receptacle voltage, 120 V", "±1.5 V from ±(1.0% + 3)", "±1.5 V from ±(1.0% + 3)", "Tie"],
+            ["AA cell, 1.500 V", "±9.5 mV from ±(0.5% + 2)", "±10.5 mV from ±(0.5% + 3)", "Tie"],
+            ["Doorbell or thermostat transformer", "V AC", "V AC", "Tie"],
+            ["Fuse, bulb or lamp-cord continuity", "Beeps below 20 Ω", "Beeps below 70 Ω", "Tie"],
+            ["Bath fan current in series", "6.000 A range", "4.000 A range", "Tie"],
+            ["Which box or cable is live?", "VoltAlert, no contact", "Leads only", "117"],
+            ["Switched-off circuit still reads volts", "AutoVolt LoZ, about 3 kΩ", "Input above 10 MΩ shows phantom", "117"],
+            ["Dimmed or LED lighting circuit", "True RMS", "Average responding", "117"],
+          ]}
+        />
+        <div className="mt-6">
+          <Figure caption={<>Outcome of the eight home tasks in the table above.</>}>
+            <BarChart
+              items={[
+                { label: "Ties", value: 5, display: "5 tasks" },
+                { label: "Fluke 117 wins", value: 3, display: "3 tasks", highlight: true },
+                { label: "Fluke 107 wins", value: 0, display: "0 tasks" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          So which suits a homeowner? If you mostly check batteries, outlets, fuses and appliance cords, the 107 covers
+          every one of them, and its 200 g body fits a kitchen drawer. If you replace receptacles, switches or fixtures
+          yourself, the 117&apos;s three extra wins all happen at the moment you decide a circuit is safe to touch,
+          which is where they are worth the most. Neither replaces the live-dead-live routine with the leads. If a
+          GFCI receptacle is the problem, see{" "}
+          <Link href="/multimeters/how-to-test-a-gfci-outlet-that-wont-reset" className={link}>
+            how to test a GFCI outlet that won&apos;t reset
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 117 vs Fluke 107: which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -315,6 +364,11 @@ const comparison: ProductComparisonContent = {
       question: "Can the Fluke 107 measure current?",
       answer:
         "Yes, AC and DC current on 4A and 10A ranges, with ±(1.5% + 3) accuracy. Fluke specifies AC current only from 40 Hz to 200 Hz on the 107, against 45 Hz to 500 Hz on the 117. Neither has a milliamp or microamp range, so both are too coarse for small electronics currents.",
+    },
+    {
+      question: "Is the Fluke 107 enough for home electrical testing?",
+      answer:
+        "For outlets, batteries, fuses, cords and doorbell transformers, yes; its AC volts accuracy matches the 117's at ±(1.0% + 3). It lacks the 117's non-contact VoltAlert and LoZ mode, so on switched-off circuits it can show phantom voltage and can't flag a live cable without contact. If you replace outlets or fixtures yourself, the 117 is the safer pick.",
     },
     {
       question: "Which Fluke is better for automotive work, the 117 or the 107?",

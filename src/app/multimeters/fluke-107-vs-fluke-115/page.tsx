@@ -28,7 +28,7 @@ const path = "/multimeters/fluke-107-vs-fluke-115";
 export const metadata = buildMetadata({
   title: "Fluke 107 vs Fluke 115 for Electronics Beginners",
   description:
-    "Fluke 107 vs Fluke 115 for beginners learning electronics: resistor, capacitor, diode and current accuracy worked out, True RMS, safety and size compared.",
+    "Fluke 107 vs Fluke 115, compact vs professional: resistor, capacitor, diode and current accuracy worked out for beginners, plus True RMS, safety and size.",
   path: "/multimeters/fluke-107-vs-fluke-115",
 });
 
@@ -70,6 +70,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 107 vs Fluke 115 for Electronics Beginners",
   path,
   published: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "For a beginner learning electronics on the bench, the Fluke 107 is the better fit: it reads small resistors and small ceramic capacitors more precisely than the Fluke 115, adds duty cycle for PWM, and costs and weighs less. The 115 wins if your learning includes mains AC, because it is True RMS, and it has a finer DC millivolt range and a far tighter diode test. Neither has a milliamp range, which is the gap every electronics beginner should know about before buying.",
   a: {
@@ -283,6 +284,59 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Compact vs professional: what the bigger meter adds</h2>
+        <p className="text-muted leading-7 mb-4">
+          The 107 is Fluke&apos;s palm-sized meter; the 115 is a full-size field-service meter of the kind technicians
+          carry all day. Safety is not what separates them, since both carry the same CAT III 600V rating. The
+          professional body buys three things a compact one gives up: True RMS, tools for watching a reading change
+          (the bar graph and Min/Max/Avg), and longer intervals between battery changes, plus an extra warranty year.
+          The compact body buys portability and two published ruggedness figures that Fluke doesn&apos;t list for the 115.
+        </p>
+        <DataTable
+          head={["Trait", "Fluke 107 (compact)", "Fluke 115 (professional)", "When it matters"]}
+          rows={[
+            ["Carry weight", "200 g", "550 g", "In a pocket, backpack or glovebox all day"],
+            ["AC conversion", "Average responding", "True RMS", "Dimmers, drives, switch-mode supplies"],
+            ["Watching a changing value", "Digits only, 3 updates/s", "33-segment bar graph at 32/s, 4 digit updates/s", "Adjusting a pot, a sensor or a supply"],
+            ["Catching a dip or peak", "Not listed", "Min/Max/Avg", "A supply that sags when a motor starts"],
+            ["Battery", "2 × AAA, at least 200 h", "One 9V, 400 h typical", "Long shifts, infrequent maintenance"],
+            ["Published ruggedness", "IP40, 1 m drop", "Not stated in our sources", "Dusty benches, drops from a bench top"],
+            ["Safety rating", "CAT III 600V", "CAT III 600V", "Equal on both"],
+            ["Warranty", "2 years", "3 years", "Heavy daily use"],
+          ]}
+        />
+        <div className="mt-6 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Battery life per Fluke: the 107&apos;s minimum against the 115&apos;s typical figure.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 107, 2 × AAA", value: 200, display: "200 h+" },
+                { label: "Fluke 115, 9V", value: 400, display: "400 h", highlight: true },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Fastest-updating element on each display, updates per second. The 115&apos;s bar graph tracks a moving value eight times faster than the 107&apos;s digits.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 107 digits", value: 3, display: "3 / s" },
+                { label: "Fluke 115 bar graph", value: 32, display: "32 / s", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          For a learner, the honest summary is that the compact meter is not a toy and the professional one is not
+          a requirement. The 107 measures to Fluke&apos;s published specs and is rated for the same circuits. Move up to
+          the 115 when your work starts to include distorted AC, values you have to watch rather than read once, or a
+          meter that stays in a work belt every day. If you want the professional body with LoZ and non-contact
+          detection too, our{" "}
+          <Link href="/multimeters/fluke-115-vs-fluke-117" className={link}>
+            Fluke 115 vs Fluke 117
+          </Link>{" "}
+          comparison covers the next step.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 107 vs Fluke 115 for beginners: which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -350,6 +404,11 @@ const comparison: ProductComparisonContent = {
       question: "Can the Fluke 107 test LEDs?",
       answer:
         "Partly. Its diode test runs to 2.000 V with about 2.0 V available, which covers many red LEDs but not blue or white ones, which typically need around 3 V and show overload. The 115's diode range also stops at 2 V. Accuracy differs: the 107 is specified at 10%, the 115 at ±(0.9% + 2).",
+    },
+    {
+      question: "Is the compact Fluke 107 a professional multimeter?",
+      answer:
+        "It carries the same CAT III 600V rating as the full-size 115 and Fluke publishes full accuracy specs for it, so it is safe for the same circuits. What it lacks are professional conveniences: True RMS, a bar graph, Min/Max/Avg, the 115's 400-hour battery and a third warranty year. It also suits a professional as a second, pocket meter.",
     },
     {
       question: "Which is safer for a beginner, the Fluke 107 or 115?",

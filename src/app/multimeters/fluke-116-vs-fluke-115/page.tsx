@@ -24,7 +24,7 @@ const path = "/multimeters/fluke-116-vs-fluke-115";
 export const metadata = buildMetadata({
   title: "Fluke 116 vs Fluke 115 for HVAC Troubleshooting",
   description:
-    "Fluke 116 vs Fluke 115 for HVAC: flame-rod microamps, thermocouple temperature, run capacitors and LoZ on 24 V controls. Which Fluke fits service calls.",
+    "Fluke 116 vs Fluke 115 for HVAC and general use: flame-rod microamps, thermocouple temperature and LoZ on the 116, 10 A ranges on the 115. Which Fluke fits.",
   path: "/multimeters/fluke-116-vs-fluke-115",
 });
 
@@ -70,6 +70,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 116 vs Fluke 115 for HVAC Troubleshooting",
   path,
   published: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "For HVAC troubleshooting the Fluke 116 is the better meter: it reads flame-rod current on a 600.0 µA range with 0.1 µA resolution, takes Type K temperature with the included 80BK probe, and has a LoZ input for ghost voltage on 24 V control wiring. The Fluke 115 has none of those three. What the 115 keeps is 6 A and 10 A current ranges. On capacitors, line voltage and resistance, the two read identically.",
   a: {
@@ -300,6 +301,63 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">HVAC specialist or general-purpose meter?</h2>
+        <p className="text-muted leading-7 mb-4">
+          Fluke built the 116 as a specialist and the 115 as a field-service all-rounder, and the split shows the
+          moment the meter leaves the mechanical room. Off an HVAC call, nobody needs flame-rod microamps, but plenty of
+          jobs need amps: a parked car&apos;s battery drain, a bench appliance, a small motor. The 116 has no input for
+          any of them, because its only current range tops out at 600.0 µA. Everything voltage-, resistance- and
+          capacitance-based is identical, so the general-purpose gap is current and nothing else.
+        </p>
+        <DataTable
+          head={["General job", "Fluke 116", "Fluke 115", "Worked tolerance"]}
+          rows={[
+            ["12.60 V car battery at rest", "60.00 V DC range", "60.00 V DC range", "±0.08 V on both, from ±(0.5% + 2)"],
+            ["120 V receptacle", "True RMS, 600.0 V", "True RMS, 600.0 V", "±1.5 V on both, from ±(1.0% + 3)"],
+            ["Parked-car drain, illustrative 50 mA", "Not possible (µA input only)", "6.000 A range, 1 mA steps", "115: ±3.5 mA, from ±(1.0% + 3)"],
+            ["Appliance load, illustrative 5 A AC", "Not possible", "6.000 A range", "115: about ±0.08 A, from ±(1.5% + 3)"],
+            ["Fuse, cord or switch continuity", "Beeps below 20 Ω", "Beeps below 20 Ω", "Same"],
+            ["Electrolytic in a power supply", "To 9,999 µF", "To 9,999 µF", "Same ±(1.9% + 2)"],
+            ["Idle conductor showing phantom volts", "AutoVolt LoZ", "High impedance only", "116 can tell coupling from a fault"],
+            ["Oven or freezer temperature", "Type K, 80BK probe", "Not listed", "116 only"],
+          ]}
+        />
+        <div className="mt-6 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Rows in the HVAC table near the top of this page each meter handles itself (9 rows; clamp-only jobs count against both).</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 116", value: 7, display: "7 of 9", highlight: true },
+                { label: "Fluke 115", value: 6, display: "6 of 9" },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Rows in the general-job table above each meter handles itself (8 rows).</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 116", value: 6, display: "6 of 8" },
+                { label: "Fluke 115", value: 6, display: "6 of 8", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The tie in the second chart hides a difference in kind. The two rows the 116 loses are current, which comes up
+          in car, appliance and electronics work every week. The two the 115 loses, LoZ and temperature, are handy but
+          have workarounds: a load across the leads, or a separate thermometer. So a homeowner, a car hobbyist or a
+          general maintenance tech who rarely sees a gas burner gets more from the 115, and our owner-tested{" "}
+          <Link href="/multimeters/fluke-115-review" className={link}>
+            Fluke 115 review
+          </Link>{" "}
+          covers it as an everyday meter. The 116 only becomes the better general meter if you already own a clamp for
+          amps. If you want both amps and LoZ in this body, look at the 117 instead; the{" "}
+          <Link href="/multimeters/fluke-115-vs-fluke-117" className={link}>
+            Fluke 115 vs Fluke 117
+          </Link>{" "}
+          page weighs that step.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 116 vs Fluke 115 for HVAC: which should you buy?</h2>
         <DataTable
           head={["Your HVAC work", "Better fit", "Why"]}
@@ -362,6 +420,11 @@ const comparison: ProductComparisonContent = {
       question: "Why does my meter show voltage on a thermostat wire that should be off?",
       answer:
         "Often it is ghost voltage: an idle conductor beside powered ones in the same cable picks up a coupled voltage that a high-impedance meter displays. A low-impedance input such as the 116's AutoVolt position loads the wire enough to collapse it. The 115 has no LoZ mode, so add a load across the leads to check.",
+    },
+    {
+      question: "Is the Fluke 116 a good general-purpose multimeter?",
+      answer:
+        "Only if you carry a clamp meter. Its volts, resistance, continuity and capacitance match the Fluke 115, and it adds LoZ and temperature, but its single current range stops at 600.0 µA. That rules out battery-drain, appliance and small-motor current through the leads. For all-round home, car and shop use, the 115 or 117 is the better fit.",
     },
     {
       question: "Can the Fluke 116 measure amps on a blower motor?",

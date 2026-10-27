@@ -25,7 +25,7 @@ const path = "/multimeters/fluke-17b-plus-vs-fluke-117";
 export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 117",
   description:
-    "Fluke 17B+ vs Fluke 117: temperature, frequency to 100 kHz and a 1000V range against True RMS, NCV and LoZ. Specs, charts and which Fluke suits you.",
+    "Fluke 17B+ vs Fluke 117: accuracy compared with worked examples, plus temperature and 100 kHz against True RMS, NCV and LoZ. Which Fluke suits you.",
   path: "/multimeters/fluke-17b-plus-vs-fluke-117",
 });
 
@@ -90,7 +90,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 17B+ vs Fluke 117",
   path,
   published: "2026-10-22",
-  updated: "2026-10-26",
+  updated: "2026-10-27",
   intro:
     "Fluke 17B+ vs Fluke 117 splits Fluke's line into the electronics meter and the electrician's meter. The 17B+ carries more measurement functions: temperature with an included probe, frequency to 100 kHz, duty cycle, relative mode and a 1000V range. The 117 carries the safety-and-speed features: True RMS, VoltAlert non-contact detection, AutoVolt and a low-impedance mode, on a finer 6,000-count display.",
   a: {
@@ -188,6 +188,76 @@ const comparison: ProductComparisonContent = {
           40 V range to its 400 V range at 40 V, so a 48 V telecom or solar battery reads to 0.1 V on the 17B+, while the
           117 keeps it on its 60 V range with 0.01 V steps. The 17B+&apos;s 4,000 counts are fine for 12 V and 24 V
           systems, which stay on the 40 V range.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 17B+ vs 117: accuracy compared</h2>
+        <p className="text-muted leading-7 mb-4">
+          Fluke writes every accuracy figure as ±(percent of reading + counts). The percentage scales with the number
+          on the display; the counts are a fixed number of steps in the last digit of whatever range the meter is on.
+          That second term is why the same spec can be tight on one reading and loose on another, and why display
+          counts and accuracy have to be read together. Here is every published line the two meters share, from
+          Fluke&apos;s spec pages and manuals as cited above; where Fluke publishes no figure, we say so.
+        </p>
+        <DataTable
+          head={["Function", "Fluke 17B+", "Fluke 117"]}
+          rows={[
+            ["DC volts", "±(0.5% + 3)", "±(0.5% + 2)"],
+            ["DC millivolts", "400.0 mV, ±(1.0% + 10)", "600.0 mV, ±(0.5% + 2)"],
+            ["AC volts, sine", "±(1.0% + 3), 40–500 Hz", "±(1.0% + 3), 45–500 Hz"],
+            ["AC volts, 0.5–1 kHz", "Not stated", "±(2.0% + 3)"],
+            ["AC on distorted waves", "Not stated (no True RMS)", "True RMS, same spec"],
+            ["Volts ranges", "400.0 mV to 1000 V", "600.0 mV to 600.0 V"],
+            ["Display", "4,000 counts, 3/s", "6,000 counts, 4/s"],
+            ["Resistance", "±(0.5% + 2) to ±(1.5% + 3)", "±(0.9% + 1)"],
+            ["AC current", "±(1.5% + 3)", "±(1.5% + 3)"],
+            ["Capacitance", "±(2% + 5) to ±(5% + 5)", "±(1.9% + 2)"],
+            ["Frequency", "±(0.1% + 3)", "±(0.1% + 2)"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          Worked example one, a car battery at 12.6 V DC. Both meters sit on a range with 0.01 V steps (the 17B+&apos;s
+          40.00 V range, the 117&apos;s 60.00 V range). The percentage term is identical: 0.5% of 12.6 V is 0.063 V. The
+          117 adds 2 counts (0.02 V) for a band of ±0.083 V, so the true voltage lies between about 12.52 V and 12.68 V.
+          The 17B+ adds 3 counts (0.03 V) for ±0.093 V, or about 12.51 V to 12.69 V. A hundredth of a volt apart:
+          irrelevant for telling a charged battery from a flat one.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Worked example two, a 120 V receptacle. The 17B+ reads it on its 400.0 V range and the 117 on its 600.0 V
+          range, both in 0.1 V steps, and both specify AC volts at ±(1.0% + 3). That gives 1.2 V plus 0.3 V, so ±1.5 V
+          and a band of 118.5 V to 121.5 V on either meter. The catch is the waveform: that figure holds for a clean
+          sine on both, but only the 117 is True RMS, so on a dimmer, drive or LED-driver circuit Fluke gives the 17B+
+          no accuracy figure at all.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Worked example three shows where the count term bites. A 48 V battery bank pushes the 17B+ onto its 400.0 V
+          range, where 3 counts are 0.3 V: 0.5% of 48 V (0.24 V) plus 0.3 V is ±0.54 V. The 117 stays on its 60.00 V
+          range, where 2 counts are 0.02 V, so ±0.26 V, about half the band. On a 48 V solar or telecom system that
+          gap is the difference between seeing a 0.3 V string imbalance and losing it in the error band.
+        </p>
+        <div className="mt-4">
+          <Figure caption={<>Allowed error, in volts, on three readings worked from Fluke&apos;s specs. Lower is better.</>}>
+            <BarChart
+              items={[
+                { label: "12.6 V DC: 117", value: 0.083, display: "±0.083 V", highlight: true },
+                { label: "12.6 V DC: 17B+", value: 0.093, display: "±0.093 V" },
+                { label: "48 V DC: 117", value: 0.26, display: "±0.26 V", highlight: true },
+                { label: "48 V DC: 17B+", value: 0.54, display: "±0.54 V" },
+                { label: "120 V AC: either", value: 1.5, display: "±1.5 V" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Outside volts, the picture splits. The 17B+&apos;s best resistance line, ±(0.5% + 2), is tighter than the
+          117&apos;s ±(0.9% + 1), though its higher ranges loosen to ±(1.5% + 3); the 117 is tighter on capacitance and
+          by one count on frequency. Neither difference decides a purchase. If accuracy on a bench is the real
+          question, our guide to{" "}
+          <Link href="/multimeters/multimeter-accuracy-for-electronics-repair" className={link}>
+            multimeter accuracy for electronics repair
+          </Link>{" "}
+          explains when a tighter spec actually changes a diagnosis.
         </p>
       </section>
 
@@ -329,6 +399,16 @@ const comparison: ProductComparisonContent = {
       question: "Can the Fluke 117 measure milliamps like the 17B+?",
       answer:
         "Not usefully. The 117's smallest current range is 6.000 A with 1 mA resolution, so a 4-20 mA loop shows only whole milliamps and microamp signals don't register. The 17B+ has 400.0 µA, 4000 µA, 40.00 mA and 400.0 mA ranges through a separate fused jack, which is why it suits controls and electronics work.",
+    },
+    {
+      question: "Which is more accurate, the Fluke 17B+ or the Fluke 117?",
+      answer:
+        "On DC volts they are almost tied: both are ±0.5% of reading, plus 3 counts on the 17B+ and 2 on the 117. On a 12.6 V battery that is ±0.093 V against ±0.083 V. The 117 pulls ahead around 48 V, where its 6,000 counts keep a finer range, and on distorted AC, where only the 117 is True RMS.",
+    },
+    {
+      question: "What does ±(0.5% + 2 counts) mean on a multimeter?",
+      answer:
+        "Take 0.5% of the reading, then add two steps of the last displayed digit on the range in use. On the Fluke 117 reading 12.60 V on its 60.00 V range, that is 0.063 V plus 0.02 V, so ±0.083 V. The same spec on a range with 0.1 V steps adds 0.2 V instead, which is why the range matters.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

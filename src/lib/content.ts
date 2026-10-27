@@ -362,6 +362,27 @@ export const content: ContentEntry[] = [
   {
     category: "multimeters",
     type: "comparison",
+    title: "Fluke 115 vs Fluke 87V",
+    description: "CAT III 600V field meter vs CAT IV industrial",
+    href: "/multimeters/fluke-115-vs-fluke-87v",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 87V vs Fluke 289",
+    description: "Logging, LoZ and 50,000 counts vs field troubleshooting",
+    href: "/multimeters/fluke-87v-vs-fluke-289",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 115 vs Fluke 101",
+    description: "10A True RMS meter vs 160 g pocket Fluke, no amps",
+    href: "/multimeters/fluke-115-vs-fluke-101",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
     title: "Fluke 117 vs Fluke 323",
     description: "General multimeter vs. dedicated clamp meter",
     href: "/multimeters/fluke-117-vs-fluke-323",
@@ -2553,6 +2574,20 @@ export const content: ContentEntry[] = [
     title: "Fluke 17B+ vs Fluke 117",
     description: "Electronics functions vs electrician safety",
     href: "/multimeters/fluke-17b-plus-vs-fluke-117",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 17B+ vs Fluke 115",
+    description: "Breadth of functions vs True RMS and warranty",
+    href: "/multimeters/fluke-17b-plus-vs-fluke-115",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 17B+ vs Fluke 87V",
+    description: "Entry Fluke vs CAT IV industrial precision",
+    href: "/multimeters/fluke-17b-plus-vs-fluke-87v",
   },
   {
     category: "multimeters",

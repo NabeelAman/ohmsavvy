@@ -19,7 +19,7 @@ const path = "/multimeters/fluke-117-vs-fluke-87v";
 export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 87V",
   description:
-    "Fluke 117 vs Fluke 87V: CAT III 600V against CAT IV 600V / CAT III 1000V, 0.5% vs 0.05% DC accuracy, LoZ vs microamps. Who needs which Fluke.",
+    "Fluke 117 vs Fluke 87V: CAT ratings, DC accuracy, LoZ and microamps compared, plus electronics repair, automotive use and whether the 87V is worth it.",
   path: "/multimeters/fluke-117-vs-fluke-87v",
 });
 
@@ -76,6 +76,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 117 vs Fluke 87V",
   path,
   published: "2026-10-26",
+  updated: "2026-10-27",
   intro:
     "The Fluke 117 is the electrician's meter: CAT III 600V, VoltAlert non-contact detection and a LoZ AutoVolt position for ghost voltage. The Fluke 87V is the industrial troubleshooter: CAT IV 600V and CAT III 1000V, DC accuracy ten times tighter, microamp resolution, a 19,999-count mode, peak capture and a low-pass filter for motor drives. Buy the 117 for building wiring up to the panel; buy the 87V for service entrances, 1000V systems, drives and fine readings.",
   a: {
@@ -266,6 +267,130 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 117 vs 87V for electronics repair</h2>
+        <p className="text-muted leading-7 mb-4">
+          On a repair bench the questions change. Nobody needs CAT IV to probe a 5 V rail, but you do care how small a
+          change the meter can show, whether it reads a PWM signal&apos;s duty cycle, and whether it can measure the
+          few milliamps or microamps a board draws in standby. Here the two Flukes are far apart, and the gap favors
+          the 87V almost everywhere.
+        </p>
+        <DataTable
+          head={["Bench function", "Fluke 117", "Fluke 87V"]}
+          rows={[
+            ["Finest DC volts step", "0.1 mV (600.0 mV range)", "10 µV (high-res mode)"],
+            ["Display counts", "6,000", "6,000; 19,999 high-res"],
+            ["Frequency", "To 50 kHz, ±(0.1% + 2)", "To 200 kHz, ±(0.005% + 1)"],
+            ["Duty cycle", "Not listed", "To 99.9%"],
+            ["Capacitance", "1 nF to 9,999 µF, ±(1.9% + 2)", "To 9,999 µF"],
+            ["Diode test", "2.000 V, ±(0.9% + 2)", "Not stated in our sources"],
+            ["Resistance", "To 40 MΩ, ±(0.9% + 1)", "To 50 MΩ, ±(0.2% + 1)"],
+            ["Standby or sleep current", "No: 1 mA steps only", "Yes: mA and µA, 0.01 µA DC"],
+            ["Low-pass filter", "No", "Yes, 3 dB at 1 kHz"],
+          ]}
+        />
+        <div className="mt-4">
+          <Figure caption={<>Finest DC voltage step, log scale. The 87V&apos;s high-res mode resolves ten times finer.</>}>
+            <BarChart
+              log
+              items={[
+                { label: "Fluke 117", value: 100, display: "0.1 mV" },
+                { label: "Fluke 87V", value: 10, display: "10 µV", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          What that means in practice: tracing a voltage drop across a PCB trace, a current-sense resistor or a
+          connector pin often comes down to a few millivolts, which the 117&apos;s 0.1 mV step shows coarsely and the
+          87V&apos;s 10 µV step shows clearly. Duty cycle lets the 87V confirm that a fan controller or LED dimmer is
+          actually modulating; the 117 can only give you the frequency. And because the 117&apos;s smallest current
+          step is 1 mA on a 6 A range, it can&apos;t tell a healthy 200 µA sleep draw from a faulty 800 µA one, a job
+          the 87V does in its µA position.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          The 117 isn&apos;t useless on a bench. It reads capacitance from 1 nF, has a 2 V diode test and a continuity
+          beeper below 20 Ω, and its True RMS AC input handles a mains-side power supply check. If you mostly replace
+          fuses, check rails and swap obvious bad parts, it is enough. The low-pass filter is the one 87V feature that
+          matters less here: it exists for drive outputs and rarely changes a bench reading. For meters chosen purely
+          for boards, see our{" "}
+          <Link href="/multimeters/best-multimeters-for-electronics-repair" className={link}>
+            best multimeters for electronics repair
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 117 vs 87V for automotive diagnostics</h2>
+        <p className="text-muted leading-7 mb-4">
+          A car is a 12 V DC system, so the 117&apos;s headline features, VoltAlert and the LoZ AutoVolt position, do
+          little under the hood. What a technician needs is fast capture of intermittent faults, enough current
+          capacity for a fused circuit, a duty-cycle reading for PWM-controlled parts and, on many jobs, temperature.
+          Neither Fluke lists an RPM or dwell function in the specifications we cite, so tach work needs a dedicated
+          automotive meter or a scan tool.
+        </p>
+        <DataTable
+          head={["Under-hood job", "Fluke 117", "Fluke 87V"]}
+          rows={[
+            ["Voltage drop on a ground strap", "Yes, 0.1 mV steps", "Yes, 10 µV in high-res"],
+            ["Wiggle test on a harness", "Min/Max/Avg; catches 500 µs opens", "Min/Max plus 250 µs peak"],
+            ["Injector or PWM fan duty cycle", "Not listed", "Yes, to 99.9%"],
+            ["Fused-circuit current", "10 A; 20 A for 30 s", "10 A; 20 A for 30 s"],
+            ["Parasitic battery drain", "Coarse, 1 mA steps", "Fine, mA and µA ranges"],
+            ["Coolant or intake temperature", "No", "Yes, 80BK probe in box"],
+            ["RPM or dwell", "Not listed", "Not listed"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The Min/Max difference is the one to understand. Both record minimum, maximum and average while you wiggle a
+          connector or crank the engine, and the 117&apos;s continuity mode, per Fluke&apos;s 110 Series datasheet,
+          flags opens and shorts as brief as 500 µs. The 87V adds a separate peak-capture mode that holds a 250 µs
+          spike, which is how you catch an ignition-related transient or a relay that chatters for a moment.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Parasitic drain is where the 117 stops short. Many technicians use a figure around 50 mA as a rough
+          after-sleep ceiling (check the vehicle maker&apos;s number). The 117 will show 0.050 A on its 6 A range,
+          so it can follow a module settling from 35 mA to 22 mA, but only in whole milliamps, and it has no
+          microamp range for motorcycles or other small batteries. The 87V reads the same drain on its mA input with finer steps.
+          Its thermocouple input, -200 °C to 1090 °C at the meter (the 80BK probe in the box is rated -40 °C to 260
+          °C), also covers coolant and intake air checks. For tools built around RPM and dwell, see{" "}
+          <Link href="/multimeters/best-multimeter-for-automotive" className={link}>
+            best multimeter for automotive
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Is the Fluke 87V worth the extra money?</h2>
+        <p className="text-muted leading-7 mb-4">
+          The 87V sits in a clearly higher price tier than the 117. Amazon prices move, so we don&apos;t quote figures;
+          instead, here is exactly what the step up buys and who actually uses each item. If you can&apos;t name two
+          rows below that apply to your work, the 117 is the better buy.
+        </p>
+        <DataTable
+          head={["What the 87V adds", "Who uses it", "Who can skip it"]}
+          rows={[
+            ["CAT IV 600V / CAT III 1000V", "Service-entrance, solar, 690 V plant", "Work inside the panel"],
+            ["±(0.05% + 1) DC, 19,999 counts", "Controls, instrument, bench techs", "Go/no-go voltage checks"],
+            ["µA and mA current", "Flame rods, 4-20 mA, sleep draw", "Load current via a clamp"],
+            ["Low-pass filter, 200 kHz, duty", "Drive and PWM troubleshooting", "Fixed-speed loads"],
+            ["250 µs peak capture", "Intermittent trips and dropouts", "Steady-state readings"],
+            ["Temperature input", "HVAC, process, automotive", "Wiring-only electricians"],
+            ["Lifetime vs 3-year warranty", "Anyone keeping a meter for decades", "Short-term or occasional use"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          Two things run the other way. The 117 keeps VoltAlert and LoZ, which the 87V doesn&apos;t list, so a
+          residential electrician moving up to an 87V usually ends up buying a separate pen detector too. And the extra
+          spend doesn&apos;t buy better AC accuracy where it counts for building wiring: on a 120 V circuit the two
+          differ by about half a volt of allowance, which changes no decision. Our view, as owners of both: the 87V is
+          worth it the day your work crosses into CAT IV locations, drives, microamps or calibration-grade DC, and
+          not before.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 117 vs 87V: which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -332,9 +457,31 @@ const comparison: ProductComparisonContent = {
       answer:
         "It is a different class of instrument. You pay for the CAT IV 600V and CAT III 1000V rating, tenfold tighter DC accuracy, a 19,999-count mode, microamp and temperature ranges, a drive low-pass filter, peak capture and a lifetime warranty instead of three years. If none of that applies to your work, the 117 measures the rest just as reliably.",
     },
+    {
+      question: "Which is better for electronics repair, the Fluke 117 or 87V?",
+      answer:
+        "The 87V. Its 19,999-count mode resolves DC down to 10 µV, it reads duty cycle and frequency to 200 kHz, and its µA range measures standby current on a board. The 117 steps DC in 0.1 mV at best, stops at 50 kHz and has no current range finer than 1 mA, so it suits rail checks and fuse hunting rather than board-level fault finding.",
+    },
+    {
+      question: "Is the Fluke 117 or 87V better for automotive work?",
+      answer:
+        "The 87V, if you diagnose rather than just check batteries. It adds duty cycle for injectors and PWM fans, 250 µs peak capture, temperature with the supplied 80BK probe, and mA/µA ranges for parasitic drain. Both carry 10 A (20 A for 30 s) and Min/Max. Neither lists RPM or dwell, so tach work needs an automotive meter.",
+    },
+    {
+      question: "Can the Fluke 117 measure parasitic battery drain?",
+      answer:
+        "Roughly. On its 6 A range it reads in 1 mA steps, so a 50 mA drain shows as 0.050 A and you can see a module going to sleep. It can't resolve anything below a milliamp and has no µA range, so small-battery drains and fine module currents need a meter like the 87V. Wait for the vehicle's modules to go to sleep before you trust the reading.",
+    },
+    {
+      question: "Is the Fluke 87V worth it for a hobbyist or apprentice?",
+      answer:
+        "Usually not as a first meter. Its value is CAT IV and 1000 V protection, calibration-grade DC accuracy, microamps, a drive filter and peak capture, which hobby and early apprentice work rarely needs. The 117 measures household circuits just as reliably for much less. Buy the 87V once your work moves into industrial, HVAC controls or instrumentation.",
+    },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },
   related: [
+    { label: "Best multimeter for automotive", href: "/multimeters/best-multimeter-for-automotive" },
+    { label: "Best multimeters for electronics repair", href: "/multimeters/best-multimeters-for-electronics-repair" },
     { label: "Fluke 117 review", href: "/multimeters/fluke-117-review" },
     { label: "Fluke 87V review", href: "/multimeters/fluke-87v-review" },
     { label: "Fluke 87V vs Fluke 179", href: "/multimeters/fluke-87v-vs-fluke-179" },

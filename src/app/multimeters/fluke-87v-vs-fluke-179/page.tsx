@@ -6,7 +6,7 @@
 //   (DC ±(0.09% + 2); AC ±(1.0% + 3); frequency to 100 kHz at ±(0.1% + 1); 10 A, 0.01 mA resolution; one 9 V, about 200 h)
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
-import { BarChart, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
+import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";
 import { picks } from "../best-multimeters/page";
 import { buildMetadata } from "@/lib/metadata";
@@ -16,7 +16,7 @@ const path = "/multimeters/fluke-87v-vs-fluke-179";
 export const metadata = buildMetadata({
   title: "Fluke 87V vs Fluke 179",
   description:
-    "Fluke 87V vs Fluke 179: same CAT IV 600V rating and lifetime warranty, but the 87V adds 0.05% DC accuracy, peak capture and 200 kHz. Which to buy.",
+    "Fluke 87V vs Fluke 179: same CAT IV 600V and lifetime warranty; the 87V adds 0.05% DC, peak capture and a drive filter. Industrial maintenance verdict.",
   path: "/multimeters/fluke-87v-vs-fluke-179",
 });
 
@@ -70,6 +70,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 87V vs Fluke 179",
   path,
   published: "2026-10-22",
+  updated: "2026-10-27",
   intro:
     "Fluke 87V vs Fluke 179 is the choice between Fluke's two top general-purpose meters. Both are True RMS, rated CAT III 1000V and CAT IV 600V, read temperature and carry a lifetime warranty. The 87V is the industrial troubleshooter, with tighter DC accuracy, a 19,999-count high-resolution mode and 250 µs peak capture; the 179 covers most of the same ground in a lighter package.",
   a: {
@@ -206,6 +207,69 @@ const comparison: ProductComparisonContent = {
         </div>
       </section>
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 87V vs 179 for industrial maintenance</h2>
+        <p className="text-muted leading-7 mb-4">
+          A plant maintenance shift mixes very different jobs: verifying 480 V at a motor control center, chasing a
+          drive that trips once a day, checking a 4-20 mA transmitter, taking a bearing or enclosure temperature,
+          and confirming a fixed-speed motor is drawing sensible current. Both meters carry the same CAT III 1000V
+          / CAT IV 600V rating, so neither limits where you may probe. What separates them is how many of those
+          jobs each finishes without a second instrument.
+        </p>
+        <DataTable
+          head={["Maintenance task", "Fluke 87V", "Fluke 179", "Verdict"]}
+          rows={[
+            ["480 V MCC or switchgear check", "CAT IV 600V", "CAT IV 600V", "Equal"],
+            ["VFD output voltage", "Low-pass filter", "No filter listed", "87V"],
+            ["Drive trip or contactor dropout", "250 µs peak capture", "Min/Max-Average", "87V"],
+            ["4-20 mA loop current", "µA resolution", "0.01 mA steps", "Either; 87V finer"],
+            ["Bearing or panel temperature", "−200 to 1090 °C", "−40 to 400 °C", "Either"],
+            ["Motor or heater current", "10 A; 20 A for 30 s", "10 A", "Equal; use a clamp"],
+            ["Fixed-speed motor voltage", "True RMS", "True RMS", "Equal"],
+            ["Long shift on one battery", "About 400 h", "About 200 h", "87V"],
+          ]}
+        />
+        <div className="mt-4">
+          <Figure caption={<>Finest DC current step, log scale. Both read a 4-20 mA loop; the 87V resolves 1,000 times finer.</>}>
+            <BarChart
+              log
+              items={[
+                { label: "Fluke 87V", value: 0.01, display: "0.01 µA", highlight: true },
+                { label: "Fluke 179", value: 10, display: "0.01 mA" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Loop work shows how far the 179 actually goes. A 4-20 mA signal spans 16 mA, and the 179&apos;s 0.01 mA
+          step is 0.0625% of that span, fine for confirming a transmitter is at 12 mA when it should be. The
+          87V&apos;s finer steps and ±(0.05% + 1) DC volts matter when you are trimming a transmitter or verifying a
+          calibration, not when you are fault-finding a dead loop.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Drives are the clear dividing line. Most modern plants have dozens of variable-frequency drives, and the
+          87V&apos;s low-pass filter plus 250 µs peak capture let one meter read a drive&apos;s output properly and
+          catch the transient behind a nuisance trip. The 179&apos;s Min/Max-Average will log a sag that lasts long
+          enough to register, but Fluke lists no peak-capture mode or filter for it. On temperature, both cover
+          typical maintenance readings such as motor frames, bearings and panel hot spots; the 87V&apos;s wider range
+          only pays off with a suitable probe, since its supplied 80BK is rated −40 °C to 260 °C.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          On ruggedness, the Fluke specifications we cite don&apos;t give an IP rating or a drop height for either
+          meter, so we don&apos;t rank them on it. The 87V is the lighter meter on its own at 355 g, against 420 g for
+          the 179, but rises to 624 g in its holster. When is the 179 enough? If your plant runs mostly fixed-speed
+          motors, lighting, heaters and controls, and drive work goes to a specialist or a scope, the 179 does every
+          job in this table except the drive rows, with the same safety rating and the same lifetime warranty.
+        </p>
+        <div className="mt-4">
+          <Callout title="Industrial safety still comes first">
+            A CAT IV rating protects you from transients, not from arc flash. Follow your site&apos;s lockout/tagout
+            and arc-flash PPE rules at MCCs and switchgear, check test leads match the meter&apos;s rating, and
+            verify the meter on a known live source before and after a dead test.
+          </Callout>
+        </div>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Which should you buy?</h2>
         <DataTable
           head={["Scenario", "Better fit", "Deciding spec"]}
@@ -279,6 +343,21 @@ const comparison: ProductComparisonContent = {
       question: "Is the Fluke 87V worth it over the 179 for HVAC work?",
       answer:
         "Usually not. HVAC work rarely needs 0.05% DC accuracy or peak capture, and the 179's temperature probe and Min/Max-Average cover most calls. Choose the 87V if you also service variable-frequency drives.",
+    },
+    {
+      question: "Is the Fluke 179 good enough for industrial maintenance?",
+      answer:
+        "For many plants, yes. It has the same CAT III 1000V / CAT IV 600V rating and lifetime warranty as the 87V, True RMS, temperature and 0.01 mA current steps for 4-20 mA loops. What it lacks is the 87V's drive low-pass filter and 250 µs peak capture, so if your shift includes variable-frequency drives or intermittent trips, the 87V is the better tool.",
+    },
+    {
+      question: "Can the Fluke 179 read a 4-20 mA loop?",
+      answer:
+        "Yes. Its finest current step is 0.01 mA, which is 0.0625% of a 16 mA loop span, enough to confirm a transmitter's output or find a dead loop. The 87V resolves far finer and has tighter DC accuracy, which matters more when you are calibrating or trimming a transmitter than when you are fault-finding.",
+    },
+    {
+      question: "Are the Fluke 87V and 179 waterproof or drop rated?",
+      answer:
+        "The Fluke specifications we cite don't list an IP rating or a drop height for either meter, so we treat both as not stated and don't rank them on ruggedness. Both are built as daily field meters with lifetime warranties. If you work in wet or washdown areas, check Fluke's current manual or choose a meter with a published IP rating.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

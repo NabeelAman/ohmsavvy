@@ -17,7 +17,7 @@ const path = "/multimeters/fluke-117-vs-fluke-179";
 export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 179",
   description:
-    "Fluke 117 vs Fluke 179: both True RMS, but the 179 adds CAT IV 600V, temperature and 100 kHz frequency, while the 117 has NCV. Which suits your work.",
+    "Fluke 117 vs Fluke 179: CAT IV 600V, NCV and LoZ compared, plus an HVAC technician breakdown and a temperature measurement comparison. Which suits you.",
   path: "/multimeters/fluke-117-vs-fluke-179",
 });
 
@@ -67,7 +67,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 117 vs Fluke 179",
   path,
   published: "2026-10-22",
-  updated: "2026-10-26",
+  updated: "2026-10-27",
   intro:
     "Both are True RMS Fluke meters with a strong reputation among electricians, but they're built for different tiers of work. The 117 is tuned for residential and light commercial wiring, with VoltAlert non-contact voltage detection and a low-impedance AutoVolt input as its standout features. The 179 is the full-featured member of Fluke's 170 series: CAT IV 600V, temperature, frequency to 100 kHz, tighter DC accuracy and a lifetime warranty, aimed at industrial maintenance, HVAC and electronics as much as building wiring.",
   a: {
@@ -214,6 +214,106 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 117 vs 179 for HVAC technicians</h2>
+        <p className="text-muted leading-7 mb-4">
+          An HVAC service call asks a meter for four things: capacitance for run and start capacitors, temperature,
+          a clean voltage reading on long control runs, and microamps for the furnace flame sensor. The 117 and 179
+          split those four between them, and neither covers all of them, which is the most useful thing to know
+          before buying either for HVAC work.
+        </p>
+        <DataTable
+          head={["HVAC check", "Fluke 117", "Fluke 179"]}
+          rows={[
+            ["Run or start capacitor", "1 nF to 9,999 µF, ±(1.9% + 2)", "To 10,000 µF, ±(1.2% + 2)"],
+            ["Supply/return air or line temp", "No temperature", "−40 °C to 400 °C"],
+            ["Ghost voltage on thermostat wire", "LoZ AutoVolt, about 3 kΩ", "No LoZ"],
+            ["Flame-sensor microamps", "No: 1 mA steps", "No: 0.01 mA steps"],
+            ["Cycling load or brownout", "Min/Max/Avg", "Min/Max-Average"],
+            ["Condenser or RTU disconnect", "CAT III 600V", "CAT III 1000V / CAT IV 600V"],
+            ["Live-wire check before work", "VoltAlert NCV", "Carry a pen tester"],
+          ]}
+        />
+        <div className="mt-4">
+          <Figure caption={<>Capacitance accuracy, percent-of-reading term. Lower is better.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 117", value: 1.9, display: "±1.9% + 2" },
+                { label: "Fluke 179", value: 1.2, display: "±1.2% + 2", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Capacitors first, since they are the most common failure on a no-cool call. Take a 45 µF run capacitor as
+          an illustrative example. The percentage term alone allows about ±0.86 µF on the 117 and ±0.54 µF on the
+          179, before the two-count term. Run capacitors are commonly printed with a ±5% or ±6% tolerance, roughly
+          ±2.3 to ±2.7 µF on a 45 µF can, so both meters give a clear pass or fail. Capacitance is not a reason to
+          choose one over the other.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Flame sensors are the trap. Flame-rectification current is typically a few microamps, and a useful reading
+          needs a µA range with 0.1 µA resolution. The 117&apos;s finest step is 1 mA and the 179&apos;s is 0.01 mA,
+          which is 10 µA, so on a sensor running at, say, 3 µA both meters would show zero. If you service furnaces,
+          plan on a meter with a microamp range, such as the Fluke 116 or the Fluke 87V. Our{" "}
+          <Link href="/multimeters/best-multimeter-for-hvac-technicians" className={link}>
+            best multimeter for HVAC technicians
+          </Link>{" "}
+          ranking is built around exactly that requirement.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          On safety ratings, both cover the work. Rooftop units, condensers and air handlers are fixed equipment fed
+          from the building&apos;s distribution, which is CAT III territory, and both meters are rated there at 600 V
+          or above, enough for 208, 240 and 480 V equipment. The 179&apos;s extra CAT IV rating matters to an HVAC tech
+          only if they also probe the service entrance. Where the 117 earns its place is low-voltage controls: a
+          24 V thermostat cable run beside line-voltage wiring can show a phantom reading on a high-impedance meter
+          like the 179, and the 117&apos;s LoZ position collapses it.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Temperature measurement compared</h2>
+        <p className="text-muted leading-7 mb-4">
+          This comparison is one-sided: the Fluke 117 has no temperature function at all. Fluke&apos;s 110 Series
+          datasheet gives the thermocouple input to the Fluke 116 only, so if you need temperature in that body,
+          the 116 is the model to buy. The 179 measures temperature with a thermocouple supplied in the box.
+        </p>
+        <DataTable
+          head={["Temperature spec", "Fluke 117", "Fluke 179"]}
+          rows={[
+            ["Temperature function", "No", "Yes"],
+            ["Range (meter)", "Not applicable", "−40 °C to 400 °C (−40 °F to 752 °F)"],
+            ["Probe in the box", "None", "Thermocouple supplied"],
+            ["Probe type and rating", "Not applicable", "Not stated in our sources"],
+            ["Temperature accuracy", "Not applicable", "Not stated in our sources"],
+          ]}
+        />
+        <div className="mt-4">
+          <Figure caption={<>Upper limit of the meter&apos;s temperature range, °C, per Fluke. The Fluke 117 has none.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 117", value: 0, display: "None" },
+                { label: "Fluke 116", value: 400, display: "400 °C" },
+                { label: "Fluke 179", value: 400, display: "400 °C", highlight: true },
+                { label: "Fluke 87V", value: 1090, display: "1090 °C" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          For HVAC, −40 °C to 400 °C on the 179 comfortably spans supply and return air, refrigerant line
+          temperatures for superheat and subcooling, and heat-exchanger surfaces. Two caveats. First, the range above
+          is the meter&apos;s; a thermocouple probe carries its own rating, and we haven&apos;t confirmed the rating
+          of the probe Fluke ships with the 179, so check the probe before measuring anything hot. Second, with one
+          input you take readings in sequence: for a temperature split across a coil (commonly targeted around 15 to
+          20 °F on cooling), read return air, move the probe, then read supply air. If you need wider range, the{" "}
+          <Link href="/multimeters/fluke-87v-vs-fluke-179" className={link}>
+            Fluke 87V vs 179
+          </Link>{" "}
+          comparison covers the 87V&apos;s −200 °C to 1090 °C input.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Which one for which electrician</h2>
         <DataTable
           head={["Work type", "Better fit", "Why"]}
@@ -268,12 +368,34 @@ const comparison: ProductComparisonContent = {
       answer:
         "The 179. Fluke lists a lifetime warranty for it against three years for the 117. Over a long career that's a real difference, though both are built for daily field use. Choosing the 117 for VoltAlert and LoZ means accepting the shorter term; choosing the 179 for CAT IV and temperature brings the longer one with it.",
     },
+    {
+      question: "Is the Fluke 117 or 179 better for HVAC work?",
+      answer:
+        "For most HVAC techs, the 179, because it measures temperature and reads capacitance slightly more accurately, ±(1.2% + 2) against ±(1.9% + 2). The 117 wins only on control wiring, where its LoZ position clears ghost voltage on long thermostat runs. Neither has a microamp range, so furnace flame-sensor checks need a third meter such as the Fluke 116 or 87V.",
+    },
+    {
+      question: "Can the Fluke 179 test a furnace flame sensor?",
+      answer:
+        "Not usefully. Its finest current step is 0.01 mA, which is 10 µA, and Fluke lists no microamp range. Flame-sensor current is typically a few microamps, so the 179 would read zero or a single count. Use a meter with a µA range and 0.1 µA resolution, such as the Fluke 116 or Fluke 87V, in series with the flame rod lead.",
+    },
+    {
+      question: "Does the Fluke 117 measure temperature?",
+      answer:
+        "No. Fluke's 110 Series datasheet gives the thermocouple input to the Fluke 116, not the 117. The 179 reads −40 °C to 400 °C with a thermocouple in the box. If you want a 110 Series body with LoZ plus temperature and microamps, the 116 is the HVAC model in that family.",
+    },
+    {
+      question: "What temperature probe comes with the Fluke 179?",
+      answer:
+        "Fluke says the 179 ships with a thermocouple, and the meter reads −40 °C to 400 °C. We haven't confirmed the supplied probe's type or its own temperature rating from Fluke's specifications, so treat that as not stated. A probe can be rated lower than the meter, so check the marking on the probe before measuring hot surfaces or flue gas.",
+    },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },
   related: [
     { label: "Fluke 17B+ vs Fluke 179", href: "/multimeters/fluke-17b-plus-vs-fluke-179" },
     { label: "Fluke 117 vs Fluke 87V", href: "/multimeters/fluke-117-vs-fluke-87v" },
+    { label: "Fluke 87V vs Fluke 179", href: "/multimeters/fluke-87v-vs-fluke-179" },
     { label: "Best multimeter for electricians", href: "/multimeters/best-multimeter-for-electricians" },
+    { label: "Best multimeter for HVAC technicians", href: "/multimeters/best-multimeter-for-hvac-technicians" },
   ],
 };
 

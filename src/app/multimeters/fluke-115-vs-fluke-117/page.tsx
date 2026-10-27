@@ -21,7 +21,7 @@ const path = "/multimeters/fluke-115-vs-fluke-117";
 export const metadata = buildMetadata({
   title: "Fluke 117 vs 115: Which Fluke Should You Buy?",
   description:
-    "Fluke 117 vs Fluke 115: the same True RMS, CAT III 600V, 6,000-count core. The 117 adds VoltAlert NCV, LoZ and AutoVolt. Specs, diagrams and who needs which.",
+    "Fluke 117 vs 115 for electricians and home testing: same True RMS, CAT III 600V core; the 117 adds VoltAlert NCV, LoZ and AutoVolt. Specs, charts, verdict.",
   path: "/multimeters/fluke-115-vs-fluke-117",
 });
 
@@ -152,6 +152,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 117 vs Fluke 115",
   path,
   published: "2026-10-25",
+  updated: "2026-10-27",
   intro:
     "The Fluke 117 and Fluke 115 have identical core specs: True RMS, CAT III 600V, a 6,000-count display with bar graph, 10A current, capacitance to 9,999 µF and frequency, all with the same accuracy. The 117 adds three features for electricians: VoltAlert non-contact voltage detection, a low-impedance (LoZ) input that suppresses ghost voltage, and AutoVolt automatic AC/DC selection. Same body, same battery, same 3-year warranty; the choice is whether you'll use those three extras.",
   a: {
@@ -411,6 +412,158 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 115 vs Fluke 117 for electricians</h2>
+        <p className="text-muted leading-7 mb-4">
+          On a panel or a branch circuit, the two meters carry the same protection. Both are rated CAT III 600V, which
+          covers distribution panels, feeders, fixed wiring and receptacle circuits, and neither
+          carries a CAT IV rating, so neither belongs on the line side of the meter base or the service drop. What
+          changes on an electrician&apos;s day is how fast each meter gets you to a trustworthy answer.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          Three jobs show the gap. First, finding which cord, receptacle or fixture whip is still energized: the 117
+          answers from its top edge with VoltAlert before the leads come out of the pouch, while the 115 owner probes
+          each point or carries a separate pen. Second, a reading on a conductor that should be dead, such as a switch
+          leg or an abandoned run pulled through a pipe with live circuits: on the 117, AutoVolt&apos;s roughly 3 kΩ
+          input tells a coupled phantom from a real backfeed; on the 115 you have to add a load across the leads to
+          find out. Third, a control cabinet that mixes 24 V AC transformer secondaries with DC sensor supplies: the
+          117&apos;s AutoVolt position reads either without a dial change, while the 115 needs V AC or V DC chosen for
+          each point.
+        </p>
+        <DataTable
+          head={["Panel task", "Fluke 117", "Fluke 115"]}
+          rows={[
+            ["Find a live cord or box", "VoltAlert, no leads", "Leads or separate pen"],
+            ["Prove dead before work", "Leads, live-dead-live", "Leads, live-dead-live"],
+            ["Suspect a ghost reading", "AutoVolt LoZ, ≈3 kΩ", "Add a load yourself"],
+            ["Mixed AC/DC controls", "AutoVolt picks AC or DC", "Set V AC or V DC"],
+            ["Motor or heater amps", "In series, to 10 A", "In series, to 10 A"],
+            ["Meter base, service drop", "No (CAT III only)", "No (CAT III only)"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          Two rows are identical, and they matter as much as the four that differ. Neither meter&apos;s extras replace
+          the live-dead-live test with the leads, and both measure current only in series through the A jack, on a top range of 10.00 A
+          with 20 A allowed for 30 seconds. On feeders and larger motor circuits that means a clamp meter
+          does the amps job; see our{" "}
+          <Link href="/multimeters/best-multimeter-for-electricians" className={link}>
+            electrician&apos;s multimeter guide
+          </Link>{" "}
+          for pairings. For a journeyman or apprentice doing branch-circuit and panel work most days, the 117 is the
+          better match. The 115 holds up for an electrician who already wears a pen tester and knows to load-test any
+          surprise reading.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">True RMS differences explained</h2>
+        <p className="text-muted leading-7 mb-4">
+          Both meters are True RMS: our Pick data lists &quot;True RMS&quot; for the Fluke 115 and the Fluke 117, and
+          Fluke&apos;s datasheet applies it to AC volts and AC amps on both. True RMS means the meter computes the
+          heating-equivalent value of whatever waveform is on the leads. An average-responding meter instead assumes a
+          clean sine and scales the average, so it drifts when the waveform isn&apos;t one.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          That matters on the loads electricians now meet daily. A variable-frequency drive chops its output into
+          pulses. LED drivers and switch-mode supplies draw current in short, tall peaks near the top of each cycle
+          rather than a smooth sine. On those circuits, the AC volts and especially the AC amps readings from either
+          Fluke stay trustworthy within spec. The difference between the two meters is not True RMS; it is which dial
+          position you read from.
+        </p>
+        <DataTable
+          head={["AC function", "Fluke 117", "Fluke 115"]}
+          rows={[
+            ["V AC, 45 to 500 Hz", "±(1.0% + 3)", "±(1.0% + 3)"],
+            ["V AC, 500 Hz to 1 kHz", "±(2.0% + 3)", "±(2.0% + 3)"],
+            ["A AC, 45 to 500 Hz", "±(1.5% + 3)", "±(1.5% + 3)"],
+            ["AutoVolt (LoZ)", "±(2.0% + 3)", "Not available"],
+            ["Low-pass (VFD) filter", "Not listed", "Not listed"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          Worked from those figures for a 277 V LED lighting circuit on the 600.0 V range, where one count is 0.1 V:
+          the dedicated V AC position on either meter allows 1.0% of 277 (2.77 V) plus 3 counts (0.3 V), so about
+          ±3.1 V. The 117&apos;s AutoVolt position allows 2.0% of 277 (5.54 V) plus 0.3 V, so about ±5.8 V. For a
+          go/no-go check AutoVolt is fine. For a voltage-drop calculation or a drive-input reading you&apos;ll write
+          down, switch the 117 to V AC, where it matches the 115 exactly.
+        </p>
+        <div className="mt-4">
+          <Figure caption={<>Allowed error on a 277 V AC reading, per Fluke&apos;s accuracy lines. Lower is better.</>}>
+            <BarChart
+              items={[
+                { label: "V AC, either meter", value: 3.07, display: "±3.1 V", highlight: true },
+                { label: "V AC, 0.5 to 1 kHz", value: 5.84, display: "±5.8 V" },
+                { label: "AutoVolt (117)", value: 5.84, display: "±5.8 V" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Two limits apply to both meters equally. The quoted bands start at 45 Hz, so a drive slowed below that runs
+          outside the figures we cite. And neither meter lists a low-pass filter, which keeps a drive&apos;s switching
+          edges out of the reading on the motor side; the Fluke 87V has one, which is why it leads our{" "}
+          <Link href="/multimeters/fluke-117-vs-fluke-87v" className={link}>
+            Fluke 117 vs Fluke 87V
+          </Link>{" "}
+          comparison for drive work. On the supply side of a drive, or on LED and electronic-ballast circuits, either
+          True RMS Fluke is the right tool. Our{" "}
+          <Link href="/multimeters/best-true-rms-multimeters-under-100" className={link}>
+            budget True RMS multimeters
+          </Link>{" "}
+          guide covers lower-cost alternatives.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 115 vs 117 for home electrical testing</h2>
+        <p className="text-muted leading-7 mb-4">
+          Most homeowners buy a meter for five jobs: checking that a receptacle has power, confirming a breaker really
+          killed a circuit, testing appliance parts such as heating elements and fuses, checking batteries, and
+          chasing a nuisance trip. Both meters do the measuring part of every one of those identically. The
+          difference shows up in the two moments where home wiring most often fools people.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          The first is &quot;is it off?&quot;. After flipping a breaker, the 117 lets you sweep the receptacle or
+          switch box with VoltAlert to confirm the circuit you killed is the one you&apos;re about to touch, then prove
+          it with the leads. The second is the half-dead outlet that reads 30 or 40 volts: on house wiring that is
+          often coupling from a neighboring cable, and the 117&apos;s LoZ position shows whether it is real. On a 115
+          you can still get there, but you need a separate non-contact tester and a load-test habit.
+        </p>
+        <DataTable
+          head={["Home task", "What it uses", "115", "117"]}
+          rows={[
+            ["Receptacle has power?", "V AC", "Yes", "Yes, + VoltAlert"],
+            ["Breaker killed it?", "V AC, live-dead-live", "Yes", "Yes, + VoltAlert"],
+            ["Odd 30–40 V reading", "LoZ check", "Load-test it", "AutoVolt LoZ"],
+            ["Heater element, fuse", "Ω, continuity", "Yes", "Yes"],
+            ["Run capacitor", "Capacitance", "Yes", "Yes"],
+            ["AA, 9 V, car battery", "V DC", "Yes", "Yes"],
+            ["1,500 W heater amps", "A in series", "Over 10 A", "Over 10 A"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The last row is worth the arithmetic. A 1,500 W space heater on 120 V draws 1,500 ÷ 120 = 12.5 A, which is
+          above both meters&apos; 10.00 A range; Fluke allows 20 A for only 30 seconds. Measuring it means
+          breaking the circuit and routing the full load through the meter, so a homeowner is better served by a
+          clamp meter for appliance current. For tripping breakers, start with our guide to{" "}
+          <Link href="/multimeters/why-does-a-circuit-breaker-keep-tripping" className={link}>
+            why a circuit breaker keeps tripping
+          </Link>
+          .
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Which is enough? If you will open receptacle and switch boxes yourself, the 117 is the one we recommend,
+          because its two extras target exactly the checks that keep you safe. If your work stops at unplugged
+          appliances, cords, batteries and reading outlets with the leads, and you already own a pen tester, the 115
+          is plenty, and it usually costs less. Both are more meter than many homes need;
+          our{" "}
+          <Link href="/multimeters/best-multimeter-for-home-use" className={link}>
+            best multimeter for home use
+          </Link>{" "}
+          guide covers simpler options, and anything at the panel itself is a job for a licensed electrician.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 115 vs 117: which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -544,6 +697,26 @@ const comparison: ProductComparisonContent = {
       question: "Do the Fluke 115 and 117 have the same accuracy?",
       answer:
         "Yes, for every shared function. Fluke's datasheet gives one accuracy line for both: DC volts ±(0.5% + 2), resistance ±(0.9% + 1), capacitance ±(1.9% + 2) and frequency ±(0.1% + 2). The only extra line on the 117 is AutoVolt, which is looser at ±(2.0% + 3) because it trades precision for speed.",
+    },
+    {
+      question: "Is the Fluke 117 more accurate than the 115 on VFD and LED circuits?",
+      answer:
+        "No. Both are True RMS with the same AC accuracy, ±(1.0% + 3) on volts and ±(1.5% + 3) on amps from 45 to 500 Hz. The only AC line that differs is the 117's AutoVolt position at ±(2.0% + 3), which is looser. Neither lists a low-pass filter for a drive's motor side; for that, look at the Fluke 87V.",
+    },
+    {
+      question: "Can an electrician use the Fluke 115 or 117 in a panel?",
+      answer:
+        "Yes. Both are rated CAT III 600V, which covers distribution panels, feeders and branch circuits. Neither is rated CAT IV, so keep both off the meter base and service drop. The 117 is quicker in a panel because VoltAlert finds live conductors without the leads and its LoZ AutoVolt position separates ghost voltage from a real backfeed.",
+    },
+    {
+      question: "Is the Fluke 115 enough for a homeowner?",
+      answer:
+        "For appliances, cords, batteries and reading outlets with the leads, yes: it measures everything the 117 does, with the same accuracy. If you will open switch and receptacle boxes yourself, the 117's VoltAlert and LoZ make the 'is it really off?' check faster and harder to get wrong. Either way, prove dead with the leads before touching.",
+    },
+    {
+      question: "Can the Fluke 117 measure a space heater's current?",
+      answer:
+        "Not a typical 1,500 W heater on 120 V. That draws about 12.5 A, above the 117's 10.00 A range, and Fluke allows 20 A for only 30 seconds. The 115 has the same limit. Measuring in series also means opening the circuit, so a clamp meter is the safer, easier tool for appliance current at home.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

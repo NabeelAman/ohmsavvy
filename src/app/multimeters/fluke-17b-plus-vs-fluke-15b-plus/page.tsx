@@ -273,7 +273,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "What is the difference between the Fluke 17B+ and 15B+?",
       answer:
-        "The 17B+ adds temperature with a Type K probe, frequency to 100 kHz, duty cycle, MIN MAX recording, relative mode and a 30V hazardous-voltage LED. The case, safety rating, 4,000-count display, current ranges from 400 µA to 10 A, capacitance range, fuses, battery life and two-year warranty are the same, and so is every shared accuracy figure.",
+        "The 17B+ adds temperature with a Type K probe, frequency to 100 kHz, duty cycle, MIN MAX recording, relative mode and a 30V hazardous-voltage LED. The case, safety rating, 4,000-count display, current ranges from 400 µA to 10 A, capacitance range, fuses, battery life and one-year warranty are the same, and so is every shared accuracy figure.",
     },
     {
       question: "Are the Fluke 17B+ and 15B+ True RMS?",

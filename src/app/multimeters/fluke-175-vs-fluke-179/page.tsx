@@ -4,8 +4,9 @@
 //   (fluke.com 175 page, checked 2026-10-27): True RMS AC V and AC A; DC V ±(0.15% + 2); AC V ±(1.0% + 3);
 //   DC A ±(1.0% + 3); AC A ±(1.5% + 3); 0.01 mA res; 10 A; 50 MΩ ±(0.9% + 1); 1 nF to 10,000 µF ±(1.2% + 2);
 //   100 kHz ±(0.1% + 1); Hold, Auto Hold, Min/Max-average; CAT III 1000 V / CAT IV 600 V; 9 V, about 200 h
-//   "without backlight"; 43 × 90 × 185 mm; 420 g; lifetime warranty. Display count and backlight not stated; the
-//   Amazon listing photo shows no backlight key.
+//   "without backlight"; 43 × 90 × 185 mm; 420 g; lifetime warranty.
+// - Fluke 170 Series detailed specifications (Fluke Pub 10824-eng, via farnell.com/datasheets/2631819.pdf): the
+//   backlight is on the 177 and 179 only; the 175 shares the 6,000-count display with 33-segment bar graph.
 // - Fluke 177 (middle rung, mentioned only): same table except DC V ±(0.09% + 2), 6,000 counts, backlight
 //   (per /multimeters/fluke-175-vs-fluke-177).
 // - Fluke 179: the Fluke 179 Pick in src/app/multimeters/best-multimeters/page.tsx ("Specs per fluke.com (Fluke 179
@@ -15,8 +16,8 @@
 //   (no µA range). Conflicts on Fluke's 179 page: comparison table says 9,999 µF, "400 °F" and lists µA.
 // - 80BK probe range: /multimeters/fluke-87v-vs-fluke-179 gives −40 °C to 260 °C; /multimeters/fluke-177-vs-fluke-179
 //   says Fluke's 179 page doesn't state it. Both positions are reported on the page.
-// Worked figures use only the percentage-of-reading term, because the 175's display count (and so its count term in
-// volts) is not stated. They are best-case figures from Fluke's "best accuracy" lines, not per-range guarantees.
+// Worked figures use only the percentage-of-reading term: both meters share 6,000 counts and the same +2 count term,
+// so the percentage term is the whole difference. They are best-case figures from Fluke's "best accuracy" lines.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
@@ -109,8 +110,8 @@ const comparison: ProductComparisonContent = {
   extraSpecs: [
     { label: "Temperature", a: "−40 °C to 400 °C, ±(1.0% + 10), 0.1 °C res", b: "None" },
     { label: "Temperature probe", a: "80BK included", b: "None" },
-    { label: "Backlight", a: "Yes", b: "Not stated (no key in listing photo)" },
-    { label: "Display count", a: "6,000, analog bar graph", b: "Not stated" },
+    { label: "Backlight", a: "Yes", b: "No (177 and 179 only)" },
+    { label: "Display count", a: "6,000, analog bar graph", b: "6,000, 33-segment bar graph" },
     { label: "DC volts", a: "±(0.09% + 2), 1000 V", b: "±(0.15% + 2), 1000 V" },
     { label: "AC volts, True RMS", a: "±(1.0% + 3), 1000 V", b: "±(1.0% + 3), 1000 V" },
     { label: "Current", a: "0.01 mA res to 10 A; no µA range", b: "0.01 mA res to 10 A; no µA range" },
@@ -125,7 +126,7 @@ const comparison: ProductComparisonContent = {
     "Temperature is the only new function: the 179 reads −40 °C to 400 °C at ±(1.0% + 10) with 0.1 °C resolution, and Fluke packs the 80BK probe with it. The 175 has no thermocouple input.",
     "The 179 has a backlit display. Fluke's 175 page never mentions a backlight, and the 175's Amazon listing photo shows no backlight key.",
     "DC volts: ±(0.09% + 2) on the 179 against ±(0.15% + 2) on the 175, a percentage term 40% smaller.",
-    "Fluke states 6,000 counts with an analog bar graph for the 179; it doesn't publish a count for the 175.",
+    "Display: both read to 6,000 counts with a 33-segment bar graph, but only the 179 is backlit (per Fluke's 170 Series specifications).",
     "Identical on both: True RMS AC, every current, resistance, capacitance and frequency line, CAT III 1000V / CAT IV 600V, size, weight, battery and lifetime warranty. Neither has a µA range; both stop at 0.01 mA.",
     "Fluke's 179 page has internal conflicts (9,999 µF, 400 °F and a µA entry in its comparison table). We follow its spec table, which matches the 175 and 177 pages.",
   ],
@@ -144,7 +145,6 @@ const comparison: ProductComparisonContent = {
             ["Temperature, −40 to 400 °C, 80BK probe", "HVAC, motor and maintenance techs", "You own a thermometer or never check heat"],
             ["Backlit display", "Panels, attics, crawlspaces, footwells", "You work at a lit bench or outdoors by day"],
             ["0.09% DC volts (vs 0.15%)", "Checking regulated supplies to a tolerance", "Your DC work is batteries and controls"],
-            ["Stated 6,000-count display", "Buyers who want the count on paper", "You trust Fluke's 0.1 mV resolution line"],
           ]}
         />
         <p className="text-muted leading-7 mt-4">
@@ -182,9 +182,8 @@ const comparison: ProductComparisonContent = {
       <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 175 vs 179 differences in DC accuracy</h2>
         <p className="text-muted leading-7 mb-4">
-          Both meters quote DC volts as a percentage of the reading plus two counts. Since the count term is written the
-          same way on both and Fluke doesn&apos;t give the 175&apos;s display count, the fair comparison is the
-          percentage term alone. Here it is for readings that span low-voltage electronics to a high-voltage DC string:
+          Both meters quote DC volts as a percentage of the reading plus two counts, on the same 6,000-count display.
+          With the count term identical, the whole difference sits in the percentage term. Here it is for readings that span low-voltage electronics to a high-voltage DC string:
         </p>
         <DataTable
           head={["DC reading", "175: 0.15% of reading", "179: 0.09% of reading", "179 tighter by"]}
@@ -261,9 +260,9 @@ const comparison: ProductComparisonContent = {
           suggests.
         </p>
         <p className="text-muted leading-7">
-          The display count matters less than it sounds. Fluke lists 0.1 mV best DC resolution for both meters, but it
-          states 6,000 counts only for the 177 and 179. We list the 175&apos;s count as not stated rather than assume it
-          matches; if it matters to you, the 175 users manual is the place to confirm it before buying.
+          The display itself is not an upgrade. Fluke&apos;s 170 Series specifications give all three models the same
+          6,000-count readout with a 33-segment bar graph and 0.1 mV best DC resolution; the backlight is the only
+          display difference, and it comes with the 177 and 179.
         </p>
       </section>
 

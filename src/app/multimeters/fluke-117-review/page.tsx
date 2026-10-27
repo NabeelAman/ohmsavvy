@@ -7,12 +7,14 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { buildMetadata } from "@/lib/metadata";
+import { localeAlternates } from "@/lib/i18n";
 import { picks } from "../best-multimeters/page";
 
 export const metadata = buildMetadata({
   title: "Fluke 117 Review",
   description: "A detailed look at the Fluke 117's True RMS accuracy, CAT III 600V rating, and NCV detection, and who it's actually worth buying for.",
   path: "/multimeters/fluke-117-review",
+  languages: localeAlternates("/multimeters/fluke-117-review"),
   image: picks.find((p) => p.name === "Fluke 117")?.image,
 });
 

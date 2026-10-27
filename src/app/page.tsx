@@ -15,6 +15,10 @@ import { productImageSrc, skipOptimizer } from "@/lib/images";
 import { picks as multimeterPicks } from "./multimeters/best-multimeters/page";
 import { picks as solderingIronPicks } from "./soldering-irons/best-soldering-irons/page";
 import { picks as oscilloscopePicks } from "./oscilloscopes/best-beginner-oscilloscopes/page";
+import { localeAlternates } from "@/lib/i18n";
+
+// Return hreflang links to the translated homepages (they already point here); without them Google ignores the set.
+export const metadata = { alternates: { canonical: "/", languages: localeAlternates("/") } };
 
 type Tone = { text: string; bg: string; border: string; soft: string };
 

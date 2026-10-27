@@ -206,7 +206,7 @@ const workflow = {
           conditions: [
             {
               id: "d1",
-              leftValue: "={{ $('Config').first().json.dryRun }}",
+              leftValue: "={{ $('Config').first().json.dryRun || $execution.mode === 'manual' }}",
               rightValue: true,
               operator: { type: "boolean", operation: "true", singleValue: true },
             },

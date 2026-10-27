@@ -9,8 +9,8 @@
 // with manual override; 50 Ω range at 1 mΩ resolution with 10 mA test current, REL lead zeroing, two-terminal (not
 // Kelvin); 500 µA range at 0.01 µA resolution, burden about 102 µV per µA; TrendCapture on-meter logging; LoZ;
 // low-pass filter. 100 mF capacitance per the Fluke 287 Pick ("shares the 289's ... 100 mF capacitance").
-// Everything else for the 289 (weight, battery life, warranty, frequency, temperature, AC accuracy) is "Not stated"
-// in our data.
+// 289 accuracy, frequency, temperature, peak capture, weight, battery and warranty per the Fluke 287/289 Users Manual
+// (Rev. 2, 3/09), as cited in /multimeters/fluke-289-vs-fluke-287 (updated 2026-10-28). Max current: not stated there.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
@@ -103,22 +103,22 @@ const comparison: ProductComparisonContent = {
   },
   extraSpecs: [
     { label: "Display", a: "6,000 counts; 19,999 high-res mode; 32-segment bar graph", b: "50,000 counts" },
-    { label: "Basic DC volts accuracy", a: "±(0.05% + 1)", b: "0.025% (digit term not stated)" },
-    { label: "AC volts accuracy", a: "±(0.7% + 2), True RMS", b: "True RMS; figure not stated" },
+    { label: "Basic DC volts accuracy", a: "±(0.05% + 1)", b: "±(0.025% + 2) on 500 mV to 50 V" },
+    { label: "AC volts accuracy", a: "±(0.7% + 2), True RMS", b: "±(0.3% + 25), 45–65 Hz, True RMS" },
     { label: "On-meter logging", a: "None listed", b: "Yes, TrendCapture graphs logged readings" },
-    { label: "Low-pass filter", a: "Yes, 3 dB at 1 kHz", b: "Yes; cutoff not stated" },
+    { label: "Low-pass filter", a: "Yes, 3 dB at 1 kHz", b: "Yes; blocks above 1 kHz (manual range)" },
     { label: "LoZ (ghost-voltage) mode", a: "Not listed by Fluke", b: "Yes" },
     { label: "Low-ohm range", a: "None listed; resistance to 50 MΩ", b: "50 Ω range, 1 mΩ resolution, 10 mA test current" },
     { label: "Microamp resolution", a: "0.01 µA DC", b: "0.01 µA on the 500 µA range" },
     { label: "µA burden voltage", a: "Not stated", b: "About 102 µV per µA" },
     { label: "Capacitance", a: "Up to 9,999 µF", b: "Up to 100 mF" },
-    { label: "Frequency", a: "Up to 200 kHz", b: "Not stated" },
-    { label: "Temperature", a: "−200 °C to 1090 °C (excluding probe)", b: "Not stated" },
-    { label: "Peak capture", a: "250 µs", b: "Not stated" },
+    { label: "Frequency", a: "Up to 200 kHz", b: "0.5 Hz to 999.99 kHz" },
+    { label: "Temperature", a: "−200 °C to 1090 °C (excluding probe)", b: "−200 °C to 1350 °C (excluding probe)" },
+    { label: "Peak capture", a: "250 µs", b: "250 µs" },
     { label: "Max current", a: "10 A (20 A for 30 s)", b: "Not stated" },
-    { label: "Weight", a: "355 g (624 g in holster)", b: "Not stated" },
-    { label: "Battery life", a: "About 400 hours", b: "Not stated" },
-    { label: "Warranty", a: "Lifetime", b: "Not stated" },
+    { label: "Weight", a: "355 g (624 g in holster)", b: "871 g" },
+    { label: "Battery life", a: "About 400 hours", b: "6 AA; 100 h minimum, 200 h logging" },
+    { label: "Warranty", a: "Lifetime", b: "Lifetime limited (280 Series)" },
     { label: "OhmSavvy status", a: "Hands-on Tested", b: "Desk research against maker specs" },
   ],
   differences: [

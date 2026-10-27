@@ -96,12 +96,16 @@ const totalProducts = CATEGORIES.reduce((sum, c) => sum + c.picks.length, 0);
 const totalReviews = content.filter((e) => e.type === "review").length;
 const totalGuides = content.filter((e) => e.type !== "review" && e.type !== "comparison").length;
 
-// The most popular pick of each category (see `bestSeller`), shown in the hero so
-// the page leads with a buying answer; falls back to the editorial #1.
+// The hero leads with each category's editorial #1 (the hands-on-tested picks where we
+// have them), so the first products a visitor sees are our strongest. The category's
+// best seller (see `bestSeller`) stays visible as a "most popular" line when it differs.
 const topPicks = CATEGORIES.map((c) => {
-  const p = c.picks.find((x) => x.name === c.bestSeller && !x.unavailable) ?? c.picks[0];
+  const p = c.picks.find((x) => !x.unavailable) ?? c.picks[0];
   const link = pickLinkFor(p.name, c.category, c.roundup.href);
-  return { ...p, category: c.category, label: c.label, tone: c.tone, reviewHref: link.href, linkLabel: link.label };
+  const seller = c.picks.find((x) => x.name === c.bestSeller && !x.unavailable);
+  const popular =
+    seller && seller.name !== p.name ? { name: seller.name, href: pickLinkFor(seller.name, c.category, c.roundup.href).href } : null;
+  return { ...p, category: c.category, label: c.label, tone: c.tone, reviewHref: link.href, linkLabel: link.label, popular };
 });
 
 const quickLinks = [
@@ -266,15 +270,15 @@ export default function Home() {
             backgroundSize: "36px 36px",
           }}
         />
-        <div className="relative mx-auto max-w-6xl px-6 pt-14 sm:pt-20 pb-12 grid lg:grid-cols-[1fr_420px] gap-12 items-center">
+        <div className="relative mx-auto max-w-6xl px-6 pt-8 sm:pt-20 pb-12 grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-center">
           <div>
             <Eyebrow>ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</Eyebrow>
             <h1 className="text-4xl sm:text-5xl leading-[1.1] max-w-2xl">
               Find the right tool for your workbench, not the one with the biggest ad budget.
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted leading-7">
-              Independent reviews, comparisons and how-to guides for multimeters, soldering irons and oscilloscopes,
-              judged on the specs that actually matter so you can buy with confidence.
+            <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg text-muted leading-7">
+              Independent reviews, comparisons and how-to guides for multimeters, soldering irons and oscilloscopes
+              <span className="hidden sm:inline">, judged on the specs that actually matter so you can buy with confidence</span>.
             </p>
             <div className="mt-8">
               <HeroSearch />
@@ -296,7 +300,7 @@ export default function Home() {
 
           <div className="rounded-2xl border border-border bg-surface shadow-lg overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-surface-raised">
-              <p className="font-display text-xs uppercase tracking-wide text-accent">Most popular right now</p>
+              <p className="font-display text-xs uppercase tracking-wide text-accent">Our top picks right now</p>
               <Link prefetch={false} href="/about" className="text-[11px] text-muted hover:text-accent">How we pick →</Link>
             </div>
             <ul className="divide-y divide-border">
@@ -328,6 +332,14 @@ export default function Home() {
                       <Button href={p.ctaHref} className="px-3! py-1.5! text-xs!">Check price on Amazon</Button>
                       <Link prefetch={false} href={p.reviewHref} className="text-xs font-medium text-muted hover:text-accent">{p.linkLabel}</Link>
                     </div>
+                    {p.popular && (
+                      <p className="mt-2 text-[11px] text-muted">
+                        Most popular with buyers:{" "}
+                        <Link prefetch={false} href={p.popular.href} className="text-foreground hover:text-accent">
+                          {p.popular.name}
+                        </Link>
+                      </p>
+                    )}
                   </div>
                 </li>
               ))}

@@ -124,7 +124,7 @@ const comparison: ProductComparisonContent = {
   ],
   differences: [
     "Temperature is the only new function: the 179 reads −40 °C to 400 °C at ±(1.0% + 10) with 0.1 °C resolution, and Fluke packs the 80BK probe with it. The 175 has no thermocouple input.",
-    "The 179 has a backlit display. Fluke's 175 page never mentions a backlight, and the 175's Amazon listing photo shows no backlight key.",
+    "The 179 has a backlit display; Fluke's 170 Series specifications put the backlight on the 177 and 179 only, not the 175.",
     "DC volts: ±(0.09% + 2) on the 179 against ±(0.15% + 2) on the 175, a percentage term 40% smaller.",
     "Display: both read to 6,000 counts with a 33-segment bar graph, but only the 179 is backlit (per Fluke's 170 Series specifications).",
     "Identical on both: True RMS AC, every current, resistance, capacitance and frequency line, CAT III 1000V / CAT IV 600V, size, weight, battery and lifetime warranty. Neither has a µA range; both stop at 0.01 mA.",

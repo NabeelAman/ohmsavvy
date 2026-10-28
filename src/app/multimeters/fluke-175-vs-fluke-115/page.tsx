@@ -32,15 +32,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-175-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 175 vs Fluke 115 for Troubleshooting",
   description:
     "Fluke 175 vs 115 for everyday troubleshooting: the 175 adds milliamp ranges, 1000 V, CAT IV and 0.15% DC; the 115 adds a backlight and twice the battery life.",
+  image: all.find((p) => p.name === "Fluke 175")!.image,
   path: "/multimeters/fluke-175-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Illustrative: the same 14.37 mA signal on each meter's lowest current range. */
 function MilliampReadoutDiagram() {

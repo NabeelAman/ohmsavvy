@@ -36,15 +36,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-283-fc-vs-fluke-1587-fc";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 283 FC vs 1587 FC Comparison: PV or Motors",
   description:
     "Fluke 283 FC vs 1587 FC comparison for maintenance: a 1500 V solar kit with a wireless 60 A clamp against a 1000 V insulation multimeter with PI/DAR tests.",
+  image: all.find((p) => p.name === "Fluke 283 FC/PV")!.image,
   path: "/multimeters/fluke-283-fc-vs-fluke-1587-fc",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

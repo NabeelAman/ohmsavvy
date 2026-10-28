@@ -40,15 +40,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-789-vs-fluke-1587-fc";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 789 vs 1587 FC: Process or Insulation?",
   description:
     "Fluke 789 vs 1587 FC comparison: a 4–20 mA source with 24 V loop power against a 50–1000 V insulation tester. Who needs which, and who needs neither.",
+  image: all.find((p) => p.name === "Fluke 789")!.image,
   path: "/multimeters/fluke-789-vs-fluke-1587-fc",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Where each tool is used: the 789 sits in series with a powered 4-20 mA loop that keeps running; the 1587 FC is

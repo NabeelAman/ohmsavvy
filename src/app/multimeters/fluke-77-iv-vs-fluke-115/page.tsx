@@ -27,15 +27,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-77-iv-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 77 IV vs 115 Comparison: Field Repairs",
   description:
     "Fluke 77 IV vs 115 comparison for field repairs: 1000 V and milliamp steps against True RMS and a 3-year warranty, with worked tolerances and a clear verdict.",
+  image: all.find((p) => p.name === "Fluke 77 IV")!.image,
   path: "/multimeters/fluke-77-iv-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

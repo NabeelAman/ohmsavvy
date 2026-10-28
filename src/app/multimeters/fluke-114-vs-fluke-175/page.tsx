@@ -28,14 +28,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-114-vs-fluke-175";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 114 vs 175: Everyday Electrical Work",
   description:
     "Fluke 114 vs 175 comparison: a backlit LoZ voltage checker against a full True RMS meter with amps, capacitance, CAT IV 600V and a lifetime warranty.",
+  image: all.find((p) => p.name === "Fluke 114")!.image,
   path: "/multimeters/fluke-114-vs-fluke-175",
 });
 
-const all = getAllPicks("multimeters");
 const link = "text-accent hover:underline";
 
 const comparison: ProductComparisonContent = {

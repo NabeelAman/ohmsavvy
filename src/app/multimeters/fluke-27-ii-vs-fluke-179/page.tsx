@@ -32,15 +32,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-27-ii-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 27 II vs 179: Rugged or Versatile?",
   description:
     "Fluke 27 II vs 179 comparison: an IP67, MSHA-approved meter with microamps against a lighter True RMS meter with temperature. Specs, charts and who should buy.",
+  image: all.find((p) => p.name === "Fluke 27 II")!.image,
   path: "/multimeters/fluke-27-ii-vs-fluke-179",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

@@ -19,6 +19,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 101",
   description:
     "Fluke 117 vs Fluke 101: True RMS, amps, VoltAlert and LoZ against a 160 g Fluke with no current. Which suits beginners and electrical troubleshooting.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-101",
 });
 

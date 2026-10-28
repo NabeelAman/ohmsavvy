@@ -26,6 +26,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 179",
   description:
     "Fluke 17B+ vs Fluke 179 feature by feature and for electrical maintenance: True RMS, CAT IV, temperature, µA, Min/Max and warranty, and who needs which.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-179",
 });
 

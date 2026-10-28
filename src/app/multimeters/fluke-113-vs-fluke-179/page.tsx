@@ -25,15 +25,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-113-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 113 vs 179 Comparison: Useful Features",
   description:
     "Fluke 113 vs 179 comparison: a VCHEK utility meter with no amps against a True RMS meter with 10 A, temperature and 1000 V. Which features you will really use.",
+  image: all.find((p) => p.name === "Fluke 113")!.image,
   path: "/multimeters/fluke-113-vs-fluke-179",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Three-column overlap map: what only the 113 has, what both share, and what only the 179 adds. */
 function FeatureOverlapDiagram() {

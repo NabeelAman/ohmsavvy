@@ -27,14 +27,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-116-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 116 vs Fluke 179 for HVAC Troubleshooting",
   description:
     "Fluke 116 vs 179 comparison for HVAC work: the 116 reads flame-sensor microamps with LoZ; the 179 adds amps to 10 A, CAT IV 600V and a lifetime warranty.",
+  image: all.find((p) => p.name === "Fluke 116")!.image,
   path: "/multimeters/fluke-116-vs-fluke-179",
 });
 
-const all = getAllPicks("multimeters");
 const link = "text-accent hover:underline";
 
 /** Log-scale map of what each meter's current input can resolve, from 0.1 µA to 10 A. Bands are illustrative. */

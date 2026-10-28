@@ -39,15 +39,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-1587-fc-vs-fluke-289";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 1587 FC vs 289: Insulation or Logging?",
   description:
     "Fluke 1587 FC vs 289 comparison: a 1000 V insulation tester with PI/DAR against a 50,000-count logging meter with microamps and milliohms. Who needs which.",
+  image: all.find((p) => p.name === "Fluke 1587 FC")!.image,
   path: "/multimeters/fluke-1587-fc-vs-fluke-289",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

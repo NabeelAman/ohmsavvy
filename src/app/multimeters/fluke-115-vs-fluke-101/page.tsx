@@ -26,6 +26,7 @@ export const metadata = buildMetadata({
   title: "Fluke 115 vs Fluke 101: Which Should You Buy?",
   description:
     "Fluke 115 vs Fluke 101: a True RMS field meter with 10 A current against a 160 g pocket Fluke with no amps. Specs, electronics use, warranty and which to buy.",
+  image: picks.find((p) => p.name === "Fluke 115")!.image,
   path: "/multimeters/fluke-115-vs-fluke-101",
 });
 

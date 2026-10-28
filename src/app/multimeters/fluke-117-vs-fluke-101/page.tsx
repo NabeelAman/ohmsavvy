@@ -18,7 +18,7 @@ const path = "/multimeters/fluke-117-vs-fluke-101";
 export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 101",
   description:
-    "Fluke 117 vs Fluke 101: a True RMS meter that measures current against a 160 g Fluke with no amps. Which is better for beginners, and which you actually need.",
+    "Fluke 117 vs Fluke 101: True RMS, amps, VoltAlert and LoZ against a 160 g Fluke with no current. Which suits beginners and electrical troubleshooting.",
   path: "/multimeters/fluke-117-vs-fluke-101",
 });
 
@@ -67,7 +67,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 117 vs Fluke 101",
   path,
   published: "2026-10-22",
-  updated: "2026-10-27",
+  updated: "2026-10-29",
   intro:
     "Fluke 117 vs Fluke 101 comes down to two questions: do you need to measure current, and do you need True RMS? The 117 answers yes to both and adds NCV, AutoVolt and LoZ for building wiring. The 101 is Fluke's most basic meter, with no current function at all, but it reads frequency to 100 kHz and adds duty cycle and a diode test in a 160 g body.",
   a: {
@@ -308,6 +308,73 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 117 vs 101 for electrical troubleshooting</h2>
+        <p className="text-muted leading-7 mb-4">
+          Troubleshooting building wiring is less about taking one reading than about ruling causes out in order:
+          is power reaching the box, is the voltage real, does it hold under load, and what is the load drawing? The
+          101 can answer the first question with its leads. The 117 was designed around all four, and the table
+          walks through common faults to show where each meter runs out of answers.
+        </p>
+        <DataTable
+          head={["Fault you are chasing", "What to check", "Fluke 117", "Fluke 101"]}
+          rows={[
+            ["Dead receptacle", "Hot-neutral and hot-ground volts", "Leads, plus VoltAlert to trace the feed", "Leads only"],
+            ["Which cable in the box is live?", "Non-contact scan before touching", "VoltAlert, Lo or Hi sensitivity", "No NCV"],
+            ["Reading on a switched-off circuit", "Real feed or ghost voltage", "AutoVolt LoZ input, about 3 kΩ", "No LoZ: can't tell"],
+            ["Breaker trips when a load runs", "Running current", "6 A and 10 A ranges, True RMS", "No current function"],
+            ["Lights flicker now and then", "Voltage sag over time", "Min/Max/Avg, 33-segment bar graph", "Live digits only"],
+            ["Doorbell or thermostat transformer", "AC or DC low voltage", "AutoVolt picks AC or DC", "Select by hand"],
+            ["Open fuse or broken cord", "Continuity", "Yes", "Yes"],
+            ["Service entrance or meter base", "Category rating", "No: CAT III 600V", "No: CAT III 600V"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The ghost-voltage row is the one that trips people up. A conductor that is switched off but runs beside a
+          live one in conduit can pick up enough coupled voltage to show tens of volts on a high-impedance meter like
+          the 101. The 117&apos;s AutoVolt position puts roughly 3 kΩ across the leads. A genuine 120 V supply can push
+          120 / 3,000 = 0.04 A through that and keep its voltage; a coupled phantom can&apos;t, so its reading
+          collapses toward zero. That single check settles whether a dead-looking circuit is open or still fed.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Current is the other dividing line. A tripping breaker or a warm cord usually means you need to know what the
+          load draws, and only the 117 can tell you. Mind its limits, though: Fluke specifies a 10.00 A range, with an overload allowance of
+          20 A for no more than 30 seconds. A 1,500 W space heater on 120 V draws 1,500 / 120 = 12.5 A, so a reading
+          like that should be brief, and a clamp meter is the better tool for sustained loads above 10 A. Our guide to{" "}
+          <Link href="/multimeters/why-does-a-circuit-breaker-keep-tripping" className={link}>
+            why a circuit breaker keeps tripping
+          </Link>{" "}
+          lays out the full sequence.
+        </p>
+        <div className="mt-4 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Faults in the table above that each meter can fully work through on its own, out of eight.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 117", value: 7, display: "7 of 8", highlight: true },
+                { label: "Fluke 101", value: 3, display: "3 of 8" },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Current each meter can read, in amps, per Fluke. The 117&apos;s 20 A figure is a 30-second limit.</>}>
+            <BarChart
+              items={[
+                { label: "117 10 A range", value: 10, display: "10 A", highlight: true },
+                { label: "117 for 30 s", value: 20, display: "20 A" },
+                { label: "Fluke 101", value: 0, display: "None" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Neither meter is rated for the service side of the panel. For meter-base and main-disconnect checks, see the
+          CAT IV meters in our{" "}
+          <Link href="/multimeters/best-multimeter-for-electricians" className={link}>
+            best multimeter for electricians
+          </Link>{" "}
+          guide.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 117 or 101: which should you buy?</h2>
         <DataTable
           head={["You are…", "Better fit", "Why"]}
@@ -388,6 +455,16 @@ const comparison: ProductComparisonContent = {
       question: "Is the Fluke 117 too advanced for a beginner?",
       answer:
         "No. It is auto-ranging like the 101, and its extras are aimed at safety: VoltAlert flags live conductors and the LoZ AutoVolt position exposes phantom voltage. A beginner does need to learn two habits, checking which jack the red lead is in and proving dead with the leads, not the VoltAlert beep alone.",
+    },
+    {
+      question: "Can the Fluke 101 tell ghost voltage from a real feed?",
+      answer:
+        "No. The 101 has only a high-impedance voltage input, so a switched-off wire picking up coupled voltage from a neighbor can show a convincing reading. The Fluke 117's AutoVolt position loads the circuit with about 3 kΩ, which drags a phantom reading toward zero while a genuine supply holds steady. Without LoZ, you'd need a separate low-impedance tester.",
+    },
+    {
+      question: "Which is better for finding why a breaker keeps tripping, the Fluke 117 or 101?",
+      answer:
+        "The 117, because the usual first step is measuring what the load draws. It reads True RMS current on 6 A and 10 A ranges, with a 20 A allowance for up to 30 seconds, so you can compare the draw with the breaker rating. The 101 can confirm voltage and continuity but has no current function, so it can't show an overload.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

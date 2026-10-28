@@ -10,6 +10,11 @@
 // and /multimeters/fluke-175-vs-fluke-179 (Hold, Auto Hold, Min/Max-average; 33-segment bar graph at 40/s vs 4/s digits;
 // backlight; 0.01 mA best resolution, no µA range; 80BK probe). Duty cycle and relative mode are not listed for the 179.
 // Form-factor errors below are standard textbook values for an average-responding meter calibrated to read RMS on a sine.
+// Maintenance section (added 2026-10-29): 179 temperature ±(1.0% + 10) at 0.1 °C per /multimeters/fluke-175-vs-fluke-179;
+// 17B+ temperature bands and 440 mA / 11 A 1000 V fuses per /multimeters/fluke-17b-plus-vs-fluke-15b-plus; 170 Series
+// 60.00 mA range, 440 mA / 11 A 1000 V fuses, 8 kV surge protection and -10 to +50 °C operating per Fluke Pub_ID 10824-eng
+// (cited on /multimeters/fluke-175-vs-fluke-115). 80BK range: −40 to 260 °C per /multimeters/fluke-87v-vs-fluke-179, not on
+// the 179 page. No surge or operating-temperature figure for the 17B+ in our sources. Readings in worked examples are illustrative.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
@@ -20,7 +25,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 179",
   description:
-    "Fluke 17B+ vs Fluke 179 feature by feature: True RMS, temperature, µA, duty cycle, Min/Max, bar graph, CAT rating and warranty, and who needs which.",
+    "Fluke 17B+ vs Fluke 179 feature by feature and for electrical maintenance: True RMS, CAT IV, temperature, µA, Min/Max and warranty, and who needs which.",
   path: "/multimeters/fluke-17b-plus-vs-fluke-179",
 });
 
@@ -70,7 +75,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 17B+ vs Fluke 179",
   path: "/multimeters/fluke-17b-plus-vs-fluke-179",
   published: "2026-10-22",
-  updated: "2026-10-28",
+  updated: "2026-10-29",
   intro:
     "Both meters pack in features beyond basic voltage and resistance, including temperature and frequency, but they sit in different Fluke tiers. The 17B+ is a feature-rich entry-level meter that Fluke doesn't describe as True RMS. The 179 is the full-featured member of the 170 series: True RMS, a higher CAT rating, a wider capacitance range, tighter DC accuracy and Min/Max-Average recording. The AC measuring method matters more than the overlapping feature list suggests.",
   a: {
@@ -270,6 +275,79 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 17B+ vs 179 for electrical maintenance</h2>
+        <p className="text-muted leading-7 mb-4">
+          Maintenance work is repetitive by design: the same switchgear, motors and control panels checked on a
+          schedule, with readings compared against last quarter&apos;s. That shifts the priorities away from the
+          longest feature list and toward three things: where on the system the meter is allowed to probe, whether its
+          readings stay trustworthy on drive-fed equipment, and whether it will still be in the bag, and covered, in
+          ten years.
+        </p>
+        <DataTable
+          head={["Routine", "What it needs", "Fluke 17B+", "Fluke 179"]}
+          rows={[
+            ["Voltage at the service entrance or main disconnect", "CAT IV rating", "Not rated: CAT III 600V / CAT II 1000V", "CAT IV 600V"],
+            ["Feeder and panel checks up to 1000 V", "CAT III at the working voltage", "CAT III only to 600 V", "CAT III 1000V"],
+            ["Running amps on a drive-fed motor", "True RMS", "Not claimed by Fluke", "Yes"],
+            ["Motor frame and lug temperature", "Thermocouple input", "Type K, −55 to 400 °C", "80BK, −40 to 400 °C"],
+            ["Contactor that drops out at random", "Recording plus a fast display", "MIN MAX, digits only", "Min/Max-Average, 40/s bar graph"],
+            ["Motor start or run capacitor", "Capacitance range", "To 1,000 µF", "To 10,000 µF"],
+            ["Reading taken at arm's length", "Hold that captures on its own", "HOLD", "Hold and Auto Hold"],
+            ["4–20 mA control loop", "Milliamp resolution", "0.01 mA on 40.00 mA", "0.01 mA on 60.00 mA"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The first row decides the matter for many plant electricians. Quarterly checks often begin at the incoming
+          supply, and that is CAT IV territory: the 179 is rated for it at 600 V, while the 17B+ is not rated for it at
+          any voltage. The second row matters on 480 V systems, where the 179&apos;s CAT III 1000V gives headroom and
+          the 17B+ sits close to its 600 V CAT III ceiling.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Temperature is where both meters earn a place on a motor round. Fluke specifies the 179 at ±(1.0% + 10) with
+          0.1 °C resolution, so ten counts add 1.0 °C; the 17B+ uses ±(2% + 1 °C) from 50 to 400 °C. On an illustrative
+          70 °C reading at a motor frame, the 179 allows 0.7 + 1.0 = ±1.7 °C and the 17B+ allows 1.4 + 1 = ±2.4 °C. On
+          a 90 °C lug, it is ±1.9 °C against ±2.8 °C. Either is tight enough to spot one phase connection running much
+          hotter than its neighbors, which is the useful comparison. Check the probe too: Fluke&apos;s 179 page
+          doesn&apos;t state the 80BK&apos;s own range, and another Fluke source cited on our{" "}
+          <Link href="/multimeters/fluke-87v-vs-fluke-179" className={link}>
+            Fluke 87V vs Fluke 179
+          </Link>{" "}
+          page gives −40 to 260 °C.
+        </p>
+        <div className="mt-4 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Meter tolerance at two illustrative maintenance readings, °C, worked from Fluke&apos;s specs. Probe error is extra.</>}>
+            <BarChart
+              items={[
+                { label: "17B+ at 70 °C", value: 2.4, display: "±2.4 °C" },
+                { label: "179 at 70 °C", value: 1.7, display: "±1.7 °C", highlight: true },
+                { label: "17B+ at 90 °C", value: 2.8, display: "±2.8 °C" },
+                { label: "179 at 90 °C", value: 1.9, display: "±1.9 °C", highlight: true },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Highest voltage each meter is rated for at CAT III and CAT IV, per Fluke. The 17B+ has no CAT IV rating.</>}>
+            <BarChart
+              items={[
+                { label: "17B+ CAT III", value: 600, display: "600 V" },
+                { label: "179 CAT III", value: 1000, display: "1000 V", highlight: true },
+                { label: "17B+ CAT IV", value: 0, display: "None" },
+                { label: "179 CAT IV", value: 600, display: "600 V", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          On durability, the published record favors the 179. Fluke&apos;s 170 Series detailed specifications list
+          8 kV surge protection and an operating range of −10 to +50 °C for the family; we have no equivalent surge or
+          operating-temperature figure for the 17B+ in our sources, so treat those as not stated. Both meters protect
+          their current inputs with 440 mA and 11 A fuses rated at 1000 V. The warranty gap is the starkest line on
+          the page: one year on the 17B+, lifetime on the 179, which for a maintenance department means a meter that can
+          be returned for defects long after a 17B+ would have fallen out of cover. The 17B+ keeps one maintenance
+          advantage: two AA cells rated for at least 500 hours, against roughly 200 hours from the 179&apos;s 9 V.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Which should you buy?</h2>
         <DataTable
           head={["Situation", "Better fit", "Why"]}
@@ -337,6 +415,16 @@ const comparison: ProductComparisonContent = {
       question: "Does the Fluke 179 have a microamp range like the 17B+?",
       answer:
         "No. Fluke's spec table gives the 179 a finest current step of 0.01 mA, which is 10 µA, and no dedicated microamp range, although one comparison table on Fluke's page mentions µA. The 17B+ has 400.0 µA and 4000 µA ranges with 0.1 µA resolution at the bottom, so it suits small sensor and standby currents better.",
+    },
+    {
+      question: "Can I use the Fluke 17B+ at a service entrance or main disconnect?",
+      answer:
+        "No. Fluke rates the 17B+ CAT III 600V and CAT II 1000V, with no CAT IV rating, so it isn't meant for the meter base, service drop or line side of the main disconnect. The Fluke 179 carries CAT IV 600V for those points. Use leads rated at least as high as the meter, and leave service-entrance work to qualified electricians.",
+    },
+    {
+      question: "Is the Fluke 179 or 17B+ better for motor maintenance?",
+      answer:
+        "The 179 for most maintenance rounds. It is True RMS for drive-fed motors, reads capacitors to 10,000 µF, adds Auto Hold and a fast bar graph, and has a lifetime warranty. Both measure motor and connection temperature with a thermocouple; on a 70 °C reading Fluke's specs allow about ±1.7 °C on the 179 and ±2.4 °C on the 17B+, before probe error.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

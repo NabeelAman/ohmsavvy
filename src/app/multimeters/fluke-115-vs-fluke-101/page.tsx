@@ -10,6 +10,9 @@
 //   AC V 1.0% + 3 with no True RMS claim, 40 MΩ, frequency 10 Hz to 100 kHz, duty cycle 0.1% to 99.9%, diode,
 //   continuity, no current function, two input jacks, hold listed as absent on the India page, no backlight mentioned)
 // Conflict: Fluke's 101 documents give top capacitance as 100 µF or 1,000 µF. Stated on the page.
+// Electronics section (added 2026-10-29): 101 ohms 400.0 Ω ±(0.5% + 3), capacitance from 50.00 nF and frequency with no
+// published accuracy, per the en-in page notes on /multimeters/fluke-107-vs-fluke-101; 115 600.0 Ω range, continuity
+// below about 20 Ω / 500 µs and 2.000 V diode test per /multimeters/fluke-115-review. Worked readings are illustrative.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
@@ -22,7 +25,7 @@ const path = "/multimeters/fluke-115-vs-fluke-101";
 export const metadata = buildMetadata({
   title: "Fluke 115 vs Fluke 101: Which Should You Buy?",
   description:
-    "Fluke 115 vs Fluke 101: a True RMS field meter with 10 A current against a 160 g pocket Fluke with no amps. Specs, size, warranty and which one to buy.",
+    "Fluke 115 vs Fluke 101: a True RMS field meter with 10 A current against a 160 g pocket Fluke with no amps. Specs, electronics use, warranty and which to buy.",
   path: "/multimeters/fluke-115-vs-fluke-101",
 });
 
@@ -82,6 +85,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 115 vs Fluke 101: Which Should I Buy?",
   path,
   published: "2026-10-27",
+  updated: "2026-10-29",
   intro:
     "Buy the Fluke 115 if you will ever need to measure current or read AC on electronic loads: it is True RMS and handles 10 A, and the Fluke 101 measures no current at all. Buy the 101 only as a pocket-sized second meter for voltage, continuity, frequency and duty cycle. Both are CAT III 600V Flukes with 6,000-count displays, but the 115 is a full field-service meter and the 101 is closer to a compact voltage tester with extra functions.",
   a: {
@@ -111,7 +115,7 @@ const comparison: ProductComparisonContent = {
     { label: "DC volts accuracy", a: "±(0.5% + 2)", b: "±(0.5% + 3)" },
     { label: "Resistance", a: "To 40 MΩ", b: "To 40 MΩ" },
     { label: "Capacitance", a: "1 nF to 9,999 µF", b: "Fluke sources conflict: 100 µF or 1,000 µF" },
-    { label: "Frequency / duty cycle", a: "To 50 kHz (2020 manual: 99.99 kHz) / Not stated", b: "10 Hz to 100 kHz / 0.1% to 99.9%" },
+    { label: "Frequency / duty cycle", a: "To 50 kHz (2020 manual: 99.99 kHz) / Not stated", b: "10 Hz to 100 kHz / 0.1–99.9% (product page), 1–99% (datasheet)" },
     { label: "Min/Max, hold, backlight", a: "Min/Max/Avg, hold, backlight", b: "Min/Max not stated; hold listed as absent; no backlight mentioned" },
     { label: "Size / weight", a: "167 × 84 × 46 mm, 550 g", b: "130 × 65 × 27 mm, 160 g" },
     { label: "Battery", a: "One 9 V, about 400 h", b: "Two AAA (life not stated)" },
@@ -122,7 +126,7 @@ const comparison: ProductComparisonContent = {
     "Current: the 115 reads AC and DC amps on 6 A and 10 A ranges; the 101 has only two jacks and no current function.",
     "True RMS: Fluke specifies the 115 as True RMS and makes no such claim for the 101, so the 101's AC readings are trustworthy on clean sine waves only.",
     "Low-voltage resolution: the 115's 600.0 mV range resolves 0.1 mV; the 101's lowest range is 6.000 V.",
-    "Signal functions favor the 101: frequency to 100 kHz on its spec and duty cycle from 0.1% to 99.9%, neither of which the 115's datasheet matches.",
+    "Signal functions favor the 101: frequency to 100 kHz on its spec and duty cycle (0.1–99.9% per Fluke's product page, 1–99% per its datasheet), neither of which the 115's datasheet matches.",
     "Size: the 101 weighs 160 g against 550 g and is 27 mm thick against 46 mm.",
     "Same on paper: CAT III 600V, 6,000 counts, 600 V maximum, auto-ranging, resistance to 40 MΩ and near-identical DC accuracy.",
   ],
@@ -196,7 +200,7 @@ const comparison: ProductComparisonContent = {
             ["Current", "6 A / 10 A AC and DC", "None", "115"],
             ["Capacitance", "1 nF to 9,999 µF", "100 µF or 1,000 µF (sources conflict)", "115"],
             ["Frequency", "50 kHz (manual: 99.99 kHz)", "10 Hz to 100 kHz", "101"],
-            ["Duty cycle", "Not stated", "0.1% to 99.9%", "101"],
+            ["Duty cycle", "Not stated", "0.1–99.9% (product page) / 1–99% (datasheet)", "101"],
             ["Watching a changing value", "33-segment bar graph, Min/Max/Avg", "Digits only", "115"],
             ["Dim panels and crawlspaces", "Backlight", "No backlight mentioned", "115"],
             ["Pocket carry", "550 g, 46 mm thick", "160 g, 27 mm thick", "101"],
@@ -207,6 +211,75 @@ const comparison: ProductComparisonContent = {
           giving 100 µF and another 1,000 µF. Either way, the 115&apos;s 9,999 µF covers the large filter capacitors in
           power supplies and inverters that the 101 may not. The 101&apos;s duty-cycle reading is its most useful
           extra: it lets you check a PWM fan or dimmer control signal, which the 115&apos;s datasheet doesn&apos;t list.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 115 vs 101 for electronics</h2>
+        <p className="text-muted leading-7 mb-4">
+          On a hobby or repair bench the question changes. Mains current matters less, and what counts is how finely
+          each meter resolves small signals, whether it can size a component, and whether it can tell you what a
+          switching circuit is doing. Here the two Flukes trade wins, and neither is a complete bench meter.
+        </p>
+        <DataTable
+          head={["Bench task", "Fluke 115", "Fluke 101", "Better here"]}
+          rows={[
+            ["Sensor output or shunt drop under 0.6 V", "600.0 mV DC range, 0.1 mV steps", "Lowest DC range 6.000 V, 1 mV steps", "115"],
+            ["Low-value resistor", "600.0 Ω range, ±(0.9% + 1)", "400.0 Ω range, ±(0.5% + 3)", "Close; 101 on paper"],
+            ["Microcontroller sleep or standby current", "No mA or µA range; 1 mA best step", "No current function", "Neither"],
+            ["Electrolytic filter capacitor", "1 nF to 9,999 µF, ±(1.9% + 2)", "50.00 nF up to 100 or 1,000 µF; accuracy not stated", "115"],
+            ["Oscillator, clock or PWM frequency", "To 50 kHz (2020 manual: 99.99 kHz)", "10 Hz to 100 kHz; accuracy not stated", "101"],
+            ["PWM duty cycle", "Not stated", "0.1–99.9% (product page) / 1–99% (datasheet)", "101"],
+            ["Diode and LED check", "2.000 V test", "Diode test listed, voltage not stated", "115 (documented)"],
+            ["Continuity on traces and jumpers", "Beeps below about 20 Ω; catches 500 µs dropouts", "Buzzer listed; threshold not stated", "115 (documented)"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The millivolt row is where the 115 pulls ahead for sensor and current-shunt work. Take an illustrative
+          250.0 mV reading. Using the ±(0.5% + 2) figure Fluke quotes for the 115&apos;s DC ranges, the window is
+          1.25 mV plus 2 × 0.1 mV, about ±1.45 mV. The 101 has to read that signal on its 6.000 V range as 0.250 V,
+          and ±(0.5% + 3) gives 1.25 mV plus 3 × 1 mV, about ±4.25 mV. The 115&apos;s window is roughly a third the
+          size, and its display shows a fourth significant digit the 101 can&apos;t.
+        </p>
+        <div className="mt-4 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Meter tolerance on an illustrative 250 mV DC reading, in mV, worked from Fluke&apos;s specs. Lower is better.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 115", value: 1.45, display: "±1.45 mV", highlight: true },
+                { label: "Fluke 101", value: 4.25, display: "±4.25 mV" },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Tolerance on an illustrative 100 Ω resistor, in ohms. The 101&apos;s 400 Ω range is slightly tighter.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 115", value: 1.0, display: "±1.0 Ω" },
+                { label: "Fluke 101", value: 0.8, display: "±0.8 Ω", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Resistance runs the other way, slightly. A 100 Ω part on the 115 allows 0.9 Ω plus one 0.1 Ω count, ±1.0 Ω;
+          on the 101 it is 0.5 Ω plus three counts, ±0.8 Ω. Neither gap would change a pass or fail on a 1% or 5%
+          resistor. Capacitance is a clearer split: a 4,700 µF reservoir capacitor in an amplifier or bench supply sits
+          inside the 115&apos;s range, while both of the 101&apos;s published ceilings stop short of it. Fluke also
+          publishes no capacitance or frequency accuracy for the 101, so its readings there are indications rather
+          than specified measurements.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          For signals, the 101&apos;s duty-cycle mode is the one function the 115 doesn&apos;t list, and it is the
+          quickest way to confirm a fan controller or LED dimmer is actually changing its command. The gap both meters
+          share is low current: the 115 resolves only whole milliamps through its 6 A range, and the 101 has no current
+          input at all. If you measure battery-powered boards in sleep mode, read{" "}
+          <Link href="/multimeters/how-to-measure-microamps-with-a-multimeter" className={link}>
+            how to measure microamps with a multimeter
+          </Link>{" "}
+          and look at a meter with µA ranges, such as the 17B+ in our{" "}
+          <Link href="/multimeters/fluke-17b-plus-vs-fluke-101" className={link}>
+            Fluke 17B+ vs Fluke 101
+          </Link>{" "}
+          comparison.
         </p>
       </section>
 
@@ -292,6 +365,16 @@ const comparison: ProductComparisonContent = {
       question: "Which is better for HVAC work, the Fluke 115 or 101?",
       answer:
         "The 115, though neither is ideal. It reads compressor and blower current and tests run capacitors up to 9,999 µF. Neither meter has a microamp range for flame sensors or a temperature input, so HVAC technicians usually step up to a meter with both; our HVAC multimeter guide lists options.",
+    },
+    {
+      question: "Is the Fluke 115 or Fluke 101 better for electronics projects?",
+      answer:
+        "It depends on the project. The 115 resolves 0.1 mV on its 600.0 mV range, sizes capacitors up to 9,999 µF and documents its diode and continuity specs, so it suits sensor, power-supply and amplifier work. The 101 reads duty cycle and frequency to 100 kHz, which helps on PWM and timer circuits. Neither has mA or µA ranges for sleep-current checks.",
+    },
+    {
+      question: "Can the Fluke 115 or 101 measure a microcontroller's sleep current?",
+      answer:
+        "Not usefully. The 115's only current ranges are 6 A and 10 A, so its smallest step is 1 mA, far coarser than the microamps a sleeping board draws. The 101 has no current input at all. For that job you need a meter with dedicated µA ranges, such as the Fluke 17B+ with its 400.0 µA range.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

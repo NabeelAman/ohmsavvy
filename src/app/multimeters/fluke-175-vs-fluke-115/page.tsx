@@ -20,6 +20,9 @@
 //   elapsed time; 167 x 84 x 46 mm; 550 g; 3-year warranty.
 // Picks: Fluke 115 (4.8, hands-on tested) in best-multimeters; Fluke 175 (4.5, not tested by us) in
 // src/lib/multimeter-catalog.ts. Readings in worked examples are illustrative.
+// Field-technician section (added 2026-10-29) uses only the figures above plus the 115 backlight auto-off after 40 s
+// per /multimeters/fluke-115-vs-fluke-117. No drop rating is published for either meter in these sources; no IP rating
+// for the 175 and no surge figure for the 115 in these sources.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
@@ -80,6 +83,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 175 vs Fluke 115 for Everyday Electrical Troubleshooting",
   path,
   published: "2026-10-28",
+  updated: "2026-10-29",
   intro:
     "For everyday electrical troubleshooting that includes low-current or control work, the Fluke 175 is the more capable meter: it has 60 mA and 400 mA ranges that resolve 0.01 mA, reads to 1000 V, carries CAT IV 600V and specifies DC volts at ±(0.15% + 2) against the 115's ±(0.5% + 2). The Fluke 115 is the easier meter to live with: it has a backlight (Fluke lists none for the 175), about 400 hours per 9 V battery against about 200, and it's the one we have hands-on tested. Both are True RMS 6,000-count meters with 10 A inputs, capacitance, frequency and Min/Max/Avg.",
   a: {
@@ -272,6 +276,76 @@ const comparison: ProductComparisonContent = {
       </section>
 
       <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 175 vs 115 for field technicians</h2>
+        <p className="text-muted leading-7 mb-4">
+          A field technician&apos;s meter lives in a van, a tool bag or a belt pouch, gets used in basements and on
+          rooftops, and has to work on the third call of the day without a hunt for a battery. Judged that way, the
+          spec sheet matters less than carry weight, where you may legally probe, whether you can see the display,
+          and what happens when it gets knocked about.
+        </p>
+        <DataTable
+          head={["Field factor", "Fluke 175", "Fluke 115", "What it means on the job"]}
+          rows={[
+            ["Size", "185 × 90 × 43 mm", "167 × 84 × 46 mm", "115 is shorter; 175 is slimmer"],
+            ["Weight", "420 g", "550 g", "175 is 130 g lighter on the belt"],
+            ["Category rating", "CAT IV 600V / CAT III 1000V", "CAT III 600V", "Only the 175 covers meter bases"],
+            ["Backlight", "None listed (Pub 10824-eng)", "Yes, auto-off after 40 s", "115 in crawlspaces and panels"],
+            ["Display", "6,000 counts, 33-segment bar graph at 40/s", "6,000 counts, 33-segment bar graph at 32/s", "Effectively the same"],
+            ["Hands-busy reading", "Hold and Auto Hold", "Hold", "175 captures a steady reading itself"],
+            ["Battery", "9 V, about 200 h", "9 V, 400 h typical without backlight", "115 goes twice as long"],
+            ["Ingress rating", "Not stated in our sources", "IP42", "115 documented"],
+            ["Surge protection", "8 kV (170 Series)", "Not stated in our sources", "175 documented"],
+            ["Drop rating", "Not stated", "Not stated", "Neither published"],
+            ["Operating temperature", "−10 to +50 °C", "−10 to +50 °C", "Same"],
+            ["Warranty", "Lifetime", "3 years", "175 for a career-long meter"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          Size cuts both ways. By the box dimensions the 175 occupies about 716 cm³ (185 × 90 × 43 mm) and the 115
+          about 645 cm³ (167 × 84 × 46 mm), so the 175 is roughly 11% bigger yet about 24% lighter. In a pouch the
+          lighter meter wins; in a crowded tool case the shorter one might.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Battery life is easier to feel in weeks. Take an illustrative technician who has the meter switched on
+          three hours a day, five days a week: 15 hours of use per week. At Fluke&apos;s ratings that is about
+          200 / 15 ≈ 13 weeks per 9 V cell in the 175 and 400 / 15 ≈ 27 weeks in the 115, though the 115&apos;s figure
+          assumes the backlight is off and heavy backlight use will shorten it. Either way, keep a spare 9 V in the
+          bag.
+        </p>
+        <div className="mt-4 grid sm:grid-cols-2 gap-4">
+          <Figure caption={<>Weight per Fluke, in grams. Lower is easier to carry all day.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 175", value: 420, display: "420 g", highlight: true },
+                { label: "Fluke 115", value: 550, display: "550 g" },
+              ]}
+            />
+          </Figure>
+          <Figure caption={<>Illustrative weeks per 9 V battery at 15 hours of use a week, from Fluke&apos;s battery ratings.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 115", value: 27, display: "≈ 27 weeks", highlight: true },
+                { label: "Fluke 175", value: 13, display: "≈ 13 weeks" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          The backlight is the trade-off field techs argue about most. Fluke&apos;s 170 Series specifications put the
+          backlight on the 177 and 179 only, so a 175 user reading a meter at the back of a dark condensing unit needs
+          a headlamp. The 175 answers with Auto Hold, which freezes a stable reading so you can look after pulling the
+          probes away. For ruggedness, Fluke publishes no drop rating for either meter, so compare what it does publish: an IP42 rating
+          on the 115, 8 kV surge protection on the 175. The deciding line for many techs is the category rating: if
+          your calls include meter bases or service equipment, only the 175 is rated for them. If a backlight and CAT
+          IV both matter, the{" "}
+          <Link href="/multimeters/fluke-175-vs-fluke-177" className={link}>
+            Fluke 175 vs Fluke 177
+          </Link>{" "}
+          comparison covers the 170-series model that has both.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-semibold mb-4">Fluke 175 or 115: which should you buy?</h2>
         <DataTable
           head={["You are…", "Buy", "Why"]}
@@ -346,6 +420,16 @@ const comparison: ProductComparisonContent = {
       question: "Why is the Fluke 175's warranty longer than the 115's?",
       answer:
         "Fluke lists a lifetime warranty for the 175 and three years for the 115. The warranty covers defects, not damage from misuse, and fuses and batteries are consumables. If you expect to keep a meter for decades, the 175's lifetime cover is a real point in its favor.",
+    },
+    {
+      question: "Is the Fluke 175 or 115 better for field service technicians?",
+      answer:
+        "It depends on the calls. The 175 is 130 g lighter, carries CAT IV 600V for meter bases and service equipment, adds Auto Hold and has a lifetime warranty. The 115 has the backlight the 175 lacks and roughly twice the battery life, which suits technicians who mostly work below 600 V in dim crawlspaces, attics and equipment rooms.",
+    },
+    {
+      question: "How rugged are the Fluke 175 and Fluke 115?",
+      answer:
+        "Fluke doesn't publish a drop rating for either. Its 115 datasheet gives an IP42 ingress rating, and its 170 Series specifications give the 175 8 kV surge protection; we found no matching figure for the other meter in each case. Both are specified to operate from −10 to +50 °C, and both use a single 9 V battery.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

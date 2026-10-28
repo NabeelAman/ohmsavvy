@@ -180,7 +180,7 @@ const homeFaqs = [
   {
     question: "I'm new to electronics. Where should I start?",
     answer:
-      "Start with our three beginner guides: How to Use a Multimeter, How to Use a Soldering Iron and How to Use an Oscilloscope. Each walks through a first session step by step, with the safety checks that matter. When you're ready to buy, every category roundup leads with our top pick and the best option for beginners.",
+      "Start with our three beginner guides: How to Use a Multimeter, How to Use a Soldering Iron and How to Use an Oscilloscope. Each walks through a first session step by step, with the safety checks that matter. When you're ready to buy, every category roundup leads with our top pick and includes a budget option.",
   },
   {
     question: "How does OhmSavvy make money?",

@@ -1195,7 +1195,7 @@ export const content: ContentEntry[] = [
   {
     category: "oscilloscopes",
     type: "comparison",
-    title: "Rigol vs Siglent",
+    title: "Rigol DS1054Z vs Siglent SDS1104X-E",
     description: "50MHz value vs. 100MHz headroom",
     href: "/oscilloscopes/rigol-ds1054z-vs-siglent-sds1104x-e",
   },
@@ -3663,7 +3663,7 @@ export const content: ContentEntry[] = [
   {
     category: "soldering-irons",
     type: "use-case-guide",
-    title: "For Electronics (Top 10, 2026)",
+    title: "For Electronics",
     description: "Top 10 irons and stations ranked for electronics work",
     href: "/soldering-irons/best-soldering-irons-for-electronics",
     picks: [

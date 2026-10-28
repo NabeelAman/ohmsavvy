@@ -26,6 +26,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 15B+: Which Should You Buy?",
   description:
     "Fluke 15B+ vs Fluke 17B+ for budget buyers: same case, accuracy and one-year warranty; the 17B+ adds temperature, Hz, duty cycle and MIN MAX. Decision chart.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-15b-plus",
 });
 

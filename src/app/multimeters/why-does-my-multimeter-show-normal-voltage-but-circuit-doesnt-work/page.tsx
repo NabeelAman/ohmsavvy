@@ -105,6 +105,7 @@ export default function NormalVoltageButCircuitDoesntWorkPage() {
       path="/multimeters/why-does-my-multimeter-show-normal-voltage-but-circuit-doesnt-work"
       category="multimeters"
       published="2026-10-26"
+      updated="2026-10-29"
       intro={
         <>
           Your multimeter shows a normal voltage because a voltmeter draws almost no current, so it can read
@@ -131,6 +132,7 @@ export default function NormalVoltageButCircuitDoesntWorkPage() {
         { id: "why-meter-misses-it", label: "Why the meter can't see the fault" },
         { id: "causes", label: "Causes at a glance" },
         { id: "worked-example", label: "Worked example: one corroded joint" },
+        { id: "device-wont-work", label: "Shows voltage, device won't work" },
         { id: "measure-under-load", label: "1. Measure under load" },
         { id: "at-the-load", label: "2. Measure at the load's terminals" },
         { id: "positive-side", label: "3. Split the drop: positive side" },
@@ -142,6 +144,14 @@ export default function NormalVoltageButCircuitDoesntWorkPage() {
         { id: "meters", label: "Meters that help" },
       ]}
       faq={[
+        {
+          q: "Why does my multimeter show voltage but the device won't work?",
+          a: "A meter reading proves a voltage is present, not that the path can deliver current. The usual causes are coupled voltage on a dead wire, a high-resistance connection, a source that sags under load, an open ground or neutral, or a fault inside the device. Re-measure at the device's own terminals while it is switched on, or use LoZ, and the cause usually shows.",
+        },
+        {
+          q: "Why does my outlet show 120 volts but nothing works when I plug it in?",
+          a: "Most often a loose or burnt connection, frequently a back-stabbed terminal at that outlet or one upstream, passes the meter's tiny current but not the appliance's. An open neutral can also show 120 V hot to ground while hot to neutral fails under load. Measure all three pairs with a lamp plugged in, and call an electrician if the voltage collapses.",
+        },
         {
           q: "Why does my battery read 12.6 volts but nothing works when I turn it on?",
           a: "A resting reading only proves the battery has surface voltage, not that it can deliver current. A sulfated or damaged battery, or a corroded terminal clamp, can show about 12.6 V with no load and then drop several volts the instant a load turns on. Measure across the battery posts and then across the clamps while the load is running. A big difference between the two points to the clamp.",
@@ -315,6 +325,83 @@ export default function NormalVoltageButCircuitDoesntWorkPage() {
         Switch the circuit on, make it try to work, and measure at the load. Any volts missing there have been
         lost somewhere you can find with the meter.
       </KeyIdea>
+
+      <section>
+        <h2 id="device-wont-work" className="text-xl font-semibold mb-3">
+          Why does my multimeter show voltage but the device won&apos;t work?
+        </h2>
+        <p className="text-muted leading-7 mb-4">
+          When the meter shows voltage and the device still won&apos;t work, the reading has proved that a
+          potential exists between your two probe points and nothing more. The worked example above puts numbers
+          on the gap: the meter draws about 1.2 µA to read 12.00 V, while the 6 Ω load needs about 2 A, so the
+          path has to carry well over a million times more current than your measurement drew. Five situations
+          produce this symptom, and each leaves a different fingerprint once you take a second reading.
+        </p>
+        <ul className="space-y-3 list-disc pl-5 text-muted leading-7 mb-4">
+          <li>
+            <strong className="text-foreground">Voltage with no current capacity behind it.</strong> A wire that
+            is broken or switched off upstream can still show tens of volts on a 10 MΩ input because it is coupled
+            to live conductors nearby. That voltage can&apos;t supply even a milliamp, so the device sees nothing.
+            It collapses on a LoZ setting, as explained in{" "}
+            <Link
+              href="/multimeters/why-does-my-multimeter-show-voltage-when-measuring-a-disconnected-circuit"
+              className={link}
+            >
+              why a multimeter shows voltage on a disconnected circuit
+            </Link>
+            .
+          </li>
+          <li>
+            <strong className="text-foreground">A high-resistance connection.</strong> The 1 Ω joint in the worked
+            example is the mild version. A back-stabbed outlet terminal, a cracked solder joint or a crimp holding
+            by one strand can reach many ohms; at that point the loaded voltage falls so far that the device
+            won&apos;t even start, yet the unloaded reading stays perfect.
+          </li>
+          <li>
+            <strong className="text-foreground">Voltage drop under load.</strong> A weak battery or undersized
+            supply reads its nominal value at rest and sags as soon as current flows. Step 5 shows the arithmetic
+            for a source with internal resistance.
+          </li>
+          <li>
+            <strong className="text-foreground">An open ground or open neutral.</strong> The return path carries
+            the same current as the supply side. If you measure from the positive terminal to chassis rather than
+            to the device&apos;s own ground terminal, an open ground stays invisible: the reading is full voltage
+            while the device has none across it. On household outlets, an open neutral typically leaves hot to
+            ground normal while hot to neutral reads low, wanders, or drops to nothing when something is plugged in.
+          </li>
+          <li>
+            <strong className="text-foreground">The device itself.</strong> If full voltage reaches the device&apos;s
+            terminals while it is switched on, look inside it: an internal fuse, a tripped thermal cutout, an open
+            door or lid interlock, a failed internal power supply or a dead control board.
+          </li>
+        </ul>
+        <p className="text-muted leading-7 mb-4">
+          On a 120 V receptacle, three readings sort most of these out. The table shows typical patterns, not
+          exact values; the readings vary with the meter, the wiring and what else is on the circuit.
+        </p>
+        <DataTable
+          head={["Hot to neutral", "Hot to ground", "Neutral to ground", "What it usually means"]}
+          rows={[
+            ["About 120 V, holds with a lamp plugged in", "About 120 V", "Near 0 V, a few volts at most under load", "Wiring is delivering; suspect the device or its cord"],
+            ["About 120 V unloaded, sags hard with a load", "Sags with it", "Rises under load", "Loose or burnt connection on the hot or neutral; electrician"],
+            ["Low, wandering or 0 V", "About 120 V", "Wandering", "Open neutral upstream; electrician"],
+            ["About 120 V", "Low, wandering or 0 V", "Wandering", "Open equipment ground; device may run but is unsafe; electrician"],
+            ["Tens of volts, collapses on LoZ", "Tens of volts, collapses on LoZ", "Near 0 V", "Hot open or breaker off; only coupled voltage present"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4">
+          The fastest field version of the loaded test is to plug in a lamp or other simple load that you know
+          works and measure again while it is on, or to switch the meter to LoZ if it has one. Either one forces
+          the circuit to supply real current, which is the thing the bare voltage reading never asked of it. If
+          the receptacle passes and the device still won&apos;t work, the problem has moved from the wiring to
+          the device, and the steps below, especially 7 and 8, apply. An outlet that trips or won&apos;t reset is
+          a separate fault, covered in{" "}
+          <Link href="/multimeters/how-to-test-a-gfci-outlet-that-wont-reset" className={link}>
+            how to test a GFCI outlet that won&apos;t reset
+          </Link>
+          .
+        </p>
+      </section>
 
       <section>
         <p className="text-muted leading-7 mb-4">

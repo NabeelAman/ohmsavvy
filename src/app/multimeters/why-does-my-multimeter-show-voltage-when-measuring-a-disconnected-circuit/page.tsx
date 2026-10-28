@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
@@ -25,7 +26,11 @@ export const metadata = buildMetadata({
 const all = getAllPicks("multimeters");
 const fluke117 = all.find((p) => p.name === "Fluke 117")!;
 const mm720 = all.find((p) => p.name === "Klein Tools MM720")!;
-const bm235 = all.find((p) => p.name === "Brymen BM235")!;
+// Fluke 117 "selectable low-impedance mode to prevent false readings from ghost voltage" and "Auto-V/LoZ is specified
+// from 0.0 V" per https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-117 (no LoZ ohms value stated).
+// Fluke 113 VCHEK ~3 kΩ LoZ falling back to continuity, and Fluke 114 AutoVolt on a LoZ input, per their Picks in
+// src/lib/multimeter-catalog.ts (sourced from fluke.com).
+const fluke113 = all.find((p) => p.name === "Fluke 113")!;
 
 const link = "text-accent hover:underline";
 
@@ -85,6 +90,7 @@ export default function WhyDoesMyMultimeterShowVoltageWhenMeasuringADisconnected
       path="/multimeters/why-does-my-multimeter-show-voltage-when-measuring-a-disconnected-circuit"
       category="multimeters"
       published="2026-10-25"
+      updated="2026-10-29"
       intro={
         <>
           When a multimeter shows voltage on a circuit you have disconnected, it is usually reading a ghost
@@ -110,6 +116,7 @@ export default function WhyDoesMyMultimeterShowVoltageWhenMeasuringADisconnected
       }}
       toc={[
         { id: "why-it-happens", label: "Why a dead wire can read live" },
+        { id: "disconnected-wire", label: "Voltage on a disconnected wire" },
         { id: "causes", label: "Ghost voltage or a real feed?" },
         { id: "prove-dead", label: "Prove the circuit dead" },
         { id: "loz-test", label: "Confirm with LoZ or a load" },
@@ -118,6 +125,10 @@ export default function WhyDoesMyMultimeterShowVoltageWhenMeasuringADisconnected
         { id: "meters", label: "Meters with LoZ" },
       ]}
       faq={[
+        {
+          q: "Why is my multimeter reading voltage on a disconnected wire?",
+          a: "A disconnected wire that still runs beside live conductors picks up voltage through stray capacitance, and a standard 10 MΩ meter input lets that coupled voltage show as tens of volts with only microamps behind it. First confirm the far end really is disconnected or its breaker is off, then re-measure on a LoZ setting or with a load. A coupled reading collapses; a real feed doesn't.",
+        },
         {
           q: "Is ghost voltage dangerous?",
           a: "Coupled voltage by itself can only push a tiny current, so it usually cannot hurt you. The danger is assuming every unexpected reading is a ghost. The same display can come from a backfeed, a shared neutral carrying load current or a second breaker feeding the box. Prove the reading collapses under a load, and keep treating the conductor as live until you have.",
@@ -195,6 +206,77 @@ export default function WhyDoesMyMultimeterShowVoltageWhenMeasuringADisconnected
         <Figure caption={<>Simplified view: stray capacitance between a live and a switched-off conductor in the same cable. The high-impedance meter reads the floating voltage; a low-impedance input drains it.</>}>
           <CouplingDiagram />
         </Figure>
+      </section>
+
+      <section>
+        <h2 id="disconnected-wire" className="text-xl font-semibold mb-3">
+          Why is my multimeter reading voltage on a disconnected wire?
+        </h2>
+        <p className="text-muted leading-7 mb-4">
+          A wire you have unhooked from a fixture, switch or outlet is usually still lying in the same box and
+          the same cable as conductors that are live. If it is disconnected at your end but still attached to a
+          breaker or splice at the far end, it may simply be live, and that is the first thing to rule out. If
+          it is truly disconnected at both ends, or its breaker is off, it has no source of its own, so it takes
+          on whatever voltage the stray capacitance to its live neighbors gives it. Measured from that wire to
+          ground or to a bare ground conductor, a standard meter can show anything from a few volts to well
+          over half of line voltage.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          The arithmetic shows why the number looks so convincing and why it means so little. Assume, purely as
+          an illustration, 100 pF of coupling between a 120 V, 60 Hz hot and the dead wire beside it. At 60 Hz
+          that capacitance behaves like a reactance of about 26.5 MΩ (1 ÷ (2π × 60 × 100 pF)). Put a 10 MΩ meter
+          between the dead wire and ground and the two form a divider: the meter reads about 42 V (120 × 10 ÷
+          √(10² + 26.5²)). Yet the current behind that reading is only about 4.2 µA (120 V ÷ roughly 28.4 MΩ). Swap
+          in a low-impedance input of about 3 kΩ and the same coupling produces only around 14 mV. A real feed
+          has a source impedance far below 3 kΩ, so it barely notices the extra load and keeps nearly its full
+          voltage.
+        </p>
+        <Figure
+          caption={
+            <>
+              Calculated, not measured: the voltage a meter would display on a dead wire coupled to a 120 V, 60 Hz
+              hot through an assumed 100 pF, for different meter input impedances (log scale). The wire&apos;s own
+              capacitance to ground, ignored here, lowers every value in practice.
+            </>
+          }
+        >
+          <BarChart
+            log
+            items={[
+              { label: "10 MΩ (standard V input)", value: 42.3, display: "≈ 42 V", highlight: true },
+              { label: "1 MΩ", value: 4.52, display: "≈ 4.5 V" },
+              { label: "100 kΩ", value: 0.452, display: "≈ 0.45 V" },
+              { label: "≈ 3 kΩ (LoZ)", value: 0.0136, display: "≈ 14 mV" },
+            ]}
+          />
+        </Figure>
+        <p className="text-muted leading-7 mt-4 mb-4">
+          Real capacitance depends on how long the conductors run side by side and how tightly they are packed,
+          so treat 100 pF as a teaching value, not a figure to expect from your cable. The shape of the result
+          holds regardless: the higher the meter&apos;s input impedance, the more of the coupled voltage it shows,
+          and a loaded reading drains it away. Three of the meters we list publish a way to do that loading for
+          you. Fluke says the 117 has a selectable low-impedance mode to prevent false readings from ghost
+          voltage, and specifies its Auto-V/LoZ function from 0.0 V. The Fluke 114 picks AC or DC automatically on
+          a low-impedance input. The Fluke 113&apos;s VCHEK position is a LoZ voltage test of about 3 kΩ that falls
+          back to a continuity check when no voltage is present, which is a quick way to sort an isolated dead
+          wire from one still tied to something.
+        </p>
+        <p className="text-muted leading-7">
+          A dangling wire can also read DC volts or a drifting AC value if you measure it against something that
+          is itself floating, such as a metal box with no ground connection, or with only one probe on the wire.
+          Always measure between two defined points: the suspect wire and a known-good equipment ground, then the
+          suspect wire and neutral. If both read tens of volts on the 10 MΩ input and near zero on LoZ, the wire
+          is coupled, not fed. If the reading holds on LoZ, go to step 3 below before anyone touches it. Readings
+          that wander rather than holding a value are covered in{" "}
+          <Link href="/multimeters/unstable-multimeter-readings" className={link}>
+            what causes unstable multimeter readings
+          </Link>
+          , and a circuit that shows full voltage but won&apos;t run anything is the subject of{" "}
+          <Link href="/multimeters/why-does-my-multimeter-show-normal-voltage-but-circuit-doesnt-work" className={link}>
+            why a multimeter shows normal voltage when the circuit doesn&apos;t work
+          </Link>
+          .
+        </p>
       </section>
 
       <section>
@@ -338,11 +420,11 @@ export default function WhyDoesMyMultimeterShowVoltageWhenMeasuringADisconnected
               note: "LoZ for ghost voltages, CAT IV 600V / CAT III 1000V, IP42 and a 2 m drop rating. No NCV.",
             },
             {
-              name: "Brymen BM235",
-              image: bm235.image,
-              alt: "Brymen BM235 True RMS multimeter with AutoV LoZ",
-              href: "/multimeters/best-multimeters-for-electronics-repair#brymen-bm235",
-              note: "AutoV LoZ, NCV and a VFD mode. CAT III 600V / CAT IV 300V per Brymen's catalog.",
+              name: "Fluke 113",
+              image: fluke113.image,
+              alt: "Fluke 113 utility multimeter with VCHEK low-impedance voltage test",
+              href: "/multimeters/fluke-113-vs-fluke-117",
+              note: "VCHEK: a LoZ voltage test of about 3 kΩ that drops to continuity when no voltage is present. No current ranges.",
             },
           ]}
         />

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
@@ -111,6 +112,7 @@ export default function WhyDoesMyMultimeterRead0VoltsPage() {
       path="/multimeters/why-does-my-multimeter-read-0-volts-on-a-working-circuit"
       category="multimeters"
       published="2026-10-25"
+      updated="2026-10-29"
       intro={
         <>
           A multimeter reads 0 volts on a working circuit when its two probes have no potential difference
@@ -142,10 +144,19 @@ export default function WhyDoesMyMultimeterRead0VoltsPage() {
         { id: "step-display", label: "3. Rule out HOLD, REL and mode" },
         { id: "step-reference", label: "4. Fix the probe placement" },
         { id: "step-trace", label: "5. Trace the real 0 V upstream" },
+        { id: "power-on", label: "0 volts when the power is on" },
         { id: "scenarios", label: "Probe placement and expected readings" },
         { id: "meters", label: "Meters for live troubleshooting" },
       ]}
       faq={[
+        {
+          q: "Why does my multimeter show 0 volts when the power is on?",
+          a: "Prove the meter on a fresh AA first. If that reads correctly, the probes are either not touching bare metal (paint, corrosion, a sealed connector or board coating), the output you are probing is switched off by a relay, module or upstream GFCI, or you are measuring across a closed switch or good fuse, where near 0 V with current flowing is the healthy result.",
+        },
+        {
+          q: "Why does my multimeter read 0 volts on an outlet that works?",
+          a: "On many newer US outlets, tamper-resistant shutters behind the slots open only when both prongs push in together, so a single probe can stop against the shutter and read zero. Insert both probes at once into the hot and neutral slots, keep your fingers behind the guards, and confirm the dial is on V AC. If it still reads zero, stop and call an electrician.",
+        },
         {
           q: "Why does my multimeter read 0 volts but the light is on?",
           a: "If the lamp is lit, voltage is present across it, so a 0 V reading means the probes are not spanning the lamp or the supply. The most common reason is that both probes sit on the same wire, such as two points on the return conductor. Put the red probe on the feed side and the black probe on the return side, and the reading should appear.",
@@ -410,6 +421,87 @@ export default function WhyDoesMyMultimeterRead0VoltsPage() {
             power on one side of a car fuse
           </Link>{" "}
           follows that exact path.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="power-on" className="text-xl font-semibold mb-3">
+          Why does my multimeter show 0 volts when the power is on?
+        </h2>
+        <p className="text-muted leading-7 mb-4">
+          When a multimeter reads 0 volts while the power is on, the switch being on does not guarantee that
+          voltage reaches the two points you are touching. Either the probes are not making electrical contact,
+          the output you are probing is switched off at that instant by something other than the main switch,
+          or you are measuring across a part that should have no voltage across it while it conducts. Work
+          through these powered-circuit cases after the meter has passed the AA test in step 1.
+        </p>
+        <ul className="text-muted leading-7 mb-4 list-disc pl-5 space-y-2">
+          <li>
+            <strong>The probe tip never touched metal.</strong> Corrosion on a battery post, paint on a
+            terminal screw, the plastic shroud of a sealed automotive connector, or the clear conformal coating
+            on many circuit boards all insulate the tip from the conductor underneath. Press firmly, scrape a
+            small spot on the terminal, or use sharp tips or back-probe pins designed for sealed connectors.
+            Never pierce wire insulation on a mains circuit.
+          </li>
+          <li>
+            <strong>Tamper-resistant outlet shutters.</strong> Newer US receptacles have spring shutters
+            behind the slots that generally open only when both blades push in together. A single probe in one
+            slot can stop against the shutter and read 0 V on a live outlet. Insert both probes at the same
+            time, hot slot and neutral slot, with fingers behind the guards, or measure at a plug-in tester.
+          </li>
+          <li>
+            <strong>The output is controlled, not just powered.</strong> A relay that waits for a thermostat
+            or a module command, a PWM-driven fan or LED strip, and a car circuit that only switches on with
+            the key in RUN can all sit at 0 V while the system is &quot;on.&quot; Measure while the function is
+            actually commanded on, and on a pulsed output expect an average voltage that changes with the duty
+            cycle rather than a steady supply value. Our{" "}
+            <Link href="/multimeters/how-to-test-a-relay-with-a-multimeter" className={link}>
+              relay testing guide
+            </Link>{" "}
+            covers checking the coil and contacts separately.
+          </li>
+          <li>
+            <strong>A protective device upstream has opened.</strong> The house has power but one outlet is fed
+            through a tripped GFCI somewhere else on the circuit, or one branch in a car has a blown fuse. The
+            zero is genuine. A GFCI that will not reset has its own walkthrough in{" "}
+            <Link href="/multimeters/how-to-test-a-gfci-outlet-that-wont-reset" className={link}>
+              testing a GFCI outlet that won&apos;t reset
+            </Link>
+            .
+          </li>
+          <li>
+            <strong>You are measuring a voltage drop, not a supply.</strong> With the power on and current
+            flowing, a closed switch, relay contact, intact fuse or length of wire should show close to zero
+            across it. That is the healthy result of a voltage-drop test, not a missing supply.
+          </li>
+        </ul>
+        <p className="text-muted leading-7 mb-4">
+          The chart shows how large those drops are next to the supply in the 12 V lamp circuit from the
+          diagram. The small values are illustrative but realistic orders of magnitude: tens of millivolts
+          across good contacts and fuses, nearly the whole supply across the working load, and the whole supply
+          across a switch only when it is open. On an auto-ranging meter those tens of millivolts often display
+          as 0.0 or 0.00 on a volts range, which is why a healthy closed switch looks like &quot;no power.&quot;
+        </p>
+        <Figure caption="Illustrative voltages in a working 12 V lamp circuit with the power on. Readings across conductors that carry current are near zero; the supply appears across the load, and across a switch only when it is open.">
+          <BarChart
+            items={[
+              { label: "Along the return wire", value: 0.01, display: "≈0.01 V" },
+              { label: "Across an intact fuse", value: 0.03, display: "≈0.03 V" },
+              { label: "Across a closed switch", value: 0.05, display: "≈0.05 V" },
+              { label: "Across the lit lamp", value: 11.9, display: "≈11.9 V" },
+              { label: "Across the battery", value: 12, display: "12.0 V", highlight: true },
+              { label: "Across an open switch", value: 12, display: "12.0 V", highlight: true },
+            ]}
+          />
+        </Figure>
+        <p className="text-muted leading-7 mt-4">
+          If you need to see those small drops rather than a rounded zero, select the mV range: a closed switch
+          reading several hundred millivolts under load is a worn contact, even though it still passes enough
+          current to run the load. For a car, our guide to{" "}
+          <Link href="/multimeters/how-to-check-voltage-drop-on-a-car" className={link}>
+            checking voltage drop on a car
+          </Link>{" "}
+          gives the limits to compare against.
         </p>
       </section>
 

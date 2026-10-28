@@ -102,6 +102,7 @@ export default function WhyDoesAMultimeterFuseBlowPage() {
       path="/multimeters/why-does-a-multimeter-fuse-blow-when-measuring-current"
       category="multimeters"
       published="2026-10-25"
+      updated="2026-10-29"
       intro={
         <>
           A multimeter fuse blows when more current flows through the meter&apos;s current jack than the fuse
@@ -137,10 +138,19 @@ export default function WhyDoesAMultimeterFuseBlowPage() {
         { id: "step-find-cause", label: "2. Work out what blew it" },
         { id: "step-replace", label: "3. Fit the correct replacement" },
         { id: "step-measure", label: "4. Measure current the safe way" },
+        { id: "keeps-blowing", label: "Why does my multimeter fuse keep blowing?" },
         { id: "breaking-capacity", label: "Why breaking capacity matters" },
         { id: "meters", label: "Meters and alternatives" },
       ]}
       faq={[
+        {
+          q: "Why does my multimeter fuse keep blowing?",
+          a: "A fuse that blows again and again points to a habit or a mismatch, not bad luck. The usual culprits are a red lead left in the A or mA jack before measuring volts, trying to read a battery's amps by touching its terminals, motor or capacitor inrush, a load above the jack rating, or a replacement fuse that is underrated or the wrong type. Fit only the maker's specified fuse.",
+        },
+        {
+          q: "Can I put a bigger fuse in my multimeter so it stops blowing?",
+          a: "No. The current rating protects the shunt and the circuit board, and the breaking capacity protects you. A larger fuse lets the shunt overheat and burn before anything opens, and a fuse with the right amps but a lower breaking capacity may fail to clear a mains fault. Fit the exact rating, voltage, size and breaking capacity in the manual, and fix the habit that blew the original.",
+        },
         {
           q: "Can I use a regular glass fuse to replace my multimeter fuse?",
           a: "No, unless the manual specifies one. Most meters designed for electrical work specify a ceramic, high-breaking-capacity fuse with a particular current and voltage rating and physical size. A glass automotive or electronics fuse of the same amp value may interrupt only a small fault current, so a short on a mains circuit can arc across it instead of clearing. Buy the exact part number from the manual.",
@@ -416,6 +426,84 @@ export default function WhyDoesAMultimeterFuseBlowPage() {
           </Link>{" "}
           keeps the meter on its voltage input.
         </p>
+      </section>
+
+      <section>
+        <h2 id="keeps-blowing" className="text-xl font-semibold mb-3">Why does my multimeter fuse keep blowing?</h2>
+        <p className="text-muted leading-7 mb-4">
+          When a multimeter fuse keeps blowing, the same mistake or the same mismatch is repeating, because a
+          correctly specified fuse in a healthy meter does not fail on its own. One blown fuse is a lesson; the
+          third one is a pattern, and the pattern tells you which habit to change. Compare your history with
+          the table before buying another fuse. The current figures are worked from Ohm&apos;s law and power
+          ratings, so treat them as illustrative orders of magnitude.
+        </p>
+        <DataTable
+          head={["Pattern", "What is happening", "Illustrative current", "What stops it"]}
+          rows={[
+            ["Blows when you next measure volts", "Red lead still in the A or mA jack from the last current test", "Whatever the source can deliver", "Return the red lead to V the moment the current test ends"],
+            ["Blows when you check a battery's amps", "Meter placed straight across the terminals", "12 V ÷ 0.1 Ω ≈ 120 A", "A battery has no amps reading on its own; measure current in series with a load"],
+            ["Blows at switch-on of a pump, fan or drill", "Motor inrush, several times running current", "2 A motor × 5 to 8 ≈ 10 to 16 A", "Use a clamp meter, or allow for the start surge, not the running current, when choosing the jack"],
+            ["Blows on a heater or hair dryer", "Running current above the 10 A jack", "1,500 W ÷ 120 V = 12.5 A", "Use a clamp meter; never route mains appliance current through a handheld"],
+            ["mA fuse blows on the first reading", "Unknown load started on the mA jack", "A 2 A load on a ≈400 mA fuse", "Always start on the 10 A jack and step down"],
+            ["New fuse blows sooner than the old one", "Replacement underrated, slow/fast type wrong, or a generic fuse that is not the maker's part", "Opens below the intended current", "Fit the exact part in the manual"],
+            ["Blows with nothing connected", "Internal damage from an earlier fault", "None from the circuit", "Stop using the current ranges; have the meter serviced"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4 mb-4">
+          <strong>The lead-left-in-the-amps-jack habit.</strong> This is the classic repeat offender because it
+          happens on the measurement after the current test, often minutes later, when you have forgotten the
+          lead is there. Make returning the red lead to V part of disconnecting the meter, every time. Some
+          meters sound a warning or light the active jacks when a lead sits in a current input while the dial is
+          on another function; your manual says whether yours does.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          <strong>Trying to measure a battery&apos;s amps.</strong> Many repeat failures come from a
+          reasonable-sounding idea: checking how many amps a battery &quot;has.&quot; A battery does not hold a
+          current waiting to be read; it delivers whatever the connected resistance allows, and the current
+          jack is almost zero ohms. That is the parallel-connection short worked through above, and it will
+          blow every fuse you fit. To judge a battery, measure its voltage, then its voltage under a known load,
+          as in{" "}
+          <Link href="/multimeters/how-to-test-a-12v-battery-under-load" className={link}>
+            testing a 12 V battery under load
+          </Link>
+          .
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          <strong>Inrush and loads near the limit.</strong> If the fuse only goes when a motor, compressor,
+          power supply or LED driver switches on, the start-up surge is the cause even when the running current
+          looks safe. Loads that run close to the jack rating for long periods are a related problem: the
+          shunt warms, and repeated stress near the rating can weaken a fuse element so it later opens below
+          its marked value. A clamp meter avoids both; our{" "}
+          <Link href="/multimeters/clamp-meter-buying-guide" className={link}>
+            clamp meter buying guide
+          </Link>{" "}
+          explains which type reads DC as well as AC.
+        </p>
+        <p className="text-muted leading-7">
+          <strong>The wrong replacement.</strong> After the first blown fuse, many people fit whatever matches
+          the amp number and the physical size. An underrated fuse, a slow-blow where a fast-acting type is
+          specified (or the reverse), or a glass fuse in place of a ceramic one can open early, open late, or
+          fail to clear a high-energy fault at all. If your second fuse is not the same part as the first, the
+          replacement may be the reason the problem keeps coming back.
+        </p>
+        <Callout title="Safety: replace only with the fuse the maker specifies">
+          <ul className="space-y-2 list-disc pl-5">
+            <li>
+              Match every line of the manual&apos;s fuse specification: current rating, voltage rating, breaking
+              (interrupting) capacity, speed and physical size. Most CAT-rated meters specify a ceramic,
+              high-breaking-capacity (HRC) fuse rated at the meter&apos;s full voltage.
+            </li>
+            <li>
+              Never fit a larger fuse, a glass or automotive fuse, or a wire or foil bridge to stop it blowing. A
+              fuse that keeps blowing is warning you about a technique problem, and removing the warning
+              leaves an arc at your hands on the next mistake.
+            </li>
+            <li>
+              If a correct new fuse blows with nothing connected, or the fuse clips are discolored or loose,
+              stop using the current ranges and have the meter serviced or replaced.
+            </li>
+          </ul>
+        </Callout>
       </section>
 
       <section>

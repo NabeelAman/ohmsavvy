@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
@@ -26,6 +27,8 @@ const fluke87v = all.find((p) => p.name === "Fluke 87V")!;
 const bm786 = all.find((p) => p.name === "EEVblog Brymen BM786")!;
 const ut61e = all.find((p) => p.name === "UNI-T UT61E+")!;
 const fluke289 = all.find((p) => p.name === "Fluke 289")!;
+// Fluke 117 continuity "Beeper on < 20 Ω, off > 250 Ω detects opens or shorts of 500 μs or longer" per
+// https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-117 (specifications).
 
 const link = "text-accent hover:underline";
 
@@ -72,6 +75,7 @@ export default function WhyDoesMyMultimeterContinuityTesterKeepBeepingPage() {
       path="/multimeters/why-does-my-multimeter-continuity-tester-keep-beeping"
       category="multimeters"
       published="2026-10-25"
+      updated="2026-10-29"
       intro={
         <>
           A multimeter continuity tester keeps beeping because the resistance between the probes is
@@ -98,6 +102,7 @@ export default function WhyDoesMyMultimeterContinuityTesterKeepBeepingPage() {
       toc={[
         { id: "constant-vs-intermittent", label: "Constant beep vs intermittent beep" },
         { id: "threshold", label: "What sets off the beeper" },
+        { id: "shouldnt-beep", label: "Continuity when it shouldn't" },
         { id: "causes", label: "Causes of a beep that will not stop" },
         { id: "checks", label: "Step-by-step checks" },
         { id: "read-the-ohms", label: "Read the ohms, not the beep" },
@@ -105,6 +110,10 @@ export default function WhyDoesMyMultimeterContinuityTesterKeepBeepingPage() {
         { id: "meters", label: "Meters that make this easier" },
       ]}
       faq={[
+        {
+          q: "Why does my multimeter show continuity when it shouldn't?",
+          a: "Something between the probes is genuinely below the beep threshold, just not the path you meant to test. Usual causes are a parallel path through other parts, a low-resistance coil or winding, a capacitor briefly charging, a probe tip bridging a neighboring pin, or moisture and corrosion. Lift one leg of the suspect part and read the ohms instead of relying on the tone.",
+        },
         {
           q: "Why does my multimeter beep when the probes are not touching anything?",
           a: "If it beeps with the probe tips held apart in the air, the circuit is not the cause. Look for a lead plugged into the wrong jack, a crushed lead with its conductors shorted together, a stuck or dirty rotary switch, or a meter damaged by measuring voltage while set to continuity. Try a different set of leads first; if the beep persists, the meter needs service.",
@@ -161,7 +170,12 @@ export default function WhyDoesMyMultimeterContinuityTesterKeepBeepingPage() {
           . This page is about the reverse problem: a steady tone on something you expected to be open, or
           a tone that sounds on every point you touch. Here the resistance is consistently low, and the
           question is whether that low path is a defect, a normal feature of the part, or something in the
-          meter and leads.
+          meter and leads. If your problem is the opposite, a meter that stays silent on a wire you know is
+          good, see{" "}
+          <Link href="/multimeters/why-is-my-multimeter-not-beeping-in-continuity-mode" className={link}>
+            why a multimeter is not beeping in continuity mode
+          </Link>
+          .
         </p>
       </section>
 
@@ -186,6 +200,81 @@ export default function WhyDoesMyMultimeterContinuityTesterKeepBeepingPage() {
         >
           <ThresholdScale />
         </Figure>
+      </section>
+
+      <section>
+        <h2 id="shouldnt-beep" className="text-xl font-semibold mb-3">
+          Why does my multimeter show continuity when it shouldn&apos;t?
+        </h2>
+        <p className="text-muted leading-7 mb-4">
+          A multimeter shows continuity when it shouldn&apos;t because something between the probes really is
+          below the beep threshold, even if it isn&apos;t the path you meant to test. The meter can&apos;t see
+          intent; it adds up every route the test current can take and compares the result with one number.
+          Knowing that number for your own meter is the starting point. Fluke, for example, specifies the
+          117&apos;s beeper as on below 20 Ω and off above 250 Ω, and says it detects opens or shorts lasting
+          500 µs or longer. That gap between 20 Ω and 250 Ω matters: a path that starts low and rises, such as a
+          capacitor charging, can keep the tone going well past the point where a fresh connection would have
+          stayed silent. Other meters publish different figures, so check your manual rather than assuming.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          <strong className="text-foreground">Parallel paths</strong> are the most common surprise. A 1 kΩ
+          resistor measured in circuit is in parallel with everything else connected across its two pads, and
+          parallel resistance is always lower than the smallest branch. The combined value is R1 × R2 ÷ (R1 +
+          R2), so a 1 kΩ resistor sharing its nodes with a 15 Ω coil reads about 14.8 Ω (1,000 × 15 ÷ 1,015),
+          which is under the 117&apos;s 20 Ω turn-on point. The resistor is fine; the coil is setting the reading.
+        </p>
+        <Figure
+          caption={
+            <>
+              Calculated values: what a meter sees across a good 1 kΩ resistor when different parts share its two
+              nodes (log scale). The highlighted case falls below a 20 Ω beep threshold such as the Fluke
+              117&apos;s.
+            </>
+          }
+        >
+          <BarChart
+            log
+            items={[
+              { label: "1 kΩ on its own", value: 1000, display: "1,000 Ω" },
+              { label: "with 10 kΩ in parallel", value: 909, display: "909 Ω" },
+              { label: "with 100 Ω in parallel", value: 90.9, display: "90.9 Ω" },
+              { label: "with a 15 Ω coil in parallel", value: 14.8, display: "14.8 Ω", highlight: true },
+              { label: "with a 2 Ω winding in parallel", value: 2.0, display: "2.0 Ω" },
+            ]}
+          />
+        </Figure>
+        <ul className="space-y-3 list-disc pl-5 text-muted leading-7 mt-4 mb-4">
+          <li>
+            <strong className="text-foreground">Low-value parts that are meant to be low.</strong> Current-sense
+            resistors, inductors, relay and solenoid coils, speaker voice coils and transformer windings are
+            ordinary copper or low-ohm elements. Many sit below 20 Ω, so they beep on a healthy part. Read the ohms
+            and compare with the datasheet instead of trusting the tone.
+          </li>
+          <li>
+            <strong className="text-foreground">Capacitors charging.</strong> An uncharged capacitor looks like a
+            short at the instant you connect, so the beeper sounds and then stops as the test current charges it.
+            The bigger the capacitance, the longer the tone lasts, and on a board with thousands of microfarads on
+            one rail the chirp can last long enough to look like a short. Reverse the probes and it chirps again.
+          </li>
+          <li>
+            <strong className="text-foreground">Leads touching or bridged.</strong> On a crowded connector or a
+            fine-pitch IC, the side of a probe tip can touch a neighboring pin, and two adjacent pins then appear
+            connected. Sharp, insulated probe tips and a magnifier solve most of these. Your fingers on both tips
+            are much less likely to trigger it, because dry skin is typically far above a continuity threshold,
+            though it will skew a high-ohm resistance reading.
+          </li>
+          <li>
+            <strong className="text-foreground">Contamination and moisture.</strong> Water in a connector,
+            corrosion salts, conductive flux residue or carbonized tracking on a burnt board can all create
+            leakage paths. Many of these leak at kilohms or more and won&apos;t beep, but a flooded or heavily
+            corroded connector can drop low enough. Dry and clean the part, then test again.
+          </li>
+          <li>
+            <strong className="text-foreground">A threshold set higher than you expect.</strong> Two working
+            meters can disagree on a 30 Ω path. If the beep seems wrong, read the actual resistance and decide
+            for yourself whether that value is a fault.
+          </li>
+        </ul>
       </section>
 
       <section>

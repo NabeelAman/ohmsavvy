@@ -20,6 +20,7 @@ export const metadata = buildMetadata({
   title: "Fluke 15B+ vs Fluke 117/323 Kit",
   description:
     "Fluke 15B+ vs the 117/323 kit: a simple, budget Fluke meter against a True RMS multimeter-and-clamp-meter bundle. A big gap in price and capability.",
+  image: picks.find((p) => p.name === "Fluke 15B+")!.image,
   path: "/multimeters/fluke-15b-plus-vs-fluke-117-323-kit",
 });
 

@@ -23,15 +23,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-77-iv-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 77 IV vs Fluke 117 for Electricians",
   description:
     "Fluke 77 IV vs 117 comparison for electricians: average-responding CAT IV 600V meter against a True RMS 117 with VoltAlert and LoZ. Specs, charts, verdict.",
+  image: all.find((p) => p.name === "Fluke 77 IV")!.image,
   path: "/multimeters/fluke-77-iv-vs-fluke-117",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Idealized waveforms: what an average-responding meter does with a pulse-shaped current. It rectifies, averages and

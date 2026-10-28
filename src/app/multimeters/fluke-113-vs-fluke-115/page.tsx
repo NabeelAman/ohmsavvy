@@ -24,15 +24,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-113-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 113 vs Fluke 115: Which Is Better?",
   description:
     "Fluke 113 vs Fluke 115 comparison: a VCHEK LoZ utility meter with no current ranges against a True RMS general-purpose Fluke with 10A. Specs, charts, verdict.",
+  image: all.find((p) => p.name === "Fluke 113")!.image,
   path: "/multimeters/fluke-113-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** VCHEK on the Fluke 113: one dial position that reads LoZ volts, or falls back to a continuity check when dead. */
 function VchekLogicDiagram() {

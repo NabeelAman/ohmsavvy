@@ -30,14 +30,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-175-vs-fluke-177";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 175 vs Fluke 177: Which Should You Choose?",
   description:
     "Fluke 175 vs Fluke 177 comparison: same True RMS core, CAT IV 600V and lifetime warranty; the 177 adds a backlight and 0.09% DC accuracy against 0.15%.",
+  image: all.find((p) => p.name === "Fluke 177")!.image,
   path: "/multimeters/fluke-175-vs-fluke-177",
 });
 
-const all = getAllPicks("multimeters");
 const link = "text-accent hover:underline";
 
 /**

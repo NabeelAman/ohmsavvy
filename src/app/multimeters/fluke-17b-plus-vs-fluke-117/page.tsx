@@ -27,6 +27,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 117",
   description:
     "Fluke 17B+ vs Fluke 117 for electrical work: VoltAlert, LoZ and AutoVolt against temperature, µA and 100 kHz, with accuracy worked out. Which to buy.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-117",
 });
 

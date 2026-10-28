@@ -22,6 +22,7 @@ export const metadata = buildMetadata({
   title: "Fluke 15B+ vs Fluke 106",
   description:
     "Fluke 15B+ vs Fluke 106: full µA-to-10A current ranges and a 1000V reading in a full-size case, or a 200 g pocket meter with a 6,000-count display. Compared.",
+  image: picks.find((p) => p.name === "Fluke 15B+")!.image,
   path: "/multimeters/fluke-15b-plus-vs-fluke-106",
 });
 

@@ -19,6 +19,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke T5-600",
   description:
     "Fluke 117 vs Fluke T5-600: True RMS, LoZ and NCV in an electrician's multimeter against a rugged tester reading 100A through an open jaw. Which fits?",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-t5-600",
 });
 

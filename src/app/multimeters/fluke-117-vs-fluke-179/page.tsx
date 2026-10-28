@@ -18,6 +18,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 179",
   description:
     "Fluke 117 vs Fluke 179: CAT IV 600V, NCV and LoZ compared, plus an HVAC technician breakdown and a temperature measurement comparison. Which suits you.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-179",
 });
 

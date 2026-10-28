@@ -20,6 +20,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 87V",
   description:
     "Fluke 117 vs Fluke 87V: CAT ratings, DC accuracy, LoZ and microamps compared, plus electronics repair, automotive use and whether the 87V is worth it.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-87v",
 });
 

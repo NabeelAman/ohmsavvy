@@ -23,15 +23,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-77-iv-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 77 IV vs Fluke 179 for Maintenance",
   description:
     "Fluke 77 IV vs 179 comparison for electrical maintenance: same CAT IV 600V rating, but the 179 adds True RMS, temperature and tighter accuracy. Which to carry.",
+  image: all.find((p) => p.name === "Fluke 77 IV")!.image,
   path: "/multimeters/fluke-77-iv-vs-fluke-179",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Three test points on a drive-fed motor circuit and which meter each one suits. */
 function DriveTestPointsDiagram() {

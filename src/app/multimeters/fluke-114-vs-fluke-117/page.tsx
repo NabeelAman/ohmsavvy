@@ -24,15 +24,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-114-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 114 vs 117 for Residential Electricians",
   description:
     "Fluke 114 vs Fluke 117 for residential electricians: both have AutoVolt LoZ for ghost voltage; the 117 adds VoltAlert, 10A current and capacitance. Our verdict.",
+  image: all.find((p) => p.name === "Fluke 114")!.image,
   path: "/multimeters/fluke-114-vs-fluke-117",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** A duplex receptacle with the three probe pairs a residential electrician checks, and the nominal reading for each. */
 function ReceptacleCheckDiagram() {

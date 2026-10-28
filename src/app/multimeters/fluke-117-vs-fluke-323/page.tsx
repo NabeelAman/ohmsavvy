@@ -11,6 +11,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 323",
   description:
     "Fluke 117 vs Fluke 323: a general-purpose multimeter against a dedicated True RMS clamp meter. Which one you actually need depends on how you measure current.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-323",
 });
 

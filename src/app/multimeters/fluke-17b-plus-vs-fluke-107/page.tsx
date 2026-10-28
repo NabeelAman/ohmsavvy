@@ -23,6 +23,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 107",
   description:
     "Fluke 17B+ vs Fluke 107: both read frequency and duty cycle, but the 17B+ adds temperature, mA ranges and MIN MAX while the 107 is half the size. Compared.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-107",
 });
 

@@ -23,15 +23,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-88v-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 88V vs 117 for Automotive Diagnostics",
   description:
     "Fluke 88V vs Fluke 117 for car and hybrid diagnostics: injector pulse width, RPM, 250 µs peak capture and CAT IV 600V against the 117's electrician features.",
+  image: all.find((p) => p.name === "Fluke 88V")!.image,
   path: "/multimeters/fluke-88v-vs-fluke-117",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Illustrative only: battery voltage while cranking. A brief dip at starter engagement lasts a few milliseconds;

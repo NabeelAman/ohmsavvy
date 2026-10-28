@@ -21,15 +21,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-116-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 116 vs Fluke 117: Electrician Comparison",
   description:
     "Fluke 116 vs Fluke 117 for electricians and HVAC techs: VoltAlert and 10 A ranges on the 117, microamps and temperature on the 116. Specs, charts and a verdict.",
+  image: all.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-116-vs-fluke-117",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Log-scale current axis from 0.1 µA to 20 A, showing the span each meter's current input covers

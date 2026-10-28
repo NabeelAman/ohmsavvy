@@ -19,6 +19,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Milwaukee 2235-20 Clamp Meter",
   description:
     "Fluke 117 vs Milwaukee 2235-20: a 10A multimeter against a 400A AC clamp meter, both CAT III 600V True RMS. Which jobs need which, and when to own both.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-milwaukee-2235-20",
 });
 

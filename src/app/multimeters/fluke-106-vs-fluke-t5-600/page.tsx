@@ -22,6 +22,7 @@ export const metadata = buildMetadata({
   title: "Fluke 106 vs Fluke T5-600",
   description:
     "Fluke 106 vs Fluke T5-600: both read current, one through test leads to 10A, the other through an open jaw to 100A. Steps, specs and the right pick.",
+  image: picks.find((p) => p.name === "Fluke 106")!.image,
   path: "/multimeters/fluke-106-vs-fluke-t5-600",
 });
 

@@ -18,6 +18,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 106",
   description:
     "Fluke 17B+ vs Fluke 106: a full-size meter with temperature, frequency and µA ranges against a 200 g palm-size Fluke with a finer display. Pick the right one.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-106",
 });
 

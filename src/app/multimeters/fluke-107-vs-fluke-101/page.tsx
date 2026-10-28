@@ -36,6 +36,7 @@ export const metadata = buildMetadata({
   title: "Fluke 107 vs Fluke 101: Which Compact Is Better?",
   description:
     "Fluke 101 vs Fluke 107 comparison: every range and accuracy figure, current readings, size and US availability. Only the 107 reads amps or has a backlight.",
+  image: picks.find((p) => p.name === "Fluke 107")!.image,
   path: "/multimeters/fluke-107-vs-fluke-101",
 });
 

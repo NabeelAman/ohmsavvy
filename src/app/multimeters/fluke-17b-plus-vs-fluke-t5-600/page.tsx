@@ -24,6 +24,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke T5-600",
   description:
     "Fluke 17B+ vs Fluke T5-600: a full electronics multimeter with temperature and frequency against a fast 100A open-jaw tester for panel work.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-t5-600",
 });
 

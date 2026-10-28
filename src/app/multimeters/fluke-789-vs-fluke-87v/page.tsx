@@ -39,15 +39,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-789-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 789 vs 87V: ProcessMeter or Multimeter?",
   description:
     "Fluke 789 vs 87V comparison: the 789 sources, simulates and powers 4-20 mA loops with a 250 Ω HART resistor; the 87V measures more, to 10 A and 20 kHz.",
+  image: all.find((p) => p.name === "Fluke 789")!.image,
   path: "/multimeters/fluke-789-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** One mini loop sketch per mode: who supplies the power, who sets the current, where the meter sits. */
 function LoopModesDiagram() {

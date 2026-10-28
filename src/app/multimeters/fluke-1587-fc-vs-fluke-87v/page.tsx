@@ -33,15 +33,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-1587-fc-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 1587 FC vs 87V: Which Tester Do You Need?",
   description:
     "Fluke 1587 FC vs Fluke 87V comparison: a 50–1000 V insulation tester with PI/DAR against a precision 10 A multimeter. Specs, charts, test setup and a verdict.",
+  image: all.find((p) => p.name === "Fluke 1587 FC")!.image,
   path: "/multimeters/fluke-1587-fc-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Insulation resistance test on a de-energized, isolated three-phase motor: winding to frame. */
 function InsulationTestDiagram() {

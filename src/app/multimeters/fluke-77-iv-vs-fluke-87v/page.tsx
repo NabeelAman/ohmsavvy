@@ -26,15 +26,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-77-iv-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 77 IV vs Fluke 87V for Industrial Testing",
   description:
     "Fluke 77 IV vs 87V comparison for industrial testing: same CAT IV 600V rating, but only the 87V adds True RMS, a drive filter, peak capture and temperature.",
+  image: all.find((p) => p.name === "Fluke 77 IV")!.image,
   path: "/multimeters/fluke-77-iv-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

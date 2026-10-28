@@ -20,10 +20,13 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-87v-vs-fluke-289";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 87V vs Fluke 289 for Professional Use",
   description:
     "Fluke 87V vs Fluke 289 for professional electricians: identical CAT IV 600V rating, but the 289 adds 50,000 counts, LoZ and TrendCapture logging. Which to buy.",
+  image: all.find((p) => p.name === "Fluke 87V")!.image,
   path: "/multimeters/fluke-87v-vs-fluke-289",
 });
 
@@ -73,7 +76,6 @@ function SnapshotVsTrendDiagram() {
   );
 }
 
-const all = getAllPicks("multimeters");
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

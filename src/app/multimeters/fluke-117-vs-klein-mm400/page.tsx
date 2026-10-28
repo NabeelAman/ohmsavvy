@@ -22,6 +22,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Klein Tools MM400",
   description:
     "Fluke 117 vs Klein Tools MM400: both CAT III 600V, but only the 117 is True RMS with LoZ and NCV. The MM400 adds temperature and is now discontinued.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-klein-mm400",
 });
 

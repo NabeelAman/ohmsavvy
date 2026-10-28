@@ -20,14 +20,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-177-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 177 vs 117 for Daily Electrical Work",
   description:
     "Fluke 177 vs Fluke 117 comparison for daily electrical work: VoltAlert and LoZ on the 117, CAT IV 600V, 0.09% DC and a lifetime warranty on the 177.",
+  image: all.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-177-vs-fluke-117",
 });
 
-const all = getAllPicks("multimeters");
 const link = "text-accent hover:underline";
 
 /** A suspicious reading on a dead circuit: the two routes to a trustworthy answer on each meter. */

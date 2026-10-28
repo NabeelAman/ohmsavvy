@@ -24,6 +24,7 @@ export const metadata = buildMetadata({
   title: "Fluke 15B+ vs Fluke T5-600",
   description:
     "Fluke 15B+ vs Fluke T5-600: microamps to 10A through leads against 100A AC through an open jaw. Ranges, safety ratings and who should buy which.",
+  image: picks.find((p) => p.name === "Fluke 15B+")!.image,
   path: "/multimeters/fluke-15b-plus-vs-fluke-t5-600",
 });
 

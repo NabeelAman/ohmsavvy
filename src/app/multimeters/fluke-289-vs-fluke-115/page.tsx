@@ -26,15 +26,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-289-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 289 vs 115: Is a Logging Meter Worth It?",
   description:
     "Fluke 289 vs 115 comparison: what TrendCapture logging, µA and CAT IV add over a solid True RMS field meter, and who doesn't need them. Specs and charts.",
+  image: all.find((p) => p.name === "Fluke 289")!.image,
   path: "/multimeters/fluke-289-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Illustrative: an outlet voltage watched overnight with two separate dips. The 115's Min/Max/Avg keeps only the

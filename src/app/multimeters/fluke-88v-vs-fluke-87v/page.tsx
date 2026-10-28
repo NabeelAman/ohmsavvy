@@ -30,15 +30,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-88v-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 88V vs Fluke 87V: Which Is Better?",
   description:
     "Fluke 88V vs Fluke 87V for automotive vs industrial work: injector pulse width and RPM on the 88V, True RMS and a drive filter on the 87V. Specs and a verdict.",
+  image: all.find((p) => p.name === "Fluke 88V")!.image,
   path: "/multimeters/fluke-88v-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Why average-responding meters drift on non-sine waves: the meter rectifies, averages and multiplies by the sine

@@ -22,6 +22,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 101",
   description:
     "Fluke 17B+ vs Fluke 101: one measures current, temperature and logs MIN MAX; the other is a 160 g voltage-only Fluke with no current at all. See which fits.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-101",
 });
 

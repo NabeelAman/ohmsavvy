@@ -28,15 +28,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-289-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 289 vs Fluke 179 for Industrial Maintenance",
   description:
     "Fluke 289 vs Fluke 179 comparison for plant maintenance: same CAT IV 600V rating, but the 289 adds logging, a drive filter, LoZ and µA. Which one to carry.",
+  image: all.find((p) => p.name === "Fluke 289")!.image,
   path: "/multimeters/fluke-289-vs-fluke-179",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Illustrative: what each meter leaves you with after watching a motor control circuit for a shift. The 179's

@@ -25,6 +25,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 106",
   description:
     "Fluke 117 vs Fluke 106: True RMS with NCV, AutoVolt and LoZ for electricians, against Fluke's lightest budget pocket meter. Specs, charts and a verdict.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-106",
 });
 

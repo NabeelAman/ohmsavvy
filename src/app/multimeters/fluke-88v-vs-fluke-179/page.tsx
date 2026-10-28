@@ -30,14 +30,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-88v-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 88V vs Fluke 179 for Vehicle Diagnostics",
   description:
     "Fluke 88V vs Fluke 179 comparison for car work: RPM, duty cycle, injector pulse width and 250 µs peak capture against True RMS, a backlight and a probe.",
+  image: all.find((p) => p.name === "Fluke 88V")!.image,
   path: "/multimeters/fluke-88v-vs-fluke-179",
 });
 
-const all = getAllPicks("multimeters");
 const link = "text-accent hover:underline";
 
 /**

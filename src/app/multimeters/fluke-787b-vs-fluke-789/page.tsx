@@ -38,15 +38,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-787b-vs-fluke-789";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 787B vs 789: Which ProcessMeter Is Better?",
   description:
     "Fluke 787B vs 789 comparison: identical meter and mA source specs, but only the 789 has a 24 V loop supply and 250 Ω HART resistor. Loop diagram and verdict.",
+  image: all.find((p) => p.name === "Fluke 789")!.image,
   path: "/multimeters/fluke-787b-vs-fluke-789",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** One box in the loop drawing. */
 function Box({ x, y, w, h, label, sub, accent }: { x: number; y: number; w: number; h: number; label: string; sub?: string; accent?: boolean }) {

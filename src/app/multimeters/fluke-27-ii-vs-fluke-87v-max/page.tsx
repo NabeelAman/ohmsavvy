@@ -29,15 +29,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-27-ii-vs-fluke-87v-max";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 27 II vs 87V MAX: Rugged Meter Comparison",
   description:
     "Fluke 27 II vs 87V MAX comparison: two IP67 meters, but only the 87V MAX is True RMS with a VFD filter. The 27 II adds MSHA approval. Charts and verdict.",
+  image: all.find((p) => p.name === "Fluke 87V MAX")!.image,
   path: "/multimeters/fluke-27-ii-vs-fluke-87v-max",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** VFD output: PWM pulses on the motor leads, and the smooth fundamental a low-pass filter lets through. */
 function DriveOutputDiagram() {

@@ -25,6 +25,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 87V for Professionals",
   description:
     "Fluke 17B+ vs Fluke 87V: which is better for professionals? CAT IV 600V, 0.05% DC accuracy and peak capture against a capable entry Fluke. Who needs which.",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-87v",
 });
 

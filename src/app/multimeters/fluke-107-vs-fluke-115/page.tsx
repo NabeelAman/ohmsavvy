@@ -25,15 +25,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-107-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 107 vs Fluke 115 for Electronics Beginners",
   description:
     "Fluke 107 vs Fluke 115, compact vs professional: resistor, capacitor, diode and current accuracy worked out for beginners, plus True RMS, safety and size.",
+  image: all.find((p) => p.name === "Fluke 107")!.image,
   path: "/multimeters/fluke-107-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Front and side outlines of both meters drawn to the same scale (1 unit = 1 mm). */
 function SizeOutlineDiagram() {

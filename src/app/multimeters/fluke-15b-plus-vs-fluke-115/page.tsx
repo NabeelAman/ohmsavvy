@@ -24,15 +24,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-15b-plus-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 15B+ vs Fluke 115: Budget or Professional?",
   description:
     "Fluke 15B+ vs 115 comparison: an entry-level Fluke with µA ranges against a True RMS field meter with a 3-year warranty. Specs, charts and who needs which.",
+  image: all.find((p) => p.name === "Fluke 15B+")!.image,
   path: "/multimeters/fluke-15b-plus-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",

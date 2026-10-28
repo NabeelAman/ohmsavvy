@@ -22,6 +22,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs 115: Which Fluke Should You Buy?",
   description:
     "Fluke 117 vs 115 for electricians and home testing: same True RMS, CAT III 600V core; the 117 adds VoltAlert NCV, LoZ and AutoVolt. Specs, charts, verdict.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-115-vs-fluke-117",
 });
 

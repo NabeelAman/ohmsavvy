@@ -17,6 +17,7 @@ export const metadata = buildMetadata({
   title: "Fluke 87V vs Fluke 179",
   description:
     "Fluke 87V vs Fluke 179: same CAT IV 600V and lifetime warranty; the 87V adds 0.05% DC, peak capture and a drive filter. Industrial maintenance verdict.",
+  image: picks.find((p) => p.name === "Fluke 87V")!.image,
   path: "/multimeters/fluke-87v-vs-fluke-179",
 });
 

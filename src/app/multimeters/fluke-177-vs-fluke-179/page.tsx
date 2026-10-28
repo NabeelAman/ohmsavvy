@@ -20,14 +20,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-177-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 177 vs 179: Features and Accuracy Compared",
   description:
     "Fluke 177 vs Fluke 179: identical volts, amps and ohms accuracy, so is the 179's temperature function and 80BK probe worth paying more for? Worked tolerances.",
+  image: all.find((p) => p.name === "Fluke 179")!.image,
   path: "/multimeters/fluke-177-vs-fluke-179",
 });
 
-const all = getAllPicks("multimeters");
 const link = "text-accent hover:underline";
 
 /** How ±(1.0% + 10 counts) splits between its percentage part and its fixed 1.0 °C part at several readings. */

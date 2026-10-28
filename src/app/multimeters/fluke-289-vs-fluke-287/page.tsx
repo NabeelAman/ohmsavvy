@@ -25,15 +25,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-289-vs-fluke-287";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 289 vs Fluke 287: Which Logger Is Better?",
   description:
     "Fluke 289 vs 287 logging meters: same 50,000-count core and recording memory; the 289 adds a 50 Ω low-ohm range, LoZ and a low-pass filter. Specs and verdict.",
+  image: all.find((p) => p.name === "Fluke 289")!.image,
   path: "/multimeters/fluke-289-vs-fluke-287",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Two-terminal low-ohm measurement on the 289's 50 Ω range: the meter sources up to 10 mA through the leads and the

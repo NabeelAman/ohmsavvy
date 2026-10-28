@@ -22,6 +22,7 @@ export const metadata = buildMetadata({
   title: "Fluke 115 vs Fluke 87V: Which Should You Buy?",
   description:
     "Fluke 115 vs Fluke 87V differences: CAT III 600V vs CAT IV 600V, 0.5% vs 0.05% DC accuracy, amps-only vs µA ranges, temperature and a drive filter.",
+  image: picks.find((p) => p.name === "Fluke 115")!.image,
   path: "/multimeters/fluke-115-vs-fluke-87v",
 });
 

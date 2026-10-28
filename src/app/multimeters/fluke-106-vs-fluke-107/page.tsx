@@ -29,6 +29,7 @@ export const metadata = buildMetadata({
   title: "Fluke 106 vs Fluke 107: Differences and Value",
   description:
     "Fluke 106 vs Fluke 107 differences: one body and identical accuracy, but the 107 adds diode test, Hz, duty cycle and a backlight. Every gap and the value math.",
+  image: picks.find((p) => p.name === "Fluke 106")!.image,
   path: "/multimeters/fluke-106-vs-fluke-107",
 });
 

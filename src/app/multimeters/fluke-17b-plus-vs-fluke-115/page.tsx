@@ -26,6 +26,7 @@ export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 115: Which Is Better Value?",
   description:
     "Fluke 17B+ vs Fluke 115 comparison: temperature, µA ranges and duty cycle against True RMS, 6,000 counts and a 3-year warranty. Which gives more value?",
+  image: picks.find((p) => p.name === "Fluke 17B+")!.image,
   path: "/multimeters/fluke-17b-plus-vs-fluke-115",
 });
 

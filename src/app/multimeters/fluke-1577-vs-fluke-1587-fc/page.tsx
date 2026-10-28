@@ -35,15 +35,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-1577-vs-fluke-1587-fc";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 1577 vs 1587 FC: Which Insulation Tester?",
   description:
     "Fluke 1577 vs 1587 FC comparison: 500/1000 V to 600 MΩ against 50–1000 V to 2 GΩ with PI/DAR, Fluke Connect and temperature. Specs, charts and a verdict.",
+  image: all.find((p) => p.name === "Fluke 1587 FC")!.image,
   path: "/multimeters/fluke-1577-vs-fluke-1587-fc",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 const LADDER = [
   { v: "50 V", use: "Telecom pairs, low-voltage electronics", m1577: false },

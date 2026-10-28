@@ -28,15 +28,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-283-fc-vs-fluke-289";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 283 FC vs 289: Wireless or Data Logging?",
   description:
     "Fluke 283 FC vs 289 comparison: a wireless 1500 V solar kit with a 60 A DC clamp and phone trending against a 50,000-count logger with on-screen graphs.",
+  image: all.find((p) => p.name === "Fluke 283 FC/PV")!.image,
   path: "/multimeters/fluke-283-fc-vs-fluke-289",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Where the data goes. 283 FC: clamp → radio → meter → Fluke Connect app → cloud report.

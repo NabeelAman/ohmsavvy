@@ -22,6 +22,7 @@ export const metadata = buildMetadata({
   title: "Fluke 107 vs Fluke T5-600",
   description:
     "Fluke 107 vs Fluke T5-600: a pocket multimeter with diode, frequency and capacitance against a drop-proof tester with a 100A open jaw. Compared.",
+  image: picks.find((p) => p.name === "Fluke 107")!.image,
   path: "/multimeters/fluke-107-vs-fluke-t5-600",
 });
 

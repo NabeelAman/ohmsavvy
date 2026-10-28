@@ -27,15 +27,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-114-vs-fluke-116";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 114 vs Fluke 116: Electrician or HVAC?",
   description:
     "Fluke 114 vs 116 comparison: same LoZ core and case, but the 116 adds microamps, temperature and capacitance for HVAC. Which meter fits an electrician's work.",
+  image: all.find((p) => p.name === "Fluke 114")!.image,
   path: "/multimeters/fluke-114-vs-fluke-116",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Nested function map: per Fluke's published specs, everything the 114 measures is also on the 116,

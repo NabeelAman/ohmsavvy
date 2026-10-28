@@ -24,6 +24,7 @@ export const metadata = buildMetadata({
   title: "Fluke 15B+ vs Fluke 107",
   description:
     "Fluke 15B+ vs Fluke 107: the full-size meter has µA and mA ranges and a 1000V reading, the pocket 107 adds frequency and duty cycle. Specs and verdict.",
+  image: picks.find((p) => p.name === "Fluke 15B+")!.image,
   path: "/multimeters/fluke-15b-plus-vs-fluke-107",
 });
 

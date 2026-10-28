@@ -30,15 +30,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-283-fc-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 283 FC vs 87V for Solar PV Testing",
   description:
     "Fluke 283 FC vs 87V comparison for solar: CAT III 1500V and a wireless 60 A DC clamp against the 87V's 1000 V limit and 10 A series input. Specs and verdict.",
+  image: all.find((p) => p.name === "Fluke 283 FC/PV")!.image,
   path: "/multimeters/fluke-283-fc-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * A PV string at the combiner box. The 283 FC reads string voltage through MC4 leads while the a283 FC clamp, closed

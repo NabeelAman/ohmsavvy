@@ -26,6 +26,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 107",
   description:
     "Fluke 117 vs Fluke 107 for home electrical testing and pro work: True RMS, NCV and LoZ against a 200 g palm-sized meter that isn't True RMS. Specs and verdict.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-107",
 });
 

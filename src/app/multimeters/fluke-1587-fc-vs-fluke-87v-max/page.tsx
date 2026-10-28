@@ -30,15 +30,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-1587-fc-vs-fluke-87v-max";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 1587 FC vs 87V MAX: Insulation or Rugged?",
   description:
     "Fluke 1587 FC vs 87V MAX: a 50–1000 V insulation tester with Fluke Connect against an IP67 meter rated for 4 m drops. Pick by the task or by the site.",
+  image: all.find((p) => p.name === "Fluke 1587 FC")!.image,
   path: "/multimeters/fluke-1587-fc-vs-fluke-87v-max",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Task-versus-environment map: the horizontal axis is the job (live troubleshooting vs de-energized insulation

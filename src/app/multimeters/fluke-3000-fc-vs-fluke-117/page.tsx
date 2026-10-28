@@ -26,15 +26,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-3000-fc-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 3000 FC vs 117: Wireless vs Everyday",
   description:
     "Fluke 3000 FC vs 117 comparison: Fluke Connect remote readings and up to three wireless modules against the 117's VoltAlert, LoZ and 10 A input. Which to buy.",
+  image: all.find((p) => p.name === "Fluke 3000 FC")!.image,
   path: "/multimeters/fluke-3000-fc-vs-fluke-117",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** One technician, several measurement points: how the 3000 FC gathers module readings and passes them to a phone. */
 function WirelessLayoutDiagram() {

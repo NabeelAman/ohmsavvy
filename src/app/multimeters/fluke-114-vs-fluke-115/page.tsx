@@ -22,15 +22,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-114-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 114 vs Fluke 115: Key Differences Explained",
   description:
     "Fluke 114 vs Fluke 115 differences: AutoVolt LoZ on the 114, current, capacitance and frequency on the 115. Same case, accuracy and CAT III 600V. Which to buy.",
+  image: all.find((p) => p.name === "Fluke 114")!.image,
   path: "/multimeters/fluke-114-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Input jacks: the 114 has two, the 115 adds a fused A jack, which is why only the 115 can measure current. */
 function JackLayoutDiagram() {

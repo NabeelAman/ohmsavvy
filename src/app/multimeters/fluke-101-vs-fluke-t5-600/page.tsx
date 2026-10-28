@@ -23,6 +23,7 @@ export const metadata = buildMetadata({
   title: "Fluke 101 vs Fluke T5-600",
   description:
     "Fluke 101 vs Fluke T5-600: the 101 can't measure current at all, the T5-600 reads up to 100A AC. Signals, size and safety compared, plus a verdict.",
+  image: picks.find((p) => p.name === "Fluke 101")!.image,
   path: "/multimeters/fluke-101-vs-fluke-t5-600",
 });
 

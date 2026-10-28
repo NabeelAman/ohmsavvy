@@ -26,15 +26,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-3000-fc-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 3000 FC vs 87V: Wireless or Precision?",
   description:
     "Fluke 3000 FC vs 87V comparison: a light wireless Fluke Connect meter against a precision industrial meter with a drive filter, 10 A and peak capture.",
+  image: all.find((p) => p.name === "Fluke 3000 FC")!.image,
   path: "/multimeters/fluke-3000-fc-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** A drive's PWM output and what a 1 kHz low-pass filter lets through. Generic shapes for illustration. */
 function LowPassDiagram() {

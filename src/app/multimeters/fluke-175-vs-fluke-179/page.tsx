@@ -27,14 +27,16 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-175-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 175 vs Fluke 179: Is the Upgrade Worth It?",
   description:
     "Fluke 175 vs 179 differences: the 179 adds temperature with an 80BK probe, a backlight and 0.09% DC volts. What each extra buys, and who can skip it.",
+  image: all.find((p) => p.name === "Fluke 179")!.image,
   path: "/multimeters/fluke-175-vs-fluke-179",
 });
 
-const all = getAllPicks("multimeters");
 const link = "text-accent hover:underline";
 
 /** The 170-series ladder: what each step up adds, so a 175 owner can see the 177 is a possible stopping point. */

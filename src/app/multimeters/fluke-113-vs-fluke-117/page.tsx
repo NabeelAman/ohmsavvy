@@ -27,15 +27,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-113-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 113 vs Fluke 117 for Electrical Testing",
   description:
     "Fluke 113 vs 117 comparison: a CAT IV VCHEK utility meter with no amps against the electrician's 117 with LoZ, VoltAlert and 10A. What each is really for.",
+  image: all.find((p) => p.name === "Fluke 113")!.image,
   path: "/multimeters/fluke-113-vs-fluke-117",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * What sits behind the input jacks of each meter: the 113 has a single low-impedance volts path,

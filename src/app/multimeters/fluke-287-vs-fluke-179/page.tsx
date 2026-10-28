@@ -25,15 +25,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-287-vs-fluke-179";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 287 vs Fluke 179 for Electronics Work",
   description:
     "Fluke 287 vs Fluke 179 for electronics: 50,000 vs 6,000 counts, 0.01 µA vs 10 µA current steps, and logging vs Min/Max. Specs, charts and which to buy.",
+  image: all.find((p) => p.name === "Fluke 287")!.image,
   path: "/multimeters/fluke-287-vs-fluke-179",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * The same 3.300 V rail on each meter: step size and the error window allowed by Fluke's DC accuracy line.

@@ -23,6 +23,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 15B+",
   description:
     "Fluke 117 vs Fluke 15B+: an electrician's True RMS meter with NCV and LoZ against Fluke's plainest volts-amps-ohms meter. Specs, charts and verdict.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-15b-plus",
 });
 

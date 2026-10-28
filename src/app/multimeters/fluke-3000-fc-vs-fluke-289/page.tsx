@@ -25,15 +25,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-3000-fc-vs-fluke-289";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 3000 FC vs 289 for Remote Monitoring",
   description:
     "Fluke 3000 FC vs 289 comparison for remote monitoring: live wireless readings in the Fluke Connect app against the 289's on-meter TrendCapture logging.",
+  image: all.find((p) => p.name === "Fluke 3000 FC")!.image,
   path: "/multimeters/fluke-3000-fc-vs-fluke-289",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Where the data goes and where it is kept: the 3000 FC streams to a phone; the 289 stores and graphs it itself. */
 function DataPathDiagram() {

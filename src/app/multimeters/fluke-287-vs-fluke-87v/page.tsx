@@ -38,15 +38,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-287-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 287 vs 87V for Intermittent Faults",
   description:
     "Fluke 287 vs 87V for intermittent faults: the 287 time-stamps every sag and dropout over days; the 87V's Min/Max and 1 ms Peak catch depth, not timing.",
+  image: all.find((p) => p.name === "Fluke 287")!.image,
   path: "/multimeters/fluke-287-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Illustrative overnight trace of a 120 V branch circuit with three faults, and what each meter reports afterward.

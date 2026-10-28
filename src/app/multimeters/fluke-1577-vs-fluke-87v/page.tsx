@@ -31,15 +31,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-1577-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 1577 vs 87V: Insulation Tester or DMM?",
   description:
     "Fluke 1577 vs 87V comparison: a 500/1000 V insulation multimeter against a 10 A industrial DMM. When you need megohm tests, and when the 87V is enough.",
+  image: all.find((p) => p.name === "Fluke 1577")!.image,
   path: "/multimeters/fluke-1577-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Three-question decision tree: does this job need a megohm (insulation) test, or will a DMM do? */
 function MegohmDecisionTree() {

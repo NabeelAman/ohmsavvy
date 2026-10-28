@@ -20,6 +20,7 @@ export const metadata = buildMetadata({
   title: "Fluke 106 vs Fluke 101",
   description:
     "Fluke 106 vs Fluke 101: the 106 reads current up to 10A, the smaller 101 can't read current but adds frequency and diode test. Specs, diagrams, verdict.",
+  image: picks.find((p) => p.name === "Fluke 106")!.image,
   path: "/multimeters/fluke-106-vs-fluke-101",
 });
 

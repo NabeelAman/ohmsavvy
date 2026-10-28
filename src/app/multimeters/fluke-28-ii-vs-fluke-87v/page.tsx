@@ -33,15 +33,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-28-ii-vs-fluke-87v";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 28 II vs Fluke 87V for Industrial Work",
   description:
     "Fluke 28 II vs Fluke 87V comparison for industrial work: IP67, MSHA approval and a 3 m drop rating against the standard 87V's tighter specs. Charts and a verdict.",
+  image: all.find((p) => p.name === "Fluke 28 II")!.image,
   path: "/multimeters/fluke-28-ii-vs-fluke-87v",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Operating temperature windows as Fluke lists them, on a -45 to 60 °C axis. */
 function TemperatureWindowDiagram() {

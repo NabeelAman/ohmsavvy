@@ -19,6 +19,7 @@ export const metadata = buildMetadata({
   title: "Fluke 117 vs Fluke 117/323 Kit",
   description:
     "Fluke 117 vs the 117/323 kit: the same multimeter, with or without a bundled True RMS clamp meter. Whether the extra cost is worth it depends on one thing.",
+  image: picks.find((p) => p.name === "Fluke 117")!.image,
   path: "/multimeters/fluke-117-vs-fluke-117-323-kit",
 });
 

@@ -21,6 +21,7 @@ export const metadata = buildMetadata({
   title: "Fluke 115 vs Klein MM400",
   description:
     "Fluke 115 vs Klein MM400: True RMS and a 6,000-count display against temperature and a lower price. Specs, charts and which meter suits your work.",
+  image: picks.find((p) => p.name === "Fluke 115")!.image,
   path: "/multimeters/fluke-115-vs-klein-mm400",
 });
 

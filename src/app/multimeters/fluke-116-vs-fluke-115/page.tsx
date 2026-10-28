@@ -21,15 +21,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-116-vs-fluke-115";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 116 vs Fluke 115 for HVAC Troubleshooting",
   description:
     "Fluke 116 vs Fluke 115 for HVAC and general use: flame-rod microamps, thermocouple temperature and LoZ on the 116, 10 A ranges on the 115. Which Fluke fits.",
+  image: all.find((p) => p.name === "Fluke 116")!.image,
   path: "/multimeters/fluke-116-vs-fluke-115",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Flame rectification: the meter goes in series between the flame rod and its control-board terminal. */
 function FlameRodHookupDiagram() {

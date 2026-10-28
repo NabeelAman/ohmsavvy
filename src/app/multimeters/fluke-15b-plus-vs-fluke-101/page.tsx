@@ -21,6 +21,7 @@ export const metadata = buildMetadata({
   title: "Fluke 15B+ vs Fluke 101",
   description:
     "Fluke 15B+ vs Fluke 101: a basic full-size meter that measures current against a 160 g pocket tester that reads frequency but no amps. Which suits you?",
+  image: picks.find((p) => p.name === "Fluke 15B+")!.image,
   path: "/multimeters/fluke-15b-plus-vs-fluke-101",
 });
 

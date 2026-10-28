@@ -23,15 +23,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-287-vs-fluke-117";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 287 vs Fluke 117: Advanced or Electrician?",
   description:
     "Fluke 287 vs Fluke 117: a 50,000-count logging bench meter against an electrician's meter with VoltAlert and LoZ. Specs, charts and who should buy each.",
+  image: all.find((p) => p.name === "Fluke 287")!.image,
   path: "/multimeters/fluke-287-vs-fluke-117",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Ghost voltage: a de-energized conductor running beside a live one picks up voltage through stray capacitance.

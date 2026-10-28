@@ -28,15 +28,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-27-ii-vs-fluke-28-ii";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 27 II vs 28 II: Differences Explained",
   description:
     "Fluke 27 II vs 28 II differences: one IP67, MSHA-approved body, but only the 28 II adds True RMS, a VFD filter, temperature and peak capture. Specs and verdict.",
+  image: all.find((p) => p.name === "Fluke 28 II")!.image,
   path: "/multimeters/fluke-27-ii-vs-fluke-28-ii",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /**
  * Three idealized waveforms with the same true RMS value, and what an average-responding meter

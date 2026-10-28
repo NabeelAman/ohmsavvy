@@ -35,15 +35,17 @@ import { buildMetadata } from "@/lib/metadata";
 
 const path = "/multimeters/fluke-28-ii-vs-fluke-87v-max";
 
+const all = getAllPicks("multimeters");
+
 export const metadata = buildMetadata({
   title: "Fluke 28 II vs 87V MAX for Harsh Environments",
   description:
     "Fluke 28 II vs 87V MAX comparison: both IP67, but the 28 II is MSHA approved while the MAX takes a 4 m drop and publishes tighter specs. Charts and a verdict.",
+  image: all.find((p) => p.name === "Fluke 87V MAX")!.image,
   path: "/multimeters/fluke-28-ii-vs-fluke-87v-max",
 });
 
 const link = "text-accent hover:underline";
-const all = getAllPicks("multimeters");
 
 /** Rated drop heights drawn to scale against a 0 to 4.5 m ruler. */
 function DropHeightDiagram() {

@@ -5,6 +5,10 @@
 // - Fluke 179 product page and spec tab: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-179
 //   (True RMS; DC ±(0.09% + 2), AC ±(1.0% + 3); 10 A with 0.01 mA resolution; 50 MΩ; 10,000 µF ±(1.2% + 2); 100 kHz;
 //   −40 to 400 °C; CAT III 1000 V / CAT IV 600 V; 420 g; one 9 V, about 200 h; lifetime warranty)
+// Feature table also per the 17B+ notes on /multimeters/fluke-17b-plus-vs-fluke-117 (15B+/17B+ users manual: continuity
+// below 70 Ω, hazard LED at 30 V, 1-year warranty; duty cycle 1-99%; HOLD) and the 179 notes on /multimeters/fluke-88v-vs-fluke-179
+// and /multimeters/fluke-175-vs-fluke-179 (Hold, Auto Hold, Min/Max-average; 33-segment bar graph at 40/s vs 4/s digits;
+// backlight; 0.01 mA best resolution, no µA range; 80BK probe). Duty cycle and relative mode are not listed for the 179.
 // Form-factor errors below are standard textbook values for an average-responding meter calibrated to read RMS on a sine.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
@@ -16,7 +20,7 @@ import { buildMetadata } from "@/lib/metadata";
 export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 179",
   description:
-    "Fluke 17B+ vs Fluke 179: a feature-rich entry meter without True RMS against Fluke's full-featured 170-series meter. The accuracy gap is the real difference.",
+    "Fluke 17B+ vs Fluke 179 feature by feature: True RMS, temperature, µA, duty cycle, Min/Max, bar graph, CAT rating and warranty, and who needs which.",
   path: "/multimeters/fluke-17b-plus-vs-fluke-179",
 });
 
@@ -66,7 +70,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 17B+ vs Fluke 179",
   path: "/multimeters/fluke-17b-plus-vs-fluke-179",
   published: "2026-10-22",
-  updated: "2026-10-26",
+  updated: "2026-10-28",
   intro:
     "Both meters pack in features beyond basic voltage and resistance, including temperature and frequency, but they sit in different Fluke tiers. The 17B+ is a feature-rich entry-level meter that Fluke doesn't describe as True RMS. The 179 is the full-featured member of the 170 series: True RMS, a higher CAT rating, a wider capacitance range, tighter DC accuracy and Min/Max-Average recording. The AC measuring method matters more than the overlapping feature list suggests.",
   a: {
@@ -153,6 +157,72 @@ const comparison: ProductComparisonContent = {
           deciding whether a battery is charged; for the small voltage-drop readings used to find a bad cable
           connection, the 179&apos;s tighter window helps.
         </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 17B+ vs 179 feature by feature</h2>
+        <p className="text-muted leading-7 mb-4">
+          Counted function by function, neither meter simply has more. The 179 offers better features for anyone who
+          measures power, while the 17B+ keeps a few the 179 doesn&apos;t list at all: microamp ranges, duty cycle,
+          relative mode and a hazardous-voltage LED. The table lists every function Fluke publishes for either meter.
+          Where Fluke states nothing for a model, we write &quot;Not stated&quot; rather than guess.
+        </p>
+        <DataTable
+          head={["Feature", "Fluke 17B+", "Fluke 179"]}
+          rows={[
+            ["True RMS", "Not claimed by Fluke", "Yes, AC volts and AC amps"],
+            ["Temperature", "−55 to 400 °C, Type K bead probe", "−40 to 400 °C, 80BK probe"],
+            ["Capacitance", "40 nF to 1,000 µF", "Up to 10,000 µF"],
+            ["Frequency", "10 Hz to 100 kHz, ±(0.1% + 3)", "To 100 kHz, ±(0.1% + 1)"],
+            ["Duty cycle", "1 to 99%", "Not stated"],
+            ["Microamp ranges", "400.0 µA and 4000 µA", "None; finest step 0.01 mA"],
+            ["Highest current", "10.00 A", "10 A"],
+            ["Min/Max", "MIN MAX", "Min/Max-Average"],
+            ["Hold", "HOLD", "Hold and Auto Hold"],
+            ["Relative mode", "Yes, except resistance and continuity", "Not stated"],
+            ["Backlight", "Yes", "Yes"],
+            ["Display", "4,000 counts", "6,000 counts"],
+            ["Analog bar graph", "Not listed", "Yes, 33 segments"],
+            ["Continuity beeper", "Below 70 Ω", "Yes; threshold not stated"],
+            ["Hazardous-voltage LED", "Lights at 30 V or more", "Not stated"],
+            ["CAT rating", "CAT III 600V / CAT II 1000V", "CAT III 1000V / CAT IV 600V"],
+            ["Battery", "2 × AA, 500 h minimum", "9 V, about 200 h without backlight"],
+            ["Warranty", "1 year", "Lifetime"],
+            ["OhmSavvy hands-on tested", "No (desk research)", "No (desk research)"],
+          ]}
+        />
+        <div className="mt-4">
+          <Figure caption={<>Rated battery life in hours, per Fluke. The 179&apos;s figure assumes the backlight stays off.</>}>
+            <BarChart
+              items={[
+                { label: "Fluke 17B+", value: 500, display: "500 h min", highlight: true },
+                { label: "Fluke 179", value: 200, display: "≈ 200 h" },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Which of those features matter depends on the work. An HVAC or appliance technician gets temperature on
+          both, so the deciders are the 179&apos;s 10,000 µF capacitance for motor-run capacitors, True RMS for
+          variable-speed blowers and Auto Hold for one-handed readings at an awkward cabinet. A technician chasing
+          an intermittent fault benefits from the 179&apos;s Min/Max-Average plus a bar graph that moves faster than
+          the digits, which shows a contact that flickers. Anyone working at a meter base or outdoor feeder needs
+          the CAT IV 600V line, which only the 179 carries.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          The 17B+&apos;s list favors the bench. Its 400.0 µA range resolves 0.1 µA, a hundred times finer than the
+          179&apos;s best 0.01 mA step, which decides sleep-current and sensor work. Duty cycle reads PWM fan and
+          motor-speed signals in percent, and relative mode zeroes out a baseline (Fluke excludes resistance and
+          continuity from it). Two AA cells rated for at least 500 hours also beat a 9 V rated at roughly 200.
+          The warranty runs the other way: one year on the 17B+ against Fluke&apos;s lifetime cover on the 179.
+        </p>
+        <div className="mt-4">
+          <KeyIdea title="Feature verdict">
+            Choose the 179 when its features protect the measurement: True RMS, CAT IV, Auto Hold, the bar graph and
+            the lifetime warranty. Choose the 17B+ when its extras widen what you can measure at a bench: microamps,
+            duty cycle and relative readings.
+          </KeyIdea>
+        </div>
       </section>
 
       <section>
@@ -257,6 +327,16 @@ const comparison: ProductComparisonContent = {
       question: "Which is more accurate for DC voltage, the 17B+ or the 179?",
       answer:
         "The 179, by a wide margin. Fluke lists ±(0.09% + 2) basic DC accuracy for the 179 against ±(0.5% + 3) for the 17B+. On a 12.6 V reading that works out to about ±0.03 V versus ±0.09 V. Both share the same ±(1.0% + 3) basic AC voltage figure.",
+    },
+    {
+      question: "Which has more features, the Fluke 17B+ or the Fluke 179?",
+      answer:
+        "Neither wins outright. The 179 adds True RMS, CAT IV 600V, capacitance to 10,000 µF, Auto Hold, Min/Max-Average, an analog bar graph and a lifetime warranty. The 17B+ keeps microamp ranges, duty cycle, relative mode and a hazardous-voltage LED that Fluke doesn't list for the 179. Both have temperature, frequency to 100 kHz and a backlight.",
+    },
+    {
+      question: "Does the Fluke 179 have a microamp range like the 17B+?",
+      answer:
+        "No. Fluke's spec table gives the 179 a finest current step of 0.01 mA, which is 10 µA, and no dedicated microamp range, although one comparison table on Fluke's page mentions µA. The 17B+ has 400.0 µA and 4000 µA ranges with 0.1 µA resolution at the bottom, so it suits small sensor and standby currents better.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

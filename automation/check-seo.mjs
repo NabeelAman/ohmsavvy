@@ -29,6 +29,13 @@ const problems = [];
 
 for (const file of pageFiles) {
   const content = readFileSync(file, "utf8");
+  // The homepage is the one page whose title, description and openGraph SHOULD be
+  // the root layout's (layout.tsx sets them for "/"); its own metadata export only
+  // adds hreflang alternates, so only the canonical check applies to it.
+  if (file.replace(/\\/g, "/").endsWith("src/app/page.tsx")) {
+    if (!/(?:canonical|path):\s*"\/"/.test(content)) problems.push(`${file}: missing alternates.canonical "/" in metadata export`);
+    continue;
+  }
 
   const titleMatch = content.match(/title:\s*"([^"]+)"/);
   // Also accept a page-level `const description = "..."` passed to buildMetadata as

@@ -12,7 +12,8 @@
 // /multimeters/fluke-115-vs-fluke-117: True RMS; 6,000 counts + 33-segment bar graph; DC V ±(0.5% + 2); AC V ±(1.0% + 3)
 // at 45-500 Hz; 6.000 A and 10.00 A, 1 mA best resolution; capacitance 1 nF to 9,999 µF; frequency to 50 kHz; continuity
 // below 20 Ω; VoltAlert, AutoVolt, LoZ about 3 kΩ; no temperature (116 only); one 9V, 400 h typical; 167 × 84 × 46 mm;
-// 550 g; 3-year warranty.
+// 550 g; 3-year warranty. Fluke 117 spec tab (as cited on /multimeters/fluke-117-review): AutoVolt ±(2.0% + 3), LoZ about
+// 3 kΩ, 10.00 A with 20 A for 30 s. Ghost-voltage behavior as explained on /multimeters/fluke-117-review.
 import Link from "next/link";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
@@ -25,7 +26,7 @@ const path = "/multimeters/fluke-17b-plus-vs-fluke-117";
 export const metadata = buildMetadata({
   title: "Fluke 17B+ vs Fluke 117",
   description:
-    "Fluke 17B+ vs Fluke 117: accuracy compared with worked examples, plus temperature and 100 kHz against True RMS, NCV and LoZ. Which Fluke suits you.",
+    "Fluke 17B+ vs Fluke 117 for electrical work: VoltAlert, LoZ and AutoVolt against temperature, µA and 100 kHz, with accuracy worked out. Which to buy.",
   path: "/multimeters/fluke-17b-plus-vs-fluke-117",
 });
 
@@ -90,7 +91,7 @@ const comparison: ProductComparisonContent = {
   heading: "Fluke 17B+ vs Fluke 117",
   path,
   published: "2026-10-22",
-  updated: "2026-10-27",
+  updated: "2026-10-28",
   intro:
     "Fluke 17B+ vs Fluke 117 splits Fluke's line into the electronics meter and the electrician's meter. The 17B+ carries more measurement functions: temperature with an included probe, frequency to 100 kHz, duty cycle, relative mode and a 1000V range. The 117 carries the safety-and-speed features: True RMS, VoltAlert non-contact detection, AutoVolt and a low-impedance mode, on a finer 6,000-count display.",
   a: {
@@ -188,6 +189,70 @@ const comparison: ProductComparisonContent = {
           40 V range to its 400 V range at 40 V, so a 48 V telecom or solar battery reads to 0.1 V on the 17B+, while the
           117 keeps it on its 60 V range with 0.01 V steps. The 17B+&apos;s 4,000 counts are fine for 12 V and 24 V
           systems, which stay on the 40 V range.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Fluke 17B+ vs 117 for electrical work</h2>
+        <p className="text-muted leading-7 mb-4">
+          For electrical work the Fluke 117 is the better meter, and accuracy has little to do with it. An electrician
+          opening receptacles, switch boxes and panels repeats three questions all day: is this conductor energized,
+          is the number on the screen real, and is it AC or DC? The 117 has a dedicated feature for each. The 17B+
+          answers them with the test leads and the user&apos;s judgment, which works, but more slowly and with more room
+          for a wrong call.
+        </p>
+        <DataTable
+          head={["What the electrician checks", "Fluke 17B+", "Fluke 117"]}
+          rows={[
+            ["Is the box live before I touch it?", "No NCV; probe with the leads", "VoltAlert sensor in the top edge"],
+            ["Is 40 V on a dead leg real?", "Input above 10 MΩ shows coupled voltage", "AutoVolt LoZ input, about 3 kΩ"],
+            ["AC or DC at an unknown terminal?", "Choose V AC or V DC on the dial", "AutoVolt selects it, ±(2.0% + 3)"],
+            ["Receptacle on a dimmer or LED driver", "Accuracy stated for sine waves only", "True RMS"],
+            ["Panel and branch-circuit rating", "CAT III 600V", "CAT III 600V"],
+            ["Current in series with a load", "10.00 A range, 11 A fuse", "10.00 A range; 20 A for 30 s"],
+            ["OhmSavvy testing", "Desk research only", "Hands-on Tested"],
+          ]}
+        />
+        <div className="mt-4">
+          <Figure caption={<>Voltage input impedance on a log scale: the 117 on AutoVolt against the 17B+, per Fluke. A lower input drains induced voltage.</>}>
+            <BarChart
+              log
+              items={[
+                { label: "Fluke 17B+", value: 10000000, display: "> 10 MΩ" },
+                { label: "117 AutoVolt", value: 3000, display: "≈ 3 kΩ", highlight: true },
+              ]}
+            />
+          </Figure>
+        </div>
+        <p className="text-muted leading-7 mt-4">
+          Ghost voltage is where the gap shows most. A disconnected conductor pulled alongside live ones picks up
+          voltage by capacitive coupling, and a meter with an input above 10 MΩ, like the 17B+, barely loads it, so a
+          dead wire can read a convincing few dozen volts. The 117&apos;s AutoVolt position puts roughly 3 kΩ across the
+          leads, more than 3,000 times less, and that induced reading sags toward zero while a genuinely energized
+          conductor holds its value. The 17B+ has no LoZ mode for making that distinction; its hazard LED is specified only as
+          lighting at 30 V or more.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          At an outlet, the sensible routine on the 117 is VoltAlert first to find the hot box, then the leads on
+          AutoVolt, then live-dead-live on a known source before declaring a circuit off. On the 17B+ the same job
+          skips the first step and needs a dial change between AC and DC. In the panel, the two carry the identical
+          CAT III 600V rating; the 17B+&apos;s extra CAT II 1000V line covers plug-in equipment, not the bus or the
+          breakers, and neither meter is rated CAT IV for the service entrance.
+        </p>
+        <p className="text-muted leading-7 mt-4">
+          Current is close to a tie. Both read up to 10 A with the leads in series, both state AC current at
+          ±(1.5% + 3), and Fluke lets the 117 carry 20 A for 30 seconds; the 17B+&apos;s overload allowance beyond its
+          11 A fuse is not stated. A loaded 15 A or 20 A branch circuit is a job for a clamp, not the A jack of
+          either meter (see{" "}
+          <Link href="/multimeters/how-to-measure-ac-current-with-a-clamp-meter" className={link}>
+            how to measure AC current with a clamp meter
+          </Link>
+          ). The one electrical task where the 17B+ wins is a furnace flame-sensor or control-loop reading in
+          microamps or milliamps, covered below. For everyday wiring, the 117 and its peers in our{" "}
+          <Link href="/multimeters/best-multimeter-for-electricians" className={link}>
+            best multimeter for electricians
+          </Link>{" "}
+          guide are the meters to carry.
         </p>
       </section>
 
@@ -409,6 +474,16 @@ const comparison: ProductComparisonContent = {
       question: "What does ±(0.5% + 2 counts) mean on a multimeter?",
       answer:
         "Take 0.5% of the reading, then add two steps of the last displayed digit on the range in use. On the Fluke 117 reading 12.60 V on its 60.00 V range, that is 0.063 V plus 0.02 V, so ±0.083 V. The same spec on a range with 0.1 V steps adds 0.2 V instead, which is why the range matters.",
+    },
+    {
+      question: "Is the Fluke 17B+ good enough for an electrician?",
+      answer:
+        "It is safe enough for panels and branch circuits, since it carries the same CAT III 600V rating as the 117, but it slows routine work. It has no VoltAlert non-contact sensor, no low-impedance input to expose ghost voltage, no AutoVolt AC/DC selection and no True RMS claim. Electricians who test live wiring daily are better served by the 117.",
+    },
+    {
+      question: "Can the Fluke 17B+ tell ghost voltage from real voltage?",
+      answer:
+        "Not directly. Its voltage input is above 10 MΩ, so an unconnected conductor running beside live wires can show a coupled reading of tens of volts. The 117's AutoVolt position drops the input to about 3 kΩ, which pulls that phantom reading toward zero. On a 17B+, you would need a separate low-impedance tester or a known load to check.",
     },
   ],
   roundup: { label: "See the full multimeter roundup", href: "/multimeters/best-multimeters" },

@@ -860,7 +860,12 @@
       "keyword": "best soldering iron for rework",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending"
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX-888DX",
+        "YIHUA 862BD+"
+      ],
+      "notes": "picks chosen by refill 2026-10-29: The Hakko FX-888DX offers professional-grade temperature control and power suitable for precise rework tasks, while the YIHUA 862BD+ provides both soldering and hot air rework capabilities, making it ideal for SMD and BGA rework."
     },
     {
       "keyword": "best soldering iron under $50",

@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "Why a car keeps blowing fuses: check if the replacement is the right rating, then test the circuit's resistance to ground to find the short causing repeat failures.";
+  "Why a car keeps blowing fuses: confirm the fuse rating, then test the circuit's resistance to ground to find the short causing repeat failures.";
 
 export const metadata = buildMetadata({
   title: "Why Does My Car Keep Blowing Fuses?",

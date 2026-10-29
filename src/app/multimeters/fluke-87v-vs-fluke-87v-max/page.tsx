@@ -34,7 +34,7 @@ const all = getAllPicks("multimeters");
 export const metadata = buildMetadata({
   title: "Fluke 87V vs 87V MAX: What Is the Difference?",
   description:
-    "Fluke 87V vs Fluke 87V MAX comparison: the same 0.05% measuring core, but the MAX adds IP67 sealing, a 4 m drop rating, 800 h AA battery life and a backlit keypad.",
+    "Fluke 87V vs Fluke 87V MAX: the same 0.05% measuring core, but the MAX adds IP67 sealing, a 4 m drop rating, 800 h AA battery life and a backlit keypad.",
   image: all.find((p) => p.name === "Fluke 87V")!.image,
   path: "/multimeters/fluke-87v-vs-fluke-87v-max",
 });

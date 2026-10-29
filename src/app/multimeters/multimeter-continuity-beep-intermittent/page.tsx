@@ -12,7 +12,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "Why a multimeter's continuity beep cuts in and out on a connection that should be solid: a marginal crimp, a fatigued wire strand, or probes not making firm contact.";
+  "Why a multimeter's continuity beep cuts in and out on a connection that looks solid: a marginal crimp, a fatigued strand, or probes not making firm contact.";
 
 export const metadata = buildMetadata({
   title: "Why Does My Multimeter's Continuity Beep Cut Out?",

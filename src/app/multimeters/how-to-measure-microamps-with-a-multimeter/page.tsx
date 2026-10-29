@@ -13,7 +13,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { getAllPicks } from "@/lib/catalog";
 
 const description =
-  "How to measure microamps with a digital multimeter: use the dedicated µA range, connect in series, and why this range matters for leakage, bias, and sensor currents.";
+  "How to measure microamps with a multimeter: use the dedicated µA range, connect in series, and why this range matters for leakage, bias, and sensor currents.";
 
 export const metadata = buildMetadata({
   title: "How to Measure Microamps With a Multimeter",

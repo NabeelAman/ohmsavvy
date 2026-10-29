@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { productImageSrc, skipOptimizer } from "@/lib/images";
 import Link from "next/link";
-import { comparisonsFor, type Category } from "@/lib/content";
+import { comparisonsFor, reviewHrefFor, type Category } from "@/lib/content";
+import lastMod from "@/lib/sitemap-lastmod.json";
 import type { Faq, Pick } from "./ReviewArticle";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
@@ -36,6 +37,12 @@ export type ProductReviewContent = {
   related: ReviewLink[];
 };
 
+function formatDate(iso: string) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  return `${months[m - 1]} ${d}, ${y}`;
+}
+
 const CATEGORY_LABELS: Record<Category, string> = {
   multimeters: "Multimeters",
   "soldering-irons": "Soldering Irons",
@@ -48,6 +55,9 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
   const alternative = pick.unavailable?.alternative ? pickByName(pick.unavailable.alternative) : undefined;
   const buyHref = pick.unavailable ? alternative?.ctaHref : pick.ctaHref;
   const buyLabel = pick.unavailable && alternative ? `Check the ${alternative.name} on Amazon →` : "Check price on Amazon →";
+  // Last real content change, from the page's git history (scripts/update-sitemap-lastmod.mjs).
+  const reviewHref = reviewHrefFor(pick.name);
+  const updated = reviewHref ? (lastMod as Record<string, string>)[reviewHref]?.slice(0, 10) : undefined;
   // Hand-picked links first, then every other registered comparison with this product.
   const linked = new Set(review.related.map((r) => r.href));
   const related = [
@@ -68,6 +78,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
       "@type": "Review",
       reviewRating: { "@type": "Rating", ratingValue: pick.rating, bestRating: "5" },
       author: { "@type": "Organization", name: "OhmSavvy" },
+      ...(updated ? { dateModified: updated } : {}),
     },
   };
 
@@ -82,6 +93,13 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
 
       <h1 className="text-3xl sm:text-4xl leading-tight">{review.heading}</h1>
       <p className="mt-4 text-lg text-muted leading-7 max-w-3xl">{pick.bottomLine}</p>
+      {updated && (
+        <p className="mt-4 text-xs text-muted">
+          By the <Link prefetch={false} href="/about" className="underline underline-offset-2 hover:text-accent">OhmSavvy Research Team</Link>
+          {" · "}
+          <time dateTime={updated}>Updated {formatDate(updated)}</time>
+        </p>
+      )}
 
       {/* Product box: the at-a-glance summary and primary Amazon CTA, directly under the title. */}
       <div className="mt-8 rounded-xl border-2 border-accent/40 bg-surface shadow-md overflow-hidden">

@@ -12,7 +12,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
 
 const description =
-  "Soldering iron tip types explained: conical, chisel, bevel, and knife tips, how their shape changes heat transfer and precision, and which to pick for which job.";
+  "Soldering iron tip types explained: conical, chisel, bevel, and knife tips, how shape changes heat transfer and precision, and which to pick for which job.";
 
 export const metadata = buildMetadata({
   title: "Soldering Iron Tip Types Explained",

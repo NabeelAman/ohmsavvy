@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "AstroAI DM6000AR Review",
-  description: "AstroAI DM6000AR review: True RMS and 6,000-count resolution for Arduino, Raspberry Pi and hobby electronics, the missing CAT rating, and where the budget shows.",
+  description: "AstroAI DM6000AR review: True RMS and 6,000 counts for Arduino, Raspberry Pi and hobby electronics, the missing CAT rating, and where the budget shows.",
   path: "/multimeters/astroai-dm6000ar-review",
   image: picks.find((p) => p.name === "AstroAI DM6000AR")?.image,
 });

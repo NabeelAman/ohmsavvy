@@ -12,7 +12,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "How to check a 12V power supply under load: an unloaded voltage reading can look perfectly fine even on a weak supply — only a loaded measurement reveals real sag.";
+  "How to check a 12V power supply under load: an unloaded voltage reading can look fine even on a weak supply — only a loaded measurement reveals real sag.";
 
 export const metadata = buildMetadata({
   title: "How to Check a 12V Power Supply Under Load",

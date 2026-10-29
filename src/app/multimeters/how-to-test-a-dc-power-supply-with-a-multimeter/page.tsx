@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "How to test a DC power supply with a multimeter: measure unloaded output voltage, then voltage and ripple under a real load, to judge both accuracy and stability.";
+  "How to test a DC power supply with a multimeter: measure unloaded output voltage, then voltage and ripple under a real load to judge accuracy and stability.";
 
 export const metadata = buildMetadata({
   title: "How to Test a DC Power Supply With a Multimeter",

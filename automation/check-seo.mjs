@@ -70,7 +70,7 @@ for (const file of pageFiles) {
     problems.push(`${file}: no description found in metadata export`);
   } else {
     const desc = descMatch[1];
-    if (desc.length > 165) problems.push(`${file}: description is ${desc.length} chars (recommend <=160): "${desc.slice(0, 50)}..."`);
+    if (desc.length > 160) problems.push(`${file}: description is ${desc.length} chars (recommend <=160): "${desc.slice(0, 50)}..."`);
     if (desc.length < 50) problems.push(`${file}: description is only ${desc.length} chars (too thin to be useful in search results)`);
     if (descriptions.has(desc)) problems.push(`${file}: duplicate description also used by ${descriptions.get(desc)}`);
     descriptions.set(desc, file);

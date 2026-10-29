@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Soldering Iron Comparisons",
-  description: "Soldering iron comparisons centered on whichever trade-off actually matters per pair: heat-up speed, ESD-safe construction, or a complete kit versus a bare iron.",
+  description: "Soldering iron comparisons centered on the trade-off that matters per pair: heat-up speed, ESD-safe construction, or a complete kit versus a bare iron.",
   path: "/soldering-irons/comparisons",
 });
 

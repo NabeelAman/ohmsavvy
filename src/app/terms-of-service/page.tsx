@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Terms of Service",
-  description: "Terms for using OhmSavvy's content and affiliate links.",
+  description: "Terms for using OhmSavvy: how you may use our guides and reviews, how our Amazon affiliate links work, and the limits of the advice we publish.",
   path: "/terms-of-service",
 });
 

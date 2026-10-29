@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { productImageSrc, skipOptimizer } from "@/lib/images";
 import Link from "next/link";
-import { reviewHrefFor, type Category } from "@/lib/content";
+import { reviewHrefFor, siblingComparisons, type Category } from "@/lib/content";
 import type { ReviewLink } from "./ProductReview";
 import type { Faq, Pick } from "./ReviewArticle";
 import { Badge } from "./ui/Badge";
@@ -52,6 +52,12 @@ const CATEGORY_HUB: Record<Category, string> = {
   "soldering-irons": "/soldering-irons/best-soldering-irons",
   oscilloscopes: "/oscilloscopes/best-beginner-oscilloscopes",
 };
+
+function hash(s: string) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
+  return h;
+}
 
 function formatDate(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
@@ -123,6 +129,17 @@ function ProductCard({ side }: { side: ComparisonSide }) {
 
 export function ProductComparison({ comparison }: { comparison: ProductComparisonContent }) {
   const { a, b } = comparison;
+  // Hand-picked links first, then up to 6 other comparisons sharing a product, so none is left near-orphaned.
+  const linked = new Set(comparison.related.map((r) => r.href));
+  const related = [
+    ...comparison.related,
+    ...(comparison.path ? siblingComparisons(comparison.path) : [])
+      .filter((c) => !linked.has(c.href))
+      // Per-page hash order, not registry order, so the links spread across every sibling.
+      .sort((x, y) => hash(comparison.path + x.href) - hash(comparison.path + y.href))
+      .slice(0, 6)
+      .map((c) => ({ label: c.title, href: c.href })),
+  ];
 
   const itemList = {
     "@type": "ItemList",
@@ -344,7 +361,7 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
             <Link prefetch={false} href={comparison.roundup.href} className="font-medium text-accent hover:underline">
               {comparison.roundup.label}
             </Link>
-            {comparison.related.map((r) => (
+            {related.map((r) => (
               <Link prefetch={false} key={r.href} href={r.href} className="text-accent hover:underline">
                 {r.label}
               </Link>

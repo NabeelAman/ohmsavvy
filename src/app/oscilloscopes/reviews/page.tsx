@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
   title: "Oscilloscope Reviews",
-  description: "Oscilloscope reviews weighed on bandwidth, sample rate, and channel count against the signals you're actually likely to be debugging, not spec-sheet bragging rights.",
+  description: "Oscilloscope reviews weighed on bandwidth, sample rate, and channel count against the signals you're likely to debug, not spec-sheet bragging rights.",
   path: "/oscilloscopes/reviews",
 });
 

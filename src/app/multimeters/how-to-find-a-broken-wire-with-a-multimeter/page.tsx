@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "How to find a broken wire with a multimeter using continuity testing and voltage-drop testing, and why continuity alone can miss a wire that fails only under load.";
+  "How to find a broken wire with a multimeter using continuity and voltage-drop tests, and why continuity alone can miss a wire that fails only under load.";
 
 export const metadata = buildMetadata({
   title: "How to Find a Broken Wire With a Multimeter",

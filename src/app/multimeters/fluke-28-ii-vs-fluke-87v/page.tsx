@@ -38,7 +38,7 @@ const all = getAllPicks("multimeters");
 export const metadata = buildMetadata({
   title: "Fluke 28 II vs Fluke 87V for Industrial Work",
   description:
-    "Fluke 28 II vs Fluke 87V comparison for industrial work: IP67, MSHA approval and a 3 m drop rating against the standard 87V's tighter specs. Charts and a verdict.",
+    "Fluke 28 II vs Fluke 87V comparison for industrial work: IP67, MSHA approval and a 3 m drop rating against the standard 87V's tighter specs, with a verdict.",
   image: all.find((p) => p.name === "Fluke 28 II")!.image,
   path: "/multimeters/fluke-28-ii-vs-fluke-87v",
 });

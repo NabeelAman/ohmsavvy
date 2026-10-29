@@ -13,7 +13,7 @@ import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
-  "Why does my soldering iron take too long to heat up? Compare against the maker's figure, then check the supply, tip, element type, settings and the element itself.";
+  "Why does my soldering iron take too long to heat up? Compare to the maker's figure, then check the supply, tip, element type, settings and the element itself.";
 
 export const metadata = buildMetadata({
   title: "Why Is My Soldering Iron Slow to Heat Up?",

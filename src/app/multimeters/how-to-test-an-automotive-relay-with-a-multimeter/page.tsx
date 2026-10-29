@@ -15,7 +15,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "How to test an automotive relay with a multimeter: check coil resistance, confirm the resting contact state, then energize the coil and verify the contacts switch.";
+  "How to test an automotive relay with a multimeter: check coil resistance, check the resting contacts, then energize the coil and verify the contacts switch.";
 
 export const metadata = buildMetadata({
   title: "How to Test an Automotive Relay With a Multimeter",

@@ -3841,6 +3841,14 @@ export function comparisonsFor(pickName: string): ContentEntry[] {
   return content.filter((e) => e.type === "comparison" && e.href.split("/").pop()!.split("-vs-").includes(slug));
 }
 
+/** Other registered comparisons sharing a product slug with this comparison's path. */
+export function siblingComparisons(path: string): ContentEntry[] {
+  const sides = path.split("/").pop()!.split("-vs-");
+  return content.filter(
+    (e) => e.type === "comparison" && e.href !== path && e.href.split("/").pop()!.split("-vs-").some((s) => sides.includes(s)),
+  );
+}
+
 export function getContentByCategory(category: Category): ContentEntry[] {
   return content.filter((c) => c.category === category);
 }

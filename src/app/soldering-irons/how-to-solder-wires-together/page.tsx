@@ -13,7 +13,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
 
 const description =
-  "How to solder two wires together: strip, twist or hook the strands, heat the joint, flow solder in, then protect it with heat-shrink for a strong, reliable splice.";
+  "How to solder two wires together: strip, twist or hook the strands, heat the joint, flow solder, then protect it with heat-shrink for a strong, reliable splice.";
 
 export const metadata = buildMetadata({
   title: "How to Solder Wires Together",

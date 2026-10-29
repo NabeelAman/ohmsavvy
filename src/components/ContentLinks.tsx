@@ -10,6 +10,39 @@ const CATEGORY_LABELS: Record<Category, string> = {
 
 const REVIEW_LIMIT = 4;
 const COMPARISON_LIMIT = 3;
+// Listing every guide put ~170 links and ~150 KB of HTML on every page (most of
+// the mobile Total Blocking Time). The full list lives on /<category>/guides.
+const GUIDE_LIMIT = 12;
+
+// Words too common in our slugs to say two guides are about the same thing.
+const STOPWORDS = new Set(
+  "a an the to of in on for with and or vs is my your do does why how what can when use using best test testing check multimeter multimeters oscilloscope oscilloscopes soldering iron irons".split(" "),
+);
+const slugWords = (href: string) =>
+  new Set(href.split("/").pop()!.split("-").filter((w) => w.length > 1 && !STOPWORDS.has(w)));
+
+// The last few slots rotate per page, so guides with few topical neighbors still collect links.
+const ROTATING = 3;
+
+function hash(s: string) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
+  return h;
+}
+
+/** Guides sharing the most slug words with the current page first (ties keep registry order), then a per-page rotation. */
+function relatedGuides(guides: ContentEntry[], current?: string): ContentEntry[] {
+  if (!current) return guides.slice(0, GUIDE_LIMIT);
+  const words = slugWords(current);
+  const score = (g: ContentEntry) => [...slugWords(g.href)].filter((w) => words.has(w)).length;
+  const ranked = guides
+    .map((g, i) => ({ g, i, s: score(g) }))
+    .sort((a, b) => b.s - a.s || a.i - b.i)
+    .map((x) => x.g);
+  const top = ranked.slice(0, GUIDE_LIMIT - ROTATING);
+  const rest = ranked.slice(GUIDE_LIMIT - ROTATING).sort((a, b) => hash(current + a.href) - hash(current + b.href));
+  return [...top, ...rest.slice(0, ROTATING)];
+}
 
 function SectionHeader({ label, viewAll }: { label: string; viewAll?: { href: string; text: string } }) {
   return (
@@ -34,11 +67,12 @@ export function ContentLinks({ category, current }: { category: Category; curren
   const grouped = getContentByCategoryGrouped(category);
   const notCurrent = (e: ContentEntry) => e.href !== current;
 
-  const guides = [
+  const allGuides = [
     ...(grouped["use-case-guide"] ?? []),
     ...(grouped["buying-guide"] ?? []),
     ...(grouped["how-to-guide"] ?? []),
-  ].filter(notCurrent);
+  ];
+  const guides = relatedGuides(allGuides.filter(notCurrent), current);
   const allReviews = grouped.review ?? [];
   const allComparisons = grouped.comparison ?? [];
   const reviews = allReviews.filter(notCurrent).slice(0, REVIEW_LIMIT);
@@ -55,11 +89,13 @@ export function ContentLinks({ category, current }: { category: Category; curren
 
         {guides.length > 0 && (
           <div>
-            <SectionHeader label="Guides" />
+            <SectionHeader
+              label="Related guides"
+              viewAll={{ href: `/${category}/guides`, text: `View all ${allGuides.length} guides →` }}
+            />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {guides.map((g) => (
-                // Not prefetched: this grid holds 100+ links, and viewport prefetch
-                // fired one billed edge request per link on every page view.
+                // Not prefetched: viewport prefetch fires one billed edge request per link.
                 <Link
                   key={g.href}
                   href={g.href}

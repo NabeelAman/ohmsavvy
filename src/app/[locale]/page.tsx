@@ -117,7 +117,7 @@ type Dict = {
 const DICTIONARY: Record<Locale, Dict> = {
   de: {
     metaTitle: "Multimeter-, Oszilloskop- und Lötkolben-Tests",
-    metaDescription: "OhmSavvy analysiert Multimeter, Lötkolben und Messgeräte anhand der Spezifikationen, die wirklich zählen — ehrliche Vergleiche, keine bezahlten Platzierungen.",
+    metaDescription: "OhmSavvy analysiert Multimeter, Lötkolben und Messgeräte anhand der Spezifikationen, die zählen — ehrliche Vergleiche, keine bezahlten Platzierungen.",
     eyebrow: "Elektronik-Messgeräte, ehrlich verglichen",
     h1: "Finden Sie das richtige Werkzeug für Ihre Werkbank — nicht das mit dem größten Werbebudget.",
     sub: "Unabhängige Tests, Vergleiche und Anleitungen für Multimeter, Lötkolben und Oszilloskope, bewertet nach den Spezifikationen, die wirklich zählen, damit Sie mit Vertrauen kaufen können.",
@@ -181,7 +181,7 @@ const DICTIONARY: Record<Locale, Dict> = {
   },
   fr: {
     metaTitle: "Multimètres, oscilloscopes, fers à souder",
-    metaDescription: "OhmSavvy analyse les multimètres, fers à souder et appareils de mesure selon les spécifications qui comptent vraiment — comparaisons honnêtes, zéro placement payant.",
+    metaDescription: "OhmSavvy analyse multimètres, fers à souder et appareils de mesure selon les spécifications qui comptent — comparaisons honnêtes, zéro placement payant.",
     eyebrow: "Équipement de test électronique, comparé honnêtement",
     h1: "Trouvez l'outil qui convient vraiment à votre établi, pas celui qui a le plus gros budget pub.",
     sub: "Avis indépendants, comparaisons et guides pratiques pour multimètres, fers à souder et oscilloscopes, évalués selon les spécifications qui comptent vraiment, pour que vous puissiez acheter en toute confiance.",
@@ -245,10 +245,10 @@ const DICTIONARY: Record<Locale, Dict> = {
   },
   it: {
     metaTitle: "Multimetri, oscilloscopi, saldatori",
-    metaDescription: "OhmSavvy analizza multimetri, saldatori e strumenti di misura in base alle specifiche che contano davvero — confronti onesti, nessun posizionamento a pagamento.",
+    metaDescription: "OhmSavvy analizza multimetri, saldatori e strumenti di misura in base alle specifiche che contano — confronti onesti, nessun posizionamento a pagamento.",
     eyebrow: "Strumenti di test elettronici, confrontati onestamente",
     h1: "Trova lo strumento giusto per il tuo banco di lavoro, non quello con il budget pubblicitario più alto.",
-    sub: "Recensioni indipendenti, confronti e guide pratiche per multimetri, saldatori e oscilloscopi, valutati in base alle specifiche che contano davvero, così puoi acquistare con fiducia.",
+    sub: "Recensioni indipendenti, confronti e guide pratiche per multimetri, saldatori e oscilloscopi, valutati in base alle specifiche che contano, così puoi acquistare con fiducia.",
     popularLabel: "Popolari:",
     quickLinks: ["Migliori multimetri", "Migliori saldatori", "Oscilloscopi per principianti", "Usare un multimetro", "Usare un oscilloscopio"],
     topPicksPanelLabel: "Scelte migliori del momento",
@@ -309,10 +309,10 @@ const DICTIONARY: Record<Locale, Dict> = {
   },
   es: {
     metaTitle: "Multímetros, osciloscopios, soldadores",
-    metaDescription: "OhmSavvy analiza multímetros, soldadores y equipos de prueba según las especificaciones que realmente importan — comparaciones honestas, sin colocaciones pagadas.",
+    metaDescription: "OhmSavvy analiza multímetros, soldadores y equipos de prueba según las especificaciones que importan — comparaciones honestas, sin colocaciones pagadas.",
     eyebrow: "Equipos de prueba electrónicos, comparados con honestidad",
     h1: "Encuentra la herramienta adecuada para tu banco de trabajo, no la que tiene el mayor presupuesto publicitario.",
-    sub: "Reseñas independientes, comparaciones y guías prácticas para multímetros, soldadores y osciloscopios, evaluados según las especificaciones que realmente importan, para que puedas comprar con confianza.",
+    sub: "Reseñas independientes, comparaciones y guías prácticas para multímetros, soldadores y osciloscopios, evaluados según las especificaciones que importan, para que puedas comprar con confianza.",
     popularLabel: "Popular:",
     quickLinks: ["Mejores multímetros", "Mejores soldadores", "Osciloscopios para principiantes", "Usar un multímetro", "Usar un osciloscopio"],
     topPicksPanelLabel: "Mejores opciones del momento",

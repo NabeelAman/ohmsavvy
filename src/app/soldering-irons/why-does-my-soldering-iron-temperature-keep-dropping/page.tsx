@@ -14,7 +14,7 @@ import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
-  "Why does my soldering iron temperature keep dropping? Tip size, wattage, sensor placement, a wet sponge, a weak USB-C supply or a sleep timer, and how to fix each.";
+  "Why does my soldering iron temperature keep dropping? Tip size, wattage, sensor placement, a wet sponge, weak USB-C power or a sleep timer, and how to fix each.";
 
 export const metadata = buildMetadata({
   title: "Why Does My Soldering Iron Temperature Drop?",

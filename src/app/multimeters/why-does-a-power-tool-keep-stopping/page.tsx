@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";
 
 const description =
-  "Why a cordless power tool keeps stopping: test the battery pack's voltage under load, check its contacts for corrosion, and test the trigger switch's continuity.";
+  "Why a cordless power tool keeps stopping: test the pack's voltage under load, check its contacts for corrosion, and test the trigger switch's continuity.";
 
 export const metadata = buildMetadata({
   title: "Why Does a Power Tool Keep Stopping?",

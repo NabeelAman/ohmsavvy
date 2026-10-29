@@ -13,7 +13,7 @@ import { getAllPicks } from "@/lib/catalog";
 import { buildMetadata } from "@/lib/metadata";
 
 const description =
-  "Why solder sticks, blobs, or clumps on a soldering iron tip instead of flowing into the joint, and how dross, excess solder, and oxidation each cause it differently.";
+  "Why solder sticks or blobs on a soldering iron tip instead of flowing into the joint, and how dross, excess solder, and oxidation each cause it differently.";
 
 export const metadata = buildMetadata({
   title: "Why Does Solder Stick to the Tip?",

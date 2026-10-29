@@ -11,7 +11,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-soldering-irons/page";
 
 const description =
-  "Soldering iron vs. soldering station: the real difference is closed-loop temperature control, not just a bigger box — here's when that difference actually matters.";
+  "Soldering iron vs. soldering station: the real difference is closed-loop temperature control, not a bigger box, and when that difference actually matters.";
 
 export const metadata = buildMetadata({
   title: "Soldering Iron vs. Soldering Station",

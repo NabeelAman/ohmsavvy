@@ -33,31 +33,18 @@ const staticPages = [
   "/oscilloscopes/guides",
 ];
 
-// Segmented by template family (not just URL count, which is nowhere near the
-// 50,000 limit): if GSC shows one family indexing worse than the others, a
-// per-sitemap breakdown makes that visible immediately instead of hiding it
-// inside one flat list.
-const SEGMENTS = {
-  core: staticPages,
-  reviews: content.filter((c) => c.type === "review").map((c) => c.href),
-  comparisons: content.filter((c) => c.type === "comparison").map((c) => c.href),
-  guides: content
-    .filter((c) => c.type === "use-case-guide" || c.type === "buying-guide" || c.type === "how-to-guide")
-    .map((c) => c.href),
-  locales: localeRoutes,
-} as const;
+const allRoutes = [...staticPages, ...content.map((c) => c.href), ...localeRoutes];
 
-export function generateSitemaps() {
-  return Object.keys(SEGMENTS).map((id) => ({ id }));
-}
-
-// Cached so each segment is prerendered at build: under cacheComponents, a
-// bare new Date() would run a function on every crawler request instead.
-export default async function sitemap({ id }: { id: string }): Promise<MetadataRoute.Sitemap> {
+// Single flat sitemap at /sitemap.xml: 522 URLs is far under the 50,000-URL
+// limit, so generateSitemaps()'s per-segment split isn't needed for scale —
+// and in Next 16 it only serves /sitemap/[id].xml with no auto-generated
+// index at /sitemap.xml, which is what robots.txt/GSC/submit-gsc-sitemap.mjs
+// all expect. Cached so this is prerendered at build: under cacheComponents,
+// a bare new Date() would run a function on every crawler request instead.
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   "use cache";
   cacheLife("max");
-  const routes = SEGMENTS[id as keyof typeof SEGMENTS] ?? [];
-  return routes.map((route) => ({
+  return allRoutes.map((route) => ({
     url: `https://ohmsavvy.com${route}`,
     lastModified: lastModFor(route),
     changeFrequency: route === "" ? "weekly" : "monthly",

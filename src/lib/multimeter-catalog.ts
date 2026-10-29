@@ -189,16 +189,16 @@ export const multimeterCatalogPicks: Pick[] = [
   },
   {
     badge: "Cheapest 20,000-Count µA Meter",
-    // Specs per kaiweets.com (HT118E page, "Upgraded Specification"). Per-range resolution isn't published; 0.01 µA / 0.01 Ω follow from 200 µA / 200 Ω ranges at 20,000 counts. Photo: Amazon main image of B0B7WFPB4T, shows "HT118E ... 20000 Counts". Amazon-buyable 2026-10-24.
+    // Specs per kaiweets.com (HT118E page, "Upgraded Specification"). Per-range resolution isn't published; 0.01 µA / 0.01 Ω follow from 200 µA / 200 Ω ranges at 20,000 counts. Photo: Amazon main image of B0B7WFPB4T, shows "HT118E ... 20000 Counts". Amazon-buyable 2026-10-24. Neither kaiweets.com nor the Amazon title (checked 2026-10-29) claims True RMS, so none is stated here.
     name: "KAIWEETS HT118E",
     verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/81lmVClgFiL._SL1500_.jpg",
     rating: 4.2,
-    bottomLine: "A budget True RMS meter with 20,000 counts and a 200 µA range, but no relative mode for low-ohm work.",
+    bottomLine: "A budget 20,000-count meter with a 200 µA range (KAIWEETS doesn't claim True RMS) and no relative mode for low-ohm work.",
     verdict:
       "The HT118E has a 20,000-count display, CAT III 1000V / CAT IV 600V and a 200 µA range at ±(0.5% + 5 digits) DC. At 20,000 counts that implies 0.01 µA resolution, though KAIWEETS doesn't print it. It covers temperature, capacitance, frequency, NCV and continuity, with lit input jacks and a flashlight. Its 200 Ω range is only ±(1.0% + 15 digits) and KAIWEETS lists no relative mode, so you have to subtract lead resistance yourself. That makes it better for sleep-current checks than for milliohm work.",
     specs: [
-      { label: "Accuracy", value: "True RMS, ±(0.08%+5) DC V" },
+      { label: "Accuracy", value: "±(0.08%+5) DC V; True RMS not stated" },
       { label: "Safety rating", value: "CAT III 1000V / CAT IV 600V" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Beginner Arduino and µA checks" },

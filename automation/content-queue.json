@@ -1799,6 +1799,211 @@
       "category": "oscilloscopes",
       "type": "educational",
       "status": "pending"
+    },
+    {
+      "keyword": "best multimeter for marine and boat electrical",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 87V",
+        "KAIWEETS KM200s"
+      ]
+    },
+    {
+      "keyword": "best multimeter for home theater and av installation",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Klein Tools MM450",
+        "Klein Tools CL445",
+        "Fluke 107"
+      ]
+    },
+    {
+      "keyword": "best multimeter for network and poe testing",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 107",
+        "Klein Tools MM400",
+        "OWON OW18E"
+      ]
+    },
+    {
+      "keyword": "best multimeter for 3d printing and maker electronics",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "AstroAI DM6000AR",
+        "Extech EX330",
+        "KAIWEETS KM100"
+      ]
+    },
+    {
+      "keyword": "best multimeter for appliance repair technicians",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 179",
+        "Klein Tools MM450"
+      ]
+    },
+    {
+      "keyword": "best multimeter for pool and spa electrical",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 902 FC",
+        "Klein Tools MM400"
+      ]
+    },
+    {
+      "keyword": "best multimeter for irrigation and sprinkler systems",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "KAIWEETS KM200s",
+        "Southwire 16030A",
+        "UNI-T UT139C"
+      ]
+    },
+    {
+      "keyword": "best multimeter for drone and rc hobbyists",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "UNI-T UT139C",
+        "AstroAI AM33D",
+        "ANENG SZ26"
+      ]
+    },
+    {
+      "keyword": "best multimeter for guitar and audio pedal building",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "OWON OW18E",
+        "UNI-T UT61E+",
+        "Extech EX330"
+      ]
+    },
+    {
+      "keyword": "best multimeter for security and alarm system installers",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Klein Tools MM420",
+        "UNI-T UT139C",
+        "Fluke 101"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope for audio and guitar pedal debugging",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Rigol DS1054Z",
+        "Siglent SDS1104X-E",
+        "FNIRSI DSO152"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope for drone and fpv electronics",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hantek DSO2D10",
+        "FNIRSI 2C53T",
+        "Hantek 6022BE"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope for 3d printer mainboard diagnostics",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Rigol DHO804",
+        "Hantek DSO2D10",
+        "FNIRSI 1014D"
+      ]
+    },
+    {
+      "keyword": "best oscilloscope for network and poe signal testing",
+      "category": "oscilloscopes",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Siglent SDS1104X-E",
+        "Rigol DS1054Z",
+        "OWON VDS1022I"
+      ]
+    },
+    {
+      "keyword": "best soldering iron for guitar and audio pedal building",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Pinecil V2",
+        "Miniware TS101",
+        "Hakko FX-888DX"
+      ]
+    },
+    {
+      "keyword": "best soldering iron for drone and fpv building",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Miniware TS101",
+        "FNIRSI HS-02A",
+        "Pinecil V2"
+      ]
+    },
+    {
+      "keyword": "best soldering iron for 3d printer repair and maintenance",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX-888DX",
+        "YIHUA 926 III",
+        "X-Tronic 3020-XTS"
+      ]
+    },
+    {
+      "keyword": "how to test an ev charging cable for continuity with a multimeter",
+      "category": "multimeters",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to diagnose relay contact bounce with an oscilloscope",
+      "category": "oscilloscopes",
+      "type": "educational",
+      "status": "pending"
+    },
+    {
+      "keyword": "how to solder a battery tab without damaging a lithium cell",
+      "category": "soldering-irons",
+      "type": "educational",
+      "status": "pending"
     }
   ]
 }

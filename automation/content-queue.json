@@ -922,7 +922,12 @@
       "keyword": "best soldering iron station",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending"
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX-888DX",
+        "Weller WE1010NA"
+      ],
+      "notes": "picks chosen by refill 2026-10-29: Both the Hakko FX-888DX and Weller WE1010NA offer robust temperature control and sufficient power for serious hobbyists and professional use, making them suitable for a wide range of soldering tasks."
     },
     {
       "keyword": "best digital soldering station",

@@ -320,6 +320,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "For most beginners the Rigol DS1054Z is the better first oscilloscope: four channels, 50MHz, a sample rate many times higher and a screen and knobs of its own, so it grows with you from blinking LEDs to SPI buses. The Hantek 6022BE is a sensible toe in the water only if budget comes first, you work on a Windows laptop and your signals stay in the audio-to-low-MHz range.",
+  chooseNeitherIf:
+    "You need to measure a floating or mains-referenced point without extra care: the DS1054Z's probe ground ties to mains earth and Hantek doesn't list USB isolation for the 6022BE, so either one needs a differential probe for that job, not just a pick between these two.",
   faqs: [
     {
       question: "Is the Hantek 6022BE good enough for a complete beginner?",

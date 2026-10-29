@@ -58,6 +58,13 @@ intention (see Content Standards below).
 | `check-cannibalization.mjs` | Flags queued automation keywords targeting near-identical products |
 | `check-images.mjs` | Image sanity checks |
 
+## Pick/ProductComparison fields added 2026-10-29
+
+- `Pick.verifiedAt?: string` (ReviewArticle.tsx) — ISO date a Pick's specs were last checked, **only** set from an explicit per-product "checked YYYY-MM-DD" comment already in the source. Never backfilled from git history or file-mtime — those date the edit, not the verification. Most Picks don't have one yet; that's correct, not a gap.
+- `ProductComparisonContent.chooseNeitherIf?: string` (ProductComparison.tsx) — renders a "Neither if…" card. Only add this when a page's own existing content (differences, chooseIf, bottomLine, worth-it tables) already implies a genuine, evidenced case for skipping both products — most comparison pages already cover this via their "who can skip it" framing and don't need it. A sweep across ~218 comparison pages (multimeters/oscilloscopes/soldering-irons) added it to roughly 1 in 4-5 pages; forcing it onto every page would be filler, not signal.
+- `src/lib/suitability.ts` — a standalone weighted-scoring utility (not wired into any page) for making a "why this pick for this use case" call explicit and auditable, if a future use-case page wants that. Never invents scores — every input must trace to a verified spec.
+- `src/app/sitemap.ts` — now segmented by content type via `generateSitemaps()` (core/reviews/comparisons/guides/locales) instead of one flat list, with real per-page `lastModified` from `src/lib/sitemap-lastmod.json` (regenerate via `scripts/update-sitemap-lastmod.mjs`) instead of a single `new Date()` for every URL.
+
 **Isolated build pattern** (so you can verify your own work without colliding with a
 concurrent session's build): copy the repo to a `zz-*`-prefixed directory (not `.tmp-*` —
 that's gitignored and breaks Turbopack's `next/font` resolution), symlink `node_modules`,

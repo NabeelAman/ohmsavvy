@@ -324,6 +324,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Fluke 114 if your handheld meter only ever checks voltage, continuity and resistance on building wiring: AutoVolt's low-impedance input makes those checks quicker and harder to fool. Buy the Fluke 115 if you also measure current, capacitors, frequency or diodes. If you need AutoVolt and the 115's extras together, look at the Fluke 117.",
+  chooseNeitherIf:
+    "You need AutoVolt's ghost-voltage filtering and the 115's current, capacitance, frequency and diode functions together — the Fluke 117 covers both, neither of these two does.",
   faqs: [
     {
       question: "Does the Fluke 114 measure current?",

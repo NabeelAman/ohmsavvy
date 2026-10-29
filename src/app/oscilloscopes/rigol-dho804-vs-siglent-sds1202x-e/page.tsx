@@ -283,6 +283,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "For a general home lab built around microcontrollers, power rails and analog circuits, the Rigol DHO804 is the more useful scope: four channels, 12-bit resolution, standard decoding, a sharper touchscreen and USB-C power. Choose the Siglent SDS1202X-E if your bench work is mostly switching supplies, fast edges, rare glitches or CAN and LIN buses, where 200 MHz, 500 MSa/s on both channels and 100,000 wfm/s count for more than extra inputs.",
+  chooseNeitherIf:
+    "You need to feed a test signal into a circuit or capture digital lines alongside the analog ones: neither has a built-in signal generator or logic channels, so both need a separate source and a logic analyzer for that work.",
   faqs: [
     {
       question: "Is the Rigol DHO804 or the Siglent SDS1202X-E better for a home lab?",

@@ -356,6 +356,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "For PC-based testing the PicoScope 2204A is the more complete tool: it runs on Windows, macOS and Linux, samples at up to 100 MS/s, has a sweepable generator to 100 kHz, decodes serial buses and can stream slow signals for long periods. Its limits are a 10 MHz bandwidth and an 8 kS block memory. The Hantek 6022BE has the higher 20 MHz rating and a very low price, but Windows-only software, DC coupling, a 48 MS/s ceiling and no generator make it a basic viewer rather than a test station.",
+  chooseNeitherIf:
+    "You need to probe a mains-referenced point: neither maker's spec page describes its USB connection as isolated, so each probe's ground clip ties back to your computer and, through it, to mains earth — clipping that onto a live circuit risks the scope, the computer and you.",
   faqs: [
     {
       question: "Why does the Hantek 6022BE have more bandwidth but a lower sample rate than the PicoScope 2204A?",

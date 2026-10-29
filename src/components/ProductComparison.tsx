@@ -30,6 +30,8 @@ export type ProductComparisonContent = {
   b: ComparisonSide;
   differences: string[];
   bottomLine: string;
+  /** When a real third option (or neither) beats both — stated plainly, not a generic hedge. Omit when both picks genuinely cover the field. */
+  chooseNeitherIf?: string;
   faqs: Faq[];
   roundup: ReviewLink;
   related: ReviewLink[];
@@ -297,6 +299,13 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
             </Card>
           ))}
         </section>
+
+        {comparison.chooseNeitherIf && (
+          <Card padding="p-5" className="border-dashed">
+            <h2 className="text-lg font-semibold mb-2">Neither if…</h2>
+            <p className="text-sm text-muted leading-6">{comparison.chooseNeitherIf}</p>
+          </Card>
+        )}
 
         <Card raised>
           <h2 className="text-xl font-semibold mb-3">The bottom line</h2>

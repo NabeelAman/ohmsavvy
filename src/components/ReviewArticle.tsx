@@ -42,6 +42,13 @@ export type Pick = {
    * alternative's listing instead.
    */
   unavailable?: { note: string; alternative?: string };
+  /**
+   * ISO date (YYYY-MM-DD) the specs above were last checked against the source
+   * cited in the file's header comment. Optional and not backfilled for existing
+   * Picks (we don't know their real last-checked date) — set it going forward
+   * whenever a Pick's specs are added or re-verified.
+   */
+  verifiedAt?: string;
 };
 
 export type Faq = { question: string; answer: string };

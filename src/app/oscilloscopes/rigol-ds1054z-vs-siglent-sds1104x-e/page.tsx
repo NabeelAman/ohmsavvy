@@ -293,6 +293,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Four channels and a 1 GSa/s peak are common ground. The Rigol DS1054Z remains the practical first scope for students and hobbyists whose signals stay below about 10 MHz. The Siglent SDS1104X-E earns its higher price with 100 MHz, twice the per-channel sample rate with all channels on, and free serial decoding, so buy it if you work on fast logic, buses or switching supplies.",
+  chooseNeitherIf:
+    "You need to probe a mains-referenced point directly: both are mains-powered bench scopes whose probe grounds tie to protective earth, so clipping a ground lead to a non-ground point on a live circuit can destroy the probe, the scope or the circuit — use an isolation transformer on the device under test or a differential probe instead.",
   faqs: [
     {
       question: "Is 50 MHz enough bandwidth for a beginner oscilloscope?",

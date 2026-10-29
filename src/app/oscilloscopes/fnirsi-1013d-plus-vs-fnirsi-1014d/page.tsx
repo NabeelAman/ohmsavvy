@@ -306,6 +306,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the FNIRSI 1013D Plus if your scope has to travel: it is the lighter unit, runs about four hours on battery and is driven by touch, with the same 100 MHz, 1 GSa/s rating. Buy the FNIRSI 1014D if it will stay on one desk and you want to feed circuits a test signal; its built-in generator is the one capability the tablet lacks. If you don't need the 100X probe, the plain 1013D has the same specs.",
+  chooseNeitherIf:
+    "You need to decode I2C, SPI or UART on screen, or record a long, detailed capture of a rare glitch: FNIRSI doesn't list serial decoding for either model and quotes memory only as \"240Kbit\" with no point count, so both leave you counting edges by eye.",
   faqs: [
     {
       question: "Is the FNIRSI 1013D Plus a different oscilloscope from the 1013D?",

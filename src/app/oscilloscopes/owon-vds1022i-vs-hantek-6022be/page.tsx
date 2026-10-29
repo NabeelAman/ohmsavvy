@@ -315,6 +315,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "The OWON VDS1022I is the better instrument: twice the sample rate, a 5 mV/div range for small signals, five trigger types and an isolated USB link, in a smaller box. The Hantek 6022BE earns its place only on price. If you want the cheapest way to learn on a Windows PC with slow signals and an edge trigger is enough, it does that job; for anything you need to trigger on or measure precisely, spend the extra on the OWON.",
+  chooseNeitherIf:
+    "You need to judge ringing or edge timing on fast SPI or GPIO signals: by the usual rise-time approximation, a 20 MHz front end rounds edges faster than many microcontroller pins actually switch, so both show those edges slower and rounder than they really are — a 50 MHz or faster scope is the better tool for that.",
   faqs: [
     {
       question: "Is the OWON VDS1022I better than the Hantek 6022BE?",

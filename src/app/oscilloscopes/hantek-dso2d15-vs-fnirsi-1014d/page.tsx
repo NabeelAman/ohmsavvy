@@ -272,6 +272,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "The Hantek DSO2D15 is the stronger instrument on published specs: 150 MHz, a stated 500 MSa/s per channel with both on, 8 Mpts of memory, five serial decoders and a 25 MHz, 7 Vpp generator. Choose it for digital, automotive and microcontroller work. The FNIRSI 1014D makes sense for analog and audio experiments below about 20 MHz, where its 2.5 Vpp source, 5 V adapter power and 100X probe kit cover what you need.",
+  chooseNeitherIf:
+    "You need to clip a ground lead onto a live conductor: both are mains-powered and earth-referenced, and while Hantek rates the DSO2D15 CAT II 300V, FNIRSI gives no CAT rating at all for the 1014D's 400V 10X figure — line-side work needs a differential probe or an isolated setup either way.",
   faqs: [
     {
       question: "Is 150 MHz on the Hantek DSO2D15 worth it over the FNIRSI 1014D's 100 MHz?",

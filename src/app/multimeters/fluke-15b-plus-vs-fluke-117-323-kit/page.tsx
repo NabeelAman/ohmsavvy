@@ -228,6 +228,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Don't compare these as if they're close alternatives; they serve different budgets and needs. The 15B+ is a sensible choice for straightforward electrical and electronics checks, and its µA and mA ranges beat anything in the kit for small currents. The 117/323 kit is for anyone who needs True RMS on electronic loads, electrician features like VoltAlert and LoZ, and clamp current to 400A from the start. If neither extreme fits, the 117 alone is worth a look as a middle option.",
+  chooseNeitherIf:
+    "The 15B+'s basic checks are too little but the 117/323 kit's clamp-meter bundle is more than you need — the Fluke 117 alone is the middle option neither extreme covers.",
   faqs: [
     {
       question: "Is the Fluke 15B+ a \"real\" Fluke, or a budget knockoff?",

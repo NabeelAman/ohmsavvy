@@ -303,6 +303,7 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Fluke 1577 if your work includes clearing de-energized motors, cables or switchgear to go back into service: its 500 V and 1000 V tests to 600 MΩ catch insulation faults no ordinary meter can. Buy the Fluke 87V, our hands-on tested pick, if your work is live troubleshooting: 10 A current, microamp resolution, tighter accuracy, a low-pass filter and peak capture. If you do both, carry both; if you need PI trending, step up to the 1587 FC.",
+  chooseNeitherIf: "You need polarization index (PI) trending — neither meter logs it; step up to the Fluke 1587 FC.",
   faqs: [
     {
       question: "Can the Fluke 87V replace a megger?",

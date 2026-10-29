@@ -317,6 +317,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "The MINIWARE DS213 is the better pocket instrument if you need more than one trace: two analog and two digital channels, 100 MSa/s and a built-in generator, though its 15 MHz bandwidth and screen size are stated only on Amazon. The FNIRSI DSO152 is the better pick for a first, simple look at slow signals: one channel, 200kHz, specs published on FNIRSI's live page and USB-C charging.",
+  chooseNeitherIf:
+    "You need to probe mains or another earth-referenced point: both run on battery with no CAT rating listed by either maker, and the 400 V x10-probe figures are input ranges, not safety ratings — use a differential probe or a properly rated instrument instead.",
   faqs: [
     {
       question: "Is the MINIWARE DS213 a logic analyzer?",

@@ -344,6 +344,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "For a beginner, the FNIRSI DSO-TC3 is the better buy of the two: 2.5 times the bandwidth, four times the sample rate, and a signal generator and component tester that make learning faster. The FNIRSI DSO152 still makes sense as the simplest, most affordable scope-only way to see audio-range waveforms. Neither replaces a multi-channel bench scope for microcontroller or digital work.",
+  chooseNeitherIf:
+    "Neither if your work is microcontroller or digital-bus debugging: both are single-channel entry scopes, so you need a multi-channel bench scope like the Rigol DS1054Z instead.",
   faqs: [
     {
       question: "Is the FNIRSI DSO-TC3 better than the DSO152 for a beginner?",

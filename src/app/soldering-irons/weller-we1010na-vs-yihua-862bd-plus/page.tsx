@@ -239,6 +239,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "If your work is purely soldering, especially anything static-sensitive, the Weller WE1010NA is the more trustworthy tool: its maker documents ESD safety, accuracy, stability and heat-up time. If you regularly remove or reflow surface-mount parts and want one unit on the bench, the YIHUA 862BD+ does a job the Weller can't, as long as you confirm the voltage on the listing you buy.",
+  chooseNeitherIf:
+    "Neither if you need both documented ESD safety and hot air rework in one station: the WE1010NA has no hot air, and the 862BD+'s ESD claim is unverified, with YIHUA's own spec sheet making no such claim. That combination needs a separate ESD-safe hot air station, not either of these two.",
   faqs: [
     {
       question: "Can the Weller WE1010NA do SMD rework?",

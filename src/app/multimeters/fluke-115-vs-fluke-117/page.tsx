@@ -653,6 +653,7 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Fluke 117 if you work on building wiring: VoltAlert and the LoZ AutoVolt position solve real problems there, and nothing else about the meter changes. Buy the Fluke 115 if your work is equipment, controls, electronics or automotive, or if you already carry a pen tester; you get the same measuring core, case and warranty. If you need temperature or microamps, skip both and look at the Fluke 116.",
+  chooseNeitherIf: "You need temperature or microamp readings — neither the 117 nor the 115 has them; the Fluke 116 does.",
   faqs: [
     {
       question: "Is the Fluke 117 worth the extra money over the 115?",

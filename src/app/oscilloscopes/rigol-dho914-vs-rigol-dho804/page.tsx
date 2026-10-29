@@ -367,6 +367,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Rigol DHO804 if your projects are microcontrollers, sensors, audio and power supplies: it has the same 12-bit converter, touchscreen, sample rate and USB-C body as the DHO914, and 70 MHz is plenty below about 15 MHz. Pay for the DHO914 when you will use what it adds: 125 MHz for faster clocks and edges, 50 Mpts for long captures, LIN decoding, or 16 digital channels with the separately sold PLA2216 probe.",
+  chooseNeitherIf:
+    "You need a built-in signal generator: neither the DHO804 nor the DHO914 has one — that's the separate DHO914S in Rigol's own line-up.",
   faqs: [
     {
       question: "Is the Rigol DHO914 just a faster DHO804?",

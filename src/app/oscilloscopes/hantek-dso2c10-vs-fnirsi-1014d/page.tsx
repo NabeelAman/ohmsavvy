@@ -288,6 +288,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "For a beginner whose projects are mostly microcontroller boards, the Hantek DSO2C10 is the better first scope: the same 100 MHz and 1 GSa/s as the FNIRSI, plus serial decoding, 8 Mpts of documented memory, far more trigger types and 32 automatic measurements. The FNIRSI 1014D is the better buy for a beginner with no other test gear who leans toward analog circuits, because its built-in generator lets you drive what you measure.",
+  chooseNeitherIf:
+    "You need to view a full four-wire SPI bus at once: neither offers more than two analog inputs, so chip select, clock, MOSI and MISO have to be viewed two lines at a time on either one — a four-channel scope is what that job actually needs.",
   faqs: [
     {
       question: "Are the Hantek DSO2C10 and FNIRSI 1014D the same speed?",

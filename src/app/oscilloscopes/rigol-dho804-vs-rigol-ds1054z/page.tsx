@@ -272,6 +272,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "For a new purchase, the DHO804 is the stronger scope: 12-bit resolution, more bandwidth, a faster four-channel sample rate, standard decoding and a modern touchscreen in a lighter body. The DS1054Z still makes sense if you want the most documented beginner scope and 50 MHz covers your work.",
+  chooseNeitherIf:
+    "You need to probe mains wiring directly: both datasheets cap the input at CAT I 300 Vrms, which rules out mains, and the DS1054Z's probe ground ties to earth through its power cord, so clipping it to a live point shorts it — use a rated differential probe for mains or switch-mode primaries, and leave panel work to a licensed electrician.",
   faqs: [
     {
       question: "Is the DHO804 a replacement for the DS1054Z?",

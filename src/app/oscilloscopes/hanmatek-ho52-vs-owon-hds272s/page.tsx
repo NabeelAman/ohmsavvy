@@ -271,6 +271,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "These two handhelds share a sample rate, screen, record length and multimeter specification, so the decision comes down to two extras. Pick the OWON HDS272S if you will use its 25 MHz generator or want 70 MHz and a quicker rise time for single-channel work on faster logic. Pick the HANMATEK HO52 if you only need to watch signals and take meter readings, since it covers that for less.",
+  chooseNeitherIf:
+    "You need to put a scope channel on mains voltage: each one's scope input is limited to 400 V DC plus AC peak-to-peak at the connector, well under what 230 V mains swings to, and neither maker lists isolated channels — use the multimeter section for mains voltage on either unit instead.",
   faqs: [
     {
       question: "Is the OWON HDS272S just the HANMATEK HO52 with a generator?",

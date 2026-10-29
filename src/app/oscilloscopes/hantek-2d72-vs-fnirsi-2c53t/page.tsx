@@ -289,6 +289,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Hantek 2D72 if the scope and signal generator are the point: more bandwidth, a longer record and a generator that reaches 25 MHz. Buy the FNIRSI 2C53T if you mainly want a high-resolution True RMS multimeter with a basic scope attached, in a lighter package.",
+  chooseNeitherIf:
+    "You need to probe mains voltage directly: the 2D72's scope input is rated only 150 Vrms, below a 120 V outlet's peak, and FNIRSI gives no CAT rating for the 2C53T's ±400 V scope input either — use a meter's rated inputs for mains, not either scope's probes.",
   faqs: [
     {
       question: "Which handheld has the better multimeter?",

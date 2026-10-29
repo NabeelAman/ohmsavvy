@@ -11,6 +11,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best for Low Resistance",
     // Specs per fluke.com (Fluke 289 page), the 289 datasheet and the 287/289 Users Manual spec tables. Photo: Amazon main image of B0012B51HI, shows "289 TRUE RMS MULTIMETER" and the LoΩ 50Ω dial position. Amazon-buyable 2026-10-24.
     name: "Fluke 289",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71LKJXNQ5CL._SL1500_.jpg",
     rating: 4.7,
     bottomLine: "The only handheld here with a 50 Ω range at 1 mΩ resolution, plus 0.01 µA current resolution and on-screen trend logging.",
@@ -30,6 +31,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Logging Meter for Electronics",
     // Specs per fluke.com (Fluke 287 page), the 287 datasheet and the 287/289 Users Manual. The Amazon listing's "Category I/II" wording conflicts with Fluke's CAT IV 600V / CAT III 1000V; we use Fluke. Photo: Amazon main image of B0015PMU8E, shows "287 TRUE RMS MULTIMETER". Amazon-buyable 2026-10-24.
     name: "Fluke 287",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71P9-kdt0QL._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "Fluke's electronics logging meter: 50,000 counts, 0.01 µA resolution and graphs on the meter, without the 289's industrial extras.",
@@ -49,6 +51,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Brymen for Electronics",
     // Specs per the Brymen BM786 user manual (hosted by EEVblog, linked from eevblog.store). brymen.com has no BM786 page; this is the EEVblog-exclusive model. Photo: Amazon main image of B08N61LF4Z, shows "BRYMEN BM786 ... EEVBlog". Amazon-buyable 2026-10-24.
     name: "EEVblog Brymen BM786",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/8141kUMRO1L._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "A 60,000-count Brymen with 0.01 µA and 0.01 Ω resolution and CAT IV 600V, for about a third of a Fluke 287.",
@@ -68,6 +71,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget Meter for Electronics",
     // Specs per meters.uni-trend.com (UT61+ series page) and the UT61B+/D+/E+ user manual. Photo: Amazon main image of B093BS9MYM, shows "UT61E+ ... 22000 Counts". Amazon-buyable 2026-10-24.
     name: "UNI-T UT61E+",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/61p7ga5bJnL._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "A budget 22,000-count True RMS meter with 0.01 µA and 0.01 Ω resolution, REL mode and a USB link.",
@@ -87,6 +91,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Color-Screen Data Logger",
     // Specs per meters.uni-trend.com (UT181A page) and the UT181 series datasheet. Per-range resolution isn't published; 0.01 µA / 0.01 Ω follow from 600 µA / 600 Ω ranges at 60,000 counts. Photo: Amazon main image of B08X9WXJTL, shows "UT181A" and "60000 COUNTS". Amazon-buyable 2026-10-24.
     name: "UNI-T UT181A",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71KbgYU4GiL._SL1500_.jpg",
     rating: 4.4,
     bottomLine: "A 60,000-count colour-screen logging meter that stores 20,000 readings and graphs them, for well under Fluke 287 money.",
@@ -106,6 +111,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Dedicated Micro-Ohm Meter",
     // Specs per meters.uni-trend.com (UT620A page) and the UT620A datasheet. The page also lists a 60 mΩ/10 A range; the datasheet and the dial in the photo start at 120 mΩ/5 A, which we use. Photo: Amazon main image of B01LXLPXW4, shows "UT620A Digital Micro Ohm Meters". Amazon-buyable 2026-10-24.
     name: "UNI-T UT620A",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/61RkylYoIjL._SL1500_.jpg",
     rating: 4.3,
     bottomLine: "A 4-wire micro-ohm meter with 10 µΩ resolution and up to 5 A test current, for resistance a multimeter can't resolve.",
@@ -125,6 +131,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget Micro-Ohm Meter",
     // Specs per meters.uni-trend.com (UT620C+ page). UNI-T gives only "±0.1%FS", no per-range accuracy. Photo: Amazon main image of B0D73NCL5S, shows "UT620C+ Micro Ohm Meter" (kit photo includes Chinese-language manual and box). Amazon-buyable 2026-10-24.
     name: "UNI-T UT620C+",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71v98pmYqsL._SL1500_.jpg",
     rating: 4.3,
     bottomLine: "A compact 4-wire micro-ohmmeter reading down to 1 µΩ with a 1 A test current, for about a third of the UT620A's price.",
@@ -144,6 +151,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget Bluetooth Logger",
     // Specs per owon.com.hk (B41T+ page). OWON's page gives no CAT rating; the meter's front is marked 1000V CAT III. Photo: Amazon main image of B0BZCWZKJF, shows "OWON B41T+". Amazon-buyable 2026-10-24.
     name: "OWON B41T+",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71sFTZYXw3L._SL1500_.jpg",
     rating: 4.2,
     bottomLine: "A 22,000-count Bluetooth meter with 0.01 µA and 0.01 Ω resolution that logs 10,000 points by itself.",
@@ -163,6 +171,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget µA Meter",
     // Specs per owon.com.hk (OW18D/E page). CAT rating from the meter's front marking; OWON's page doesn't state it. Photo: Amazon main image of B0B2QVQZR6, shows "OW18E ... 20000 Counts". Amazon-buyable 2026-10-24 (only 1 left at check).
     name: "OWON OW18E",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71VEqMwGfDL._SL1500_.jpg",
     rating: 4.1,
     bottomLine: "A budget True RMS meter with a 200.00 µA range, 0.01 Ω resolution, Bluetooth and offline logging.",
@@ -182,6 +191,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Cheapest 20,000-Count µA Meter",
     // Specs per kaiweets.com (HT118E page, "Upgraded Specification"). Per-range resolution isn't published; 0.01 µA / 0.01 Ω follow from 200 µA / 200 Ω ranges at 20,000 counts. Photo: Amazon main image of B0B7WFPB4T, shows "HT118E ... 20000 Counts". Amazon-buyable 2026-10-24.
     name: "KAIWEETS HT118E",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/81lmVClgFiL._SL1500_.jpg",
     rating: 4.2,
     bottomLine: "A budget True RMS meter with 20,000 counts and a 200 µA range, but no relative mode for low-ohm work.",
@@ -201,6 +211,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget Klein True RMS",
     // Specs per kleintools.com (MM420 page) and the MM420 instruction manual (current table: 400.0 µA range, 0.1 µA). Photo: Amazon main image of B0B57PFFYX, meter face reads "MM420 Digital Multi-Meter ... TrueRMS". Amazon-buyable 2026-10-24 (sold by Amazon.com, $64.96).
     name: "Klein Tools MM420",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/51hgJ2yCwqL._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "Klein's everyday True RMS, auto-ranging meter: µA to 10 A, temperature and capacitance, rated CAT III 600V.",
@@ -220,6 +231,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget Electrician's Meter",
     // Specs per kleintools.com (MM720 page) and the MM720 instruction manual (frequency to 500 kHz per manual; Klein's 04/26 selection guide shows 50 kHz). Photo: Amazon main image of B0B57PDQJC, meter face reads "MM720 Digital Multi-Meter ... TrueRMS ... CAT IV 600V CAT III 1000V". Amazon-buyable 2026-10-24 (sold by Amazon.com, $99.96).
     name: "Klein Tools MM720",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/61Ba-L7Q2RL._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "CAT IV 600V, 1000V, LoZ and True RMS at a budget price, the most panel-ready meter in this tier.",
@@ -239,6 +251,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Smart-Mode Klein",
     // Specs per kleintools.com (MM460S page) and the MM460S instruction manual (Smart mode, 400.0 µA range, 330 g). Photo: Amazon main image of B0GX22H15F, meter face reads "MM460S Smart Digital Multi-Meter ... TrueRMS". Amazon-buyable 2026-10-24 (sold by Amazon.com, $79.98).
     name: "Klein Tools MM460S",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71wHNx2q9aL._SL1500_.jpg",
     rating: 4.4,
     bottomLine: "A True RMS Klein whose Smart mode picks AC/DC voltage, resistance or continuity for you, a gentle start for beginners.",
@@ -258,6 +271,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Basic Manual-Ranging",
     // Specs per kleintools.com (MM325 page) and the MM325 instruction manual (2,000-count, DC-only current, 200 µA range). Not True RMS (no TRMS claim). Photo: Amazon main image of B0B57L9FNL, meter face reads "MM325 Digital Multi-Meter ... CAT III 600V MAX". Amazon-buyable 2026-10-24 (sold by Amazon.com, $29.98).
     name: "Klein Tools MM325",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/51EPzXFvIAL._SL1500_.jpg",
     rating: 4.1,
     bottomLine: "A low-cost Klein for checking outlets, batteries and continuity, as long as you're happy picking ranges yourself.",
@@ -277,6 +291,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Low-Cost True RMS",
     // Specs per the KAIWEETS HT118A user manual (spec tables: 1000V DC / 750V AC, 600 µA range at 0.1 µA, 2 x AA) and kaiweets.com (3-year warranty). kaiweets.com product text says 600V AC/DC, which conflicts with the manual, Amazon listing and meter face. Photo: Amazon main image of B07SHLS639, shows "KAIWEETS HT118A ... 6000 Counts TRUE RMS". Amazon-buyable 2026-10-24 (sold by KAIWEETS Direct, $37.99).
     name: "KAIWEETS HT118A",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/81THgD001tL._SL1500_.jpg",
     rating: 4.4,
     bottomLine: "True RMS, CAT III 1000V and µA current with NCV and temperature at a low price.",
@@ -296,6 +311,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Rechargeable Smart Meter",
     // Specs per the KAIWEETS KM602 user manual (general and accuracy tables: CAT III 600V, 600V max, 600 mA/6 A/10 A current, 3.7V Li-ion) and kaiweets.com (3-year warranty). Amazon and kaiweets.com claim CAT III 1000V / CAT IV 600V; the manual and the printed meter face say CAT III 600V, used here. Photo: Amazon main image of B0C53BLWKC, shows "KAIWEETS KM602 ... TRUE RMS ... 600V CAT III". Amazon-buyable 2026-10-24 (sold by KAIWEETS Direct, $52.24).
     name: "KAIWEETS KM602",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/81x7i23bCIL._SL1500_.jpg",
     rating: 4.2,
     bottomLine: "A rechargeable True RMS meter whose Smart mode measures voltage, resistance or continuity without turning a dial.",
@@ -315,6 +331,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Waterproof Voltage Checker",
     // Specs per southwire.com (16030A page) and the 16030A operating manual (True RMS, 4,000-count, 600V, IP67, no current function, 2-year warranty). Photo: Amazon main image of B01MDMAHMJ, meter face reads "16030A Autoselecting Multimeter ... TRUE RMS ... IP67 ... CAT IV 600V". Amazon-buyable 2026-10-24 (sold by Amazon.com, $48.22, only 1 left).
     name: "Southwire 16030A",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/81FAgUDXakL._SL1500_.jpg",
     rating: 4.0,
     bottomLine: "A rugged CAT IV 600V, IP67 voltage-and-continuity meter that picks AC or DC for you, with no current ranges at all.",
@@ -334,6 +351,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best HVAC Multimeter",
     // Specs per fluke.com (Fluke 116 product page and spec table). Photo: Amazon main image of B000NI69YA, shows "FLUKE 116 TRUE RMS MULTIMETER". Amazon-buyable 2026-10-24.
     name: "Fluke 116",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/61OQ92+Yl5L._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "Fluke's HVAC multimeter: a 0.1 µA flame-sensor range, temperature, capacitance and LoZ in a CAT III 600V body.",
@@ -353,6 +371,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best HVAC Clamp Meter",
     // Specs per fluke.com (Fluke 902 FC product page). fluke.com lists temperature as -40 to 400 °C in the table but -10 to 400 °C in the features. Photo: Amazon main image of B01BENTS7M, shows "FLUKE 902 FC". Amazon-buyable 2026-10-24.
     name: "Fluke 902 FC",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71AWCVA5sDL._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "A True RMS HVAC clamp with a 200 µA flame-sensor range, capacitance, temperature and Fluke Connect wireless.",
@@ -372,6 +391,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget HVAC Clamp",
     // Specs per kleintools.com (CL445 product page and datasheet) and the CL445 instruction manual. Photo: Amazon main image of B0BL42ZS1P, shows "KLEIN TOOLS CL445". Amazon-buyable 2026-10-24.
     name: "Klein Tools CL445",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/515QTzqjnZL._SL1500_.jpg",
     rating: 4.4,
     bottomLine: "An HVAC clamp with a 0.1 µA flame-sensor range, inrush, NCV and temperature, rated CAT IV 600V.",
@@ -391,6 +411,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Compact HVAC Clamp",
     // Specs per the Fieldpiece SC260 operator's manual (v22) and fieldpiece.com product page. The manual lists no µA range. Photo: Amazon main image of B00KLYJG78, shows "SC260" on the meter. Amazon-buyable 2026-10-24.
     name: "Fieldpiece SC260",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/510EKrM0AgL._SL1500_.jpg",
     rating: 4.2,
     bottomLine: "A small True RMS HVACR clamp with capacitance, temperature and NCV, but no microamp range.",
@@ -410,6 +431,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Wireless HVAC Clamp",
     // Specs per the Fieldpiece SC480 operator's manual (v18). Photo: Amazon main image of B0848S9YWT, shows "SC480" and "CAT III 1000V / CAT IV 600V". Amazon-buyable 2026-10-24.
     name: "Fieldpiece SC480",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71zZvCq9xML._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "An HVACR power clamp that measures watts and power factor, checks phase rotation and sends readings to the Job Link app.",
@@ -429,6 +451,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best for Solar PV",
     // Specs per fluke.com (Fluke 393 FC product page and spec table; fluke.com labels the DC power ranges in kVA). Photo: Amazon main image of B09BHJNMZK, shows "393 FC CAT III 1500V TRMS CLAMP METER". Amazon-buyable 2026-10-24.
     name: "Fluke 393 FC",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/51EtT0H8l2L._SL1500_.jpg",
     rating: 4.7,
     bottomLine: "Fluke's solar clamp: CAT III 1500V, 1500 V DC, 999.9 A DC through the jaw and DC power, in an IP54 body.",
@@ -448,6 +471,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget AC/DC Clamp",
     // Specs per kaiweets.com (HT208D product page and parameter table; the table lists AC voltage to 750 V and DC to 1000 V). Photo: Amazon main image of B08CX6VHWV, shows "KAIWEETS HT208D". Amazon-buyable 2026-10-24.
     name: "KAIWEETS HT208D",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/91R9erZ0CNL._SL1500_.jpg",
     rating: 4.2,
     bottomLine: "A low-cost 1000 A AC/DC clamp with 1000 V DC, CAT III 1000V, LoZ, VFD and inrush modes.",
@@ -467,6 +491,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best for 4-20 mA Loops",
     // Specs per fluke.com (Fluke 789 ProcessMeter product page and spec table). Photo: Amazon main image of B000R8ETKW, shows "FLUKE 789 PROCESSMETER". Amazon-buyable 2026-10-24 (third-party seller, 1 left).
     name: "Fluke 789",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71dt8oDb+JL._SL1500_.jpg",
     rating: 4.7,
     bottomLine: "A full multimeter that also sources, simulates and powers 4-20 mA loops, with 0.001 mA resolution.",
@@ -486,6 +511,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best mA Clamp",
     // Specs per fluke.com (Fluke 771 product page). Photo: Amazon main image of B000R81ARM, shows "FLUKE 771 MILLIAMP PROCESS CLAMP METER". Amazon-buyable 2026-10-24.
     name: "Fluke 771",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/51kxFeWPzbL._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "Reads 4-20 mA loop current through a clamp, so you don't have to break the loop.",
@@ -505,6 +531,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best mA Clamp with Loop Power",
     // Specs per fluke.com (Fluke 772 product page and functional specifications). Photo: Amazon main image of B002EL4LIK, shows "FLUKE 772 MILLIAMP PROCESS CLAMP METER". Amazon-buyable 2026-10-24.
     name: "Fluke 772",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/5118UQtLrHL._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "A mA clamp that also sources, simulates and powers 4-20 mA loops with 24 V.",
@@ -524,6 +551,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best HVAC Clamp with LoZ",
     // Specs per the UEi DL579 data sheet (ueitest.com). Amazon's title says "AC/DC", but UEi lists AC amps only through the jaw. Photo: Amazon main image of B0BCVLP8MQ, shows "UEi DL579". Amazon-buyable 2026-10-24.
     name: "UEi DL579",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/51QWwE-xF3L._SL1500_.jpg",
     rating: 4.3,
     bottomLine: "An HVAC/R clamp with AC/DC microamps, Low Z, LRA inrush and two temperature probes.",
@@ -543,6 +571,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Value Automotive",
     // Specs per innova.com (Innova 3340 product page + FAQs) and the official Amazon listing. CAT II 600V is read off the meter face in the listing photo; Innova's text doesn't state a CAT rating. Photo: Amazon main image of B000KIMHRQ (meter printed "3340a"). Amazon-buyable 2026-10-24.
     name: "Innova 3340",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71CIsZUufML._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "A proper engine-analyzer meter (RPM, dwell, duty cycle, pulse width, temperature) with the inductive pickup in the box.",
@@ -562,6 +591,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Professional Automotive",
     // Specs per fluke.com (Fluke 88V page + spec tab) and the Fluke 88V Users Manual (average responding, 6,000 counts / 19,999 HiRes, 600.0 µA range). Photo: Amazon main image of B000WTB67K, shows "FLUKE 88V". Amazon-buyable 2026-10-24.
     name: "Fluke 88V",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/61gfccU3v-L._SL1500_.jpg",
     rating: 4.7,
     bottomLine: "Fluke's top automotive meter: CAT IV 600V, 0.1% DC accuracy, 250 µs peak capture and a lifetime warranty.",
@@ -581,6 +611,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget Battery Checker",
     // Specs per innova.com (Innova 3320 product page + FAQs) and the official Amazon listing; CAT I and the 1.5/6/9/12V battery-load positions are read off the meter face. Photo: Amazon main image of B000EVYGZA, shows "INNOVA 3320". Amazon-buyable 2026-10-24.
     name: "Innova 3320",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/81w4giNVNoL._AC_SL1500_.jpg",
     rating: 4.2,
     bottomLine: "A simple auto-ranging meter with green/yellow/red battery-load LEDs that make quick battery checks easy.",
@@ -600,6 +631,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Guided Battery & Charging Tests",
     // Specs per powerprobe.com (DM300AUTO page) and the DM300AUTO User Manual (spec tables, 2-year warranty). Photo: Amazon main image of B0DNTZQGJ9, shows "DM300AUTO". Amazon-buyable 2026-10-24 (sold by ForgeLane Group).
     name: "Power Probe DM300AUTO",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/51RQLllbWGL._SL1000_.jpg",
     rating: 4.3,
     bottomLine: "An automotive meter that walks you through cranking-voltage and alternator tests and reads current through a fuse without pulling it.",
@@ -619,6 +651,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Most Rugged",
     // Specs per powerprobe.com (DM600MAX page) and the DM600MAX User Manual (IP67, 0.03% DCV, 400.0 µA range, 2-year warranty). Conflict: the manual lists the 30A probe as optional; Amazon says it's included. Photo: Amazon main image of B0DWTD82L8, shows "DM600MAX". Amazon-buyable 2026-10-24.
     name: "Power Probe DM600MAX",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/51-MwANUKeL._SL1000_.jpg",
     rating: 4.5,
     bottomLine: "An IP67, True RMS shop meter with 0.03% DC accuracy, LoZ, Bluetooth logging and temperature to 1,200 °C.",
@@ -638,6 +671,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Budget Engine Analyzer",
     // Specs per the official Amazon listing (no BTMETER maker page found). The listing gives RPM as 600–12,000 in one place and 300–1,200 in another; the BT-705A inductive clamp is NOT included. Photo: Amazon main image of B07WVX4L8K, shows "BTMETER BT-770K". Amazon-buyable 2026-10-24.
     name: "BTMETER BT-770K",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71URv9nbd0L._SL1500_.jpg",
     rating: 4.2,
     bottomLine: "True RMS plus dwell, pulse width, duty cycle and RPM (with an extra clamp) at a budget price.",
@@ -657,6 +691,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Cheapest With RPM & Dwell",
     // Specs per the official Amazon listing (no ANENG maker spec page found); CAT III 600V / CAT II 1000V and dial ranges read off the meter face. Photo: Amazon main image of B0DMK53DQC, shows "ANENG SZ26". Amazon-buyable 2026-10-24.
     name: "ANENG SZ26",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71NjO8Jf10L._SL1500_.jpg",
     rating: 3.9,
     bottomLine: "An old-school manual-range engine analyzer with RPM and dwell for 4, 6 and 8 cylinders, plus a big probe kit.",
@@ -676,6 +711,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Cheapest Glovebox Meter",
     // Specs per astroai.com (AM33D page: CAT II 600V / CAT III 300V, manual range, 2000 counts, not True RMS) and the official Amazon listing. Photo: Amazon main image of B01ISAMUA6, shows "AstroAI AM33D". Amazon-buyable 2026-10-24.
     name: "AstroAI AM33D",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/71+FegWytVL._SL1500_.jpg",
     rating: 3.8,
     bottomLine: "A basic manual-range meter for checking battery voltage, fuses and continuity on the road.",
@@ -695,6 +731,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Ultra-Budget Pick",
     // Specs per the official Amazon listing (accuracy table, CAT III 600V); no KM100 page on kaiweets.com. Photo: Amazon main image of B08CX9W7G3, shows "KAIWEETS KM100". Amazon-buyable 2026-10-24.
     name: "KAIWEETS KM100",
+    verifiedAt: "2026-10-24",
     image: "https://m.media-amazon.com/images/I/81AI4HcSdBL._SL1500_.jpg",
     rating: 3.8,
     bottomLine: "A cheap CAT III 600V manual-range meter with a case, good enough for battery voltage and fuse checks.",
@@ -714,6 +751,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Fluke Utility Meter with VCHEK",
     // Specs per fluke.com (Fluke 113 product/spec page) and the official Amazon listing (B004Q05ODI). Conflict: fluke.com gives IEC 61010-2-033 CAT IV 600 V and the meter is printed "CAT IV 600V", but an Amazon bullet says CAT III 600 V / CAT IV 300 V; we use Fluke. True RMS per the Amazon title and the meter's front label (fluke.com spec page doesn't state it). Photo: Amazon main image of B004Q05ODI, shows "FLUKE 113 TRUE RMS MULTIMETER", VCHEK and LOW IMPEDANCE. Amazon-buyable 2026-10-27.
     name: "Fluke 113",
+    verifiedAt: "2026-10-27",
     image: "https://m.media-amazon.com/images/I/61L0VkFzIZL._SL1500_.jpg",
     rating: 4.4,
     bottomLine: "A 6000-count utility meter built around VCHEK: one LoZ dial position that reads voltage and drops to continuity when the circuit is dead.",
@@ -733,6 +771,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Go/No-Go Electrician Meter",
     // Specs per fluke.com (Fluke 114 product/spec page) and the official Amazon listing (B000IZ9FD0). fluke.com's overview mentions "current" but its spec table lists no current ranges and the meter has only COM/+ jacks; we treat it as voltage/resistance only. Weight: Fluke 550 g, Amazon 0.51 kg. Photo: Amazon main image of B000IZ9FD0, shows "FLUKE 114 TRUE RMS MULTIMETER", AUTO-V LoZ and CAT III 600V. Amazon-buyable 2026-10-27.
     name: "Fluke 114",
+    verifiedAt: "2026-10-27",
     image: "https://m.media-amazon.com/images/I/61iC35IcD9L._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "A True RMS voltage-and-continuity meter with AutoVolt LoZ, made for quick go/no-go checks on 600 V circuits.",
@@ -752,6 +791,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best No-Frills Fluke 170 Series",
     // Specs per fluke.com (Fluke 175 product/spec page) and the official Amazon listing (B00012Z0UM, "Fluke 175 ESFP"). 6,000 counts and 33-segment bar graph per the Fluke 170 Series detailed specifications (Pub 10824-eng, farnell.com/datasheets/2631819.pdf), which list the backlight on the 177 and 179 only; the photo shows no backlight button. Photo: Amazon main image of B00012Z0UM, shows "FLUKE 175 TRUE RMS MULTIMETER" with test leads and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
     name: "Fluke 175",
+    verifiedAt: "2026-10-27",
     image: "https://m.media-amazon.com/images/I/71MHzMKDxPL._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "The entry 170-series Fluke: True RMS volts and amps to 10 A, CAT IV 600V and a lifetime warranty, minus the 177's backlight.",
@@ -771,6 +811,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Backlit Everyday Fluke",
     // Specs per fluke.com (Fluke 177 product/spec page) and the official Amazon listing (B005WFW26S). Amazon's "1.81 g" item weight is a listing error; Fluke states 420 g. Photo: Amazon main image of B005WFW26S, shows "FLUKE 177 TRUE RMS MULTIMETER" with backlight button and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
     name: "Fluke 177",
+    verifiedAt: "2026-10-27",
     image: "https://m.media-amazon.com/images/I/71RYn-8eR1L._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "The middle 170-series meter: 0.09% DC volts, True RMS to 10 A and a backlight, without paying for the 179's thermometer.",
@@ -790,6 +831,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Rugged Industrial Meter",
     // Specs per fluke.com (Fluke 87V MAX product/spec page) and the official Amazon listing (B07YQSBJSB, bare meter with TL175 leads; B0B6R4J4RP is the MC4/solar lead kit). LoZ isn't listed by Fluke for this model. Photo: Amazon main image of B07YQSBJSB, shows "FLUKE 87V MAX TRUE RMS MULTIMETER", IP67 and "1000V CAT III / 600V CAT IV". Amazon-buyable 2026-10-27.
     name: "Fluke 87V MAX",
+    verifiedAt: "2026-10-27",
     image: "https://m.media-amazon.com/images/I/61tdkYzn87L._SL1500_.jpg",
     rating: 4.7,
     bottomLine: "The 87V's measurement set in an IP67 case rated for a 4 m drop, with 800-hour AA battery life and a backlit keypad.",
@@ -809,6 +851,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best IP67 Meter for Mining and Field Work",
     // Specs per fluke.com (Fluke 28 II product/spec page) and the official Amazon listing (B002X9ISWI; listing says the unit ships with a NIST-traceable calibration certificate; sold by a third party). Amazon's "300 g" weight conflicts with Fluke's 698.5 g with holster; we use Fluke. Not the 28 II EX (B00C2DVKPC). Photo: Amazon main image of B002X9ISWI, shows "FLUKE 28 II TRUE RMS MULTIMETER", IP67 and "1000V CAT III / 600V CAT IV". Amazon-buyable 2026-10-27.
     name: "Fluke 28 II",
+    verifiedAt: "2026-10-27",
     image: "https://m.media-amazon.com/images/I/71JaS21Kb0L._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "An IP67, MSHA-approved True RMS meter with 87V-class volts accuracy, a low-pass filter and a 3 m drop rating.",
@@ -828,6 +871,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Insulation Multimeter",
     // Specs per fluke.com (Fluke 1587 FC product/spec page) and the Fluke 1587 FC/1577 technical data sheet (6000-count display), plus the official Amazon listing (B017OVC2UI, bare meter; the I400, 62MAX+ and MDT kits are separate ASINs). fluke.com lists the case as both "soft" and "hard"; Amazon's 1645 g item weight conflicts with Fluke's 550 g. Photo: Amazon main image of B017OVC2UI, shows "FLUKE 1587 FC INSULATION MULTIMETER", INSULATION TEST button and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-27.
     name: "Fluke 1587 FC",
+    verifiedAt: "2026-10-27",
     image: "https://m.media-amazon.com/images/I/71XrB9ZhFwL._SL1500_.jpg",
     rating: 4.6,
     bottomLine: "A True RMS multimeter and 50–1000 V insulation tester in one, with PI/DAR tests and Fluke Connect logging to your phone.",
@@ -847,6 +891,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Rugged Non-RMS Fluke",
     // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-27-ii) and the official Amazon listing (B002X9IPB2, "Fluke 27II AVG Multimeter"). Average responding per the Amazon title/bullet ("AVG multimeter"); fluke.com's spec table doesn't state RMS type. Amazon overview's "Corded Electric" power source conflicts with Fluke's 3 × AA; we use Fluke. Photo: Amazon main image of B002X9IPB2, shows "FLUKE 27 II MULTIMETER", IP67 and "1000V CAT III / 600V CAT IV". Amazon-buyable 2026-10-28 (sold by Amazon.com).
     name: "Fluke 27 II",
+    verifiedAt: "2026-10-28",
     image: "https://m.media-amazon.com/images/I/61MXAUq8KHL._AC_SL1500_.jpg",
     rating: 4.4,
     bottomLine: "The 28 II's IP67, 3 m-drop body with average-responding AC, for harsh sites where the loads are plain sine waves.",
@@ -866,6 +911,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Basic Insulation Multimeter",
     // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/insulation-testers/fluke-1577) and the official Amazon listing (B000VRJFPI). Conflict: an Amazon bullet says "550V and 1000V" test voltages; Fluke, the Amazon description and the dial say 500 V and 1000 V, which we use. fluke.com's spec table also lists 50/100/250 V rows (shared with the 1587), but the 1577 tests only at 500 V and 1000 V. Display count not stated. Photo: Amazon main image of B000VRJFPI, shows "FLUKE 1577 INSULATION MULTIMETER" and the 500 V / 1000 V insulation position. Amazon-buyable 2026-10-28 (Granny's Picks, fulfilled by Amazon; other new offers).
     name: "Fluke 1577",
+    verifiedAt: "2026-10-28",
     image: "https://m.media-amazon.com/images/I/51EaCLDWKzL._AC_SL1181_.jpg",
     rating: 4.5,
     bottomLine: "A True RMS multimeter with a 500 V / 1000 V insulation tester built in, for motor, cable and switchgear checks.",
@@ -885,6 +931,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best mA Source Without the 789's Price",
     // Specs per fluke.com (https://www.fluke.com/en-us/product/calibration-tools/ma-loop-calibrators/fluke-787b) and the official Amazon listing (B071ZPSQ88). fluke.com doesn't state a built-in 24 V loop supply or HART resistor for the 787B (the 789 has both); simulate mode needs an external 15–48 V supply. Display count not stated. Amazon bullet gives only "CAT III 1000 V"; Fluke and the meter say CAT IV 600V / CAT III 1000V. Photo: Amazon main image of B071ZPSQ88, shows "FLUKE 787B PROCESSMETER" and "OUTPUT 0-24mA SOURCE / SIMULATE". Amazon-buyable 2026-10-28 (buy box seller "Amazan-Warehouse", a third party; other new offers).
     name: "Fluke 787B",
+    verifiedAt: "2026-10-28",
     image: "https://m.media-amazon.com/images/I/613oILGqB5L._SL1000_.jpg",
     rating: 4.6,
     bottomLine: "A True RMS ProcessMeter that measures, sources and simulates 0-20 or 4-20 mA, without the 789's built-in loop supply.",
@@ -904,6 +951,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Average-Responding Fluke Workhorse",
     // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-77-iv) and the official Amazon listing (B000U8WQ4U, "Fluke 77-4 Automotive Digital Multimeter"). fluke.com says "Average responding AC measurements", so not True RMS. Warranty, IP and drop not stated on the fluke.com page. Photo: Amazon main image of B000U8WQ4U, shows "FLUKE 77 IV MULTIMETER" and "600V CAT IV / 1000V CAT III". Amazon-buyable 2026-10-28 (ships from Amazon, sold by kandk-co).
     name: "Fluke 77 IV",
+    verifiedAt: "2026-10-28",
     image: "https://m.media-amazon.com/images/I/61Dk7I2rw-L._SL1500_.jpg",
     rating: 4.3,
     bottomLine: "The updated Fluke 77: a 6000-count, 10 A, 1000 V meter with capacitance and a backlight, but average-responding AC.",
@@ -923,6 +971,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best Wireless Fluke Connect Meter",
     // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-3000-fc) and the official Amazon listing (B00JJQ3Y6S). fluke.com lists DC V accuracy as 0.09% + 2 and 0.15% + 2 without mapping them to ranges; we quote the best figure. Current is 400 mA max (no 10 A jack, confirmed on the photo). Drop rating not stated. Temperature needs the separate t3000 FC module. Photo: Amazon main image of B00JJQ3Y6S, shows "FLUKE 3000 FC TRUE RMS MULTIMETER" with TL175 leads and alligator clips. Amazon-buyable 2026-10-28 (sold by Amazon.com).
     name: "Fluke 3000 FC",
+    verifiedAt: "2026-10-28",
     image: "https://m.media-amazon.com/images/I/81DO0fA5YCL._AC_SL1500_.jpg",
     rating: 4.4,
     bottomLine: "A True RMS meter that sends readings to the Fluke Connect app and shows up to three wireless modules on its own screen.",
@@ -942,6 +991,7 @@ export const multimeterCatalogPicks: Pick[] = [
     badge: "Best for 1500 V Solar Strings",
     // Specs per fluke.com (https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/283-fcpv-solar-digital-multimeter) and the official Amazon listing (B0DGBYD8ZK). KIT: no bare 283 FC is listed on Amazon.com, so this Pick is the 283 FC/PV kit (283 FC meter + a283 FC wireless 60 A AC/DC clamp + MC4 and TL175-HV leads). The meter has no current jacks; current is via the clamp only. Amazon item weight "16 ounces" conflicts with Fluke's 0.7 kg for the meter; we use Fluke. Photo: Amazon main image of B0DGBYD8ZK, a kit shot showing the "FLUKE 283 FC TRUE RMS 1500V MULTIMETER" and the "a283 FC" clamp. Amazon-buyable 2026-10-28 (sold by Amazon.com).
     name: "Fluke 283 FC/PV",
+    verifiedAt: "2026-10-28",
     image: "https://m.media-amazon.com/images/I/81xYPvQd-cL._SL1500_.jpg",
     rating: 4.5,
     bottomLine: "A CAT III 1500V True RMS meter and wireless 60 A AC/DC clamp kit with MC4 leads for solar PV strings.",

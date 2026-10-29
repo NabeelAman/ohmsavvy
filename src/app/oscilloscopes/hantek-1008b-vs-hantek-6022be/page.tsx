@@ -305,6 +305,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Hantek 1008B if you diagnose vehicles: eight 12-bit channels, guided automotive tests and a crank and cam simulator matter more there than speed, and 100kHz covers engine sensors. Buy the Hantek 6022BE for general electronics on a Windows laptop: 20 MHz and 48 MS/s handle hobby signals the 1008B can't, and two channels cover most bench jobs. Neither is a good substitute for the other.",
+  chooseNeitherIf:
+    "You're on a Mac or Linux machine: Hantek lists Windows software only for both, and neither has a screen of its own, so without a Windows PC neither one displays anything — look for a model whose maker lists macOS support instead.",
   faqs: [
     {
       question: "Can the Hantek 6022BE be used for car diagnostics?",

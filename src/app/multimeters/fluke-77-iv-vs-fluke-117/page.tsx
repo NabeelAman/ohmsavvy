@@ -409,6 +409,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Fluke 117 if you are an electrician working panels, branch circuits and lighting: True RMS, VoltAlert and the LoZ AutoVolt position solve problems you meet every week, and its CAT III 600V rating covers that work. Buy the Fluke 77 IV only if you need CAT IV 600V or CAT III 1000V reach, a 1000 V range or a fine mA input, and your AC loads are mostly clean sine waves. If you need CAT IV and True RMS together, step up to a Fluke 179 or 87V.",
+  chooseNeitherIf:
+    "You need CAT IV protection and True RMS together — the 117 lacks CAT IV and the 77 IV isn't True RMS; a Fluke 179 or 87V covers both.",
   faqs: [
     {
       question: "Is the Fluke 77 IV True RMS?",

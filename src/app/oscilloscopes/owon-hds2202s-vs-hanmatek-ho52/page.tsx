@@ -220,6 +220,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "The OWON HDS2202S outperforms the HANMATEK HO52 on bandwidth (200 MHz vs 50 MHz) and adds a built-in 25 MHz generator the HO52 doesn't have at all, while both offer a similarly rated 20,000-count multimeter. Choose the HDS2202S if you need more bandwidth or a generator; choose the HO52 if basic field checks are all you need and price matters more.",
+  chooseNeitherIf:
+    "You need to capture a long or detailed event: both top out at 8K record length or less, which is built for quick field checks, not deep digital debugging — a benchtop scope with real memory depth is the better tool for that.",
   faqs: [
     {
       question: "Does the HANMATEK HO52 have a signal generator?",

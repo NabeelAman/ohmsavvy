@@ -383,6 +383,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Buy the Fluke 789 for 4–20 mA work: it measures loop current at 0.001 mA, sources and simulates at 0.05% of span, and powers transmitters with its own 24 V supply and HART resistor. Buy the Fluke 1587 FC for insulation work: 50 to 1000 V tests to 2 GΩ, PI and DAR through Fluke Connect, plus temperature and capacitance. Plant technicians who cover both instruments and motors need both tools. Everyone else is better served by a general multimeter with a 10 A input, such as the Fluke 87V.",
+  chooseNeitherIf:
+    "Your work isn't specifically loop-current/HART or insulation testing — both of these are specialist instruments; a general multimeter with a 10 A input, such as the Fluke 87V, serves everyday electrical work better.",
   faqs: [
     {
       question: "Is the Fluke 789 or the 1587 FC better for an industrial maintenance technician?",

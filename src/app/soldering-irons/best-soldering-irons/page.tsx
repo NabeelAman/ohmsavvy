@@ -103,6 +103,7 @@ export const picks: Pick[] = [
     name: "Weller WE1010NA",
     image: "https://www.weller-tools.com/sites/default/files/products/images/2026-08/WE_1010.jpg",
     rating: 4.6,
+    verifiedAt: "2026-10-26",
     bottomLine: "ESD-safe construction and tight temperature stability for a dedicated electronics bench.",
     verdict:
       "Weller's WE1010NA brings ESD-safe construction and tight temperature stability to an 85W digital station driving a 70W iron, making it a strong choice for anyone running a dedicated electronics bench.",

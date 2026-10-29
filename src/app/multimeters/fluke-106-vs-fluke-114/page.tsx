@@ -300,6 +300,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Choose the Fluke 106 if you want a truly pocketable meter that reads current and capacitance and you mostly measure clean mains or DC. Choose the Fluke 114 if you test building wiring and value True RMS, AutoVolt LoZ, a bar graph and Min/Max/Average over amps. If you need both sets of features, look at the Fluke 117 instead of compromising.",
+  chooseNeitherIf:
+    "You need current/capacitance and AutoVolt/True RMS/bar graph together — neither meter covers both sets, and the Fluke 117 does.",
   faqs: [
     {
       question: "Is the Fluke 114 a compact multimeter?",

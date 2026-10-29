@@ -249,6 +249,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "If two channels cover what you measure, the Rigol DHO802 is the more capable scope: 70 MHz, 12-bit resolution against 8-bit, 25 Mpts of memory, standard serial decoding including CAN and a sharper 1024 × 600 touchscreen. If you need to watch three or four signals together, or want the most documented beginner scope and the one we have hands-on tested, the Rigol DS1054Z remains the practical choice.",
+  chooseNeitherIf:
+    "You need to feed a test signal into a filter or amplifier: Rigol lists no built-in generator for the DHO802, and in the DS1000Z family only the -S models have one, not the plain DS1054Z — either way you'll need a separate signal source.",
   faqs: [
     {
       question: "Is the Rigol DHO802 better than the DS1054Z?",

@@ -258,6 +258,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "For anyone working on circuits faster than audio, the OWON HDS2202S is the better buy: 1,000 times the bandwidth, two channels, and a multimeter and 25 MHz generator in the same battery handheld. The FNIRSI DSO152 makes sense if your signals stay below roughly 40–65kHz and you want the smallest, cheapest scope that will show them, or a pocket spare alongside a better instrument.",
+  chooseNeitherIf:
+    "You need decoded serial-bus bytes on screen rather than a waveform to read by eye: neither maker lists serial decoding, and the DSO152's 200kHz bandwidth rules out most bus work entirely — a scope with built-in I2C/SPI/UART decode is the right tool for that.",
   faqs: [
     {
       question: "Is the OWON HDS2202S worth it over the FNIRSI DSO152?",

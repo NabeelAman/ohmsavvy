@@ -327,6 +327,8 @@ const comparison: ProductComparisonContent = {
   ),
   bottomLine:
     "Pick by where you work. The FNIRSI 2C53T is the better buy if you fault-find away from a bench and want a True RMS multimeter first, with a 50 MHz scope and a 50 kHz generator as backup, all on a battery. The FNIRSI 1014D is the better buy for desk-based electronics: twice the bandwidth, four times the sample rate, a 7-inch screen and a generator that reaches 10 MHz, at the cost of portability and a built-in meter.",
+  chooseNeitherIf:
+    "You need a CAT-rated, isolated instrument for mains-referenced work: FNIRSI gives no CAT safety rating for either model, and on the 1014D the probe ground also ties to whatever its adapter and USB lead are plugged into.",
   faqs: [
     {
       question: "Is the FNIRSI 2C53T a replacement for a benchtop scope like the 1014D?",

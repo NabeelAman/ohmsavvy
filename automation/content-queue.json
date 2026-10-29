@@ -963,7 +963,13 @@
       "keyword": "best soldering iron with adjustable temperature",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending"
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX-888DX",
+        "Pinecil V2",
+        "Weller WE1010NA"
+      ],
+      "notes": "picks chosen by refill 2026-10-29: These three soldering irons offer adjustable temperature control, which is crucial for precision soldering tasks. The Hakko FX-888DX and Weller WE1010NA provide robust digital temperature control suitable for professional and serious hobbyist use, while the Pinecil V2 offers a portable solution with USB-C power, making it ideal for field repairs and on-the-go projects."
     },
     {
       "keyword": "best budget soldering station",

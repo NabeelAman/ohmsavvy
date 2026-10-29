@@ -586,6 +586,62 @@ export const content: ContentEntry[] = [
   {
     category: "multimeters",
     type: "review",
+    title: "Fluke 179 Review",
+    description: "CAT IV 600V, temperature and 0.01 mA, but no µA",
+    href: "/multimeters/fluke-179-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 289 Review",
+    description: "Milliohms, microamps and on-meter logging in CAT IV",
+    href: "/multimeters/fluke-289-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 17B+ Review",
+    description: "Temperature, Hz and µA in a CAT III Fluke; not True RMS",
+    href: "/multimeters/fluke-17b-plus-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 15B+ Review",
+    description: "No-frills CAT III Fluke with µA-to-10 A current ranges",
+    href: "/multimeters/fluke-15b-plus-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 107 Review",
+    description: "Pocket Fluke with diode, Hz and duty; not True RMS",
+    href: "/multimeters/fluke-107-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 106 Review",
+    description: "Basic pocket Fluke: volts, ohms, 10A; no diode or Hz",
+    href: "/multimeters/fluke-106-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 1587 FC Review",
+    description: "Insulation tests to 2 GΩ with PI/DAR, but only 400 mA",
+    href: "/multimeters/fluke-1587-fc-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
+    title: "Fluke 101 Review",
+    description: "160 g pocket Fluke with Hz and duty cycle, no current",
+    href: "/multimeters/fluke-101-review",
+  },
+  {
+    category: "multimeters",
+    type: "review",
     title: "KAIWEETS KM200s Review",
     description: "Our Best Budget multimeter pick",
     href: "/multimeters/kaiweets-km200s-review",
@@ -3770,6 +3826,19 @@ export function guidePicks(href: string): string[] {
   const entry = content.find((e) => e.href === href);
   if (!entry?.picks) throw new Error(`No picks registered for ${href}`);
   return entry.picks;
+}
+
+/** The registered review page for a Pick, matched on the "<Pick name> Review" title convention. */
+export function reviewHrefFor(pickName: string): string | undefined {
+  return content.find((e) => e.type === "review" && e.title === `${pickName} Review`)?.href;
+}
+
+/** Every registered comparison with this Pick on one side, matched on the review slug (e.g. fluke-179). */
+export function comparisonsFor(pickName: string): ContentEntry[] {
+  const reviewHref = reviewHrefFor(pickName);
+  if (!reviewHref) return [];
+  const slug = reviewHref.split("/").pop()!.replace(/-review$/, "");
+  return content.filter((e) => e.type === "comparison" && e.href.split("/").pop()!.split("-vs-").includes(slug));
 }
 
 export function getContentByCategory(category: Category): ContentEntry[] {

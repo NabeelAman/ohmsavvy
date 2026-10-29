@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { productImageSrc, skipOptimizer } from "@/lib/images";
 import Link from "next/link";
-import type { Category } from "@/lib/content";
+import { comparisonsFor, type Category } from "@/lib/content";
 import type { Faq, Pick } from "./ReviewArticle";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
@@ -48,6 +48,14 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
   const alternative = pick.unavailable?.alternative ? pickByName(pick.unavailable.alternative) : undefined;
   const buyHref = pick.unavailable ? alternative?.ctaHref : pick.ctaHref;
   const buyLabel = pick.unavailable && alternative ? `Check the ${alternative.name} on Amazon →` : "Check price on Amazon →";
+  // Hand-picked links first, then every other registered comparison with this product.
+  const linked = new Set(review.related.map((r) => r.href));
+  const related = [
+    ...review.related,
+    ...comparisonsFor(pick.name)
+      .filter((c) => !linked.has(c.href))
+      .map((c) => ({ label: c.title, href: c.href })),
+  ];
 
   // A single editorial Review, never an AggregateRating — same rule as ReviewArticle.
   const jsonLd = {
@@ -289,7 +297,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
             <Link prefetch={false} href={review.roundup.href} className="font-medium text-accent hover:underline">
               {review.roundup.label}
             </Link>
-            {review.related.map((r) => (
+            {related.map((r) => (
               <Link prefetch={false} key={r.href} href={r.href} className="text-accent hover:underline">
                 {r.label}
               </Link>

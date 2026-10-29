@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { productImageSrc, skipOptimizer } from "@/lib/images";
 import Link from "next/link";
-import type { Category } from "@/lib/content";
+import { reviewHrefFor, type Category } from "@/lib/content";
 import type { ReviewLink } from "./ProductReview";
 import type { Faq, Pick } from "./ReviewArticle";
 import { Badge } from "./ui/Badge";
@@ -16,7 +16,7 @@ import { categoryOfPick, pickByName } from "@/lib/catalog";
 export type ComparisonSide = {
   /** Verified Pick from the category's main article — the only source of product facts. */
   pick: Pick;
-  /** Omit when the product has no review page yet; the card then links nowhere extra. */
+  /** Usually omitted: the card finds the registered "<Pick name> Review" page in content.ts. */
   reviewHref?: string;
   imageAlt: string;
   chooseIf: string[];
@@ -75,6 +75,7 @@ function buyLink(pick: Pick): { href?: string; label: string } {
 function ProductCard({ side }: { side: ComparisonSide }) {
   const { pick } = side;
   const buy = buyLink(pick);
+  const reviewHref = side.reviewHref ?? reviewHrefFor(pick.name);
   return (
     <div className="rounded-lg border border-border bg-surface shadow-sm overflow-hidden flex flex-col">
       <div className="h-1.5 bg-accent" />
@@ -109,8 +110,8 @@ function ProductCard({ side }: { side: ComparisonSide }) {
         )}
         <div className="flex flex-wrap items-center gap-3">
           {buy.href && <Button href={buy.href}>{pick.unavailable ? buy.label : "Check price →"}</Button>}
-          {side.reviewHref && (
-            <Link prefetch={false} href={side.reviewHref} className="text-sm font-medium text-accent hover:underline">
+          {reviewHref && (
+            <Link prefetch={false} href={reviewHref}className="text-sm font-medium text-accent hover:underline">
               Full review
             </Link>
           )}

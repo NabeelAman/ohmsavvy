@@ -481,11 +481,12 @@
       "keyword": "uni-t vs fluke multimeter",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "UNI-T UT139C",
         "Fluke 117"
-      ]
+      ],
+      "notes": "covered by /multimeters/fluke-115-vs-uni-t-ut139c (refill 2026-10-30)"
     },
     {
       "keyword": "is a cheap multimeter accurate",
@@ -1820,12 +1821,13 @@
       "keyword": "best multimeter for home theater and av installation",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Klein Tools MM450",
         "Klein Tools CL445",
         "Fluke 107"
-      ]
+      ],
+      "notes": "covered by /multimeters/best-multimeter-for-home-use (refill 2026-10-30)"
     },
     {
       "keyword": "best multimeter for network and poe testing",
@@ -1834,8 +1836,7 @@
       "status": "pending",
       "targetPicks": [
         "Fluke 107",
-        "Klein Tools MM400",
-        "OWON OW18E"
+        "Klein Tools MM400"
       ]
     },
     {
@@ -1845,20 +1846,20 @@
       "status": "pending",
       "targetPicks": [
         "AstroAI DM6000AR",
-        "Extech EX330",
-        "KAIWEETS KM100"
+        "Extech EX330"
       ]
     },
     {
       "keyword": "best multimeter for appliance repair technicians",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Fluke 117",
         "Fluke 179",
         "Klein Tools MM450"
-      ]
+      ],
+      "notes": "covered by queue: best multimeter for appliance repair (refill 2026-10-30)"
     },
     {
       "keyword": "best multimeter for pool and spa electrical",
@@ -1867,7 +1868,6 @@
       "status": "pending",
       "targetPicks": [
         "Fluke 117",
-        "Fluke 902 FC",
         "Klein Tools MM400"
       ]
     },
@@ -1878,7 +1878,6 @@
       "status": "pending",
       "targetPicks": [
         "KAIWEETS KM200s",
-        "Southwire 16030A",
         "UNI-T UT139C"
       ]
     },
@@ -1886,23 +1885,19 @@
       "keyword": "best multimeter for drone and rc hobbyists",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "UNI-T UT139C",
         "AstroAI AM33D",
         "ANENG SZ26"
-      ]
+      ],
+      "notes": "covered by queue: best multimeter for hobbyists (refill 2026-10-30)"
     },
     {
       "keyword": "best multimeter for guitar and audio pedal building",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
-      "targetPicks": [
-        "OWON OW18E",
-        "UNI-T UT61E+",
-        "Extech EX330"
-      ]
+      "status": "pending"
     },
     {
       "keyword": "best multimeter for security and alarm system installers",
@@ -1910,7 +1905,6 @@
       "type": "remix",
       "status": "pending",
       "targetPicks": [
-        "Klein Tools MM420",
         "UNI-T UT139C",
         "Fluke 101"
       ]
@@ -1952,12 +1946,13 @@
       "keyword": "best oscilloscope for network and poe signal testing",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Siglent SDS1104X-E",
         "Rigol DS1054Z",
         "OWON VDS1022I"
-      ]
+      ],
+      "notes": "covered by queue: best oscilloscope for digital signals (refill 2026-10-30)"
     },
     {
       "keyword": "best soldering iron for guitar and audio pedal building",

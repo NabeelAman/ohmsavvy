@@ -92,7 +92,7 @@ export function GuideListing({ category, intro, path }: { category: Category; in
           className="group mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border-2 border-accent/40 bg-surface p-6 shadow-sm hover:border-accent transition-colors"
         >
           <div>
-            <p className={`font-display text-[11px] uppercase tracking-wide ${c.text}`}>Start here</p>
+            <p className={`font-display text-xs uppercase tracking-wide ${c.text}`}>Start here</p>
             <p className="mt-2 text-xl font-semibold group-hover:text-accent transition-colors">{start.title}</p>
             <p className="mt-1 text-muted">{start.description}</p>
           </div>
@@ -135,14 +135,14 @@ export function GuideListing({ category, intro, path }: { category: Category; in
         </div>
       )}
 
-      <div className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-8 text-sm">
-        <Link href={c.roundup} className="font-medium text-accent hover:underline">
+      <div className="mt-12 flex flex-wrap gap-x-6 gap-y-1 border-t border-border pt-8 text-sm">
+        <Link href={c.roundup} className="py-1 font-medium text-accent hover:underline">
           Best {c.noun.toLowerCase()}s
         </Link>
-        <Link href={`/${category}/reviews`} className="text-accent hover:underline">
+        <Link href={`/${category}/reviews`} className="py-1 text-accent hover:underline">
           All {c.noun.toLowerCase()} reviews
         </Link>
-        <Link href={`/${category}/comparisons`} className="text-accent hover:underline">
+        <Link href={`/${category}/comparisons`} className="py-1 text-accent hover:underline">
           All {c.noun.toLowerCase()} comparisons
         </Link>
       </div>

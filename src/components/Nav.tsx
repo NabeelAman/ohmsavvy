@@ -83,7 +83,7 @@ function FeaturedCard({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
       onClick={onNavigate}
       className="group/feat flex flex-col rounded-xl border border-border bg-surface-raised p-3 hover:border-accent hover:shadow-md transition-all duration-200"
     >
-      <span className={`font-display text-[10px] uppercase tracking-[0.15em] ${tone.text}`}>Our top pick</span>
+      <span className={`font-display text-xs uppercase tracking-[0.15em] ${tone.text}`}>Our top pick</span>
       <span className="relative mt-2 h-32 flex items-center justify-center rounded-lg bg-white border border-border/60 overflow-hidden">
         {f.image ? (
           <Image
@@ -118,7 +118,7 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
         <FeaturedCard menu={menu} onNavigate={onNavigate} />
         <div className="grid grid-cols-2 gap-6">
           <div>
-            <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-2">Picks & reviews</p>
+            <p className="font-display text-xs text-muted uppercase tracking-[0.15em] mb-2">Picks & reviews</p>
             <ul className="space-y-1">
               {menu.primary.map((l, i) => (
                 <li key={l.href}>
@@ -146,7 +146,7 @@ function DesktopPanel({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => v
           </div>
           {menu.guides.length > 0 && (
             <div>
-              <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-2">Best for the job</p>
+              <p className="font-display text-xs text-muted uppercase tracking-[0.15em] mb-2">Best for the job</p>
               <ul className="space-y-0.5">
                 {menu.guides.map((l) => (
                   <li key={l.href}>
@@ -424,7 +424,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                             )}
                           </span>
                           <span className="min-w-0">
-                            <span className={`block font-display text-[10px] uppercase tracking-[0.15em] ${tone.text}`}>
+                            <span className={`block font-display text-xs uppercase tracking-[0.15em] ${tone.text}`}>
                               Top pick
                             </span>
                             <span className="block text-sm font-semibold truncate">{m.featured.name}</span>
@@ -454,7 +454,7 @@ export function Nav({ menus, search }: { menus: NavMenu[]; search?: React.ReactN
                         </div>
                         {m.guides.length > 0 && (
                           <div>
-                            <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-1.5 px-2">Best for the job</p>
+                            <p className="font-display text-xs text-muted uppercase tracking-[0.15em] mb-1.5 px-2">Best for the job</p>
                             <div className="flex flex-wrap gap-2">
                               {m.guides.map((l) => (
                                 <Link

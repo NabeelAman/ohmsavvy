@@ -86,7 +86,7 @@ export function SiteFooter() {
             ))}
           </ul>
           <div className="mt-6">
-            <p className="font-display text-[11px] text-muted uppercase tracking-wide mb-2">New here? Start with</p>
+            <p className="font-display text-xs text-muted uppercase tracking-wide mb-2">New here? Start with</p>
             <div className="flex flex-wrap gap-2">
               {START_HERE.map((s) => (
                 <Link

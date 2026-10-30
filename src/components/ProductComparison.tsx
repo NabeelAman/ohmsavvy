@@ -118,7 +118,7 @@ function ProductCard({ side }: { side: ComparisonSide }) {
         <div className="flex flex-wrap items-center gap-3">
           {buy.href && <Button href={buy.href}>{pick.unavailable ? buy.label : "Check price →"}</Button>}
           {reviewHref && (
-            <Link prefetch={false} href={reviewHref}className="text-sm font-medium text-accent hover:underline">
+            <Link prefetch={false} href={reviewHref} className="py-2 text-sm font-medium text-accent hover:underline">
               Full review
             </Link>
           )}
@@ -358,12 +358,13 @@ export function ProductComparison({ comparison }: { comparison: ProductCompariso
 
         <section className="pt-8 border-t border-border">
           <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Related</p>
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <Link prefetch={false} href={comparison.roundup.href} className="font-medium text-accent hover:underline">
+          {/* py-1 + smaller gap keeps the same rhythm while giving each link a 28px tap target. */}
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+            <Link prefetch={false} href={comparison.roundup.href} className="py-1 font-medium text-accent hover:underline">
               {comparison.roundup.label}
             </Link>
             {related.map((r) => (
-              <Link prefetch={false} key={r.href} href={r.href} className="text-accent hover:underline">
+              <Link prefetch={false} key={r.href} href={r.href} className="py-1 text-accent hover:underline">
                 {r.label}
               </Link>
             ))}

@@ -100,7 +100,7 @@ export function SearchButton() {
       >
         <SearchIcon />
         <span className="flex-1 text-left">Search reviews…</span>
-        <kbd className="rounded-md border border-border bg-surface-raised px-1.5 py-0.5 font-display text-[10px] text-muted">
+        <kbd className="rounded-md border border-border bg-surface-raised px-1.5 py-0.5 font-display text-xs text-muted">
           {isMac ? "⌘K" : "Ctrl K"}
         </kbd>
       </button>
@@ -252,7 +252,7 @@ function Palette({ onClose }: { onClose: () => void }) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-border px-2 py-1 font-display text-[10px] text-muted hover:text-foreground"
+            className="rounded-md border border-border px-2 py-1 font-display text-xs text-muted hover:text-foreground"
           >
             ESC
           </button>
@@ -271,7 +271,7 @@ function Palette({ onClose }: { onClose: () => void }) {
           )}
           {grouped.map((g) => (
             <li key={g.group} role="presentation">
-              <p className="px-3 pb-1 pt-3 font-display text-[10px] uppercase tracking-[0.15em] text-muted">
+              <p className="px-3 pb-1 pt-3 font-display text-xs uppercase tracking-[0.15em] text-muted">
                 {terms.length ? g.group : g.group === "Products" ? "Highest rated" : "Start here"}
               </p>
               <ul role="presentation">
@@ -324,7 +324,7 @@ function Palette({ onClose }: { onClose: () => void }) {
           ))}
         </ul>
 
-        <div className="hidden sm:flex items-center gap-4 border-t border-border bg-surface-raised px-4 py-2.5 text-[11px] text-muted">
+        <div className="hidden sm:flex items-center gap-4 border-t border-border bg-surface-raised px-4 py-2.5 text-xs text-muted">
           <span>
             <kbd className="font-display">↑↓</kbd> navigate
           </span>

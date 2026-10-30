@@ -138,11 +138,11 @@ export function HowToShell({
         {toc?.length ? (
           <nav aria-label="In this guide" className="mt-10 rounded-lg border border-border bg-surface p-5">
             <p className="font-display text-xs uppercase tracking-wide text-accent mb-3">In this guide</p>
-            <ol className="grid sm:grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
+            <ol className="grid sm:grid-cols-2 gap-x-8 text-sm">
               {[...toc, ...(faq?.length ? [{ id: "faq", label: "Frequently asked questions" }] : [])].map((t, i) => (
                 <li key={t.id} className="flex gap-2">
-                  <span className="font-mono text-xs text-muted pt-0.5 w-5 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                  <a href={`#${t.id}`} className="text-muted hover:text-accent transition-colors">{t.label}</a>
+                  <span className="font-mono text-xs text-muted pt-1.5 w-5 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  <a href={`#${t.id}`} className="py-1 text-muted hover:text-accent transition-colors">{t.label}</a>
                 </li>
               ))}
             </ol>
@@ -327,7 +327,7 @@ export function ProductStrip({
               )}
             </Link>
             <div className="flex flex-1 flex-col p-4 border-t border-border">
-              <Link prefetch={false} href={p.href} className="font-medium text-sm hover:text-accent transition-colors">
+              <Link prefetch={false} href={p.href} className="py-0.5 font-medium text-sm hover:text-accent transition-colors">
                 {p.name}
               </Link>
               <p className="mt-1 flex-1 text-xs text-muted leading-5">{p.note}</p>
@@ -338,7 +338,7 @@ export function ProductStrip({
                   </Button>
                 )}
                 {p.retired && <span className="text-xs text-muted">No longer sold on Amazon</span>}
-                <Link prefetch={false} href={p.href} className="text-xs font-medium text-accent hover:underline">
+                <Link prefetch={false} href={p.href} className="py-1.5 text-xs font-medium text-accent hover:underline">
                   Read the review →
                 </Link>
               </div>
@@ -347,7 +347,7 @@ export function ProductStrip({
         ))}
       </div>
       {withCta.some((p) => p.cta) && (
-        <p className="mt-3 text-[11px] text-muted leading-5">
+        <p className="mt-3 text-xs text-muted leading-5">
           As an Amazon Associate I earn from qualifying purchases. Prices and availability are shown on Amazon.
         </p>
       )}
@@ -362,7 +362,7 @@ export function FlowDiagram({ steps }: { steps: { label: string; sub: string }[]
       {steps.map((s, i) => (
         <li key={s.label} className="flex flex-col sm:flex-row items-center gap-2 flex-1 min-w-0">
           <div className="w-full flex-1 rounded-lg border border-border bg-surface p-3 text-center">
-            <p className="font-mono text-[10px] text-accent">{String(i + 1).padStart(2, "0")}</p>
+            <p className="font-mono text-xs text-accent">{String(i + 1).padStart(2, "0")}</p>
             <p className="font-display text-sm font-semibold leading-5">{s.label}</p>
             <p className="mt-1 text-xs text-muted leading-4">{s.sub}</p>
           </div>
@@ -408,7 +408,7 @@ export function BarChart({
           </div>
         );
       })}
-      {log && <p className="text-[11px] text-muted">Bars use a logarithmic scale: each step is ten times the last.</p>}
+      {log && <p className="text-xs text-muted">Bars use a logarithmic scale: each step is ten times the last.</p>}
     </div>
   );
 }

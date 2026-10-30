@@ -175,7 +175,7 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
               </Button>
             )}
             <p className="text-xs text-muted text-center leading-5">Current price and availability shown on Amazon</p>
-            <a href="#verdict" className="text-sm font-medium text-accent text-center hover:underline">
+            <a href="#verdict" className="py-1.5 text-sm font-medium text-accent text-center hover:underline">
               Read our verdict ↓
             </a>
           </div>
@@ -311,12 +311,13 @@ export function ProductReview({ review }: { review: ProductReviewContent }) {
 
         <section className="pt-8 border-t border-border">
           <p className="font-display text-xs text-muted uppercase tracking-wide mb-4">Related</p>
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-            <Link prefetch={false} href={review.roundup.href} className="font-medium text-accent hover:underline">
+          {/* py-1 + smaller gap keeps the same rhythm while giving each link a 28px tap target. */}
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+            <Link prefetch={false} href={review.roundup.href} className="py-1 font-medium text-accent hover:underline">
               {review.roundup.label}
             </Link>
             {related.map((r) => (
-              <Link prefetch={false} key={r.href} href={r.href} className="text-accent hover:underline">
+              <Link prefetch={false} key={r.href} href={r.href} className="py-1 text-accent hover:underline">
                 {r.label}
               </Link>
             ))}

@@ -16,13 +16,13 @@ export default function OscilloscopesComparisonsPage() {
       heading="Oscilloscope Comparisons"
       intro="The scopes in this category tend to differ on one or two axes at most — bandwidth headroom, channel count, or a built-in waveform generator traded for fewer channels. Each comparison isolates that specific trade-off rather than restating a spec sheet both scopes already share."
     >
-      <Link href="/oscilloscopes/best-beginner-oscilloscopes" className="font-medium text-accent hover:underline">
+      <Link href="/oscilloscopes/best-beginner-oscilloscopes" className="py-1 font-medium text-accent hover:underline">
         Best beginner oscilloscopes
       </Link>
-      <Link href="/oscilloscopes/reviews" className="text-accent hover:underline">
+      <Link href="/oscilloscopes/reviews" className="py-1 text-accent hover:underline">
         All oscilloscope reviews
       </Link>
-      <Link href="/oscilloscopes/oscilloscope-buying-guide" className="text-accent hover:underline">
+      <Link href="/oscilloscopes/oscilloscope-buying-guide" className="py-1 text-accent hover:underline">
         Oscilloscope buying guide
       </Link>
     </CategoryListing>

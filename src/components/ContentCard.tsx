@@ -40,7 +40,7 @@ export function ContentCard({ entry }: { entry: ContentEntry }) {
             <Thumb key={p.name} pick={p} tall={isReview} category={entry.category} />
           ))}
           {!isReview && shown.length === 2 && (
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mt-1.5 rounded-full bg-accent text-accent-foreground font-display text-[11px] font-semibold px-2 py-1 shadow">
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 mt-1.5 rounded-full bg-accent text-accent-foreground font-display text-xs font-semibold px-2 py-1 shadow">
               VS
             </span>
           )}

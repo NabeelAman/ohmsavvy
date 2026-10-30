@@ -306,7 +306,7 @@ export default function AboutPage() {
                         ].map(([l, v]) => (
                           <div key={l as string} className="rounded-lg bg-surface-raised py-2">
                             <dd className="font-display text-xl font-semibold">{v}</dd>
-                            <dt className="text-[11px] text-muted">{l}</dt>
+                            <dt className="text-xs text-muted">{l}</dt>
                           </div>
                         ))}
                       </dl>
@@ -391,7 +391,7 @@ export default function AboutPage() {
                             className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                           />
                         )}
-                        <span className="absolute left-2 top-2 rounded-full bg-accent px-2.5 py-1 text-[10px] font-semibold text-accent-foreground shadow">
+                        <span className="absolute left-2 top-2 rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-accent-foreground shadow">
                           ✓ Tested
                         </span>
                       </div>

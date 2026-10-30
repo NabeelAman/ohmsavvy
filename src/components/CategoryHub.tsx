@@ -83,7 +83,7 @@ function SectionHead({ id, eyebrow, title, intro, link }: { id: string; eyebrow:
         {intro && <p className="mt-2 text-muted leading-7">{intro}</p>}
       </div>
       {link && (
-        <Link prefetch={false} href={link.href} className="text-sm font-medium text-accent hover:underline">
+        <Link prefetch={false} href={link.href} className="py-1 text-sm font-medium text-accent hover:underline">
           {link.label} →
         </Link>
       )}
@@ -107,7 +107,7 @@ function LinkColumn({ title, entries, more }: { title: string; entries: ContentE
         ))}
       </ul>
       {entries.length > GUIDE_LINKS && (
-        <Link prefetch={false} href={more.href} className="mt-4 text-sm font-medium text-accent hover:underline">
+        <Link prefetch={false} href={more.href} className="mt-3 py-1 text-sm font-medium text-accent hover:underline">
           See all {entries.length} →
         </Link>
       )}
@@ -322,7 +322,7 @@ export function CategoryHub({
                 )}
                 <div className="mt-4 flex flex-wrap items-center gap-3">
                   <Button href={p.ctaHref} className="px-3! py-1.5! text-xs!">Check price on Amazon</Button>
-                  <Link prefetch={false} href={p.href} className="text-xs font-medium text-muted hover:text-accent">
+                  <Link prefetch={false} href={p.href} className="py-1.5 text-xs font-medium text-muted hover:text-accent">
                     {p.linkLabel}
                   </Link>
                 </div>
@@ -376,7 +376,7 @@ export function CategoryHub({
                       href={g.href}
                       className="group flex h-full items-start gap-3 rounded-xl border border-border bg-surface p-4 hover:border-accent transition-colors"
                     >
-                      <span className="mt-0.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-[10px] uppercase text-signal">Buying guide</span>
+                      <span className="mt-0.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-xs uppercase text-signal">Buying guide</span>
                       <span className="min-w-0">
                         <span className="block font-medium leading-snug group-hover:text-accent transition-colors">{g.title}</span>
                         <span className="mt-1 block text-sm text-muted leading-5">{g.description}</span>
@@ -478,7 +478,7 @@ export function CategoryHub({
               className="group mb-6 flex flex-col gap-3 rounded-2xl border-2 border-accent/40 bg-surface p-6 shadow-sm hover:border-accent transition-colors sm:flex-row sm:items-center sm:justify-between"
             >
               <span>
-                <span className={`font-display text-[11px] uppercase tracking-wide ${c.text}`}>Start here</span>
+                <span className={`font-display text-xs uppercase tracking-wide ${c.text}`}>Start here</span>
                 <span className="mt-1 block text-lg font-semibold group-hover:text-accent transition-colors">{start.title}</span>
                 <span className="mt-1 block text-sm text-muted">{start.description}</span>
               </span>
@@ -502,10 +502,10 @@ export function CategoryHub({
           </h2>
           <p className="mt-3 text-muted leading-7">Quick answers to the questions buyers ask most. Each links on to the full guide.</p>
           <div className="mt-6 flex flex-col gap-2 text-sm">
-            <Link prefetch={false} href={c.roundup.href} className="font-medium text-accent hover:underline">{c.roundup.title} →</Link>
-            <Link prefetch={false} href={`/${category}/reviews`} className="text-accent hover:underline">All {c.noun} reviews →</Link>
-            <Link prefetch={false} href={`/${category}/comparisons`} className="text-accent hover:underline">All {c.noun} comparisons →</Link>
-            <Link prefetch={false} href={`/${category}/guides`} className="text-accent hover:underline">All {c.noun} guides →</Link>
+            <Link prefetch={false} href={c.roundup.href} className="py-1 font-medium text-accent hover:underline">{c.roundup.title} →</Link>
+            <Link prefetch={false} href={`/${category}/reviews`} className="py-1 text-accent hover:underline">All {c.noun} reviews →</Link>
+            <Link prefetch={false} href={`/${category}/comparisons`} className="py-1 text-accent hover:underline">All {c.noun} comparisons →</Link>
+            <Link prefetch={false} href={`/${category}/guides`} className="py-1 text-accent hover:underline">All {c.noun} guides →</Link>
           </div>
         </div>
         <FaqAccordion items={faqs} />

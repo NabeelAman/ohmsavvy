@@ -132,7 +132,7 @@ export function RoundupHero({
             </dl>
 
             <div className="mt-7">
-              <p className="font-display text-[11px] uppercase tracking-wide text-muted mb-2">Jump to the pick for you</p>
+              <p className="font-display text-xs uppercase tracking-wide text-muted mb-2">Jump to the pick for you</p>
               <div className="flex flex-wrap gap-2">
                 {picks.map((p) => (
                   <a
@@ -172,7 +172,7 @@ export function RoundupHero({
               <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="signal">{top.badge}</Badge>
                 {top.handsOnTested && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent">
                     ✓ Hands-on Tested
                   </span>
                 )}
@@ -180,10 +180,10 @@ export function RoundupHero({
               <p className="mt-3 text-xl font-semibold">{top.name}</p>
               <p className="mt-1.5 text-sm text-muted leading-6">{top.bottomLine}</p>
               <Button href={top.ctaHref} className="mt-4 w-full">Check price on Amazon →</Button>
-              <div className="mt-3 flex justify-center gap-4 text-xs font-medium">
-                <a href={`#${slug(top.name)}`} className="text-accent hover:underline">Why we picked it ↓</a>
+              <div className="mt-1.5 flex justify-center gap-4 text-xs font-medium">
+                <a href={`#${slug(top.name)}`} className="py-1.5 text-accent hover:underline">Why we picked it ↓</a>
                 {topReview && (
-                  <Link prefetch={false} href={topReview} className="text-muted hover:text-accent">Full review →</Link>
+                  <Link prefetch={false} href={topReview} className="py-1.5 text-muted hover:text-accent">Full review →</Link>
                 )}
               </div>
             </div>
@@ -193,7 +193,7 @@ export function RoundupHero({
 
       <div className="relative border-t border-border bg-surface/80 backdrop-blur">
         <div className="mx-auto max-w-6xl px-6 py-4 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap">
-          <span className="shrink-0 self-center font-display text-[11px] uppercase tracking-wide text-muted mr-1">Shop by job:</span>
+          <span className="shrink-0 self-center font-display text-xs uppercase tracking-wide text-muted mr-1">Shop by job:</span>
           {useCases.map((g) => (
             <Link
               key={g.href}

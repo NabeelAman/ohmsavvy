@@ -57,9 +57,9 @@ export function PhotoPlaceholder({
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={`${px} opacity-60`}>
         {icon}
       </svg>
-      {size !== "xs" && <span className="font-display text-[10px] uppercase tracking-wide">Photo coming soon</span>}
+      {size !== "xs" && <span className="font-display text-xs uppercase tracking-wide">Photo coming soon</span>}
       {size === "md" && (
-        <span className="max-w-[16rem] text-[11px] leading-4 opacity-80">We only show a photo we can confirm is this exact model.</span>
+        <span className="max-w-[16rem] text-xs leading-4 opacity-80">We only show a photo we can confirm is this exact model.</span>
       )}
     </span>
   );

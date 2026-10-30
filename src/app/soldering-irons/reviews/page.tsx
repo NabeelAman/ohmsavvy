@@ -16,16 +16,16 @@ export default function SolderingIronsReviewsPage() {
       heading="Soldering Iron Reviews"
       intro="Heat-up time and temperature stability under real use get checked first here, because that's what actually separates a frustrating session from an easy one. Each review also covers build quality, tip availability, and the kind of work — bench repair, portable fixes, first-time soldering — each iron is genuinely built for."
     >
-      <Link href="/soldering-irons/best-soldering-irons" className="font-medium text-accent hover:underline">
+      <Link href="/soldering-irons/best-soldering-irons" className="py-1 font-medium text-accent hover:underline">
         Best soldering irons
       </Link>
-      <Link href="/soldering-irons/comparisons" className="text-accent hover:underline">
+      <Link href="/soldering-irons/comparisons" className="py-1 text-accent hover:underline">
         All soldering iron comparisons
       </Link>
-      <Link href="/soldering-irons/soldering-iron-buying-guide" className="text-accent hover:underline">
+      <Link href="/soldering-irons/soldering-iron-buying-guide" className="py-1 text-accent hover:underline">
         Soldering iron buying guide
       </Link>
-      <Link href="/soldering-irons/guides" className="text-accent hover:underline">
+      <Link href="/soldering-irons/guides" className="py-1 text-accent hover:underline">
         All soldering iron guides
       </Link>
     </CategoryListing>

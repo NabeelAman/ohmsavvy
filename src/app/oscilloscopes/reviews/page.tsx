@@ -16,16 +16,16 @@ export default function OscilloscopesReviewsPage() {
       heading="Oscilloscope Reviews"
       intro="Bandwidth and channel count only matter relative to what you're actually debugging, so each review here starts from the kind of signal work a scope is realistically good for — hobby electronics, microcontroller timing, general bench use — before getting into display size and extras like a built-in waveform generator."
     >
-      <Link href="/oscilloscopes/best-beginner-oscilloscopes" className="font-medium text-accent hover:underline">
+      <Link href="/oscilloscopes/best-beginner-oscilloscopes" className="py-1 font-medium text-accent hover:underline">
         Best beginner oscilloscopes
       </Link>
-      <Link href="/oscilloscopes/comparisons" className="text-accent hover:underline">
+      <Link href="/oscilloscopes/comparisons" className="py-1 text-accent hover:underline">
         All oscilloscope comparisons
       </Link>
-      <Link href="/oscilloscopes/oscilloscope-buying-guide" className="text-accent hover:underline">
+      <Link href="/oscilloscopes/oscilloscope-buying-guide" className="py-1 text-accent hover:underline">
         Oscilloscope buying guide
       </Link>
-      <Link href="/oscilloscopes/guides" className="text-accent hover:underline">
+      <Link href="/oscilloscopes/guides" className="py-1 text-accent hover:underline">
         All oscilloscope guides
       </Link>
     </CategoryListing>

@@ -16,13 +16,13 @@ export default function SolderingIronsComparisonsPage() {
       heading="Soldering Iron Comparisons"
       intro="Two irons at a similar price rarely differ on power alone — it's usually heat-up speed, ESD-safe construction, portability, or whether a stand and tips come in the box. Each comparison here is built around whichever of those is the actual deciding factor for that specific pair."
     >
-      <Link href="/soldering-irons/best-soldering-irons" className="font-medium text-accent hover:underline">
+      <Link href="/soldering-irons/best-soldering-irons" className="py-1 font-medium text-accent hover:underline">
         Best soldering irons
       </Link>
-      <Link href="/soldering-irons/reviews" className="text-accent hover:underline">
+      <Link href="/soldering-irons/reviews" className="py-1 text-accent hover:underline">
         All soldering iron reviews
       </Link>
-      <Link href="/soldering-irons/soldering-iron-buying-guide" className="text-accent hover:underline">
+      <Link href="/soldering-irons/soldering-iron-buying-guide" className="py-1 text-accent hover:underline">
         Soldering iron buying guide
       </Link>
     </CategoryListing>

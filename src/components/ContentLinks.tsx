@@ -49,7 +49,7 @@ function SectionHeader({ label, viewAll }: { label: string; viewAll?: { href: st
     <div className="flex items-baseline justify-between gap-4 mb-4">
       <h2 className="font-display text-xs text-muted uppercase tracking-wide">{label}</h2>
       {viewAll && (
-        <Link href={viewAll.href} className="text-sm font-medium text-accent hover:underline whitespace-nowrap">
+        <Link href={viewAll.href} className="py-1 text-sm font-medium text-accent hover:underline whitespace-nowrap">
           {viewAll.text}
         </Link>
       )}

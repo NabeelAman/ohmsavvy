@@ -260,9 +260,9 @@ function SectionHead({
         {intro && <p className="mt-2 text-muted leading-7">{intro}</p>}
       </div>
       {links && (
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+        <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
           {links.map((l) => (
-            <Link prefetch={false} key={l.href} href={l.href} className="text-accent hover:underline">
+            <Link prefetch={false} key={l.href} href={l.href} className="py-1 text-accent hover:underline">
               {l.label} →
             </Link>
           ))}
@@ -341,7 +341,7 @@ export default function Home() {
           <div className="rounded-2xl border border-border bg-surface shadow-lg overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-surface-raised">
               <p className="font-display text-xs uppercase tracking-wide text-accent">Our top picks right now</p>
-              <Link prefetch={false} href="/about" className="text-[11px] text-muted hover:text-accent">How we pick →</Link>
+              <Link prefetch={false} href="/about" className="py-1.5 text-xs text-muted hover:text-accent">How we pick →</Link>
             </div>
             <ul className="divide-y divide-border">
               {topPicks.map((p) => (
@@ -359,21 +359,21 @@ export default function Home() {
                   </Link>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
-                      <span className={`font-display text-[11px] uppercase tracking-wide ${p.tone.text}`}>{p.label}</span>
+                      <span className={`font-display text-xs uppercase tracking-wide ${p.tone.text}`}>{p.label}</span>
                       <Stars rating={p.rating} />
                     </div>
-                    <Link prefetch={false} href={p.reviewHref} className="mt-0.5 block font-semibold leading-snug hover:text-accent transition-colors">
+                    <Link prefetch={false} href={p.reviewHref} className="block py-0.5 font-semibold leading-snug hover:text-accent transition-colors">
                       {p.name}
                     </Link>
                     {p.handsOnTested && (
-                      <span className="mt-1 inline-block font-display text-[10px] uppercase tracking-wide text-accent">✓ Hands-on tested</span>
+                      <span className="mt-1 inline-block font-display text-xs uppercase tracking-wide text-accent">✓ Hands-on tested</span>
                     )}
                     <div className="mt-2 flex items-center gap-3">
                       <Button href={p.ctaHref} className="px-3! py-1.5! text-xs!">Check price on Amazon</Button>
-                      <Link prefetch={false} href={p.reviewHref} className="text-xs font-medium text-muted hover:text-accent">{p.linkLabel}</Link>
+                      <Link prefetch={false} href={p.reviewHref} className="py-1.5 text-xs font-medium text-muted hover:text-accent">{p.linkLabel}</Link>
                     </div>
                     {p.popular && (
-                      <p className="mt-2 text-[11px] text-muted">
+                      <p className="mt-2 text-xs text-muted">
                         Most popular with buyers:{" "}
                         <Link prefetch={false} href={p.popular.href} className="text-foreground hover:text-accent">
                           {p.popular.name}
@@ -450,32 +450,32 @@ export default function Home() {
                     )}
                     <ul className="mt-5 flex-1 space-y-2 text-sm">
                       <li>
-                        <Link prefetch={false} href={c.roundup.href} className="flex justify-between font-medium text-foreground hover:text-accent">
+                        <Link prefetch={false} href={c.roundup.href} className="flex justify-between py-0.5 font-medium text-foreground hover:text-accent">
                           <span>{c.roundup.title}</span>
                           <span className="font-mono text-xs">{c.picks.length} picks</span>
                         </Link>
                       </li>
                       <li>
-                        <Link prefetch={false} href={`/${c.category}/reviews`} className="flex justify-between text-muted hover:text-accent">
+                        <Link prefetch={false} href={`/${c.category}/reviews`} className="flex justify-between py-0.5 text-muted hover:text-accent">
                           <span>Reviews</span>
                           <span className="font-mono text-xs">{reviews}</span>
                         </Link>
                       </li>
                       <li>
-                        <Link prefetch={false} href={`/${c.category}/comparisons`} className="flex justify-between text-muted hover:text-accent">
+                        <Link prefetch={false} href={`/${c.category}/comparisons`} className="flex justify-between py-0.5 text-muted hover:text-accent">
                           <span>Comparisons</span>
                           <span className="font-mono text-xs">{comparisons}</span>
                         </Link>
                       </li>
                       <li>
-                        <Link prefetch={false} href={`/${c.category}/guides`} className="flex justify-between text-muted hover:text-accent">
+                        <Link prefetch={false} href={`/${c.category}/guides`} className="flex justify-between py-0.5 text-muted hover:text-accent">
                           <span>Guides</span>
                           <span className="font-mono text-xs">{guides}</span>
                         </Link>
                       </li>
                       {buying && (
                         <li>
-                          <Link prefetch={false} href={buying.href} className="flex justify-between text-muted hover:text-accent">
+                          <Link prefetch={false} href={buying.href} className="flex justify-between py-0.5 text-muted hover:text-accent">
                             <span>{buying.title}</span>
                             <span aria-hidden="true">→</span>
                           </Link>
@@ -510,7 +510,7 @@ export default function Home() {
             {recentlyUpdated.map((e) => (
               <li key={e.href} className="border-b border-border">
                 <Link prefetch={false} href={e.href} className="group flex items-start gap-3 py-3.5">
-                  <span className={`mt-1 shrink-0 font-display text-[10px] uppercase tracking-wide ${TONE_BY_CATEGORY[e.category].tone.text}`}>
+                  <span className={`mt-1 shrink-0 font-display text-xs uppercase tracking-wide ${TONE_BY_CATEGORY[e.category].tone.text}`}>
                     {TYPE_LABEL[e.type]}
                   </span>
                   <span className="min-w-0">
@@ -562,7 +562,7 @@ export default function Home() {
         </div>
         {moreUseCases.length > 0 && (
           <div className="mt-6 flex flex-wrap items-center gap-2">
-            <span className="mr-1 font-display text-[11px] uppercase tracking-wide text-muted">More picks by job:</span>
+            <span className="mr-1 font-display text-xs uppercase tracking-wide text-muted">More picks by job:</span>
             {moreUseCases.map((g) => (
               <Link
                 prefetch={false}
@@ -623,7 +623,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <Link prefetch={false} href={`/${category}#guides`} className="mt-4 text-sm font-medium text-accent hover:underline">
+                  <Link prefetch={false} href={`/${category}#guides`} className="mt-3 py-1 text-sm font-medium text-accent hover:underline">
                     More {c.noun} fixes →
                   </Link>
                 </div>
@@ -657,7 +657,7 @@ export default function Home() {
                   </div>
                   {start && (
                     <Link prefetch={false} href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
-                      <span className="font-display text-[10px] uppercase tracking-wide text-accent">Start here</span>
+                      <span className="font-display text-xs uppercase tracking-wide text-accent">Start here</span>
                       <span className="mt-1 block font-semibold group-hover:text-accent transition-colors">{start.title}</span>
                       <span className="mt-1 block text-xs text-muted leading-5">{start.description}</span>
                     </Link>
@@ -675,7 +675,7 @@ export default function Home() {
                       <li key={g.href}>
                         <Link prefetch={false} href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
                           <span className="group-hover:text-accent transition-colors">
-                            <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-[10px] uppercase text-signal">Buying</span>
+                            <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-xs uppercase text-signal">Buying</span>
                             {g.title}
                           </span>
                           <span className="text-muted" aria-hidden="true">→</span>
@@ -742,23 +742,23 @@ export default function Home() {
               How we make money, how we test, and how to find your way around. Short, straight answers.
             </p>
             <div className="mt-8 rounded-2xl border border-border bg-surface p-6">
-              <p className="font-display text-[11px] uppercase tracking-wide text-accent">Want the detail?</p>
-              <ul className="mt-3 space-y-2.5 text-sm">
+              <p className="font-display text-xs uppercase tracking-wide text-accent">Want the detail?</p>
+              <ul className="mt-3 space-y-1.5 text-sm">
                 <li>
-                  <Link prefetch={false} href="/about" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                  <Link prefetch={false} href="/about" className="flex items-center justify-between gap-3 py-0.5 hover:text-accent transition-colors">
                     <span>How we test and review</span>
                     <span className="text-muted" aria-hidden="true">→</span>
                   </Link>
                 </li>
                 <li>
-                  <Link prefetch={false} href="/about#how-were-funded" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                  <Link prefetch={false} href="/about#how-were-funded" className="flex items-center justify-between gap-3 py-0.5 hover:text-accent transition-colors">
                     <span>How we&apos;re funded</span>
                     <span className="text-muted" aria-hidden="true">→</span>
                   </Link>
                 </li>
                 {featuredHowTos.map((g) => (
                   <li key={g.href}>
-                    <Link prefetch={false} href={g.href} className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                    <Link prefetch={false} href={g.href} className="flex items-center justify-between gap-3 py-0.5 hover:text-accent transition-colors">
                       <span>{g.title}</span>
                       <span className="text-muted" aria-hidden="true">→</span>
                     </Link>

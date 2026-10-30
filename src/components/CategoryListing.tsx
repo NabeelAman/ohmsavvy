@@ -41,7 +41,7 @@ export function CategoryListing({
         ))}
       </div>
 
-      {children && <div className="mt-12 pt-8 border-t border-border flex flex-wrap gap-x-6 gap-y-3 text-sm">{children}</div>}
+      {children && <div className="mt-12 pt-8 border-t border-border flex flex-wrap gap-x-6 gap-y-1 text-sm">{children}</div>}
     </section>
   );
 }

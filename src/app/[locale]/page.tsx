@@ -417,9 +417,9 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-2 text-sm text-muted">
               <span>{d.switcherLabel}</span>
-              <Link href="/" className="text-accent hover:underline">English</Link>
+              <Link href="/" className="py-1 text-accent hover:underline">English</Link>
               {LOCALES.filter((l) => l !== locale).map((l) => (
-                <Link key={l} href={`/${l}`} className="text-accent hover:underline">{LOCALE_LABELS[l]}</Link>
+                <Link key={l} href={`/${l}`} className="py-1 text-accent hover:underline">{LOCALE_LABELS[l]}</Link>
               ))}
             </div>
           </div>
@@ -427,7 +427,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
           <div className="rounded-2xl border border-border bg-surface shadow-lg overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-surface-raised">
               <p className="font-display text-xs uppercase tracking-wide text-accent">{d.topPicksPanelLabel}</p>
-              <Link href="/about" className="text-[11px] text-muted hover:text-accent">{d.howWePickLabel}</Link>
+              <Link href="/about" className="text-xs text-muted hover:text-accent">{d.howWePickLabel}</Link>
             </div>
             <ul className="divide-y divide-border">
               {topPicks.map((p, i) => (
@@ -439,14 +439,14 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                   </Link>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
-                      <span className={`font-display text-[11px] uppercase tracking-wide ${TONES[p.category].text}`}>{d.categoryLabels[i]}</span>
+                      <span className={`font-display text-xs uppercase tracking-wide ${TONES[p.category].text}`}>{d.categoryLabels[i]}</span>
                       <Stars rating={p.rating} />
                     </div>
-                    <Link href={p.reviewHref} className="mt-0.5 block font-semibold leading-snug hover:text-accent transition-colors">{p.name}</Link>
-                    {p.handsOnTested && <span className="mt-1 inline-block font-display text-[10px] uppercase tracking-wide text-accent">{d.handsOnTestedLabel}</span>}
+                    <Link href={p.reviewHref} className="block py-0.5 font-semibold leading-snug hover:text-accent transition-colors">{p.name}</Link>
+                    {p.handsOnTested && <span className="mt-1 inline-block font-display text-xs uppercase tracking-wide text-accent">{d.handsOnTestedLabel}</span>}
                     <div className="mt-2 flex items-center gap-3">
                       <Button href={p.ctaHref} className="px-3! py-1.5! text-xs!">{d.checkPriceLabel}</Button>
-                      <Link href={p.reviewHref} className="text-xs font-medium text-muted hover:text-accent">{d.reviewLabel}</Link>
+                      <Link href={p.reviewHref} className="px-1 py-1.5 text-xs font-medium text-muted hover:text-accent">{d.reviewLabel}</Link>
                     </div>
                   </div>
                 </li>
@@ -500,10 +500,10 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                       <span className="text-foreground">{top.name}</span>
                     </div>
                     <ul className="mt-5 flex-1 space-y-2 text-sm">
-                      <li><Link href={`/${category}/reviews`} className="flex justify-between text-muted hover:text-accent"><span>{d.reviewsWord}</span><span className="font-mono text-xs">{reviews}</span></Link></li>
-                      <li><Link href={`/${category}/comparisons`} className="flex justify-between text-muted hover:text-accent"><span>{d.comparisonsWord}</span><span className="font-mono text-xs">{comparisons}</span></Link></li>
-                      <li><Link href={`/${category}/guides`} className="flex justify-between text-muted hover:text-accent"><span>{d.guidesWord}</span><span className="font-mono text-xs">{guides}</span></Link></li>
-                      {buying && <li><Link href={buying.href} className="flex justify-between text-muted hover:text-accent"><span>{buying.title}{d.inEnglishSuffix}</span><span aria-hidden="true">→</span></Link></li>}
+                      <li><Link href={`/${category}/reviews`} className="flex justify-between py-0.5 text-muted hover:text-accent"><span>{d.reviewsWord}</span><span className="font-mono text-xs">{reviews}</span></Link></li>
+                      <li><Link href={`/${category}/comparisons`} className="flex justify-between py-0.5 text-muted hover:text-accent"><span>{d.comparisonsWord}</span><span className="font-mono text-xs">{comparisons}</span></Link></li>
+                      <li><Link href={`/${category}/guides`} className="flex justify-between py-0.5 text-muted hover:text-accent"><span>{d.guidesWord}</span><span className="font-mono text-xs">{guides}</span></Link></li>
+                      {buying && <li><Link href={buying.href} className="flex justify-between py-0.5 text-muted hover:text-accent"><span>{buying.title}{d.inEnglishSuffix}</span><span aria-hidden="true">→</span></Link></li>}
                     </ul>
                     <Link href={ROUNDUPS[category]} className={`mt-6 inline-flex items-center justify-between rounded-lg border ${tone.border} px-4 py-2.5 text-sm font-medium ${tone.text} hover:bg-surface transition-colors`}>
                       {d.seeAll(PICKS[category].length, guides)}
@@ -525,8 +525,8 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
               <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.reviewsSection.eyebrow.toUpperCase()}</p>
               <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.reviewsSection.title}</h2>
             </div>
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
-              {CATEGORY_KEYS.map((c, i) => <Link key={c} href={`/${c}/reviews`} className="text-accent hover:underline">{d.categoryLabels[i]} →</Link>)}
+            <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
+              {CATEGORY_KEYS.map((c, i) => <Link key={c} href={`/${c}/reviews`} className="py-1 text-accent hover:underline">{d.categoryLabels[i]} →</Link>)}
             </div>
           </div>
           <div className={CAROUSEL}>{latestReviews.map((e) => <div key={e.href} className={CAROUSEL_ITEM}><ContentCard entry={e} /></div>)}</div>
@@ -543,7 +543,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
         <div className={CAROUSEL}>{useCaseGuides.map((g) => <div key={g.href} className={CAROUSEL_ITEM}><GuideCard entry={g} /></div>)}</div>
         {moreUseCases.length > 0 && (
           <div className="mt-6 flex flex-wrap items-center gap-2">
-            <span className="mr-1 font-display text-[11px] uppercase tracking-wide text-muted">{d.moreUseCasesLabel}</span>
+            <span className="mr-1 font-display text-xs uppercase tracking-wide text-muted">{d.moreUseCasesLabel}</span>
             {moreUseCases.map((g) => (
               <Link key={g.href} href={g.href} className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors">
                 <span className={TONES[g.category].text}>●</span> {d.categoryLabels[CATEGORY_KEYS.indexOf(g.category)]}: {g.title}{d.inEnglishSuffix}
@@ -561,8 +561,8 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
               <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.comparisonsSection.eyebrow.toUpperCase()}</p>
               <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.comparisonsSection.title}</h2>
             </div>
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
-              {CATEGORY_KEYS.map((c, i) => <Link key={c} href={`/${c}/comparisons`} className="text-accent hover:underline">{d.categoryLabels[i]} →</Link>)}
+            <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
+              {CATEGORY_KEYS.map((c, i) => <Link key={c} href={`/${c}/comparisons`} className="py-1 text-accent hover:underline">{d.categoryLabels[i]} →</Link>)}
             </div>
           </div>
           <div className={CAROUSEL}>{featuredComparisons.map((e) => <div key={e.href} className={CAROUSEL_ITEM}><ContentCard entry={e} /></div>)}</div>
@@ -594,7 +594,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                   </div>
                   {start && (
                     <Link href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
-                      <span className="font-display text-[10px] uppercase tracking-wide text-accent">{d.learnSection.startHereLabel}</span>
+                      <span className="font-display text-xs uppercase tracking-wide text-accent">{d.learnSection.startHereLabel}</span>
                       <span className="mt-1 block font-semibold group-hover:text-accent transition-colors">{start.title}{d.inEnglishSuffix}</span>
                       <span className="mt-1 block text-xs text-muted leading-5">{start.description}</span>
                     </Link>
@@ -612,7 +612,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                       <li key={g.href}>
                         <Link href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
                           <span className="group-hover:text-accent transition-colors">
-                            <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-[10px] uppercase text-signal">{d.learnCols.buyingTag}</span>
+                            <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-xs uppercase text-signal">{d.learnCols.buyingTag}</span>
                             {g.title}{d.inEnglishSuffix}
                           </span>
                           <span className="text-muted" aria-hidden="true">→</span>
@@ -641,9 +641,9 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.howWeReview.eyebrow.toUpperCase()}</p>
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.howWeReview.title}</h2>
           </div>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
-            <Link href="/about" className="text-accent hover:underline">{d.howWeReview.links[0]} →</Link>
-            <Link href="/about#how-were-funded" className="text-accent hover:underline">{d.howWeReview.links[1]} →</Link>
+          <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
+            <Link href="/about" className="py-1 text-accent hover:underline">{d.howWeReview.links[0]} →</Link>
+            <Link href="/about#how-were-funded" className="py-1 text-accent hover:underline">{d.howWeReview.links[1]} →</Link>
           </div>
         </div>
         <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -684,23 +684,23 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.faq.title}</h2>
             <p className="mt-3 text-muted leading-7">{d.faq.intro}</p>
             <div className="mt-8 rounded-2xl border border-border bg-surface p-6">
-              <p className="font-display text-[11px] uppercase tracking-wide text-accent">{d.faq.detailLabel}</p>
-              <ul className="mt-3 space-y-2.5 text-sm">
+              <p className="font-display text-xs uppercase tracking-wide text-accent">{d.faq.detailLabel}</p>
+              <ul className="mt-3 space-y-1.5 text-sm">
                 <li>
-                  <Link href="/about" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                  <Link href="/about" className="flex items-center justify-between gap-3 py-0.5 hover:text-accent transition-colors">
                     <span>{d.faq.howWeTest}{d.inEnglishSuffix}</span>
                     <span className="text-muted" aria-hidden="true">→</span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about#how-were-funded" className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                  <Link href="/about#how-were-funded" className="flex items-center justify-between gap-3 py-0.5 hover:text-accent transition-colors">
                     <span>{d.faq.howFunded}{d.inEnglishSuffix}</span>
                     <span className="text-muted" aria-hidden="true">→</span>
                   </Link>
                 </li>
                 {featuredHowTos.map((g) => (
                   <li key={g.href}>
-                    <Link href={g.href} className="flex items-center justify-between gap-3 hover:text-accent transition-colors">
+                    <Link href={g.href} className="flex items-center justify-between gap-3 py-0.5 hover:text-accent transition-colors">
                       <span>{g.title}{d.inEnglishSuffix}</span>
                       <span className="text-muted" aria-hidden="true">→</span>
                     </Link>

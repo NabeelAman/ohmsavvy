@@ -42,7 +42,7 @@ export function GuideCard({ entry }: { entry: ContentEntry }) {
           style={{ backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)", backgroundSize: "14px 14px", color: "var(--border)" }}
         />
         <span
-          className={`absolute left-3 top-3 z-10 rounded-full bg-surface/90 backdrop-blur px-2.5 py-1 font-display text-[10px] uppercase tracking-[0.15em] ${tone.text} shadow-sm`}
+          className={`absolute left-3 top-3 z-10 rounded-full bg-surface/90 backdrop-blur px-2.5 py-1 font-display text-xs uppercase tracking-[0.15em] ${tone.text} shadow-sm`}
         >
           {CATEGORY_LABEL[entry.category]}
         </span>

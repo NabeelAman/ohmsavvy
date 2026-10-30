@@ -294,9 +294,9 @@ export default async function LocalizedFluke117ReviewPage({ params }: { params: 
 
       <div className="mt-6 flex flex-wrap items-center gap-2 text-sm text-muted">
         <span>{d.switcherLabel}</span>
-        <Link href="/multimeters/fluke-117-review" className="text-accent hover:underline">English</Link>
+        <Link href="/multimeters/fluke-117-review" className="py-1 text-accent hover:underline">English</Link>
         {LOCALES.filter((l) => l !== locale).map((l) => (
-          <Link key={l} href={`/${l}/multimeters/fluke-117-review`} className="text-accent hover:underline">
+          <Link key={l} href={`/${l}/multimeters/fluke-117-review`} className="py-1 text-accent hover:underline">
             {LOCALE_LABELS[l]}
           </Link>
         ))}

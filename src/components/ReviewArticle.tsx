@@ -240,7 +240,7 @@ export function ReviewArticle({
                         <Stars rating={p.rating} />
                       </div>
                       {p.handsOnTested && (
-                        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent">
+                        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent">
                           <span aria-hidden>✓</span> Hands-on Tested
                         </span>
                       )}
@@ -249,7 +249,7 @@ export function ReviewArticle({
                       <Button href={p.ctaHref} className="mt-2 w-full whitespace-nowrap">
                         Check price on Amazon →
                       </Button>
-                      <a href={`#${slug(p.name)}`} className="text-center text-xs font-medium text-accent hover:underline">
+                      <a href={`#${slug(p.name)}`} className="py-1.5 text-center text-xs font-medium text-accent hover:underline">
                         Why we picked it ↓
                       </a>
                     </div>
@@ -274,7 +274,7 @@ export function ReviewArticle({
                           <ProductImage pick={p} sizes="56px" slotPx={56} className="object-contain p-1 transition-transform duration-300 group-hover:scale-110" />
                         </a>
                         <div className="min-w-0 flex-1">
-                          <a href={`#${slug(p.name)}`} className="block font-semibold leading-snug hover:text-accent">
+                          <a href={`#${slug(p.name)}`} className="block py-0.5 font-semibold leading-snug hover:text-accent">
                             {p.name}
                           </a>
                           <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -328,15 +328,15 @@ export function ReviewArticle({
                         className={`border-b border-border last:border-0 transition-colors hover:bg-surface-raised ${i === 0 ? "bg-accent/5" : ""}`}
                       >
                         <td className={`sticky left-0 z-10 py-3 pl-4 pr-4 ${i === 0 ? "bg-[color-mix(in_srgb,var(--accent)_5%,var(--surface))]" : "bg-surface"}`}>
-                          <a href={`#${slug(p.name)}`} className="flex items-center gap-3 font-medium hover:text-accent">
+                          <a href={`#${slug(p.name)}`} className="flex items-center gap-3 py-0.5 font-medium hover:text-accent">
                             <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white border border-border/60 overflow-hidden">
                               <ProductImage pick={p} sizes="40px" slotPx={40} className="object-contain p-0.5" />
                             </span>
                             <span className="leading-snug">
-                              <span className="block text-[11px] font-display text-muted">#{i + 1}</span>
+                              <span className="block text-xs font-display text-muted">#{i + 1}</span>
                               {p.name}
                               {p.handsOnTested && (
-                                <span className="mt-0.5 block text-[10px] font-display uppercase tracking-wide text-accent">✓ Tested</span>
+                                <span className="mt-0.5 block text-xs font-display uppercase tracking-wide text-accent">✓ Tested</span>
                               )}
                             </span>
                           </a>
@@ -437,7 +437,7 @@ export function ReviewArticle({
                       <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-5">
                         <Button href={p.ctaHref}>Check price on Amazon →</Button>
                         {reviewHref && (
-                          <Link prefetch={false} href={reviewHref} className="text-sm font-medium text-accent hover:underline">
+                          <Link prefetch={false} href={reviewHref} className="py-1.5 text-sm font-medium text-accent hover:underline">
                             Read the full {p.name} review →
                           </Link>
                         )}
@@ -543,7 +543,7 @@ export function ReviewArticle({
             <ArticleTocSidebar items={toc} />
             {picks[0] && (
               <div className="rounded-2xl border border-border bg-surface p-4 shadow-sm">
-                <p className="font-display text-[11px] text-accent uppercase tracking-[0.15em]">Our top pick</p>
+                <p className="font-display text-xs text-accent uppercase tracking-[0.15em]">Our top pick</p>
                 <div className="relative mt-3 flex h-28 items-center justify-center rounded-xl bg-white border border-border/60 overflow-hidden">
                   <ProductImage pick={picks[0]} sizes="200px" className="object-contain p-2" />
                 </div>

@@ -39,7 +39,7 @@ export function ArticleTocSidebar({ items }: { items: TocItem[] }) {
   const active = useActiveSection(items);
   return (
     <nav aria-label="On this page" className="text-sm">
-      <p className="font-display text-[11px] text-muted uppercase tracking-[0.15em] mb-3">On this page</p>
+      <p className="font-display text-xs text-muted uppercase tracking-[0.15em] mb-3">On this page</p>
       <ul className="relative border-l border-border">
         {items.map((item) => {
           const on = item.id === active;

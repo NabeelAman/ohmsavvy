@@ -176,21 +176,21 @@ export default function SolderingIronBuyingGuidePage() {
                 <path d="M16 4v16l6 8h-12l6-8Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
               </svg>
               <p className="text-xs font-medium">Conical</p>
-              <p className="text-[11px] text-muted leading-4">General-purpose work</p>
+              <p className="text-xs text-muted leading-4">General-purpose work</p>
             </div>
             <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-3 flex flex-col items-center text-center gap-2">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-accent" aria-hidden="true">
                 <path d="M16 4v18l10 6H6l10-6Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
               </svg>
               <p className="text-xs font-medium">Chisel</p>
-              <p className="text-[11px] text-muted leading-4">Faster heat transfer, larger joints</p>
+              <p className="text-xs text-muted leading-4">Faster heat transfer, larger joints</p>
             </div>
             <div className="rounded-lg border border-border bg-surface-raised shadow-sm p-3 flex flex-col items-center text-center gap-2">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-accent" aria-hidden="true">
                 <path d="M16 4v20l2 4h-4l2-4Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
               </svg>
               <p className="text-xs font-medium">Fine-point</p>
-              <p className="text-[11px] text-muted leading-4">Dense, closely-spaced SMD work</p>
+              <p className="text-xs text-muted leading-4">Dense, closely-spaced SMD work</p>
             </div>
           </div>
           <p className="mt-3 text-muted leading-7">

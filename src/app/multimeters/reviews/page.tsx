@@ -16,16 +16,16 @@ export default function MultimetersReviewsPage() {
       heading="Multimeter Reviews"
       intro="Before anything else, every review here checks the safety rating and True RMS accuracy against what the meter is actually sold for. From there we cover resolution, build quality, and the specific buyer each model is a good fit for — and who'd be better off with a different pick entirely."
     >
-      <Link href="/multimeters/best-multimeters" className="font-medium text-accent hover:underline">
+      <Link href="/multimeters/best-multimeters" className="py-1 font-medium text-accent hover:underline">
         Best multimeters
       </Link>
-      <Link href="/multimeters/comparisons" className="text-accent hover:underline">
+      <Link href="/multimeters/comparisons" className="py-1 text-accent hover:underline">
         All multimeter comparisons
       </Link>
-      <Link href="/multimeters/multimeter-buying-guide" className="text-accent hover:underline">
+      <Link href="/multimeters/multimeter-buying-guide" className="py-1 text-accent hover:underline">
         Multimeter buying guide
       </Link>
-      <Link href="/multimeters/guides" className="text-accent hover:underline">
+      <Link href="/multimeters/guides" className="py-1 text-accent hover:underline">
         All multimeter guides
       </Link>
     </CategoryListing>

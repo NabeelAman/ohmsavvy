@@ -18,7 +18,7 @@ export function HeroSearch() {
         <span className="sm:hidden">Search reviews and guides…</span>
         <span className="hidden sm:inline">Search reviews, comparisons and how-to guides…</span>
       </span>
-      <kbd className="hidden sm:inline rounded-md border border-border bg-surface-raised px-1.5 py-0.5 font-display text-[10px]">/</kbd>
+      <kbd className="hidden sm:inline rounded-md border border-border bg-surface-raised px-1.5 py-0.5 font-display text-xs">/</kbd>
     </button>
   );
 }

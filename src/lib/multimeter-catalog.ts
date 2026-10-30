@@ -1007,4 +1007,104 @@ export const multimeterCatalogPicks: Pick[] = [
     cons: ["Sold only as a kit on Amazon", "No current jacks on the meter; current only via the clamp", "IP52 and 2 m drop; clamp has a 1-year warranty"],
     ctaHref: "https://www.amazon.com/dp/B0DGBYD8ZK?tag=ohmsavvy-20",
   },
+  {
+    badge: "Best Discontinued Klein CAT IV Meter",
+    // Specs per kleintools.com (https://www.kleintools.com/catalog/multimeters/digital-multimeter-trmslow-impedance-1000v, "This product is no longer in production", successor MM720) and the MM700 instruction manual (MM700_1390112ART_WEB.pdf): 4000 counts, True RMS, CAT IV 600V / CAT III 1000V, 1000 V AC/DC, 400.0 µA to 10.00 A AC/DC, 40 MΩ, 4000 µF, 500 kHz, duty cycle, 0–1500°F, LoZ >3 kΩ (600 V max), AC 50–400 Hz, IP42, 2 m drop, 2 × AAA. Weight conflict: manual 414 g vs Klein page 408 g. NCV and warranty length not stated. Photo: Amazon main image of B018CMKWSC, bezel reads "KLEIN TOOLS MM700". Amazon-buyable 2026-10-29 (third-party seller, low stock).
+    name: "Klein Tools MM700",
+    verifiedAt: "2026-10-29",
+    image: "https://m.media-amazon.com/images/I/71tvOHHZDDL._SL1500_.jpg",
+    rating: 4.3,
+    bottomLine: "A discontinued Klein CAT IV 600V meter with LoZ, µA ranges and temperature, still sold on Amazon; the MM720 replaces it.",
+    verdict:
+      "Klein has discontinued the MM700 and names the MM720 as its successor, but Amazon still sells it through third-party sellers. It is a 4000-count True RMS meter rated CAT IV 600V / CAT III 1000V, reading 1000 V AC/DC with DC accuracy of ±(1.0% + 3) on the 4–400 V ranges. Current runs from a 400.0 µA range to 10 A, and it adds a LoZ input (above 3 kΩ, 600 V max), 40 MΩ resistance, capacitance to 4000 µF, frequency to 500 kHz, duty cycle and temperature to 1500°F. Klein's manual specifies AC volts and amps for 50–400 Hz only. It is IP42 with a 2 m drop rating. Klein's manual gives 414 g and its product page 408 g; NCV is not listed and warranty length is not stated.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, 4,000-count, ±(1.0% + 3) DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Electricians who want CAT IV and LoZ on a budget" },
+    ],
+    pros: ["CAT IV 600V / CAT III 1000V, 1000 V AC/DC", "LoZ input plus a 400.0 µA range", "IP42, 2 m drop, temperature to 1500°F"],
+    cons: ["Discontinued by Klein (the MM720 replaces it)", "4,000 counts; AC specified only 50–400 Hz", "No NCV listed; warranty length not stated"],
+    ctaHref: "https://www.amazon.com/dp/B018CMKWSC?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Compact Extech with LoZ and NCV",
+    // Specs per extech.com (https://www.extech.com/products/ex355/), the EX350 Series datasheet (flir.netx.net asset 51819) and the EX35x user manual (V1.5, flir.netx.net asset 49131): True RMS, CAT III 600V, 600 V AC/DC, 600.0 µA to 10.00 A, 60.00 mF, 10 MHz, Type K -40 to 1000°C, LoZ (3 kΩ), LPF for VFD signals, NCV, basic DCV ±0.5%, AC 45–400 Hz, 3-year warranty, 130 h battery. Conflicts: counts 6000 (datasheet) vs 4000 (extech.com table); resistance 60 MΩ (datasheet, manual) vs 40 MΩ (extech.com); batteries 2 × AA (manual, datasheet) vs 2 × AAA (extech.com); weight 370 g (datasheet) vs 407 g (manual). IP and drop not stated. Photo: Amazon main image of B01AIUCPM2, meter face reads "EX355". Amazon-buyable 2026-10-29 (ships from Amazon).
+    name: "Extech EX355",
+    verifiedAt: "2026-10-29",
+    image: "https://m.media-amazon.com/images/I/61FuqFbbnJL._SL1500_.jpg",
+    rating: 4.4,
+    bottomLine: "A compact True RMS meter with LoZ, a low-pass filter, NCV, µA ranges and temperature, rated CAT III 600V.",
+    verdict:
+      "The Extech EX355 packs LoZ for ghost voltages, a low-pass filter for drive outputs, a built-in non-contact voltage detector and a Type K input (-40 to 1000°C) into a CAT III 600V meter. Current starts at a 600.0 µA range and runs to 10 A, capacitance reaches 60.00 mF and frequency 10 MHz, and Extech quotes ±0.5% basic DC volts with a 3-year warranty. Extech's own documents disagree on several basics: the datasheet says 6000 counts and 60 MΩ while extech.com's table says 4000 counts and 40 MΩ; the manual says 2 × AA while the web page says 2 × AAA; and the weight is 370 g in the datasheet against 407 g in the manual. IP and drop ratings are not stated, and it stops at 600 V with no CAT IV rating.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, ±0.5% basic DC V" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes" },
+      { label: "Best for", value: "Field techs on branch circuits, drives and HVAC" },
+    ],
+    pros: ["LoZ, low-pass filter and NCV in one meter", "600.0 µA range plus Type K temperature", "3-year warranty, about 130 h battery life"],
+    cons: ["CAT III 600V only, no CAT IV", "Extech's sources conflict on counts, resistance range and battery type", "IP and drop ratings not stated"],
+    ctaHref: "https://www.amazon.com/dp/B01AIUCPM2?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Waterproof Industrial Extech",
+    // Specs per extech.com (https://www.extech.com/products/ex505a/), the EX5xxA Series datasheet (Rev. 1/24/24, flir.netx.net asset 61332) and the EX505A user manual (flir.netx.net asset 62804): 6000 counts, True RMS, CAT IV 600V / CAT III 1000V (manual), 1000 V AC/DC, DC V ±(0.5% + 5), 600.0 µA to 10.00 A, 60 MΩ, 99.99 mF, frequency to 10 MHz, Type K -20 to 760°C (supplied probe rated 250°C), AC V bandwidth 50 Hz–1 kHz sine or 50/60 Hz all waveforms, one 9 V, IP67, 2 m drop, 365 g, 3-year warranty. Datasheet: LoZ and low-pass filter "--" on the EX505A (EX520A/EX530A only). Conflicts: resistance 60 MΩ (datasheet, manual) vs 40 MΩ (extech.com); a datasheet bullet says 0.09% accuracy while its table says ±0.5% (we use the manual's ±(0.5% + 5)). NCV not stated. Photo: Amazon main image of B0D42GP9J8, kit shot, meter reads "EX505A". Amazon-buyable 2026-10-29 (FBA, low stock).
+    name: "Extech EX505A",
+    verifiedAt: "2026-10-29",
+    image: "https://m.media-amazon.com/images/I/81j65gtuErL._SL1500_.jpg",
+    rating: 4.5,
+    bottomLine: "An IP67, CAT IV 600V True RMS meter that survives a 2 m drop, with µA to 10 A and temperature, but no LoZ or filter.",
+    verdict:
+      "The Extech EX505A replaces the discontinued EX505. It is a 6000-count True RMS meter in a double-molded IP67 housing, drop-tested to 2 m and rated CAT IV 600V / CAT III 1000V per its manual. It reads 1000 V AC/DC at ±(0.5% + 5) DC, current from a 600.0 µA range to 10 A, resistance to 60 MΩ, capacitance to 99.99 mF, frequency, duty cycle and Type K temperature (-20 to 760°C, though the supplied probe is rated to 250°C). It runs on one 9 V battery, weighs 365 g and carries a 3-year warranty. Extech's datasheet gives LoZ and the low-pass filter only to the EX520A and EX530A, and AC volts are specified for 50 Hz–1 kHz sine or 50/60 Hz for other waveforms. One datasheet bullet claims 0.09% accuracy (that's the EX520A's figure), and extech.com lists 40 MΩ against 60 MΩ in the manual.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, 6,000-count, ±(0.5% + 5) DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Wet, dusty or rough industrial sites" },
+    ],
+    pros: ["IP67 waterproof and dustproof, 2 m drop", "CAT IV 600V / CAT III 1000V, 1000 V AC/DC", "600.0 µA to 10 A, temperature, 3-year warranty"],
+    cons: ["No LoZ or low-pass filter (EX520A/EX530A only)", "AC specified only to 1 kHz sine, 50/60 Hz otherwise", "Supplied thermocouple rated only to 250°C"],
+    ctaHref: "https://www.amazon.com/dp/B0D42GP9J8?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Budget Extech for Microamps and Temperature",
+    // Specs per extech.com (https://www.extech.com/products/ex430a/), the EX400A Series datasheet (Rev. 1/9/18, flir.netx.net asset 51812) and the EX430A user manual (v6.0 7/16, flir.netx.net asset 67303): 4000 counts, True RMS, autoranging, CAT III 600V, 600 V AC/DC, 400 µA to 10 A ranges at 0.1 µA resolution, 40 MΩ, 100 µF, 10 MHz, duty cycle 0.1–99.9%, Type K -20 to 750°C, DC V ±(0.3% + 2) on 400 mV, ACV bandwidth 50 Hz–1 kHz, one 9 V, 342 g with holster. Conflicts: resistance 40 MΩ (datasheet) vs 20 MΩ (extech.com table); DCV ±0.3% (datasheet, manual 400 mV range) vs ±0.5% (extech.com); warranty 1 year (manual) vs 2 years (extech.com) vs 3 years (datasheet). LoZ, NCV and logging not stated. Photo: Amazon main image of B0000WU1AC, meter face reads "EX430A" and "CAT III 600V". Amazon-buyable 2026-10-29 (FBA).
+    name: "Extech EX430A",
+    verifiedAt: "2026-10-29",
+    image: "https://m.media-amazon.com/images/I/516of-rP3YL._SL1500_.jpg",
+    rating: 4.2,
+    bottomLine: "A 4000-count True RMS Extech with 0.1 µA resolution, temperature and 10 MHz frequency, rated CAT III 600V.",
+    verdict:
+      "The Extech EX430A is a 4000-count, autoranging True RMS meter rated CAT III 600V. Its current input starts at a 400 µA range with 0.1 µA resolution and runs to 10 A, and it adds capacitance to 100 µF, frequency to 10 MHz, duty cycle and Type K temperature (-20 to 750°C) with a bead probe in the box. The manual gives ±(0.3% + 2) on the 400 mV DC range. Extech's sources disagree: extech.com lists ±0.5% DC volts and 20 MΩ, the datasheet ±0.3% and 40 MΩ, and the warranty appears as 1 year (manual), 2 years (web page) and 3 years (datasheet). LoZ and NCV are not stated, capacitance stops at 100 µF, and it runs on one 9 V battery at 342 g with holster.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, 4,000-count, ±(0.3% + 2) on 400 mV DC" },
+      { label: "Safety rating", value: "CAT III 600V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "HVAC controls, flame sensors and bench work" },
+    ],
+    pros: ["0.1 µA resolution on a 400 µA range", "Type K temperature probe and 10 MHz frequency", "Holster with test lead holder and tilt stand"],
+    cons: ["CAT III 600V only, no CAT IV", "Capacitance tops out at 100 µF", "Warranty stated as 1, 2 or 3 years depending on the Extech source"],
+    ctaHref: "https://www.amazon.com/dp/B0000WU1AC?tag=ohmsavvy-20",
+  },
+  {
+    badge: "Best Hioki for Drives and Instrumentation",
+    // Specs per hioki.com (https://www.hioki.com/sg-en/products/testers/dmm-3/id_5777) and the Hioki DT4200 series brochure (https://www.hioki.com/sg-en/download/32992): 6000 counts, True RMS, CAT IV 600V / CAT III 1000V, 1000 V AC/DC, DC V ±(0.3% rdg + 3 dgt), DC A 60.00 mA to 10.00 A, AC A 600.0 mA to 10.00 A (no µA), 60 MΩ, 10.00 mF, frequency to 99.99 kHz, no temperature, AUTO V low-impedance mode (900 kΩ), AC voltage detection (Hi 40–600 V, Lo 80–600 V), low-pass filter (digital, 100/500 Hz pass-band), 4–20 mA percentage display, AC clamp input with optional probes (10–1000 A), USB via optional DT4900-01, 4 × AAA (LR03), about 130 h, 390 g with batteries and holster, IP40 (operating), drop proof (height not stated), operating -25 to 65°C, 3-year warranty. Brochure DC A table has a DT4256-only footnote of ±(1.8% rdg + 15 dgt) whose range is ambiguous. Photo: Amazon main image of B011DESFZS, meter reads "DT4256 DIGITAL MULTIMETER", "CAT IV 600V CAT III 1000V". Amazon-buyable 2026-10-29 (FBA, low stock).
+    name: "Hioki DT4256",
+    verifiedAt: "2026-10-29",
+    image: "https://m.media-amazon.com/images/I/517kAPWSe5L._SL1500_.jpg",
+    rating: 4.6,
+    bottomLine: "A CAT IV 600V Hioki with a low-pass filter, AUTO V low-impedance mode, voltage detection and a 4–20 mA percent display.",
+    verdict:
+      "The Hioki DT4256 is a 6000-count True RMS meter rated CAT IV 600V / CAT III 1000V, built around electrical and instrumentation work. It reads 1000 V AC/DC at ±(0.3% rdg + 3 dgt) DC, has a digital low-pass filter (100 Hz or 500 Hz pass-band) for inverter outputs, an AUTO V low-impedance mode (900 kΩ) that picks AC or DC itself, built-in AC voltage detection, and a dual display that shows a 4–20 mA signal as a percentage of span. DC current runs from a 60.00 mA range to 10 A and AC current from 600.0 mA, so there is no microamp range, and there is no temperature function. It adds 60 MΩ, capacitance to 10.00 mF, frequency to 99.99 kHz and an input for Hioki's optional AC clamp probes. Hioki rates it IP40 and drop proof (height not stated), with a 3-year warranty, 4 × AAA cells and 390 g with holster. USB needs the optional DT4900-01 package.",
+    specs: [
+      { label: "Accuracy", value: "True RMS, 6,000-count, ±(0.3% + 3) DC V" },
+      { label: "Safety rating", value: "CAT IV 600V / CAT III 1000V" },
+      { label: "Auto-ranging", value: "Yes (manual RANGE)" },
+      { label: "Best for", value: "Drives, panels and 4–20 mA instrumentation" },
+    ],
+    pros: ["Low-pass filter plus AUTO V low-impedance mode", "4–20 mA percentage display and AC voltage detection", "CAT IV 600V, 3-year warranty, -25 to 65°C operation"],
+    cons: ["No microamp range; DC current starts at 60 mA", "No temperature function", "IP40 only; drop height not stated"],
+    ctaHref: "https://www.amazon.com/dp/B011DESFZS?tag=ohmsavvy-20",
+  },
 ];

@@ -28,12 +28,12 @@ const comparisonRows: string[][] = [
   ["2", "Klein Tools MM720", "6,000", "CAT IV 600V / CAT III 1000V", "0.1 µA", "Electrical work: LoZ and 1000 V AC/DC"],
   ["3", "KAIWEETS HT118A", "6,000", "CAT IV 600V / CAT III 1000V", "0.1 µA", "The lowest-cost all-rounder here"],
   ["4", "OWON B41T+", "22,000", "1000V CAT III (case marking)", "0.01 µA", "Logging readings without a phone attached"],
-  ["5", "KAIWEETS HT118E", "20,000", "CAT IV 600V / CAT III 1000V", "0.01 µA (implied)", "Extra digits on a small budget"],
-  ["6", "Klein Tools MM450", "4,000", "CAT III 600V", "0.1 µA", "A slim meter for home and appliance AC"],
-  ["7", "Klein Tools MM420", "4,000", "CAT III 600V", "0.1 µA", "Indoor HVAC and household checks"],
-  ["8", "UNI-T UT139C", "6,000", "CAT III 600V", "Not in our data", "A compact True RMS meter with NCV"],
-  ["9", "KAIWEETS KM602", "6,000", "CAT III 600V", "0.1 mA", "Beginners who want Smart mode and a rechargeable cell"],
-  ["10", "OWON OW18E", "19,999", "1000V CAT III / 600V CAT IV (case marking)", "0.01 µA", "Fine resolution and Bluetooth at the lowest cost"],
+  ["5", "Klein Tools MM450", "4,000", "CAT III 600V", "0.1 µA", "A slim meter for home and appliance AC"],
+  ["6", "Klein Tools MM420", "4,000", "CAT III 600V", "0.1 µA", "Indoor HVAC and household checks"],
+  ["7", "UNI-T UT139C", "6,000", "CAT III 600V", "Not in our data", "A compact True RMS meter with NCV"],
+  ["8", "KAIWEETS KM602", "6,000", "CAT III 600V", "0.1 mA", "Beginners who want Smart mode and a rechargeable cell"],
+  ["9", "OWON OW18E", "19,999", "1000V CAT III / 600V CAT IV (case marking)", "0.01 µA", "Fine resolution and Bluetooth at the lowest cost"],
+  ["10", "KAIWEETS KM200s", "4,000", "CAT II 600V", "Not in our data", "Outlet and appliance checks with NCV"],
 ];
 
 const lookFor = [
@@ -105,8 +105,6 @@ const fitNotes: Record<string, string> = {
     "True RMS, a CAT IV 600V rating, a 600 µA range, temperature and NCV for well under half the top two's prices make it the value pick. AC voltage stops at 750 V, and the maker's product page and manual disagree on the maximum, so read the meter face.",
   "OWON B41T+":
     "Its 22,000 counts and 0.01 µA resolution match the leader, and it can record 10,000 points for up to 168 hours on its own, which suits tracking a drifting AC supply overnight. OWON's page states no CAT rating (the case says 1000V CAT III), so it ranks behind the documented meters.",
-  "KAIWEETS HT118E":
-    "A 20,000-count True RMS meter with CAT IV 600V and NCV at a very low price gives you the extra digit without the cost. KAIWEETS lists no relative mode and doesn't print per-range resolution, which holds it below the OWON.",
   "Klein Tools MM450":
     "For True RMS readings around the house, its slim body, self-adjusting reverse-contrast display and Lead-Alert jack lights are easy to live with. It is a 4,000-count, CAT III 600V meter without LoZ or NCV, so it trails the higher-count and CAT IV options.",
   "Klein Tools MM420":
@@ -116,7 +114,9 @@ const fitNotes: Record<string, string> = {
   "KAIWEETS KM602":
     "Smart mode and a rechargeable cell make this True RMS meter friendly for newcomers. Its smallest current range is 600 mA (0.1 mA steps), so there is no µA work, and the manual rates it CAT III 600V, below what its listing claims.",
   "OWON OW18E":
-    "It offers 0.01 µA and 0.01 Ω resolution, Bluetooth with offline recording, NCV and temperature at the lowest cost of the high-count meters. OWON doesn't state its CAT rating or burden voltage, so it rounds out the list.",
+    "It offers 0.01 µA and 0.01 Ω resolution, Bluetooth with offline recording, NCV and temperature at the lowest cost of the high-count meters. OWON doesn't state its CAT rating or burden voltage, which keeps it near the bottom.",
+  "KAIWEETS KM200s":
+    "Its official Amazon listing documents True RMS, smart auto-ranging, NCV, a backlit display and a flashlight. It is the only meter here rated just CAT II 600V, so keep it to outlets, cords and appliances rather than panels, and our verified data has no current ranges for it. That places it last.",
 };
 
 const advice = [
@@ -128,7 +128,7 @@ const advice = [
   {
     heading: "Pick counts or toughness, then fill in the rest",
     body:
-      "The list splits into two camps. The UT61E+, B41T+, HT118E and OW18E give 20,000 or more counts for bench work. The MM720, HT118A and the Klein 400-series give 4,000 to 6,000 counts in tougher, simpler cases with features aimed at electrical work. Decide which side you need first; it narrows the choice quickly.",
+      "The list splits into two camps. The UT61E+, B41T+ and OW18E give about 20,000 counts or more for bench work. The MM720, HT118A and the Klein 400-series give 4,000 to 6,000 counts in tougher, simpler cases with features aimed at electrical work. Decide which side you need first; it narrows the choice quickly.",
   },
   {
     heading: "Treat case markings as the weaker evidence",
@@ -212,8 +212,7 @@ export default function BestTrueRmsMultimetersUnder100Page() {
             mono={[0]}
           />
           <p className="text-xs text-muted leading-5">
-            Counts and ratings are from the maker&apos;s manual or page, or the case marking where noted. The HT118E&apos;s
-            0.01 µA follows from its 200 µA range at 20,000 counts; KAIWEETS doesn&apos;t print it.
+            Counts and ratings are from the maker&apos;s manual or page, or the case marking where noted.
           </p>
         </div>
 
@@ -225,7 +224,6 @@ export default function BestTrueRmsMultimetersUnder100Page() {
                 items={[
                   { label: "UNI-T UT61E+", value: 22000, display: "22,000", highlight: true },
                   { label: "OWON B41T+", value: 22000, display: "22,000", highlight: true },
-                  { label: "KAIWEETS HT118E", value: 20000, display: "20,000", highlight: true },
                   { label: "OWON OW18E", value: 19999, display: "19,999", highlight: true },
                   { label: "Klein Tools MM720", value: 6000, display: "6,000" },
                   { label: "KAIWEETS HT118A", value: 6000, display: "6,000" },
@@ -233,14 +231,15 @@ export default function BestTrueRmsMultimetersUnder100Page() {
                   { label: "KAIWEETS KM602", value: 6000, display: "6,000" },
                   { label: "Klein Tools MM450", value: 4000, display: "4,000" },
                   { label: "Klein Tools MM420", value: 4000, display: "4,000" },
+                  { label: "KAIWEETS KM200s", value: 4000, display: "4,000" },
                 ]}
               />
             </Figure>
             <Figure
               caption={
                 <>
-                  Finest current resolution in microamps, on a log scale (shorter bar is finer). UT139C omitted: its
-                  current ranges aren&apos;t in our verified data.
+                  Finest current resolution in microamps, on a log scale (shorter bar is finer). UT139C and KM200s omitted:
+                  their current ranges aren&apos;t in our verified data.
                 </>
               }
             >
@@ -255,7 +254,6 @@ export default function BestTrueRmsMultimetersUnder100Page() {
                   { label: "UNI-T UT61E+", value: 0.01, display: "0.01 µA", highlight: true },
                   { label: "OWON B41T+", value: 0.01, display: "0.01 µA", highlight: true },
                   { label: "OWON OW18E", value: 0.01, display: "0.01 µA", highlight: true },
-                  { label: "KAIWEETS HT118E", value: 0.01, display: "0.01 µA (implied)", highlight: true },
                 ]}
               />
             </Figure>
@@ -264,7 +262,7 @@ export default function BestTrueRmsMultimetersUnder100Page() {
             caption={
               <>
                 Highest voltage rated at CAT III. OWON figures come from the case markings because OWON&apos;s pages
-                don&apos;t state a rating.
+                don&apos;t state a rating. The KM200s is rated CAT II 600V only, so it isn&apos;t shown.
               </>
             }
           >
@@ -274,7 +272,6 @@ export default function BestTrueRmsMultimetersUnder100Page() {
                 { label: "Klein Tools MM720", value: 1000, display: "1000 V", highlight: true },
                 { label: "KAIWEETS HT118A", value: 1000, display: "1000 V", highlight: true },
                 { label: "OWON B41T+", value: 1000, display: "1000 V (marking)" },
-                { label: "KAIWEETS HT118E", value: 1000, display: "1000 V", highlight: true },
                 { label: "OWON OW18E", value: 1000, display: "1000 V (marking)" },
                 { label: "Klein Tools MM450", value: 600, display: "600 V" },
                 { label: "Klein Tools MM420", value: 600, display: "600 V" },

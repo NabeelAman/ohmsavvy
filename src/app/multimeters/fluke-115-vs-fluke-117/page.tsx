@@ -656,6 +656,11 @@ const comparison: ProductComparisonContent = {
   chooseNeitherIf: "You need temperature or microamp readings — neither the 117 nor the 115 has them; the Fluke 116 does.",
   faqs: [
     {
+      question: "What's the difference between the Fluke 115 and Fluke 117?",
+      answer:
+        "Three things, all on the 117: VoltAlert non-contact voltage detection, a LoZ input that drains ghost voltage on shared conduit runs, and AutoVolt, which picks AC or DC automatically. Everything else — True RMS, CAT III 600V, 10A current, capacitance, frequency, accuracy, case and warranty — is identical on Fluke's own datasheet.",
+    },
+    {
       question: "Is the Fluke 117 worth the extra money over the 115?",
       answer:
         "For electricians, usually yes. The extra buys VoltAlert non-contact detection, AutoVolt and a LoZ input that stops ghost voltage fooling you on shared runs. If your work is equipment repair, electronics or automotive, those features sit unused and the 115 measures everything else identically. Prices move on Amazon, so compare the live gap before deciding.",

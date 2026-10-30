@@ -111,6 +111,10 @@ export default function HowToMeasureContinuityOnALongElectricalWirePage() {
       ]}
       faq={[
         {
+          q: "How do you check wire continuity with a multimeter?",
+          a: "Disconnect the wire from power, set the multimeter to continuity mode (the diode/sound-wave symbol), and touch one probe to each end of the wire. A good wire beeps and reads near 0 Ω; no beep and an OL reading means it's broken somewhere along its length. On a run too long to reach both ends at once, see the fish-tape and reflected-loop methods below.",
+        },
+        {
           q: "How much resistance is too much for a long wire?",
           a: "Compare the reading with the expected copper resistance for that gauge and length. For a loop, double the run length. A result close to the calculation, plus a few tenths of an ohm for leads and connections, is a pass. A reading several times higher than expected suggests a corroded splice, a loose terminal or broken strands, even if the meter still beeps.",
         },

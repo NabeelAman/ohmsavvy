@@ -39,10 +39,43 @@ function Callout({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+const faqs = [
+  {
+    q: "How do you use an analog voltmeter?",
+    a: "Select the voltage range above what you expect to measure (there's no auto-ranging), connect the probes in parallel across the two points — red to the more positive point, black to the other — and read the needle against the correct curved scale for that range. View the needle straight-on against its mirror strip to avoid parallax error, which otherwise shifts the apparent reading.",
+  },
+  {
+    q: "Why does the ohms scale on an analog multimeter read backward?",
+    a: "It's a consequence of how the meter's moving-coil mechanism responds to current: more current through the coil (lower resistance) swings the needle further, so 0 Ω sits at the high-current end (right) and infinite resistance sits at the low-current end (left) — the opposite of the voltage and current scales. The scale is also compressed at the high-resistance end, which is why low readings are easier to read precisely than high ones.",
+  },
+  {
+    q: "What is parallax error and how do you avoid it?",
+    a: "Parallax error is the apparent shift in a needle's position when you view it from an angle instead of straight on, caused by the gap between the needle and the scale printed behind it. Many analog meters include a mirror strip alongside the scale specifically to catch this: move your head until the needle fully covers its own reflection, then read the scale from that angle.",
+  },
+  {
+    q: "Can an analog multimeter measure both AC and DC?",
+    a: "Yes — the dial has separate AC and DC ranges, and probe placement is the same as a digital meter: parallel across two points for voltage, in series for current. What's different is there's no auto-ranging, so starting on too low a range on an unfamiliar circuit can pin the needle hard against its stop and damage the movement.",
+  },
+  {
+    q: "Is an analog multimeter ever better than a digital one?",
+    a: "For most tasks, no — digital meters are more accurate and easier to read. The one niche where analog still has an edge is watching a value change in real time, such as tuning a circuit or checking a battery under a changing load: a moving needle shows a rising, falling or fluctuating trend more intuitively than a digital display that only refreshes a few times a second.",
+  },
+];
+
 export default function HowToUseAnAnalogMultimeterPage() {
   return (
     <>
       <article className="mx-auto max-w-4xl px-6 py-16">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
         <Eyebrow>HOW-TO GUIDE</Eyebrow>
         <div className="grid sm:grid-cols-[1fr_260px] gap-8 items-start">
           <div>
@@ -238,6 +271,18 @@ export default function HowToUseAnAnalogMultimeterPage() {
               <li>Assuming red is always positive, even on the resistance range where it typically isn&apos;t.</li>
             </ul>
           </Callout>
+
+          <section className="scroll-mt-28" id="faq">
+            <h2 className="text-xl font-semibold mb-4">Frequently asked questions</h2>
+            <div className="divide-y divide-border rounded-lg border border-border">
+              {faqs.map((f) => (
+                <div key={f.q} className="p-5">
+                  <h3 className="font-medium">{f.q}</h3>
+                  <p className="mt-2 text-muted leading-7">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
 
           <section className="pt-2">
             <h2 className="text-xl font-semibold mb-4">Where to go next</h2>

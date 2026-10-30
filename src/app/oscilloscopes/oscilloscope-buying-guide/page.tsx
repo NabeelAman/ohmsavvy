@@ -17,10 +17,43 @@ const featured = ["Rigol DS1054Z", "FNIRSI DSO152", "Siglent SDS1104X-E"].map(
   (name) => picks.find((p) => p.name === name)!
 );
 
+const faqs = [
+  {
+    q: "Which oscilloscope should I buy?",
+    a: "For a first scope, prioritize bandwidth at least 5–10x your highest signal frequency, at least 2 channels, and enough memory depth to not drop samples at a useful time window. The Rigol DS1054Z covers general electronics, Arduino and automotive work at that level and is our top-rated beginner pick; see the full comparison below for options matched to narrower budgets or specific work.",
+  },
+  {
+    q: "What oscilloscope do I need?",
+    a: "It depends on what you're measuring, not a single \"best\" model. Digital logic and microcontroller work rarely needs more than 50–100 MHz bandwidth; audio and power-supply debugging needs less; RF or fast digital signals (USB, HDMI) need much more. Match bandwidth, sample rate and channel count to your actual signals first, then compare models at that spec level.",
+  },
+  {
+    q: "How much bandwidth does a beginner oscilloscope need?",
+    a: "Most hobbyist and repair work — Arduino projects, automotive sensors, audio circuits, power supplies — fits comfortably within 50–100 MHz. Reserve higher bandwidth for fast digital buses or RF work. Buying far more bandwidth than your signals need mostly adds cost, not usefulness.",
+  },
+  {
+    q: "Is 2 channels enough on an oscilloscope?",
+    a: "For basic single-signal debugging, yes. But comparing an input against an output, checking phase between two signals, or debugging a communication bus (which needs two or more lines viewed together) all require at least 2 channels used simultaneously, and many real debugging sessions end up wanting a third. If your budget allows it, 4 channels leaves more headroom.",
+  },
+  {
+    q: "Should I buy a portable or bench oscilloscope?",
+    a: "A bench scope gives more capability per dollar since it doesn't need to budget for battery life or a compact case — the right default for a fixed workspace. A portable or pocket scope trades some of that capability for genuine field use: automotive diagnostics away from a bench, or quick checks where a full bench instrument isn't practical.",
+  },
+];
+
 export default function OscilloscopeBuyingGuidePage() {
   return (
     <>
     <article className="mx-auto max-w-3xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Oscilloscope Buying Guide</h1>
       <p className="mt-5 text-lg text-muted leading-7">
@@ -291,6 +324,18 @@ export default function OscilloscopeBuyingGuidePage() {
               distortion to the scope itself.
             </li>
           </ul>
+        </section>
+
+        <section className="scroll-mt-28" id="faq">
+          <h2 className="text-xl font-semibold mb-4">Frequently asked questions</h2>
+          <div className="divide-y divide-border rounded-lg border border-border">
+            {faqs.map((f) => (
+              <div key={f.q} className="p-5">
+                <h3 className="font-medium">{f.q}</h3>
+                <p className="mt-2 text-muted leading-7">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>

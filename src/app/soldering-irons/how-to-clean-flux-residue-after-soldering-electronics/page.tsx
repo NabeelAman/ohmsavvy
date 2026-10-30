@@ -73,6 +73,10 @@ export default function HowToCleanFluxResidueAfterSolderingElectronicsPage() {
       ]}
       faq={[
         {
+          q: "How do you clean flux off a PCB?",
+          a: "Dip a stiff-bristle brush or cotton swab in isopropyl alcohol (90%+ for rosin flux, deionized water for water-soluble flux), scrub the residue around each joint, then wipe with a lint-free cloth or let it air-dry. Repeat for stubborn rosin residue — it often takes two or three passes. Let the board dry fully before powering it on.",
+        },
+        {
           q: "Do I have to clean no-clean flux?",
           a: "Usually not. No-clean flux is formulated so that its residue is benign once fully heated, and many manufacturers ship boards with it left on. Clean it when the residue is cosmetically unacceptable, when a conformal coating has to stick, or around high-impedance circuits where any surface film might matter, and clean it completely if you start.",
         },

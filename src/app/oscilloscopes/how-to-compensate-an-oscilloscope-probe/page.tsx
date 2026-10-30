@@ -76,6 +76,10 @@ export default function HowToCompensateAnOscilloscopeProbePage() {
       ]}
       faq={[
         {
+          q: "Why is probe compensation necessary?",
+          a: "A 10x probe forms a voltage divider with the scope's input, and that divider only holds its ratio flat across frequency if the probe's trimmer capacitor matches the scope input's own capacitance. Every probe-and-scope pairing has slightly different capacitance, so an uncompensated probe over- or under-shoots square edges and distorts fast signals, even though it reads DC and slow signals correctly.",
+        },
+        {
           q: "How often should you compensate an oscilloscope probe?",
           a: "Check it the first time you use a 10x probe, every time you move it to a different channel or a different scope, and whenever a square wave looks wrong. If each probe stays on the same channel of the same scope, the setting holds and you rarely need to touch it. A quick look at the calibration output before an important measurement costs only a few seconds.",
         },

@@ -88,6 +88,10 @@ const review: ProductReviewContent = {
   ],
   faqs: [
     {
+      question: "What is the Fluke 115 used for?",
+      answer: "General electrical and electronics field work: checking voltage at outlets and panels (CAT III 600V), testing continuity, resistance and diodes, measuring 6A/10A current on motors and heaters, and reading capacitance and frequency. It's built for technicians who need Fluke's True RMS accuracy without the 117's electrician-specific VoltAlert and LoZ extras.",
+    },
+    {
       question: "What's the real difference between the Fluke 115 and Fluke 117?",
       answer: "According to Fluke's own comparison, the two are identical for voltage, current, resistance, capacitance, and frequency measurement. The 117 adds non-contact voltage (NCV) detection and an AutoVolt AC/DC auto-selector with a low-impedance (LoZ) mode; the 115 doesn't have either. Fluke markets the 117 specifically to electricians and the 115 as a more general field-service meter.",
     },

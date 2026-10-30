@@ -65,6 +65,11 @@ const lookFor = [
 
 const faqs = [
   {
+    question: "What is the best multimeter for a beginner?",
+    answer:
+      "The Klein Tools MM460S, which combines Smart mode (it senses what the leads are touching and picks the function for you) with Lead-Alert, a warning when the leads are in the wrong jacks — the single most common beginner mistake. It's also CAT III 600V rated, so it's safe on household outlets and panels, not just low-voltage electronics.",
+  },
+  {
     question: "What should a first multimeter actually have?",
     answer:
       "Auto-ranging first, so you only choose the quantity and the meter finds the range. Next, a CAT III 600V rating if you will ever test household outlets, a backlight, and clear markings for which jack the red lead goes in. True RMS and non-contact voltage are worthwhile extras. Temperature, capacitance and µA ranges matter later, once you know what you work on.",

@@ -71,6 +71,10 @@ export default function HowToTestACapacitorWithAMultimeterPage() {
       ]}
       faq={[
         {
+          q: "Can you test a capacitor with a voltmeter?",
+          a: "Only partly. A plain voltmeter has no capacitance range, so it can't give you a microfarad value. What it can do: charge the capacitor briefly through a resistor and watch the voltage climb toward the source voltage, then discharge it and watch the voltage drop — a cap that won't hold a charge at all, or that reads zero resistance to charge, is shorted or open. For an actual value against tolerance, you need a meter with a capacitance (F) range.",
+        },
+        {
           q: "Can a capacitor read the correct microfarads and still be bad?",
           a: "Yes. A capacitance range measures stored charge, not internal resistance. An electrolytic that has dried out can still show close to its marked value while its equivalent series resistance has climbed enough to cause ripple, hum or a power supply that will not start. If the symptom fits and the value looks fine, check ESR with a dedicated ESR meter or simply replace the part.",
         },

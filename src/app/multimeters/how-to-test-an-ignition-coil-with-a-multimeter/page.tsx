@@ -133,6 +133,10 @@ export default function HowToTestAnIgnitionCoilWithAMultimeterPage() {
       ]}
       faq={[
         {
+          q: "How do you check ignition coil resistance?",
+          a: "Unplug the coil, set the multimeter to ohms, and measure across the primary terminals, then across the secondary (or the secondary terminal to the tower on a can-style coil). Compare both readings to the service manual's range for that coil — primary is typically under a few ohms, secondary typically several thousand. On coil-on-plug units with a built-in driver, there's often no primary winding to reach this way; check supply voltage and ground at the connector instead.",
+        },
+        {
           q: "What resistance should an ignition coil have?",
           a: "It depends on the coil. As a general pattern, the primary winding reads low, often under a couple of ohms, and the secondary reads much higher, usually several thousand ohms. The service manual or coil maker gives the actual range for your part and the temperature it applies at, and that figure is the one to compare against, not a generic chart.",
         },

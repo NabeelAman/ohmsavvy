@@ -73,6 +73,10 @@ export default function HowToMeasureVoltageWithAnOscilloscopePage() {
       ]}
       faq={[
         {
+          q: "How do you measure Vpp on an oscilloscope?",
+          a: "Count the number of vertical divisions from the waveform's highest point to its lowest, then multiply by the volts-per-division setting: 6 divisions at 1 V/div is 6 V peak-to-peak (Vpp). Most digital scopes also read Vpp automatically from an auto-measurement menu, which is more precise than counting divisions by eye, especially on a noisy or fast signal.",
+        },
+        {
           q: "Can an oscilloscope measure AC voltage?",
           a: "Yes. An oscilloscope shows the AC waveform itself, so you can read its peak-to-peak and peak values straight from the grid. Most digital scopes also calculate RMS from the samples. For a clean sine you can work it out yourself: a 6 V peak-to-peak sine has a 3 V peak and an RMS of about 2.12 V.",
         },

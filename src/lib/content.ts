@@ -1077,6 +1077,20 @@ export const content: ContentEntry[] = [
   {
     category: "soldering-irons",
     type: "how-to-guide",
+    title: "Why Does a Soldering Iron Tip Turn Black?",
+    description: "Oxidation and burnt flux, whether a black tip can be saved, and how to prevent it",
+    href: "/soldering-irons/why-does-soldering-iron-tip-turn-black",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Why Won't Solder Stick to Copper Wire?",
+    description: "Tarnish, enamel, CCA and too little heat: how to check the wire and get solder to flow",
+    href: "/soldering-irons/why-wont-solder-stick-to-copper-wire",
+  },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
     title: "Why Does My Soldering Iron Keep Switching Off?",
     description: "Sleep timers, motion sleep, USB-C power resets and real faults",
     href: "/soldering-irons/why-does-my-soldering-iron-keep-switching-off",
@@ -1366,6 +1380,13 @@ export const content: ContentEntry[] = [
     title: "Why Does My Oscilloscope Show a Flat Line When a Signal Is Present?",
     description: "Channel, probe, scale, coupling, timebase and trigger settings checked",
     href: "/oscilloscopes/why-does-my-oscilloscope-show-a-flat-line",
+  },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "Why Does an Oscilloscope Show the Wrong Voltage?",
+    description: "Probe ratio, measurement type, coupling, 50 Ω input, bandwidth and clipping",
+    href: "/oscilloscopes/why-does-my-oscilloscope-show-the-wrong-voltage",
   },
   {
     category: "oscilloscopes",

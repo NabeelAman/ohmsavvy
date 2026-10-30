@@ -13,12 +13,11 @@ import { Eyebrow } from "./ui/Eyebrow";
 
 const SITE = "https://ohmsavvy.com";
 
-// Category landing pages redirect to their main roundup, so breadcrumbs link
-// straight there instead of through a redirect.
+// Breadcrumbs link to each category's hub page (<CategoryHub>).
 const CATEGORY_HUB: Record<Category, { label: string; href: string }> = {
-  multimeters: { label: "Multimeters", href: "/multimeters/best-multimeters" },
-  "soldering-irons": { label: "Soldering Irons", href: "/soldering-irons/best-soldering-irons" },
-  oscilloscopes: { label: "Oscilloscopes", href: "/oscilloscopes/best-beginner-oscilloscopes" },
+  multimeters: { label: "Multimeters", href: "/multimeters" },
+  "soldering-irons": { label: "Soldering Irons", href: "/soldering-irons" },
+  oscilloscopes: { label: "Oscilloscopes", href: "/oscilloscopes" },
 };
 
 export type TocEntry = { id: string; label: string };

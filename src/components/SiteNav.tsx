@@ -49,7 +49,7 @@ export function SiteNav() {
       key: category,
       label,
       tone,
-      href: roundup.href,
+      href: `/${category}`,
       match: `/${category}`,
       featured: {
         name: top.name,
@@ -59,6 +59,7 @@ export function SiteNav() {
         href: g.review?.find((r) => r.title.startsWith(top.name))?.href ?? roundup.href,
       },
       primary: [
+        { href: `/${category}`, label: `All ${label.toLowerCase()}`, desc: "Top picks, reviews, comparisons and guides" },
         roundup,
         ...(reviewCount
           ? [{ href: `/${category}/reviews`, label: "All reviews", desc: `${reviewCount} in-depth reviews` }]

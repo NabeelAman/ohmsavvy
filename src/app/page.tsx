@@ -16,6 +16,7 @@ import { picks as multimeterPicks } from "./multimeters/best-multimeters/page";
 import { picks as solderingIronPicks } from "./soldering-irons/best-soldering-irons/page";
 import { picks as oscilloscopePicks } from "./oscilloscopes/best-beginner-oscilloscopes/page";
 import { localeAlternates } from "@/lib/i18n";
+import lastModJson from "@/lib/sitemap-lastmod.json";
 
 // Return hreflang links to the translated homepages (they already point here); without them Google ignores the set.
 export const metadata = { alternates: { canonical: "/", languages: localeAlternates("/") } };
@@ -129,14 +130,39 @@ const CATEGORY_ORDER = CATEGORIES.map((c) => c.category);
 const retiredSlugs = CATEGORIES.flatMap((c) => c.picks.filter((p) => p.unavailable).map((p) => slugOf(p.name)));
 const isRetired = (href: string) => retiredSlugs.some((s) => href.split("/").pop()!.split("-vs-").some((part) => part.startsWith(s)));
 
-// Two reviews per category (skipping the hero top picks), one comparison per category.
+// Two reviews per category (skipping the hero top picks), two comparisons per category.
 const topPickNames = new Set(topPicks.map((p) => p.name));
 const latestReviews = CATEGORY_ORDER.flatMap((cat) =>
   ofType(cat, "review")
     .filter((e) => ![...topPickNames].some((n) => e.title.startsWith(n)) && !isRetired(e.href))
     .slice(0, 2),
 );
-const featuredComparisons = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "comparison").filter((e) => !isRetired(e.href)).slice(0, 1));
+const featuredComparisons = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "comparison").filter((e) => !isRetired(e.href)).slice(0, 2));
+
+// Most recently updated pages (git dates from sitemap-lastmod.json), so new and
+// refreshed articles get a link from the homepage while they're waiting to be crawled.
+const lastMod = lastModJson as Record<string, string>;
+const byRecent = (a: ContentEntry, b: ContentEntry) => (lastMod[b.href] ?? "").localeCompare(lastMod[a.href] ?? "");
+// Taken in turn from each category, so one busy category doesn't fill the list.
+const recentByCategory = CATEGORY_ORDER.map((cat) => content.filter((e) => e.category === cat && !isRetired(e.href)).sort(byRecent));
+const recentlyUpdated = Array.from({ length: 3 }, (_, i) => recentByCategory.map((list) => list[i]))
+  .flat()
+  .filter((e): e is ContentEntry => !!e)
+  .slice(0, 8);
+const TYPE_LABEL: Record<ContentEntry["type"], string> = {
+  review: "Review",
+  comparison: "Comparison",
+  "how-to-guide": "Guide",
+  "buying-guide": "Buying guide",
+  "use-case-guide": "Best for",
+};
+
+// "Why does my…" fault-finding pages, newest first, a few per category.
+const isTroubleshooting = (e: ContentEntry) => e.type === "how-to-guide" && /^(why|.*\b(won't|not working|keeps?)\b)/i.test(e.title);
+const troubleshooting = CATEGORY_ORDER.map((cat) => ({
+  category: cat,
+  entries: content.filter((e) => e.category === cat && isTroubleshooting(e)).sort(byRecent),
+}));
 // Two use-case guides per category as cards; the rest as compact links.
 const useCaseGuides = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guide").slice(0, 2));
 const moreUseCases = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "use-case-guide").slice(2));
@@ -149,7 +175,7 @@ const FEATURED_HOWTO = [
   "/oscilloscopes/how-to-use-an-oscilloscope",
 ];
 const featuredHowTos = FEATURED_HOWTO.map((h) => content.find((e) => e.href === h)).filter((e): e is ContentEntry => !!e);
-const otherHowTos = content.filter((e) => e.type === "how-to-guide" && !FEATURED_HOWTO.includes(e.href));
+const otherHowTos = content.filter((e) => e.type === "how-to-guide" && !FEATURED_HOWTO.includes(e.href) && !isTroubleshooting(e));
 const buyingGuides = content.filter((e) => e.type === "buying-guide");
 const TONE_BY_CATEGORY = Object.fromEntries(CATEGORIES.map((c) => [c.category, c])) as Record<Category, (typeof CATEGORIES)[number]>;
 
@@ -274,12 +300,26 @@ export default function Home() {
           <div>
             <Eyebrow>ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</Eyebrow>
             <h1 className="text-4xl sm:text-5xl leading-[1.1] max-w-2xl">
-              Find the right tool for your workbench, not the one with the biggest ad budget.
+              Multimeter, Soldering Iron and Oscilloscope Reviews You Can Trust
             </h1>
             <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg text-muted leading-7">
-              Independent reviews, comparisons and how-to guides for multimeters, soldering irons and oscilloscopes
+              Find the right tool for your workbench, not the one with the biggest ad budget. Independent reviews, comparisons
+              and how-to guides
               <span className="hidden sm:inline">, judged on the specs that actually matter so you can buy with confidence</span>.
             </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {CATEGORIES.map((c) => (
+                <Link
+                  prefetch={false}
+                  key={c.category}
+                  href={`/${c.category}`}
+                  className={`inline-flex items-center gap-2 rounded-lg border ${c.tone.border} bg-surface px-4 py-2 text-sm font-medium ${c.tone.text} hover:bg-surface-raised transition-colors`}
+                >
+                  {c.label}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              ))}
+            </div>
             <div className="mt-8">
               <HeroSearch />
             </div>
@@ -393,9 +433,11 @@ export default function Home() {
                   </Link>
                   <div className="flex flex-1 flex-col p-6">
                     <span className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</span>
-                    <Link prefetch={false} href={c.roundup.href} className="mt-2 text-xl font-semibold leading-snug hover:text-accent transition-colors">
-                      {c.roundup.title}
-                    </Link>
+                    <h3 className="mt-2 text-xl font-semibold leading-snug">
+                      <Link prefetch={false} href={`/${c.category}`} className="hover:text-accent transition-colors">
+                        {c.label}: reviews and guides
+                      </Link>
+                    </h3>
                     <p className="mt-2 text-sm text-muted leading-6">{c.blurb}</p>
                     <div className="mt-4 rounded-md bg-signal-bg px-3 py-2 text-xs">
                       <span className="text-signal font-medium">Most popular pick: </span>
@@ -407,6 +449,12 @@ export default function Home() {
                       </p>
                     )}
                     <ul className="mt-5 flex-1 space-y-2 text-sm">
+                      <li>
+                        <Link prefetch={false} href={c.roundup.href} className="flex justify-between font-medium text-foreground hover:text-accent">
+                          <span>{c.roundup.title}</span>
+                          <span className="font-mono text-xs">{c.picks.length} picks</span>
+                        </Link>
+                      </li>
                       <li>
                         <Link prefetch={false} href={`/${c.category}/reviews`} className="flex justify-between text-muted hover:text-accent">
                           <span>Reviews</span>
@@ -436,10 +484,10 @@ export default function Home() {
                     </ul>
                     <Link
                       prefetch={false}
-                      href={c.roundup.href}
+                      href={`/${c.category}`}
                       className={`mt-6 inline-flex items-center justify-between rounded-lg border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} hover:bg-surface transition-colors`}
                     >
-                      See all {c.picks.length} picks · {guides} guides
+                      Explore all {c.label.toLowerCase()}
                       <span className="transition-transform group-hover:translate-x-0.5">→</span>
                     </Link>
                   </div>
@@ -447,6 +495,32 @@ export default function Home() {
               </Reveal>
             );
           })}
+        </div>
+      </section>
+
+      {/* Recently updated */}
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <SectionHead
+            eyebrow="FRESH ON THE BENCH"
+            title="New and recently updated"
+            intro="The latest reviews, comparisons and guides, plus pages we've just re-checked against the maker's specs."
+          />
+          <ol className="grid gap-x-8 sm:grid-cols-2">
+            {recentlyUpdated.map((e) => (
+              <li key={e.href} className="border-b border-border">
+                <Link prefetch={false} href={e.href} className="group flex items-start gap-3 py-3.5">
+                  <span className={`mt-1 shrink-0 font-display text-[10px] uppercase tracking-wide ${TONE_BY_CATEGORY[e.category].tone.text}`}>
+                    {TYPE_LABEL[e.type]}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-medium leading-snug group-hover:text-accent transition-colors">{e.title}</span>
+                    <span className="mt-0.5 block text-xs text-muted">{TONE_BY_CATEGORY[e.category].label}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -521,6 +595,40 @@ export default function Home() {
                 <ContentCard entry={e} />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Troubleshooting */}
+      <section className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <SectionHead
+            eyebrow="TROUBLESHOOTING"
+            title="Fix the problem in front of you"
+            intro="Reading doesn't make sense, solder won't flow or the trace won't sit still? Each guide lists the likely causes, how to check each one and the fix."
+          />
+          <div className="grid gap-6 lg:grid-cols-3">
+            {troubleshooting.map(({ category, entries }) => {
+              const c = TONE_BY_CATEGORY[category];
+              return (
+                <div key={category} className="flex flex-col rounded-2xl border border-border bg-surface-raised p-5 shadow-sm">
+                  <h3 className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</h3>
+                  <ul className="mt-2 flex-1 divide-y divide-border">
+                    {entries.slice(0, 6).map((g) => (
+                      <li key={g.href}>
+                        <Link prefetch={false} href={g.href} className="group flex items-start justify-between gap-3 py-2.5 text-sm">
+                          <span className="group-hover:text-accent transition-colors">{g.title}</span>
+                          <span className="text-muted" aria-hidden="true">→</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link prefetch={false} href={`/${category}#guides`} className="mt-4 text-sm font-medium text-accent hover:underline">
+                    More {c.noun} fixes →
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

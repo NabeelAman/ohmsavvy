@@ -17,6 +17,10 @@ const staticPages = [
   "/contact",
   "/privacy-policy",
   "/terms-of-service",
+  // Category hub pages (<CategoryHub>).
+  "/multimeters",
+  "/soldering-irons",
+  "/oscilloscopes",
   "/multimeters/best-multimeters",
   "/soldering-irons/best-soldering-irons",
   "/oscilloscopes/best-beginner-oscilloscopes",

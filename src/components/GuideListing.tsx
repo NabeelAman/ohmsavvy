@@ -59,7 +59,7 @@ export function GuideListing({ category, intro, path }: { category: Category; in
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-        { "@type": "ListItem", position: 2, name: c.label, item: `${SITE}${c.roundup}` },
+        { "@type": "ListItem", position: 2, name: c.label, item: `${SITE}/${category}` },
         { "@type": "ListItem", position: 3, name: "Guides", item: `${SITE}${path}` },
       ],
     },
@@ -75,7 +75,7 @@ export function GuideListing({ category, intro, path }: { category: Category; in
           </li>
           <li aria-hidden="true">›</li>
           <li>
-            <Link href={c.roundup} className="hover:text-accent transition-colors">{c.label}</Link>
+            <Link href={`/${category}`} className="hover:text-accent transition-colors">{c.label}</Link>
           </li>
           <li aria-hidden="true">›</li>
           <li aria-current="page" className="text-foreground">Guides</li>

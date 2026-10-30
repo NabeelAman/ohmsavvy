@@ -6,6 +6,7 @@ const CATEGORIES = [
     label: "Multimeters",
     dot: "bg-cat-multimeters",
     links: [
+      { href: "/multimeters", label: "All multimeters" },
       { href: "/multimeters/best-multimeters", label: "Best multimeters" },
       { href: "/multimeters/reviews", label: "Reviews" },
       { href: "/multimeters/comparisons", label: "Comparisons" },
@@ -17,6 +18,7 @@ const CATEGORIES = [
     label: "Soldering Irons",
     dot: "bg-cat-soldering",
     links: [
+      { href: "/soldering-irons", label: "All soldering irons" },
       { href: "/soldering-irons/best-soldering-irons", label: "Best soldering irons" },
       { href: "/soldering-irons/reviews", label: "Reviews" },
       { href: "/soldering-irons/comparisons", label: "Comparisons" },
@@ -28,6 +30,7 @@ const CATEGORIES = [
     label: "Oscilloscopes",
     dot: "bg-cat-oscilloscopes",
     links: [
+      { href: "/oscilloscopes", label: "All oscilloscopes" },
       { href: "/oscilloscopes/best-beginner-oscilloscopes", label: "Best beginner scopes" },
       { href: "/oscilloscopes/reviews", label: "Reviews" },
       { href: "/oscilloscopes/comparisons", label: "Comparisons" },

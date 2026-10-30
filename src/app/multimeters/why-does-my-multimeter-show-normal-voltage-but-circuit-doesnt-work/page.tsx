@@ -82,6 +82,59 @@ function Row({ oy, loaded }: { oy: number; loaded: boolean }) {
   );
 }
 
+/** A 120 V branch circuit: breaker, GFCI and three daisy-chained receptacles, with a loose backstab at the second. */
+function BranchCircuitDiagram() {
+  const boxes = [
+    { x: 10, label: "Breaker", sub: "15/20 A" },
+    { x: 104, label: "GFCI", sub: "LINE → LOAD" },
+    { x: 198, label: "Outlet A", sub: "" },
+    { x: 292, label: "Outlet B", sub: "loose backstab" },
+    { x: 386, label: "Outlet C", sub: "" },
+  ];
+  return (
+    <svg
+      viewBox="0 0 470 170"
+      className="w-full h-auto"
+      role="img"
+      aria-label="A household branch circuit drawn as a chain: breaker, then a GFCI receptacle, then outlets A, B and C wired one after another. A tripped GFCI cuts power to every outlet after it. A loose backstab connection at outlet B sits in the path to outlets B and C, so they read 120 volts with nothing plugged in but lose voltage when an appliance draws current"
+    >
+      {boxes.map((b, i) => (
+        <g key={b.label}>
+          <rect
+            x={b.x}
+            y="40"
+            width="74"
+            height="44"
+            rx="6"
+            className={i === 3 ? "fill-accent/20 stroke-accent" : "fill-surface stroke-foreground"}
+            strokeWidth="1.4"
+          />
+          <text x={b.x + 37} y="60" fontSize="11" fontWeight="600" textAnchor="middle" className="fill-foreground">{b.label}</text>
+          {b.sub && (
+            <text x={b.x + 37} y="75" fontSize="8.5" textAnchor="middle" className={i === 3 ? "fill-accent" : "fill-muted"}>{b.sub}</text>
+          )}
+          {i < boxes.length - 1 && (
+            <line x1={b.x + 74} y1="62" x2={b.x + 94} y2="62" className="stroke-foreground" strokeWidth="2" />
+          )}
+        </g>
+      ))}
+      <circle cx="292" cy="62" r="6" className="fill-accent" />
+      {/* GFCI protection bracket */}
+      <path d="M141 30 V22 H460 V30" fill="none" className="stroke-muted" strokeWidth="1.2" strokeDasharray="4 3" />
+      <text x="300" y="16" fontSize="9.5" textAnchor="middle" className="fill-muted">
+        Tripped GFCI: every outlet after it goes dead
+      </text>
+      {/* Loose joint effect bracket */}
+      <path d="M292 94 V102 H460 V94" fill="none" className="stroke-accent" strokeWidth="1.4" />
+      <text x="376" y="118" fontSize="9.5" textAnchor="middle" className="fill-accent">B and C: 120 V with nothing plugged in,</text>
+      <text x="376" y="131" fontSize="9.5" textAnchor="middle" className="fill-accent">sag or die under an appliance&apos;s load</text>
+      <text x="10" y="160" fontSize="9.5" className="fill-muted">
+        A loose hot or neutral at any device breaks everything after it.
+      </text>
+    </svg>
+  );
+}
+
 function LoadedVsUnloadedDiagram() {
   return (
     <svg
@@ -133,6 +186,7 @@ export default function NormalVoltageButCircuitDoesntWorkPage() {
         { id: "causes", label: "Causes at a glance" },
         { id: "worked-example", label: "Worked example: one corroded joint" },
         { id: "device-wont-work", label: "Shows voltage, device won't work" },
+        { id: "appliance-wont-work", label: "Shows voltage, appliance won't work" },
         { id: "measure-under-load", label: "1. Measure under load" },
         { id: "at-the-load", label: "2. Measure at the load's terminals" },
         { id: "positive-side", label: "3. Split the drop: positive side" },
@@ -175,6 +229,18 @@ export default function NormalVoltageButCircuitDoesntWorkPage() {
         {
           q: "Can a power supply show the right voltage and still be bad?",
           a: "Yes. A supply can hold its rated voltage with nothing connected and then sag, shut down or fold back when the load draws current, especially if it's undersized, current-limited or has aging filter capacitors. It can also carry ripple that a DC reading averages away. Test it under a realistic load and check the AC voltage on the DC output, or look at it with an oscilloscope.",
+        },
+        {
+          q: "Why does my appliance work in one outlet but not another?",
+          a: "Then the appliance is fine and the dead outlet's circuit is the problem. Look for a tripped GFCI elsewhere that protects it, a wall switch that controls it, or a loose connection at that outlet or one upstream. A meter on the dead outlet may still show tens of volts of coupled voltage, which collapses on LoZ. Reset any GFCIs first, then call an electrician.",
+        },
+        {
+          q: "Can a blown thermal fuse make an appliance look dead with power at the outlet?",
+          a: "Yes. Dryers, coffee makers, space heaters and many small appliances have a one-shot thermal fuse that opens if the unit overheats, and the appliance then does nothing even though the outlet reads normal voltage. With the appliance unplugged, a blown thermal fuse reads OL on continuity. Replace it with the exact rating, and find out why it overheated, such as a blocked vent.",
+        },
+        {
+          q: "Is it safe to keep using an outlet that reads 120 V but won't run an appliance?",
+          a: "No. An outlet that shows voltage but can't deliver current usually has a loose, high-resistance connection, and that connection heats up whenever something does draw current through it. That is a common cause of scorched receptacles and electrical fires. Stop using it, switch off the breaker if the cover plate is warm or discolored, and have a licensed electrician repair it.",
         },
       ]}
       next={[
@@ -401,6 +467,178 @@ export default function NormalVoltageButCircuitDoesntWorkPage() {
           </Link>
           .
         </p>
+      </section>
+
+      <section>
+        <h2 id="appliance-wont-work" className="text-xl font-semibold mb-3">
+          Multimeter shows voltage but the appliance won&apos;t work
+        </h2>
+        <p className="text-muted leading-7 mb-4">
+          If your multimeter shows about 120 V at the outlet but the appliance won&apos;t work, either the outlet
+          has voltage without the ability to carry current, or the appliance has an open circuit inside it. The
+          first group covers a loose backstab or splice, an open neutral, a tripped GFCI further up the circuit
+          and coupled &quot;ghost&quot; voltage on a dead wire; the second covers the cord, the power switch, an
+          internal fuse or a thermal fuse. One swap test tells you which group you are in, and it needs no tools:
+          plug a lamp or phone charger you know works into the same outlet, and plug the appliance into an outlet
+          on a different circuit.
+        </p>
+
+        <Callout title="Mains wiring: when to stop and call a licensed electrician">
+          <ul className="space-y-2 list-disc pl-5">
+            <li>
+              Everything in this section can be done from the front of the outlet with meter probes, or on an
+              unplugged appliance. Don&apos;t remove receptacles, open junction boxes or work in the panel. In most
+              places that work belongs to a licensed electrician, and a loose connection you disturb live can arc.
+            </li>
+            <li>
+              Call an electrician if the voltage at an outlet sags when something is plugged in, if neutral to
+              ground reads more than a few volts under load, if lights dim or get brighter when an appliance starts,
+              or if a cover plate is warm, discolored or smells of burning. Switch that breaker off until it is
+              repaired. Bright and dim lights on different circuits can mean a lost shared or service neutral, which
+              can damage equipment; call your utility as well as an electrician.
+            </li>
+            <li>
+              If you see smoke, flame or arcing, leave and call 911. Never open a microwave oven: its high-voltage
+              capacitor can hold a lethal charge long after it is unplugged.
+            </li>
+          </ul>
+        </Callout>
+
+        <Figure
+          caption={
+            <>
+              A typical 120 V branch circuit feeds several outlets in a chain. A fault at one device, or a tripped
+              GFCI, affects every outlet after it, which is why the dead outlet is often not the faulty one.
+            </>
+          }
+        >
+          <BranchCircuitDiagram />
+        </Figure>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Loose backstab or splice: voltage without current</h3>
+        <p className="text-muted leading-7 mb-4">
+          Many receptacles are wired through push-in &quot;backstab&quot; holes, and each outlet passes power on to
+          the next. When one of those connections loosens or oxidizes, it still passes the microamps your meter
+          draws, so every outlet after it reads a healthy 120 V with nothing plugged in. Plug in a 1,500 W space
+          heater, which has a hot resistance of about 9.6 Ω (120² ÷ 1,500) and draws 12.5 A, and the joint has to
+          carry real current. The chart works the arithmetic for a few joint resistances: at 0.5 Ω the heater
+          gets about 114 V and the joint turns roughly 71 W into heat in a space smaller than a fingernail. Higher
+          resistances leave the appliance starved or dead, and a joint dissipating that much power doesn&apos;t
+          last; it chars and eventually fails open, which is when the whole chain of outlets dies.
+        </p>
+        <BarChart
+          items={[
+            { label: "Nothing plugged in", value: 120, display: "120 V" },
+            { label: "Heater, 0 Ω joint", value: 120, display: "120 V" },
+            { label: "Heater, 0.1 Ω joint", value: 118.8, display: "118.8 V" },
+            { label: "Heater, 0.5 Ω joint", value: 114.1, display: "114.1 V", highlight: true },
+            { label: "Heater, 2 Ω joint", value: 99.3, display: "99.3 V" },
+            { label: "Heater, 10 Ω joint", value: 58.8, display: "58.8 V" },
+          ]}
+        />
+        <p className="text-muted leading-7 mt-2 mb-4 text-sm">
+          Calculated values for a 9.6 Ω heater on a 120 V supply: current = 120 ÷ (9.6 + joint), heater voltage
+          = current × 9.6, joint heat = current² × joint resistance. Joint heat for the 0.1, 0.5, 2 and 10 Ω cases is about 15, 71, 214 and 375 W. Wire and supply resistance are ignored, and
+          a real heater&apos;s resistance shifts a little as it warms. Illustrative, not measured.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Open neutral: hot reads fine, nothing runs</h3>
+        <p className="text-muted leading-7 mb-4">
+          The neutral carries the appliance&apos;s current back to the panel, so a break there stops the appliance
+          just as surely as a broken hot. It also fools a meter. Hot to ground reads a normal 120 V. Hot to
+          neutral can read close to 120 V as well, because the broken neutral wire is pulled up toward the hot
+          through anything else plugged into the circuit, and a 10 MΩ meter needs almost no current to see that.
+          Plug in a lamp and the reading collapses. If neutral to ground also shows a large voltage, the neutral
+          is open upstream. On a multiwire branch circuit, where two hots share one neutral, losing that neutral
+          puts the loads on the two halves in series across 240 V, so one side can run well above 120 V and the
+          other far below it. That is an electrician job, and it can destroy electronics, so unplug sensitive
+          equipment on the affected outlets.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Ghost voltage, switched outlets and tripped GFCIs</h3>
+        <p className="text-muted leading-7 mb-4">
+          A dead conductor that runs alongside live ones in the same cable picks up voltage by capacitive
+          coupling, and a high-impedance meter can show tens of volts on it, sometimes enough to look like a weak
+          supply. That &quot;ghost&quot; voltage can&apos;t power anything and drops to near zero on a low-impedance
+          setting, such as the LoZ mode on the{" "}
+          <Link href="/multimeters/fluke-117-review" className={link}>
+            Fluke 117
+          </Link>
+          , or with a lamp plugged in. The full explanation is in{" "}
+          <Link
+            href="/multimeters/why-does-my-multimeter-show-voltage-when-measuring-a-disconnected-circuit"
+            className={link}
+          >
+            why a multimeter shows voltage on a disconnected circuit
+          </Link>
+          .
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          Two common reasons a wire is dead in the first place are easy to miss. One half of a receptacle is
+          often controlled by a wall switch, so the top socket can be live while the bottom one, the one the
+          lamp or appliance is in, is switched off. And a GFCI protects every outlet wired to its LOAD terminals,
+          which may be in another room: a tripped GFCI in a bathroom, garage, kitchen or outdoors can kill an
+          ordinary-looking outlet somewhere else. Press Reset on every GFCI you can find before testing further.
+          If one won&apos;t reset, see{" "}
+          <Link href="/multimeters/how-to-test-a-gfci-outlet-that-wont-reset" className={link}>
+            testing a GFCI that won&apos;t reset
+          </Link>
+          ; if it keeps tripping when the appliance starts, see{" "}
+          <Link href="/multimeters/why-does-my-gfci-outlet-keep-tripping" className={link}>
+            why a GFCI outlet keeps tripping
+          </Link>
+          . When whole rooms are out with no tripped breaker, start with{" "}
+          <Link href="/multimeters/why-does-half-my-house-have-no-power-but-the-breakers-look-fine" className={link}>
+            why half a house can lose power with the breakers looking fine
+          </Link>
+          .
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Inside the appliance: cord, switch and fuses</h3>
+        <p className="text-muted leading-7 mb-4">
+          If the outlet passes the lamp test and the appliance still does nothing anywhere, the fault is in the
+          appliance. Unplug it, turn its own switch on, and measure resistance across the two flat prongs of the
+          plug. A simple resistive appliance should read close to its working resistance, which you can estimate
+          from the rating plate: R = V² ÷ P, so a 1,500 W heater is about 9.6 Ω and a 900 W toaster about 16 Ω
+          (120² ÷ 900). OL means the path is open somewhere: a conductor broken inside the cord near the plug or
+          strain relief, the power switch, an internal fuse, a thermal fuse or thermal cutout, a door or lid
+          interlock, or the element itself. Appliances with motors or electronic controls won&apos;t give a
+          simple reading this way, but OL across the plug with the switch on still points at the cord, switch or
+          a fuse.
+        </p>
+        <p className="text-muted leading-7 mb-4">
+          From there, test the pieces one at a time with the appliance unplugged:{" "}
+          <Link href="/multimeters/how-to-test-a-thermal-fuse-with-a-multimeter" className={link}>
+            the thermal fuse
+          </Link>
+          , any{" "}
+          <Link href="/multimeters/how-to-test-a-fuse-with-a-multimeter" className={link}>
+            cartridge fuse
+          </Link>
+          ,{" "}
+          <Link href="/multimeters/how-to-measure-resistance-of-a-heating-element-with-a-multimeter" className={link}>
+            the heating element
+          </Link>{" "}
+          and the cord, flexing it while watching continuity as described in{" "}
+          <Link href="/multimeters/how-to-find-a-broken-wire-with-a-multimeter" className={link}>
+            how to find a broken wire
+          </Link>
+          . A blown thermal fuse is a symptom, so look for the blocked lint duct, clogged filter or failed fan
+          that made the appliance overheat before replacing it with an identical rating. Sealed, mains-powered
+          electronics and anything with a large capacitor should go to a qualified repair technician.
+        </p>
+
+        <DataTable
+          head={["Symptom", "Likely cause", "How to check", "Fix or who to call"]}
+          rows={[
+            ["Outlet reads 120 V, lamp works, appliance dead everywhere", "Fault inside the appliance", "Unplugged, switch on: resistance across the plug prongs", "Test cord, switch, fuses and element; repair tech for sealed units"],
+            ["Outlet reads 120 V unplugged, lamp dim or dead", "Loose backstab or splice at this or an upstream outlet", "Voltage with the lamp plugged in; check other outlets on the circuit", "Breaker off; licensed electrician"],
+            ["Hot to ground 120 V, hot to neutral collapses under load", "Open neutral", "Measure all three pairs with a lamp plugged in", "Licensed electrician"],
+            ["Tens of volts that vanish on LoZ", "Ghost voltage on a dead wire", "LoZ setting, or a lamp plugged in", "Find why the circuit is off: switch, GFCI, breaker"],
+            ["Several outlets dead, no breaker tripped", "Tripped GFCI elsewhere, or a failed connection upstream", "Reset every GFCI; note which outlets are dead", "Reset; electrician if they stay dead"],
+            ["Lights brighten or dim when the appliance starts", "Lost shared or service neutral", "Compare voltages on different circuits under load", "Electrician and utility, urgently"],
+          ]}
+        />
       </section>
 
       <section>

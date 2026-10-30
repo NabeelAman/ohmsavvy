@@ -47,10 +47,11 @@ export type ProductComparisonContent = {
 };
 
 const SITE = "https://ohmsavvy.com";
+// Breadcrumbs link to each category's hub page (<CategoryHub>).
 const CATEGORY_HUB: Record<Category, string> = {
-  multimeters: "/multimeters/best-multimeters",
-  "soldering-irons": "/soldering-irons/best-soldering-irons",
-  oscilloscopes: "/oscilloscopes/best-beginner-oscilloscopes",
+  multimeters: "/multimeters",
+  "soldering-irons": "/soldering-irons",
+  oscilloscopes: "/oscilloscopes",
 };
 
 function hash(s: string) {

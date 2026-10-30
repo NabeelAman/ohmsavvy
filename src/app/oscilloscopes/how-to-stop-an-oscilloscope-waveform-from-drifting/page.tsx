@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BarChart,
   Callout,
   DataTable,
   Figure,
@@ -72,6 +73,7 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
       title="How to Stop an Oscilloscope Waveform from Drifting"
       description={description}
       published="2026-10-22"
+      updated="2026-10-29"
       path="/oscilloscopes/how-to-stop-an-oscilloscope-waveform-from-drifting"
       category="oscilloscopes"
       intro={
@@ -101,6 +103,7 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
       }}
       toc={[
         { id: "drift-is-a-trigger-problem", label: "Why sideways drift is a trigger problem" },
+        { id: "why-it-keeps-moving", label: "Why the waveform keeps moving: diagnose by symptom" },
         { id: "trigger-source", label: "Trigger source on the wrong channel" },
         { id: "trigger-level", label: "Level outside the signal" },
         { id: "auto-vs-normal", label: "Auto vs Normal mode" },
@@ -134,6 +137,14 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
           q: "Can I just press Auto or AutoSet to stop the drift?",
           a: "Often, yes. AutoSet picks a source, level and timebase for the strongest signal it finds, which locks simple waveforms. On complex or multi-channel signals it can pick the wrong channel or edge, and it may reset other settings, so learn the manual fixes too.",
         },
+        {
+          q: "Why is my oscilloscope waveform unstable?",
+          a: "An unstable waveform almost always means captures are not aligned. If it slides sideways, fix the trigger source, level and mode. If it is locked but the edges shimmer, noise is moving the trigger point, so try noise reject or a steeper edge. If it bounces up and down, check coupling, offset and the ground clip instead, because the trigger cannot cause vertical movement.",
+        },
+        {
+          q: "Why does my oscilloscope waveform jump up and down?",
+          a: "Vertical jumping comes from the input side, not the trigger. AC coupling moves the trace whenever the signal's average changes, such as a PWM signal changing duty. A loose ground clip, a ground loop between earthed instruments, or AutoSet changing the offset can also shift it. Switch to DC coupling, reseat the ground and watch the channel's ground marker to see what moves.",
+        },
       ]}
       next={[
         {
@@ -145,6 +156,16 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
           href: "/oscilloscopes/why-does-an-oscilloscope-waveform-shift-vertically",
           title: "Why Does an Oscilloscope Waveform Shift Vertically?",
           desc: "Up-and-down movement: position, coupling, probe ratio and ground, not the trigger.",
+        },
+        {
+          href: "/oscilloscopes/why-is-my-oscilloscope-trigger-not-working",
+          title: "Why Is My Oscilloscope Trigger Not Working?",
+          desc: "When the scope never shows Trig'd, work through the trigger chain gate by gate.",
+        },
+        {
+          href: "/oscilloscopes/why-is-my-oscilloscope-frequency-reading-unstable",
+          title: "Why Is My Oscilloscope Frequency Reading Unstable?",
+          desc: "A steady trace but a wandering Freq readout has its own causes.",
         },
       ]}
     >
@@ -198,6 +219,103 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
             why a waveform shifts vertically
           </Link>
           . For trigger basics from scratch, start with{" "}
+          <Link href="/oscilloscopes/how-to-trigger-an-oscilloscope" className={link}>
+            how to trigger an oscilloscope
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section>
+        <h2 id="why-it-keeps-moving" className="text-xl font-semibold mb-3">
+          Why does my oscilloscope waveform keep moving? Diagnose it by symptom
+        </h2>
+        <p className="text-muted leading-7 mb-4">
+          An oscilloscope waveform keeps moving or looks unstable because successive captures don&apos;t line up,
+          and the direction of the movement tells you why. Rolling or sliding left and right means the trigger
+          isn&apos;t locking; a trace that holds its position but has fuzzy, jittering edges means noise is moving
+          the exact moment the trigger fires; a trace that jumps up and down is a vertical problem with
+          coupling, offset or ground, not a trigger fault at all. Watch for ten seconds and decide which of these
+          four pictures you have before touching a knob.
+        </p>
+        <ul className="space-y-3 list-disc pl-5 text-muted leading-7 mb-4">
+          <li>
+            <strong className="text-foreground">Rolling or sliding sideways.</strong> Each sweep starts at a
+            random point in the cycle. The trigger source, level or mode is wrong, and steps 1 to 3 below fix it.
+            If the screen shows no trigger status at all, or nothing works in Normal mode, go to{" "}
+            <Link href="/oscilloscopes/why-is-my-oscilloscope-trigger-not-working" className={link}>
+              why an oscilloscope trigger is not working
+            </Link>
+            .
+          </li>
+          <li>
+            <strong className="text-foreground">Locked, but the edges shimmer.</strong> The trigger is working but
+            fires at slightly different instants because noise rides on the edge it watches. Steps 5 to 7 apply,
+            and the arithmetic below shows why slow edges suffer most.
+          </li>
+          <li>
+            <strong className="text-foreground">Jumping or bouncing vertically.</strong> The trigger plays no part
+            in this. AC coupling on a signal whose duty cycle changes moves the baseline: a 0 to 5 V signal
+            whose duty swings between 20% and 60% has an average that moves between 1 V and 3 V, so an
+            AC-coupled trace leaps by 2 V each time. A loose ground clip, a ground loop or a channel offset being
+            changed by AutoSet do the same. Use DC coupling and see{" "}
+            <Link href="/oscilloscopes/why-does-an-oscilloscope-waveform-shift-vertically" className={link}>
+              why a waveform shifts vertically
+            </Link>
+            .
+          </li>
+          <li>
+            <strong className="text-foreground">Several overlapping copies, or a free-running blur.</strong> In
+            Auto mode the scope gives up waiting after a short timeout and captures anyway. That timeout is
+            commonly somewhere from tens to a few hundred milliseconds, depending on the model. A 2 Hz signal
+            has a 500 ms period (1 ÷ 2), so with a timeout shorter than that the scope keeps forcing untriggered
+            sweeps between real ones. Switch to Normal mode for slow signals.
+          </li>
+        </ul>
+        <DataTable
+          head={["What the trace does", "Likely cause", "How to check", "Fix"]}
+          rows={[
+            ["Rolls left or right continuously", "Trigger source on the wrong channel, or level outside the signal", "Read the source and level in the trigger readout", "Set the source to your channel; level to mid-height"],
+            ["Freezes or blanks when you select Normal", "No valid trigger event at all", "Trigger status shows Wait or Ready", "Fix source, level and type; see trigger not working"],
+            ["Locked, but edges blur sideways", "Noise on a slow edge at the trigger level", "Zoom the timebase in on the trigger point", "Noise reject, HF reject, or trigger on a faster edge"],
+            ["Jumps between two or three positions", "Several level crossings per repeat", "Look for bursts or double edges", "Increase holdoff; use a single slope"],
+            ["Bounces up and down", "AC coupling with changing duty, offset changes, or ground fault", "Switch to DC coupling and watch the ground marker", "DC coupling; reseat the ground clip"],
+            ["Overlapping copies on a slow signal", "Auto mode timing out between triggers", "Compare the signal period with the update rate", "Normal mode"],
+            ["Stable picture, frequency readout wanders", "Signal frequency really changes", "Check the frequency measurement statistics", "Nothing to fix; measure the variation"],
+          ]}
+        />
+        <p className="text-muted leading-7 mt-4 mb-4">
+          Edge jitter is easy to put numbers on. The trigger fires when the signal crosses the level, so noise
+          shifts that crossing in time by roughly the noise voltage divided by the edge&apos;s slope. Take a 0 to
+          5 V edge with 200 mV of noise on it. If the edge takes 10 µs, it climbs at 0.5 V per µs, and 0.2 V of
+          noise moves the trigger point by about 0.4 µs (0.2 ÷ 0.5). Viewed at 2 µs/div, where the edge spans
+          five divisions, that is a fifth of a division of shimmer. The same noise on a 100 ns edge moves the
+          trigger by only 4 ns. The chart applies that ratio, 4% of the edge time here, to edges of different
+          speeds.
+        </p>
+        <BarChart
+          log
+          items={[
+            { label: "100 ns edge", value: 4, display: "4 ns" },
+            { label: "1 µs edge", value: 40, display: "40 ns" },
+            { label: "10 µs edge", value: 400, display: "400 ns", highlight: true },
+            { label: "100 µs edge", value: 4000, display: "4 µs" },
+            { label: "1 ms edge", value: 40000, display: "40 µs" },
+          ]}
+        />
+        <p className="text-muted leading-7 mt-2 mb-4 text-sm">
+          Calculated trigger-point jitter for 200 mV of noise on a 0 to 5 V edge: jitter ≈ noise ÷ slope =
+          edge time × 0.2 ÷ 5. Illustrative values; real noise is random, so the spread varies sweep to sweep.
+        </p>
+        <p className="text-muted leading-7">
+          The practical lessons follow from the arithmetic: trigger on the fastest, cleanest edge available,
+          put the level where the slope is steepest, and let noise reject or HF reject clean up the trigger path.
+          If the trace is steady but the frequency number keeps changing, the cause is usually in how the
+          measurement counts cycles; see{" "}
+          <Link href="/oscilloscopes/why-is-my-oscilloscope-frequency-reading-unstable" className={link}>
+            why an oscilloscope frequency reading is unstable
+          </Link>
+          . For a full walk-through of every trigger control, see{" "}
           <Link href="/oscilloscopes/how-to-trigger-an-oscilloscope" className={link}>
             how to trigger an oscilloscope
           </Link>
@@ -274,7 +392,6 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
               { label: "Noise reject", desc: "Adds hysteresis or lowers trigger sensitivity, so small wiggles near the level are ignored." },
               { label: "HF reject", desc: "Low-pass filters the trigger signal. Good for low-frequency signals with fast noise on them." },
               { label: "LF reject", desc: "High-pass filters the trigger signal, removing slow hum or baseline wander that moves the crossing." },
-              
             ]}
           />
         </div>
@@ -343,8 +460,6 @@ export default function HowToStopAnOscilloscopeWaveformFromDriftingPage() {
             head={["What you see", "Likely cause", "Fix"]}
             rows={[
               ["Trace slides steadily sideways", "Source on another channel, or level outside the signal", "Set source and center the level"],
-              
-              
               ["Jumps between a few positions", "Complex signal, several crossings per repeat", "Increase holdoff"],
               ["Fine sideways jitter", "Noise near the trigger level", "Noise reject or HF reject"],
               ["Hum or ripple won't hold still", "Signal locked to mains", "Line trigger source"],

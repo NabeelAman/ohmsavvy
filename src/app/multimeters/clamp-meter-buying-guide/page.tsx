@@ -15,10 +15,39 @@ export const metadata = buildMetadata({
 
 const pick = picks.find((p) => p.name === "Milwaukee 2235-20")!;
 
+const faqs = [
+  {
+    q: "Does a clamp meter need to touch bare metal to work?",
+    a: "No. A clamp meter senses the magnetic field around a conductor, so it reads current straight through the insulation — you never strip or touch bare metal. That's the main safety advantage over a standard multimeter's in-series current check, which requires opening the circuit.",
+  },
+  {
+    q: "Can I clamp around more than one wire at once?",
+    a: "Not if you want a reading. Clamping around both the hot and neutral of the same circuit together cancels the magnetic fields, since current flows in opposite directions on each, and the meter reads close to zero. Clamp around a single conductor only, unless the meter is specifically designed for a multi-conductor technique.",
+  },
+  {
+    q: "Does jaw size affect accuracy, not just what fits?",
+    a: "Yes, a little. A conductor clamped off-center in an oversized jaw can read slightly differently than one centered in a snug jaw, because the magnetic field isn't perfectly uniform across the opening. It's a secondary effect next to choosing the right current range and RMS type, but centering the conductor is good practice on any clamp meter.",
+  },
+  {
+    q: "Is a clamp meter as accurate as a multimeter's in-series current reading?",
+    a: "Usually close, but not identical — a direct in-series measurement has fewer variables than a magnetic-field-based reading, which can be affected by conductor position in the jaw and nearby current-carrying wires. For everyday electrical and HVAC work the difference rarely matters; for a precise bench measurement, an in-series multimeter reading is the more exact method.",
+  },
+];
+
 export default function ClampMeterBuyingGuidePage() {
   return (
     <>
     <article className="mx-auto max-w-3xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Clamp Meter Buying Guide</h1>
       <p className="mt-5 text-lg text-muted leading-7">
@@ -171,6 +200,18 @@ export default function ClampMeterBuyingGuidePage() {
             isn&apos;t the right tool, and we haven&apos;t yet verified a dedicated AC/DC clamp
             meter to recommend.
           </p>
+        </section>
+
+        <section className="scroll-mt-28" id="faq">
+          <h2 className="text-xl font-semibold mb-4">Frequently asked questions</h2>
+          <div className="divide-y divide-border rounded-lg border border-border">
+            {faqs.map((f) => (
+              <div key={f.q} className="p-5">
+                <h3 className="font-medium">{f.q}</h3>
+                <p className="mt-2 text-muted leading-7">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>

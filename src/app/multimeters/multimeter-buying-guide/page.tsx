@@ -17,10 +17,47 @@ const featured = ["Fluke 117", "KAIWEETS KM200s", "Fluke 87V"].map(
   (name) => picks.find((p) => p.name === name)!
 );
 
+const faqs = [
+  {
+    q: "What is a good multimeter?",
+    a: "One matched to your actual work: a CAT III 600V rating if you'll ever test household outlets or panels, True RMS if you work on anything beyond a clean wall outlet, and a resolution/accuracy pair that's actually published, not just a high count number. Beyond that, auto-ranging and non-contact voltage detection make everyday use faster and safer. See our full roundup below for specific picks.",
+  },
+  {
+    q: "What CAT rating do I need for home wiring?",
+    a: "CAT III 600V covers fixed building wiring — distribution panels, circuit breakers, and hardwired equipment — which is what most home electrical work involves. CAT II 600V is enough for plug-in appliances and receptacle outlets only. Buying a higher CAT rating than you need isn't wasted money; buying a lower one than the job requires is a genuine safety risk.",
+  },
+  {
+    q: "Do I need True RMS on a multimeter?",
+    a: "Yes, if you work on anything beyond a clean wall outlet. Variable-frequency drives, dimmer switches, UPS output, and most modern electronics produce distorted, non-sinusoidal AC, and a non-True-RMS meter can read meaningfully wrong on those loads. For basic DC checks and simple AC outlets, a non-True-RMS meter is accurate enough.",
+  },
+  {
+    q: "What does multimeter resolution (count) actually tell you?",
+    a: "The count is how finely the display can distinguish between two close values, not how accurate the meter is — that's a separate published spec, usually ±% of reading plus a number of digits. A 6,000-count meter shows a USB rail to the millivolt where a 4,000-count meter stops at 10 mV, but on a car battery or outlet voltage the two often read identically. Check both numbers before buying on resolution alone.",
+  },
+  {
+    q: "Should I get a 10A or 20A multimeter?",
+    a: "Most standard multimeters, including Fluke's 110 Series, top out at a 10A continuous current range with a 20A overload allowed for only 30 seconds — there isn't usually a distinct \"20A meter\" category. If you regularly measure loads near or above 10A (a space heater, a large motor), breaking the circuit to measure in series isn't practical anyway; a clamp meter is the better tool, since it reads higher currents without opening the circuit at all.",
+  },
+  {
+    q: "Does a clamp meter replace a standard multimeter?",
+    a: "No — a clamp meter measures current without breaking the circuit open, which is faster and safer for everyday checks, but it's less practical for resistance, continuity, diode test, and low-current work. Most electricians carry both; see our clamp meter buying guide for when a clamp function is worth prioritizing.",
+  },
+];
+
 export default function MultimeterBuyingGuidePage() {
   return (
     <>
     <article className="mx-auto max-w-3xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Multimeter Buying Guide</h1>
       <p className="mt-5 text-lg text-muted leading-7">
@@ -242,8 +279,11 @@ export default function MultimeterBuyingGuidePage() {
             <li>
               <strong className="text-foreground">Clamp function</strong> — measures current by
               clamping around a conductor instead of breaking the circuit open. See our{" "}
-              dedicated comparison on the main article&apos;s FAQ section for whether a clamp
-              meter should replace or supplement a standard multimeter for your work.
+              <Link href="/multimeters/clamp-meter-buying-guide" className="text-accent hover:underline">
+                clamp meter buying guide
+              </Link>{" "}
+              for whether a clamp meter should replace or supplement a standard multimeter for
+              your work.
             </li>
           </ul>
         </section>
@@ -356,6 +396,18 @@ export default function MultimeterBuyingGuidePage() {
               over-ranged or miswired.
             </li>
           </ul>
+        </section>
+
+        <section className="scroll-mt-28" id="faq">
+          <h2 className="text-xl font-semibold mb-4">Frequently asked questions</h2>
+          <div className="divide-y divide-border rounded-lg border border-border">
+            {faqs.map((f) => (
+              <div key={f.q} className="p-5">
+                <h3 className="font-medium">{f.q}</h3>
+                <p className="mt-2 text-muted leading-7">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>

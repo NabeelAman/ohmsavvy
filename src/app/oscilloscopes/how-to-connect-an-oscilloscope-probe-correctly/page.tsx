@@ -104,6 +104,10 @@ export default function HowToConnectAnOscilloscopeProbeCorrectlyPage() {
       ]}
       faq={[
         {
+          q: "How do you ground an oscilloscope probe?",
+          a: "Clip the probe's ground lead directly to the circuit's ground or 0 V reference, as close to the test point as the lead reaches — a GND pin or the negative supply rail on most circuits. Keep the lead short, since a long ground return picks up noise and causes ringing on fast edges. Never clip it to a point that sits at a voltage relative to earth; the scope's chassis ground is typically tied to earth through the mains plug, and doing so creates a short.",
+        },
+        {
           q: "Where should I connect the oscilloscope ground clip?",
           a: "To the ground or 0 V reference of the circuit you are measuring, as close as practical to the test point. On a microcontroller board that is a GND pin or the negative supply rail. Never clip it to a point that sits at a voltage relative to earth, because the scope's ground is earthed and you will create a short.",
         },

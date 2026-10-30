@@ -17,10 +17,43 @@ const featured = ["Hakko FX-888DX", "Pinecil V2", "Weller WE1010NA"].map(
   (name) => picks.find((p) => p.name === name)!
 );
 
+const faqs = [
+  {
+    q: "What wattage soldering iron do I need?",
+    a: "15-40W is usually plenty for small PCB work. For wire harnesses, chassis grounds, or anything with significant thermal mass, 60W or more keeps the tip from sagging mid-joint. Wattage describes how fast the iron can replace heat lost to the joint, not the temperature itself — a higher-wattage iron isn't hotter, it just recovers faster.",
+  },
+  {
+    q: "Do I need a temperature-controlled soldering iron?",
+    a: "For anything beyond occasional light use, yes. A fixed-temperature iron runs at whatever its internal element settles at, with no way to adjust for different solder types or heat-sensitive components. A temperature-controlled iron holds a set temperature regardless of how much heat the joint pulls away, which is the difference between guessing and actually knowing what's reaching the joint.",
+  },
+  {
+    q: "What temperature should I use for lead-free solder?",
+    a: "350-400°C (650-750°F) for most lead-free work, versus 315-370°C (600-700°F) for leaded 60/40 or 63/37 solder. Lead-free alloys melt at a higher point (SAC305 around 218°C versus 183°C for 63/37) and need more headroom above that to flow properly before the tip cools from touching a cold joint.",
+  },
+  {
+    q: "How long should a soldering iron take to heat up?",
+    a: "Modern ceramic-heating-element irons commonly reach working temperature in 10-15 seconds; some irons run 30-60+ seconds. A slow-heating iron discourages quick single-joint fixes — you either wait or work with an under-temperature tip, which causes the cold-joint problems a hotter tip would avoid.",
+  },
+  {
+    q: "Do I need an ESD-safe soldering iron?",
+    a: "Yes, if you work on static-sensitive components. A static discharge through an ungrounded iron tip can silently damage a component with no visible symptom until later. An ESD-safe tip and grounding strap matter as much as the iron's temperature spec for this kind of work.",
+  },
+];
+
 export default function SolderingIronBuyingGuidePage() {
   return (
     <>
     <article className="mx-auto max-w-3xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <Eyebrow>BUYING GUIDE</Eyebrow>
       <h1 className="text-3xl sm:text-4xl leading-tight">Soldering Iron Buying Guide</h1>
       <p className="mt-5 text-lg text-muted leading-7">
@@ -353,6 +386,18 @@ export default function SolderingIronBuyingGuidePage() {
             user, prioritizing this feature is worth more than chasing a slightly faster heat-up
             time.
           </p>
+        </section>
+
+        <section className="scroll-mt-28" id="faq">
+          <h2 className="text-xl font-semibold mb-4">Frequently asked questions</h2>
+          <div className="divide-y divide-border rounded-lg border border-border">
+            {faqs.map((f) => (
+              <div key={f.q} className="p-5">
+                <h3 className="font-medium">{f.q}</h3>
+                <p className="mt-2 text-muted leading-7">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>

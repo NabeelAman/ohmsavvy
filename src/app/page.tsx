@@ -301,11 +301,19 @@ export default function Home() {
         <HeroTrace />
         <div className="relative mx-auto max-w-6xl px-6 pt-8 sm:pt-20 pb-12 grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-center">
           <div>
-            <Eyebrow>ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</Eyebrow>
-            <h1 className="text-4xl sm:text-5xl leading-[1.1] max-w-2xl">
-              Multimeter, Soldering Iron and Oscilloscope Reviews You Can Trust
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 py-1 pl-2.5 pr-3.5 backdrop-blur">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-signal" />
+              </span>
+              <span className="font-display text-xs tracking-wide text-foreground">ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</span>
+            </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-[4.25rem] leading-[1.03] max-w-2xl">
+              Multimeter, Soldering Iron and{" "}
+              <span className="bg-gradient-to-br from-accent to-accent/60 bg-clip-text text-transparent">Oscilloscope</span>{" "}
+              Reviews You Can Trust
             </h1>
-            <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg text-muted leading-7">
+            <p className="mt-5 sm:mt-6 max-w-xl text-base sm:text-lg text-muted leading-7">
               Find the right tool for your workbench, not the one with the biggest ad budget. Independent reviews, comparisons
               and how-to guides
               <span className="hidden sm:inline">, judged on the specs that actually matter so you can buy with confidence</span>.
@@ -316,7 +324,7 @@ export default function Home() {
                   prefetch={false}
                   key={c.category}
                   href={`/${c.category}`}
-                  className={`inline-flex items-center gap-2 rounded-lg border ${c.tone.border} bg-surface px-4 py-2 text-sm font-medium ${c.tone.text} hover:bg-surface-raised transition-colors`}
+                  className={`inline-flex items-center gap-2 rounded-full border ${c.tone.border} bg-surface px-4 py-2 text-sm font-medium ${c.tone.text} shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md`}
                 >
                   {c.label}
                   <span aria-hidden="true">→</span>
@@ -341,18 +349,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface shadow-lg overflow-hidden">
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-surface-raised">
+          <div className="rounded-3xl border border-border bg-surface shadow-xl shadow-foreground/5 ring-1 ring-black/[0.02] overflow-hidden">
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-gradient-to-r from-surface-raised to-surface">
               <p className="font-display text-xs uppercase tracking-wide text-accent">Our top picks right now</p>
               <Link prefetch={false} href="/about" className="py-1.5 text-xs text-muted hover:text-accent">How we pick →</Link>
             </div>
             <ul className="divide-y divide-border">
               {topPicks.map((p) => (
-                <li key={p.name} className="flex gap-4 p-4">
+                <li key={p.name} className="flex gap-4 p-4 transition-colors hover:bg-surface-raised/60">
                   <Link
                     prefetch={false}
                     href={p.reviewHref}
-                    className="relative shrink-0 w-20 h-20 rounded-lg border border-border/60 bg-white overflow-hidden"
+                    className="relative shrink-0 w-20 h-20 rounded-xl border border-border/60 bg-white overflow-hidden shadow-sm"
                   >
                     {p.image ? (
                       <Image src={productImageSrc(p.image, 80)} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
@@ -389,15 +397,17 @@ export default function Home() {
             </ul>
           </div>
         </div>
+      </section>
 
+      <div className="relative z-10 mx-auto -mt-8 max-w-6xl px-6">
         <ProofBar
           stats={trustStrip}
           badges={["No sponsored picks", "Hands-on tested where it counts", "Specs checked at the source"]}
         />
-      </section>
+      </div>
 
       {/* Category hub */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-6xl px-6 pb-16 pt-20 sm:pt-24">
         <SectionHead
           eyebrow="BROWSE BY CATEGORY"
           title="Start with the tool you need"
@@ -414,8 +424,13 @@ export default function Home() {
             const buying = ofType(c.category, "buying-guide")[0];
             return (
               <Reveal key={c.category} delay={i * 80} className="flex snap-start shrink-0 w-[85%] md:w-auto">
-                <div className="group w-full flex flex-col rounded-2xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-shadow hover:shadow-md">
-                  <Link prefetch={false} href={c.roundup.href} className={`relative block h-44 bg-gradient-to-b ${c.tone.soft} to-transparent`}>
+                <div className="group w-full flex flex-col rounded-3xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-foreground/5 hover:border-transparent motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                  <Link prefetch={false} href={c.roundup.href} className={`relative block h-48 bg-gradient-to-br ${c.tone.soft} via-surface-raised to-surface`}>
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 opacity-[0.3]"
+                      style={{ backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)", backgroundSize: "14px 14px", color: "var(--border)" }}
+                    />
                     <div className={`absolute top-0 inset-x-0 h-1 ${c.tone.bg}`} />
                     {popular.image && (
                       <Image
@@ -424,7 +439,7 @@ export default function Home() {
                         alt={`${popular.name}, the most popular ${c.noun} in our picks`}
                         fill
                         sizes="(min-width: 768px) 360px, 100vw"
-                        className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
+                        className="object-contain p-7 drop-shadow-md transition-transform duration-300 group-hover:scale-105"
                       />
                     )}
                   </Link>
@@ -436,7 +451,7 @@ export default function Home() {
                       </Link>
                     </h3>
                     <p className="mt-2 text-sm text-muted leading-6">{c.blurb}</p>
-                    <div className="mt-4 rounded-md bg-signal-bg px-3 py-2 text-xs">
+                    <div className="mt-4 rounded-xl bg-signal-bg px-3.5 py-2.5 text-xs">
                       <span className="text-signal font-medium">Most popular pick: </span>
                       <span className="text-foreground">{popular.name}</span>
                     </div>
@@ -482,7 +497,7 @@ export default function Home() {
                     <Link
                       prefetch={false}
                       href={`/${c.category}`}
-                      className={`mt-6 inline-flex items-center justify-between rounded-lg border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} hover:bg-surface transition-colors`}
+                      className={`mt-6 inline-flex items-center justify-between rounded-full border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} shadow-sm transition-all hover:bg-surface hover:shadow-md`}
                     >
                       Explore all {c.label.toLowerCase()}
                       <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -516,7 +531,7 @@ export default function Home() {
       {/* Research the exact model: reviews + comparisons merged into one
           tabbed section (was two separate full sections). */}
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
           <SectionHead
             eyebrow="RESEARCH THE EXACT MODEL"
             title="In-depth reviews and head-to-head comparisons"
@@ -543,7 +558,7 @@ export default function Home() {
 
       {/* Find your path: use-case guides + troubleshooting merged side by
           side (was two separate full sections). */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
         <SectionHead eyebrow="FIND YOUR PATH" title="Shop by job, or fix the problem in front of you" />
         <div className="grid gap-10 lg:grid-cols-[7fr_5fr]">
           <div className="min-w-0">
@@ -610,7 +625,7 @@ export default function Home() {
 
       {/* Learn */}
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
           <SectionHead
             eyebrow="LEARN THE BASICS"
             title="Guides that explain the specs before you spend"

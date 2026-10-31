@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type Tone = { text: string; border: string; soft: string };
+type Tone = { text: string };
 
 /**
  * Merges what used to be two full sections (Reviews, then Comparisons,
@@ -21,7 +21,7 @@ export function CategoryTabs({
 
   return (
     <div>
-      <div role="tablist" aria-label="Category" className="mb-6 flex flex-wrap gap-2">
+      <div role="tablist" aria-label="Category" className="mb-6 inline-flex flex-wrap gap-1.5 rounded-full border border-border bg-surface-raised p-1.5">
         {tabs.map((t) => {
           const isActive = active === t.key;
           return (
@@ -33,8 +33,8 @@ export function CategoryTabs({
               aria-controls={`tabpanel-${t.key}`}
               id={`tab-${t.key}`}
               onClick={() => setActive(t.key)}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                isActive ? `${t.tone.border} bg-gradient-to-b ${t.tone.soft} to-transparent ${t.tone.text}` : "border-border text-muted hover:text-foreground"
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                isActive ? `bg-surface shadow-sm ${t.tone.text}` : "text-muted hover:text-foreground"
               }`}
             >
               {t.label}

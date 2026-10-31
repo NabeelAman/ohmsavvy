@@ -435,10 +435,16 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
         <HeroTrace />
         <div className="relative mx-auto max-w-6xl px-6 pt-14 sm:pt-20 pb-12 grid lg:grid-cols-[1fr_420px] gap-12 items-center">
           <div>
-            <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.eyebrow.toUpperCase()}</p>
-            <h1 className="text-4xl sm:text-5xl leading-[1.1] max-w-2xl">{d.h1}</h1>
-            <p className="mt-6 max-w-xl text-lg text-muted leading-7">{d.sub}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-2">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 py-1 pl-2.5 pr-3.5 backdrop-blur">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-signal" />
+              </span>
+              <span className="font-display text-xs tracking-wide text-foreground">{d.eyebrow.toUpperCase()}</span>
+            </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-[4.25rem] leading-[1.03] max-w-2xl">{d.h1}</h1>
+            <p className="mt-5 sm:mt-6 max-w-xl text-lg text-muted leading-7">{d.sub}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-2">
               <span className="text-xs text-muted mr-1">{d.popularLabel}</span>
               {quickLinkHrefs.map((href, i) => (
                 <Link key={href} href={href} className="rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted hover:border-accent hover:text-accent transition-colors">
@@ -455,15 +461,15 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface shadow-lg overflow-hidden">
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-surface-raised">
+          <div className="rounded-3xl border border-border bg-surface shadow-xl shadow-foreground/5 ring-1 ring-black/[0.02] overflow-hidden">
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-gradient-to-r from-surface-raised to-surface">
               <p className="font-display text-xs uppercase tracking-wide text-accent">{d.topPicksPanelLabel}</p>
               <Link href="/about" className="text-xs text-muted hover:text-accent">{d.howWePickLabel}</Link>
             </div>
             <ul className="divide-y divide-border">
               {topPicks.map((p, i) => (
-                <li key={p.name} className="flex gap-4 p-4">
-                  <Link href={p.reviewHref} className="relative shrink-0 w-20 h-20 rounded-lg border border-border/60 bg-white overflow-hidden">
+                <li key={p.name} className="flex gap-4 p-4 transition-colors hover:bg-surface-raised/60">
+                  <Link href={p.reviewHref} className="relative shrink-0 w-20 h-20 rounded-xl border border-border/60 bg-white overflow-hidden shadow-sm">
                     {p.image ? (
                       <Image src={productImageSrc(p.image, 80)} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
                     ) : null}
@@ -486,11 +492,14 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
           </div>
         </div>
 
-        <ProofBar stats={trustStripValues.map((value, i) => ({ value, label: d.trustStrip[i] }))} badges={d.badges} />
       </section>
 
+      <div className="relative z-10 mx-auto -mt-8 max-w-6xl px-6">
+        <ProofBar stats={trustStripValues.map((value, i) => ({ value, label: d.trustStrip[i] }))} badges={d.badges} />
+      </div>
+
       {/* Category hub */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-6xl px-6 pb-16 pt-20 sm:pt-24">
         <div className="mb-8 max-w-2xl">
           <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.categoryHub.eyebrow.toUpperCase()}</p>
           <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.categoryHub.title}</h2>
@@ -506,18 +515,23 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             const buying = ofType(category, "buying-guide")[0];
             return (
               <Reveal key={category} delay={i * 80} className="flex snap-start shrink-0 w-[85%] md:w-auto">
-                <div className="group w-full flex flex-col rounded-2xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-shadow hover:shadow-md">
-                  <Link href={ROUNDUPS[category]} className={`relative block h-44 bg-gradient-to-b ${tone.soft} to-transparent`}>
+                <div className="group w-full flex flex-col rounded-3xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-foreground/5 hover:border-transparent motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                  <Link href={ROUNDUPS[category]} className={`relative block h-48 bg-gradient-to-br ${tone.soft} via-surface-raised to-surface`}>
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 opacity-[0.3]"
+                      style={{ backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)", backgroundSize: "14px 14px", color: "var(--border)" }}
+                    />
                     <div className={`absolute top-0 inset-x-0 h-1 ${tone.bg}`} />
                     {top.image && (
-                      <Image src={productImageSrc(top.image, 320)} unoptimized={skipOptimizer(top.image)} alt={top.name} fill sizes="(min-width: 768px) 360px, 100vw" className="object-contain p-6 transition-transform duration-300 group-hover:scale-105" />
+                      <Image src={productImageSrc(top.image, 320)} unoptimized={skipOptimizer(top.image)} alt={top.name} fill sizes="(min-width: 768px) 360px, 100vw" className="object-contain p-7 drop-shadow-md transition-transform duration-300 group-hover:scale-105" />
                     )}
                   </Link>
                   <div className="flex flex-1 flex-col p-6">
                     <span className={`font-display text-xs uppercase tracking-wide ${tone.text}`}>{d.categoryLabels[i]}</span>
                     <Link href={ROUNDUPS[category]} className="mt-2 text-xl font-semibold leading-snug hover:text-accent transition-colors">{d.roundupTitles[i]}</Link>
                     <p className="mt-2 text-sm text-muted leading-6">{d.categoryBlurbs[i]}</p>
-                    <div className="mt-4 rounded-md bg-signal-bg px-3 py-2 text-xs">
+                    <div className="mt-4 rounded-xl bg-signal-bg px-3.5 py-2.5 text-xs">
                       <span className="text-signal font-medium">{d.topPickLabel} </span>
                       <span className="text-foreground">{top.name}</span>
                     </div>
@@ -527,7 +541,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
                       <li><Link href={`/${category}/guides`} className="flex justify-between py-0.5 text-muted hover:text-accent"><span>{d.guidesWord}</span><span className="font-mono text-xs">{guides}</span></Link></li>
                       {buying && <li><Link href={buying.href} className="flex justify-between py-0.5 text-muted hover:text-accent"><span>{buying.title}{d.inEnglishSuffix}</span><span aria-hidden="true">→</span></Link></li>}
                     </ul>
-                    <Link href={ROUNDUPS[category]} className={`mt-6 inline-flex items-center justify-between rounded-lg border ${tone.border} px-4 py-2.5 text-sm font-medium ${tone.text} hover:bg-surface transition-colors`}>
+                    <Link href={ROUNDUPS[category]} className={`mt-6 inline-flex items-center justify-between rounded-full border ${tone.border} px-4 py-2.5 text-sm font-medium ${tone.text} shadow-sm transition-all hover:bg-surface hover:shadow-md`}>
                       {d.seeAll(PICKS[category].length, guides)}
                       <span className="transition-transform group-hover:translate-x-0.5">→</span>
                     </Link>
@@ -542,7 +556,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
       {/* Research the exact model: reviews + comparisons merged into one
           tabbed section (was two separate full sections). */}
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
           <div className="mb-8 max-w-2xl">
             <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.researchSection.eyebrow.toUpperCase()}</p>
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.researchSection.title}</h2>
@@ -560,7 +574,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
       </section>
 
       {/* Use cases */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
         <div className="mb-8 max-w-2xl">
           <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.useCaseSection.eyebrow.toUpperCase()}</p>
           <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.useCaseSection.title}</h2>
@@ -581,7 +595,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
 
       {/* Learn */}
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
           <div className="mb-8 max-w-2xl">
             <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.learnSection.eyebrow.toUpperCase()}</p>
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.learnSection.title}</h2>

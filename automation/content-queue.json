@@ -676,12 +676,12 @@
       "keyword": "best multimeter for low voltage",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Fluke 115",
         "KAIWEETS KM200s"
       ],
-      "notes": "picks chosen by refill 2026-10-25: Both the Fluke 115 and KAIWEETS KM200s offer True RMS accuracy and CAT III 600V safety rating, making them suitable for low voltage applications while providing reliable and safe measurements."
+      "notes": "67% targetPicks overlap with \"best auto ranging multimeter\" (check-cannibalization 2026-10-31) — merged, not published separately."
     },
     {
       "keyword": "best multimeter for high voltage",
@@ -918,11 +918,12 @@
       "keyword": "best temperature controlled soldering iron",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Pinecil V2",
         "Weller WE1010NA"
-      ]
+      ],
+      "notes": "Same search intent as \"best soldering iron with adjustable temperature\" (check-cannibalization 2026-10-31) — merged, not published separately."
     },
     {
       "keyword": "best soldering iron station",
@@ -933,7 +934,7 @@
         "Hakko FX-888DX",
         "Weller WE1010NA"
       ],
-      "notes": "picks chosen by refill 2026-10-29: Both the Hakko FX-888DX and Weller WE1010NA offer robust temperature control and sufficient power for serious hobbyists and professional use, making them suitable for a wide range of soldering tasks."
+      "notes": "picks chosen by refill 2026-10-29: Both the Hakko FX-888DX and Weller WE1010NA offer robust temperature control and sufficient power for serious hobbyists and professional use, making them suitable for a wide range of soldering tasks. Flagged at 67% pick overlap with \"best soldering iron with adjustable temperature\" (check-cannibalization 2026-10-31) but kept distinct: \"station\" means a bench unit with a stand/base, which excludes the portable Pinecil V2 the other page covers — when writing, angle this one around bench-station features (stand, sponge/brass coil, stable base) rather than adjustable temperature generally, to avoid overlap."
     },
     {
       "keyword": "best digital soldering station",
@@ -1913,12 +1914,13 @@
       "keyword": "best oscilloscope for audio and guitar pedal debugging",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Rigol DS1054Z",
         "Siglent SDS1104X-E",
         "FNIRSI DSO152"
-      ]
+      ],
+      "notes": "Narrower restatement of \"best oscilloscope for audio\" (67% pick overlap, check-cannibalization 2026-10-31) — merged; cover guitar pedal debugging as a use-case section/FAQ on the broader audio page instead of a separate page."
     },
     {
       "keyword": "best oscilloscope for drone and fpv electronics",

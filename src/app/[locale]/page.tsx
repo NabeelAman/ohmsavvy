@@ -5,6 +5,9 @@ import { ContentCard } from "@/components/ContentCard";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { GuideCard } from "@/components/GuideCard";
 import { Reveal } from "@/components/Reveal";
+import { HeroTrace } from "@/components/home/HeroTrace";
+import { ProofBar } from "@/components/home/ProofBar";
+import { CategoryTabs } from "@/components/home/CategoryTabs";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Stars } from "@/components/ui/Stars";
@@ -58,6 +61,12 @@ const latestReviews = CATEGORY_KEYS.flatMap((cat) =>
   ofType(cat, "review").filter((e) => ![...topPickNames].some((n) => e.title.startsWith(n))).slice(0, 2),
 );
 const featuredComparisons = CATEGORY_KEYS.flatMap((cat) => ofType(cat, "comparison").slice(0, 1));
+// Reviews + comparisons merged into one tabbed section, grouped by category —
+// mirrors the English homepage's restructure (see src/app/page.tsx).
+const researchByCategory = CATEGORY_KEYS.map((category) => ({
+  category,
+  items: [...latestReviews.filter((e) => e.category === category), ...featuredComparisons.filter((e) => e.category === category)],
+}));
 // Two use-case guides per category as cards; the rest as compact links.
 const useCaseGuides = CATEGORY_KEYS.flatMap((cat) => ofType(cat, "use-case-guide").slice(0, 2));
 const moreUseCases = CATEGORY_KEYS.flatMap((cat) => ofType(cat, "use-case-guide").slice(2));
@@ -92,6 +101,8 @@ type Dict = {
   checkPriceLabel: string;
   reviewLabel: string;
   trustStrip: [string, string, string, string];
+  badges: [string, string, string];
+  researchSection: { eyebrow: string; title: string; intro: string };
   categoryHub: { eyebrow: string; title: string; intro: string };
   categoryLabels: [string, string, string];
   roundupTitles: [string, string, string];
@@ -102,7 +113,6 @@ type Dict = {
   seeAll: (n: number, m: number) => string;
   reviewsSection: { eyebrow: string; title: string };
   useCaseSection: { eyebrow: string; title: string; intro: string };
-  comparisonsSection: { eyebrow: string; title: string };
   learnSection: { eyebrow: string; title: string; intro: string; startHereLabel: string; readGuideLabel: string; buyingGuidesLabel: string; howToGuidesLabel: string };
   learnCols: { allGuides: (n: number) => string; guidesCount: (n: number) => string; buyingTag: string };
   moreUseCasesLabel: string;
@@ -129,6 +139,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     checkPriceLabel: "Preis bei Amazon prüfen",
     reviewLabel: "Test",
     trustStrip: ["verglichene Produkte", "ausführliche Tests", "Kauf- & Anleitungsratgeber", "bezahlte Platzierungen"],
+    badges: ["Keine bezahlten Platzierungen", "In der Praxis getestet, wo es zählt", "Spezifikationen direkt an der Quelle geprüft"],
+    researchSection: {
+      eyebrow: "Das genaue Modell recherchieren",
+      title: "Ausführliche Tests und direkte Vergleiche",
+      intro: "Wählen Sie eine Kategorie: zuerst einzelne Produkttests, dann die knappen Vergleiche.",
+    },
     categoryHub: { eyebrow: "Nach Kategorie durchsuchen", title: "Beginnen Sie mit dem passenden Werkzeug", intro: "Jede Kategorie bietet eine Rangliste, einzelne Tests, direkte Vergleiche und Ratgeber, die die Spezifikationen erklären." },
     categoryLabels: ["Multimeter", "Lötkolben", "Oszilloskope"],
     roundupTitles: ["Beste Multimeter", "Beste Lötkolben", "Beste Oszilloskope für Einsteiger"],
@@ -143,7 +159,6 @@ const DICTIONARY: Record<Locale, Dict> = {
     seeAll: (n, m) => `Alle ${n} Produkte ansehen · ${m} Ratgeber`,
     reviewsSection: { eyebrow: "Ausführliche Tests", title: "Ausführliche Produkttests" },
     useCaseSection: { eyebrow: "Nach Einsatzzweck", title: "Wählen Sie nach dem, was Sie tatsächlich vorhaben", intro: "Nicht sicher, welches Werkzeug passt? Starten Sie bei der Aufgabe: Schalttafelarbeiten, Kfz-Diagnose, Platinenreparatur oder das erste Heimlabor." },
-    comparisonsSection: { eyebrow: "Direkter Vergleich", title: "Vergleiche für knappe Entscheidungen" },
     learnSection: { eyebrow: "Grundlagen lernen", title: "Ratgeber, die die Spezifikationen vor dem Kauf erklären", intro: "Verständliche Anleitungen und Kaufratgeber mit Diagrammen, Beispielen und Sicherheitshinweisen.", startHereLabel: "Hier starten", readGuideLabel: "Ratgeber lesen →", buyingGuidesLabel: "Kaufratgeber", howToGuidesLabel: "Anleitungen" },
     learnCols: { allGuides: (n) => `Alle ${n} Ratgeber`, guidesCount: (n) => `${n} Ratgeber`, buyingTag: "Kauf" },
     moreUseCasesLabel: "Weitere Empfehlungen nach Einsatz:",
@@ -193,6 +208,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     checkPriceLabel: "Voir le prix sur Amazon",
     reviewLabel: "Avis",
     trustStrip: ["produits comparés", "avis détaillés", "guides d'achat et pratiques", "placements payants"],
+    badges: ["Aucun placement payant", "Testé en conditions réelles quand cela compte", "Spécifications vérifiées à la source"],
+    researchSection: {
+      eyebrow: "Rechercher le modèle exact",
+      title: "Avis détaillés et comparaisons directes",
+      intro: "Choisissez une catégorie : d'abord les avis individuels, puis les comparaisons serrées.",
+    },
     categoryHub: { eyebrow: "Parcourir par catégorie", title: "Commencez par l'outil dont vous avez besoin", intro: "Chaque catégorie propose un classement, des avis individuels, des comparaisons directes et des guides qui expliquent les spécifications." },
     categoryLabels: ["Multimètres", "Fers à souder", "Oscilloscopes"],
     roundupTitles: ["Meilleurs multimètres", "Meilleurs fers à souder", "Meilleurs oscilloscopes pour débutants"],
@@ -207,7 +228,6 @@ const DICTIONARY: Record<Locale, Dict> = {
     seeAll: (n, m) => `Voir les ${n} produits · ${m} guides`,
     reviewsSection: { eyebrow: "Avis détaillés", title: "Avis produits détaillés" },
     useCaseSection: { eyebrow: "Par cas d'usage", title: "Choisissez selon ce que vous allez vraiment en faire", intro: "Pas sûr de l'outil qui convient ? Partez du besoin : travail sur tableau électrique, diagnostic automobile, réparation de circuits ou premier labo à la maison." },
-    comparisonsSection: { eyebrow: "Face à face", title: "Comparaisons pour les choix serrés" },
     learnSection: { eyebrow: "Apprendre les bases", title: "Des guides qui expliquent les spécifications avant d'acheter", intro: "Des guides pratiques et d'achat en langage clair, avec schémas, exemples concrets et consignes de sécurité.", startHereLabel: "Commencer ici", readGuideLabel: "Lire le guide →", buyingGuidesLabel: "Guides d'achat", howToGuidesLabel: "Guides pratiques" },
     learnCols: { allGuides: (n) => `Les ${n} guides`, guidesCount: (n) => `${n} guides`, buyingTag: "Achat" },
     moreUseCasesLabel: "Autres sélections par usage :",
@@ -257,6 +277,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     checkPriceLabel: "Controlla il prezzo su Amazon",
     reviewLabel: "Recensione",
     trustStrip: ["prodotti confrontati", "recensioni approfondite", "guide all'acquisto e pratiche", "posizionamenti a pagamento"],
+    badges: ["Nessun posizionamento a pagamento", "Testato praticamente quando conta davvero", "Specifiche verificate alla fonte"],
+    researchSection: {
+      eyebrow: "Cerca il modello esatto",
+      title: "Recensioni approfondite e confronti diretti",
+      intro: "Scegli una categoria: prima le recensioni dei singoli prodotti, poi i confronti più combattuti.",
+    },
     categoryHub: { eyebrow: "Sfoglia per categoria", title: "Inizia dallo strumento di cui hai bisogno", intro: "Ogni categoria ha una classifica, recensioni singole, confronti diretti e guide che spiegano le specifiche." },
     categoryLabels: ["Multimetri", "Saldatori", "Oscilloscopi"],
     roundupTitles: ["Migliori multimetri", "Migliori saldatori", "Migliori oscilloscopi per principianti"],
@@ -271,7 +297,6 @@ const DICTIONARY: Record<Locale, Dict> = {
     seeAll: (n, m) => `Vedi tutti i ${n} prodotti · ${m} guide`,
     reviewsSection: { eyebrow: "Recensioni approfondite", title: "Recensioni approfondite dei prodotti" },
     useCaseSection: { eyebrow: "Per caso d'uso", title: "Scegli in base a cosa ne farai davvero", intro: "Non sei sicuro quale strumento fa per te? Parti dal lavoro: quadri elettrici, diagnostica auto, riparazione di circuiti o il tuo primo laboratorio di casa." },
-    comparisonsSection: { eyebrow: "Testa a testa", title: "Confronti per le scelte più difficili" },
     learnSection: { eyebrow: "Impara le basi", title: "Guide che spiegano le specifiche prima di acquistare", intro: "Guide pratiche e all'acquisto in linguaggio semplice, con diagrammi, esempi pratici e note di sicurezza.", startHereLabel: "Inizia qui", readGuideLabel: "Leggi la guida →", buyingGuidesLabel: "Guide all'acquisto", howToGuidesLabel: "Guide pratiche" },
     learnCols: { allGuides: (n) => `Tutte le ${n} guide`, guidesCount: (n) => `${n} guide`, buyingTag: "Acquisto" },
     moreUseCasesLabel: "Altre scelte per utilizzo:",
@@ -321,6 +346,12 @@ const DICTIONARY: Record<Locale, Dict> = {
     checkPriceLabel: "Ver precio en Amazon",
     reviewLabel: "Reseña",
     trustStrip: ["productos comparados", "reseñas detalladas", "guías de compra y prácticas", "colocaciones pagadas"],
+    badges: ["Sin colocaciones pagadas", "Probado en la práctica donde importa", "Especificaciones verificadas en la fuente"],
+    researchSection: {
+      eyebrow: "Investiga el modelo exacto",
+      title: "Reseñas detalladas y comparaciones cara a cara",
+      intro: "Elige una categoría: primero las reseñas individuales, luego las comparaciones más reñidas.",
+    },
     categoryHub: { eyebrow: "Explorar por categoría", title: "Empieza por la herramienta que necesitas", intro: "Cada categoría tiene una clasificación, reseñas individuales, comparaciones directas y guías que explican las especificaciones." },
     categoryLabels: ["Multímetros", "Soldadores", "Osciloscopios"],
     roundupTitles: ["Mejores multímetros", "Mejores soldadores", "Mejores osciloscopios para principiantes"],
@@ -335,7 +366,6 @@ const DICTIONARY: Record<Locale, Dict> = {
     seeAll: (n, m) => `Ver los ${n} productos · ${m} guías`,
     reviewsSection: { eyebrow: "Reseñas detalladas", title: "Reseñas detalladas de productos" },
     useCaseSection: { eyebrow: "Por caso de uso", title: "Elige según lo que realmente harás con ella", intro: "¿No sabes qué herramienta te conviene? Empieza por la tarea: trabajo en cuadros eléctricos, diagnóstico automotriz, reparación de circuitos o tu primer laboratorio casero." },
-    comparisonsSection: { eyebrow: "Cara a cara", title: "Comparaciones para decisiones reñidas" },
     learnSection: { eyebrow: "Aprende lo básico", title: "Guías que explican las especificaciones antes de comprar", intro: "Guías prácticas y de compra en lenguaje claro, con diagramas, ejemplos y notas de seguridad.", startHereLabel: "Empieza aquí", readGuideLabel: "Leer la guía →", buyingGuidesLabel: "Guías de compra", howToGuidesLabel: "Guías prácticas" },
     learnCols: { allGuides: (n) => `Las ${n} guías`, guidesCount: (n) => `${n} guías`, buyingTag: "Compra" },
     moreUseCasesLabel: "Más selecciones por uso:",
@@ -396,12 +426,13 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
     "/multimeters/how-to-use-a-multimeter",
     "/oscilloscopes/how-to-use-an-oscilloscope",
   ];
-  const trustStripValues = [`${totalProducts}`, `${totalReviews}`, `${totalGuides}`, "0"];
+  const trustStripValues = [`${totalProducts}`, `${totalReviews}`, `${totalGuides}`];
 
   return (
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-surface-raised">
+        <HeroTrace />
         <div className="relative mx-auto max-w-6xl px-6 pt-14 sm:pt-20 pb-12 grid lg:grid-cols-[1fr_420px] gap-12 items-center">
           <div>
             <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.eyebrow.toUpperCase()}</p>
@@ -455,16 +486,7 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
           </div>
         </div>
 
-        <div className="relative border-t border-border bg-surface/80 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-6 py-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {trustStripValues.map((value, i) => (
-              <div key={i} className="flex items-baseline gap-2">
-                <span className="font-display text-2xl font-semibold text-accent">{value}</span>
-                <span className="text-xs sm:text-sm text-muted">{d.trustStrip[i]}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProofBar stats={trustStripValues.map((value, i) => ({ value, label: d.trustStrip[i] }))} badges={d.badges} />
       </section>
 
       {/* Category hub */}
@@ -517,19 +539,23 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      {/* Reviews */}
+      {/* Research the exact model: reviews + comparisons merged into one
+          tabbed section (was two separate full sections). */}
       <section className="border-t border-border bg-surface-raised">
         <div className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
-            <div className="max-w-2xl">
-              <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.reviewsSection.eyebrow.toUpperCase()}</p>
-              <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.reviewsSection.title}</h2>
-            </div>
-            <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
-              {CATEGORY_KEYS.map((c, i) => <Link key={c} href={`/${c}/reviews`} className="py-1 text-accent hover:underline">{d.categoryLabels[i]} →</Link>)}
-            </div>
+          <div className="mb-8 max-w-2xl">
+            <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.researchSection.eyebrow.toUpperCase()}</p>
+            <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.researchSection.title}</h2>
+            <p className="mt-2 text-muted leading-7">{d.researchSection.intro}</p>
           </div>
-          <div className={CAROUSEL}>{latestReviews.map((e) => <div key={e.href} className={CAROUSEL_ITEM}><ContentCard entry={e} /></div>)}</div>
+          <CategoryTabs
+            tabs={researchByCategory.map(({ category, items }, i) => ({
+              key: category,
+              label: d.categoryLabels[i],
+              tone: TONES[category],
+              panel: <div className={CAROUSEL}>{items.map((e) => <div key={e.href} className={CAROUSEL_ITEM}><ContentCard entry={e} /></div>)}</div>,
+            }))}
+          />
         </div>
       </section>
 
@@ -551,22 +577,6 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
             ))}
           </div>
         )}
-      </section>
-
-      {/* Comparisons */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
-            <div className="max-w-2xl">
-              <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.comparisonsSection.eyebrow.toUpperCase()}</p>
-              <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.comparisonsSection.title}</h2>
-            </div>
-            <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
-              {CATEGORY_KEYS.map((c, i) => <Link key={c} href={`/${c}/comparisons`} className="py-1 text-accent hover:underline">{d.categoryLabels[i]} →</Link>)}
-            </div>
-          </div>
-          <div className={CAROUSEL}>{featuredComparisons.map((e) => <div key={e.href} className={CAROUSEL_ITEM}><ContentCard entry={e} /></div>)}</div>
-        </div>
       </section>
 
       {/* Learn */}
@@ -634,38 +644,8 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      {/* How we review */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
-          <div className="max-w-2xl">
-            <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.howWeReview.eyebrow.toUpperCase()}</p>
-            <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.howWeReview.title}</h2>
-          </div>
-          <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
-            <Link href="/about" className="py-1 text-accent hover:underline">{d.howWeReview.links[0]} →</Link>
-            <Link href="/about#how-were-funded" className="py-1 text-accent hover:underline">{d.howWeReview.links[1]} →</Link>
-          </div>
-        </div>
-        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {d.howWeReview.steps.map((s, i) => (
-            <li key={s.title}>
-              <Reveal delay={i * 80} className="h-full">
-                <div className="h-full rounded-2xl border border-border bg-surface-raised p-6 shadow-sm">
-                  <span className="font-mono text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-4 font-semibold">{s.title}</h3>
-                  <p className="mt-2 text-sm text-muted leading-6">{s.desc}</p>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted">
-          <Badge variant="accent">{d.handsOnTestedLabel.replace("✓ ", "")}</Badge>
-          <span>{d.howWeReview.handsOnTestedNote}</span>
-        </div>
-      </section>
-
-      {/* FAQ */}
+      {/* How we review, collapsed to a compact strip, directly above FAQ —
+          mirrors the English homepage's restructure (see src/app/page.tsx). */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -678,7 +658,32 @@ export default async function LocalizedHomePage({ params }: { params: Promise<{ 
         }}
       />
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+        <div className="mx-auto max-w-6xl px-6 pt-16">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
+            <div className="max-w-2xl">
+              <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.howWeReview.eyebrow.toUpperCase()}</p>
+              <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.howWeReview.title}</h2>
+            </div>
+            <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium">
+              <Link href="/about" className="py-1 text-accent hover:underline">{d.howWeReview.links[0]} →</Link>
+              <Link href="/about#how-were-funded" className="py-1 text-accent hover:underline">{d.howWeReview.links[1]} →</Link>
+            </div>
+          </div>
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {d.howWeReview.steps.map((s) => (
+              <li key={s.title} className="rounded-xl border border-border bg-surface p-4">
+                <p className="text-sm font-semibold leading-snug">{s.title}</p>
+                <p className="mt-1 text-xs leading-5 text-muted">{s.desc}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-muted">
+            <Badge variant="accent">{d.handsOnTestedLabel.replace("✓ ", "")}</Badge>
+            <span>{d.howWeReview.handsOnTestedNote}</span>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-12 max-w-6xl border-t border-border px-6 pt-12 pb-16 sm:pb-20 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <p className="font-display text-sm mb-3 tracking-wide text-accent">{d.faq.eyebrow.toUpperCase()}</p>
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">{d.faq.title}</h2>

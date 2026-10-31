@@ -4,6 +4,9 @@ import { ContentCard } from "@/components/ContentCard";
 import { GuideCard } from "@/components/GuideCard";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { HeroSearch } from "@/components/HeroSearch";
+import { HeroTrace } from "@/components/home/HeroTrace";
+import { ProofBar } from "@/components/home/ProofBar";
+import { CategoryTabs } from "@/components/home/CategoryTabs";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
 import { Reveal } from "@/components/Reveal";
 import { Badge } from "@/components/ui/Badge";
@@ -138,6 +141,14 @@ const latestReviews = CATEGORY_ORDER.flatMap((cat) =>
     .slice(0, 2),
 );
 const featuredComparisons = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "comparison").filter((e) => !isRetired(e.href)).slice(0, 2));
+
+// Reviews + comparisons merged into one tabbed section, grouped by category —
+// each tab panel renders fully in the HTML (see CategoryTabs), so this is
+// strictly a presentation change: same cards, same links, half the sections.
+const researchByCategory = CATEGORY_ORDER.map((cat) => ({
+  category: cat,
+  items: [...latestReviews.filter((e) => e.category === cat), ...featuredComparisons.filter((e) => e.category === cat)],
+}));
 
 // Most recently updated pages (git dates from sitemap-lastmod.json), so new and
 // refreshed articles get a link from the homepage while they're waiting to be crawled.
@@ -287,15 +298,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-surface-raised">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_top_left,black_20%,transparent_70%)]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
-            backgroundSize: "36px 36px",
-          }}
-        />
+        <HeroTrace />
         <div className="relative mx-auto max-w-6xl px-6 pt-8 sm:pt-20 pb-12 grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-center">
           <div>
             <Eyebrow>ELECTRONICS TEST EQUIPMENT, COMPARED HONESTLY</Eyebrow>
@@ -387,16 +390,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative border-t border-border bg-surface/80 backdrop-blur">
-          <div className="mx-auto max-w-6xl px-6 py-5 grid grid-cols-3 gap-4">
-            {trustStrip.map((s) => (
-              <div key={s.label} className="flex items-baseline gap-2">
-                <span className="font-display text-2xl font-semibold text-accent">{s.value}</span>
-                <span className="text-xs sm:text-sm text-muted">{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProofBar
+          stats={trustStrip}
+          badges={["No sponsored picks", "Hands-on tested where it counts", "Specs checked at the source"]}
+        />
       </section>
 
       {/* Category hub */}
@@ -496,139 +493,117 @@ export default function Home() {
             );
           })}
         </div>
-      </section>
 
-      {/* Recently updated */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <SectionHead
-            eyebrow="FRESH ON THE BENCH"
-            title="New and recently updated"
-            intro="The latest reviews, comparisons and guides, plus pages we've just re-checked against the maker's specs."
-          />
-          <ol className="grid gap-x-8 sm:grid-cols-2">
+        {/* Folded in from the former standalone "Recently updated" section:
+            same links/anchor text, a slim strip instead of a full section. */}
+        <div className="mt-10 border-t border-border pt-8">
+          <p className="mb-4 font-display text-xs uppercase tracking-wide text-muted">Just updated</p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2.5">
             {recentlyUpdated.map((e) => (
-              <li key={e.href} className="border-b border-border">
-                <Link prefetch={false} href={e.href} className="group flex items-start gap-3 py-3.5">
-                  <span className={`mt-1 shrink-0 font-display text-xs uppercase tracking-wide ${TONE_BY_CATEGORY[e.category].tone.text}`}>
+              <li key={e.href}>
+                <Link prefetch={false} href={e.href} className="group inline-flex items-center gap-2 text-sm">
+                  <span className={`shrink-0 font-display text-xs uppercase tracking-wide ${TONE_BY_CATEGORY[e.category].tone.text}`}>
                     {TYPE_LABEL[e.type]}
                   </span>
-                  <span className="min-w-0">
-                    <span className="block font-medium leading-snug group-hover:text-accent transition-colors">{e.title}</span>
-                    <span className="mt-0.5 block text-xs text-muted">{TONE_BY_CATEGORY[e.category].label}</span>
-                  </span>
+                  <span className="font-medium leading-snug group-hover:text-accent transition-colors">{e.title}</span>
                 </Link>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
-      {/* Reviews */}
+      {/* Research the exact model: reviews + comparisons merged into one
+          tabbed section (was two separate full sections). */}
       <section className="border-t border-border bg-surface-raised">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <SectionHead
-            eyebrow="IN-DEPTH REVIEWS"
-            title="In-depth product reviews"
-            links={[
-              { href: "/multimeters/reviews", label: "Multimeters" },
-              { href: "/soldering-irons/reviews", label: "Soldering irons" },
-              { href: "/oscilloscopes/reviews", label: "Oscilloscopes" },
-            ]}
+            eyebrow="RESEARCH THE EXACT MODEL"
+            title="In-depth reviews and head-to-head comparisons"
+            intro="Pick a category: individual product reviews first, then the close-call comparisons."
           />
-          <div className={CAROUSEL}>
-            {latestReviews.map((e) => (
-              <div key={e.href} className={CAROUSEL_ITEM}>
-                <ContentCard entry={e} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use cases */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead
-          eyebrow="SHOP BY USE CASE"
-          title="Pick by what you'll actually do with it"
-          intro="Not sure which tool fits? Start from the job: panel work, car diagnostics, circuit boards or a first home lab."
-        />
-        <div className={CAROUSEL}>
-          {useCaseGuides.map((g) => (
-            <div key={g.href} className={CAROUSEL_ITEM}>
-              <GuideCard entry={g} />
-            </div>
-          ))}
-        </div>
-        {moreUseCases.length > 0 && (
-          <div className="mt-6 flex flex-wrap items-center gap-2">
-            <span className="mr-1 font-display text-xs uppercase tracking-wide text-muted">More picks by job:</span>
-            {moreUseCases.map((g) => (
-              <Link
-                prefetch={false}
-                key={g.href}
-                href={g.href}
-                className={`rounded-full border border-border bg-surface px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors`}
-              >
-                <span className={TONE_BY_CATEGORY[g.category].tone.text}>●</span> {TONE_BY_CATEGORY[g.category].label}: {g.title}
-              </Link>
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* Comparisons */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <SectionHead
-            eyebrow="HEAD TO HEAD"
-            title="Comparisons for close calls"
-            links={[
-              { href: "/multimeters/comparisons", label: "Multimeters" },
-              { href: "/soldering-irons/comparisons", label: "Soldering irons" },
-              { href: "/oscilloscopes/comparisons", label: "Oscilloscopes" },
-            ]}
-          />
-          <div className={CAROUSEL}>
-            {featuredComparisons.map((e) => (
-              <div key={e.href} className={CAROUSEL_ITEM}>
-                <ContentCard entry={e} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Troubleshooting */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <SectionHead
-            eyebrow="TROUBLESHOOTING"
-            title="Fix the problem in front of you"
-            intro="Reading doesn't make sense, solder won't flow or the trace won't sit still? Each guide lists the likely causes, how to check each one and the fix."
-          />
-          <div className="grid gap-6 lg:grid-cols-3">
-            {troubleshooting.map(({ category, entries }) => {
-              const c = TONE_BY_CATEGORY[category];
-              return (
-                <div key={category} className="flex flex-col rounded-2xl border border-border bg-surface-raised p-5 shadow-sm">
-                  <h3 className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</h3>
-                  <ul className="mt-2 flex-1 divide-y divide-border">
-                    {entries.slice(0, 6).map((g) => (
-                      <li key={g.href}>
-                        <Link prefetch={false} href={g.href} className="group flex items-start justify-between gap-3 py-2.5 text-sm">
-                          <span className="group-hover:text-accent transition-colors">{g.title}</span>
-                          <span className="text-muted" aria-hidden="true">→</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link prefetch={false} href={`/${category}#guides`} className="mt-3 py-1 text-sm font-medium text-accent hover:underline">
-                    More {c.noun} fixes →
-                  </Link>
+          <CategoryTabs
+            tabs={researchByCategory.map(({ category, items }) => ({
+              key: category,
+              label: TONE_BY_CATEGORY[category].label,
+              tone: TONE_BY_CATEGORY[category].tone,
+              panel: (
+                <div className={CAROUSEL}>
+                  {items.map((e) => (
+                    <div key={e.href} className={CAROUSEL_ITEM}>
+                      <ContentCard entry={e} />
+                    </div>
+                  ))}
                 </div>
-              );
-            })}
+              ),
+            }))}
+          />
+        </div>
+      </section>
+
+      {/* Find your path: use-case guides + troubleshooting merged side by
+          side (was two separate full sections). */}
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <SectionHead eyebrow="FIND YOUR PATH" title="Shop by job, or fix the problem in front of you" />
+        <div className="grid gap-10 lg:grid-cols-[7fr_5fr]">
+          <div className="min-w-0">
+            <h3 className="font-semibold">Pick by what you&apos;ll actually do with it</h3>
+            <p className="mt-1.5 text-sm text-muted leading-6">
+              Not sure which tool fits? Start from the job: panel work, car diagnostics, circuit boards or a first home lab.
+            </p>
+            <div className={`mt-5 ${CAROUSEL}`}>
+              {useCaseGuides.map((g) => (
+                <div key={g.href} className={CAROUSEL_ITEM}>
+                  <GuideCard entry={g} />
+                </div>
+              ))}
+            </div>
+            {moreUseCases.length > 0 && (
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <span className="mr-1 font-display text-xs uppercase tracking-wide text-muted">More picks by job:</span>
+                {moreUseCases.map((g) => (
+                  <Link
+                    prefetch={false}
+                    key={g.href}
+                    href={g.href}
+                    className={`rounded-full border border-border bg-surface px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors`}
+                  >
+                    <span className={TONE_BY_CATEGORY[g.category].tone.text}>●</span> {TONE_BY_CATEGORY[g.category].label}: {g.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="min-w-0">
+            <h3 className="font-semibold">Fix the problem in front of you</h3>
+            <p className="mt-1.5 text-sm text-muted leading-6">
+              Reading doesn&apos;t make sense, solder won&apos;t flow or the trace won&apos;t sit still? Each guide lists the likely
+              causes, how to check each one and the fix.
+            </p>
+            <div className="mt-5 space-y-5">
+              {troubleshooting.map(({ category, entries }) => {
+                const c = TONE_BY_CATEGORY[category];
+                return (
+                  <div key={category} className="rounded-2xl border border-border bg-surface-raised p-5 shadow-sm">
+                    <h4 className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</h4>
+                    <ul className="mt-2 divide-y divide-border">
+                      {entries.slice(0, 4).map((g) => (
+                        <li key={g.href}>
+                          <Link prefetch={false} href={g.href} className="group flex items-start justify-between gap-3 py-2.5 text-sm">
+                            <span className="group-hover:text-accent transition-colors">{g.title}</span>
+                            <span className="text-muted" aria-hidden="true">→</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link prefetch={false} href={`/${category}#guides`} className="mt-3 inline-block py-1 text-sm font-medium text-accent hover:underline">
+                      More {c.noun} fixes →
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -698,43 +673,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How we review */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <SectionHead
-          eyebrow="HOW WE REVIEW"
-          title="One standard, applied the same way to every product"
-          links={[
-            { href: "/about", label: "About us and how we test" },
-            { href: "/about#how-were-funded", label: "How we're funded" },
-          ]}
-        />
-        <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {reviewSteps.map((s, i) => (
-            <li key={s.title}>
-              <Reveal delay={i * 80} className="h-full">
-                <div className="h-full rounded-2xl border border-border bg-surface-raised p-6 shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded-lg bg-signal-bg flex items-center justify-center text-signal">
-                      <Icon d={s.icon} />
-                    </div>
-                    <span className="font-mono text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <h3 className="mt-4 font-semibold">{s.title}</h3>
-                  <p className="mt-2 text-sm text-muted leading-6">{s.desc}</p>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted">
-          <Badge variant="accent">Hands-on Tested</Badge>
-          <span>marks a product we bought and tested ourselves. Every other review says plainly that it&apos;s spec-verified research.</span>
-        </div>
-      </section>
-
-      {/* FAQ */}
+      {/* How we review, collapsed to a compact strip, directly above FAQ —
+          was its own full section with four large animated cards. */}
       <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+        <div className="mx-auto max-w-6xl px-6 pt-16">
+          <SectionHead eyebrow="HOW WE REVIEW" title="One standard, applied the same way to every product" />
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {reviewSteps.map((s) => (
+              <li key={s.title} className="flex gap-3 rounded-xl border border-border bg-surface p-4">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-signal-bg text-signal">
+                  <Icon d={s.icon} />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold leading-snug">{s.title}</p>
+                  <p className="mt-1 text-xs leading-5 text-muted">{s.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-muted">
+            <Badge variant="accent">Hands-on Tested</Badge>
+            <span>marks a product we bought and tested ourselves. Every other review says plainly that it&apos;s spec-verified research.</span>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-12 max-w-6xl border-t border-border px-6 pt-12 pb-16 sm:pb-20 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Eyebrow>FAQ</Eyebrow>
             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">Common questions about this site</h2>

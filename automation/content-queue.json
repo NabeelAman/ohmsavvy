@@ -1272,11 +1272,12 @@
       "keyword": "best oscilloscope for audio",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-duplicate",
       "targetPicks": [
         "Siglent SDS1104X-E",
         "Rigol DS1054Z"
-      ]
+      ],
+      "notes": "covered by queue: best oscilloscope for audio and guitar pedal debugging (refill 2026-10-31)"
     },
     {
       "keyword": "best oscilloscope for automotive diagnostics",

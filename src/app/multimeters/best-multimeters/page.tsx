@@ -73,7 +73,8 @@ export const picks: Pick[] = [
   },
   {
     badge: "Best for Electronics Hobbyists",
-    // Specs per astroai.com (DM6000AR page) and the Amazon listing. Neither states a CAT rating.
+    // Specs per astroai.com (DM6000AR page) and the official Amazon listing B071JL6LLL. The listing's A+ spec table
+    // (checked 2026-11-04) states "EN 61010-1 CAT III 600V, CATII 1000V"; astroai.com states no CAT rating.
     name: "AstroAI DM6000AR",
     image: "https://cdn.astroai.com/astroai-banner/product/02eac7f4-b680-4f9a-e240-b28f21b3eb2b_20250120.webp",
     rating: 4.3,
@@ -82,12 +83,12 @@ export const picks: Pick[] = [
       "This is the meter you'll see recommended most often for Arduino, Raspberry Pi, and general electronics tinkering — True RMS and 6,000-count resolution give it more precision than its price suggests, with both auto and manual ranging on tap.",
     specs: [
       { label: "Accuracy", value: "True RMS, 6,000-count" },
-      { label: "Safety rating", value: "Not stated by AstroAI" },
+      { label: "Safety rating", value: "CAT III 600V / CAT II 1000V" },
       { label: "Auto-ranging", value: "Yes" },
       { label: "Best for", value: "Microcontroller & electronics projects" },
     ],
     pros: ["Very affordable for True RMS + 6,000-count resolution", "6,000-count display resolves small changes", "Both auto and manual ranging available"],
-    cons: ["Build and included leads reflect the budget price point", "No CAT rating stated by AstroAI, so keep it to low-voltage electronics, not panels"],
+    cons: ["Build and included leads reflect the budget price point", "No LoZ or non-contact voltage detection, so it can't flag ghost voltage on building wiring"],
     ctaHref: "https://www.amazon.com/dp/B071JL6LLL?tag=ohmsavvy-20",
   },
   {
@@ -443,7 +444,7 @@ const specRows: string[][] = [
   ["Fluke 117", "Yes", "CAT III 600V", "6,000"],
   ["Fluke 115", "Yes", "CAT III 600V", "6,000"],
   ["KAIWEETS KM200s", "Yes", "CAT II 600V", "Not stated"],
-  ["AstroAI DM6000AR", "Yes", "Not stated", "6,000"],
+  ["AstroAI DM6000AR", "Yes", "CAT III 600V", "6,000"],
   ["Klein Tools MM400", "No", "CAT III 600V", "4,000"],
   ["Fluke 87V", "Yes", "CAT III 1000V / CAT IV 600V", "6,000 (19,999 hi-res)"],
   ["Milwaukee 2235-20", "Yes", "CAT III 600V", "Not stated"],

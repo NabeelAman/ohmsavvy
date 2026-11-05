@@ -1767,7 +1767,8 @@
       "keyword": "oscilloscope sample rate explained",
       "category": "oscilloscopes",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /oscilloscopes/oscilloscope-sample-rate-explained"
     },
     {
       "keyword": "oscilloscope probe compensation",

@@ -3994,6 +3994,13 @@ export const content: ContentEntry[] = [
     description: "Clamps, line splitters and the shunt method",
     href: "/multimeters/can-you-measure-current-without-breaking-the-circuit-with-a-multimeter",
   },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "Oscilloscope Sample Rate Explained",
+    description: "Aliasing, the sample-rate-to-bandwidth rule of thumb, and memory depth",
+    href: "/oscilloscopes/oscilloscope-sample-rate-explained",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

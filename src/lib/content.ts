@@ -842,6 +842,13 @@ export const content: ContentEntry[] = [
     description: "Loose probes, a weak battery, noise, or a genuinely changing signal",
     href: "/multimeters/unstable-multimeter-readings",
   },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Test Continuity With a Multimeter",
+    description: "The beep threshold explained, plus why in-circuit paths read wrong",
+    href: "/multimeters/how-to-test-continuity-with-a-multimeter",
+  },
 
   // Soldering irons
   {

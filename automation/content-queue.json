@@ -534,7 +534,8 @@
       "keyword": "how to test continuity with a multimeter",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /multimeters/how-to-test-continuity-with-a-multimeter"
     },
     {
       "keyword": "how to measure resistance with a multimeter",

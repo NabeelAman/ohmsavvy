@@ -516,7 +516,8 @@
       "keyword": "CAT III vs CAT IV multimeter",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /multimeters/cat-iii-vs-cat-iv-multimeter"
     },
     {
       "keyword": "how to use a multimeter for beginners",

@@ -863,6 +863,13 @@ export const content: ContentEntry[] = [
     description: "Blown fuse, wrong jack, or loading error, not a fluctuating reading",
     href: "/multimeters/why-is-my-multimeter-reading-wrong",
   },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "CAT III vs CAT IV Multimeter: What Differs",
+    description: "Same 600V, different impulse rating, and where each actually applies",
+    href: "/multimeters/cat-iii-vs-cat-iv-multimeter",
+  },
 
   // Soldering irons
   {

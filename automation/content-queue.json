@@ -541,7 +541,8 @@
       "keyword": "how to measure resistance with a multimeter",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /multimeters/how-to-measure-resistance-with-a-multimeter"
     },
     {
       "keyword": "how to test a capacitor with a multimeter",

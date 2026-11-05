@@ -849,6 +849,13 @@ export const content: ContentEntry[] = [
     description: "The beep threshold explained, plus why in-circuit paths read wrong",
     href: "/multimeters/how-to-test-continuity-with-a-multimeter",
   },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "How to Measure Resistance With a Multimeter",
+    description: "Zeroing the leads, reading tolerance, and why in-circuit readings run low",
+    href: "/multimeters/how-to-measure-resistance-with-a-multimeter",
+  },
 
   // Soldering irons
   {

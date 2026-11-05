@@ -1186,6 +1186,13 @@ export const content: ContentEntry[] = [
     description: "No heat, not just slow: check power, cable, fuse, and the element",
     href: "/soldering-irons/soldering-iron-not-heating-up",
   },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "What Wattage Soldering Iron Do I Need?",
+    description: "Wattage sets heat recovery, not temperature; matched to the work",
+    href: "/soldering-irons/what-wattage-soldering-iron-do-i-need",
+  },
 
   // Oscilloscopes
   {

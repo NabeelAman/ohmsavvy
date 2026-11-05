@@ -1195,7 +1195,8 @@
       "keyword": "what wattage soldering iron do I need",
       "category": "soldering-irons",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /soldering-irons/what-wattage-soldering-iron-do-i-need"
     },
     {
       "keyword": "soldering iron temperature range explained",

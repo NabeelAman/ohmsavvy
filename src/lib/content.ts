@@ -4001,6 +4001,13 @@ export const content: ContentEntry[] = [
     description: "Aliasing, the sample-rate-to-bandwidth rule of thumb, and memory depth",
     href: "/oscilloscopes/oscilloscope-sample-rate-explained",
   },
+  {
+    category: "oscilloscopes",
+    type: "how-to-guide",
+    title: "50MHz vs 100MHz Oscilloscope",
+    description: "Rise time, the -3dB rolloff, and the 5x bandwidth guideline compared",
+    href: "/oscilloscopes/50mhz-vs-100mhz-oscilloscope",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

@@ -1724,7 +1724,8 @@
       "keyword": "50mhz vs 100mhz oscilloscope",
       "category": "oscilloscopes",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /oscilloscopes/50mhz-vs-100mhz-oscilloscope"
     },
     {
       "keyword": "how to use an oscilloscope for beginners",

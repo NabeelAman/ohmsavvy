@@ -1736,7 +1736,8 @@
       "keyword": "how to read an oscilloscope screen",
       "category": "oscilloscopes",
       "type": "educational",
-      "status": "pending"
+      "status": "skip-duplicate",
+      "notes": "duplicate of /oscilloscopes/how-to-read-an-oscilloscope (live since 2026-10-21), same grid/volts-per-div/time-per-div scope"
     },
     {
       "keyword": "how to measure frequency with an oscilloscope",

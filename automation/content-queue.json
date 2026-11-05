@@ -1141,7 +1141,8 @@
       "keyword": "leaded vs lead free solder",
       "category": "soldering-irons",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /soldering-irons/leaded-vs-lead-free-solder"
     },
     {
       "keyword": "best flux for electronics soldering",

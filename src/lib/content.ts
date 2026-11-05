@@ -1193,6 +1193,13 @@ export const content: ContentEntry[] = [
     description: "Wattage sets heat recovery, not temperature; matched to the work",
     href: "/soldering-irons/what-wattage-soldering-iron-do-i-need",
   },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Leaded vs. Lead-Free Solder",
+    description: "Melting point, RoHS, wetting, and when each actually makes sense",
+    href: "/soldering-irons/leaded-vs-lead-free-solder",
+  },
 
   // Oscilloscopes
   {

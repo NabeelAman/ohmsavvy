@@ -87,8 +87,19 @@ const SCANNER_PROBES = ["/:path(wp-.*)", "/:path(.*\\.php)", "/:path(\\.env.*)",
 
 const nextConfig: NextConfig = {
   /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // On Vercel, image optimization runs through Vercel's own managed image
+  // service, not this app's bundled sharp — but Next's per-route output
+  // tracing can't prove that statically, so it was copying a full sharp
+  // native binary into every single route's serverless function (confirmed
+  // via .next/server/app/**/*.nft.json: present in /about, /contact, and
+  // every review page, not just an image-optimization endpoint). Excluding
+  // it here cut every function from ~16MB to ~8MB (confirmed via a real
+  // Vercel preview build) without affecting next/image output, which still
+  // optimizes correctly (verified against a fresh, never-before-requested
+  // image with a genuine cache MISS).
+  outputFileTracingExcludes: {
+    "/*": ["./node_modules/sharp/**/*", "./node_modules/@img/**/*"],
+  },
   images: {
     remotePatterns: PRODUCT_IMAGE_HOSTS.map((hostname) => ({ protocol: "https" as const, hostname })),
     // Product photos at a given URL never change, so keep optimized copies for

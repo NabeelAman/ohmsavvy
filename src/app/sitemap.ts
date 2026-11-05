@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { cacheLife } from "next/cache";
 import { content } from "@/lib/content";
 import { LOCALES } from "@/lib/i18n";
 import lastModJson from "@/lib/sitemap-lastmod.json";
@@ -43,11 +42,9 @@ const allRoutes = [...staticPages, ...content.map((c) => c.href), ...localeRoute
 // limit, so generateSitemaps()'s per-segment split isn't needed for scale —
 // and in Next 16 it only serves /sitemap/[id].xml with no auto-generated
 // index at /sitemap.xml, which is what robots.txt/GSC/submit-gsc-sitemap.mjs
-// all expect. Cached so this is prerendered at build: under cacheComponents,
-// a bare new Date() would run a function on every crawler request instead.
+// all expect. No dynamic APIs are used here, so Next prerenders it once at
+// build time like any other static route.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  "use cache";
-  cacheLife("max");
   return allRoutes.map((route) => ({
     url: `https://ohmsavvy.com${route}`,
     lastModified: lastModFor(route),

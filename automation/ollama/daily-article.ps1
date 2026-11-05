@@ -37,7 +37,7 @@ Set-Content $lockFile $PID
 # Keep Windows from idle-sleeping while a draft is being written: on this CPU a run can
 # take hours, and sleep mid-draft killed earlier runs. Closing the lid still sleeps.
 Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint esFlags);'
-[Win32.Power]::SetThreadExecutionState(0x80000001) | Out-Null  # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
+[Win32.Power]::SetThreadExecutionState([uint32]2147483649) | Out-Null  # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
 
 try {
   $state.attempts++

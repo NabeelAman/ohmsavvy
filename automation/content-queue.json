@@ -396,10 +396,11 @@
       "keyword": "best pocket multimeter",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-needs-second-pick",
       "targetPicks": [
         "Extech EX330"
-      ]
+      ],
+      "notes": "only 1 verified targetPick (Extech EX330); a remix guide needs >=2 — add a second verified product from the roster, or re-type as new-product if none fits"
     },
     {
       "keyword": "best multimeter brand 2026",
@@ -951,10 +952,11 @@
       "keyword": "best mini soldering iron",
       "category": "soldering-irons",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-needs-second-pick",
       "targetPicks": [
         "Pinecil V2"
-      ]
+      ],
+      "notes": "only 1 verified targetPick (Pinecil V2); a remix guide needs >=2 — add a second verified product from the roster, or re-type as new-product if none fits"
     },
     {
       "keyword": "best usb-c soldering iron",
@@ -1476,10 +1478,11 @@
       "keyword": "best oscilloscope for teaching electronics",
       "category": "oscilloscopes",
       "type": "remix",
-      "status": "pending",
+      "status": "skip-needs-second-pick",
       "targetPicks": [
         "Rigol DS1054Z"
-      ]
+      ],
+      "notes": "only 1 verified targetPick (Rigol DS1054Z); a remix guide needs >=2 — add a second verified product from the roster, or re-type as new-product if none fits"
     },
     {
       "keyword": "best oscilloscope for digital signals",

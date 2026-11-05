@@ -388,7 +388,7 @@ const recordAutoFailure = (keyword) => {
 function list() {
   const q = queue();
   const live = readFileSync(REGISTRY, "utf8");
-  const ready = q.keywords.filter((k) => k.type === "remix" && k.status === "pending" && k.targetPicks?.length);
+  const ready = q.keywords.filter((k) => k.type === "remix" && k.status === "pending" && k.targetPicks?.length >= 2);
   log(`\n${ready.length} keywords ready to draft (verified products already assigned):\n`);
   for (const k of ready) {
     const dupe = live.includes(`/${k.category}/${slugify(k.keyword)}"`) ? "  (already live)" : "";
@@ -413,7 +413,7 @@ async function draft(args) {
   if (args.includes("--next")) {
     const live = readFileSync(REGISTRY, "utf8");
     const fails = autoFailures();
-    entry = q.keywords.find((k) => k.type === "remix" && k.status === "pending" && k.targetPicks?.length && !live.includes(`/${k.category}/${slugify(k.keyword)}"`) && (!AUTO || (fails[k.keyword] || 0) < 2));
+    entry = q.keywords.find((k) => k.type === "remix" && k.status === "pending" && k.targetPicks?.length >= 2 && !live.includes(`/${k.category}/${slugify(k.keyword)}"`) && (!AUTO || (fails[k.keyword] || 0) < 2));
     if (!entry) die("No pending keywords left in the queue.");
     keyword = entry.keyword;
   } else if (keyword) {

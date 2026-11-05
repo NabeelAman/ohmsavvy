@@ -1179,6 +1179,13 @@ export const content: ContentEntry[] = [
     description: "Thinner for fine SMD control, thicker for faster feed on bigger joints",
     href: "/soldering-irons/solder-wire-diameter-guide",
   },
+  {
+    category: "soldering-irons",
+    type: "how-to-guide",
+    title: "Why Won't My Soldering Iron Heat Up At All?",
+    description: "No heat, not just slow: check power, cable, fuse, and the element",
+    href: "/soldering-irons/soldering-iron-not-heating-up",
+  },
 
   // Oscilloscopes
   {

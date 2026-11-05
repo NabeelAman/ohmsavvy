@@ -1100,7 +1100,8 @@
       "keyword": "soldering iron not heating up",
       "category": "soldering-irons",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /soldering-irons/soldering-iron-not-heating-up"
     },
     {
       "keyword": "soldering iron tip turning black",

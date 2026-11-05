@@ -609,7 +609,8 @@
       "keyword": "why is my multimeter reading wrong",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /multimeters/why-is-my-multimeter-reading-wrong"
     },
     {
       "keyword": "multimeter not reading voltage",

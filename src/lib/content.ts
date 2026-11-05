@@ -856,6 +856,13 @@ export const content: ContentEntry[] = [
     description: "Zeroing the leads, reading tolerance, and why in-circuit readings run low",
     href: "/multimeters/how-to-measure-resistance-with-a-multimeter",
   },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Why Is My Multimeter Reading Wrong?",
+    description: "Blown fuse, wrong jack, or loading error, not a fluctuating reading",
+    href: "/multimeters/why-is-my-multimeter-reading-wrong",
+  },
 
   // Soldering irons
   {

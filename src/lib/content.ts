@@ -4008,6 +4008,13 @@ export const content: ContentEntry[] = [
     description: "Rise time, the -3dB rolloff, and the 5x bandwidth guideline compared",
     href: "/oscilloscopes/50mhz-vs-100mhz-oscilloscope",
   },
+  {
+    category: "multimeters",
+    type: "how-to-guide",
+    title: "Do I Need a True RMS Multimeter?",
+    description: "Only for non-sine AC: motor drives, dimmers, and inverter output",
+    href: "/multimeters/do-i-need-true-rms-multimeter",
+  },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

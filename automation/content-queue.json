@@ -510,7 +510,8 @@
       "keyword": "do I need true rms multimeter",
       "category": "multimeters",
       "type": "educational",
-      "status": "pending"
+      "status": "published",
+      "notes": "live at /multimeters/do-i-need-true-rms-multimeter"
     },
     {
       "keyword": "CAT III vs CAT IV multimeter",

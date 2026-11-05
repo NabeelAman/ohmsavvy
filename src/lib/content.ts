@@ -1200,6 +1200,14 @@ export const content: ContentEntry[] = [
     description: "Melting point, RoHS, wetting, and when each actually makes sense",
     href: "/soldering-irons/leaded-vs-lead-free-solder",
   },
+  {
+    category: "soldering-irons",
+    type: "use-case-guide",
+    title: "For SMD Rework",
+    description: "SMD and BGA rework tools",
+    href: "/soldering-irons/best-soldering-iron-for-rework",
+    picks: ["Hakko FX-888DX", "YIHUA 862BD+"],
+  },
 
   // Oscilloscopes
   {

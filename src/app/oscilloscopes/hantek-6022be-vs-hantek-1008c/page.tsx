@@ -149,7 +149,7 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mt-4">
           Hantek&apos;s 1008C page lists the high-voltage ignition probe as included, quantity one. The Amazon listing for the
           kit we link doesn&apos;t name it in the box contents. If secondary ignition is the job you bought it for, ask the
-          seller before ordering. The 1008B uses the same hardware with a smaller software library; our{" "}
+          seller before ordering. Hantek publishes the same spec table and function count for the 1008B; our{" "}
           <Link href="/oscilloscopes/hantek-1008b-vs-hantek-6022be" className={link}>
             Hantek 1008B vs 6022BE comparison
           </Link>{" "}
@@ -282,7 +282,7 @@ const comparison: ProductComparisonContent = {
     {
       question: "What is the difference between the Hantek 1008B and 1008C?",
       answer:
-        "Hantek uses the same eight-channel, 12-bit, 2.4 MSa/s hardware for the 1008A, 1008B and 1008C. The 1008C is sold with the larger automotive function library, and Hantek's 1008C page lists a high-voltage ignition probe. Our 1008B vs 6022BE page compares that hardware with the 6022BE in more depth.",
+        "Hantek uses the same eight-channel, 12-bit, 2.4 MSa/s hardware for the 1008A, 1008B and 1008C. Hantek's 1008B and 1008C pages publish identical spec tables and the same automotive function count, so check the kit contents instead: Hantek's 1008C page lists a high-voltage ignition probe. Our 1008B vs 6022BE page compares that hardware with the 6022BE in more depth.",
     },
     {
       question: "How many automotive tests does the Hantek 1008C have?",

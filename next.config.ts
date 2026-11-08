@@ -101,6 +101,11 @@ const nextConfig: NextConfig = {
     "/*": ["./node_modules/sharp/**/*", "./node_modules/@img/**/*"],
   },
   images: {
+    // Pre-rendered product photos (automation/build-product-images.mjs) are served as static WebP from
+    // /img/p/ by this loader, so they cost no Vercel image transformations (Hobby plan cap). Photos not in
+    // src/lib/product-image-manifest.json fall back to /_next/image as before.
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
     remotePatterns: PRODUCT_IMAGE_HOSTS.map((hostname) => ({ protocol: "https" as const, hostname })),
     // Product photos at a given URL never change, so keep optimized copies for
     // 31 days instead of the 4-hour default: fewer re-transformations (billed)

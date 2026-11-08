@@ -131,6 +131,11 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      // Pre-rendered product photos (see images.loaderFile): fixed files, so browsers may keep them for 30 days.
+      {
+        source: "/img/p/:file*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }],
+      },
       ...SCANNER_PROBES.map((source) => ({
         source,
         headers: [{ key: "X-Robots-Tag", value: "noindex" }],

@@ -100,7 +100,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Chooses the next page to post. Never-posted content goes first (content added\n// after the workflow went live is treated as \"new\" and jumps the queue); once\n// everything has been posted, the longest-ago post is recycled after\n// recycleAfterDays. Categories take turns: the category posted least recently\n// goes next, so no category is starved.\n// Static data only persists for active (production) runs, not manual tests.\nconst cfg = $('Config').first().json;\nconst items = $input.first().json.items || [];\nconst data = $getWorkflowStaticData('global');\ndata.firstSeen = data.firstSeen || {};\ndata.posted = data.posted || {};\ndata.categoryLastPosted = data.categoryLastPosted || {};\n\nconst now = Date.now();\nconst firstRun = Object.keys(data.firstSeen).length === 0;\nfor (const it of items) {\n  // On the very first run everything is \"backlog\" (0); afterwards, anything\n  // not seen before is genuinely new and gets the current time.\n  if (data.firstSeen[it.url] === undefined) data.firstSeen[it.url] = firstRun ? 0 : now;\n}\n\nconst TYPE_ORDER = { review: 0, comparison: 1, 'use-case-guide': 2, roundup: 3, 'buying-guide': 4 };\n// Of the candidates, take the first one from the category that has waited longest.\nconst fairest = (list) => {\n  if (!list.length) return undefined;\n  const cats = [...new Set(list.map((i) => i.category))];\n  cats.sort((a, b) => (data.categoryLastPosted[a] || 0) - (data.categoryLastPosted[b] || 0));\n  return list.find((i) => i.category === cats[0]);\n};\n\nconst unposted = items\n  .filter((i) => !data.posted[i.url])\n  .sort((a, b) => (data.firstSeen[b.url] - data.firstSeen[a.url]) || (TYPE_ORDER[a.type] - TYPE_ORDER[b.type]));\n\nlet pick = fairest(unposted);\n// recycleAfterDays 0 = never repost: each page is posted once, and a slot with\n// nothing new to post is skipped rather than repeating an old post.\nif (!pick && Number(cfg.recycleAfterDays) > 0) {\n  const cutoff = now - Number(cfg.recycleAfterDays) * 86400000;\n  const recyclable = items\n    .filter((i) => data.posted[i.url] && data.posted[i.url] < cutoff)\n    .sort((a, b) => data.posted[a.url] - data.posted[b.url]);\n  pick = fairest(recyclable);\n}\n\nif (!pick) return []; // everything posted recently: skip this slot\nreturn [{ json: { ...pick, isRepost: Boolean(data.posted[pick.url]) } }];"
+        "jsCode": "// Chooses the next page to post. Never-posted content goes first (content added\n// after the workflow went live is treated as \"new\" and jumps the queue); once\n// everything has been posted, the longest-ago post is recycled after\n// recycleAfterDays. Categories take turns: the category posted least recently\n// goes next, so no category is starved.\n// Static data only persists for active (production) runs, not manual tests.\nconst cfg = $('Config').first().json;\nconst items = $input.first().json.items || [];\nconst data = $getWorkflowStaticData('global');\ndata.firstSeen = data.firstSeen || {};\ndata.posted = data.posted || {};\ndata.categoryLastPosted = data.categoryLastPosted || {};\n// Pages whose photo Facebook rejected; retried in later slots, at most 3 times.\ndata.failed = data.failed || {};\n\nconst now = Date.now();\nconst firstRun = Object.keys(data.firstSeen).length === 0;\nfor (const it of items) {\n  // On the very first run everything is \"backlog\" (0); afterwards, anything\n  // not seen before is genuinely new and gets the current time.\n  if (data.firstSeen[it.url] === undefined) data.firstSeen[it.url] = firstRun ? 0 : now;\n}\n\nconst TYPE_ORDER = { review: 0, comparison: 1, 'use-case-guide': 2, roundup: 3, 'buying-guide': 4, 'how-to-guide': 5 };\n// Of the candidates, take the first one from the category that has waited longest.\nconst fairest = (list) => {\n  if (!list.length) return undefined;\n  const cats = [...new Set(list.map((i) => i.category))];\n  cats.sort((a, b) => (data.categoryLastPosted[a] || 0) - (data.categoryLastPosted[b] || 0));\n  return list.find((i) => i.category === cats[0]);\n};\n\nconst unposted = items\n  .filter((i) => !data.posted[i.url] && (data.failed[i.url] || 0) < 3)\n  .sort((a, b) => (data.firstSeen[b.url] - data.firstSeen[a.url]) || (TYPE_ORDER[a.type] - TYPE_ORDER[b.type]));\n\nlet pick = fairest(unposted);\n// recycleAfterDays 0 = never repost: each page is posted once, and a slot with\n// nothing new to post is skipped rather than repeating an old post.\nif (!pick && Number(cfg.recycleAfterDays) > 0) {\n  const cutoff = now - Number(cfg.recycleAfterDays) * 86400000;\n  const recyclable = items\n    .filter((i) => data.posted[i.url] && data.posted[i.url] < cutoff)\n    .sort((a, b) => data.posted[a.url] - data.posted[b.url]);\n  pick = fairest(recyclable);\n}\n\nif (!pick) return []; // everything posted recently: skip this slot\nreturn [{ json: { ...pick, isRepost: Boolean(data.posted[pick.url]) } }];"
       },
       "id": "a4",
       "name": "Pick next post",
@@ -134,7 +134,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Builds the Facebook post from the article page itself: its headline, opening\n// paragraphs and section headings, and the image the page shows. All of it is\n// already-published, verified copy, so nothing new is written here (no prices,\n// no hype). \"Tested\" comes only from the feed's handsOnTested flag.\nconst it = $('Pick next post').first().json;\nconst cfg = $('Config').first().json;\nconst html = String($input.first().json.data || '');\n\nconst decode = (s) => s.replace(/&#x27;|&#39;/g, \"'\").replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');\nconst text = (s) => decode(s.replace(/<[^>]+>/g, '')).replace(/\\s+/g, ' ').trim();\nconst meta = (prop) => { const m = html.match(new RegExp('<meta (?:property|name)=\"' + prop + '\" content=\"([^\"]*)\"')); return m ? decode(m[1]) : ''; };\nconst main = (html.match(/<main[\\s\\S]*?<\\/main>/) || [html])[0];\n// Cuts at the last full sentence that fits.\nconst clip = (t, n) => { if (t.length <= n) return t; const cut = t.slice(0, n); const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('? '), cut.lastIndexOf('! ')); return end > 60 ? cut.slice(0, end + 1) : cut.replace(/\\s+\\S*$/, '') + '…'; };\n\nconst h1 = (main.match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/) || [])[1];\nconst title = (h1 && text(h1)) || meta('og:title').replace(/\\s*\\|\\s*OhmSavvy$/, '') || it.title;\n\n// Opening paragraph(s), skipping the affiliate disclosure and short card blurbs.\n// Reviews take two (the verdict line and the summary); everything else takes one,\n// since later paragraphs lean on the page around them (\"the steps below\").\n// Also skips paragraphs that continue an earlier thought (\"Put another way: …\").\nconst SKIP = /^(Disclosure|Affiliate|As an Amazon|Prices|Last updated|Put another way|In other words|That said|But |So |And |Also )/i;\nconst paras = [...main.matchAll(/<p[^>]*>([\\s\\S]*?)<\\/p>/g)].map((m) => text(m[1])).filter((t) => t.length >= 80 && !SKIP.test(t) && !t.endsWith(':'));\nconst body = [];\nfor (const para of paras) {\n  const room = 560 - body.join(' ').length;\n  if (room < 120) break;\n  body.push(clip(para, room));\n  if (body.length === (it.type === 'review' ? 2 : 1)) break;\n}\nif (!body.length) body.push(meta('description') || it.description);\n\n// How-to and buying guides list their section headings; picks-based pages list\n// the verified products they cover (from the feed); reviews need neither.\nconst GENERIC = /^(Frequently asked questions|FAQ|Guides|Product reviews|Comparisons|Where to buy|How we chose|Sources|Related)/i;\nconst sections = [...main.matchAll(/<h2[^>]*>([\\s\\S]*?)<\\/h2>/g)].map((m) => text(m[1]).replace(/^\\d+\\s*/, '')).filter((t) => t && !GENERIC.test(t)).slice(0, 4);\n\n// Image: the page's own product image (og:image); else the feed image; else the\n// first figure in the article body (direct src only, so the lazy \"related\n// products\" cards, which show other products, are never used); else the site's\n// branded default image.\nconst og = meta('og:image');\nlet photo = og && !/og-default/.test(og) ? og : (it.image || '');\nif (!photo) { const m = main.match(/<img[^>]*\\ssrc=\"(https?:\\/\\/[^\"]+)\"/); if (m) photo = decode(m[1]); }\nif (!photo) photo = og;\n\nconst TAGS = {\n  multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',\n  'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',\n  oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',\n};\nconst EMOJI = { review: '🔍', comparison: '⚖️', 'use-case-guide': '🧰', roundup: '🏅', 'buying-guide': '🛒', 'how-to-guide': '🛠️' };\n\nconst sep = it.url.includes('?') ? '&' : '?';\nconst link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);\nconst p = it.topPick;\nconst lines = [(EMOJI[it.type] || '📘') + ' ' + title, ...body];\nif (it.type === 'review' && p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');\nif (it.handsOnTested) lines.push(it.type === 'review' ? '✅ Hands-on tested in the OhmSavvy lab.' : '✅ Includes picks we have tested hands-on.');\nconst products = it.products || [];\nif ((it.type === 'how-to-guide' || it.type === 'buying-guide') && sections.length) lines.push(\"What's inside:\\n\" + sections.map((s) => '• ' + s).join('\\n'));\nelse if (it.type !== 'review' && products.length) lines.push('Picks covered: ' + products.slice(0, 4).join(', ') + (products.length > 4 ? ' and more' : '') + '.');\nlines.push('👉 Read it: ' + link);\nlines.push(TAGS[it.category] || '');\n\nreturn [{ json: { ...it, title, link, photo, message: lines.filter(Boolean).join('\\n\\n') } }];"
+        "jsCode": "// Builds the Facebook post from the article page itself: its headline, opening\n// paragraphs and section headings, and the image the page shows. All of it is\n// already-published, verified copy, so nothing new is written here (no prices,\n// no hype). \"Tested\" comes only from the feed's handsOnTested flag.\nconst it = $('Pick next post').first().json;\nconst cfg = $('Config').first().json;\nconst html = String($input.first().json.data || '');\n\nconst decode = (s) => s.replace(/&#x27;|&#39;/g, \"'\").replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');\nconst text = (s) => decode(s.replace(/<[^>]+>/g, '')).replace(/\\s+/g, ' ').trim();\nconst meta = (prop) => { const m = html.match(new RegExp('<meta (?:property|name)=\"' + prop + '\" content=\"([^\"]*)\"')); return m ? decode(m[1]) : ''; };\nconst main = (html.match(/<main[\\s\\S]*?<\\/main>/) || [html])[0];\n// Cuts at the last full sentence that fits.\nconst clip = (t, n) => { if (t.length <= n) return t; const cut = t.slice(0, n); const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('? '), cut.lastIndexOf('! ')); return end > 60 ? cut.slice(0, end + 1) : cut.replace(/\\s+\\S*$/, '') + '…'; };\n\nconst h1 = (main.match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/) || [])[1];\nconst title = (h1 && text(h1)) || meta('og:title').replace(/\\s*\\|\\s*OhmSavvy$/, '') || it.title;\n\n// Opening paragraph(s), skipping the affiliate disclosure and short card blurbs.\n// Reviews take two (the verdict line and the summary); everything else takes one,\n// since later paragraphs lean on the page around them (\"the steps below\").\n// Also skips paragraphs that continue an earlier thought (\"Put another way: …\").\nconst SKIP = /^(Disclosure|Affiliate|As an Amazon|Prices|Last updated|Put another way|In other words|That said|But |So |And |Also )/i;\nconst paras = [...main.matchAll(/<p[^>]*>([\\s\\S]*?)<\\/p>/g)].map((m) => text(m[1])).filter((t) => t.length >= 80 && !SKIP.test(t) && !t.endsWith(':'));\nconst body = [];\nfor (const para of paras) {\n  const room = 560 - body.join(' ').length;\n  if (room < 120) break;\n  body.push(clip(para, room));\n  if (body.length === (it.type === 'review' ? 2 : 1)) break;\n}\nif (!body.length) body.push(meta('description') || it.description);\n\n// How-to and buying guides list their section headings; picks-based pages list\n// the verified products they cover (from the feed); reviews need neither.\nconst GENERIC = /^(Frequently asked questions|FAQ|Guides|Product reviews|Comparisons|Where to buy|How we chose|Sources|Related)/i;\nconst sections = [...main.matchAll(/<h2[^>]*>([\\s\\S]*?)<\\/h2>/g)].map((m) => text(m[1]).replace(/^\\d+\\s*/, '')).filter((t) => t && !GENERIC.test(t)).slice(0, 4);\n\n// Image: a card made for this page alone (ohmsavvy.com/social-card/<path>): its\n// own title, category and product photo. Owner rule (2026-11-08): every post's\n// article AND image must be unique, and several pages share one product photo,\n// so the raw photo can't be used. Guard: if this image was ever posted before,\n// skip the slot rather than repeat it.\nconst photo = 'https://ohmsavvy.com/social-card' + new URL(it.url).pathname;\nconst store = $getWorkflowStaticData('global');\nif ((store.postedPhotos || {})[photo]) { store.posted = store.posted || {}; store.posted[it.url] = Date.now(); return []; }\n\nconst TAGS = {\n  multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',\n  'soldering-irons': '#Soldering #Electronics #DIYElectronics #Maker #Repair',\n  oscilloscopes: '#Oscilloscope #Electronics #Arduino #Maker #ElectricalEngineering',\n};\nconst EMOJI = { review: '🔍', comparison: '⚖️', 'use-case-guide': '🧰', roundup: '🏅', 'buying-guide': '🛒', 'how-to-guide': '🛠️' };\n\nconst sep = it.url.includes('?') ? '&' : '?';\nconst link = it.url + sep + 'utm_source=facebook&utm_medium=social&utm_campaign=' + encodeURIComponent(cfg.utmCampaign);\nconst p = it.topPick;\nconst lines = [(EMOJI[it.type] || '📘') + ' ' + title, ...body];\nif (it.type === 'review' && p && p.badge) lines.push('🏆 ' + p.badge + ' · rated ' + p.rating + '/5');\nif (it.handsOnTested) lines.push(it.type === 'review' ? '✅ Hands-on tested in the OhmSavvy lab.' : '✅ Includes picks we have tested hands-on.');\nconst products = it.products || [];\nif ((it.type === 'how-to-guide' || it.type === 'buying-guide') && sections.length) lines.push(\"What's inside:\\n\" + sections.map((s) => '• ' + s).join('\\n'));\nelse if (it.type !== 'review' && products.length) lines.push('Picks covered: ' + products.slice(0, 4).join(', ') + (products.length > 4 ? ' and more' : '') + '.');\nlines.push('👉 Read it: ' + link);\nlines.push(TAGS[it.category] || '');\n\nreturn [{ json: { ...it, title, link, photo, message: lines.filter(Boolean).join('\\n\\n') } }];"
       },
       "id": "a5",
       "name": "Build caption",
@@ -300,44 +300,20 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "=https://graph.facebook.com/{{ $('Config').first().json.graphVersion }}/{{ $('Config').first().json.pageId }}/feed",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpQueryAuth",
-        "sendBody": true,
-        "contentType": "form-urlencoded",
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "message",
-              "value": "={{ $('Build caption').first().json.message }}"
-            },
-            {
-              "name": "link",
-              "value": "={{ $('Build caption').first().json.link }}"
-            }
-          ]
-        },
-        "options": {}
+        "jsCode": "// Facebook didn't accept the photo. Post nothing (a link-only post would show the\n// page's preview image, which many pages share). Count the failure; Pick next\n// post stops trying a page after 3.\nconst post = $('Build caption').first().json;\nconst data = $getWorkflowStaticData('global');\ndata.failed = data.failed || {};\ndata.failed[post.url] = (data.failed[post.url] || 0) + 1;\nreturn [{ json: { notPosted: post.url, failures: data.failed[post.url], response: $input.first().json } }];"
       },
       "id": "a8",
-      "name": "Post link (no photo)",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "name": "Photo rejected: retry later (not posted)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
         2200,
         200
-      ],
-      "credentials": {
-        "httpQueryAuth": {
-          "id": "",
-          "name": "Facebook Page token (access_token)"
-        }
-      }
+      ]
     },
     {
       "parameters": {
-        "jsCode": "// Records the post only after Facebook accepted it.\nconst post = $('Build caption').first().json;\nconst data = $getWorkflowStaticData('global');\ndata.posted = data.posted || {};\ndata.posted[post.url] = Date.now();\ndata.categoryLastPosted = data.categoryLastPosted || {};\ndata.categoryLastPosted[post.category] = Date.now();\nconst res = $input.first().json;\nreturn [{ json: { postedUrl: post.url, facebookPostId: res.post_id || res.id, format: res.post_id ? 'photo' : 'link', repost: post.isRepost } }];"
+        "jsCode": "// Records the post only after Facebook accepted it.\nconst post = $('Build caption').first().json;\nconst data = $getWorkflowStaticData('global');\ndata.posted = data.posted || {};\ndata.posted[post.url] = Date.now();\ndata.postedPhotos = data.postedPhotos || {};\ndata.postedPhotos[post.photo] = Date.now();\ndata.categoryLastPosted = data.categoryLastPosted || {};\ndata.categoryLastPosted[post.category] = Date.now();\nconst res = $input.first().json;\nreturn [{ json: { postedUrl: post.url, facebookPostId: res.post_id || res.id, repost: post.isRepost } }];"
       },
       "id": "a9",
       "name": "Mark as posted",
@@ -445,7 +421,7 @@
         ],
         [
           {
-            "node": "Post link (no photo)",
+            "node": "Photo rejected: retry later (not posted)",
             "type": "main",
             "index": 0
           }
@@ -474,18 +450,7 @@
         ],
         [
           {
-            "node": "Post link (no photo)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Post link (no photo)": {
-      "main": [
-        [
-          {
-            "node": "Mark as posted",
+            "node": "Photo rejected: retry later (not posted)",
             "type": "main",
             "index": 0
           }

@@ -14,6 +14,8 @@ const data = $getWorkflowStaticData('global');
 data.firstSeen = data.firstSeen || {};
 data.posted = data.posted || {};
 data.categoryLastPosted = data.categoryLastPosted || {};
+// Pages whose photo Facebook rejected; retried in later slots, at most 3 times.
+data.failed = data.failed || {};
 
 const now = Date.now();
 const firstRun = Object.keys(data.firstSeen).length === 0;
@@ -23,7 +25,7 @@ for (const it of items) {
   if (data.firstSeen[it.url] === undefined) data.firstSeen[it.url] = firstRun ? 0 : now;
 }
 
-const TYPE_ORDER = { review: 0, comparison: 1, 'use-case-guide': 2, roundup: 3, 'buying-guide': 4 };
+const TYPE_ORDER = { review: 0, comparison: 1, 'use-case-guide': 2, roundup: 3, 'buying-guide': 4, 'how-to-guide': 5 };
 // Of the candidates, take the first one from the category that has waited longest.
 const fairest = (list) => {
   if (!list.length) return undefined;
@@ -33,7 +35,7 @@ const fairest = (list) => {
 };
 
 const unposted = items
-  .filter((i) => !data.posted[i.url])
+  .filter((i) => !data.posted[i.url] && (data.failed[i.url] || 0) < 3)
   .sort((a, b) => (data.firstSeen[b.url] - data.firstSeen[a.url]) || (TYPE_ORDER[a.type] - TYPE_ORDER[b.type]));
 
 let pick = fairest(unposted);
@@ -88,14 +90,14 @@ if (!body.length) body.push(meta('description') || it.description);
 const GENERIC = /^(Frequently asked questions|FAQ|Guides|Product reviews|Comparisons|Where to buy|How we chose|Sources|Related)/i;
 const sections = [...main.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => text(m[1]).replace(/^\d+\s*/, '')).filter((t) => t && !GENERIC.test(t)).slice(0, 4);
 
-// Image: the page's own product image (og:image); else the feed image; else the
-// first figure in the article body (direct src only, so the lazy "related
-// products" cards, which show other products, are never used); else the site's
-// branded default image.
-const og = meta('og:image');
-let photo = og && !/og-default/.test(og) ? og : (it.image || '');
-if (!photo) { const m = main.match(/<img[^>]*\ssrc="(https?:\/\/[^"]+)"/); if (m) photo = decode(m[1]); }
-if (!photo) photo = og;
+// Image: a card made for this page alone (ohmsavvy.com/social-card/<path>): its
+// own title, category and product photo. Owner rule (2026-11-08): every post's
+// article AND image must be unique, and several pages share one product photo,
+// so the raw photo can't be used. Guard: if this image was ever posted before,
+// skip the slot rather than repeat it.
+const photo = 'https://ohmsavvy.com/social-card' + new URL(it.url).pathname;
+const store = $getWorkflowStaticData('global');
+if ((store.postedPhotos || {})[photo]) { store.posted = store.posted || {}; store.posted[it.url] = Date.now(); return []; }
 
 const TAGS = {
   multimeters: '#Multimeter #Electrician #ElectricalTools #DIY #TestEquipment',
@@ -118,15 +120,26 @@ lines.push(TAGS[it.category] || '');
 
 return [{ json: { ...it, title, link, photo, message: lines.filter(Boolean).join('\n\n') } }];`;
 
+const recordFailure = String.raw`// Facebook didn't accept the photo. Post nothing (a link-only post would show the
+// page's preview image, which many pages share). Count the failure; Pick next
+// post stops trying a page after 3.
+const post = $('Build caption').first().json;
+const data = $getWorkflowStaticData('global');
+data.failed = data.failed || {};
+data.failed[post.url] = (data.failed[post.url] || 0) + 1;
+return [{ json: { notPosted: post.url, failures: data.failed[post.url], response: $input.first().json } }];`;
+
 const markPosted = String.raw`// Records the post only after Facebook accepted it.
 const post = $('Build caption').first().json;
 const data = $getWorkflowStaticData('global');
 data.posted = data.posted || {};
 data.posted[post.url] = Date.now();
+data.postedPhotos = data.postedPhotos || {};
+data.postedPhotos[post.photo] = Date.now();
 data.categoryLastPosted = data.categoryLastPosted || {};
 data.categoryLastPosted[post.category] = Date.now();
 const res = $input.first().json;
-return [{ json: { postedUrl: post.url, facebookPostId: res.post_id || res.id, format: res.post_id ? 'photo' : 'link', repost: post.isRepost } }];`;
+return [{ json: { postedUrl: post.url, facebookPostId: res.post_id || res.id, repost: post.isRepost } }];`;
 
 // IF node (v2) that passes when `left` is a non-empty string.
 const ifNotEmpty = (id, name, position, left) => ({
@@ -224,8 +237,8 @@ const workflow = {
     { parameters: {}, id: "a7", name: "Dry run: caption only (not posted)", type: "n8n-nodes-base.noOp", typeVersion: 1, position: [1540, -120] },
     ifNotEmpty("a10", "Has a photo?", [1540, 120], "={{ $json.photo }}"),
     {
-      // Facebook downloads the product image from its URL. If it can't (some
-      // manufacturer sites block hotlinking), the slot falls back to a link post.
+      // Facebook downloads the page's unique social card from its URL. If it
+      // can't, nothing is posted (a link post would show a repeated preview image).
       parameters: {
         method: "POST",
         url: graph("photos"),
@@ -249,29 +262,7 @@ const workflow = {
       credentials: fbCred,
     },
     ifNotEmpty("a12", "Photo accepted?", [1980, 40], "={{ $json.post_id || '' }}"),
-    {
-      parameters: {
-        method: "POST",
-        url: graph("feed"),
-        authentication: "genericCredentialType",
-        genericAuthType: "httpQueryAuth",
-        sendBody: true,
-        contentType: "form-urlencoded",
-        bodyParameters: {
-          parameters: [
-            { name: "message", value: "={{ $('Build caption').first().json.message }}" },
-            { name: "link", value: "={{ $('Build caption').first().json.link }}" },
-          ],
-        },
-        options: {},
-      },
-      id: "a8",
-      name: "Post link (no photo)",
-      type: "n8n-nodes-base.httpRequest",
-      typeVersion: 4.2,
-      position: [2200, 200],
-      credentials: fbCred,
-    },
+    { parameters: { jsCode: recordFailure }, id: "a8", name: "Photo rejected: retry later (not posted)", type: "n8n-nodes-base.code", typeVersion: 2, position: [2200, 200] },
     { parameters: { jsCode: markPosted }, id: "a9", name: "Mark as posted", type: "n8n-nodes-base.code", typeVersion: 2, position: [2420, 40] },
   ],
   connections: {
@@ -287,10 +278,9 @@ const workflow = {
         [{ node: "Has a photo?", type: "main", index: 0 }],
       ],
     },
-    "Has a photo?": { main: [[{ node: "Post photo + caption", type: "main", index: 0 }], [{ node: "Post link (no photo)", type: "main", index: 0 }]] },
+    "Has a photo?": { main: [[{ node: "Post photo + caption", type: "main", index: 0 }], [{ node: "Photo rejected: retry later (not posted)", type: "main", index: 0 }]] },
     "Post photo + caption": { main: [[{ node: "Photo accepted?", type: "main", index: 0 }]] },
-    "Photo accepted?": { main: [[{ node: "Mark as posted", type: "main", index: 0 }], [{ node: "Post link (no photo)", type: "main", index: 0 }]] },
-    "Post link (no photo)": { main: [[{ node: "Mark as posted", type: "main", index: 0 }]] },
+    "Photo accepted?": { main: [[{ node: "Mark as posted", type: "main", index: 0 }], [{ node: "Photo rejected: retry later (not posted)", type: "main", index: 0 }]] },
   },
   settings: { executionOrder: "v1", timezone: "Asia/Dubai" },
   pinData: {},

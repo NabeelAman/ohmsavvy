@@ -6,8 +6,8 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { HeroSearch } from "@/components/HeroSearch";
 import { HeroTrace } from "@/components/home/HeroTrace";
 import { ProofBar } from "@/components/home/ProofBar";
-import { CategoryTabs } from "@/components/home/CategoryTabs";
 import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { getAllPicks } from "@/lib/catalog";
 import { Reveal } from "@/components/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -142,13 +142,31 @@ const latestReviews = CATEGORY_ORDER.flatMap((cat) =>
 );
 const featuredComparisons = CATEGORY_ORDER.flatMap((cat) => ofType(cat, "comparison").filter((e) => !isRetired(e.href)).slice(0, 2));
 
-// Reviews + comparisons merged into one tabbed section, grouped by category —
-// each tab panel renders fully in the HTML (see CategoryTabs), so this is
-// strictly a presentation change: same cards, same links, half the sections.
-const researchByCategory = CATEGORY_ORDER.map((cat) => ({
-  category: cat,
-  items: [...latestReviews.filter((e) => e.category === cat), ...featuredComparisons.filter((e) => e.category === cat)],
-}));
+// Products the owner bought and tested (handsOnTested), still on sale: the site's strongest trust signal,
+// so they get their own row near the top instead of a badge buried in a card.
+const handsOnPicks = CATEGORY_ORDER.flatMap((cat) =>
+  getAllPicks(cat)
+    .filter((p) => p.handsOnTested && !p.unavailable)
+    .map((p) => ({ ...p, category: cat, link: pickLinkFor(p.name, cat, CATEGORIES.find((c) => c.category === cat)!.roundup.href) })),
+);
+
+// Head-to-head pages lead the homepage: comparisons are what searchers type ("X vs Y") and what earns the
+// site's traffic. Hand-picked niche and budget pairs first (2026-11-09), then the per-category defaults.
+const FEATURED_COMPARISONS = [
+  "/oscilloscopes/miniware-ds213-vs-fnirsi-dso152",
+  "/oscilloscopes/fnirsi-1013d-plus-vs-fnirsi-dpos350p",
+  "/multimeters/uni-t-ut61e-plus-vs-fluke-117",
+  "/soldering-irons/fnirsi-hs-02a-vs-pinecil-v2",
+  "/oscilloscopes/rigol-dho804-vs-rigol-dho802",
+  "/oscilloscopes/fnirsi-1014d-vs-hantek-dso2d10",
+];
+const headToHead = [
+  ...FEATURED_COMPARISONS.map((h) => content.find((e) => e.href === h)),
+  ...featuredComparisons,
+]
+  .filter((e): e is ContentEntry => !!e && !isRetired(e.href))
+  .filter((e, i, all) => all.findIndex((x) => x.href === e.href) === i)
+  .slice(0, 9);
 
 // Most recently updated pages (git dates from sitemap-lastmod.json), so new and
 // refreshed articles get a link from the homepage while they're waiting to be crawled.
@@ -299,9 +317,9 @@ export default function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-surface-raised">
         <HeroTrace />
-        <div className="relative mx-auto max-w-6xl px-6 pt-8 sm:pt-20 pb-12 grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-center">
+        <div className="relative mx-auto max-w-6xl px-6 pt-8 sm:pt-16 pb-16 sm:pb-20 grid lg:grid-cols-[1fr_440px] gap-10 lg:gap-14 items-center">
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 py-1 pl-2.5 pr-3.5 backdrop-blur">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 py-1 pl-2.5 pr-3.5 backdrop-blur">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-signal" />
@@ -318,20 +336,7 @@ export default function Home() {
               and how-to guides
               <span className="hidden sm:inline">, judged on the specs that actually matter so you can buy with confidence</span>.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {CATEGORIES.map((c) => (
-                <Link
-                  prefetch={false}
-                  key={c.category}
-                  href={`/${c.category}`}
-                  className={`inline-flex items-center gap-2 rounded-full border ${c.tone.border} bg-surface px-4 py-2 text-sm font-medium ${c.tone.text} shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md`}
-                >
-                  {c.label}
-                  <span aria-hidden="true">→</span>
-                </Link>
-              ))}
-            </div>
-            <div className="mt-8">
+            <div className="mt-7 max-w-xl">
               <HeroSearch />
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -347,23 +352,40 @@ export default function Home() {
                 </Link>
               ))}
             </div>
+            <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3 max-w-xl">
+              {CATEGORIES.map((c) => (
+                <Link
+                  prefetch={false}
+                  key={c.category}
+                  href={`/${c.category}`}
+                  className={`group rounded-2xl border border-border bg-surface px-3 py-3 sm:px-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-transparent`}
+                >
+                  <span className={`block h-1 w-8 rounded-full ${c.tone.bg}`} aria-hidden="true" />
+                  <span className="mt-2.5 flex items-center justify-between gap-1 text-[13px] sm:text-sm font-semibold leading-tight">
+                    {c.label}
+                    <span className={`hidden sm:inline ${c.tone.text} transition-transform group-hover:translate-x-0.5`} aria-hidden="true">→</span>
+                  </span>
+                  <span className="mt-0.5 block font-mono text-xs text-muted">{c.picks.length} picks</span>
+                </Link>
+              ))}
+            </div>
           </div>
 
-          <div className="rounded-3xl border border-border bg-surface shadow-xl shadow-foreground/5 ring-1 ring-black/[0.02] overflow-hidden">
+          <div className="rounded-3xl border border-border bg-surface shadow-2xl shadow-foreground/10 ring-1 ring-black/[0.03] overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-gradient-to-r from-surface-raised to-surface">
               <p className="font-display text-xs uppercase tracking-wide text-accent">Our top picks right now</p>
               <Link prefetch={false} href="/about" className="py-1.5 text-xs text-muted hover:text-accent">How we pick →</Link>
             </div>
             <ul className="divide-y divide-border">
               {topPicks.map((p) => (
-                <li key={p.name} className="flex gap-4 p-4 transition-colors hover:bg-surface-raised/60">
+                <li key={p.name} className="flex gap-4 p-4 sm:p-5 transition-colors hover:bg-surface-raised/60">
                   <Link
                     prefetch={false}
                     href={p.reviewHref}
-                    className="relative shrink-0 w-20 h-20 rounded-xl border border-border/60 bg-white overflow-hidden shadow-sm"
+                    className="relative shrink-0 w-24 h-24 rounded-2xl border border-border/60 bg-white overflow-hidden"
                   >
                     {p.image ? (
-                      <Image src={productImageSrc(p.image, 80)} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="80px" priority className="object-contain p-1.5" />
+                      <Image src={productImageSrc(p.image, 96)} unoptimized={skipOptimizer(p.image)} alt={p.name} fill sizes="96px" priority className="object-contain p-2" />
                     ) : (
                       <PhotoPlaceholder category={p.category} size="xs" />
                     )}
@@ -373,11 +395,11 @@ export default function Home() {
                       <span className={`font-display text-xs uppercase tracking-wide ${p.tone.text}`}>{p.label}</span>
                       <Stars rating={p.rating} />
                     </div>
-                    <Link prefetch={false} href={p.reviewHref} className="block py-0.5 font-semibold leading-snug hover:text-accent transition-colors">
+                    <Link prefetch={false} href={p.reviewHref} className="block py-0.5 text-lg font-semibold leading-snug hover:text-accent transition-colors">
                       {p.name}
                     </Link>
                     {p.handsOnTested && (
-                      <span className="mt-1 inline-block font-display text-xs uppercase tracking-wide text-accent">✓ Hands-on tested</span>
+                      <span className="inline-block font-display text-xs uppercase tracking-wide text-signal">✓ Hands-on tested</span>
                     )}
                     <div className="mt-2 flex items-center gap-3">
                       <Button href={p.ctaHref} className="px-3! py-1.5! text-xs!">Check price on Amazon</Button>
@@ -406,6 +428,55 @@ export default function Home() {
         />
       </div>
 
+      {/* Hands-on tested: the products we bought and put on our own bench */}
+      {handsOnPicks.length > 0 && (
+        <section className="mx-auto max-w-6xl px-6 pt-20 sm:pt-24">
+          <SectionHead
+            eyebrow="ON OUR BENCH"
+            title="Bought, unboxed and tested by us"
+            intro="These are the products we paid for and tested ourselves. They're the only ones we rate 4.8; everything else is spec-verified research and says so."
+            links={[{ href: "/about", label: "How we test" }]}
+          />
+          <div className="-mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-6 sm:overflow-visible sm:pb-0">
+            {handsOnPicks.map((p) => (
+              <Link
+                prefetch={false}
+                key={p.name}
+                href={p.link.href}
+                className="group snap-start shrink-0 w-[44%] sm:w-auto flex flex-col rounded-2xl border border-border bg-surface overflow-hidden shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg hover:border-transparent"
+              >
+                <div className="relative h-36 bg-white">
+                  {p.image ? (
+                    <Image
+                      src={productImageSrc(p.image, 200)}
+                      unoptimized={skipOptimizer(p.image)}
+                      alt={`${p.name}, hands-on tested by OhmSavvy`}
+                      fill
+                      sizes="(min-width: 1024px) 180px, (min-width: 640px) 33vw, 44vw"
+                      className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <PhotoPlaceholder category={p.category} size="sm" />
+                  )}
+                  <span className="absolute left-2 top-2 rounded-full bg-signal px-2 py-0.5 font-display text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm">
+                    ✓ Tested
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col gap-1 p-3.5">
+                  <span className={`font-display text-[11px] uppercase tracking-wide ${TONE_BY_CATEGORY[p.category].tone.text}`}>
+                    {TONE_BY_CATEGORY[p.category].label}
+                  </span>
+                  <span className="font-semibold leading-snug group-hover:text-accent transition-colors">{p.name}</span>
+                  <span className="mt-auto pt-1">
+                    <Stars rating={p.rating} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Category hub */}
       <section className="mx-auto max-w-6xl px-6 pb-16 pt-20 sm:pt-24">
         <SectionHead
@@ -422,15 +493,15 @@ export default function Home() {
             const comparisons = ofType(c.category, "comparison").length;
             const guides = content.filter((e) => e.category === c.category && e.type !== "review" && e.type !== "comparison").length;
             const buying = ofType(c.category, "buying-guide")[0];
+            const counts = [
+              { href: `/${c.category}/reviews`, label: "Reviews", n: reviews },
+              { href: `/${c.category}/comparisons`, label: "Comparisons", n: comparisons },
+              { href: `/${c.category}/guides`, label: "Guides", n: guides },
+            ];
             return (
               <Reveal key={c.category} delay={i * 80} className="flex snap-start shrink-0 w-[85%] md:w-auto">
-                <div className="group w-full flex flex-col rounded-3xl border border-border bg-surface-raised shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-foreground/5 hover:border-transparent motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-                  <Link prefetch={false} href={c.roundup.href} className={`relative block h-48 bg-gradient-to-br ${c.tone.soft} via-surface-raised to-surface`}>
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 opacity-[0.3]"
-                      style={{ backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)", backgroundSize: "14px 14px", color: "var(--border)" }}
-                    />
+                <div className="group w-full flex flex-col rounded-3xl border border-border bg-surface shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-foreground/5 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                  <Link prefetch={false} href={c.roundup.href} className="relative block h-56 bg-white border-b border-border">
                     <div className={`absolute top-0 inset-x-0 h-1 ${c.tone.bg}`} />
                     {popular.image && (
                       <Image
@@ -438,10 +509,14 @@ export default function Home() {
                         unoptimized={skipOptimizer(popular.image)}
                         alt={`${popular.name}, the most popular ${c.noun} in our picks`}
                         fill
-                        sizes="(min-width: 768px) 360px, 100vw"
-                        className="object-contain p-7 drop-shadow-md transition-transform duration-300 group-hover:scale-105"
+                        sizes="(min-width: 768px) 360px, 85vw"
+                        className="object-contain p-8 transition-transform duration-300 group-hover:scale-105"
                       />
                     )}
+                    <span className="absolute bottom-3 left-3 rounded-full bg-signal-bg px-3 py-1 text-xs">
+                      <span className="text-signal font-medium">Most popular: </span>
+                      <span className="text-foreground">{popular.name}</span>
+                    </span>
                   </Link>
                   <div className="flex flex-1 flex-col p-6">
                     <span className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</span>
@@ -451,38 +526,29 @@ export default function Home() {
                       </Link>
                     </h3>
                     <p className="mt-2 text-sm text-muted leading-6">{c.blurb}</p>
-                    <div className="mt-4 rounded-xl bg-signal-bg px-3.5 py-2.5 text-xs">
-                      <span className="text-signal font-medium">Most popular pick: </span>
-                      <span className="text-foreground">{popular.name}</span>
-                    </div>
                     {popular.name !== top.name && (
-                      <p className="mt-2 px-3 text-xs text-muted">
+                      <p className="mt-2 text-xs text-muted">
                         Editor&apos;s pick: <span className="text-foreground">{top.name}</span>
                       </p>
                     )}
-                    <ul className="mt-5 flex-1 space-y-2 text-sm">
+                    <div className="mt-5 grid grid-cols-3 gap-2">
+                      {counts.map((k) => (
+                        <Link
+                          prefetch={false}
+                          key={k.label}
+                          href={k.href}
+                          className="rounded-xl border border-border bg-surface-raised px-2 py-2.5 text-center transition-colors hover:border-accent"
+                        >
+                          <span className={`block font-display text-xl font-semibold ${c.tone.text}`}>{k.n}</span>
+                          <span className="block text-[11px] sm:text-xs text-muted">{k.label}</span>
+                        </Link>
+                      ))}
+                    </div>
+                    <ul className="mt-4 flex-1 space-y-1.5 text-sm">
                       <li>
                         <Link prefetch={false} href={c.roundup.href} className="flex justify-between py-0.5 font-medium text-foreground hover:text-accent">
                           <span>{c.roundup.title}</span>
                           <span className="font-mono text-xs">{c.picks.length} picks</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link prefetch={false} href={`/${c.category}/reviews`} className="flex justify-between py-0.5 text-muted hover:text-accent">
-                          <span>Reviews</span>
-                          <span className="font-mono text-xs">{reviews}</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link prefetch={false} href={`/${c.category}/comparisons`} className="flex justify-between py-0.5 text-muted hover:text-accent">
-                          <span>Comparisons</span>
-                          <span className="font-mono text-xs">{comparisons}</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link prefetch={false} href={`/${c.category}/guides`} className="flex justify-between py-0.5 text-muted hover:text-accent">
-                          <span>Guides</span>
-                          <span className="font-mono text-xs">{guides}</span>
                         </Link>
                       </li>
                       {buying && (
@@ -497,7 +563,7 @@ export default function Home() {
                     <Link
                       prefetch={false}
                       href={`/${c.category}`}
-                      className={`mt-6 inline-flex items-center justify-between rounded-full border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} shadow-sm transition-all hover:bg-surface hover:shadow-md`}
+                      className={`mt-6 inline-flex items-center justify-between rounded-full ${c.tone.bg} px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 hover:shadow-md`}
                     >
                       Explore all {c.label.toLowerCase()}
                       <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -508,15 +574,53 @@ export default function Home() {
             );
           })}
         </div>
+      </section>
 
-        {/* Folded in from the former standalone "Recently updated" section:
-            same links/anchor text, a slim strip instead of a full section. */}
-        <div className="mt-10 border-t border-border pt-8">
+      {/* Head-to-head comparisons: the "X vs Y" pages searchers actually look for */}
+      <section className="border-t border-border bg-surface-raised">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <SectionHead
+            eyebrow="HEAD TO HEAD"
+            title="Torn between two models? Compare them side by side"
+            intro="Spec-by-spec comparisons of the pairs people actually shortlist, each with a clear verdict on who should buy which."
+            links={CATEGORIES.map((c) => ({
+              href: `/${c.category}/comparisons`,
+              label: `All ${ofType(c.category, "comparison").length} ${c.noun} comparisons`,
+            }))}
+          />
+          <div className={CAROUSEL}>
+            {headToHead.map((e) => (
+              <div key={e.href} className={CAROUSEL_ITEM}>
+                <ContentCard entry={e} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+        <SectionHead
+          eyebrow="IN-DEPTH REVIEWS"
+          title="One product, every spec that matters"
+          intro="Full reviews with verified specs, pros and cons, and who each tool is (and isn't) for."
+          links={CATEGORIES.map((c) => ({ href: `/${c.category}/reviews`, label: `${c.label} reviews` }))}
+        />
+        <div className={CAROUSEL}>
+          {latestReviews.map((e) => (
+            <div key={e.href} className={CAROUSEL_ITEM}>
+              <ContentCard entry={e} />
+            </div>
+          ))}
+        </div>
+
+        {/* Newly updated pages get a homepage link while they wait to be crawled. */}
+        <div className="mt-12 rounded-2xl border border-border bg-surface-raised p-6">
           <p className="mb-4 font-display text-xs uppercase tracking-wide text-muted">Just updated</p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2.5">
+          <ul className="grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
             {recentlyUpdated.map((e) => (
               <li key={e.href}>
-                <Link prefetch={false} href={e.href} className="group inline-flex items-center gap-2 text-sm">
+                <Link prefetch={false} href={e.href} className="group inline-flex items-baseline gap-2 text-sm">
                   <span className={`shrink-0 font-display text-xs uppercase tracking-wide ${TONE_BY_CATEGORY[e.category].tone.text}`}>
                     {TYPE_LABEL[e.type]}
                   </span>
@@ -528,181 +632,163 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Research the exact model: reviews + comparisons merged into one
-          tabbed section (was two separate full sections). */}
+      {/* Find your path: use-case guides + troubleshooting side by side */}
       <section className="border-t border-border bg-surface-raised">
         <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-          <SectionHead
-            eyebrow="RESEARCH THE EXACT MODEL"
-            title="In-depth reviews and head-to-head comparisons"
-            intro="Pick a category: individual product reviews first, then the close-call comparisons."
-          />
-          <CategoryTabs
-            tabs={researchByCategory.map(({ category, items }) => ({
-              key: category,
-              label: TONE_BY_CATEGORY[category].label,
-              tone: TONE_BY_CATEGORY[category].tone,
-              panel: (
-                <div className={CAROUSEL}>
-                  {items.map((e) => (
-                    <div key={e.href} className={CAROUSEL_ITEM}>
-                      <ContentCard entry={e} />
-                    </div>
-                  ))}
-                </div>
-              ),
-            }))}
-          />
-        </div>
-      </section>
-
-      {/* Find your path: use-case guides + troubleshooting merged side by
-          side (was two separate full sections). */}
-      <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-        <SectionHead eyebrow="FIND YOUR PATH" title="Shop by job, or fix the problem in front of you" />
-        <div className="grid gap-10 lg:grid-cols-[7fr_5fr]">
-          <div className="min-w-0">
-            <h3 className="font-semibold">Pick by what you&apos;ll actually do with it</h3>
-            <p className="mt-1.5 text-sm text-muted leading-6">
-              Not sure which tool fits? Start from the job: panel work, car diagnostics, circuit boards or a first home lab.
-            </p>
-            <div className={`mt-5 ${CAROUSEL}`}>
-              {useCaseGuides.map((g) => (
-                <div key={g.href} className={CAROUSEL_ITEM}>
-                  <GuideCard entry={g} />
-                </div>
-              ))}
-            </div>
-            {moreUseCases.length > 0 && (
-              <div className="mt-5 flex flex-wrap items-center gap-2">
-                <span className="mr-1 font-display text-xs uppercase tracking-wide text-muted">More picks by job:</span>
-                {moreUseCases.map((g) => (
-                  <Link
-                    prefetch={false}
-                    key={g.href}
-                    href={g.href}
-                    className={`rounded-full border border-border bg-surface px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors`}
-                  >
-                    <span className={TONE_BY_CATEGORY[g.category].tone.text}>●</span> {TONE_BY_CATEGORY[g.category].label}: {g.title}
-                  </Link>
+          <SectionHead eyebrow="FIND YOUR PATH" title="Shop by job, or fix the problem in front of you" />
+          <div className="grid gap-10 lg:grid-cols-[7fr_5fr]">
+            <div className="min-w-0">
+              <h3 className="font-semibold">Pick by what you&apos;ll actually do with it</h3>
+              <p className="mt-1.5 text-sm text-muted leading-6">
+                Not sure which tool fits? Start from the job: panel work, car diagnostics, circuit boards or a first home lab.
+              </p>
+              <div className={`mt-5 ${CAROUSEL}`}>
+                {useCaseGuides.map((g) => (
+                  <div key={g.href} className={CAROUSEL_ITEM}>
+                    <GuideCard entry={g} />
+                  </div>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
 
-          <div className="min-w-0">
-            <h3 className="font-semibold">Fix the problem in front of you</h3>
-            <p className="mt-1.5 text-sm text-muted leading-6">
-              Reading doesn&apos;t make sense, solder won&apos;t flow or the trace won&apos;t sit still? Each guide lists the likely
-              causes, how to check each one and the fix.
-            </p>
-            <div className="mt-5 space-y-5">
-              {troubleshooting.map(({ category, entries }) => {
-                const c = TONE_BY_CATEGORY[category];
-                return (
-                  <div key={category} className="rounded-2xl border border-border bg-surface-raised p-5 shadow-sm">
-                    <h4 className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</h4>
-                    <ul className="mt-2 divide-y divide-border">
-                      {entries.slice(0, 4).map((g) => (
-                        <li key={g.href}>
-                          <Link prefetch={false} href={g.href} className="group flex items-start justify-between gap-3 py-2.5 text-sm">
-                            <span className="group-hover:text-accent transition-colors">{g.title}</span>
-                            <span className="text-muted" aria-hidden="true">→</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link prefetch={false} href={`/${category}#guides`} className="mt-3 inline-block py-1 text-sm font-medium text-accent hover:underline">
-                      More {c.noun} fixes →
-                    </Link>
-                  </div>
-                );
-              })}
+            <div className="min-w-0">
+              <h3 className="font-semibold">Fix the problem in front of you</h3>
+              <p className="mt-1.5 text-sm text-muted leading-6">
+                Reading doesn&apos;t make sense, solder won&apos;t flow or the trace won&apos;t sit still? Each guide lists the likely
+                causes, how to check each one and the fix.
+              </p>
+              <div className="mt-5 space-y-5">
+                {troubleshooting.map(({ category, entries }) => {
+                  const c = TONE_BY_CATEGORY[category];
+                  return (
+                    <div key={category} className="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+                      <h4 className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</h4>
+                      <ul className="mt-2 divide-y divide-border">
+                        {entries.slice(0, 4).map((g) => (
+                          <li key={g.href}>
+                            <Link prefetch={false} href={g.href} className="group flex items-start justify-between gap-3 py-2.5 text-sm">
+                              <span className="group-hover:text-accent transition-colors">{g.title}</span>
+                              <span className="text-muted" aria-hidden="true">→</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link prefetch={false} href={`/${category}#guides`} className="mt-3 inline-block py-1 text-sm font-medium text-accent hover:underline">
+                        More {c.noun} fixes →
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
+
+          {moreUseCases.length > 0 && (
+            <div className="mt-12 rounded-2xl border border-border bg-surface p-6">
+              <p className="font-display text-xs uppercase tracking-wide text-muted">More picks by job</p>
+              <div className="mt-4 grid gap-8 md:grid-cols-3">
+                {CATEGORIES.map((c) => {
+                  const list = moreUseCases.filter((g) => g.category === c.category);
+                  if (!list.length) return null;
+                  return (
+                    <div key={c.category} className="min-w-0">
+                      <p className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</p>
+                      <ul className="mt-2 space-y-1">
+                        {list.map((g) => (
+                          <li key={g.href}>
+                            <Link prefetch={false} href={g.href} className="block py-1 text-sm hover:text-accent transition-colors">
+                              {g.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Learn */}
-      <section className="border-t border-border bg-surface-raised">
-        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
-          <SectionHead
-            eyebrow="LEARN THE BASICS"
-            title="Guides that explain the specs before you spend"
-            intro="Plain-English how-to guides and buying guides, with diagrams, worked examples and safety notes."
-          />
-          <div className="grid lg:grid-cols-3 gap-6">
-            {CATEGORIES.map((c) => {
-              const start = featuredHowTos.find((g) => g.category === c.category);
-              const more = otherHowTos.filter((g) => g.category === c.category);
-              const buying = buyingGuides.filter((g) => g.category === c.category);
-              // Same count as the category card and the /guides page: every guide, incl. use-case picks.
-              const total = content.filter((e) => e.category === c.category && e.type !== "review" && e.type !== "comparison").length;
-              return (
-                <div key={c.category} className="flex flex-col rounded-2xl border border-border bg-surface shadow-sm overflow-hidden">
-                  <div className={`h-1 ${c.tone.bg}`} />
-                  <div className="flex items-center justify-between px-5 pt-5">
-                    <span className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</span>
-                    <span className="font-mono text-xs text-muted">{total} guides</span>
-                  </div>
-                  {start && (
-                    <Link prefetch={false} href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
-                      <span className="font-display text-xs uppercase tracking-wide text-accent">Start here</span>
-                      <span className="mt-1 block font-semibold group-hover:text-accent transition-colors">{start.title}</span>
-                      <span className="mt-1 block text-xs text-muted leading-5">{start.description}</span>
-                    </Link>
-                  )}
-                  <ul className="mt-3 flex-1 divide-y divide-border px-5">
-                    {more.slice(0, 5).map((g) => (
-                      <li key={g.href}>
-                        <Link prefetch={false} href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
-                          <span className="group-hover:text-accent transition-colors">{g.title}</span>
-                          <span className="text-muted" aria-hidden="true">→</span>
-                        </Link>
-                      </li>
-                    ))}
-                    {buying.map((g) => (
-                      <li key={g.href}>
-                        <Link prefetch={false} href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
-                          <span className="group-hover:text-accent transition-colors">
-                            <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-xs uppercase text-signal">Buying</span>
-                            {g.title}
-                          </span>
-                          <span className="text-muted" aria-hidden="true">→</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    prefetch={false}
-                    href={`/${c.category}/guides`}
-                    className={`mx-5 mb-5 mt-4 inline-flex items-center justify-between rounded-lg border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} hover:bg-surface-raised transition-colors`}
-                  >
-                    All {total} {c.noun} guides
-                    <span aria-hidden="true">→</span>
-                  </Link>
+      <section className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+        <SectionHead
+          eyebrow="LEARN THE BASICS"
+          title="Guides that explain the specs before you spend"
+          intro="Plain-English how-to guides and buying guides, with diagrams, worked examples and safety notes."
+        />
+        <div className="grid lg:grid-cols-3 gap-6">
+          {CATEGORIES.map((c) => {
+            const start = featuredHowTos.find((g) => g.category === c.category);
+            const more = otherHowTos.filter((g) => g.category === c.category);
+            const buying = buyingGuides.filter((g) => g.category === c.category);
+            // Same count as the category card and the /guides page: every guide, incl. use-case picks.
+            const total = content.filter((e) => e.category === c.category && e.type !== "review" && e.type !== "comparison").length;
+            return (
+              <div key={c.category} className="flex flex-col rounded-2xl border border-border bg-surface shadow-sm overflow-hidden">
+                <div className={`h-1 ${c.tone.bg}`} />
+                <div className="flex items-center justify-between px-5 pt-5">
+                  <span className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</span>
+                  <span className="font-mono text-xs text-muted">{total} guides</span>
                 </div>
-              );
-            })}
-          </div>
+                {start && (
+                  <Link prefetch={false} href={start.href} className="group mx-5 mt-4 block rounded-xl bg-surface-raised p-4 hover:ring-1 hover:ring-accent transition">
+                    <span className="font-display text-xs uppercase tracking-wide text-accent">Start here</span>
+                    <span className="mt-1 block font-semibold group-hover:text-accent transition-colors">{start.title}</span>
+                    <span className="mt-1 block text-xs text-muted leading-5">{start.description}</span>
+                  </Link>
+                )}
+                <ul className="mt-3 flex-1 divide-y divide-border px-5">
+                  {more.slice(0, 5).map((g) => (
+                    <li key={g.href}>
+                      <Link prefetch={false} href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                        <span className="group-hover:text-accent transition-colors">{g.title}</span>
+                        <span className="text-muted" aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                  {buying.map((g) => (
+                    <li key={g.href}>
+                      <Link prefetch={false} href={g.href} className="group flex items-center justify-between gap-3 py-2.5 text-sm">
+                        <span className="group-hover:text-accent transition-colors">
+                          <span className="mr-1.5 rounded bg-signal-bg px-1.5 py-0.5 font-display text-xs uppercase text-signal">Buying</span>
+                          {g.title}
+                        </span>
+                        <span className="text-muted" aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  prefetch={false}
+                  href={`/${c.category}/guides`}
+                  className={`mx-5 mb-5 mt-4 inline-flex items-center justify-between rounded-lg border ${c.tone.border} px-4 py-2.5 text-sm font-medium ${c.tone.text} hover:bg-surface-raised transition-colors`}
+                >
+                  All {total} {c.noun} guides
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* How we review, collapsed to a compact strip, directly above FAQ —
-          was its own full section with four large animated cards. */}
+      {/* How we review + FAQ */}
       <section className="border-t border-border bg-surface-raised">
         <div className="mx-auto max-w-6xl px-6 pt-16">
           <SectionHead eyebrow="HOW WE REVIEW" title="One standard, applied the same way to every product" />
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {reviewSteps.map((s) => (
-              <li key={s.title} className="flex gap-3 rounded-xl border border-border bg-surface p-4">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-signal-bg text-signal">
-                  <Icon d={s.icon} />
+            {reviewSteps.map((s, i) => (
+              <li key={s.title} className="relative rounded-2xl border border-border bg-surface p-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-signal-bg text-signal">
+                    <Icon d={s.icon} />
+                  </div>
+                  <span className="font-mono text-xs text-muted">0{i + 1}</span>
                 </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold leading-snug">{s.title}</p>
-                  <p className="mt-1 text-xs leading-5 text-muted">{s.desc}</p>
-                </div>
+                <p className="mt-4 text-sm font-semibold leading-snug">{s.title}</p>
+                <p className="mt-1.5 text-xs leading-5 text-muted">{s.desc}</p>
               </li>
             ))}
           </ol>

@@ -5,6 +5,7 @@
 // right after). Guarded to only actually submit on a real Vercel production
 // build — NOT on the isolated/local verification builds used throughout this
 // project's workflow, which would otherwise spam IndexNow on every check.
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
 const HOST = "ohmsavvy.com";
@@ -28,13 +29,35 @@ function extractRoutes() {
   return [...routes];
 }
 
+// Only the pages this deploy changed (page files under src/app since the previous production deploy), plus the
+// homepage. Re-sending all ~600 URLs on every deploy made Bing and partners re-crawl the whole site each time
+// (Vercel usage review, 2026-11-10). If the previous commit isn't available, fall back to every route.
+function changedRoutes(all) {
+  const prev = process.env.VERCEL_GIT_PREVIOUS_SHA;
+  if (!prev) return null;
+  let files;
+  try {
+    files = execFileSync("git", ["diff", "--name-only", prev, "HEAD", "--", "src/app"], { encoding: "utf8" }).split(/\r?\n/);
+  } catch {
+    return null;
+  }
+  const known = new Set(all);
+  const changed = new Set(["/"]);
+  for (const file of files) {
+    const m = file.match(/^src\/app\/(.+)\/page\.tsx$/);
+    if (m && !m[1].includes("[") && known.has(`/${m[1]}`)) changed.add(`/${m[1]}`);
+  }
+  return [...changed];
+}
+
 async function main() {
   if (process.env.VERCEL_ENV !== "production") {
     console.log("Skipping IndexNow submission (not a production Vercel build).");
     return;
   }
 
-  const routes = extractRoutes();
+  const all = extractRoutes();
+  const routes = changedRoutes(all) ?? all;
   const urlList = routes.map((r) => `${SITE}${r}`);
 
   const res = await fetch(ENDPOINT, {

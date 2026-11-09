@@ -18,6 +18,14 @@ const BLOCKED_BOTS = [
   "MJ12bot",
   "DotBot",
   "BLEXBot",
+  // Added 2026-11-10 (Vercel usage review): more training crawlers and SEO-tool scrapers.
+  "ClaudeBot",
+  "anthropic-ai",
+  "Google-Extended",
+  "meta-externalagent",
+  "DataForSeoBot",
+  "SeekportBot",
+  "Barkrowler",
 ];
 
 export default function robots(): MetadataRoute.Robots {

@@ -684,28 +684,46 @@ export default function Home() {
           </div>
 
           {moreUseCases.length > 0 && (
-            <div className="mt-12 rounded-2xl border border-border bg-surface p-6">
-              <p className="font-display text-xs uppercase tracking-wide text-muted">More picks by job</p>
-              <div className="mt-4 grid gap-8 md:grid-cols-3">
-                {CATEGORIES.map((c) => {
-                  const list = moreUseCases.filter((g) => g.category === c.category);
-                  if (!list.length) return null;
+            <div className="mt-14">
+              <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+                <div>
+                  <h3 className="font-semibold">More picks by job</h3>
+                  <p className="mt-1 text-sm text-muted">Ranked shortlists for one specific task, judged on the specs that task needs.</p>
+                </div>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
+                  {CATEGORIES.map((c) => (
+                    <span key={c.category} className="inline-flex items-center gap-1.5">
+                      <span className={`h-2 w-2 rounded-full ${c.tone.bg}`} aria-hidden="true" />
+                      {c.label} ({moreUseCases.filter((g) => g.category === c.category).length})
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <ul className="mt-5 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+                {moreUseCases.map((g) => {
+                  const c = TONE_BY_CATEGORY[g.category];
                   return (
-                    <div key={c.category} className="min-w-0">
-                      <p className={`font-display text-xs uppercase tracking-wide ${c.tone.text}`}>{c.label}</p>
-                      <ul className="mt-2 space-y-1">
-                        {list.map((g) => (
-                          <li key={g.href}>
-                            <Link prefetch={false} href={g.href} className="block py-1 text-sm hover:text-accent transition-colors">
-                              {g.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <li key={g.href} className="flex">
+                      <Link
+                        prefetch={false}
+                        href={g.href}
+                        className="group relative flex w-full items-center justify-between gap-3 overflow-hidden rounded-xl border border-border bg-surface py-3 pl-4 pr-3 sm:pl-5 sm:pr-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-transparent hover:shadow-md"
+                      >
+                        <span className={`absolute inset-y-0 left-0 w-1 ${c.tone.bg}`} aria-hidden="true" />
+                        <span className="min-w-0">
+                          <span className={`block font-display text-[11px] uppercase tracking-wide ${c.tone.text}`}>
+                            {c.noun}s<span className="hidden sm:inline">{g.picks?.length ? ` · ${g.picks.length} picks` : ""}</span>
+                          </span>
+                          <span className="mt-0.5 block text-sm font-medium leading-snug group-hover:text-accent transition-colors">{g.title}</span>
+                        </span>
+                        <span className="hidden sm:inline shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true">
+                          →
+                        </span>
+                      </Link>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             </div>
           )}
         </div>

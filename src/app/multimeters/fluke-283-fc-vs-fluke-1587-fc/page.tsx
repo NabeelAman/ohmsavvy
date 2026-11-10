@@ -27,7 +27,7 @@
 // Picks: Fluke 283 FC/PV (4.5) and Fluke 1587 FC (4.6); neither is hands-on tested by us. The maintenance-visit task
 // list is a general workflow, not a test we ran. We give no PV insulation test voltage: that comes from the module,
 // inverter and installation documentation.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

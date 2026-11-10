@@ -21,7 +21,7 @@
 //   (conflict stated). Continuity on below 25 Ω, off above 250 Ω, catches opens/shorts of 250 µs; diode 2.400 V,
 //   1% + 2. MIN MAX: ±12 counts for DC changes longer than 275 ms, ±40 counts for AC changes longer than 1.2 s.
 //   Fuses 440 mA and 11 A, 1000 V. Display timeout 2 minutes, disable by power-up option.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

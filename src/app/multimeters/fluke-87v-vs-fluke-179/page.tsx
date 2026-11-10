@@ -4,7 +4,7 @@
 //   frequency to 200 kHz at ±(0.005% + 1); 32-segment bar graph updating 40 times/s; 10 A, 0.01 µA DC resolution)
 // - Fluke 179 product page and spec tab: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-179
 //   (DC ±(0.09% + 2); AC ±(1.0% + 3); frequency to 100 kHz at ±(0.1% + 1); 10 A, 0.01 mA resolution; one 9 V, about 200 h)
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

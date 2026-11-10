@@ -5,7 +5,7 @@
 // sleep or heat-up figure on that page; the ~12 s heat-up and ~60 W on 20 V PD figures come from the Pinecil V2 Pick.
 // Q-MING 60W Kit per the Pick and its official Amazon listing (https://www.amazon.com/dp/B098JD8HD3): 60 W, ceramic heating
 // element, adjustable dial 200-450 C, ~15 s heat-up, 5 tips and a stand. No maker site found; weight, tip series and ESD not stated.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

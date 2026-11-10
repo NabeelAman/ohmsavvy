@@ -10,7 +10,7 @@
 // resistance 400.0 ohm to 40.00 Mohm, +/-(0.5%+2) on the middle ranges; capacitance 40 nF to 1000 uF, +/-(2%+5) to
 // +/-(5%+5); input >10 Mohm; 4000 counts; backlight; 2 x AA, at least 500 h; fuses 440 mA and 11 A; 183 x 91 x 49.5 mm;
 // 455 g; IP40; True RMS not claimed. CAT II 1000V and Data Hold only per the Pick.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

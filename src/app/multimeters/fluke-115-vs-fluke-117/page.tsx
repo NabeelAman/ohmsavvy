@@ -9,7 +9,7 @@
 //   https://media.fluke.com/5e1db354-3a6e-49cf-9edd-b10800c0e608_original%20file.pdf
 // Conflicts between these sources are stated on the page (frequency top range, LoZ capacitance on the 115,
 // and the product pages' comparison table listing temperature for the 115/117 and frequency for the 117 only).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -26,7 +26,7 @@
 // PI (10-minute / 1-minute) and DAR (60 s / 30 s) definitions, the test-voltage guidance commonly cited from IEEE 43
 // (500 V DC for windings rated below 1000 V) and the PI worked example are standard engineering values, hedged and
 // labeled illustrative on the page. Picks: Fluke 1577 (4.5) and Fluke 1587 FC (4.6); neither is hands-on tested by us.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { content, type Category, type ContentEntry } from "@/lib/content";
 import { GuideCard } from "./GuideCard";
 import { Eyebrow } from "./ui/Eyebrow";

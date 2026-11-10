@@ -17,7 +17,7 @@
 //   /multimeters/fluke-1587-fc-vs-fluke-87v); 355 g (624 g in holster); 9 V, about 400 h; lifetime warranty; no LoZ,
 //   non-contact voltage or logging listed.
 // The PWM/low-pass illustration is a generic textbook picture of a drive output, not a measurement.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

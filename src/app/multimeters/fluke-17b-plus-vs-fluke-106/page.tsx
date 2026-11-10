@@ -5,7 +5,7 @@
 // - Fluke 106 product page and spec tab: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-106
 //   (ranges 600.0 mV / 6.000 / 60.00 / 600.0 V; DC ±(0.5% + 3), AC ±(1.0% + 3); 4.000 A and 10.00 A only, AC 40 to 200 Hz;
 //   6,000 counts updating 3/s; 600 V max to earth; 2 × AAA, 200 h minimum; 200 g)
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

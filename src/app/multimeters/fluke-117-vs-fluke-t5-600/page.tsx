@@ -6,7 +6,7 @@
 //   resistance to 1000 Ω, ±(1% + 2); continuity beeper on below 25 Ω, off above 400 Ω; 12.9 mm jaw, 1/0 THHN max;
 //   AC response averaging; 2 × AA, 400 h alkaline; 203 × 51 × 30.5 mm, 300 g; 3 m drop; volts LED at 30 V AC;
 //   CAT III 600 V; 2-year warranty; no DC current)
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

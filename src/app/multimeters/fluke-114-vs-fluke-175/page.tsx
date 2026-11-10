@@ -19,7 +19,7 @@
 //   CAT IV 600 V; 9 V, about 200 h; 43 × 90 × 185 mm; 420 g; lifetime warranty.
 // - Fluke 113 page (GFCI/RCD trip warning for LoZ phase-to-earth measurements), as cited on fluke-114-vs-fluke-117.
 // Battery, receptacle and branch-circuit voltages below are standard nominal values used for illustrative arithmetic.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

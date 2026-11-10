@@ -7,7 +7,7 @@
 //   stability, ESD safe, five presets, rotary dial, parameter lock, drives other Hakko handpieces; station 1.2 kg,
 //   100 × 120 × 120 mm; tip-to-ground under 2 Ω). hakkousa.com returned 403 to our fetch on 2026-10-26, so no new Hakko facts
 //   were added. Hakko states no heat-up time and no sleep or standby mode for the FX-888DX.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

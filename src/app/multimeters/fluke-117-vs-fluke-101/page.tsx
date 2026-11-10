@@ -6,7 +6,7 @@
 //   duty cycle 0.1% to 99.9%, DC volts 0.5% + 3, no current function, no True RMS claim)
 // Fluke's 101 documents disagree on top capacitance (100 µF vs 1,000 µF); the 117's top frequency is 50 kHz on the
 // datasheet but 99.99 kHz in the 2020 manual. Both conflicts are stated on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

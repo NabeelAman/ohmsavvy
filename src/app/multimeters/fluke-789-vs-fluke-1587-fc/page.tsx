@@ -31,7 +31,7 @@
 // The 12 mA error arithmetic is ours. The 1587 FC's 0.01 mA step on its 60 mA range is our inference from the
 // 6000-count display (Fluke's resolution figure is not in the sources above) and is labeled as such on the page.
 // Picks: Fluke 789 (4.7) and Fluke 1587 FC (4.6); neither is hands-on tested by us.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

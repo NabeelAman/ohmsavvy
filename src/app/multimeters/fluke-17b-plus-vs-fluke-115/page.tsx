@@ -13,7 +13,7 @@
 //   500 µs or longer; Min/Max/Avg with elapsed time; no temperature (116 only); CAT III 600V; one 9 V, 400 h typical;
 //   167 × 84 × 46 mm; 550 g; 3-year warranty.
 // Worked accuracy figures below are arithmetic on those published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

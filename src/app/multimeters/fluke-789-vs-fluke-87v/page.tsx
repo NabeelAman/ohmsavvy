@@ -30,7 +30,7 @@
 //   400.0 mA range ±(0.2% + 2); burden 1.8 mV/mA.
 // Picks: Fluke 789 (4.7, not tested by us) in src/lib/multimeter-catalog.ts; Fluke 87V (4.8, hands-on tested) in
 // best-multimeters. 4-20 mA arithmetic on the page is ours, from these specs.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

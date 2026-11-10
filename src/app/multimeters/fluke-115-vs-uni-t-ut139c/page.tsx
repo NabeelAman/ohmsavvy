@@ -20,7 +20,7 @@
 // Amazon availability checked 2026-10-29 with Chrome: both in stock with a buy box. Price ratio is a snapshot, no figures.
 // Fluke 115 hands-on tested by the owner (no measurements published); UT139C is desk research.
 // Water-heater numbers are worked arithmetic (R = V²/P, I = P/V) on a typical 4,500 W / 240 V element, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

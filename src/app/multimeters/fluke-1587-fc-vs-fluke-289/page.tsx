@@ -30,7 +30,7 @@
 // The point that a few-volt ohmmeter doesn't stress insulation the way a rated test voltage does is a standard
 // engineering point, hedged on the page. Picks: Fluke 1587 FC (4.6) and Fluke 289 (4.7); neither is hands-on
 // tested by OhmSavvy. Desk research only.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

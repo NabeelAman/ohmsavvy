@@ -19,7 +19,7 @@
 //   (conflicts with 12.59 oz on astroai.com; stated on the page). Accuracy figures and current ranges: not stated in either.
 // Amazon availability checked 2026-10-29 with Chrome: both in stock with a buy box. Price ratio is a snapshot, no figures.
 // Worked numbers are arithmetic on published specs, not measurements. Neither meter is hands-on tested by OhmSavvy.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

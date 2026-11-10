@@ -12,7 +12,7 @@
 //   analog vertical resolution 8 bits; 1 mV/div to 10 V/div; 30,000 wfms/s; up to 60,000-frame recording;
 //   7.0-inch 800 × 480; USB host/device, LAN, Aux out; max input CAT I 300 Vrms; 313.1 × 160.8 × 122.4 mm, 3.2 kg).
 // Quantization and record-time figures below are arithmetic on those specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

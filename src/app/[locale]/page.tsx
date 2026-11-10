@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { notFound } from "next/navigation";
 import { ContentCard } from "@/components/ContentCard";
 import { FaqAccordion } from "@/components/FaqAccordion";

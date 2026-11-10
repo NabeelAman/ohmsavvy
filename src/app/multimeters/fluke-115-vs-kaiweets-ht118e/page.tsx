@@ -21,7 +21,7 @@
 //   0.01 µA, 0.01 mA, 0.01 V and 0.001 V below follow from 20,000 counts on the published ranges (as on the Pick).
 // Amazon.com availability checked 2026-10-29 with Chrome at ZIP 10001: both In Stock with Add to Cart.
 // Worked tolerances are arithmetic on published specs; example currents and voltages are illustrative, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

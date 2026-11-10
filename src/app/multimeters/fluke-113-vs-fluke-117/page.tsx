@@ -18,7 +18,7 @@
 // - Fluke 110 Series users manual (March 2020): https://media.fluke.com/5e1db354-3a6e-49cf-9edd-b10800c0e608_original%20file.pdf
 //   (VoltAlert Lo/Hi; frequency listed to 99.99 kHz, which the datasheet does not show).
 // Measurement-category zone descriptions are standard IEC 61010 usage, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

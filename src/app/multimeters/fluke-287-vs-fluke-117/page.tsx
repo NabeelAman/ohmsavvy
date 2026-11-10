@@ -14,7 +14,7 @@
 // capacitance 1 nF to 9,999 µF ±(1.9% + 2); frequency to 50 kHz; no temperature; Min/Max/Avg; VoltAlert non-contact
 // voltage; AutoVolt AC/DC auto-select with LoZ input of about 3 kΩ; 167 x 84 x 46 mm; 550 g; one 9 V, about 400 h
 // typical; 3-year warranty.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

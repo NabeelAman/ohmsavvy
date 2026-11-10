@@ -18,7 +18,7 @@
 //   (µA and temperature on the 116 only; AutoVolt LoZ about 3 kΩ on the 114, 116 and 117; normal V input >10 MΩ DC,
 //   >5 MΩ AC; capacitance and frequency not on the 114).
 // The 35 µF ±6% run capacitor is an illustrative label value, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

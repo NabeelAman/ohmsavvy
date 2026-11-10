@@ -22,7 +22,7 @@
 // IEEE 43 figures (500 V DC test for windings rated below 1000 V; commonly cited minimums of 5 MΩ for random-wound
 // windings below 1 kV and 100 MΩ for most form-wound windings, corrected to 40 °C) are standard engineering values,
 // hedged on the page. Picks: Fluke 1577 (4.5, desk research) and Fluke 87V (4.8, hands-on tested).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

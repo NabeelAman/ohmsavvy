@@ -22,7 +22,7 @@
 // B000O3LUEI In Stock with Add to Cart. Prices not shown on the page.
 // Fluke 117 is owner hands-on tested (no bench numbers published, none quoted). UT61E+ is desk research.
 // Worked readings are arithmetic on the published specs and are labeled illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

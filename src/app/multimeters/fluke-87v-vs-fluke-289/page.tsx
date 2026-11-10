@@ -11,7 +11,7 @@
 // low-pass filter. 100 mF capacitance per the Fluke 287 Pick ("shares the 289's ... 100 mF capacitance").
 // 289 accuracy, frequency, temperature, peak capture, weight, battery and warranty per the Fluke 287/289 Users Manual
 // (Rev. 2, 3/09), as cited in /multimeters/fluke-289-vs-fluke-287 (updated 2026-10-28). Max current: not stated there.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

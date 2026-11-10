@@ -19,7 +19,7 @@
 // included 80BK probe; Auto Hold and Min/Max-Average; no low-pass filter or LoZ listed; one 9 V, about 200 h;
 // 43 × 90 × 185 mm, 420 g; CAT III 1000V / CAT IV 600V; lifetime warranty. IP rating and drop height: not stated.
 // Neither meter is hands-on tested by OhmSavvy; this page is desk research against Fluke's published specifications.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -18,7 +18,7 @@
 // Min/Max/Avg; no temperature (116 only), no LoZ (114/117 only), no NCV (117 only); one 9 V, 400 h typical;
 // 167 × 84 × 46 mm; 550 g; 3-year warranty. Amazon B000OCFFMW in stock at ZIP 10001 (checked 2026-11-08).
 // Drive-output behavior (PWM carrier on a lower-frequency fundamental) is standard drive theory, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

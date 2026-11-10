@@ -25,7 +25,7 @@
 // Amazon.com (Playwright, installed Chrome, ZIP 10001, 2026-11-07): B08X9WXJTL "Only 15 left in stock" with Add to
 // Cart, sold by UNI-T Direct; B0012B51HI In Stock with Add to Cart. Price gap stated only as a rough ratio.
 // Neither meter is hands-on tested; logging durations are arithmetic on the stated memory sizes.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

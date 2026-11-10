@@ -9,7 +9,7 @@
 // - SDS1104X-E 8-bit resolution per Siglent's SDS1000X-E data sheet, https://siglentna.com/download/22005/ (as cited on
 //   /oscilloscopes/rigol-dho804-vs-siglent-sds1104x-e).
 // Rise-time figures use the standard 0.35 / bandwidth approximation and are labeled as estimates.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

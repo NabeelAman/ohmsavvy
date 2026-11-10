@@ -17,7 +17,7 @@
 //   drop rating are not on the listing, so the page says "Not stated".
 // Amazon.com availability checked 2026-10-29 with Chrome at ZIP 10001: both In Stock with Add to Cart.
 // Worked figures are arithmetic on Fluke's published accuracy, not measurements. Neither meter is hands-on tested.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

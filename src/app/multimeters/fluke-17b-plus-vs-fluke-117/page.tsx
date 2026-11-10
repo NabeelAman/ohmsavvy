@@ -14,7 +14,7 @@
 // below 20 Ω; VoltAlert, AutoVolt, LoZ about 3 kΩ; no temperature (116 only); one 9V, 400 h typical; 167 × 84 × 46 mm;
 // 550 g; 3-year warranty. Fluke 117 spec tab (as cited on /multimeters/fluke-117-review): AutoVolt ±(2.0% + 3), LoZ about
 // 3 kΩ, 10.00 A with 20 A for 30 s. Ghost-voltage behavior as explained on /multimeters/fluke-117-review.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

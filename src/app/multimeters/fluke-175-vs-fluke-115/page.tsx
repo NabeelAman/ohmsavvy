@@ -23,7 +23,7 @@
 // Field-technician section (added 2026-10-29) uses only the figures above plus the 115 backlight auto-off after 40 s
 // per /multimeters/fluke-115-vs-fluke-117. No drop rating is published for either meter in these sources; no IP rating
 // for the 175 and no surge figure for the 115 in these sources.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

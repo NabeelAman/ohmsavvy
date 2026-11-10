@@ -7,7 +7,7 @@
 //   (130 × 65 × 27 mm, 160 g, 1-year warranty, 1 m drop, frequency 10 Hz to 100 kHz, duty cycle 0.1% to 99.9%,
 //   diode and continuity with buzzer, two AAA)
 // Fixed 2026-10-26: the 101's duty-cycle range was given as 1–99%; Fluke's 101 page lists 0.1% to 99.9%.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

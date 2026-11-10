@@ -13,7 +13,7 @@
 //   (115: 6.000 A / 10.00 A AC and DC, AC ±(1.5% + 3), 20 A for 30 s; capacitance 1 nF to 9,999 µF ±(1.9% + 2);
 //   frequency to 50.00 kHz ±(0.1% + 2); diode 2.000 V ±(0.9% + 2); no AutoVolt/LoZ; normal V input >10 MΩ DC, >5 MΩ AC).
 // - Fluke 110/113/114/115/117 Users Manual (March 2020): https://media.fluke.com/5e1db354-3a6e-49cf-9edd-b10800c0e608_original%20file.pdf
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

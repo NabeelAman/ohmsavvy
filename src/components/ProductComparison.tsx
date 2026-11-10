@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { productImageSrc, skipOptimizer } from "@/lib/images";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { reviewHrefFor, siblingComparisons, type Category } from "@/lib/content";
 import type { ReviewLink } from "./ProductReview";
 import type { Faq, Pick } from "./ReviewArticle";

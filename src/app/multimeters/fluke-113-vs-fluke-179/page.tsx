@@ -16,7 +16,7 @@
 //   warranty; no LoZ or non-contact voltage listed. Continuity and diode details are not in the 179 spec lines we cite.
 // Worked tolerances assume 6,000-count ranges (60.00 V, 600.0 V) and the accuracy lines above; arithmetic, not measurements.
 // Neither meter is hands-on tested by OhmSavvy; this page is desk research against published specifications.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

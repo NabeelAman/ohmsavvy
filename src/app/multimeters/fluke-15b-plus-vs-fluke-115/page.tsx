@@ -15,7 +15,7 @@
 //   99.99 kHz); continuity below about 20 Ω, catches opens/shorts of 500 µs or longer; Min/Max/Avg with elapsed time;
 //   no temperature (116 only); one 9 V, 400 h typical; 167 × 84 × 46 mm; 550 g; 3-year warranty.
 // Worked uncertainty figures on this page are arithmetic on those published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

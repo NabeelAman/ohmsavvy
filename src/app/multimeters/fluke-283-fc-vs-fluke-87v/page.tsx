@@ -21,7 +21,7 @@
 //   IP30; 355 g (624 g with holster); 9V, ~400 h; operating -20 to 55 °C; lifetime warranty; no logging or wireless.
 // Module Voc temperature coefficient (~ -0.25 to -0.35 %/°C for crystalline silicon) and NEC 690.7 system-voltage
 // limits are standard engineering values, hedged on the page. The string example is illustrative arithmetic.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

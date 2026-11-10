@@ -11,7 +11,7 @@
 //   capacitance 50.00 nF to 1000 µF; frequency 10 Hz to 100 kHz ±(0.1% + 3); duty cycle 1-99%; 6000 counts; backlit;
 //   2 × AAA, 200 h minimum; 142 × 69 × 28 mm; 200 g; 11 A fuse; IP 40; 1 m drop; CAT III 600 V; 2-year warranty;
 //   "not a true-RMS" (page FAQ).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

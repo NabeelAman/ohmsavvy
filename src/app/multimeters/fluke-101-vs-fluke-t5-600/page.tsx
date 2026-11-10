@@ -10,7 +10,7 @@
 //   0.1 A resolution, ±(3% + 3), 50/60 Hz, 12.9 mm jaw opening, max 1/0 THHN; no DC current; resistance to 1000 Ω, 1 Ω
 //   resolution, ±(1% + 2); continuity on below 25 Ω, off above 400 Ω; averaging AC response; 2 × AA, 400 h alkaline;
 //   30.5 × 51 × 203 mm; 300 g; 3 m (10 ft) drop; CAT III 600 V; 2-year warranty; probe storage in the back.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

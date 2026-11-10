@@ -9,7 +9,7 @@
 // 400 ohm; averaging AC response; CAT III 600V; 2 x AA, 400 h alkaline; 30.5 x 51 x 203 mm; 300 g; 3 m drop; jaw opening
 // 12.9 mm, max 1/0 THHN; low input impedance (Fluke Q&A: shouldn't show ghost voltages); not for multi-conductor cords;
 // 2-year warranty.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -29,7 +29,7 @@
 // The loop voltage budget (Ohm's law: 250 Ω x 20 mA = 5 V) and the 0.05%-of-span arithmetic are ours; transmitter
 // lift-off voltages vary by model and are hedged on the page. Picks: Fluke 787B (4.6) and Fluke 789 (4.7); neither
 // is hands-on tested by us.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

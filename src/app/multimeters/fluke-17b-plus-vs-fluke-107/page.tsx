@@ -10,7 +10,7 @@
 //   duty 1–99%; diode 2.000 V; 6,000 counts, backlit; 2 × AAA, 200 h minimum; 142 × 69 × 28 mm, 200 g; 1 m drop;
 //   2-year warranty in the box contents; "not a true-RMS" per Fluke's Q&A).
 // Worked accuracy figures below are arithmetic on those published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

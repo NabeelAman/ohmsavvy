@@ -6,7 +6,7 @@
 //   (400.0 A AC True RMS, ±(2% + 5) at 45 to 65 Hz; 600.0 V AC/DC; 400.0 Ω / 4000 Ω; 30 mm max conductor;
 //   CAT III 600 V / CAT IV 300 V; 265 g; 2-year warranty; no DC current)
 // - Fluke 117: 6.000 A and 10.00 A AC/DC, 20 A for 30 s; 550 g; 3-year warranty (kit page and 110 Series datasheet).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

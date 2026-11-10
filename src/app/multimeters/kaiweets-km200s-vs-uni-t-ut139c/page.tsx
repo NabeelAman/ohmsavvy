@@ -9,7 +9,7 @@
 //   170 × 80 × 48 mm, 354 g). The series table is flattened on UNI-T's page, so per-model rows are stated with that caveat.
 // Correction 2026-10-26: the old page said the UT139C doesn't list a backlight; UNI-T lists an LED backlight for the series.
 // Impulse voltages are typical IEC 61010-1 values, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

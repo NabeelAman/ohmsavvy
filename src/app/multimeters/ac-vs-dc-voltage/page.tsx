@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { Callout, DataTable, Figure, HowToShell, InfoCards, KeyIdea, ProductStrip, ScopeScreen } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";
 import { picks } from "../best-multimeters/page";

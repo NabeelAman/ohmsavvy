@@ -16,7 +16,7 @@
 // CAT III 1000V / CAT IV 600V; 420 g; one 9 V, about 200 h; lifetime warranty.
 // Not in our sources (written as "Not stated"): 179 duty cycle, 179 finest resistance step, 179 dimensions,
 // 287 bundled temperature probe, 179 probe type and temperature accuracy.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

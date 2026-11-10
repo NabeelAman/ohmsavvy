@@ -18,7 +18,7 @@
 //   LoZ phase-to-earth can trip a GFCI/RCD. Conflicts: Amazon bullet says CAT III 600 V / CAT IV 300 V; True RMS is
 //   in the Amazon title and on the meter label but only in a footnote on fluke.com.
 // Typical LED forward voltages and the voltage-divider arithmetic are standard values, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -12,7 +12,7 @@
 // - Fluke 110 Series users manual (March 2020): https://media.fluke.com/5e1db354-3a6e-49cf-9edd-b10800c0e608_original%20file.pdf
 //   (VoltAlert Lo/Hi sensitivity; no indication does not prove no voltage).
 // Branch-circuit and loop-current figures below are standard values (15/20 A circuits, 4-20 mA loops), hedged.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

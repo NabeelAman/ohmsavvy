@@ -15,7 +15,7 @@
 // 60.00 mA range, 440 mA / 11 A 1000 V fuses, 8 kV surge protection and -10 to +50 °C operating per Fluke Pub_ID 10824-eng
 // (cited on /multimeters/fluke-175-vs-fluke-115). 80BK range: −40 to 260 °C per /multimeters/fluke-87v-vs-fluke-179, not on
 // the 179 page. No surge or operating-temperature figure for the 17B+ in our sources. Readings in worked examples are illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

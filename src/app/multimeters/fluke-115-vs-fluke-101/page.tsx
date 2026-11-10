@@ -13,7 +13,7 @@
 // Electronics section (added 2026-10-29): 101 ohms 400.0 Ω ±(0.5% + 3), capacitance from 50.00 nF and frequency with no
 // published accuracy, per the en-in page notes on /multimeters/fluke-107-vs-fluke-101; 115 600.0 Ω range, continuity
 // below about 20 Ω / 500 µs and 2.000 V diode test per /multimeters/fluke-115-review. Worked readings are illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -16,7 +16,7 @@
 // (https://www.yihua-soldering.com/9-1-yihua-926led-iii-926led-iv-digital-soldering-iron-station.html, checked 2026-11-08):
 // 130 W max, 18 W rated, 90-480 °C, LED display. The unit is printed "926 LED III" (per the Pick).
 // The 926 III is the current Amazon version of YIHUA's 926 station line that "yihua 939d+ vs 926" searches refer to.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

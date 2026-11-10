@@ -11,7 +11,7 @@
 // - 179 display count (6,000) per the Fluke 179 Pick in src/app/multimeters/best-multimeters/page.tsx (170 Series datasheet).
 // Worked tolerances assume 6,000-count ranges (e.g. 6.000 V, 60.00 V, 600.0 V, 60.00 mA) and use Fluke's "best accuracy"
 // lines, so they are best-case figures, not per-range guarantees.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

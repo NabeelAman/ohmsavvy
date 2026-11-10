@@ -11,7 +11,7 @@
 //   550 g; 9 V, 400 h typical; 3-year warranty).
 // Impulse values in the chart are the standard IEC 61010-1 test transients commonly published for each category
 // (hedged on the page), not product-specific figures.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

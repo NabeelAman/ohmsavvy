@@ -13,7 +13,7 @@
 // (https://media.fluke.com/8eaf269b-51d3-435f-9e69-b10800c0e4df_original%20file.pdf); 117 beeps below 20 Ω per the
 // fluke.com 116/117 spec tabs as cited on /multimeters/fluke-116-vs-fluke-117.
 // The 1.11 form factor and square-wave arithmetic below are standard textbook values, not Fluke figures.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

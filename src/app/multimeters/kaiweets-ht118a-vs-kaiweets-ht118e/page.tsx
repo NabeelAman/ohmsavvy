@@ -24,7 +24,7 @@
 // listing: HT118E 20000 counts auto; HT118A 6000 counts auto. Prices not shown on the page.
 // Neither meter is hands-on tested. Resolution figures follow from range and count; worked error bands are arithmetic
 // on the published accuracy and are labeled illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

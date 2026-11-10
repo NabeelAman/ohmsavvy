@@ -23,7 +23,7 @@
 //   fuses behind two screws under the kickstand. No warranty term ("Hassle-Free Warranty").
 // Amazon.com availability checked 2026-10-29 with Chrome at ZIP 10001 (both In Stock); DM6000AR In Stock again 2026-11-04.
 // Worked tolerances are arithmetic on each maker's published specs; readings and the ghost-voltage figures are illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

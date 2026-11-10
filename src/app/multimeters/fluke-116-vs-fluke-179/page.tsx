@@ -18,7 +18,7 @@
 //   while its spec table gives 0.01 mA best current resolution, 10,000 µF and 400 °C. We follow the spec table.
 // - Fluke 902 FC (mentioned as a pairing only): the Pick in src/lib/multimeter-catalog.ts (200 µA DC range, 0.1 µA).
 // Flame-signal levels, the 45 µF capacitor and the 2.5 µA reading are illustrative, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

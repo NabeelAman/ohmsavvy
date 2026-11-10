@@ -16,7 +16,7 @@
 //   (1 nF steps) to 9,999 µF ±(1.9% + 2); frequency to 50.00 kHz ±(0.1% + 2); Min/Max/Avg; CAT III 600V; one 9V,
 //   400 h typical; 167 × 84 × 46 mm; 550 g; 3-year warranty).
 // LED forward voltages, the 20 mA LED current and Arduino PWM frequency are standard hobby values, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

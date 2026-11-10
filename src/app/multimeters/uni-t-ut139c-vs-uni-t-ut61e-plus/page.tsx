@@ -20,7 +20,7 @@
 // B093BS9MYM Add to Cart. Both sold by testingvillage. Prices not shown on the page.
 // Neither meter is hands-on tested. UT139C range structure (6.000 / 60.00 / 600.0 V) is inferred from 6,000 counts
 // and the 600 V maximum, and labeled as inferred on the page. Worked figures are arithmetic on published specs.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

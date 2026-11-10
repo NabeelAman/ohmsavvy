@@ -21,7 +21,7 @@
 //   (% duty cycle ÷ 100) ÷ frequency; it has no direct pulse-width or RPM function.
 //   https://www.manualsdir.com/manuals/743810/fluke-80-series-v-85-v-83-v-87-v.html?page=38
 // Waveform form-factor numbers (sine 1.111, square 1.000, triangle 1.155) are standard engineering values.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

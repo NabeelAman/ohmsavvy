@@ -18,7 +18,7 @@
 // Worked tolerances assume 6,000-count ranges (60.00 V, 600.0 V, 60.00 mA, 6.000 A) and the accuracy lines above; they
 // are arithmetic on published specs, not measurements. The 600 V-class (575 V nominal) system note is a standard value,
 // hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

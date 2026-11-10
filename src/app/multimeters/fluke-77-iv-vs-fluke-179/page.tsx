@@ -14,7 +14,7 @@
 // Standard engineering values (hedged on the page): a drive's DC bus sits near 1.35 × the line-to-line RMS voltage;
 // NEMA defines voltage unbalance as the largest deviation from the average divided by the average.
 // Neither meter is hands-on tested by OhmSavvy; this page is desk research against Fluke's published specifications.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

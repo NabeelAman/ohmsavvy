@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";

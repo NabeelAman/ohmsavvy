@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { getPicks, picksForEntry } from "@/lib/catalog";
 import { content, type Category, type ContentEntry } from "@/lib/content";
 import { productImageSrc, skipOptimizer } from "@/lib/images";

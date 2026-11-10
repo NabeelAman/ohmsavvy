@@ -9,7 +9,7 @@
 //   DC V ±(0.05% + 1), AC V ±(0.7% + 2), low-pass filter 3 dB at 1 kHz, 10 A (20 A for 30 s) plus mA and µA,
 //   0.01 µA DC resolution, 50 MΩ, 9,999 µF, 200 kHz, duty cycle, -200 to 1090 °C excl. probe (80BK probe -40 to 260 °C),
 //   250 µs Peak Capture, 355 g (624 g in holster), about 400 h battery, lifetime warranty; dimensions not stated in our data)
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

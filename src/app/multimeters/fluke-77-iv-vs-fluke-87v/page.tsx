@@ -17,7 +17,7 @@
 //   battery; lifetime warranty. No LoZ or NCV listed.
 // Worked uncertainty figures assume each meter's 6,000-count range resolution and the basic accuracy Fluke lists; they
 // are arithmetic on published specs, not measurements. Fluke 87V is owner hands-on tested; the 77 IV is not.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

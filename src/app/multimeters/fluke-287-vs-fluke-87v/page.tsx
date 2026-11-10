@@ -29,7 +29,7 @@
 //   "Peak records the signal extremes lasting longer than 250 µs"; no time stamps or elapsed time described.
 // Picks: Fluke 287 (4.6, not tested by us) in src/lib/multimeter-catalog.ts; Fluke 87V (4.8, hands-on tested) in
 // best-multimeters. Timeline values on the page are illustrative and labeled as such.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

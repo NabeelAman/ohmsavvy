@@ -13,7 +13,7 @@
 // named. Frequency ranges 50.00 Hz/500.0 Hz/5.000 kHz/50.00 kHz/100.0 kHz, ±(0.1% + 3). Duty cycle 1-99%, 0.1%
 // resolution, 1% typical "at 50 or 60 Hz, 10% to 90% duty". AC current 40-400 Hz and AC volts 40-500 Hz on both.
 // 15B+ in the box: TL75 leads, 2 AA. 17B+ in the box: TL75 leads, Type-K probe, 2 AA.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

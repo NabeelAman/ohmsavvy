@@ -8,7 +8,7 @@
 //   USB-C PD 9–20 V, DC 9–24 V, 50–400 °C, OLED, motion-sensing sleep, overheat warning, Boost button, TS100 tips fit,
 //   kit includes a B2 tip and a 65 W USB-C adapter. Listing wattage figures conflict, so none is quoted.
 // Supply ceilings on the page are V × A arithmetic for the supply, not measured iron output.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

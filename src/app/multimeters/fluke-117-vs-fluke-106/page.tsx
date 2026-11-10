@@ -12,7 +12,7 @@
 //   positioned for work "where true-rms accuracy isn't needed". The current US page doesn't state the warranty; the
 //   Pick note (Fluke 106/107 users manual) lists no diode test, frequency or duty cycle on the 106.
 // Waveform arithmetic (form factor 1.11, triangle-wave RMS) uses standard textbook values, not Fluke figures.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

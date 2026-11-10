@@ -1,5 +1,5 @@
 import { ContentLinks } from "@/components/ContentLinks";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildMetadata } from "@/lib/metadata";
 import { BarChart, Figure } from "@/components/HowTo";

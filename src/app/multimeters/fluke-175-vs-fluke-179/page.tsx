@@ -18,7 +18,7 @@
 //   says Fluke's 179 page doesn't state it. Both positions are reported on the page.
 // Worked figures use only the percentage-of-reading term: both meters share 6,000 counts and the same +2 count term,
 // so the percentage term is the whole difference. They are best-case figures from Fluke's "best accuracy" lines.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

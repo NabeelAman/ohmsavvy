@@ -7,7 +7,7 @@
 // capacitance 99.99 mF +/-(4%+5); frequency 10 Hz-10 MHz; temperature -40 to 1000 C; duty cycle; auto/manual ranging; NCV;
 // MAX/MIN/REL, hold, backlight; CAT III 600V; two 1.5 V R6 batteries; 170 x 80 x 48 mm; 354 g; temperature probe included.
 // LoZ is listed for the UT139E/S, not the UT139C.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

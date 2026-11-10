@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 
 // Scoped keyframes for the logo (kept here rather than in globals.css so the
 // whole effect lives in one file). The header persists across client-side

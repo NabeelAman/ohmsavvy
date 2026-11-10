@@ -6,7 +6,7 @@
 //   (400 A AC, 1.0 in jaw, 600 V AC/DC, True RMS, CAT III 600V, backlit display, LED work light, two AAA batteries,
 //   test leads included). Resistance and continuity per the Milwaukee 2235-20 Pick note (milwaukeetool.com page and manual).
 // Correction 2026-10-26: the old page said the 2235-20 can't measure resistance or continuity; Milwaukee lists both.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -19,7 +19,7 @@
 // Amazon (Playwright, Chrome, ZIP 10001, 2026-10-29): B00HE6MIJY and B0B57L9FNL both in stock with Add to Cart.
 // Price gap stated only as a rough ratio. Both assessments are desk research; worked readings are arithmetic on the
 // published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

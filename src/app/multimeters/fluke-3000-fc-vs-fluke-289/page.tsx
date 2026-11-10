@@ -16,7 +16,7 @@
 //   Forms; LoZ AC volts 3.2 kΩ; low-pass filter (blocks above 1 kHz, manual ranging); 6 × AA, 100 h minimum, 200 h in
 //   logging mode; 871 g; CAT III 1000V / CAT IV 600V; lifetime limited warranty. Built-in wireless: none in our sources.
 // Neither meter is hands-on tested by OhmSavvy; this page is desk research against Fluke's published specifications.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

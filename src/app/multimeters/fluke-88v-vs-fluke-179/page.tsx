@@ -21,7 +21,7 @@
 //   capture, input impedance and burden voltage are not listed for the 179.
 // Worked tolerances use Fluke's "best accuracy" lines on 6,000-count ranges (6.000 V, 60.00 V, 60.00 mA), so they
 // are best-case figures, not per-range guarantees. PWM timing numbers in the diagram are illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

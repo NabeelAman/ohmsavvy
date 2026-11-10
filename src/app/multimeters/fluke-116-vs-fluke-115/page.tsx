@@ -12,7 +12,7 @@
 // - Fluke 114/115/116/117 datasheet (2793260b): https://media.fluke.com/ce54d963-3be9-4e70-8a3e-b1060070fdfd_original%20file.pdf
 //   (temperature and µA on the 116 only; AutoVolt LoZ about 3 kΩ on the 114, 116, 117; normal V input >10 MΩ DC, >5 MΩ AC).
 // Flame-signal, pilot-thermocouple, anticipator and delta-T figures are common field rules of thumb, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

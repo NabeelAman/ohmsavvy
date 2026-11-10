@@ -5,7 +5,7 @@
 // - Fluke 117: 114/115/116/117 datasheet and 2020 users manual, as cited on /multimeters/fluke-115-vs-fluke-117
 //   (DC ±(0.5% + 2); AC ±(1.0% + 3); 6 A / 10 A, no mA range; 40 MΩ; 9,999 µF; 50 kHz; VoltAlert; AutoVolt LoZ about 3 kΩ;
 //   550 g; 9 V, 400 h typical; 3-year warranty)
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

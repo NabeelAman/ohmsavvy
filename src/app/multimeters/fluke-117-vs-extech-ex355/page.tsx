@@ -15,7 +15,7 @@
 // Amazon (Playwright, Chrome, ZIP 10001, 2026-10-29): both ASINs in stock with Add to Cart; Fluke about 2.1x the EX355.
 // Fluke 117 is owner hands-on tested; the EX355 assessment is desk research. Worked readings are arithmetic on the
 // published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

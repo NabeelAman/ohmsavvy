@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { notFound } from "next/navigation";
 import { Stars } from "@/components/ui/Stars";
 import { picks } from "../../../multimeters/best-multimeters/page";

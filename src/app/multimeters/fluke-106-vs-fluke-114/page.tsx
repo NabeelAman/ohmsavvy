@@ -19,7 +19,7 @@
 //   lists no current ranges and the meter has only COM and + jacks; a temperature footnote with no temperature function.
 // - LoZ phase-to-earth GFCI/RCD trip warning per Fluke's 113 page (cited on fluke-113-vs-fluke-115).
 // Ghost-voltage behavior of high-impedance inputs is standard meter theory, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

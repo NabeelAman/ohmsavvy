@@ -20,7 +20,7 @@
 // The DC-bus figure (line voltage x 1.414, roughly 680 V on a 480 V drive) and the PWM description are standard
 // engineering values, hedged on the page. Picks: Fluke 27 II (4.4) and Fluke 87V MAX (4.7) in
 // src/lib/multimeter-catalog.ts; neither is hands-on tested by us.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

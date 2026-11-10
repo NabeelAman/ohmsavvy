@@ -14,7 +14,7 @@
 //   40 MΩ ±(0.9% + 1); 9,999 µF ±(1.9% + 2); 50 kHz; no temperature; 550 g; 9 V, 400 h; 3-year warranty).
 // Average-responding error figures on this page are textbook math for idealized waveforms (form factor 1.11 for a
 // sine), not Fluke data and not our measurements; they are labeled as such.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

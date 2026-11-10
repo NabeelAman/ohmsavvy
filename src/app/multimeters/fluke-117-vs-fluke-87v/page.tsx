@@ -7,7 +7,7 @@
 //   AC V ±(0.7% + 2), 0.01 µA DC resolution, 50 MΩ, 9,999 µF, 200 kHz, duty cycle, -200 to 1090 °C, 250 µs peak capture,
 //   low-pass filter, 355 g (624 g in holster), 400 h battery, lifetime warranty)
 // Correction 2026-10-26: the old page said the 117 has no bar graph. Fluke lists a 33-segment bar graph on the 117.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

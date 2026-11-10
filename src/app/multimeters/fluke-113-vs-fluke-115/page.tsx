@@ -15,7 +15,7 @@
 //   (115: DC V ±(0.5% + 2), AC V ±(1.0% + 3), >10 MΩ DC / >5 MΩ AC input, 6 A/10 A, resistance to 40 MΩ, diode
 //   ±(0.9% + 2), capacitance 1 nF-9,999 µF, frequency to 50 kHz, CAT III 600 V, 550 g, 400 h, 3-year warranty).
 // GFCI trip threshold (about 4-6 mA for US personnel protection) is a standard value, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

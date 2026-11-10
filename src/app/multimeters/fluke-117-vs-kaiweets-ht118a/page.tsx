@@ -21,7 +21,7 @@
 // Amazon (Playwright, Chrome, ZIP 10001, 2026-10-29): B000O3LUEI and B07SHLS639 both in stock with Add to Cart.
 // Price gap stated only as a rough ratio. Fluke 117 is owner hands-on tested; the HT118A assessment is desk research.
 // Worked readings are arithmetic on the published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

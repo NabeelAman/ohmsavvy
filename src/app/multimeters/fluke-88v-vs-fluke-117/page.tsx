@@ -14,7 +14,7 @@
 //   resistance to 40.00 MΩ; capacitance to 9,999 µF; frequency to 50.00 kHz; Min/Max/Avg; continuity catches
 //   500 µs opens/shorts; VoltAlert NCV; AutoVolt LoZ about 3 kΩ; no temperature (116 only); 550 g; 9V, 400 h;
 //   3-year warranty. Duty cycle, pulse width, RPM and peak capture are not listed for the 117.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

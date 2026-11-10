@@ -23,7 +23,7 @@
 //   Amazon listing's "Category I/II" wording conflicts with Fluke's rating; we use Fluke's.
 // Picks: Fluke 1587 FC (4.6) and Fluke 287 (4.6); neither is hands-on tested by us. The motor-fault sequence on this
 // page is a general workflow, not a test we ran.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

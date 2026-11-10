@@ -24,7 +24,7 @@
 //   warranty. No insulation test function.
 // PI (10-minute ÷ 1-minute reading) and DAR (60-second ÷ 30-second reading) definitions and the "PI of 2.0 or more"
 // guideline (commonly cited from IEEE 43 for most motor insulation classes) are standard engineering values, hedged.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

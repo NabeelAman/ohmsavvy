@@ -24,7 +24,7 @@
 //   intrinsically safe: https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-28-ii-ex
 // Picks: Fluke 28 II in src/lib/multimeter-catalog.ts (4.6, not tested by us); Fluke 87V in best-multimeters (4.8,
 // hands-on tested).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

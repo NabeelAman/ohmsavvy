@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { getContentByCategoryGrouped, type Category, type ContentEntry } from "@/lib/content";
 import { ContentCard } from "./ContentCard";
 

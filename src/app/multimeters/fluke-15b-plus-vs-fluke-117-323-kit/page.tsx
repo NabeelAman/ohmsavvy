@@ -7,7 +7,7 @@
 //   323: 400.0 A AC True RMS, 600.0 V AC/DC, 400.0 Ω / 4000 Ω, CAT III 600 V / CAT IV 300 V, 265 g, 2-year warranty;
 //   kit adds TL175 leads, TPAK hanger and soft case)
 // - Fluke 117 frequency, Min/Max/Avg, VoltAlert and AutoVolt per the 110 Series datasheet cited on /multimeters/fluke-115-vs-fluke-117.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

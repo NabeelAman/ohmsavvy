@@ -12,7 +12,7 @@
 //   in the box, -40 to 260 °C); Peak Capture 250 µs; 355 g (624 g in holster); about 400 h battery; lifetime warranty.
 //   No LoZ or non-contact voltage listed.
 // Worked accuracy figures below are arithmetic on those published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

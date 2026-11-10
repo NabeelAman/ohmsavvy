@@ -21,7 +21,7 @@
 // IP digit meanings (IEC 60529: 4 = solid objects over 1 mm, 6 = dust-tight, 0 = no water rating, 7 = temporary
 // immersion) and the effect of surface moisture on insulation readings are standard engineering points, hedged.
 // Picks: Fluke 1587 FC (4.6) and Fluke 87V MAX (4.7); neither is hands-on tested by us.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

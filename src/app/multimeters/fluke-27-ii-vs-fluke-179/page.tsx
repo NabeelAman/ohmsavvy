@@ -23,7 +23,7 @@
 // Worked tolerances use each meter's headline accuracy line on the range a 6,000-count meter would use (60.00 V,
 // 600.0 V), so they are illustrative best cases, not per-range guarantees.
 // Picks: Fluke 27 II (4.4) and Fluke 179 (4.7); neither is hands-on tested by OhmSavvy. Desk research only.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

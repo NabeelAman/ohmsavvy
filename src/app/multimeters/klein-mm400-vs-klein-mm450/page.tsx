@@ -17,7 +17,7 @@
 // Min/Max, Hold; CAT III 600V; 2 m drop; operating temperature -10 to 60 °C; 165.0 × 80.0 × 27.8 mm; 262 g with batteries;
 // 2 × AAA. Amazon B0B6WW5ZX8 in stock at ZIP 10001; listing: 600 V, 10 A, 50 MΩ, 6.6 ft drop, 9.28 oz (checked 2026-11-08).
 // Mains and 400 Hz frequencies and LED forward voltages are standard values, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -9,7 +9,7 @@
 // diode, continuity; CAT III 600V; 1 m drop; 15.2 x 8 x 4.5 cm; 232 g; thermocouple included; replacement fuses 10 A and
 // 500 mA; "This product is no longer in production", replaced by the MM420. Klein's features chart: True RMS and LoZ are not
 // on the MM400 (per the Pick). Amazon: no buy box, "See All Buying Options" third-party offers only (checked 2026-10-24).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

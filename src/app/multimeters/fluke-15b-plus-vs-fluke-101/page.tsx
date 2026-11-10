@@ -8,7 +8,7 @@
 // to 1000 uF (another Fluke document gives 100 uF, stated on the page); frequency 10 Hz-100 kHz; duty cycle 0.1-99.9%;
 // diode and continuity; CAT III 600 V; 2 x AAA; 130 x 65 x 27 mm; 160 g; IP40; 1 m drop; 1-year warranty.
 // Counts (6,000), battery life (200 h) and two input jacks per the Pick (Fluke 101 datasheet and users manual).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

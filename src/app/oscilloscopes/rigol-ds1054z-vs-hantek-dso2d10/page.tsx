@@ -8,7 +8,7 @@
 // 8 Mpts (1 ch) / 4 Mpts (2 ch), 8-bit with 12-bit high-resolution mode, UART/RS232, I2C, SPI, CAN and LIN trigger and decode,
 // 7-inch 800 x 480, under 30 W; generator 1 channel, 25 MHz, 200 MSa/s, 12-bit, sine/square/ramp/Exp/noise/DC, Arb1-Arb4,
 // 4 KSa length, 10 mV-7 Vpp high impedance, 5 mV-3.5 Vpp into 50 ohm, 50 ohm output impedance. Waveform update rate not stated.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

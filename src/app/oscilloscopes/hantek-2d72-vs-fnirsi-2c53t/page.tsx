@@ -11,7 +11,7 @@
 //   99.99 mF, temperature, diode, continuity; generator 13 waveforms, 0–50 kHz, 0–3 V; 2.8-inch 320 × 240;
 //   3,000 mAh, up to 6 h; USB-C 5 V/1 A charging; 167 × 89 × 35 mm; 300 g. Vertical resolution not stated.
 // Effective sample-rate figures below are record length divided by time on screen, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

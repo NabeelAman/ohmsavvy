@@ -17,7 +17,7 @@
 //   (True RMS; CAT III 600V; DC V ±(0.5% + 2); AC V ±(1.0% + 3); VoltAlert; AutoVolt LoZ about 3 kΩ; 6 A and 10 A, 20 A
 //   for 30 s; 40 MΩ; 9,999 µF; 50 kHz; continuity below 20 Ω; Min/Max/Avg; 550 g; 9 V, 400 h; 3-year warranty;
 //   no app or logging).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

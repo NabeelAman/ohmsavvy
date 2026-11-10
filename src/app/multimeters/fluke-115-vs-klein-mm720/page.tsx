@@ -21,7 +21,7 @@
 // "See All Buying Options". Price gap stated only as a rough ratio, no dollar figures.
 // Fluke 115 is owner hands-on tested; the MM720 assessment is desk research. Worked readings are arithmetic on the
 // published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

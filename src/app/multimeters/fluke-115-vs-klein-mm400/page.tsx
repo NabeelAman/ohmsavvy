@@ -8,7 +8,7 @@
 // 2 x AAA; 4000-count; 600 V AC/DC; 10 A AC/DC (no separate mA or uA ranges listed); 40 Mohm; 200 uF; 1 Hz to 50 kHz;
 // duty cycle; 0 to 1000 F (-18 to 538 C); CAT III 600V; 1 m drop; 232 g; replacement fuses 10 A and 500 mA;
 // "This product is no longer in production", replaced by the MM420. Klein's features chart: True RMS is not on the MM400 (per the Pick).
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

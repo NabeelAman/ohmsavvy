@@ -17,7 +17,7 @@
 // Amazon B0002YFD1K in stock at ZIP 10001 (checked 2026-11-08).
 // Measurement-category locations follow IEC 61010-1; typical system voltages (120/240 V, 277/480 V) are standard US
 // values, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

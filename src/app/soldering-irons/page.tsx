@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { CategoryHub } from "@/components/CategoryHub";
 import { buildMetadata } from "@/lib/metadata";
 

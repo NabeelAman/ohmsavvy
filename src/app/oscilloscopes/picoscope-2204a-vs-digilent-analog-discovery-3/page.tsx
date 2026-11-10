@@ -12,7 +12,7 @@
 // search result, 2026-10-26; the page blocks direct fetching): scope input ranges ±2.5 V and ±25 V; buffer 32,768 samples
 // per channel for scope and generator; generator ±5 V, 9 MHz without and 12 MHz with the BNC adapter.
 // Quantization steps and the AD3 rise-time estimate (0.35 ÷ bandwidth) are our arithmetic, not maker figures.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

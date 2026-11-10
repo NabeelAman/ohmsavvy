@@ -23,7 +23,7 @@
 // - Fluke 107 per the en-us page above: AC current band 40-200 Hz; volts input >10 MΩ, <100 pF; AC mV input >1 MΩ;
 //   includes TL75 leads, SmartStrap magnetic lanyard and 2 AAA cells; page FAQ: no calibration certificate;
 //   same environmental and temperature-coefficient specs as the 101.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

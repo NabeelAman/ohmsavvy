@@ -9,7 +9,7 @@
 //   duty cycle 0.1% to 99.9%; diode and continuity; 2 × AAA, life not stated; 130 × 65 × 27 mm, 160 g; CAT III 600 V;
 //   1-year warranty; 1 m drop test at −10 °C). Display counts, jacks and US availability per this site's Fluke 101 Pick.
 // Worked accuracy figures below are arithmetic on those published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

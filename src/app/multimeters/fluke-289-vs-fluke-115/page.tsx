@@ -17,7 +17,7 @@
 // Min/Max/Avg with elapsed time; backlight; no temperature (116 only); no LoZ, no NCV; 167 × 84 × 46 mm, 550 g;
 // one 9 V, about 400 h; 3-year warranty. The 115 is owner hands-on tested (handsOnTested: true); no bench measurements
 // are published, so this page quotes none. The 289 is not hands-on tested: desk research against Fluke's manual.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

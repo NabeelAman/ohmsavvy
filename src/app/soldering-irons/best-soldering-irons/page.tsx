@@ -1,6 +1,6 @@
 import { RoundupHero } from "@/components/RoundupHero";
 import { ContentLinks } from "@/components/ContentLinks";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ReviewArticle, type Pick } from "@/components/ReviewArticle";
 import { BarChart, DataTable, Figure } from "@/components/HowTo";
 import { buildMetadata } from "@/lib/metadata";

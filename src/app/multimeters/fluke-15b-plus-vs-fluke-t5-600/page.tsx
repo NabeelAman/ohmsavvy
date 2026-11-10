@@ -11,7 +11,7 @@
 // automatic AC/DC; AC current to 100.0 A, 0.1 A resolution, ±(3% + 3), 50/60 Hz; no DC current; resistance to 1000 Ω;
 // continuity beeps below 25 Ω; averaging AC response; CAT III 600V; 2 × AA, 400 h alkaline; 300 g; 3 m drop; jaw opening
 // 12.9 mm, max 1/0 THHN; not for multi-conductor cords (currents cancel); 2-year warranty.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -16,7 +16,7 @@
 // about 3 kΩ), fixed 1000 V manual range; AC low-pass filter that blocks above 1 kHz, manual ranging only.
 // Logging-vs-snapshot for professional electricians is covered by /multimeters/fluke-87v-vs-fluke-289 (another page);
 // this page compares the two 280 Series models and their electronics-repair use.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

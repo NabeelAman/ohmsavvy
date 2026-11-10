@@ -19,7 +19,7 @@
 //   recording memory up to 10,000 intervals, events up to 15,000 minus intervals; TrendCapture graphs on the meter;
 //   IR link to FlukeView Forms; real-time clock; LoZ; low-pass filter; 6 AA, 100 h minimum, 200 h in logging mode;
 //   871 g; CAT III 1000V / CAT IV 600V; lifetime limited warranty. No wireless/Fluke Connect.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

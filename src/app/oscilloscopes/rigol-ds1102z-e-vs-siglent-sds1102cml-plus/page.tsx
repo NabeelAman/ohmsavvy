@@ -9,7 +9,7 @@
 //   LAN (VXI-11); digital recorder with 7 M of memory). 40 Kpts normal-mode memory per the Pick's Siglent NA sourcing;
 //   Siglent's Amazon listing says 1 Mpts.
 // Record-time figures below are memory divided by sample rate, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

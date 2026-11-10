@@ -15,7 +15,7 @@
 // - Fluke 113 product page (GFCI/RCD trip warning for LoZ phase-to-earth measurements):
 //   https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-113
 // Nominal 120/240 V split-phase values and receptacle readings are standard values, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

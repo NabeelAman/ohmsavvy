@@ -9,7 +9,7 @@
 //   2 × AAA, 200 h minimum; 142 × 69 × 28 mm, 200 g; CAT III 600V; IP 40).
 // Diode test is a 107-only function in the 106/107 family per the Fluke 106/107 users manual.
 // Worked accuracy and resolution figures below are arithmetic on those published specs, not measurements.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea, MeterReadout } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

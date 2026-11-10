@@ -20,7 +20,7 @@
 // as buyable. The 117's US price wasn't visible; the price comparison is relative to the 115 (lower price per the Pick).
 // Fluke 117 hands-on tested by the owner (no measurements published); UT139C is desk research.
 // NEMA 14-30 voltages are nominal US values; scenario rows describe what each meter's published functions allow.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

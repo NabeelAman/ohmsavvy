@@ -8,7 +8,7 @@
 // Fluke 179 per the Pick (fluke.com 179 page and 170 Series datasheet).
 // IEC 61010 impulse withstand values (6 kV for CAT III 600V, 8 kV for CAT III 1000V and CAT IV 600V) are the standard's
 // commonly published transient test levels, stated on the page as typical.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

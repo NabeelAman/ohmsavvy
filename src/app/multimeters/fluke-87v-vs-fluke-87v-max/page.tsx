@@ -20,7 +20,7 @@
 //   (hands-on tested, 4.8).
 // IP code meanings (IEC 60529: 3 = solid objects over 2.5 mm, 6 = dust-tight, 0 = no water protection, 7 = temporary
 // immersion, commonly 1 m for 30 minutes) are standard values, hedged on the page.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

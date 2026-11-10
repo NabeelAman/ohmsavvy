@@ -26,7 +26,7 @@
 // IP code meanings (6 = dust-tight, 7 = temporary immersion, commonly 1 m for 30 minutes) are standard IEC 60529
 // values, hedged on the page.
 // Picks: Fluke 28 II (4.6) and Fluke 87V MAX (4.7) in src/lib/multimeter-catalog.ts; neither is hands-on tested by us.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

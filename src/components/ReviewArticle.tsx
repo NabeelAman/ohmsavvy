@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { productImageSrc, skipOptimizer } from "@/lib/images";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { content } from "@/lib/content";
 import { ArticleTocBar, ArticleTocSidebar, type TocItem } from "./ArticleToc";
 import { ImageLightbox } from "./ImageLightbox";

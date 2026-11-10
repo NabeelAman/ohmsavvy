@@ -19,7 +19,7 @@
 // Average-responding scaling (rectified average x 1.111, the sine form factor) and the square, triangle and pulse
 // results below are standard textbook arithmetic on idealized waveforms, hedged on the page as illustrative.
 // Picks: Fluke 27 II (4.4) and Fluke 28 II (4.6) in src/lib/multimeter-catalog.ts; neither is hands-on tested by us.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -6,7 +6,7 @@
 //   iron 200-480 °C, hot air 100-480 °C, independent LED readouts, ESD safe per the listing). YIHUA's own spec sheet lists
 //   AC 220 V ±10%, 50 Hz for the model family and makes no ESD claim; both conflicts are stated on the page.
 // Correction 2026-10-26: the old page called the WE1010NA a 70 W station; Weller lists 85 W for the station, 70 W for the iron.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

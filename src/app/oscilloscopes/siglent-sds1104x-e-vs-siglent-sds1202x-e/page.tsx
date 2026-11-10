@@ -9,7 +9,7 @@
 //   for the four-channel models only. The series page lists the SAG1021I AWG as an accessory without splitting it by model,
 //   so the page states that conflict.
 // Rise-time figures use the standard 0.35/bandwidth approximation and are labeled approximate.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

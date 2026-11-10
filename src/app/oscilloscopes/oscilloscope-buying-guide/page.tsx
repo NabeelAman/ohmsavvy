@@ -1,5 +1,5 @@
 import { ContentLinks } from "@/components/ContentLinks";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { picks } from "../best-beginner-oscilloscopes/page";

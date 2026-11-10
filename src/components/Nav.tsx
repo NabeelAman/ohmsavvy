@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { productImageSrc, skipOptimizer } from "@/lib/images";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Badge } from "./ui/Badge";

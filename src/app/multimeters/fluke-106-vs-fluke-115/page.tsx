@@ -16,7 +16,7 @@
 // shorts of 500 µs or longer; Min/Max/Avg with elapsed time; one 9 V, 400 h typical; 167 × 84 × 46 mm; 550 g;
 // 3-year warranty. Amazon B000OCFFMW in stock at ZIP 10001 (checked 2026-11-08).
 // Worked tolerances on this page are arithmetic on those published specs; the 45 Ω example is illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

@@ -16,7 +16,7 @@
 // - 15B+ per https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus : 400.0 µA to
 //   10.00 A ranges, CAT III 600 V with 1000 V max to earth, 183 × 91 × 49.5 mm, 455 g, 2 AA.
 // - Fluke 117 facts (True RMS, non-contact voltage detection) per the Fluke 117 Pick.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, FlowDiagram, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

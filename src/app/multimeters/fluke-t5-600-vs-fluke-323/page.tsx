@@ -13,7 +13,7 @@
 // Amazon B00AQKIEXY: in stock at ZIP 10001; listing: AC current to 400 A, AC/DC voltage to 600 V, resistance to 4 kΩ with
 // continuity, 30 mm jaw, CAT IV 300V / CAT III 600V, "Item Weight 300 g" (checked 2026-11-08).
 // Worked tolerances are arithmetic on those specs; the 15 A and 80 A loads are illustrative.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

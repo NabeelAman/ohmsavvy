@@ -8,7 +8,7 @@
 //   (checked 2026-10-26: 85 W station, 70 W WEP 70 iron, 100-450 °C, 28 s from 50 to 350 °C, accuracy ±5 °C, stability ±6 °C,
 //   ESD safe, ET tips, standby and auto setback, password-protected settings, 1.40 kg, 150 × 120 × 98 mm).
 // Correction 2026-10-26: the old page called the WE1010NA a 70 W station; Weller rates the station 85 W and the iron 70 W.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

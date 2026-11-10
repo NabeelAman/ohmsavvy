@@ -17,7 +17,7 @@
 // at 45-500 Hz; >10 MΩ DC, >5 MΩ AC; AutoVolt LoZ about 3 kΩ, 600.0 V ±(2.0% + 3); 6 A and 10 A, 20 A for 30 s, 1 mA best
 // resolution; resistance to 40.00 MΩ; capacitance 1 nF to 9,999 µF; frequency to 50 kHz; continuity below 20 Ω; diode
 // 2.000 V; no temperature (116 only); CAT III 600V; one 9V, 400 h; 167 × 84 × 46 mm; 550 g; 3-year warranty.
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ContentLinks } from "@/components/ContentLinks";
 import { BarChart, Callout, DataTable, Figure, InfoCards, KeyIdea } from "@/components/HowTo";
 import { ProductComparison, type ProductComparisonContent } from "@/components/ProductComparison";

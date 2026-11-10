@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "[ -n \"$VERCEL_GIT_PREVIOUS_SHA\" ] && git diff --quiet \"$VERCEL_GIT_PREVIOUS_SHA\" HEAD -- src public next.config.ts package.json package-lock.json tsconfig.json automation/submit-indexnow.mjs automation/submit-gsc-sitemap.mjs",
+  "ignoreCommand": "[ -n \"$VERCEL_GIT_PREVIOUS_SHA\" ] && git diff --quiet \"$VERCEL_GIT_PREVIOUS_SHA\" HEAD -- src public next.config.ts package.json package-lock.json vercel.json tsconfig.json automation/submit-indexnow.mjs automation/submit-gsc-sitemap.mjs",
   "cleanUrls": true,
   "headers": [
     {

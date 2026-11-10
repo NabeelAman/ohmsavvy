@@ -28,6 +28,9 @@ const BLOCKED_BOTS = [
   "Barkrowler",
 ];
 
+// Built once at deploy time (static export).
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

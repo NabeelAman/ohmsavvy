@@ -35,6 +35,11 @@ Every informational article must fully solve the reader's problem, not just desc
 ## SEO checklist
 - Before publishing ANY article (review, comparison, buying guide, use-case guide, informational), go through `automation/SEO_CHECKLIST.md` and tick every applicable item. It is the owner's on-page SEO standard (2026); where it and this file differ, this file wins.
 
+## Hosting: static export (since 2026-11-11)
+- The site builds with `output: "export"` and Vercel serves plain files (prerendered Next.js pages had blown the Hobby plan's ISR-read and Fast Origin Transfer limits). No server features: no `cookies()`/`headers()`/`searchParams` in pages, no API routes that need a request, no middleware, no `/_next/image` optimizer. Route handlers and metadata routes need `export const dynamic = "force-static"` (plus `generateStaticParams` for dynamic segments).
+- Security headers, redirects and rewrites live in `vercel.json`, not `next.config.ts`.
+- New manufacturer photos: run `node automation/build-product-images.mjs` so they're served as pre-rendered WebP; until then they load straight from the maker's URL.
+
 ## Working alongside other sessions
 - Several sessions edit this repo at once. Announce edits to shared files (`src/lib/content.ts`, `automation/content-queue.json`, the three `best-*` roundup pages, `src/components/*`) before making them.
 - Commit only your own files: `git commit -- <paths>`, or a temporary index built from HEAD. A temp-index commit leaves the shared working tree and index behind HEAD, so afterwards sync your touched files (`git add`, or `git checkout HEAD -- <file>` if it has no uncommitted work) so nobody's next commit silently reverts yours.

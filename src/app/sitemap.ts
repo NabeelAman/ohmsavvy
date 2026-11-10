@@ -44,6 +44,9 @@ const allRoutes = [...staticPages, ...content.map((c) => c.href), ...localeRoute
 // index at /sitemap.xml, which is what robots.txt/GSC/submit-gsc-sitemap.mjs
 // all expect. No dynamic APIs are used here, so Next prerenders it once at
 // build time like any other static route.
+// Built once at deploy time (static export).
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return allRoutes.map((route) => ({
     url: `https://ohmsavvy.com${route}`,

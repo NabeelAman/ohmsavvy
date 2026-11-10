@@ -31,6 +31,8 @@ const ROUNDUPS: { category: Category; title: string; description: string; href: 
 
 type FeedType = ContentType | "roundup";
 
+export const dynamic = "force-static";
+
 export function GET() {
   const items = [
     ...ROUNDUPS.map((r) => {

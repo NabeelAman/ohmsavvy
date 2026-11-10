@@ -5,6 +5,8 @@ import { buildSearchIndex } from "@/lib/search";
 // SearchButton put ~110 KB into every page's RSC payload, which every page
 // load had to download, parse and hydrate even if search was never used.
 // Reads only static data, so it's prerendered at build time.
+export const dynamic = "force-static";
+
 export function GET() {
   return Response.json(buildSearchIndex());
 }

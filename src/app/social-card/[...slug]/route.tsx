@@ -36,6 +36,13 @@ async function photoDataUrl(url: string | undefined): Promise<string | null> {
   }
 }
 
+// Built once per page at deploy time (static export): every registry page plus the three roundups.
+export const dynamic = "force-static";
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return [...content.map((e) => e.href), ...Object.keys(ROUNDUPS)].map((href) => ({ slug: href.slice(1).split("/") }));
+}
+
 export async function GET(_req: Request, { params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params;
   const href = `/${slug.join("/")}`;
@@ -53,7 +60,8 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
 
   const titleSize = title.length > 70 ? 50 : title.length > 45 ? 58 : 66;
 
-  return new ImageResponse(
+  const render = (photo: string | null) =>
+    new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", background: "#F5F3EF", fontFamily: "sans-serif" }}>
         <div style={{ width: 14, height: "100%", background: "#C77D1E", display: "flex" }} />
@@ -133,4 +141,13 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
       headers: { "Cache-Control": "public, max-age=86400, s-maxage=2592000, stale-while-revalidate=86400" },
     }
   );
+
+  // Some product photos make Satori throw while drawing ("a is not iterable"); fall back to the card without the
+  // photo instead of failing the page (and, in the static export, the whole build).
+  const headers = { "Content-Type": "image/png", "Cache-Control": "public, max-age=86400, s-maxage=2592000, stale-while-revalidate=86400" };
+  try {
+    return new Response(await render(photo).arrayBuffer(), { headers });
+  } catch {
+    return new Response(await render(null).arrayBuffer(), { headers });
+  }
 }

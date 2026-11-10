@@ -1,4 +1,130 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "[ -n \"$VERCEL_GIT_PREVIOUS_SHA\" ] && git diff --quiet \"$VERCEL_GIT_PREVIOUS_SHA\" HEAD -- src public next.config.ts package.json package-lock.json tsconfig.json automation/submit-indexnow.mjs automation/submit-gsc-sitemap.mjs"
+  "ignoreCommand": "[ -n \"$VERCEL_GIT_PREVIOUS_SHA\" ] && git diff --quiet \"$VERCEL_GIT_PREVIOUS_SHA\" HEAD -- src public next.config.ts package.json package-lock.json tsconfig.json automation/submit-indexnow.mjs automation/submit-gsc-sitemap.mjs",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google; frame-src https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://formspree.io https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
+      ]
+    },
+    {
+      "source": "/img/p/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/social-card/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/:path(wp-.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/:path(.*.php)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/:path(.env.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/:path(.git/.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<vercelHost>.*.vercel.app)"
+        }
+      ],
+      "destination": "https://ohmsavvy.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/oscilloscopes/digilent-analog-discovery-3-vs-picoscope-2204a",
+      "destination": "/oscilloscopes/picoscope-2204a-vs-digilent-analog-discovery-3",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path(wp-.*)",
+      "destination": "/blocked.txt"
+    },
+    {
+      "source": "/:path(.*.php)",
+      "destination": "/blocked.txt"
+    },
+    {
+      "source": "/:path(.env.*)",
+      "destination": "/blocked.txt"
+    },
+    {
+      "source": "/:path(.git/.*)",
+      "destination": "/blocked.txt"
+    }
+  ]
 }

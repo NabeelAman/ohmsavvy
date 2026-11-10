@@ -13,3 +13,6 @@ storybook-static
 
 .vercel
 .env*
+
+# static export output
+/out/

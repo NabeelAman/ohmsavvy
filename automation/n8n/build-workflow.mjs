@@ -95,7 +95,8 @@ const sections = [...main.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => tex
 // article AND image must be unique, and several pages share one product photo,
 // so the raw photo can't be used. Guard: if this image was ever posted before,
 // skip the slot rather than repeat it.
-const photo = 'https://ohmsavvy.com/social-card' + new URL(it.url).pathname;
+// (No URL global in the n8n Code sandbox, so cut the path out by splitting on '/'.)
+const photo = 'https://ohmsavvy.com/social-card/' + it.url.split('/').slice(3).join('/').split('?')[0].split('#')[0];
 const store = $getWorkflowStaticData('global');
 if ((store.postedPhotos || {})[photo]) { store.posted = store.posted || {}; store.posted[it.url] = Date.now(); return []; }
 

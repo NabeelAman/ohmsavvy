@@ -1,0 +1,61 @@
+User-Agent: *
+Allow: /
+
+User-Agent: GPTBot
+Disallow: /
+
+User-Agent: ChatGPT-User
+Disallow: /
+
+User-Agent: CCBot
+Disallow: /
+
+User-Agent: Bytespider
+Disallow: /
+
+User-Agent: PetalBot
+Disallow: /
+
+User-Agent: Amazonbot
+Disallow: /
+
+User-Agent: Applebot-Extended
+Disallow: /
+
+User-Agent: SemrushBot
+Disallow: /
+
+User-Agent: AhrefsBot
+Disallow: /
+
+User-Agent: MJ12bot
+Disallow: /
+
+User-Agent: DotBot
+Disallow: /
+
+User-Agent: BLEXBot
+Disallow: /
+
+User-Agent: ClaudeBot
+Disallow: /
+
+User-Agent: anthropic-ai
+Disallow: /
+
+User-Agent: Google-Extended
+Disallow: /
+
+User-Agent: meta-externalagent
+Disallow: /
+
+User-Agent: DataForSeoBot
+Disallow: /
+
+User-Agent: SeekportBot
+Disallow: /
+
+User-Agent: Barkrowler
+Disallow: /
+
+Sitemap: https://ohmsavvy.com/sitemap.xml

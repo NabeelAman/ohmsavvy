@@ -4352,6 +4352,27 @@ export const content: ContentEntry[] = [
     description: "Only for non-sine AC: motor drives, dimmers, and inverter output",
     href: "/multimeters/do-i-need-true-rms-multimeter",
   },
+  // Long-tail informational batch, 2026-11-13
+  { category: "multimeters", type: "how-to-guide", title: "How to Test a Heat Pump Contactor", description: "Coil voltage, coil ohms and contact voltage drop on a heat pump contactor.", href: "/multimeters/how-to-test-a-heat-pump-contactor-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test a Heat Pump Defrost Sensor", description: "Thermistor ohms vs coil temperature, the ice-water test and the defrost board.", href: "/multimeters/how-to-test-a-heat-pump-defrost-sensor-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test a Reversing Valve Solenoid", description: "Coil resistance, 24 V at O/B and the magnet test for heat pump valves.", href: "/multimeters/how-to-test-a-reversing-valve-solenoid-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test a Dryer Thermostat", description: "Cycling and high-limit thermostat continuity checks on a 240 V dryer.", href: "/multimeters/how-to-test-a-dryer-thermostat-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test a Water Heater Element", description: "Ohms against V²/W and the element-to-tank short check, breaker off.", href: "/multimeters/how-to-test-a-water-heater-element-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test a Water Heater Thermostat", description: "Upper and lower thermostats, the ECO reset and safe 240 V checks.", href: "/multimeters/how-to-test-a-water-heater-thermostat-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test an LED Driver", description: "Input and output checks for constant-current and constant-voltage drivers.", href: "/multimeters/how-to-test-an-led-driver-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Check LED Polarity", description: "Diode mode, long leg and flat side, and forward voltage by LED color.", href: "/multimeters/how-to-check-led-polarity-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test Lithium Battery Capacity", description: "Find real mAh with a timed constant-load discharge and a meter", href: "/multimeters/how-to-test-lithium-battery-capacity-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "Lithium Battery Not Charging to 100%?", description: "Charger voltage, BMS balancing, cold limits and charge-limit settings", href: "/multimeters/why-is-my-lithium-battery-not-charging-to-100" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Check an Outlet for Ground", description: "Hot-ground, neutral-ground and a load test for bootleg grounds", href: "/multimeters/how-to-check-an-outlet-for-ground-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "Outlet Hot With Nothing Plugged In?", description: "Loose backstabs, shared circuits and when to call an electrician", href: "/multimeters/why-is-my-outlet-hot-with-nothing-plugged-in" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test an Ebike Battery", description: "Full and empty voltages for 36/48/52 V packs, sag test and BMS cutoff", href: "/multimeters/how-to-test-an-ebike-battery-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test an Ebike Controller", description: "Battery input, 5 V supply, throttle signal and a MOSFET diode check", href: "/multimeters/how-to-test-an-ebike-controller-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test an Electric Bike Hub Motor", description: "Phase resistance balance, shell shorts, hall toggling and the spin test", href: "/multimeters/how-to-test-an-ebike-hub-motor-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "Why Is My Ebike Battery Not Charging?", description: "Charger output, fuse, BMS lockout, cold cells and charge port checks", href: "/multimeters/why-is-my-ebike-battery-not-charging" },
+  { category: "multimeters", type: "how-to-guide", title: "Why Is My Relay Clicking?", description: "Find the low coil voltage, bad ground or driver fault behind relay chatter.", href: "/multimeters/why-is-my-relay-clicking" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test an EV Charging Cable", description: "Safe, unplugged checks of the J1772 proximity resistor and pin continuity.", href: "/multimeters/how-to-test-an-ev-charging-cable" },
+  { category: "multimeters", type: "how-to-guide", title: "Why Is My Solar Light Not Working?", description: "Test the battery, panel voltage, dark sensor and contacts of a solar light.", href: "/multimeters/why-is-my-solar-light-not-working" },
+  { category: "oscilloscopes", type: "how-to-guide", title: "Why Is My MOSFET Getting Hot?", description: "Gate drive, switching loss, Rds(on) math and heatsinks for hot MOSFETs.", href: "/oscilloscopes/why-is-my-mosfet-getting-hot" },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

@@ -1913,7 +1913,8 @@
       "keyword": "best multimeter for guitar and audio pedal building",
       "category": "multimeters",
       "type": "remix",
-      "status": "pending"
+      "status": "skip-no-fit",
+      "notes": "refill 2026-11-12: None of the listed multimeters explicitly mention features specifically tailored for guitar and audio pedal building, such as capacitance testing within a relevant range or specific audio frequency measurement capabilities. While some meters like the Fluke 117 and 115, KAIWEETS KM200s, AstroAI DM6000AR, UNI-T UT139C, and Klein Tools MM450 offer True RMS and auto-ranging which are generally useful for electronics work, they lack the specialized features needed for precise audio equipment building."
     },
     {
       "keyword": "best multimeter for security and alarm system installers",
@@ -2021,6 +2022,24 @@
       "category": "soldering-irons",
       "type": "educational",
       "status": "pending"
+    },
+    {
+      "keyword": "best clamp meter for dc current",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-no-fit",
+      "notes": "trending 2026-11-12: None of the listed products, except Fluke 323 and Fluke 117/323 Kit, are specifically designed for measuring DC current with a clamp meter. The Fluke 323 is the only clamp meter listed that explicitly mentions measuring current without breaking the circuit, but it does not specify DC current capability. The Fluke 117/323 Kit includes the Fluke 323, making it the best option for measuring DC current if it indeed supports DC, but this is not explicitly stated in the data provided."
+    },
+    {
+      "keyword": "best soldering station for professional",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Weller WE1010NA",
+        "YIHUA 862BD+"
+      ],
+      "notes": "trending 2026-11-12 (autocomplete score 31): The Weller WE1010NA and YIHUA 862BD+ both offer professional-grade features such as high power, precise temperature control, and versatility for various soldering tasks, making them suitable for professional use."
     }
   ]
 }

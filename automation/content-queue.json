@@ -2040,6 +2040,17 @@
         "YIHUA 862BD+"
       ],
       "notes": "trending 2026-11-12 (autocomplete score 31): The Weller WE1010NA and YIHUA 862BD+ both offer professional-grade features such as high power, precise temperature control, and versatility for various soldering tasks, making them suitable for professional use."
+    },
+    {
+      "keyword": "best clamp meter for earth leakage",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 323",
+        "Fluke 117/323 Kit"
+      ],
+      "notes": "trending 2026-11-13 (autocomplete score 18): The Fluke 323 and the Fluke 117/323 Kit are specifically designed for measuring current without breaking the circuit, which is crucial for detecting earth leakage without interrupting the electrical system."
     }
   ]
 }

@@ -2051,6 +2051,17 @@
         "Fluke 117/323 Kit"
       ],
       "notes": "trending 2026-11-13 (autocomplete score 18): The Fluke 323 and the Fluke 117/323 Kit are specifically designed for measuring current without breaking the circuit, which is crucial for detecting earth leakage without interrupting the electrical system."
+    },
+    {
+      "keyword": "best multimeter for mechanics",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 115",
+        "Craftsman CMMT14171"
+      ],
+      "notes": "trending 2026-11-14 (autocomplete score 17): The Fluke 115 offers reliable, auto-ranging features suitable for general electrical and electronics work, while the Craftsman CMMT14171 is specifically designed for automotive diagnostics, making both suitable for mechanics who need versatility and specialized automotive testing."
     }
   ]
 }

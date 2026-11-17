@@ -62,10 +62,13 @@ if (!existsSync(resolve(BUILD, "out", "index.html"))) throw new Error("Build pro
 
 // 3. Copy into gh-pages and push.
 run("git checkout -q --detach origin/gh-pages", PAGES);
-// robocopy exit codes below 8 mean success.
-try { execSync(`robocopy "${resolve(BUILD, "out")}" "${PAGES}" /MIR /XD .git /XF CNAME .nojekyll /NFL /NDL /NJH /NJS /NP`, { stdio: "ignore" }); } catch (e) {
+// robocopy exit codes below 8 mean success. In a git worktree .git is a FILE
+// (a gitdir pointer), so it must be excluded with /XF as well as /XD, or /MIR
+// deletes it and the worktree stops being a repository.
+try { execSync(`robocopy "${resolve(BUILD, "out")}" "${PAGES}" /MIR /XD .git /XF .git CNAME .nojekyll /NFL /NDL /NJH /NJS /NP`, { stdio: "ignore" }); } catch (e) {
   if (e.status >= 8) throw new Error(`robocopy failed with exit code ${e.status}`);
 }
+if (!existsSync(resolve(PAGES, ".git"))) throw new Error(`${PAGES}/.git is missing after the copy; restore it before deploying.`);
 run("git add -A", PAGES);
 if (!run("git status --porcelain", PAGES)) { log("Nothing changed on the live site."); process.exit(0); }
 run(`git commit -q -m "Deploy ${sha}: ${reason.replace(/"/g, "'")}"`, PAGES);

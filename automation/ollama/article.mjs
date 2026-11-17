@@ -269,10 +269,13 @@ import { picks as allPicks } from "../${c.roundup}/page";
 
 // Drafted with a local model from verified Pick data only, fact-checked by
 // automation/ollama/article.mjs, and reviewed in preview before publishing.
+// The share image is this page's own social card (its title, category and top
+// pick), so no two guides share a preview image.
 export const metadata = buildMetadata({
   title: ${js(d.title)},
   description: ${js(d.metaDescription)},
   path: ${js(path)},
+  image: ${js(`https://ohmsavvy.com/social-card${path}.png`)},
 });
 
 const names = guidePicks(${js(path)});

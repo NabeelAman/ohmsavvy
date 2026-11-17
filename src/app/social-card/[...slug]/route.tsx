@@ -39,13 +39,20 @@ async function photoDataUrl(url: string | undefined): Promise<string | null> {
 // Built once per page at deploy time (static export): every registry page plus the three roundups.
 export const dynamic = "force-static";
 export const dynamicParams = false;
+// Each card is written twice: <path>.png (static hosts such as GitHub Pages pick the
+// Content-Type from the extension, so it is served as image/png; the Facebook
+// autoposter uses this one) and the original extensionless <path>.
 export function generateStaticParams() {
-  return [...content.map((e) => e.href), ...Object.keys(ROUNDUPS)].map((href) => ({ slug: href.slice(1).split("/") }));
+  const paths = [...content.map((e) => e.href), ...Object.keys(ROUNDUPS)].map((href) => href.slice(1).split("/"));
+  return [
+    ...paths.map((slug) => ({ slug })),
+    ...paths.map((slug) => ({ slug: [...slug.slice(0, -1), `${slug[slug.length - 1]}.png`] })),
+  ];
 }
 
 export async function GET(_req: Request, { params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params;
-  const href = `/${slug.join("/")}`;
+  const href = `/${slug.join("/")}`.replace(/\.png$/, "");
 
   const entry = content.find((e) => e.href === href);
   const roundup = ROUNDUPS[href];

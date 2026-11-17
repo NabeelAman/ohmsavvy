@@ -2086,6 +2086,17 @@
         "Fluke 117/323 Kit"
       ],
       "notes": "trending 2026-11-15 (autocomplete score 17): The Craftsman CMMT14171 is specifically designed for automotive diagnostics, making it ideal for checking parasitic draw in vehicles. The Fluke 323 is a True RMS clamp meter that allows for fast current checks without breaking the circuit, which is crucial for identifying parasitic draw. The Fluke 117/323 Kit combines both a versatile multimeter and a high-quality clamp meter, providing comprehensive coverage for diagnosing parasitic draw and other electrical issues."
+    },
+    {
+      "keyword": "best clamp meter for inrush current",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 323",
+        "Fluke 117/323 Kit"
+      ],
+      "notes": "trending 2026-11-17 (autocomplete score 16): The Fluke 323 and the Fluke 117/323 Kit are specifically designed for measuring inrush current without breaking the circuit, making them highly suitable for this purpose."
     }
   ]
 }

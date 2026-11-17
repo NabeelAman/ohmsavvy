@@ -17,12 +17,14 @@ $lockFile = Join-Path $PSScriptRoot ".tmp-daily.lock"
 $today = Get-Date -Format "yyyy-MM-dd"
 $maxAttempts = 6
 
-$state = @{ date = $today; attempts = 0; published = $false }
+$state = @{ date = $today; attempts = 0; published = $false; deployed = $false }
 if (Test-Path $stateFile) {
   $saved = Get-Content $stateFile -Raw | ConvertFrom-Json
-  if ($saved.date -eq $today) { $state = @{ date = $today; attempts = [int]$saved.attempts; published = [bool]$saved.published } }
+  if ($saved.date -eq $today) { $state = @{ date = $today; attempts = [int]$saved.attempts; published = [bool]$saved.published; deployed = [bool]$saved.deployed } }
 }
-if ($state.published -or $state.attempts -ge $maxAttempts) { exit 0 }
+# Published but not yet live (the deploy failed or was interrupted): later runs retry the deploy only.
+if ($state.published -and $state.deployed) { exit 0 }
+if (-not $state.published -and $state.attempts -ge $maxAttempts) { exit 0 }
 
 # The lock holds the running script's PID. A run killed by sleep or shutdown leaves
 # its lock behind, so only a lock whose PowerShell process is still alive counts.
@@ -40,6 +42,15 @@ Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dl
 [Win32.Power]::SetThreadExecutionState([uint32]2147483649) | Out-Null  # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
 
 try {
+  # Since the move to GitHub Pages (2026-11-13) a push to main is not live until the
+  # site is built and copied to gh-pages; automation/deploy-pages.mjs does that.
+  if ($state.published) {
+    "`n===== $(Get-Date -Format 'yyyy-MM-dd HH:mm') (retrying the deploy of today's article) =====" | Out-File $logFile -Append -Encoding utf8
+    & node automation/deploy-pages.mjs "daily article" *>&1 | Out-File $logFile -Append -Encoding utf8
+    if ($LASTEXITCODE -eq 0) { $state.deployed = $true; $state | ConvertTo-Json | Set-Content $stateFile }
+    return
+  }
+
   $state.attempts++
   $state | ConvertTo-Json | Set-Content $stateFile
   "`n===== $(Get-Date -Format 'yyyy-MM-dd HH:mm') (attempt $($state.attempts) of $maxAttempts today) =====" | Out-File $logFile -Append -Encoding utf8
@@ -64,7 +75,11 @@ try {
   & node automation/ollama/article.mjs --next --auto *>&1 | Out-File $logFile -Append -Encoding utf8
   $code = $LASTEXITCODE
   "exit code: $code" | Out-File $logFile -Append -Encoding utf8
-  if ($code -eq 0) { $state.published = $true; $state | ConvertTo-Json | Set-Content $stateFile }
+  if ($code -eq 0) {
+    $state.published = $true; $state | ConvertTo-Json | Set-Content $stateFile
+    & node automation/deploy-pages.mjs "daily article" *>&1 | Out-File $logFile -Append -Encoding utf8
+    if ($LASTEXITCODE -eq 0) { $state.deployed = $true; $state | ConvertTo-Json | Set-Content $stateFile }
+  }
 }
 finally {
   [Win32.Power]::SetThreadExecutionState(0x80000000) | Out-Null  # allow sleep again

@@ -51,6 +51,15 @@ try {
     Start-Sleep -Seconds 20
   }
 
+  # The Gemini audit (checkpoint 2b) needs these. Read them from the user's saved
+  # environment so a task started before they were set still gets them.
+  foreach ($name in "GEMINI_API_KEY", "GEMINI_MODEL") {
+    if (-not [Environment]::GetEnvironmentVariable($name, "Process")) {
+      $value = [Environment]::GetEnvironmentVariable($name, "User")
+      if ($value) { [Environment]::SetEnvironmentVariable($name, $value, "Process") }
+    }
+  }
+
   & node automation/refill-queue.mjs *>&1 | Out-File $logFile -Append -Encoding utf8
   & node automation/ollama/article.mjs --next --auto *>&1 | Out-File $logFile -Append -Encoding utf8
   $code = $LASTEXITCODE

@@ -108,6 +108,7 @@ HARD RULES (a draft that breaks any of these is rejected automatically):
 8. Write fresh sentences; do not copy the verdict or strengths text word-for-word.
 9. Be specific to the use case: name the actual tasks this buyer does and connect them to the specs. Avoid filler like "ensure accurate and reliable measurements".
 10. Plain, direct, specific British-neutral English. Talk to the reader as "you". Each fit note must say concretely why that product suits THIS use case, citing its provided specs.
+11. Write so a beginner reads it easily (readability is scored automatically and must reach Flesch 40): keep most sentences to 10-18 words, one idea per sentence, and use short everyday words ("use", "check", "fix", "help", "fits") instead of long abstract ones ("utilize", "functionality", "comprehensive", "facilitate", "considerations", "applications"). Product and category words such as multimeter or oscilloscope are fine.
 
 Lengths are checked automatically; drafts that are too short are rejected, so write the full target length.
 

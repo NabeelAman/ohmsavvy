@@ -304,7 +304,20 @@ export function seoReadability({ d, keyword }) {
   const asl = ws.length / Math.max(1, sents.length);
   const flesch = 206.835 - 1.015 * asl - 84.6 * (syl / Math.max(1, ws.length));
   notes.push(`Readability: Flesch ${flesch.toFixed(0)} (minimum 40), average sentence ${asl.toFixed(1)} words (maximum 24).`);
-  if (flesch < 40) errors.push(`Too hard to read (Flesch ${flesch.toFixed(0)}). Use shorter sentences and plainer words.`);
+  if (flesch < 40) {
+    // A bare score gives a model nothing to act on, so name the hardest
+    // sentences and the long words to replace.
+    const hardness = (s) => {
+      const w = s.split(/\s+/).filter((x) => /[a-z]/i.test(x));
+      return w.length * (w.reduce((a, x) => a + syllables(x), 0) / Math.max(1, w.length));
+    };
+    const worst = [...new Set(sents.map((s) => s.replace(/\s+/g, " ").trim()))].sort((a, b) => hardness(b) - hardness(a)).slice(0, 5);
+    const longWords = [...new Set(ws.map((w) => w.toLowerCase().replace(/[^a-z-]/g, "")).filter((w) => syllables(w) >= 4 && !/^(multimeters?|oscilloscopes?|electronics?|electrical|automotive|continuity|capacitance|temperature|diagnostics?|calibration|accuracy)$/.test(w)))].slice(0, 15);
+    errors.push(
+      `Too hard to read (Flesch ${flesch.toFixed(0)}, needs 40+). Rewrite these sentences shorter (10-18 words) with plainer words: ${worst.map((s) => `"${s.slice(0, 160)}"`).join(" | ")}.` +
+        (longWords.length ? ` Replace long words where you can: ${longWords.join(", ")}.` : ""),
+    );
+  }
   if (asl > 24) errors.push(`Sentences are too long on average (${asl.toFixed(1)} words). Split long sentences.`);
   const longOnes = sents.filter((s) => s.split(/\s+/).length > 40);
   if (longOnes.length) errors.push(`${longOnes.length} sentence(s) are over 40 words, e.g. "${longOnes[0].slice(0, 70)}…". Split them.`);

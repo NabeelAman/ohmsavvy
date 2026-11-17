@@ -9,7 +9,8 @@
 // If another deploy is in progress (the gh-pages worktree has uncommitted files),
 // it waits up to 60 minutes rather than mixing two deploys.
 import { execSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, lstatSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -43,8 +44,18 @@ if (!existsSync(BUILD)) {
   run("git checkout -q --force --detach origin/main", BUILD);
   run("git clean -fdq -e node_modules -e .next", BUILD);
 }
-// Share the main checkout's dependencies instead of installing a second copy.
-if (!existsSync(resolve(BUILD, "node_modules"))) run(`cmd /c mklink /J "${resolve(BUILD, "node_modules")}" "${resolve(REPO, "node_modules")}"`);
+// The build worktree needs its own node_modules: Turbopack refuses to resolve
+// packages through a junction to the main checkout ("outside the workspace
+// root"). Reinstall only when package-lock.json changes.
+const nm = resolve(BUILD, "node_modules");
+if (existsSync(nm) && lstatSync(nm).isSymbolicLink()) run(`cmd /c rmdir "${nm}"`);
+const lockHash = createHash("sha1").update(readFileSync(resolve(BUILD, "package-lock.json"))).digest("hex");
+const stamp = resolve(nm, ".deploy-lock-hash");
+if (!existsSync(stamp) || readFileSync(stamp, "utf8") !== lockHash) {
+  log("Installing dependencies in the build worktree…");
+  run("npm ci --no-audit --no-fund --loglevel=error", BUILD);
+  writeFileSync(stamp, lockHash);
+}
 log(`Building ${sha}…`);
 run("npx next build", BUILD);
 if (!existsSync(resolve(BUILD, "out", "index.html"))) throw new Error("Build produced no out/index.html.");

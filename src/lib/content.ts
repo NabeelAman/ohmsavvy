@@ -4394,6 +4394,12 @@ export const content: ContentEntry[] = [
   { category: "multimeters", type: "how-to-guide", title: "How to Test a Jump Starter", description: "Why smart clamps read 0 V, the cranking-voltage test and the USB output check", href: "/multimeters/how-to-test-a-jump-starter-with-a-multimeter" },
   { category: "multimeters", type: "how-to-guide", title: "Why Is My Alternator Overcharging?", description: "Failed regulator, bad ground or sense wire, smart charging and shorted-cell batteries", href: "/multimeters/why-is-my-alternator-overcharging" },
   { category: "multimeters", type: "how-to-guide", title: "Why Is My Car Battery Corroding?", description: "What the white and blue-green deposits mean, safe cleaning and a clamp voltage-drop test", href: "/multimeters/why-is-my-car-battery-corroding" },
+  // High-demand US informational batch (GSC + autocomplete), 2026-11-18
+  { category: "multimeters", type: "how-to-guide", title: "How to Read a Multimeter", description: "Mode, prefix, digits and flags, manual ranges and the ±(% + counts) accuracy math.", href: "/multimeters/how-to-read-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Test an LED Bulb", description: "Why the base reading misleads, socket voltage, switch and dimmer checks, and MR16 bulbs.", href: "/multimeters/how-to-test-an-led-bulb-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "How to Measure Millivolts", description: "Picking the mV range, resolution and accuracy, thermocouple and shunt readings, and zeroing out noise.", href: "/multimeters/how-to-measure-millivolts-with-a-multimeter" },
+  { category: "multimeters", type: "how-to-guide", title: "What Is an Ohmmeter?", description: "How an ohmmeter measures resistance, reading ranges and OL, and why the circuit must be dead.", href: "/multimeters/what-is-an-ohmmeter" },
+  { category: "soldering-irons", type: "how-to-guide", title: "How to Use Solder Seal Wire Connectors", description: "Sizing by wire gauge, even heat-gun technique, checking the joint and when to crimp instead.", href: "/soldering-irons/how-to-use-solder-seal-wire-connectors" },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

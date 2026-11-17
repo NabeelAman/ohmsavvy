@@ -76,7 +76,20 @@ ${JSON.stringify(data, null, 2)}
 
 DRAFT:
 ${draftProse(d)}`;
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(key)}`, {
+  // The free tier often answers 503 "high demand" for a while, so try several
+  // models, in up to 3 rounds 20 seconds apart, before giving up.
+  const models = [...new Set([model, "gemini-3.5-flash", "gemini-3.7-flash", "gemini-3.5-flash-lite", "gemini-flash-lite-latest"])];
+  let res, usedModel = model;
+  for (let round = 0; round < 3 && !res?.ok; round++) {
+    if (round) await new Promise((r) => setTimeout(r, 20_000));
+    for (const m of models) {
+      try { res = await geminiCall(m); usedModel = m; } catch { continue; }
+      if (res.ok || ![429, 500, 503, 504].includes(res.status)) break;
+    }
+  }
+  if (!res) return { name, status: "skipped", errors: [], notes: ["Gemini unreachable (network error)."] };
+  async function geminiCall(m) {
+    return fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${encodeURIComponent(key)}`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
@@ -91,7 +104,8 @@ ${draftProse(d)}`;
         },
       },
     }),
-  });
+    });
+  }
   if (!res.ok) {
     // An outage or quota limit shouldn't silently pass the draft, but it also isn't the draft's fault.
     return { name, status: "skipped", errors: [], notes: [`Gemini unavailable (HTTP ${res.status}): ${(await res.text()).slice(0, 160)}`] };
@@ -105,7 +119,7 @@ ${draftProse(d)}`;
     name,
     status: problems.length ? "fail" : "pass",
     errors: problems.map((p) => `Gemini flagged: "${p.quote}" (${p.issue}).`),
-    notes: [`Model ${model}: ${problems.length} problem(s).`],
+    notes: [`Model ${usedModel}: ${problems.length} problem(s).`],
   };
 }
 

@@ -6,4 +6,4 @@
 :HL["/_next/static/media/effe91970fc4db64-s.p.27korwsf9c79u.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":{"n":"locale","t":"d","k":"it","s":["about","contact","feed.json","multimeters","oscilloscopes","privacy-policy","search-index.json","social-card","soldering-irons","terms-of-service"]},"h":65600,"c":"$Q2"}]]
-0:{"b":"Sv9xlBCDlGMVrD__bQEHK","t":{"t":{"s":"","h":131088,"c":"$Q1"}}}
+0:{"b":"1joIZhckjGZSkuzNvK7GX","t":{"t":{"s":"","h":131088,"c":"$Q1"}}}

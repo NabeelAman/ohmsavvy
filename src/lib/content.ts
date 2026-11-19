@@ -4411,6 +4411,17 @@ export const content: ContentEntry[] = [
   { category: "oscilloscopes", type: "how-to-guide", title: "How to Measure Current With an Oscilloscope", description: "Low-side shunt resistor sizing, safe ground-clip placement, scaling volts to amps and when to use a current probe.", href: "/oscilloscopes/how-to-measure-current-with-an-oscilloscope" },
   { category: "soldering-irons", type: "how-to-guide", title: "How to Solder Pin Headers Straight", description: "Breadboard jig, tack one pin, check and correct, then solder the rest, plus fixing a crooked header.", href: "/soldering-irons/how-to-solder-pin-headers-straight" },
   { category: "soldering-irons", type: "how-to-guide", title: "How to Solder an SMD LED on a PCB", description: "Reading cathode marks, tin-tack-solder technique, heat limits, thermal-pad LEDs and a diode-mode check.", href: "/soldering-irons/how-to-solder-an-smd-led-on-a-pcb" },
+  // Niche budget-pair comparisons, 2026-11-19 — same technique as the top-performing DS213-vs-DSO152 page
+  { category: "multimeters", type: "comparison", title: "Fieldpiece SC260 vs Fieldpiece SC480", description: "Compact HVACR clamp meter vs. the 600A True RMS step up with inrush mode", href: "/multimeters/fieldpiece-sc260-vs-fieldpiece-sc480" },
+  { category: "multimeters", type: "comparison", title: "Fieldpiece SC260 vs Fluke 323", description: "HVACR feature breadth vs. a focused, simpler CAT III clamp meter", href: "/multimeters/fieldpiece-sc260-vs-fluke-323" },
+  { category: "multimeters", type: "comparison", title: "Fluke 1587 FC vs Fluke 179", description: "Insulation-resistance tester-plus-meter vs. a standard everyday field meter", href: "/multimeters/fluke-1587-fc-vs-fluke-179" },
+  { category: "multimeters", type: "comparison", title: "Fluke 87V MAX vs Fluke 289", description: "Rugged real-time field meter vs. the logging and trending flagship", href: "/multimeters/fluke-87v-max-vs-fluke-289" },
+  { category: "multimeters", type: "comparison", title: "Fluke 87V MAX vs Fluke 287", description: "Live analog bar graph vs. on-screen TrendCapture logging", href: "/multimeters/fluke-87v-max-vs-fluke-287" },
+  { category: "oscilloscopes", type: "comparison", title: "Rigol DHO914 vs Rigol DHO914S", description: "Same 125 MHz scope, with or without the built-in generator and Bode plot", href: "/oscilloscopes/rigol-dho914-vs-rigol-dho914s" },
+  { category: "multimeters", type: "comparison", title: "Fluke 289 vs Fluke 789", description: "General logging DMM vs. a 4-20 mA loop-sourcing ProcessMeter", href: "/multimeters/fluke-289-vs-fluke-789" },
+  { category: "multimeters", type: "comparison", title: "Klein Tools MM420 vs Klein Tools MM720", description: "CAT III 600V entry meter vs. the CAT IV 600V step up with LoZ", href: "/multimeters/klein-mm420-vs-klein-mm720" },
+  { category: "multimeters", type: "comparison", title: "Fluke 114 vs Fluke 107", description: "True RMS voltage specialist vs. a compact meter with current and capacitance", href: "/multimeters/fluke-114-vs-fluke-107" },
+  { category: "soldering-irons", type: "comparison", title: "Pinecil V2 vs Hakko FX-888DX", description: "USB-C portable iron vs. a fixed-power bench soldering station", href: "/soldering-irons/pinecil-v2-vs-hakko-fx-888dx" },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

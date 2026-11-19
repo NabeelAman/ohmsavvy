@@ -2097,6 +2097,25 @@
         "Fluke 117/323 Kit"
       ],
       "notes": "trending 2026-11-17 (autocomplete score 16): The Fluke 323 and the Fluke 117/323 Kit are specifically designed for measuring inrush current without breaking the circuit, making them highly suitable for this purpose."
+    },
+    {
+      "keyword": "best multimeter for guitar electronics",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-no-fit",
+      "notes": "trending 2026-11-19: None of the multimeters listed offer specific features tailored for guitar electronics, such as low-impedance measurement or specialized testing modes for capacitors and potentiometers commonly found in guitar circuits. The products are generally geared towards broader electrical and electronic applications, not specifically for the nuanced requirements of guitar electronics."
+    },
+    {
+      "keyword": "best soldering station for hobbyists",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Hakko FX-888DX",
+        "Q-MING 60W Kit",
+        "X-Tronic 3020-XTS"
+      ],
+      "notes": "trending 2026-11-19 (autocomplete score 29): The Hakko FX-888DX offers professional-grade features suitable for serious hobbyists, the Q-MING 60W Kit is ideal for beginners and occasional use, and the X-Tronic 3020-XTS provides a reliable PID station with a long warranty, all fitting well for hobbyist needs."
     }
   ]
 }

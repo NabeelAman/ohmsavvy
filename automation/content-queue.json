@@ -2116,6 +2116,24 @@
         "X-Tronic 3020-XTS"
       ],
       "notes": "trending 2026-11-19 (autocomplete score 29): The Hakko FX-888DX offers professional-grade features suitable for serious hobbyists, the Q-MING 60W Kit is ideal for beginners and occasional use, and the X-Tronic 3020-XTS provides a reliable PID station with a long warranty, all fitting well for hobbyist needs."
+    },
+    {
+      "keyword": "best clamp meter for fire alarm",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-no-fit",
+      "notes": "trending 2026-11-20: None of the listed clamp meters are specifically designed or marketed for use with fire alarms. While some meters may be suitable for general electrical work that could include checking wiring or circuits related to fire alarms, none of them offer features or specifications that are uniquely tailored for fire alarm systems. Therefore, the search criteria do not match any of the products listed."
+    },
+    {
+      "keyword": "best soldering iron for home use",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Q-MING 60W Kit",
+        "Pinecil V2"
+      ],
+      "notes": "trending 2026-11-20 (autocomplete score 22): The Q-MING 60W Kit is ideal for beginners and occasional use, offering a complete starter kit with adjustable temperature control. The Pinecil V2 is excellent for portability and field repairs, with a fast heat-up time and digital temperature control, making both suitable for home use."
     }
   ]
 }

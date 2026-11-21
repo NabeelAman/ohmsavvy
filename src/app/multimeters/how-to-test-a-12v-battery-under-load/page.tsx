@@ -86,6 +86,11 @@ export default function HowToTestA12vBatteryUnderLoadPage() {
           title: "How to Measure Parasitic Battery Drain",
           desc: "If the battery tests fine but keeps going flat while parked.",
         },
+        {
+          href: "/multimeters/how-to-test-a-golf-cart-battery-with-a-multimeter",
+          title: "How to Test a Golf Cart Battery With a Multimeter",
+          desc: "Load-testing each battery in a deep-cycle golf cart pack to find the weak one.",
+        },
       ]}
     >
       <Callout title="Keep clear while cranking, and never load-test a damaged battery">

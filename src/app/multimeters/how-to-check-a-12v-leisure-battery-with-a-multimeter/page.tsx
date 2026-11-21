@@ -106,6 +106,11 @@ export default function HowToCheckA12vLeisureBatteryWithAMultimeterPage() {
           title: "How to Measure Parasitic Battery Drain",
           desc: "Track down the trackers, alarms and standby loads that flatten a battery in storage.",
         },
+        {
+          href: "/multimeters/how-to-test-a-golf-cart-battery-with-a-multimeter",
+          title: "How to Test a Golf Cart Battery With a Multimeter",
+          desc: "Deep-cycle banks of 6, 8 and 12 V batteries: find the one weak battery dragging the pack down.",
+        },
       ]}
     >
       <Callout title="Before you start">

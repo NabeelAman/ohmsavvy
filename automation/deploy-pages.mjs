@@ -57,7 +57,14 @@ if (!existsSync(stamp) || readFileSync(stamp, "utf8") !== lockHash) {
   writeFileSync(stamp, lockHash);
 }
 log(`Building ${sha}…`);
-run("npx next build", BUILD);
+// Next.js 16.4 stops the first build after a new security advisory appears
+// ("Retry the same command to continue"), then builds normally. Retry once for
+// that case only; the advisory itself is reported to the owner separately.
+try { run("npx next build", BUILD); } catch (e) {
+  if (!/SecurityFatalError/.test(String(e.stderr) + String(e.stdout) + String(e.message))) throw e;
+  log("Next.js showed its one-time security advisory notice; retrying the build once.");
+  run("npx next build", BUILD);
+}
 if (!existsSync(resolve(BUILD, "out", "index.html"))) throw new Error("Build produced no out/index.html.");
 
 // 3. Copy into gh-pages and push.

@@ -65,9 +65,9 @@ export async function geminiAudit({ d, picks, keyword }) {
   const prompt = `You are the editorial QA reviewer for OhmSavvy, an electronics review site whose promise is "100% spec-verified, no fabrication".
 Review the DRAFT for the keyword "${keyword}" against the PRODUCT DATA. Report a problem for each of these you find:
 - any statement about a product (feature, spec, capability, suitability) not supported by that product's data, including implying all products share a feature;
-- any claim or implication of hands-on testing or first-hand use;
+- any claim or implication of hands-on testing or first-hand use (using, handling, measuring with or noticing something about a product). Explaining which criteria mattered when picking products from their specs ("we chose", "portability mattered most") is editorial selection, not testing, and is NOT a problem;
 - any price, deal, or reference to Amazon/customer reviews or star ratings;
-- hype or unqualified superlatives ("the best", "#1", "guaranteed", "must-have");
+- hype or unqualified superlatives that crown a product ("the best multimeter on the market", "#1", "guaranteed", "must-have"). The keyword itself ("${keyword}") and ordinary buyer phrasing built on it ("find the best one for your use", "which temperature is best for…") are required for SEO and are NOT problems;
 - keyword stuffing, generic filler that says nothing specific, or a sentence that is misleading or unsafe electrical advice.
 Do NOT report style preferences. If there are no problems, return an empty list.
 

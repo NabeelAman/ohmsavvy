@@ -18,7 +18,6 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { buildMetadata } from "@/lib/metadata";
-import { localeAlternates } from "@/lib/i18n";
 import { getAllPicks } from "@/lib/catalog";
 
 const pick = getAllPicks("multimeters").find((p) => p.name === "Fluke 289")!;
@@ -27,7 +26,6 @@ export const metadata = buildMetadata({
   title: "Fluke 289 Review",
   description: "Fluke 289 review: 50,000 counts, a 50 Ω range at 1 mΩ, 0.01 µA resolution and TrendCapture logging on the meter, and who doesn't need any of it.",
   path: "/multimeters/fluke-289-review",
-  languages: localeAlternates("/multimeters/fluke-289-review"),
   image: pick.image,
 });
 

@@ -31,7 +31,8 @@ export const FLAGS: Record<"en" | Locale, string> = {
 export function localeAlternates(path: string): Record<string, string> {
   const languages: Record<string, string> = { en: path, "x-default": path };
   for (const locale of LOCALES) {
-    languages[locale] = `/${locale}${path}`;
+    // The locale homepage is /de, not /de/: GitHub Pages 404s the trailing-slash form.
+    languages[locale] = path === "/" ? `/${locale}` : `/${locale}${path}`;
   }
   return languages;
 }

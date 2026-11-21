@@ -93,7 +93,7 @@ export default function OscilloscopeSampleRateExplainedPage() {
       ]}
       next={[
         {
-          href: "/oscilloscopes/how-to-read-an-oscilloscope-screen",
+          href: "/oscilloscopes/how-to-read-an-oscilloscope",
           title: "How to Read an Oscilloscope Screen",
           desc: "The graticule, volts/div, and time/div controls that sample rate feeds into.",
         },

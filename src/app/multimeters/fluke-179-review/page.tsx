@@ -15,7 +15,6 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { buildMetadata } from "@/lib/metadata";
-import { localeAlternates } from "@/lib/i18n";
 import { getAllPicks } from "@/lib/catalog";
 
 const pick = getAllPicks("multimeters").find((p) => p.name === "Fluke 179")!;
@@ -24,7 +23,6 @@ export const metadata = buildMetadata({
   title: "Fluke 179 Review",
   description: "Fluke 179 review: True RMS, CAT IV 600V, a 6,000-count backlit display and a thermocouple input, and when the 117, 87V or 289 is the better buy.",
   path: "/multimeters/fluke-179-review",
-  languages: localeAlternates("/multimeters/fluke-179-review"),
   image: pick.image,
 });
 

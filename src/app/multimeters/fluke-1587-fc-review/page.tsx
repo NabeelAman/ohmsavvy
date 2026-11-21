@@ -22,7 +22,6 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { buildMetadata } from "@/lib/metadata";
-import { localeAlternates } from "@/lib/i18n";
 import { getAllPicks } from "@/lib/catalog";
 
 const pick = getAllPicks("multimeters").find((p) => p.name === "Fluke 1587 FC")!;
@@ -31,7 +30,6 @@ export const metadata = buildMetadata({
   title: "Fluke 1587 FC Review",
   description: "Fluke 1587 FC review: 50–1000 V insulation tests to 2 GΩ, PI/DAR ratios and app logging, plus the 400 mA current ceiling to weigh first.",
   path: "/multimeters/fluke-1587-fc-review",
-  languages: localeAlternates("/multimeters/fluke-1587-fc-review"),
   image: pick.image,
 });
 

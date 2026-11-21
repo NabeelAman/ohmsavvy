@@ -19,7 +19,6 @@
 import { ContentLinks } from "@/components/ContentLinks";
 import { ProductReview, type ProductReviewContent } from "@/components/ProductReview";
 import { buildMetadata } from "@/lib/metadata";
-import { localeAlternates } from "@/lib/i18n";
 import { getAllPicks } from "@/lib/catalog";
 
 const pick = getAllPicks("multimeters").find((p) => p.name === "Fluke 101")!;
@@ -28,7 +27,6 @@ export const metadata = buildMetadata({
   title: "Fluke 101 Review",
   description: "Fluke 101 review: a 160 g CAT III 600V pocket meter with frequency, duty cycle and capacitance but no current ranges. Who should buy it, who shouldn't.",
   path: "/multimeters/fluke-101-review",
-  languages: localeAlternates("/multimeters/fluke-101-review"),
   image: pick.image,
 });
 

@@ -56,6 +56,8 @@ if (!existsSync(stamp) || readFileSync(stamp, "utf8") !== lockHash) {
   run("npm ci --no-audit --no-fund --loglevel=error", BUILD);
   writeFileSync(stamp, lockHash);
 }
+// Fresh <lastmod> dates from git history (the build worktree has it), never the build time.
+log(run("node scripts/update-sitemap-lastmod.mjs", BUILD));
 log(`Building ${sha}…`);
 // Next.js 16.4 stops the first build after a new security advisory appears
 // ("Retry the same command to continue"), then builds normally. Retry once for
@@ -66,6 +68,8 @@ try { run("npx next build", BUILD); } catch (e) {
   run("npx next build", BUILD);
 }
 if (!existsSync(resolve(BUILD, "out", "index.html"))) throw new Error("Build produced no out/index.html.");
+// Translated pages are exported as lang="en" (the root layout owns <html>); give them their own language.
+log(run(`node automation/fix-locale-lang.mjs "${resolve(BUILD, "out")}"`, BUILD));
 
 // 3. Copy into gh-pages and push.
 run("git checkout -q --detach origin/gh-pages", PAGES);

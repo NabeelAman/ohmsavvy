@@ -4,7 +4,9 @@ import { LOCALES } from "@/lib/i18n";
 import lastModJson from "@/lib/sitemap-lastmod.json";
 
 const lastModMap = lastModJson as Record<string, string>;
-const lastModFor = (route: string) => lastModMap[route === "" ? "/" : route] ?? new Date().toISOString();
+// No entry -> no <lastmod> (never the build time: a date that changes on every deploy teaches Google to ignore it).
+// scripts/update-sitemap-lastmod.mjs fills this from git on every deploy.
+const lastModFor = (route: string): string | undefined => lastModMap[route === "" ? "/" : route];
 
 // Translated pilot pages: homepage + flagship review, in each pilot locale.
 const TRANSLATED_PAGES = ["", "/multimeters/fluke-117-review"];

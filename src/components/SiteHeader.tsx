@@ -13,9 +13,9 @@ import { ThemeToggle } from "./ThemeToggle";
 export function SiteHeader() {
   return (
     <ScrollHeader>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 transition-[padding] duration-300 lg:group-data-[scrolled=true]/header:py-2.5">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-4 sm:gap-4 sm:px-6 transition-[padding] duration-300 lg:group-data-[scrolled=true]/header:py-2.5">
         <HeaderLogo />
-        <div className="flex items-center gap-2 lg:gap-4">
+        <div className="flex items-center gap-1 sm:gap-2 lg:gap-4">
           <SiteNav />
           <LanguageSwitcher />
           <ThemeToggle />

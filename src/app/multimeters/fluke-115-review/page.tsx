@@ -93,7 +93,7 @@ const review: ProductReviewContent = {
     },
     {
       question: "What's the real difference between the Fluke 115 and Fluke 117?",
-      answer: "According to Fluke's own comparison, the two are identical for voltage, current, resistance, capacitance, and frequency measurement. The 117 adds non-contact voltage (NCV) detection and an AutoVolt AC/DC auto-selector with a low-impedance (LoZ) mode; the 115 doesn't have either. Fluke markets the 117 specifically to electricians and the 115 as a more general field-service meter.",
+      answer: "According to Fluke's own comparison, the two are identical for voltage, current, resistance, capacitance, and frequency measurement. The 117 adds non-contact voltage (NCV) detection and an AutoVolt AC/DC auto-selector with a low-impedance (LoZ) mode; the 115 doesn't have either. Fluke markets the 117 specifically to electricians and the 115 as a more general field-service meter. Our Fluke 115 vs Fluke 117 comparison sets every spec side by side.",
     },
     {
       question: "Is the Fluke 115 True RMS?",

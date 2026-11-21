@@ -154,7 +154,7 @@ export default function BestMultimeterForHomeUsePage() {
         heading="Best Multimeter for Home Use & DIY: Top 10 for Household Jobs"
         tagline="Ranked on safety, NCV and everyday ease."
         description="Our top 10 multimeters for homeowners and weekend DIYers, ranked on how safely they handle outlets and fixed wiring, whether they warn you about live wires, how easy they are to pick up twice a year and which household jobs they cover."
-        primaryCta={{ label: "See the Full Roundup", href: "/multimeters/best-multimeters" }}
+        primaryCta={{ label: "See the Best Multimeters Roundup", href: "/multimeters/best-multimeters" }}
         secondaryCta={{ label: "Compare Side by Side", href: "#full-comparison" }}
         stats={[
           { value: `${picks.length}`, label: "Compared" },

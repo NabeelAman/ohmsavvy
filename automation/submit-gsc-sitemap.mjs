@@ -11,6 +11,7 @@
 // Google API client library, to keep this dependency-free like the IndexNow
 // script.
 import crypto from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
 
 const SITE_URL = "https://ohmsavvy.com/";
 const SITEMAP_URL = "https://ohmsavvy.com/sitemap.xml";
@@ -51,14 +52,17 @@ async function getAccessToken(key) {
 }
 
 async function main() {
-  if (process.env.VERCEL_ENV !== "production") {
-    console.log("Skipping GSC sitemap submission (not a production Vercel build).");
+  // automation/deploy-pages.mjs sets OHM_DEPLOY=pages for GitHub Pages deploys (the site left Vercel on 2026-11-13).
+  if (process.env.VERCEL_ENV !== "production" && process.env.OHM_DEPLOY !== "pages") {
+    console.log("Skipping GSC sitemap submission (not a production deploy).");
     return;
   }
 
-  const rawKey = process.env.GSC_SERVICE_ACCOUNT_KEY;
+  // The key JSON itself (Vercel) or, on this PC, a path to the key file outside the repo.
+  const keyFile = process.env.GSC_SERVICE_ACCOUNT_KEY_FILE;
+  const rawKey = process.env.GSC_SERVICE_ACCOUNT_KEY || (keyFile && existsSync(keyFile) ? readFileSync(keyFile, "utf8") : "");
   if (!rawKey) {
-    console.warn("GSC: skipping — GSC_SERVICE_ACCOUNT_KEY env var is not set.");
+    console.warn("GSC: skipping — neither GSC_SERVICE_ACCOUNT_KEY nor GSC_SERVICE_ACCOUNT_KEY_FILE is set.");
     return;
   }
 

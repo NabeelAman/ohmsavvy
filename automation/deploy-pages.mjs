@@ -73,6 +73,8 @@ log(run(`node automation/fix-locale-lang.mjs "${resolve(BUILD, "out")}"`, BUILD)
 
 // 3. Copy into gh-pages and push.
 run("git checkout -q --detach origin/gh-pages", PAGES);
+// The main-branch commit the live site was built from ("Deploy <sha>: ..."), so IndexNow only gets the changed pages.
+const prevSha = (run("git log -1 --format=%s", PAGES).match(/^Deploy ([0-9a-f]{7,40})/) || [])[1] || "";
 // robocopy exit codes below 8 mean success. In a git worktree .git is a FILE
 // (a gitdir pointer), so it must be excluded with /XF as well as /XD, or /MIR
 // deletes it and the worktree stops being a repository.
@@ -90,6 +92,14 @@ try { run("git push -q origin HEAD:gh-pages", PAGES); } catch {
 log(`Deployed ${sha} to GitHub Pages (${reason}).`);
 
 // 4. Tell search engines (same as the build's postbuild step).
+// Run from the build worktree (HEAD = the deployed commit, with git history for the diff).
+const pingEnv = {
+  ...process.env,
+  OHM_DEPLOY: "pages",
+  PREVIOUS_DEPLOY_SHA: prevSha,
+  GSC_SERVICE_ACCOUNT_KEY_FILE: process.env.GSC_SERVICE_ACCOUNT_KEY_FILE || resolve(HOME, "nabeelaman-gsc-key.json"),
+};
 for (const s of ["automation/submit-indexnow.mjs", "automation/submit-gsc-sitemap.mjs"]) {
-  try { log(run(`node ${s}`)); } catch (e) { log(`${s} failed: ${String(e.message).slice(0, 200)}`); }
+  try { log(execSync(`node ${s}`, { cwd: BUILD, env: pingEnv, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim()); } catch (e) { log(`${s} failed: ${String(e.message).slice(0, 200)}`); }
 }
+

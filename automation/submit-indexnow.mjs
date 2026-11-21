@@ -33,7 +33,7 @@ function extractRoutes() {
 // homepage. Re-sending all ~600 URLs on every deploy made Bing and partners re-crawl the whole site each time
 // (Vercel usage review, 2026-11-10). If the previous commit isn't available, fall back to every route.
 function changedRoutes(all) {
-  const prev = process.env.VERCEL_GIT_PREVIOUS_SHA;
+  const prev = process.env.VERCEL_GIT_PREVIOUS_SHA || process.env.PREVIOUS_DEPLOY_SHA;
   if (!prev) return null;
   let files;
   try {
@@ -51,8 +51,9 @@ function changedRoutes(all) {
 }
 
 async function main() {
-  if (process.env.VERCEL_ENV !== "production") {
-    console.log("Skipping IndexNow submission (not a production Vercel build).");
+  // automation/deploy-pages.mjs sets OHM_DEPLOY=pages for GitHub Pages deploys (the site left Vercel on 2026-11-13).
+  if (process.env.VERCEL_ENV !== "production" && process.env.OHM_DEPLOY !== "pages") {
+    console.log("Skipping IndexNow submission (not a production deploy).");
     return;
   }
 

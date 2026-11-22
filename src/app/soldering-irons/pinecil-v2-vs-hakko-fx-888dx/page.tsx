@@ -37,7 +37,7 @@ const path = "/soldering-irons/pinecil-v2-vs-hakko-fx-888dx";
 export const metadata = buildMetadata({
   title: "Pinecil V2 vs Hakko FX-888DX",
   description:
-    "Pinecil V2 vs Hakko FX-888DX: a pocket USB-C iron with open-source firmware against a fixed 100W ESD-safe bench station. Power, weight, range and who should buy which.",
+    "Pinecil V2 vs Hakko FX-888DX: a pocket USB-C iron with open-source firmware against a fixed 100W ESD-safe bench station. Power, weight and who should buy which.",
   path,
 });
 

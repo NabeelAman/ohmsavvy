@@ -282,6 +282,10 @@ export default function HowToTestContinuityWithAMultimeterPage() {
           <Link href="/multimeters/how-to-measure-resistance-with-a-multimeter" className={link}>
             how to measure resistance
           </Link>
+          . For a worked switch example, see{" "}
+          <Link href="/multimeters/how-to-test-a-3-way-switch-with-a-multimeter" className={link}>
+            how to test a 3-way switch with a multimeter
+          </Link>
           .
         </p>
         <ProductStrip

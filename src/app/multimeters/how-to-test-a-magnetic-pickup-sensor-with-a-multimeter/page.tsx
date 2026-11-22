@@ -109,7 +109,12 @@ export default function HowToTestAMagneticPickupSensorWithAMultimeterPage() {
           as wheel speed sensors on older ABS systems, on transmission input and output shafts, and as speed
           pickups on industrial machinery. Each tooth that approaches the tip concentrates the magnetic flux
           through the coil, and each gap lets it relax. The coil turns that change into a voltage swing, positive
-          as a tooth approaches and negative as it leaves.
+          as a tooth approaches and negative as it leaves. Newer cars mostly use powered active wheel sensors
+          instead, which need a different test; see{" "}
+          <Link href="/multimeters/how-to-test-an-abs-sensor-with-a-multimeter" className={link}>
+            how to test an ABS sensor with a multimeter
+          </Link>
+          .
         </p>
         <Figure
           caption={

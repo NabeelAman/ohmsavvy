@@ -231,7 +231,12 @@ export default function HowToMeasureResistanceOfAHeatingElementPage() {
           Some elements have more than two terminals, for example dual-coil cooktop or oven elements that
           switch between power levels. Each coil is effectively its own element: identify the terminals from
           the wiring diagram, usually printed inside a panel or in the service manual, and measure each coil
-          separately against its own expected value.
+          separately against its own expected value. A gas furnace&apos;s hot surface igniter is checked the same
+          way, against the igniter maker&apos;s cold range; see{" "}
+          <Link href="/multimeters/how-to-test-a-furnace-igniter-with-a-multimeter" className={link}>
+            how to test a furnace igniter with a multimeter
+          </Link>
+          .
         </p>
       </section>
 

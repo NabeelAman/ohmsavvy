@@ -160,6 +160,14 @@ export default function HowToMeasureMicroampsWithAMultimeterPage() {
           on the cell and datasheet), so treat 0.53 µA as an illustrative midpoint, not a spec for any
           specific battery.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          The most common real-world µA job is HVAC: a gas furnace proves its flame with a current of a few
+          microamps. The hookup and the readings to expect are in{" "}
+          <Link href="/multimeters/how-to-test-a-flame-sensor-with-a-multimeter" className={link}>
+            how to test a flame sensor with a multimeter
+          </Link>
+          .
+        </p>
       </section>
 
       <section>

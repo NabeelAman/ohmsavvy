@@ -187,7 +187,12 @@ export default function HowToMeasureMillivoltsWithAMultimeterPage() {
         <p className="text-muted leading-7 mt-4">
           The thermocouple figure comes from the NIST ITS-90 reference tables, and the shunt and load cell figures
           are their ratings, explained in the steps below. Millivolt work is mostly DC; the AC mV range is for audio
-          and small-signal checks, and its accuracy usually applies only over a limited frequency band.
+          and small-signal checks, and its accuracy usually applies only over a limited frequency band. A car&apos;s
+          oxygen sensor is another sub-volt signal, swinging between about 0.1 and 0.9 V; see{" "}
+          <Link href="/multimeters/how-to-test-an-o2-sensor-with-a-multimeter" className={link}>
+            how to test an O2 sensor with a multimeter
+          </Link>
+          .
         </p>
       </section>
 

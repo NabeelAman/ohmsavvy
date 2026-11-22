@@ -7,4 +7,4 @@
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":"how-to-test-a-solenoid-valve-coil-resistance-with-a-multimeter","h":96,"c":"$Q3"}]]
 1:[["children",{"s":"multimeters","h":64,"c":"$Q2"}]]
-0:{"b":"8d_fjjEug4zHJBdTX-Ga4","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"rbppZcpfE2JNlzZJvZMgk","t":{"t":{"s":"","h":16,"c":"$Q1"}}}

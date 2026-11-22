@@ -35,6 +35,27 @@ export default function ContactPage() {
         ))}
       </ul>
 
+      <section className="mt-10 space-y-4 text-muted leading-7">
+        <h2 className="text-xl font-semibold text-foreground">Getting the most from your message</h2>
+        <p>
+          For a correction, include the page address, the spec or statement you think is wrong and, if you have it, a link to
+          the manufacturer&apos;s datasheet, manual or product page. Every spec on OhmSavvy is meant to come from the maker or
+          the official Amazon listing, so a source from either lets us check and fix the page quickly. Our{" "}
+          <Link href="/about" className="text-accent hover:underline">
+            about page
+          </Link>{" "}
+          explains how we review, what the Hands-on Tested badge means and how we rate products.
+        </p>
+        <p>
+          When suggesting a product, give the exact model name, ideally with its Amazon link. We only cover tools that are
+          currently sold on Amazon.com, so a suggestion may wait until a model is back in stock.
+        </p>
+        <p>
+          We don&apos;t sell products ourselves. For orders, delivery, returns or warranty claims on something you bought
+          through one of our links, please contact Amazon or the seller, or the manufacturer for warranty repairs.
+        </p>
+      </section>
+
       <ContactForm />
 
       <p className="mt-10 text-sm text-muted leading-6">

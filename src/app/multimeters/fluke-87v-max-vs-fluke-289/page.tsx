@@ -45,11 +45,11 @@ const path = "/multimeters/fluke-87v-max-vs-fluke-289";
 const all = getAllPicks("multimeters");
 
 export const metadata = buildMetadata({
-  title: "Fluke 87V MAX vs Fluke 289: Real-Time or Logging Meter?",
+  title: "Fluke 87V MAX vs Fluke 289: Live or Logging?",
   description:
     "Fluke 87V MAX vs Fluke 289: the MAX is Fluke's toughest real-time field meter (IP67, 4 m drop); the 289 adds 50,000 counts and on-screen TrendCapture logging.",
   image: all.find((p) => p.name === "Fluke 87V MAX")!.image,
-  path,
+  path: "/multimeters/fluke-87v-max-vs-fluke-289",
 });
 
 const link = "text-accent hover:underline";
@@ -256,7 +256,7 @@ const comparison: ProductComparisonContent = {
               ]}
             />
           </Figure>
-          <Figure caption={<>Typical battery life in hours. The MAX's figure assumes no logging; the 289's lower number is its logging-mode minimum.</>}>
+          <Figure caption={<>Typical battery life in hours. The MAX&apos;s figure assumes no logging; the 289&apos;s lower number is its logging-mode minimum.</>}>
             <BarChart
               items={[
                 { label: "289 (logging)", value: 200, display: "200 h" },
@@ -264,7 +264,7 @@ const comparison: ProductComparisonContent = {
               ]}
             />
           </Figure>
-          <Figure caption={<>Capacitance ceiling, log scale. The 289's 100 mF is roughly ten times the MAX's 9,999 µF.</>}>
+          <Figure caption={<>Capacitance ceiling, log scale. The 289&apos;s 100 mF is roughly ten times the MAX&apos;s 9,999 µF.</>}>
             <BarChart
               log
               items={[

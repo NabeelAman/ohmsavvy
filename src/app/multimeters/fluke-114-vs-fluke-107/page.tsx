@@ -42,10 +42,10 @@ const fluke114 = all.find((p) => p.name === "Fluke 114")!;
 const fluke107 = all.find((p) => p.name === "Fluke 107")!;
 
 export const metadata = buildMetadata({
-  title: "Fluke 114 vs Fluke 107: Which Fluke Should You Buy?",
+  title: "Fluke 114 vs Fluke 107: Which Should You Buy?",
   description:
     "Fluke 114 vs Fluke 107: True RMS and AutoVolt LoZ on the bigger 114 against current, capacitance, frequency and diode test on the smaller, non-True RMS 107.",
-  path,
+  path: "/multimeters/fluke-114-vs-fluke-107",
   image: fluke114.image,
 });
 
@@ -111,7 +111,7 @@ function TrueRmsDiagram() {
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",
-  heading: "Fluke 114 vs Fluke 107: Which Fluke Should You Buy?",
+  heading: "Fluke 114 vs Fluke 107: Which Should You Buy?",
   path,
   published: "2026-11-19",
   intro:

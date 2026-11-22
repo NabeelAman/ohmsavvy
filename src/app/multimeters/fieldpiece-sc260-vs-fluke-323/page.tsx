@@ -65,10 +65,10 @@ const path = "/multimeters/fieldpiece-sc260-vs-fluke-323";
 const link = "text-accent hover:underline";
 
 export const metadata = buildMetadata({
-  title: "Fieldpiece SC260 vs Fluke 323: HVAC Extras or Plain Clamp?",
+  title: "Fieldpiece SC260 vs Fluke 323: HVAC or Basic?",
   description:
     "Fieldpiece SC260 vs Fluke 323: an HVACR clamp with capacitance, temperature and NCV against a CAT IV-rated, no-frills True RMS current clamp. Specs and verdict.",
-  path,
+  path: "/multimeters/fieldpiece-sc260-vs-fluke-323",
   image: sc260.image,
 });
 

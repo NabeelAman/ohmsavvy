@@ -36,7 +36,7 @@ export const metadata = buildMetadata({
   description:
     "Klein Tools MM420 vs MM720: a CAT III 600V everyday meter against a CAT IV 600V / CAT III 1000V meter with LoZ. Specs, charts and who should buy which.",
   image: mm420.image,
-  path,
+  path: "/multimeters/klein-mm420-vs-klein-mm720",
 });
 
 const link = "text-accent hover:underline";
@@ -148,7 +148,7 @@ const comparison: ProductComparisonContent = {
   sections: (
     <>
       <section>
-        <h2 className="text-2xl font-semibold mb-4">The real trade-off: where you're allowed to probe</h2>
+        <h2 className="text-2xl font-semibold mb-4">The real trade-off: where you&apos;re allowed to probe</h2>
         <p className="text-muted leading-7 mb-4">
           Both meters measure volts, amps, ohms, capacitance and temperature, and both are True RMS and auto-ranging.
           The number that actually decides which one to buy is the CAT rating, because it describes how much transient
@@ -167,8 +167,8 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mt-4">
           Closer to the utility feed, a fault can release far more energy in a transient than the same fault would
           downstream at a receptacle, which is why CAT IV exists as a separate, higher category from CAT III. The
-          MM420's CAT III 600V rating covers most branch-circuit, receptacle and appliance work; it is not rated for
-          CAT IV locations such as a main service entrance or the utility side of a meter base. The MM720's CAT IV
+          MM420&apos;s CAT III 600V rating covers most branch-circuit, receptacle and appliance work; it is not rated for
+          CAT IV locations such as a main service entrance or the utility side of a meter base. The MM720&apos;s CAT IV
           600V / CAT III 1000V rating covers both, which is the entire reason an electrician would pay more for it.
           Our{" "}
           <Link href="/multimeters/cat-iii-vs-cat-iv-multimeter" className={link}>
@@ -185,7 +185,7 @@ const comparison: ProductComparisonContent = {
           tracks with its higher price. The gap is largest on capacitance.
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
-          <Figure caption={<>Display resolution in counts, from each meter's own page.</>}>
+          <Figure caption={<>Display resolution in counts, from each meter&apos;s own page.</>}>
             <BarChart
               items={[
                 { label: "Klein MM720", value: 6000, display: "6,000 counts", highlight: true },
@@ -209,7 +209,7 @@ const comparison: ProductComparisonContent = {
               ]}
             />
           </Figure>
-          <Figure caption={<>Maximum capacitance, log scale — the MM720's range is 15 times the MM420's.</>}>
+          <Figure caption={<>Maximum capacitance, log scale — the MM720&apos;s range is 15 times the MM420&apos;s.</>}>
             <BarChart
               log
               items={[
@@ -241,9 +241,9 @@ const comparison: ProductComparisonContent = {
           meters read current only through their test leads, in series with the circuit.
         </p>
         <KeyIdea title="Neither meter clamps current">
-          Both the MM420 and MM720 measure current the traditional way: break the circuit and put the meter's leads
+          Both the MM420 and MM720 measure current the traditional way: break the circuit and put the meter&apos;s leads
           in series, up to 10A on either model. If you regularly need to read motor, compressor or feeder current
-          without breaking the circuit, pair either meter with a separate clamp, such as Klein's{" "}
+          without breaking the circuit, pair either meter with a separate clamp, such as Klein&apos;s{" "}
           <Link href="/multimeters/best-multimeter-for-hvac-technicians" className={link}>
             HVAC clamp picks
           </Link>{" "}
@@ -277,11 +277,11 @@ const comparison: ProductComparisonContent = {
         <Callout title="LoZ is a check, not a guarantee">
           A LoZ reading of near-zero strongly suggests the voltage you saw was a ghost caused by induced or
           capacitively-coupled charge rather than a real source, but it isn&apos;t a substitute for proper lockout and
-          verification procedures before you touch a conductor. If you're unsure whether a circuit is truly
+          verification procedures before you touch a conductor. If you&apos;re unsure whether a circuit is truly
           de-energized, treat it as live and bring in a qualified electrician.
         </Callout>
         <p className="text-muted leading-7 mt-4">
-          For how Klein's lower-cost meters compare with Fluke's equivalents, see{" "}
+          For how Klein&apos;s lower-cost meters compare with Fluke&apos;s equivalents, see{" "}
           <Link href="/multimeters/fluke-115-vs-klein-mm720" className={link}>
             Fluke 115 vs Klein MM720
           </Link>{" "}
@@ -289,7 +289,7 @@ const comparison: ProductComparisonContent = {
           <Link href="/multimeters/fluke-117-vs-klein-mm400" className={link}>
             Fluke 117 vs Klein MM400
           </Link>
-          . Klein's own step-up meter in the opposite direction is covered in{" "}
+          . Klein&apos;s own step-up meter in the opposite direction is covered in{" "}
           <Link href="/multimeters/klein-mm400-vs-klein-mm450" className={link}>
             Klein MM400 vs MM450
           </Link>

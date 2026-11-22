@@ -67,7 +67,7 @@ export const metadata = buildMetadata({
   description:
     "Fluke 87V MAX vs Fluke 287: rugged IP67 and a live 32-segment bar graph versus 50,000-count TrendCapture logging. Specs, charts and which to buy.",
   image: all.find((p) => p.name === "Fluke 87V MAX")!.image,
-  path,
+  path: "/multimeters/fluke-87v-max-vs-fluke-287",
 });
 
 const link = "text-accent hover:underline";

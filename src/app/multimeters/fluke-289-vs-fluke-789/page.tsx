@@ -54,7 +54,7 @@ export const metadata = buildMetadata({
   description:
     "Fluke 289 vs Fluke 789: the 289 is a 50,000-count logging DMM that only measures; the 789 ProcessMeter also sources, simulates and powers a 4-20 mA loop.",
   image: fluke289.image,
-  path,
+  path: "/multimeters/fluke-289-vs-fluke-789",
 });
 
 const link = "text-accent hover:underline";

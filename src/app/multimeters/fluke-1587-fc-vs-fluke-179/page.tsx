@@ -49,11 +49,11 @@ const path = "/multimeters/fluke-1587-fc-vs-fluke-179";
 const all = getAllPicks("multimeters");
 
 export const metadata = buildMetadata({
-  title: "Fluke 1587 FC vs Fluke 179: Insulation Tester or Field Meter?",
+  title: "Fluke 1587 FC vs 179: Insulation or Field Meter?",
   description:
     "Fluke 1587 FC vs Fluke 179: a 50–1000 V insulation tester with PI/DAR against a standard CAT IV field multimeter with 10 A. Specs, charts and which to buy.",
   image: all.find((p) => p.name === "Fluke 1587 FC")!.image,
-  path,
+  path: "/multimeters/fluke-1587-fc-vs-fluke-179",
 });
 
 const link = "text-accent hover:underline";
@@ -122,7 +122,7 @@ function InsulationTestComparisonDiagram() {
 
 const comparison: ProductComparisonContent = {
   category: "multimeters",
-  heading: "Fluke 1587 FC vs Fluke 179: Insulation Tester or Field Meter?",
+  heading: "Fluke 1587 FC vs 179: Insulation or Field Meter?",
   path,
   published: "2026-11-19",
   intro:

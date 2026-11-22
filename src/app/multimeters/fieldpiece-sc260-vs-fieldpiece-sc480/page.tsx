@@ -45,10 +45,10 @@ const sc260 = all.find((p) => p.name === "Fieldpiece SC260")!;
 const sc480 = all.find((p) => p.name === "Fieldpiece SC480")!;
 
 export const metadata = buildMetadata({
-  title: "Fieldpiece SC260 vs SC480: Compact or Power Clamp?",
+  title: "Fieldpiece SC260 vs SC480: Which Clamp Meter?",
   description:
     "Fieldpiece SC260 vs SC480: both are True RMS, but the SC480 adds 600A, CAT IV 600V, inrush mode, µA DC, power/PF, phase rotation and wireless logging.",
-  path,
+  path: "/multimeters/fieldpiece-sc260-vs-fieldpiece-sc480",
   image: sc260.image,
 });
 

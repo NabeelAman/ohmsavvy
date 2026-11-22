@@ -38,7 +38,7 @@ export const metadata = buildMetadata({
   title: "Pinecil V2 vs Hakko FX-888DX",
   description:
     "Pinecil V2 vs Hakko FX-888DX: a pocket USB-C iron with open-source firmware against a fixed 100W ESD-safe bench station. Power, weight and who should buy which.",
-  path,
+  path: "/soldering-irons/pinecil-v2-vs-hakko-fx-888dx",
 });
 
 const link = "text-accent hover:underline";
@@ -212,7 +212,7 @@ const comparison: ProductComparisonContent = {
         <p className="text-muted leading-7 mb-4">
           Plugging in a Hakko FX-888DX is a non-decision: any grounded wall outlet gives the station its full 100W, and
           the FX-8801 handpiece always gets the same 65W. The Pinecil V2 has no station of its own, so the decision
-          happens at the charger. Pine64 rates it for 12-24V at up to 88W overall, but a basic phone charger, a laptop's
+          happens at the charger. Pine64 rates it for 12-24V at up to 88W overall, but a basic phone charger, a laptop&apos;s
           USB-C port and a dedicated 24V bench supply are not the same source, and the iron can only deliver what that
           source provides.
         </p>

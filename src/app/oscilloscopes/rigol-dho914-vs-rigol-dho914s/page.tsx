@@ -32,7 +32,7 @@ const dho914 = picks.find((p) => p.name === "Rigol DHO914")!;
 const dho914s = picks.find((p) => p.name === "Rigol DHO914S")!;
 
 export const metadata = buildMetadata({
-  title: "Rigol DHO914 vs DHO914S: Is the Generator Worth It?",
+  title: "Rigol DHO914 vs DHO914S: Worth the Generator?",
   description:
     "Rigol DHO914 vs DHO914S: the same 125MHz, 12-bit, four-channel scope, with or without a built-in 25MHz generator and Bode plot. Specs and a buying table.",
   path: "/oscilloscopes/rigol-dho914-vs-rigol-dho914s",

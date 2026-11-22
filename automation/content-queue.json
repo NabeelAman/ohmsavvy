@@ -2134,6 +2134,18 @@
         "Pinecil V2"
       ],
       "notes": "trending 2026-11-20 (autocomplete score 22): The Q-MING 60W Kit is ideal for beginners and occasional use, offering a complete starter kit with adjustable temperature control. The Pinecil V2 is excellent for portability and field repairs, with a fast heat-up time and digital temperature control, making both suitable for home use."
+    },
+    {
+      "keyword": "best multimeter for small electronics",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "AstroAI DM6000AR",
+        "UNI-T UT139C",
+        "Fluke 115"
+      ],
+      "notes": "trending 2026-11-22 (autocomplete score 14): The AstroAI DM6000AR and UNI-T UT139C offer True RMS accuracy and are specifically recommended for microcontroller and electronics projects, making them ideal for small electronics work. The Fluke 115, while not as specialized, still provides True RMS accuracy and is suitable for general electrical and electronics work, making it a versatile choice."
     }
   ]
 }

@@ -2146,6 +2146,17 @@
         "Fluke 115"
       ],
       "notes": "trending 2026-11-22 (autocomplete score 14): The AstroAI DM6000AR and UNI-T UT139C offer True RMS accuracy and are specifically recommended for microcontroller and electronics projects, making them ideal for small electronics work. The Fluke 115, while not as specialized, still provides True RMS accuracy and is suitable for general electrical and electronics work, making it a versatile choice."
+    },
+    {
+      "keyword": "best multimeter for electrical engineers",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Fluke 117",
+        "Fluke 179"
+      ],
+      "notes": "trending 2026-11-23 (autocomplete score 11): The Fluke 117 and Fluke 179 both offer True RMS accuracy, CAT III 600V/CAT IV 600V safety ratings, and auto-ranging features, making them highly suitable for the demanding needs of electrical engineers."
     }
   ]
 }

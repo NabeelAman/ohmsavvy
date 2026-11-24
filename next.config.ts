@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   // metered as ISR reads + Fast Origin Transfer on every CDN cache miss (and every deploy purges the cache); both
   // went over the Hobby plan's monthly limits (1.3M/1M reads, 10.5/10 GB). Static files use neither.
   output: "export",
+  // 669+ pages prerendered on one shared Windows machine: under CPU load (other builds, a local LLM) pages blew the
+  // default 60s per-page limit and deploy-pages failed (2026-11-24). Output is identical; this only allows more time.
+  staticPageGenerationTimeout: 300,
   images: {
     // Product photos pre-rendered by automation/build-product-images.mjs are served as static WebP from /img/p/
     // by this loader. A photo not yet in src/lib/product-image-manifest.json is used straight from its source URL

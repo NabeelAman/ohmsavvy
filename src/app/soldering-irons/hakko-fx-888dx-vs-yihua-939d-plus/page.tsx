@@ -46,13 +46,13 @@ function TempRangeDiagram() {
     >
       <text x="200" y="16" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">Set range, °C</text>
       <rect x={x(50)} y="36" width={x(480) - x(50)} height="22" rx="4" className="fill-accent/30 stroke-accent" strokeWidth="1.2" />
-      <text x={x(265)} y="51" fontSize="9.5" fontWeight="700" textAnchor="middle" className="fill-foreground">Hakko FX-888DX: 50–480</text>
+      <text x={x(385)} y="51" fontSize="9.5" fontWeight="700" textAnchor="middle" className="fill-foreground">Hakko FX-888DX: 50–480</text>
       <rect x={x(200)} y="70" width={x(480) - x(200)} height="22" rx="4" className="fill-surface stroke-foreground" strokeWidth="1.2" />
       <text x={x(340)} y="85" fontSize="9.5" fontWeight="700" textAnchor="middle" className="fill-foreground">YIHUA 939D+: 200–480</text>
-      <path d={`M${x(183)} 30 V120`} className="stroke-muted" strokeWidth="1.2" strokeDasharray="3 3" />
-      <path d={`M${x(218)} 30 V140`} className="stroke-muted" strokeWidth="1.2" strokeDasharray="3 3" />
-      <text x={x(183) - 4} y="132" fontSize="8.5" textAnchor="end" className="fill-muted">63/37 melts ~183</text>
-      <text x={x(218) + 4} y="140" fontSize="8.5" className="fill-muted">SAC305 ~217–220</text>
+      <path d={`M${x(183)} 30 V112`} className="stroke-muted" strokeWidth="1.2" strokeDasharray="3 3" />
+      <path d={`M${x(218)} 30 V112`} className="stroke-muted" strokeWidth="1.2" strokeDasharray="3 3" />
+      <text x={x(183) - 6} y="126" fontSize="8.5" textAnchor="end" className="fill-muted">63/37 melts ~183</text>
+      <text x={x(218) + 6} y="142" fontSize="8.5" className="fill-muted">SAC305 ~217–220</text>
       <path d={`M${x(0)} 160 H${x(500)}`} className="stroke-foreground" strokeWidth="1.2" />
       {[0, 100, 200, 300, 400, 500].map((c) => (
         <g key={c}>

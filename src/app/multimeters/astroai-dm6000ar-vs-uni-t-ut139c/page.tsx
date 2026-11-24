@@ -56,14 +56,14 @@ function ToleranceDiagram() {
       aria-label="Tolerance windows for a display of 12.00 volts DC, drawn to scale: the UNI-T UT139C's published spec puts the true value between 11.92 and 12.08 volts, while the AstroAI DM6000AR's spec allows 11.87 to 12.13 volts, a window about 1.6 times wider."
     >
       <text x={cx} y="16" fontSize="10" fontWeight="700" textAnchor="middle" className="fill-foreground">Display reads 12.00 V DC: where the true value can be</text>
-      <path d={`M${cx} 30 V160`} className="stroke-muted" strokeWidth="1" strokeDasharray="3 3" />
-      <text x={cx} y="174" fontSize="8.5" textAnchor="middle" className="fill-muted">12.00 V</text>
+      <text x={cx} y="174" fontSize="8.5" textAnchor="middle" className="fill-muted">Center line: the 12.00 V display</text>
       {rows.map((r) => (
         <g key={r.name}>
           <text x={cx} y={r.y - 14} fontSize="9.5" fontWeight="700" textAnchor="middle" className="fill-foreground">{r.name}</text>
           <rect x={cx - r.tol * k} y={r.y - 8} width={2 * r.tol * k} height="16" rx="3" className="fill-accent/30 stroke-accent" strokeWidth="1.2" />
+          <path d={`M${cx} ${r.y - 8} V${r.y + 8}`} className="stroke-muted" strokeWidth="1" strokeDasharray="2 2" />
           <circle cx={cx} cy={r.y} r="3" className="fill-foreground" />
-          <text x={cx} y={r.y + 22} fontSize="8.5" textAnchor="middle" className="fill-muted">{r.label}</text>
+          <text x={cx} y={r.y + 25} fontSize="8.5" textAnchor="middle" className="fill-muted">{r.label}</text>
         </g>
       ))}
     </svg>

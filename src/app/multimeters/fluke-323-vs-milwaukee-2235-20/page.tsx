@@ -40,7 +40,7 @@ const link = "text-accent hover:underline";
 function CategoryZoneDiagram() {
   return (
     <svg
-      viewBox="0 0 400 210"
+      viewBox="0 0 400 224"
       className="w-full h-auto"
       role="img"
       aria-label="Measurement category zones in a house: CAT IV covers the utility drop and the meter base outside, CAT III covers the main panel, feeders and fixed wiring, and CAT II covers plug-in loads. The Fluke 323 is rated CAT IV 300 volts and CAT III 600 volts, so it is rated for all three zones on a 120/240 volt service. The Milwaukee 2235-20 is rated CAT III 600 volts, so it is rated from the panel inward."
@@ -73,11 +73,11 @@ function CategoryZoneDiagram() {
       <circle cx="313" cy="98" r="2.4" className="fill-foreground" />
       <path d="M326 92 H350 V80 H380 V104 H350 V92" className="stroke-foreground fill-none" strokeWidth="1.3" />
       <text x="339" y="143" fontSize="8.5" textAnchor="middle" className="fill-muted">plug-in loads</text>
-      {/* rating bars */}
-      <rect x="8" y="166" width="384" height="12" rx="3" className="fill-accent" />
-      <text x="200" y="175" fontSize="8.5" fontWeight="700" textAnchor="middle" className="fill-background">Fluke 323: CAT IV 300 V + CAT III 600 V</text>
-      <rect x="128" y="186" width="264" height="12" rx="3" className="fill-accent/40" />
-      <text x="260" y="195" fontSize="8.5" fontWeight="700" textAnchor="middle" className="fill-foreground">Milwaukee 2235-20: CAT III 600 V</text>
+      {/* rating bars, labels above each bar */}
+      <text x="8" y="172" fontSize="8.5" fontWeight="700" className="fill-foreground">Fluke 323: CAT IV 300 V + CAT III 600 V</text>
+      <rect x="8" y="177" width="384" height="8" rx="3" className="fill-accent" />
+      <text x="128" y="203" fontSize="8.5" fontWeight="700" className="fill-foreground">Milwaukee 2235-20: CAT III 600 V</text>
+      <rect x="128" y="208" width="264" height="8" rx="3" className="fill-accent/40 stroke-accent" strokeWidth="1" />
     </svg>
   );
 }

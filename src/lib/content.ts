@@ -712,9 +712,23 @@ export const content: ContentEntry[] = [
   {
     category: "multimeters",
     type: "comparison",
+    title: "AstroAI DM6000AR vs UNI-T UT139C",
+    description: "Two 6,000-count True RMS budget meters",
+    href: "/multimeters/astroai-dm6000ar-vs-uni-t-ut139c",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
     title: "Fluke 117 vs Milwaukee 2235-20",
     description: "Do you need a clamp meter too?",
     href: "/multimeters/fluke-117-vs-milwaukee-2235-20",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
+    title: "Fluke 323 vs Milwaukee 2235-20",
+    description: "CAT IV and published accuracy vs. work light and warranty",
+    href: "/multimeters/fluke-323-vs-milwaukee-2235-20",
   },
   {
     category: "multimeters",
@@ -2817,6 +2831,13 @@ export const content: ContentEntry[] = [
   {
     category: "multimeters",
     type: "comparison",
+    title: "Klein MM450 vs Extech EX330",
+    description: "Slim True RMS vs. compact meter with built-in NCV",
+    href: "/multimeters/klein-mm450-vs-extech-ex330",
+  },
+  {
+    category: "multimeters",
+    type: "comparison",
     title: "Fluke 117 vs Klein Tools MM700",
     description: "Ghost-voltage LoZ on both; 6,000 vs 4,000 counts at 480 V",
     href: "/multimeters/fluke-117-vs-klein-mm700",
@@ -3121,6 +3142,13 @@ export const content: ContentEntry[] = [
     title: "YIHUA 939D+ vs 926 III",
     description: "Which Station to Buy?",
     href: "/soldering-irons/yihua-939d-plus-vs-yihua-926-iii",
+  },
+  {
+    category: "soldering-irons",
+    type: "comparison",
+    title: "Hakko FX-888DX vs YIHUA 939D+",
+    description: "Presets and T18 tips vs. a budget ESD-safe station",
+    href: "/soldering-irons/hakko-fx-888dx-vs-yihua-939d-plus",
   },
   {
     category: "soldering-irons",
@@ -4017,6 +4045,13 @@ export const content: ContentEntry[] = [
     title: "Rigol DS1202Z-E vs Siglent SDS1202X-E",
     description: "Deeper memory vs. faster capture rate and serial decode",
     href: "/oscilloscopes/rigol-ds1202z-e-vs-siglent-sds1202x-e",
+  },
+  {
+    category: "oscilloscopes",
+    type: "comparison",
+    title: "Rigol DS1202Z-E vs Siglent SDS1104X-E",
+    description: "200 MHz on two channels vs. 100 MHz on four",
+    href: "/oscilloscopes/rigol-ds1202z-e-vs-siglent-sds1104x-e",
   },
   {
     category: "oscilloscopes",

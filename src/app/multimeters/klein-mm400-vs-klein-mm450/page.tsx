@@ -275,6 +275,13 @@ const comparison: ProductComparisonContent = {
           </Link>
           .
         </p>
+        <p className="text-muted leading-7 mt-4">
+          To weigh the MM450 against a compact meter with built-in NCV, read{" "}
+          <Link href="/multimeters/klein-mm450-vs-extech-ex330" className={link}>
+            Klein MM450 vs Extech EX330
+          </Link>
+          .
+        </p>
       </section>
     </>
   ),

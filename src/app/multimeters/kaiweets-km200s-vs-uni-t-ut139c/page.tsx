@@ -255,6 +255,13 @@ const comparison: ProductComparisonContent = {
           </Link>{" "}
           explains CAT ratings in more depth.
         </p>
+        <p className="text-muted leading-7 mt-4">
+          For the UT139C against another 6,000-count True RMS meter, see{" "}
+          <Link href="/multimeters/astroai-dm6000ar-vs-uni-t-ut139c" className={link}>
+            AstroAI DM6000AR vs UNI-T UT139C
+          </Link>
+          .
+        </p>
       </section>
 
       <Callout title="Safety: match the rating to the job">

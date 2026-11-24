@@ -252,6 +252,13 @@ const comparison: ProductComparisonContent = {
           decide this one; look at capture rate and serial decode instead, since those are where they actually
           differ.
         </Callout>
+        <p className="text-muted leading-7 mt-4">
+          If you would trade the Rigol&apos;s 200 MHz for four channels, compare{" "}
+          <Link href="/oscilloscopes/rigol-ds1202z-e-vs-siglent-sds1104x-e" className={link}>
+            Rigol DS1202Z-E vs Siglent SDS1104X-E
+          </Link>
+          .
+        </p>
       </section>
     </>
   ),

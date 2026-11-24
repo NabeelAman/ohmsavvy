@@ -272,6 +272,13 @@ const comparison: ProductComparisonContent = {
           </Link>
           .
         </p>
+        <p className="text-muted leading-7 mt-4">
+          To see how the 939D+ stacks up against a premium station, read{" "}
+          <Link href="/soldering-irons/hakko-fx-888dx-vs-yihua-939d-plus" className={link}>
+            Hakko FX-888DX vs YIHUA 939D+
+          </Link>
+          .
+        </p>
       </section>
     </>
   ),

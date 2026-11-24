@@ -297,6 +297,13 @@ const comparison: ProductComparisonContent = {
           </Link>
           .
         </p>
+        <p className="text-muted leading-7 mt-4">
+          If you are choosing between two clamps instead, see{" "}
+          <Link href="/multimeters/fluke-323-vs-milwaukee-2235-20" className={link}>
+            Fluke 323 vs Milwaukee 2235-20
+          </Link>
+          .
+        </p>
       </section>
 
       <Callout title="Safety: the 10 A jack is the risky one">

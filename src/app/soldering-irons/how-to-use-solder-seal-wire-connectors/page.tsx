@@ -185,7 +185,12 @@ export default function HowToUseSolderSealWireConnectorsPage() {
           good joint and a bad one look different. The low-melting solder is what lets a heat gun finish the joint
           without an iron, and it is also its limit: it is softer and melts at a lower temperature than the
           tin-lead or tin-silver-copper solder you&apos;d use with an iron, so these joints don&apos;t belong next
-          to an exhaust manifold or anywhere that runs hot.
+          to an exhaust manifold or anywhere that runs hot. Where you can reach the joint with an iron, a
+          wrapped{" "}
+          <Link href="/soldering-irons/how-to-solder-a-western-union-splice" className={link}>
+            Western Union splice
+          </Link>{" "}
+          soldered with ordinary solder is the stronger choice.
         </p>
       </section>
 

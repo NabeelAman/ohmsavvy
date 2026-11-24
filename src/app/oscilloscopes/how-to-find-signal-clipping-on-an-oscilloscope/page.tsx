@@ -192,7 +192,12 @@ export default function HowToFindSignalClippingPage() {
           <Link href="/oscilloscopes/why-does-an-oscilloscope-waveform-shift-vertically" className={link}>
             why a waveform shifts vertically
           </Link>
-          . Never judge clipping from a trace that touches the top or bottom edge.
+          . Never judge clipping from a trace that touches the top or bottom edge; that is the scope
+          being overdriven, covered in{" "}
+          <Link href="/oscilloscopes/how-to-avoid-overdriving-an-oscilloscope" className={link}>
+            how to avoid overdriving an oscilloscope
+          </Link>
+          .
         </p>
       </section>
 

@@ -164,7 +164,12 @@ export default function HowToSolderStrandedWireWithoutSolderWickingTooFarPage() 
           Industry workmanship standards, such as IPC J-STD-001, treat solder wicking into the part of a
           wire that must stay flexible as a defect. If you build to a standard, check its exact
           acceptance criteria. For hobby work, the practical rule is simple: solder where the joint is,
-          bare copper between the joint and the insulation, and no solder under the insulation.
+          bare copper between the joint and the insulation, and no solder under the insulation. The same
+          rule applies when you pre-coat a lead; see{" "}
+          <Link href="/soldering-irons/how-to-tin-a-wire-for-soldering" className={link}>
+            how to tin a wire for soldering
+          </Link>
+          .
         </p>
       </section>
 

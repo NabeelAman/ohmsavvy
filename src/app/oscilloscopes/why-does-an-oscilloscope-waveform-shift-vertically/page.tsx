@@ -158,6 +158,10 @@ export default function WhyDoesAnOscilloscopeWaveformShiftVerticallyPage() {
           <Link href="/oscilloscopes/how-to-read-an-oscilloscope" className={link}>
             how to read an oscilloscope
           </Link>
+          , and pick the scale itself with{" "}
+          <Link href="/oscilloscopes/how-to-set-volts-per-division-on-an-oscilloscope" className={link}>
+            how to set volts per division
+          </Link>
           .
         </p>
       </section>

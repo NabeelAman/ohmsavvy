@@ -4463,6 +4463,12 @@ export const content: ContentEntry[] = [
   { category: "multimeters", type: "comparison", title: "Klein Tools MM420 vs Klein Tools MM720", description: "CAT III 600V entry meter vs. the CAT IV 600V step up with LoZ", href: "/multimeters/klein-mm420-vs-klein-mm720" },
   { category: "multimeters", type: "comparison", title: "Fluke 114 vs Fluke 107", description: "True RMS voltage specialist vs. a compact meter with current and capacitance", href: "/multimeters/fluke-114-vs-fluke-107" },
   { category: "soldering-irons", type: "comparison", title: "Pinecil V2 vs Hakko FX-888DX", description: "USB-C portable iron vs. a fixed-power bench soldering station", href: "/soldering-irons/pinecil-v2-vs-hakko-fx-888dx" },
+  // GSC how-to gaps, 2026-11-24
+  { category: "multimeters", type: "how-to-guide", title: "How to Measure Resistance With a Voltmeter", description: "Known-resistor divider, volts ÷ amps on live parts, four-wire low ohms and the meter-resistance trick, with worked math.", href: "/multimeters/how-to-measure-resistance-with-a-voltmeter" },
+  { category: "oscilloscopes", type: "how-to-guide", title: "How to Avoid Overdriving an Oscilloscope", description: "Input limits, fitting the signal on screen, AC coupling and offset for small detail, and spotting recovery artifacts.", href: "/oscilloscopes/how-to-avoid-overdriving-an-oscilloscope" },
+  { category: "oscilloscopes", type: "how-to-guide", title: "How to Set Volts per Division on an Oscilloscope", description: "Match the probe setting, divide peak-to-peak by six, pick the 1-2-5 step, then fine adjust, offset and verify.", href: "/oscilloscopes/how-to-set-volts-per-division-on-an-oscilloscope" },
+  { category: "soldering-irons", type: "how-to-guide", title: "How to Solder a Western Union Splice", description: "Strip lengths by gauge, crossing and wrapping five tight turns, flowing solder from the center and sealing with heat-shrink.", href: "/soldering-irons/how-to-solder-a-western-union-splice" },
+  { category: "soldering-irons", type: "how-to-guide", title: "How to Tin a Wire for Soldering", description: "Twist, flux, heat from below and stop short of the insulation, plus why not to tin for screw terminals or crimps.", href: "/soldering-irons/how-to-tin-a-wire-for-soldering" },
 ];
 
 /** The Pick names a use-case guide recommends (single source for the page and its cards). */

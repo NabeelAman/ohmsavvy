@@ -275,7 +275,12 @@ export default function HowToMeasureVoltageAcrossAResistorPage() {
           <Link href="/multimeters/how-to-check-a-voltage-divider-circuit-with-a-multimeter" className={link}>
             voltage divider guide
           </Link>{" "}
-          covers how to correct for it.
+          covers how to correct for it. You can also turn voltage readings into ohms with a known series
+          resistor; see{" "}
+          <Link href="/multimeters/how-to-measure-resistance-with-a-voltmeter" className={link}>
+            how to measure resistance with a voltmeter
+          </Link>
+          .
         </p>
       </section>
 

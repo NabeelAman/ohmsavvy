@@ -2157,6 +2157,24 @@
         "Fluke 179"
       ],
       "notes": "trending 2026-11-23 (autocomplete score 11): The Fluke 117 and Fluke 179 both offer True RMS accuracy, CAT III 600V/CAT IV 600V safety ratings, and auto-ranging features, making them highly suitable for the demanding needs of electrical engineers."
+    },
+    {
+      "keyword": "best multimeter for guitar work",
+      "category": "multimeters",
+      "type": "remix",
+      "status": "skip-no-fit",
+      "notes": "trending 2026-11-28: None of the multimeters listed are specifically tailored for guitar work. While some may be suitable for general electrical and electronic projects, they lack the specialized features necessary for guitar-specific tasks such as measuring pickup resistance, capacitance for tone control, or other guitar-related electrical characteristics."
+    },
+    {
+      "keyword": "best soldering station for guitar work",
+      "category": "soldering-irons",
+      "type": "remix",
+      "status": "pending",
+      "targetPicks": [
+        "Q-MING 60W Kit",
+        "Miniware TS101"
+      ],
+      "notes": "trending 2026-11-28 (autocomplete score 19): Both the Q-MING 60W Kit and the Miniware TS101 offer sufficient power and temperature control for general soldering tasks, making them suitable for guitar work which typically requires precise and controlled soldering."
     }
   ]
 }
